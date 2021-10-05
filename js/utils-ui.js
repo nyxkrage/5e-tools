@@ -4457,6 +4457,31 @@ class ComponentUiUtil {
 		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
 		return slider.$get();
 	}
+
+	static $getSliderNumber (
+		comp,
+		prop,
+		{
+			min,
+			max,
+			step,
+			$ele,
+			asMeta,
+		} = {},
+	) {
+		const $slider = ($ele || $(`<input type="range">`))
+			.change(() => comp._state[prop] = Number($slider.val()));
+
+		if (min != null) $slider.attr("min", min);
+		if (max != null) $slider.attr("max", max);
+		if (step != null) $slider.attr("step", step);
+
+		const hk = () => $slider.val(comp._state[prop]);
+		comp._addHookBase(prop, hk);
+		hk();
+
+		return asMeta ? ({$slider, unhook: () => comp._removeHookBase(prop, hk)}) : $slider;
+	}
 }
 ComponentUiUtil.RangeSlider = class {
 	constructor (

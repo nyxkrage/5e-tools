@@ -52,7 +52,7 @@
 												"Favors sunshine, butterflies, flowers, music, and singing birds",
 												"Values ceremony and refinement (for example, proper ways of speaking, formal etiquette, and extravagant dinner parties)",
 												"Favors elaborate, manufactured costuming with immaculate tailoring",
-												"Harshly judges those who don't exhibit the proper etiquette (adventurers who commit social blun- ders make fools of themselves, might be labeled buffoons, and might be laughed out of court)"
+												"Harshly judges those who don't exhibit the proper etiquette (adventurers who commit social blunders make fools of themselves, might be labeled buffoons, and might be laughed out of court)"
 											]
 										}
 									],
@@ -105,7 +105,15 @@
 											"type": "entries",
 											"name": "Gust of Wind",
 											"entries": [
-												"The wind carries the scent of flowers. Maze. The demiplanar labyrinth created by the spell resembles a thorny hedge maze."
+												"The wind carries the scent of flowers."
+											],
+											"page": 5
+										},
+										{
+											"type": "entries",
+											"name": "Maze",
+											"entries": [
+												"The demiplanar labyrinth created by the spell resembles a thorny hedge maze."
 											],
 											"page": 5
 										},
@@ -326,7 +334,7 @@
 										],
 										[
 											"4",
-											"Loves food and isn't picky about what they eat{@dice d8}Quirk"
+											"Loves food and isn't picky about what they eat"
 										],
 										[
 											"5",
@@ -1046,35 +1054,35 @@
 									"rows": [
 										[
 											"1",
-											"AdorableThe archfey has taken on the form of something adorable, such as an otter, a fawn, a sugar glider, a wombat, or a beautiful butterfly."
+											"{@b Adorable.} The archfey has taken on the form of something adorable, such as an otter, a fawn, a sugar glider, a wombat, or a beautiful butterfly."
 										],
 										[
 											"2",
-											"AncientThis archfey appears to be eons old. They might have gnarled skin like teakwood and long, gray hair that looks like elaborate lacework."
+											"{@b Ancient.} This archfey appears to be eons old. They might have gnarled skin like teakwood and long, gray hair that looks like elaborate lacework."
 										],
 										[
 											"3",
-											"BizarreThis archfey looks like something from the realm of dreams. They could take on the appearance of a scintillating ball of light, a floating mask, or a whispering shadow."
+											"{@b Bizarre.} This archfey looks like something from the realm of dreams. They could take on the appearance of a scintillating ball of light, a floating mask, or a whispering shadow."
 										],
 										[
 											"4",
-											"FloralFlowers bloom from the archfey's fingertips, and their skin is covered in petals. Their body might have thorns, or they could have vine-like hair covered in sweet-smelling blossoms."
+											"{@b Floral.} Flowers bloom from the archfey's fingertips, and their skin is covered in petals. Their body might have thorns, or they could have vine-like hair covered in sweet-smelling blossoms."
 										],
 										[
 											"5",
-											"FluidThe archfey can change body type or transform from one creature into another."
+											"{@b Fluid.} The archfey can change body type or transform from one creature into another."
 										],
 										[
 											"6",
-											"IridescentThe archfey floats off the ground and gazes about with glowing eyes, their body surrounded by a nimbus of light and their skin sparkling like sunlight on water."
+											"{@b Iridescent.} The archfey floats off the ground and gazes about with glowing eyes, their body surrounded by a nimbus of light and their skin sparkling like sunlight on water."
 										],
 										[
 											"7",
-											"MetallicThe archfey appears to be made of metal. Their face is an exquisitely crafted mask of mithral, silver, or gold, and their body is made of finely tooled metal etched with organic designs or cryptic symbols."
+											"{@b Metallic.} The archfey appears to be made of metal. Their face is an exquisitely crafted mask of mithral, silver, or gold, and their body is made of finely tooled metal etched with organic designs or cryptic symbols."
 										],
 										[
 											"8",
-											"MonstrousThis archfey has a monstrous form. For example, they might resemble an enormous spider, a hydra whose heads look like oversized elf heads with fangs, or any other horrific form you can imagine."
+											"{@b Monstrous.} This archfey has a monstrous form. For example, they might resemble an enormous spider, a hydra whose heads look like oversized elf heads with fangs, or any other horrific form you can imagine."
 										]
 									]
 								}
@@ -1100,35 +1108,35 @@
 									"rows": [
 										[
 											"1",
-											"BenevolentThe archfey welcomes all into their domain and does everything in their power to assist those who come to them in true friendship or grave need."
+											"{@b Benevolent.} The archfey welcomes all into their domain and does everything in their power to assist those who come to them in true friendship or grave need."
 										],
 										[
 											"2",
-											"CovetousThe archfey hoards things they consider valuable and uses spies to find more of what they covet. The archfey never leaves their lair for fear that their hoard might be plundered."
+											"{@b Covetous.} The archfey hoards things they consider valuable and uses spies to find more of what they covet. The archfey never leaves their lair for fear that their hoard might be plundered."
 										],
 										[
 											"3",
-											"ImperiousThe archfey surrounds themself with a court of sycophants and expects visitors to grovel before them. Their mercy is rare, and their superiority complex is legendary."
+											"{@b Imperious.} The archfey surrounds themself with a court of sycophants and expects visitors to grovel before them. Their mercy is rare, and their superiority complex is legendary."
 										],
 										[
 											"4",
-											"MadcapThe archfey loves to sing, dance, drink, wear silly masks, do cartwheels, and throw parties where everyone is free to cavort and revel how they wish."
+											"{@b Madcap.} The archfey loves to sing, dance, drink, wear silly masks, do cartwheels, and throw parties where everyone is free to cavort and revel how they wish."
 										],
 										[
 											"5",
-											"MercurialThe archfey has two personalities (choose two other personalities from this table). They shift back and forth between these personalities at certain times or when certain conditions are met."
+											"{@b Mercurial.} The archfey has two personalities (choose two other personalities from this table). They shift back and forth between these personalities at certain times or when certain conditions are met."
 										],
 										[
 											"6",
-											"MischievousThe archfey is a trickster who likes to confound and frustrate visitors to their domain and who surrounds themself with sly creatures such as boggles, pixies, foxes, magpies, and crows."
+											"{@b Mischievous.} The archfey is a trickster who likes to confound and frustrate visitors to their domain and who surrounds themself with sly creatures such as boggles, pixies, foxes, magpies, and crows."
 										],
 										[
 											"7",
-											"ReclusiveThe archfey prefers to be left alone and seldom, if ever, leaves their domain. They might adopt disguises or turn {@condition invisible} when they travel, and they might use magic to conceal their lair."
+											"{@b Reclusive.} The archfey prefers to be left alone and seldom, if ever, leaves their domain. They might adopt disguises or turn {@condition invisible} when they travel, and they might use magic to conceal their lair."
 										],
 										[
 											"8",
-											"WildThe archfey has the demeanor of a wild animal and shuns the trappings of society."
+											"{@b Wild.} The archfey has the demeanor of a wild animal and shuns the trappings of society."
 										]
 									]
 								}
@@ -1155,35 +1163,35 @@
 									"rows": [
 										[
 											"1",
-											"BeautyThe archfey does everything in their power to rid their domain of that which they consider ugly. What they consider beautiful is not always clear, however."
+											"{@b Beauty.} The archfey does everything in their power to rid their domain of that which they consider ugly. What they consider beautiful is not always clear, however."
 										],
 										[
 											"2",
-											"ColorThis archfey is obsessed with a particular color and puts their subjects to work making sure the archfey's favorite color is predominant. Wearing another color in the domain could be seen as laughable, obnoxious, or downright rude."
+											"{@b Color.} This archfey is obsessed with a particular color and puts their subjects to work making sure the archfey's favorite color is predominant. Wearing another color in the domain could be seen as laughable, obnoxious, or downright rude."
 										],
 										[
 											"3",
-											"EtiquetteThe rules in the archfey's domain change as they learn about some new custom that is popular in the Summer Court. The archfey requires all creatures in their domain to respect the new rules of etiquette."
+											"{@b Etiquette.} The rules in the archfey's domain change as they learn about some new custom that is popular in the Summer Court. The archfey requires all creatures in their domain to respect the new rules of etiquette."
 										],
 										[
 											"4",
-											"MagicMagic in all its forms fascinates the archfey. They collect magic items and spellbooks, and they enjoy seeing demonstrations of magic from visitors."
+											"{@b Magic.} Magic in all its forms fascinates the archfey. They collect magic items and spellbooks, and they enjoy seeing demonstrations of magic from visitors."
 										],
 										[
 											"5",
-											"Material PlaneThe archfey is obsessed with creatures and objects from the Material Plane. There is a scent, an energy, and a uniqueness to them that fascinates the archfey."
+											"Material {@b Plane.} The archfey is obsessed with creatures and objects from the Material Plane. There is a scent, an energy, and a uniqueness to them that fascinates the archfey."
 										],
 										[
 											"6",
-											"MonstersThe archfey has a menagerie of monsters and is obsessed with finding marvelous new creatures to add to its collection."
+											"{@b Monsters.} The archfey has a menagerie of monsters and is obsessed with finding marvelous new creatures to add to its collection."
 										],
 										[
 											"7",
-											"Rule of ThreeThe archfey is obsessed with the Rule of Three. They look for patterns, deeper meanings, and ill omens in things that occur in threes. The archfey's obsession is reflected throughout their domain, where things seem to naturally come in threes."
+											"Rule of {@b Three.} The archfey is obsessed with the Rule of Three. They look for patterns, deeper meanings, and ill omens in things that occur in threes. The archfey's obsession is reflected throughout their domain, where things seem to naturally come in threes."
 										],
 										[
 											"8",
-											"StoriesThe archfey wants nothing more than to listen to stories told by creatures from faraway places. They love to gather lore so they can build their own internal world of imagination or transform their domain with ideas from other worlds. Their lair is festooned with books, which give the archfey inspiration."
+											"{@b Stories.} The archfey wants nothing more than to listen to stories told by creatures from faraway places. They love to gather lore so they can build their own internal world of imagination or transform their domain with ideas from other worlds. Their lair is festooned with books, which give the archfey inspiration."
 										]
 									]
 								}
@@ -1217,35 +1225,35 @@
 									"rows": [
 										[
 											"1",
-											"Arcane AntlersThe archfey has antlers made of metal, crystal, bone, or some other substance, which allow the archfey to raise the dead. They shed their antlers and grow new ones every hundred years, prompting thieves to sneak into the domain to acquire the shed antlers."
+											"{@b Arcane Antlers.} The archfey has antlers made of metal, crystal, bone, or some other substance, which allow the archfey to raise the dead. They shed their antlers and grow new ones every hundred years, prompting thieves to sneak into the domain to acquire the shed antlers."
 										],
 										[
 											"2",
-											"Compelling VoiceThe archfey has a magical voice that can charm creatures of a certain type (such as Beasts or Fey). This voice might be as soft as a whisper or loud like thunder."
+											"{@b Compelling Voice.} The archfey has a magical voice that can charm creatures of a certain type (such as Beasts or Fey). This voice might be as soft as a whisper or loud like thunder."
 										],
 										[
 											"3",
-											"DreamwalkWhen they sleep, the archfey projects a ghost-like version of themself that can leave their body and go anywhere in their domain."
+											"{@b Dreamwalk.} When they sleep, the archfey projects a ghost-like version of themself that can leave their body and go anywhere in their domain."
 										],
 										[
 											"4",
-											"Hand of KnowingOne of the archfey's hands blurs as though it were in multiple places at once. The archfey can learn the entire history of a creature or object by touching it with that hand."
+											"{@b Hand of Knowing.} One of the archfey's hands blurs as though it were in multiple places at once. The archfey can learn the entire history of a creature or object by touching it with that hand."
 										],
 										[
 											"5",
-											"Health AuraThe archfey's presence rids creatures and vegetation of disease. Healthy vegetation yields an overabundance of flowers and fruit."
+											"{@b Health Aura.} The archfey's presence rids creatures and vegetation of disease. Healthy vegetation yields an overabundance of flowers and fruit."
 										],
 										[
 											"6",
-											"Scrying EyeThis archfey has an ornately crafted, removable eye that has the power of {@sense truesight} (as described in the Monster Manual). The archfey can see through this orb at all times. If the detached eye is destroyed, it rematerializes undamaged in the archfey's empty eye socket."
+											"{@b Scrying Eye.} This archfey has an ornately crafted, removable eye that has the power of {@sense truesight} (as described in the Monster Manual). The archfey can see through this orb at all times. If the detached eye is destroyed, it rematerializes undamaged in the archfey's empty eye socket."
 										],
 										[
 											"7",
-											"SimulacraThe archfey can make magical copies of themself and other creatures. These simulacra are similar to those created by the {@spell simulacrum} spell."
+											"{@b Simulacra.} The archfey can make magical copies of themself and other creatures. These simulacra are similar to those created by the {@spell simulacrum} spell."
 										],
 										[
 											"8",
-											"Time DistortionFor each minute spent in the archfey's presence, an hour passes elsewhere."
+											"{@b Time Distortion.} For each minute spent in the archfey's presence, an hour passes elsewhere."
 										]
 									]
 								}
@@ -1271,35 +1279,35 @@
 									"rows": [
 										[
 											"1",
-											"CharmThe archfey bestows a charm of the DM's choice (see \"Supernatural Gifts\" in the Dungeon Master's Guide)."
+											"{@b Charm.} The archfey bestows a charm of the DM's choice (see \"Supernatural Gifts\" in the Dungeon Master's Guide)."
 										],
 										[
 											"2",
-											"GuideThe archfey summons a magical guide that takes the form of a faerie dragon, a sprite, or some other creature. The guide is a harmless figment that can't be damaged, and it knows its way around the Feywild. It can't leave the Feywild and disappears after eight days."
+											"{@b Guide.} The archfey summons a magical guide that takes the form of a faerie dragon, a sprite, or some other creature. The guide is a harmless figment that can't be damaged, and it knows its way around the Feywild. It can't leave the Feywild and disappears after eight days."
 										],
 										[
 											"3",
-											"LoreWith a touch, the archfey magically imparts useful knowledge about a particular subject of the archfey's choice. This knowledge might be permanent, or it might fade over time."
+											"{@b Lore.} With a touch, the archfey magically imparts useful knowledge about a particular subject of the archfey's choice. This knowledge might be permanent, or it might fade over time."
 										],
 										[
 											"4",
-											"Magic ItemThe archfey bestows a useful magic item (such as a crystal ball or an oathbow) but warns that the item will vanish after a specified period of time, which it does."
+											"Magic {@b Item.} The archfey bestows a useful magic item (such as a crystal ball or an oathbow) but warns that the item will vanish after a specified period of time, which it does."
 										],
 										[
 											"5",
-											"RefugeThe archfey creates a wooded glen, a dome of brambles, a silken cocoon, or some other kind of refuge. Creatures hostile toward the gift's recipient can't enter this refuge without the recipient's consent. After a specified period of time, the refuge vanishes."
+											"{@b Refuge.} The archfey creates a wooded glen, a dome of brambles, a silken cocoon, or some other kind of refuge. Creatures hostile toward the gift's recipient can't enter this refuge without the recipient's consent. After a specified period of time, the refuge vanishes."
 										],
 										[
 											"6",
-											"ResurrectionThe archfey offers one free casting of the {@spell true resurrection} spell, which they can cast as an action without material components once per century."
+											"{@b Resurrection.} The archfey offers one free casting of the {@spell true resurrection} spell, which they can cast as an action without material components once per century."
 										],
 										[
 											"7",
-											"TrainingWith a touch, the archfey grants the benefit of months of special training (see \"Marks of Prestige\" in the Dungeon Master's Guide for different benefits of training)."
+											"{@b Training.} With a touch, the archfey grants the benefit of months of special training (see \"Marks of Prestige\" in the Dungeon Master's Guide for different benefits of training)."
 										],
 										[
 											"8",
-											"TransformationThe archfey offers one free casting of the {@spell true polymorph} spell, which they can cast without material components. The spell's effect can be made permanent, if you wish."
+											"{@b Transformation.} The archfey offers one free casting of the {@spell true polymorph} spell, which they can cast without material components. The spell's effect can be made permanent, if you wish."
 										]
 									]
 								}
@@ -1425,35 +1433,35 @@
 							"rows": [
 								[
 									"1",
-									"AdversarialAdversarial personalities are common here, even among the local wildlife. Animated trees swat at passersby, sentient flowers scoff and sneer, and local Fey are grumpy and uncooperative."
+									"{@b Adversarial.} Adversarial personalities are common here, even among the local wildlife. Animated trees swat at passersby, sentient flowers scoff and sneer, and local Fey are grumpy and uncooperative."
 								],
 								[
 									"2",
-									"CrystallineThis domain contains a profusion of crystal formations and outgrowths, as well as structures and trees made of crystal. Some of the crystals might generate light, music, or both."
+									"{@b Crystalline.} This domain contains a profusion of crystal formations and outgrowths, as well as structures and trees made of crystal. Some of the crystals might generate light, music, or both."
 								],
 								[
 									"3",
-									"GloomyEverything here has a gloomy cast. Tree branches look like skeletal fingers, night creatures slink and flutter about, and skull-like faces appear on plants, stones, and sprites' wings."
+									"{@b Gloomy.} Everything here has a gloomy cast. Tree branches look like skeletal fingers, night creatures slink and flutter about, and skull-like faces appear on plants, stones, and sprites' wings."
 								],
 								[
 									"4",
-									"InquisitiveCreatures in this domain are nosy and hungry for gossip. Animated trees use their branches to pick through backpacks when travelers aren't looking; pixies spy on strangers; and birds eavesdrop on conversations, repeating what they've heard to their masters."
+									"{@b Inquisitive.} Creatures in this domain are nosy and hungry for gossip. Animated trees use their branches to pick through backpacks when travelers aren't looking; pixies spy on strangers; and birds eavesdrop on conversations, repeating what they've heard to their masters."
 								],
 								[
 									"5",
-									"KaleidoscopicThis domain is a riot of everchanging colors. Plants come in a dazzling array of colors, flowers change color to suit the prevailing mood, and Fey wear costumes of scintillating hues."
+									"{@b Kaleidoscopic.} This domain is a riot of everchanging colors. Plants come in a dazzling array of colors, flowers change color to suit the prevailing mood, and Fey wear costumes of scintillating hues."
 								],
 								[
 									"6",
-									"LackadaisicalThe creatures here are easygoing. No one is in a hurry, and no task is greeted with a sense of urgency."
+									"{@b Lackadaisical.} The creatures here are easygoing. No one is in a hurry, and no task is greeted with a sense of urgency."
 								],
 								[
 									"7",
-									"MusicalThis domain abounds with music. Frogs, toads, and insects break into multipart harmonies that sometimes crescendo into a symphonic rapture of melodious tweets, trills, chirps, and whistles. Fey in this domain are just as musically inclined."
+									"{@b Musical.} This domain abounds with music. Frogs, toads, and insects break into multipart harmonies that sometimes crescendo into a symphonic rapture of melodious tweets, trills, chirps, and whistles. Fey in this domain are just as musically inclined."
 								],
 								[
 									"8",
-									"PoisonousAlmost every plant here has spines or thorns that cause anything from itchy welts to damage or out-of-body experiences. Other sources of poison might be present as well (for example, toxic bogs or giant, poisonous Beasts)."
+									"{@b Poisonous.} Almost every plant here has spines or thorns that cause anything from itchy welts to damage or out-of-body experiences. Other sources of poison might be present as well (for example, toxic bogs or giant, poisonous Beasts)."
 								]
 							]
 						}
@@ -1489,35 +1497,35 @@
 							"rows": [
 								[
 									"1",
-									"AltarThis stone altar might be found atop a lonely plateau, behind a waterfall, inside a cave, or in some other remote location. When certain stars align and the proper ritual is performed, the fey crossing appears as a portal above the altar."
+									"{@b Altar.} This stone altar might be found atop a lonely plateau, behind a waterfall, inside a cave, or in some other remote location. When certain stars align and the proper ritual is performed, the fey crossing appears as a portal above the altar."
 								],
 								[
 									"2",
-									"Crystal CaveThis cave is filled with natural crystalline formations and resembles a glittering cathedral. When moonlight shines into the cave at night, it causes a shimmering pool or spring in the center of the cave to transform into a fey crossing."
+									"{@b Crystal Cave.} This cave is filled with natural crystalline formations and resembles a glittering cathedral. When moonlight shines into the cave at night, it causes a shimmering pool or spring in the center of the cave to transform into a fey crossing."
 								],
 								[
 									"3",
-									"Hollow TreeThe fey crossing lies within the hollow interior of an enormous tree. The crossing is open to anyone who carries a leaf or acorn from the tree."
+									"{@b Hollow Tree.} The fey crossing lies within the hollow interior of an enormous tree. The crossing is open to anyone who carries a leaf or acorn from the tree."
 								],
 								[
 									"4",
-									"MazeThe fey crossing lies at the center of a maze that might change configuration from time to time. To use the crossing, one must walk or run from the maze's entrance to its center. Creatures who circumvent the maze using magic or flight find themselves unable to use the crossing."
+									"{@b Maze.} The fey crossing lies at the center of a maze that might change configuration from time to time. To use the crossing, one must walk or run from the maze's entrance to its center. Creatures who circumvent the maze using magic or flight find themselves unable to use the crossing."
 								],
 								[
 									"5",
-									"Mushroom CircleThis fey crossing appears as a circle of mushrooms. The size of the mushrooms and the width of the circle can vary, but activating the fey crossing requires that a particular act be performed inside it or a particular object or creature be present."
+									"{@b Mushroom Circle.} This fey crossing appears as a circle of mushrooms. The size of the mushrooms and the width of the circle can vary, but activating the fey crossing requires that a particular act be performed inside it or a particular object or creature be present."
 								],
 								[
 									"6",
-									"Ruined TowerThe ruins of an ancient elven tower house a fey crossing. For three nights each year, a ghostly image of the intact tower appears above the ruined foundation, during which time the fey crossing appears as a shimmering doorway that creatures can pass through."
+									"{@b Ruined Tower.} The ruins of an ancient elven tower house a fey crossing. For three nights each year, a ghostly image of the intact tower appears above the ruined foundation, during which time the fey crossing appears as a shimmering doorway that creatures can pass through."
 								],
 								[
 									"7",
-									"Stone BridgeA Fey creature hides under this ancient stone bridge. In exchange for treasure or some other gift, this Fey can use its innate magic to create a portal atop the bridge that serves as a fey crossing."
+									"{@b Stone Bridge.} A Fey creature hides under this ancient stone bridge. In exchange for treasure or some other gift, this Fey can use its innate magic to create a portal atop the bridge that serves as a fey crossing."
 								],
 								[
 									"8",
-									"Stone CircleThis circle of stone megaliths contains a fey crossing that is active during equinoxes and solstices."
+									"{@b Stone Circle.} This circle of stone megaliths contains a fey crossing that is active during equinoxes and solstices."
 								]
 							]
 						}

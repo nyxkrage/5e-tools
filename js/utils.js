@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.138.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.138.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -248,20 +248,23 @@ String.prototype.trimAnyChar = String.prototype.trimAnyChar || function (chars) 
 	return (start > 0 || end < this.length) ? this.substring(start, end) : this;
 };
 
-Array.prototype.joinConjunct = Array.prototype.joinConjunct || function (joiner, lastJoiner, nonOxford) {
-	if (this.length === 0) return "";
-	if (this.length === 1) return this[0];
-	if (this.length === 2) return this.join(lastJoiner);
-	else {
-		let outStr = "";
-		for (let i = 0; i < this.length; ++i) {
-			outStr += this[i];
-			if (i < this.length - 2) outStr += joiner;
-			else if (i === this.length - 2) outStr += `${(!nonOxford && this.length > 2 ? joiner.trim() : "")}${lastJoiner}`;
+Array.prototype.joinConjunct || Object.defineProperty(Array.prototype, "joinConjunct", {
+	enumerable: false,
+	value: function (joiner, lastJoiner, nonOxford) {
+		if (this.length === 0) return "";
+		if (this.length === 1) return this[0];
+		if (this.length === 2) return this.join(lastJoiner);
+		else {
+			let outStr = "";
+			for (let i = 0; i < this.length; ++i) {
+				outStr += this[i];
+				if (i < this.length - 2) outStr += joiner;
+				else if (i === this.length - 2) outStr += `${(!nonOxford && this.length > 2 ? joiner.trim() : "")}${lastJoiner}`;
+			}
+			return outStr;
 		}
-		return outStr;
-	}
-};
+	},
+});
 
 StrUtil = {
 	COMMAS_NOT_IN_PARENTHESES_REGEX: /,\s?(?![^(]*\))/g,
@@ -6165,7 +6168,7 @@ CollectionUtil = {
 	// endregion
 };
 
-Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "last", {
+Array.prototype.last || Object.defineProperty(Array.prototype, "last", {
 	enumerable: false,
 	value: function (arg) {
 		if (arg !== undefined) this[this.length - 1] = arg;
@@ -6173,7 +6176,7 @@ Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "last",
 	},
 });
 
-Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "filterIndex", {
+Array.prototype.filterIndex || Object.defineProperty(Array.prototype, "filterIndex", {
 	enumerable: false,
 	value: function (fnCheck) {
 		const out = [];
@@ -6184,7 +6187,7 @@ Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "filter
 	},
 });
 
-Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "equals", {
+Array.prototype.equals || Object.defineProperty(Array.prototype, "equals", {
 	enumerable: false,
 	value: function (array2) {
 		const array1 = this;

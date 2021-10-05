@@ -186,6 +186,11 @@ i > i {
 .overflow-ellipsis {
 	@include overflow-dots();
 }
+
+.overflow-overlay {
+	overflow: auto;
+	overflow: overlay;
+}
 // endregion
 
 // region Resizing
