@@ -1386,7 +1386,7 @@ function Renderer () {
 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
 				const scrubbedColor = BrewUtil.getValidColor(color);
 
-				textStack[0] += `<span style="color: #${scrubbedColor}">`;
+				textStack[0] += `<span class="rd__color" style="color: #${scrubbedColor}">`;
 				this._recursiveRender(toDisplay, textStack, meta);
 				textStack[0] += `</span>`;
 				break;
@@ -3762,7 +3762,7 @@ Renderer.spell = {
 						spell,
 						variantClassSpells: variantWizardSpells,
 						className: Renderer.spell.STR_ROGUE,
-						subclassName: Renderer.spell.STR_ELD_KNIGHT,
+						subclassName: Renderer.spell.STR_ARC_TCKER,
 					});
 				}
 			}
@@ -6423,6 +6423,7 @@ Renderer.item = {
 			bonusWeapon: inherits.bonusWeapon,
 			bonusWeaponAttack: inherits.bonusWeaponAttack,
 			bonusWeaponDamage: inherits.bonusWeaponDamage,
+			bonusWeaponCritDamage: inherits.bonusWeaponCritDamage,
 			bonusSpellAttack: inherits.bonusSpellAttack,
 			bonusSpellSaveDc: inherits.bonusSpellSaveDc,
 			bonusSavingThrow: inherits.bonusSavingThrow,

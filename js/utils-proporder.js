@@ -850,6 +850,7 @@ PropOrder._ITEM = [
 	"bonusWeapon",
 	"bonusWeaponAttack",
 	"bonusWeaponDamage",
+	"bonusWeaponCritDamage",
 	"bonusSpellAttack",
 	"bonusSpellDamage",
 	"bonusSpellSaveDc",
@@ -858,6 +859,7 @@ PropOrder._ITEM = [
 	"bonusAbilityCheck",
 	"bonusProficiencyBonus",
 	"modifySpeed",
+	"critThreshold",
 
 	"recharge",
 	"charges",

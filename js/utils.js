@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.138.1"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.139.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -250,6 +250,7 @@ String.prototype.trimAnyChar = String.prototype.trimAnyChar || function (chars) 
 
 Array.prototype.joinConjunct || Object.defineProperty(Array.prototype, "joinConjunct", {
 	enumerable: false,
+	writable: true,
 	value: function (joiner, lastJoiner, nonOxford) {
 		if (this.length === 0) return "";
 		if (this.length === 1) return this[0];
@@ -949,19 +950,6 @@ ElementUtil = {
 if (typeof window !== "undefined") window.e_ = ElementUtil.getOrModify;
 
 ObjUtil = {
-	mergeWith (source, target, fnMerge, options = {depth: 1}) {
-		if (!source || !target || typeof fnMerge !== "function") throw new Error("Must include a source, target and a fnMerge to handle merging");
-
-		const recursive = function (deepSource, deepTarget, depth = 1) {
-			if (depth > options.depth || !deepSource || !deepTarget) return;
-			for (let prop of Object.keys(deepSource)) {
-				deepTarget[prop] = fnMerge(deepSource[prop], deepTarget[prop], source, target);
-				recursive(source[prop], deepTarget[prop], depth + 1);
-			}
-		};
-		recursive(source, target, 1);
-	},
-
 	async pForEachDeep (source, pCallback, options = {depth: Infinity, callEachLevel: false}) {
 		const path = [];
 		const pDiveDeep = async function (val, path, depth = 0) {
@@ -2438,6 +2426,13 @@ SortUtil = {
 	ascSortBook (a, b) {
 		return SortUtil.ascSortDateString(b.published, a.published)
 			|| SortUtil.ascSortLower(a.name, b.name);
+	},
+
+	_ITEM_RARITY_ORDER: ["none", "common", "uncommon", "rare", "very rare", "legendary", "artifact", "varies", "unknown (magic)", "unknown"],
+	ascSortItemRarity (a, b) {
+		const ixA = SortUtil._ITEM_RARITY_ORDER.indexOf(a);
+		const ixB = SortUtil._ITEM_RARITY_ORDER.indexOf(b);
+		return (~ixA ? ixA : Number.MAX_SAFE_INTEGER) - (~ixB ? ixB : Number.MAX_SAFE_INTEGER);
 	},
 };
 
@@ -6170,6 +6165,7 @@ CollectionUtil = {
 
 Array.prototype.last || Object.defineProperty(Array.prototype, "last", {
 	enumerable: false,
+	writable: true,
 	value: function (arg) {
 		if (arg !== undefined) this[this.length - 1] = arg;
 		else return this[this.length - 1];
@@ -6178,6 +6174,7 @@ Array.prototype.last || Object.defineProperty(Array.prototype, "last", {
 
 Array.prototype.filterIndex || Object.defineProperty(Array.prototype, "filterIndex", {
 	enumerable: false,
+	writable: true,
 	value: function (fnCheck) {
 		const out = [];
 		this.forEach((it, i) => {
@@ -6189,6 +6186,7 @@ Array.prototype.filterIndex || Object.defineProperty(Array.prototype, "filterInd
 
 Array.prototype.equals || Object.defineProperty(Array.prototype, "equals", {
 	enumerable: false,
+	writable: true,
 	value: function (array2) {
 		const array1 = this;
 		if (!array1 && !array2) return true;
@@ -6219,6 +6217,7 @@ Array.prototype.equals || Object.defineProperty(Array.prototype, "equals", {
 // Alternate name due to clash with Foundry VTT
 Array.prototype.segregate || Object.defineProperty(Array.prototype, "segregate", {
 	enumerable: false,
+	writable: true,
 	value: function (fnIsValid) {
 		return this.reduce(([pass, fail], elem) => fnIsValid(elem) ? [[...pass, elem], fail] : [pass, [...fail, elem]], [[], []]);
 	},
@@ -6226,11 +6225,13 @@ Array.prototype.segregate || Object.defineProperty(Array.prototype, "segregate",
 
 Array.prototype.partition || Object.defineProperty(Array.prototype, "partition", {
 	enumerable: false,
+	writable: true,
 	value: Array.prototype.segregate,
 });
 
 Array.prototype.getNext || Object.defineProperty(Array.prototype, "getNext", {
 	enumerable: false,
+	writable: true,
 	value: function (curVal) {
 		let ix = this.indexOf(curVal);
 		if (!~ix) throw new Error("Value was not in array!");
@@ -6241,6 +6242,7 @@ Array.prototype.getNext || Object.defineProperty(Array.prototype, "getNext", {
 
 Array.prototype.shuffle || Object.defineProperty(Array.prototype, "shuffle", {
 	enumerable: false,
+	writable: true,
 	value: function () {
 		for (let i = 0; i < 10000; ++i) this.sort(() => Math.random() - 0.5);
 		return this;
@@ -6250,6 +6252,7 @@ Array.prototype.shuffle || Object.defineProperty(Array.prototype, "shuffle", {
 /** Map each array item to a k:v pair, then flatten them into one object. */
 Array.prototype.mergeMap || Object.defineProperty(Array.prototype, "mergeMap", {
 	enumerable: false,
+	writable: true,
 	value: function (fnMap) {
 		return this.map((...args) => fnMap(...args)).reduce((a, b) => Object.assign(a, b), {});
 	},
@@ -6257,6 +6260,7 @@ Array.prototype.mergeMap || Object.defineProperty(Array.prototype, "mergeMap", {
 
 Array.prototype.first || Object.defineProperty(Array.prototype, "first", {
 	enumerable: false,
+	writable: true,
 	value: function (fnMapFind) {
 		for (let i = 0, len = this.length; i < len; ++i) {
 			const result = fnMapFind(this[i], i, this);
@@ -6265,9 +6269,18 @@ Array.prototype.first || Object.defineProperty(Array.prototype, "first", {
 	},
 });
 
+Array.prototype.pMap || Object.defineProperty(Array.prototype, "pMap", {
+	enumerable: false,
+	writable: true,
+	value: async function (fnMap) {
+		return Promise.all(this.map((it, i) => fnMap(it, i, this)));
+	},
+});
+
 /** Map each item via an async function, awaiting for each to complete before starting the next. */
 Array.prototype.pSerialAwaitMap || Object.defineProperty(Array.prototype, "pSerialAwaitMap", {
 	enumerable: false,
+	writable: true,
 	value: async function (fnMap) {
 		const out = [];
 		for (let i = 0, len = this.length; i < len; ++i) out.push(await fnMap(this[i], i, this));
@@ -6277,6 +6290,7 @@ Array.prototype.pSerialAwaitMap || Object.defineProperty(Array.prototype, "pSeri
 
 Array.prototype.pSerialAwaitFind || Object.defineProperty(Array.prototype, "pSerialAwaitFind", {
 	enumerable: false,
+	writable: true,
 	value: async function (fnFind) {
 		for (let i = 0, len = this.length; i < len; ++i) if (await fnFind(this[i], i, this)) return this[i];
 	},
@@ -6284,6 +6298,7 @@ Array.prototype.pSerialAwaitFind || Object.defineProperty(Array.prototype, "pSer
 
 Array.prototype.pSerialAwaitSome || Object.defineProperty(Array.prototype, "pSerialAwaitSome", {
 	enumerable: false,
+	writable: true,
 	value: async function (fnSome) {
 		for (let i = 0, len = this.length; i < len; ++i) if (await fnSome(this[i], i, this)) return true;
 		return false;
@@ -6292,6 +6307,7 @@ Array.prototype.pSerialAwaitSome || Object.defineProperty(Array.prototype, "pSer
 
 Array.prototype.unique || Object.defineProperty(Array.prototype, "unique", {
 	enumerable: false,
+	writable: true,
 	value: function (fnGetProp) {
 		const seen = new Set();
 		return this.filter((...args) => {
@@ -6305,6 +6321,7 @@ Array.prototype.unique || Object.defineProperty(Array.prototype, "unique", {
 
 Array.prototype.zip || Object.defineProperty(Array.prototype, "zip", {
 	enumerable: false,
+	writable: true,
 	value: function (otherArray) {
 		const out = [];
 		const len = Math.max(this.length, otherArray.length);
@@ -6317,6 +6334,7 @@ Array.prototype.zip || Object.defineProperty(Array.prototype, "zip", {
 
 Array.prototype.nextWrap || Object.defineProperty(Array.prototype, "nextWrap", {
 	enumerable: false,
+	writable: true,
 	value: function (item) {
 		const ix = this.indexOf(item);
 		if (~ix) {
@@ -6328,6 +6346,7 @@ Array.prototype.nextWrap || Object.defineProperty(Array.prototype, "nextWrap", {
 
 Array.prototype.prevWrap || Object.defineProperty(Array.prototype, "prevWrap", {
 	enumerable: false,
+	writable: true,
 	value: function (item) {
 		const ix = this.indexOf(item);
 		if (~ix) {
@@ -6339,6 +6358,7 @@ Array.prototype.prevWrap || Object.defineProperty(Array.prototype, "prevWrap", {
 
 Array.prototype.findLast || Object.defineProperty(Array.prototype, "findLast", {
 	enumerable: false,
+	writable: true,
 	value: function (fn) {
 		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return this[i];
 	},
@@ -6346,6 +6366,7 @@ Array.prototype.findLast || Object.defineProperty(Array.prototype, "findLast", {
 
 Array.prototype.findLastIndex || Object.defineProperty(Array.prototype, "findLastIndex", {
 	enumerable: false,
+	writable: true,
 	value: function (fn) {
 		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return i;
 		return -1;
@@ -6354,6 +6375,7 @@ Array.prototype.findLastIndex || Object.defineProperty(Array.prototype, "findLas
 
 Array.prototype.sum || Object.defineProperty(Array.prototype, "sum", {
 	enumerable: false,
+	writable: true,
 	value: function () {
 		let tmp = 0;
 		const len = this.length;
@@ -6364,6 +6386,7 @@ Array.prototype.sum || Object.defineProperty(Array.prototype, "sum", {
 
 Array.prototype.mean || Object.defineProperty(Array.prototype, "mean", {
 	enumerable: false,
+	writable: true,
 	value: function () {
 		return this.sum() / this.length;
 	},
@@ -6371,6 +6394,7 @@ Array.prototype.mean || Object.defineProperty(Array.prototype, "mean", {
 
 Array.prototype.meanAbsoluteDeviation || Object.defineProperty(Array.prototype, "meanAbsoluteDeviation", {
 	enumerable: false,
+	writable: true,
 	value: function () {
 		const mean = this.mean();
 		return (this.map(num => Math.abs(num - mean)) || []).mean();
@@ -6744,6 +6768,14 @@ ExtensionUtil = {
 
 			ExtensionUtil._doSend("entity", {page, entity: toSend, isTemp: !!evt.shiftKey});
 		}
+	},
+
+	pDoSendStatsPreloaded ({page, entity, isTemp, options}) {
+		ExtensionUtil._doSend("entity", {page, entity, isTemp, options});
+	},
+
+	pDoSendCurrency ({currency}) {
+		ExtensionUtil._doSend("currency", {currency});
 	},
 
 	doSendRoll (data) { ExtensionUtil._doSend("roll", data); },

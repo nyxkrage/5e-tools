@@ -273,7 +273,7 @@ class PageFilterBestiary extends PageFilter {
 			if (spellcasterMeta.spellSet.size) mon._fSpellsKnown = [...spellcasterMeta.spellSet];
 		}
 
-		if (mon.languageTags) mon._fLanguageTags = mon.languageTags;
+		if (mon.languageTags?.length) mon._fLanguageTags = mon.languageTags;
 		else mon._fLanguageTags = ["None"];
 	}
 

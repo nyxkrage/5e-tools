@@ -195,7 +195,7 @@
 				{
 					"name": "Spellcasting",
 					"headerEntries": [
-						"Morwena is a 10th-level spellcaster. Her spellcast- ing ability is Intelligence (spell save {@dc 15}, {@hit 6} to hit with spell attacks). She has the following wizard spells prepared:"
+						"Morwena is a 10th-level spellcaster. Her spellcasting ability is Intelligence (spell save {@dc 15}, {@hit 6} to hit with spell attacks). She has the following wizard spells prepared:"
 					],
 					"spells": {
 						"0": {
@@ -385,13 +385,13 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one tar- get. {@h}7 (2d4 + 2) slashing damage plus 11 (2d6 + 4) psy- chic damage."
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 (2d4 + 2) slashing damage plus 11 (2d6 + 4) psychic damage."
 					]
 				},
 				{
 					"name": "Personal Insight",
 					"entries": [
-						"The usagt targets one creature it can see within 30 feet of it. The target must contest its Charisma (De- ception) check against the usagt‘s Wisdom (Insight) check.",
+						"The usagt targets one creature it can see within 30 feet of it. The target must contest its Charisma ({@skill Deception}) check against the usagt‘s Wisdom (Insight) check.",
 						"The target has advantage on the roll if it is immune to being {@condition charmed}. A target can choose to fail this check.",
 						"If the usagt wins, it magically learns the identity of a creature from the target's past, someone the target wishes it could speak to again or with whom the target has left something unsaid. If somehow no such creature exists in the target's past, the usagt learns that instead."
 					]

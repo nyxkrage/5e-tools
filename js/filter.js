@@ -2692,6 +2692,21 @@ class RangeFilter extends FilterBase {
 		hookHidden();
 
 		// region Slider
+		// ensure sparse values are correctly constrained
+		if (this._sparseValues?.length) {
+			const sparseMin = this._sparseValues[0];
+			if (this._state.min < sparseMin) {
+				this._state.curMin = Math.max(this._state.curMin, sparseMin);
+				this._state.min = sparseMin;
+			}
+
+			const sparseMax = this._sparseValues.last();
+			if (this._state.max > sparseMax) {
+				this._state.curMax = Math.min(this._state.curMax, sparseMax);
+				this._state.max = sparseMax;
+			}
+		}
+
 		// prepare slider options
 		const getSliderOpts = () => {
 			const fnDisplay = (val, {isTooltip = false} = {}) => {
@@ -2959,18 +2974,6 @@ class RangeFilter extends FilterBase {
 		} else {
 			this._addItem_addNumber(item);
 		}
-
-		/* FIXME remove
-		else if (this._sparseValues) {
-			if (!this._sparseValues.some(it => it === item)) this._sparseValues.push(item);
-
-			this._doUpdateLabelSearchCache();
-
-			// Fake an update to trigger label handling
-			this._addItem_addNumber(this._sparseValues.length - 1);
-		}
-
-		 */
 	}
 
 	_doUpdateLabelSearchCache () {
@@ -2987,7 +2990,6 @@ class RangeFilter extends FilterBase {
 		if (this._sparseValues && !this._sparseValues.includes(number)) {
 			this._sparseValues.push(number);
 			this._sparseValues.sort(SortUtil.ascSort);
-			// TODO might need to trigger some update here?
 		}
 
 		if (number >= this._state.min && number <= this._state.max) return; // it's already in the range

@@ -19,8 +19,6 @@ class StatGenUi extends BaseComponent {
 		TabUiUtilSide.decorate(this);
 
 		this.__meta = {};
-		this._meta = null;
-		this._resetHooks("meta");
 		this._meta = this._getProxy("meta", this.__meta);
 
 		this._races = opts.races;

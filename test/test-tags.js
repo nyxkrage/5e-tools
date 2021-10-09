@@ -666,7 +666,7 @@ class LootDataCheck {
 		}
 
 		const loot = require(`../${LootDataCheck.file}`);
-		loot.magicitems.forEach(it => {
+		loot.magicItems.forEach(it => {
 			if (it.table) {
 				it.table.forEach(row => {
 					if (row.choose) {

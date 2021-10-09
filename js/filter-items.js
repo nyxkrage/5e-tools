@@ -103,27 +103,11 @@ class PageFilterEquipment extends PageFilter {
 
 class PageFilterItems extends PageFilterEquipment {
 	// region static
-	static _rarityValue (rarity) {
-		switch (rarity) {
-			case "none": return 0;
-			case "common": return 1;
-			case "uncommon": return 2;
-			case "rare": return 3;
-			case "very rare": return 4;
-			case "legendary": return 5;
-			case "artifact": return 6;
-			case "varies": return 7;
-			case "unknown (magic)": return 8;
-			case "unknown": return 9;
-			default: return 10;
-		}
-	}
-
 	static sortItems (a, b, o) {
 		if (o.sortBy === "name") return SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "type") return SortUtil.ascSortLower(a.values.type, b.values.type) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "source") return SortUtil.ascSortLower(a.values.source, b.values.source) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "rarity") return SortUtil.ascSort(PageFilterItems._rarityValue(a.values.rarity), PageFilterItems._rarityValue(b.values.rarity)) || SortUtil.compareListNames(a, b);
+		else if (o.sortBy === "rarity") return SortUtil.ascSortItemRarity(a.values.rarity, b.values.rarity) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "attunement") return SortUtil.ascSort(a.values.attunement, b.values.attunement) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "count") return SortUtil.ascSort(a.values.count, b.values.count) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "weight") return SortUtil.ascSort(a.values.weight, b.values.weight) || SortUtil.compareListNames(a, b);
@@ -226,6 +210,7 @@ class PageFilterItems extends PageFilterEquipment {
 		if (item.charges) item._fMisc.push("Charges");
 		if (item.sentient) item._fMisc.push("Sentient");
 		if (item.grantsProficiency) item._fMisc.push("Grants Proficiency");
+		if (item.critThreshold) item._fMisc.push("Expanded Critical Range");
 
 		item._fBaseItemSelf = item._isBaseItem ? `${item.name}|${item.source}`.toLowerCase() : null;
 		item._fBaseItem = [
@@ -239,6 +224,7 @@ class PageFilterItems extends PageFilterEquipment {
 		if (item.bonusWeapon) item._fBonus.push("Weapon Attack and Damage Rolls");
 		if (item.bonusWeaponAttack) item._fBonus.push("Weapon Attack Rolls");
 		if (item.bonusWeaponDamage) item._fBonus.push("Weapon Damage Rolls");
+		if (item.bonusWeaponCritDamage) item._fBonus.push("Weapon Critical Damage");
 		if (item.bonusSpellAttack) item._fBonus.push("Spell Attacks");
 		if (item.bonusSpellSaveDc) item._fBonus.push("Spell Save DC");
 		if (item.bonusSavingThrow) item._fBonus.push("Saving Throws");

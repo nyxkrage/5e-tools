@@ -497,6 +497,12 @@ $rgb-inset-border: #656565;
 		&highlight {
 			background-color: $rgb-bg-highlight;
 		}
+
+		&color {
+			a {
+				color: inherit !important;
+			}
+		}
 	}
 
 	&-item__ {

@@ -284,6 +284,13 @@ class BonusTag {
 			delete obj.bonusWeaponDamage;
 		}
 
+		// TODO(Future) expand this?
+		strEntries.replace(/scores? a critical hit on a (?:(?:{@dice )?d20}? )?roll of 19 or 20/gi, () => {
+			obj.critThreshold = 19;
+		});
+
+		// TODO(Future) `.bonusWeaponCritDamage` (these are relatively uncommon)
+
 		// region Speed bonus
 		this._mutSpeedBonus({obj, strEntries});
 		// endregion

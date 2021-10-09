@@ -4231,6 +4231,8 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"tattoo": true,
+			"bonusWeaponCritDamage": "4d6",
+			"critThreshold": 19,
 			"entries": [
 				"This tattoo evokes fury in its form and colors. While this tattoo is on your skin, you gain the following benefits:",
 				{
@@ -11375,6 +11377,7 @@
 			"dmg1": "1d6",
 			"dmgType": "P",
 			"bonusWeapon": "+3",
+			"critThreshold": 19,
 			"weapon": true,
 			"entries": [
 				"Nylea wields the shortbow Ephixis, the bow whose arrows herald the turning of the seasons. Nylea is quick to let her favored followers borrow her bow, particularly when they intend to use it to perform great deeds, put an end to foul creatures, or cast down the arrogant.",
@@ -31623,6 +31626,7 @@
 			"dmgType": "S",
 			"dmg2": "1d10",
 			"bonusWeapon": "+3",
+			"critThreshold": 19,
 			"entries": [
 				"When Vecna grew in power, he appointed an evil and ruthless lieutenant, Kas the Bloody Handed, to act as his bodyguard and right hand. This despicable villain served as advisor, warlord, and assassin. His successes earned him Vecna's admiration and a reward: a sword with as dark a pedigree as the man who would wield it.",
 				"For a long time, Kas faithfully served the {@creature lich} but as Kas's power grew, so did his hubris. His sword urged him to supplant Vecna, so that they could rule the {@creature lich||lich's} empire in Vecna's stead. Legend says Vecna's destruction came at Kas's hand, but Vecna also wrought his rebellious lieutenant's doom, leaving only Kas's sword behind. The world was made brighter thereby.",

@@ -3228,7 +3228,7 @@
 					],
 					"will": [
 						"{@spell dancing lights}",
-						"{@spell polymorph} (after casting, roll a {@dice d8}; on a roll of 3 or 8, Witch can't cast the spell again until the next dawn)",
+						"{@spell polymorph} (after casting, roll a {@dice d8}; on a roll of 3 or 8, Light can't cast the spell again until the next dawn)",
 						"{@spell ray of frost}"
 					],
 					"ability": "cha",
@@ -3267,7 +3267,7 @@
 				{
 					"name": "Blessing of the Raven Queen (1/Day)",
 					"entries": [
-						"Witch magically teleports, along with any equipment he is wearing or carrying, up to 30 feet to an unoccupied space he can see. Until the start of his next turn, he appears ghostly and gains resistance to all damage."
+						"Light magically teleports, along with any equipment he is wearing or carrying, up to 30 feet to an unoccupied space he can see. Until the start of his next turn, he appears ghostly and gains resistance to all damage."
 					]
 				}
 			],

@@ -2409,18 +2409,6 @@ th.border {
 	background: lightgrey;
 }
 
-/* start section: lootgen */
-
-#lootgen hr {
-	border-top: 2px solid $rgb-border-grey;
-}
-
-.night-mode #lootgen hr {
-	border-top: 2px solid $rgb-border-grey--night;
-}
-
-/* end section: lootgen */
-
 .hwin .hoverborder .window-title {
 	color: $rgb-name-red;
 }

@@ -723,6 +723,18 @@ Parser.coinAbvToFull = function (coin) {
 	return Parser._parse_aToB(Parser.COIN_ABV_TO_FULL, coin);
 };
 
+/**
+ * @param currency Object of the form `{pp: <n>, gp: <m>, ... }`.
+ * @param isDisplayEmpty If "empty" values (i.e., those which are 0) should be displayed.
+ */
+Parser.getDisplayCurrency = function (currency, {isDisplayEmpty = false} = {}) {
+	return [...Parser.COIN_ABVS]
+		.reverse()
+		.filter(abv => isDisplayEmpty ? currency[abv] != null : currency[abv])
+		.map(abv => `${currency[abv].toLocaleString()} ${abv}`)
+		.join(", ");
+};
+
 Parser.itemWeightToFull = function (item, isShortForm) {
 	if (item.weight) {
 		// Handle pure integers
@@ -2450,6 +2462,7 @@ SRC_UA2021GL = `${SRC_UA_PREFIX}2021GothicLineages`;
 SRC_UA2021FF = `${SRC_UA_PREFIX}2021FolkOfTheFeywild`;
 SRC_UA2021DO = `${SRC_UA_PREFIX}2021DraconicOptions`;
 SRC_UA2021MoS = `${SRC_UA_PREFIX}2021MagesOfStrixhaven`;
+SRC_UA2021TotM = `${SRC_UA_PREFIX}2021TravelersOfTheMultiverse`;
 
 SRC_3PP_SUFFIX = " 3pp";
 
@@ -2617,6 +2630,7 @@ Parser.SOURCE_JSON_TO_FULL[SRC_UA2021GL] = `${UA_PREFIX}2021 Gothic Lineages`;
 Parser.SOURCE_JSON_TO_FULL[SRC_UA2021FF] = `${UA_PREFIX}2021 Folk of the Feywild`;
 Parser.SOURCE_JSON_TO_FULL[SRC_UA2021DO] = `${UA_PREFIX}2021 Draconic Options`;
 Parser.SOURCE_JSON_TO_FULL[SRC_UA2021MoS] = `${UA_PREFIX}2021 Mages of Strixhaven`;
+Parser.SOURCE_JSON_TO_FULL[SRC_UA2021TotM] = `${UA_PREFIX}2021 Travelers of the Multiverse`;
 
 Parser.SOURCE_JSON_TO_ABV = {};
 Parser.SOURCE_JSON_TO_ABV[SRC_CoS] = "CoS";
@@ -2773,6 +2787,7 @@ Parser.SOURCE_JSON_TO_ABV[SRC_UA2021GL] = "UA21GL";
 Parser.SOURCE_JSON_TO_ABV[SRC_UA2021FF] = "UA21FF";
 Parser.SOURCE_JSON_TO_ABV[SRC_UA2021DO] = "UA21DO";
 Parser.SOURCE_JSON_TO_ABV[SRC_UA2021MoS] = "UA21MoS";
+Parser.SOURCE_JSON_TO_ABV[SRC_UA2021TotM] = "UA21TotM";
 
 Parser.SOURCE_JSON_TO_DATE = {};
 Parser.SOURCE_JSON_TO_DATE[SRC_CoS] = "2016-03-15";
@@ -2928,6 +2943,7 @@ Parser.SOURCE_JSON_TO_DATE[SRC_UA2021GL] = "2020-01-26";
 Parser.SOURCE_JSON_TO_DATE[SRC_UA2021FF] = "2020-03-12";
 Parser.SOURCE_JSON_TO_DATE[SRC_UA2021DO] = "2021-04-14";
 Parser.SOURCE_JSON_TO_DATE[SRC_UA2021MoS] = "2021-06-08";
+Parser.SOURCE_JSON_TO_DATE[SRC_UA2021TotM] = "2021-10-08";
 
 Parser.SOURCES_ADVENTURES = new Set([
 	SRC_LMoP,
