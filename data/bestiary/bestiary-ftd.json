@@ -1777,8 +1777,7 @@
 				"prone",
 				"restrained"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Ancient Amethyst Dragon",
@@ -4695,8 +4694,7 @@
 				"restrained",
 				"unconscious"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Bronze Greatwyrm",
@@ -4908,8 +4906,7 @@
 				"restrained",
 				"unconscious"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Copper Greatwyrm",
@@ -5121,8 +5118,7 @@
 				"restrained",
 				"unconscious"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Crystal Dragon Wyrmling",
@@ -5242,8 +5238,7 @@
 				"RCH"
 			],
 			"hasToken": true,
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Crystal Greatwyrm",
@@ -5458,8 +5453,7 @@
 				"prone",
 				"restrained"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Deep Dragon Wyrmling",
@@ -8738,8 +8732,7 @@
 				"prone",
 				"restrained"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Eyedrake",
@@ -9468,8 +9461,7 @@
 				"restrained",
 				"unconscious"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "Green Greatwyrm",
@@ -11682,8 +11674,7 @@
 				"prone",
 				"restrained"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluff": true
 		},
 		{
 			"name": "White Greatwyrm",

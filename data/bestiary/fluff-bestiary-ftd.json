@@ -923,15 +923,6 @@
 						}
 					]
 				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Amethyst Greatwyrm.webp"
-					}
-				}
 			]
 		},
 		{
@@ -1664,116 +1655,6 @@
 			]
 		},
 		{
-			"name": "Animated Breath (Acid Form)",
-			"source": "FTD",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A chromatic dragon's breath weapon is a manifestation of the energy that suffuses the dragon. With sufficient practice, dragons can learn to draw on magic from the Elemental Planes to shape their breath weapons into bipedal form, creating Elemental creatures called animated breaths. Chromatic dragons often use these creatures as guardians for their hoards or send them out to gather treasure from the territory around their lairs.",
-						"An animated breath is a bipedal creature formed from the same energy as the breath weapon of the dragon that created it. A red dragon's creation strongly resembles a fire elemental, while a black dragon's is similar to a water elemental, but viscous and foul-looking. A green dragon's animated poison breath looks like billowing clouds of green gas, while a white dragon's animated cold breath looks like a walking ice sculpture with frigid air whirling around it. A blue dragon's animated lightning breath is a constantly shifting form of crackling lightning, and it can suddenly vanish from one place to reappear in another, striking like a bolt from the blue."
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Animated Breath (Acid Form).webp"
-					}
-				}
-			]
-		},
-		{
-			"name": "Animated Breath (Cold Form)",
-			"source": "FTD",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A chromatic dragon's breath weapon is a manifestation of the energy that suffuses the dragon. With sufficient practice, dragons can learn to draw on magic from the Elemental Planes to shape their breath weapons into bipedal form, creating Elemental creatures called animated breaths. Chromatic dragons often use these creatures as guardians for their hoards or send them out to gather treasure from the territory around their lairs.",
-						"An animated breath is a bipedal creature formed from the same energy as the breath weapon of the dragon that created it. A red dragon's creation strongly resembles a fire elemental, while a black dragon's is similar to a water elemental, but viscous and foul-looking. A green dragon's animated poison breath looks like billowing clouds of green gas, while a white dragon's animated cold breath looks like a walking ice sculpture with frigid air whirling around it. A blue dragon's animated lightning breath is a constantly shifting form of crackling lightning, and it can suddenly vanish from one place to reappear in another, striking like a bolt from the blue."
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Animated Breath (Cold Form).webp"
-					}
-				}
-			]
-		},
-		{
-			"name": "Animated Breath (Fire Form)",
-			"source": "FTD",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A chromatic dragon's breath weapon is a manifestation of the energy that suffuses the dragon. With sufficient practice, dragons can learn to draw on magic from the Elemental Planes to shape their breath weapons into bipedal form, creating Elemental creatures called animated breaths. Chromatic dragons often use these creatures as guardians for their hoards or send them out to gather treasure from the territory around their lairs.",
-						"An animated breath is a bipedal creature formed from the same energy as the breath weapon of the dragon that created it. A red dragon's creation strongly resembles a fire elemental, while a black dragon's is similar to a water elemental, but viscous and foul-looking. A green dragon's animated poison breath looks like billowing clouds of green gas, while a white dragon's animated cold breath looks like a walking ice sculpture with frigid air whirling around it. A blue dragon's animated lightning breath is a constantly shifting form of crackling lightning, and it can suddenly vanish from one place to reappear in another, striking like a bolt from the blue."
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Animated Breath (Fire Form).webp"
-					}
-				}
-			]
-		},
-		{
-			"name": "Animated Breath (Lightning Form)",
-			"source": "FTD",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A chromatic dragon's breath weapon is a manifestation of the energy that suffuses the dragon. With sufficient practice, dragons can learn to draw on magic from the Elemental Planes to shape their breath weapons into bipedal form, creating Elemental creatures called animated breaths. Chromatic dragons often use these creatures as guardians for their hoards or send them out to gather treasure from the territory around their lairs.",
-						"An animated breath is a bipedal creature formed from the same energy as the breath weapon of the dragon that created it. A red dragon's creation strongly resembles a fire elemental, while a black dragon's is similar to a water elemental, but viscous and foul-looking. A green dragon's animated poison breath looks like billowing clouds of green gas, while a white dragon's animated cold breath looks like a walking ice sculpture with frigid air whirling around it. A blue dragon's animated lightning breath is a constantly shifting form of crackling lightning, and it can suddenly vanish from one place to reappear in another, striking like a bolt from the blue."
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Animated Breath (Lightning Form).webp"
-					}
-				}
-			]
-		},
-		{
-			"name": "Animated Breath (Poison Form)",
-			"source": "FTD",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A chromatic dragon's breath weapon is a manifestation of the energy that suffuses the dragon. With sufficient practice, dragons can learn to draw on magic from the Elemental Planes to shape their breath weapons into bipedal form, creating Elemental creatures called animated breaths. Chromatic dragons often use these creatures as guardians for their hoards or send them out to gather treasure from the territory around their lairs.",
-						"An animated breath is a bipedal creature formed from the same energy as the breath weapon of the dragon that created it. A red dragon's creation strongly resembles a fire elemental, while a black dragon's is similar to a water elemental, but viscous and foul-looking. A green dragon's animated poison breath looks like billowing clouds of green gas, while a white dragon's animated cold breath looks like a walking ice sculpture with frigid air whirling around it. A blue dragon's animated lightning breath is a constantly shifting form of crackling lightning, and it can suddenly vanish from one place to reappear in another, striking like a bolt from the blue."
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Animated Breath (Poison Form).webp"
-					}
-				}
-			]
-		},
-		{
 			"name": "Aspect of Bahamut",
 			"source": "FTD",
 			"entries": [
@@ -1868,15 +1749,6 @@
 						}
 					]
 				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Brass Greatwyrm.webp"
-					}
-				}
 			]
 		},
 		{
@@ -1900,15 +1772,6 @@
 						}
 					]
 				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Bronze Greatwyrm.webp"
-					}
-				}
 			]
 		},
 		{
@@ -1931,15 +1794,6 @@
 							]
 						}
 					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Copper Greatwyrm.webp"
-					}
 				}
 			]
 		},
@@ -2218,15 +2072,6 @@
 							]
 						}
 					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Crystal Greatwyrm.webp"
-					}
 				}
 			]
 		},
@@ -3627,15 +3472,6 @@
 						}
 					]
 				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Emerald Greatwyrm.webp"
-					}
-				}
 			]
 		},
 		{
@@ -3725,15 +3561,6 @@
 							]
 						}
 					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Gold Greatwyrm.webp"
-					}
 				}
 			]
 		},
@@ -4784,15 +4611,6 @@
 							]
 						}
 					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/FTD/Topaz Greatwyrm.webp"
-					}
 				}
 			]
 		},
