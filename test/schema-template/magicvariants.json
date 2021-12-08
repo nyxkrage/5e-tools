@@ -40,9 +40,15 @@
 								"type": {"$ref": "shared-items.json#/definitions/itemType"},
 								"scfType": {"$ref": "shared-items.json#/definitions/itemScfType"},
 								"net": {"type": "boolean"},
-								"weaponCategory": {"$ref": "shared-items.json#/definitions/itemWeaponCategory"}
+								"weaponCategory": {"$ref": "shared-items.json#/definitions/itemWeaponCategory"},
+								"property": {"type": "string"}
 							},
-							"additionalProperties": false
+							"$$ifSite": {
+								"additionalProperties": false
+							},
+							"$$ifBrew": {
+								"additionalProperties": {"type": "boolean"}
+							}
 						}
 					},
 					"inherits": {
@@ -196,6 +202,11 @@
 							"reqAttuneAltTags": {
 								"$ref": "util.json#/definitions/reqAttuneTags"
 							},
+							"$$ifBrew": {
+								"fluff": {
+									"$ref": "shared-items.json#/definitions/fluff"
+								}
+							},
 							"hasRefs": {"type": "boolean"}
 						},
 						"required": [
@@ -203,7 +214,18 @@
 							"source",
 							"page"
 						],
-						"additionalProperties": false
+						"$$ifSite": {
+							"additionalProperties": false
+						},
+						"$$ifBrew": {
+							"additionalProperties": {
+								"type": [
+									"boolean",
+									"integer",
+									"string"
+								]
+							}
+						}
 					},
 					"excludes": {
 						"type": "object",
@@ -225,13 +247,34 @@
 								"type": "integer"
 							},
 							"property": {
-								"type": "string"
+								"oneOf": [
+									{
+										"type": "string"
+									},
+									{
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								]
 							},
 							"net": {
 								"type": "boolean"
 							}
 						},
-						"additionalProperties": false
+						"$$ifSite": {
+							"additionalProperties": false
+						},
+						"$$ifBrew": {
+							"additionalProperties": {
+								"type": [
+									"boolean",
+									"integer",
+									"string"
+								]
+							}
+						}
 					},
 					"noDisplay": {
 						"type": "boolean"
@@ -261,40 +304,7 @@
 					"hasFluffImages": {"type": "boolean"},
 					"$$ifBrew": {
 						"fluff": {
-							"description": "This is intended to be used for Homebrew only - site data should include a fluff file per source.",
-							"anyOf": [
-								{
-									"description": "References \"itemFluff\" array items",
-									"type": "object",
-									"properties": {
-										"_itemFluff": {
-											"type": "object",
-											"properties": {
-												"name": {
-													"type": "string"
-												},
-												"source": {
-													"type": "string"
-												}
-											}
-										},
-										"_appendItemFluff": {
-											"type": "object",
-											"properties": {
-												"name": {
-													"type": "string"
-												},
-												"source": {
-													"type": "string"
-												}
-											}
-										}
-									}
-								},
-								{
-									"$ref": "util.json#/definitions/fluffObject"
-								}
-							]
+							"$ref": "shared-items.json#/definitions/fluff"
 						}
 					}
 				},
