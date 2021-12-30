@@ -1441,6 +1441,13 @@ function Renderer () {
 				break;
 			}
 
+			// Misc utilities //////////////////////////////////////////////////////////////////////////////////
+			case "@unit": {
+				const [amount, unitSingle, unitPlural] = Renderer.splitTagByPipe(text);
+				textStack[0] += isNaN(amount) ? unitSingle : Number(amount) > 1 ? unitPlural : unitSingle;
+				break;
+			}
+
 			// Comic styles ////////////////////////////////////////////////////////////////////////////////////
 			case "@comic":
 				textStack[0] += `<span class="rd__comic">`;
@@ -4689,8 +4696,10 @@ Renderer.race = {
 		cpy._baseName = cpy.name;
 		cpy._baseSource = cpy.source;
 		cpy._baseSrd = cpy.srd;
+		cpy._baseBasicRules = cpy.basicRules;
 		delete cpy.subraces;
 		delete cpy.srd;
+		delete cpy.basicRules;
 
 		// merge names, abilities, entries, tags
 		if (s.name) {
@@ -6545,6 +6554,7 @@ Renderer.item = {
 
 		specificVariant._baseName = baseItem.name;
 		specificVariant._baseSrd = baseItem.srd;
+		specificVariant._baseBasicRules = baseItem.basicRules;
 		if (baseItem.source !== inherits.source) specificVariant._baseSource = baseItem.source;
 
 		specificVariant._variantName = genericVariant.name;
@@ -6554,6 +6564,7 @@ Renderer.item = {
 
 		// Magic variants apply their own SRD info; page info
 		delete specificVariant.srd;
+		delete specificVariant.basicRules;
 		delete specificVariant.page;
 
 		specificVariant._category = "Specific Variant";
@@ -7597,6 +7608,8 @@ Renderer.recipe = {
 
 				<div class="rd-recipes__wrp-ingredients ${ptMakes || ptServes ? "mt-1" : ""}">${Renderer.get().render({entries: it._fullIngredients}, 0)}</div>
 
+				${it._fullEquipment?.length ? `<div class="rd-recipes__wrp-ingredients mt-4"><div class="flex-vh-center bold mb-1 small-caps">Equipment</div><div>${Renderer.get().render({entries: it._fullEquipment})}</div></div>` : ""}
+
 				${it.noteCook ? `<div class="w-100 flex-col mt-4"><div class="flex-vh-center bold mb-1 small-caps">Cook's Notes</div><div class="italic">${Renderer.get().render({entries: it.noteCook})}</div></div>` : ""}
 			</div>
 
@@ -7630,40 +7643,86 @@ Renderer.recipe = {
 
 	populateFullIngredients (r) {
 		r._fullIngredients = Renderer.applyAllProperties(MiscUtil.copy(r.ingredients));
+		if (r.equipment) r._fullEquipment = Renderer.applyAllProperties(MiscUtil.copy(r.equipment));
 	},
 
+	_RE_AMOUNT: /(?<tagAmount>{=amount\d+(?:\/[^}]+)?})/g,
 	getScaledRecipe (r, scaleFactor) {
 		const cpyR = MiscUtil.copy(r);
 
-		MiscUtil.getWalker({keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST}).walk(
-			cpyR.ingredients,
-			{
-				object: (obj) => {
-					if (obj.type !== "ingredient") return obj;
+		["ingredients", "equipment"]
+			.forEach(prop => {
+				if (!cpyR[prop]) return;
 
-					obj.entry = obj.entry.replace(/{=amount\d+(?:\/[^}]+)?}/g, (...m) => {
-						const originalValue = Renderer.applyProperties(m[0], obj);
-						return `{@help ${m[0]}|In the original recipe: ${originalValue}}`;
-					});
+				MiscUtil.getWalker({keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST}).walk(
+					cpyR[prop],
+					{
+						object: (obj) => {
+							if (obj.type !== "ingredient") return obj;
 
-					Object.keys(obj)
-						.filter(k => /^amount\d+/.test(k))
-						.forEach(k => {
-							let base = obj[k];
-							const divOneSixth = obj[k] / 0.166;
-							if (Math.abs(divOneSixth - Math.round(divOneSixth)) < 0.05) base = (1 / 6) * Math.round(divOneSixth);
+							const objOriginal = MiscUtil.copy(obj);
 
-							let scaled = base * scaleFactor;
-							if (Math.abs(scaled - Math.round(scaled)) < 0.1) {
-								scaled = Math.round(scaled);
+							Object.keys(obj)
+								.filter(k => /^amount\d+/.test(k))
+								.forEach(k => {
+									let base = obj[k];
+
+									if (Math.round(base) !== base && base < 20) {
+										const divOneSixth = obj[k] / 0.166;
+										if (Math.abs(divOneSixth - Math.round(divOneSixth)) < 0.05) base = (1 / 6) * Math.round(divOneSixth);
+									}
+
+									let scaled = base * scaleFactor;
+									if (Math.abs(scaled - Math.round(scaled)) < 0.1) {
+										scaled = Math.round(scaled);
+									}
+									obj[k] = scaled;
+								});
+
+							// region Attempt to singleize/pluralize units
+							const amountsOriginal = Object.keys(objOriginal).filter(k => /^amount\d+$/.test(k)).map(k => objOriginal[k]);
+							const amountsScaled = Object.keys(obj).filter(k => /^amount\d+$/.test(k)).map(k => obj[k]);
+
+							const entryParts = obj.entry.split(Renderer.recipe._RE_AMOUNT).filter(Boolean);
+							const entryPartsOut = entryParts.slice(0, entryParts.findIndex(it => Renderer.recipe._RE_AMOUNT.test(it)) + 1);
+							let ixAmount = 0;
+							for (let i = entryPartsOut.length; i < entryParts.length; ++i) {
+								let pt = entryParts[i];
+
+								if (Renderer.recipe._RE_AMOUNT.test(pt)) {
+									ixAmount++;
+									entryPartsOut.push(pt);
+									continue;
+								}
+
+								if (amountsOriginal[ixAmount] == null || amountsScaled[ixAmount] == null) {
+									entryPartsOut.push(pt);
+									continue;
+								}
+
+								const isSingleToPlural = amountsOriginal[ixAmount] <= 1 && amountsScaled[ixAmount] > 1;
+								const isPluralToSingle = amountsOriginal[ixAmount] > 1 && amountsScaled[ixAmount] <= 1;
+
+								if (!isSingleToPlural && !isPluralToSingle) {
+									entryPartsOut.push(pt);
+									continue;
+								}
+
+								if (isSingleToPlural) pt = Renderer.recipe._getPluralizedUnits(pt);
+								else if (isPluralToSingle) pt = Renderer.recipe._getSingleizedUnits(pt);
+								entryPartsOut.push(pt);
 							}
-							obj[k] = scaled;
-						});
 
-					return obj;
-				},
-			},
-		);
+							obj.entry = entryPartsOut.join("");
+							// endregion
+
+							Renderer.recipe._mutWrapOriginalAmounts({obj, objOriginal});
+
+							return obj;
+						},
+					},
+				);
+			});
 
 		Renderer.recipe.populateFullIngredients(cpyR);
 
@@ -7677,6 +7736,91 @@ Renderer.recipe = {
 		cpyR._scaleFactor = scaleFactor;
 
 		return cpyR;
+	},
+
+	_UNITS_SINGLE_TO_PLURAL_S: [
+		"bundle",
+		"cup",
+		"handful",
+		"ounce",
+		"piece",
+		"pound",
+		"slice",
+		"sprig",
+		"square",
+		"strip",
+		"tablespoon",
+		"teaspoon",
+		"wedge",
+	],
+	_UNITS_SINGLE_TO_PLURAL_ES: [
+		"dash",
+		"inch",
+	],
+	_FNS_SINGLE_TO_PLURAL: [],
+	_FNS_PLURAL_TO_SINGLE: [],
+
+	_getSingleizedUnits (str) {
+		if (!Renderer.recipe._FNS_PLURAL_TO_SINGLE.length) {
+			Renderer.recipe._FNS_PLURAL_TO_SINGLE = [
+				...Renderer.recipe._UNITS_SINGLE_TO_PLURAL_S.map(word => str => str.replace(new RegExp(`\\b${word.escapeRegexp()}s\\b`, "gi"), (...m) => m[0].slice(0, -1))),
+				...Renderer.recipe._UNITS_SINGLE_TO_PLURAL_ES.map(word => str => str.replace(new RegExp(`\\b${word.escapeRegexp()}es\\b`, "gi"), (...m) => m[0].slice(0, -2))),
+			];
+		}
+
+		Renderer.recipe._FNS_PLURAL_TO_SINGLE.forEach(fn => str = fn(str));
+
+		return str;
+	},
+
+	_getPluralizedUnits (str) {
+		if (!Renderer.recipe._FNS_SINGLE_TO_PLURAL.length) {
+			Renderer.recipe._FNS_SINGLE_TO_PLURAL = [
+				...Renderer.recipe._UNITS_SINGLE_TO_PLURAL_S.map(word => str => str.replace(new RegExp(`\\b${word.escapeRegexp()}\\b`, "gi"), (...m) => `${m[0]}s`)),
+				...Renderer.recipe._UNITS_SINGLE_TO_PLURAL_ES.map(word => str => str.replace(new RegExp(`\\b${word.escapeRegexp()}\\b`, "gi"), (...m) => `${m[0]}es`)),
+			];
+		}
+
+		Renderer.recipe._FNS_SINGLE_TO_PLURAL.forEach(fn => str = fn(str));
+
+		return str;
+	},
+
+	/** Only apply the `@help` note to standalone amounts, i.e. those not in other tags. */
+	_mutWrapOriginalAmounts ({obj, objOriginal}) {
+		const parts = [];
+		let stack = "";
+		let depth = 0;
+		for (let i = 0; i < obj.entry.length; ++i) {
+			const c = obj.entry[i];
+			switch (c) {
+				case "{": {
+					depth++;
+					stack += c;
+					break;
+				}
+				case "}": {
+					depth--;
+					stack += c;
+					if (!depth && stack) {
+						parts.push(stack);
+						stack = "";
+					}
+					break;
+				}
+				default: stack += c;
+			}
+		}
+		if (stack) parts.push(stack);
+		obj.entry = parts
+			.map(pt => pt.replace(Renderer.recipe._RE_AMOUNT, (...m) => {
+				const ixStart = m.slice(-3, -2)[0];
+				if (ixStart !== 0 || m[0].length !== pt.length) return m[0];
+
+				const originalValue = Renderer.applyProperties(m.last().tagAmount, objOriginal);
+				return `{@help ${m.last().tagAmount}|In the original recipe: ${originalValue}}`;
+			}))
+			.join("");
 	},
 
 	// region Custom hash ID packing/unpacking
@@ -9802,6 +9946,11 @@ Renderer._stripTagLayer = function (str) {
 					case "@underline":
 						return text;
 
+					case "@unit": {
+						const [amount, unitSingle, unitPlural] = Renderer.splitTagByPipe(text);
+						return isNaN(amount) ? unitSingle : Number(amount) > 1 ? unitPlural : unitSingle;
+					}
+
 					case "@h": return "Hit: ";
 
 					case "@dc": return `DC ${text}`;
@@ -9966,14 +10115,14 @@ Renderer.getAutoConvertedTableRollMode = function (table) {
 	if (!rollColMode) return RollerUtil.ROLL_COL_NONE;
 
 	// scan the first column to ensure all rollable
-	if (table.rows.some(it => {
-		try {
-			if (typeof it[0] === "number" && Number.isInteger(it[0])) return false;
-			// u2012 = figure dash; u2013 = en-dash
-			return typeof it[0] !== "string" || !/^\d+([-\u2012\u2013]\d+)?/.exec(it[0]);
-		} catch (e) {
-			return true;
-		}
+	if (!table.rows.every(it => {
+		if (it?.[0] == null) return false;
+		if (it?.[0]?.roll) return true;
+
+		if (typeof it[0] === "number") return Number.isInteger(it[0]);
+
+		// u2012 = figure dash; u2013 = en-dash
+		return typeof it[0] === "string" && /^\d+([-\u2012\u2013]\d+)?/.test(it[0]);
 	})) return RollerUtil.ROLL_COL_NONE;
 
 	return rollColMode;

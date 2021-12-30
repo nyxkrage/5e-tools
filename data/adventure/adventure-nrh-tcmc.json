@@ -293,7 +293,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-TCMC/002.webp"
-									}
+									},
+									"width": 2414,
+									"height": 3149
 								},
 								{
 									"type": "entries",
@@ -530,14 +532,18 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/NRH-TCMC/sheet001.webp"
-					}
+					},
+					"width": 1275,
+					"height": 825
 				},
 				{
 					"type": "image",
 					"href": {
 						"type": "internal",
 						"path": "adventure/NRH-TCMC/sheet002.webp"
-					}
+					},
+					"width": 1275,
+					"height": 825
 				}
 			],
 			"id": "000"

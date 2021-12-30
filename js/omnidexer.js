@@ -18,6 +18,7 @@ class Omnidexer {
 		 *   uh: "spell name_phb, // Optional; hash for href if the link should be different from the hover lookup hash.
 		 *   p: 110, // page
 		 *   h: 1 // if isHover enabled, otherwise undefined
+		 *   r: 1 // if SRD
 		 *   c: 10, // category ID
 		 *   id: 123 // index ID
 		 * }
@@ -81,6 +82,7 @@ class Omnidexer {
 				p: Omnidexer.getProperty(it, arbiter.page || "page"),
 			};
 			if (arbiter.isHover) toAdd.h = 1;
+			if (it.srd) toAdd.r = 1;
 			if (options.alt) {
 				if (options.alt.additionalProperties) Object.entries(options.alt.additionalProperties).forEach(([k, getV]) => toAdd[k] = getV(it));
 			}

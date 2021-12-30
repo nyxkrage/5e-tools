@@ -65,7 +65,9 @@
 					"href": {
 						"type": "internal",
 						"path": "book/MaBJoV/001.webp"
-					}
+					},
+					"width": 2070,
+					"height": 1377
 				},
 				{
 					"type": "section",
@@ -385,7 +387,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/002.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1222
 						},
 						{
 							"type": "list",
@@ -507,7 +511,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/003.webp"
-							}
+							},
+							"width": 1844,
+							"height": 2387
 						},
 						{
 							"type": "inset",
@@ -818,7 +824,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/MaBJoV/004.webp"
-									}
+									},
+									"width": 2070,
+									"height": 1005
 								},
 								"One of the most powerful thieves' guilds in western Faerûn is headquartered in Athkatla. Originally operating out of Waterdeep, they were forced to flee the city when the Masked Lady, Lhestyn Arunsun, came to power in 1298 DR and waged a campaign to purge them from her city.",
 								"However, their exile from Waterdeep proved to be a boon rather than a bane. In Athkatla, they found a society that allowed them to prosper and thrive, and by the early 14th century they controlled many of the criminal operations up and down the Sword Coast.",
@@ -1163,7 +1171,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/006.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1336
 						},
 						{
 							"type": "list",
@@ -1241,7 +1251,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/MaBJoV/007.webp"
-									}
+									},
+									"width": 1829,
+									"height": 2371
 								},
 								{
 									"type": "inset",
@@ -1584,7 +1596,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/MaBJoV/008.webp"
-									}
+									},
+									"width": 2070,
+									"height": 1587
 								},
 								{
 									"type": "entries",
@@ -1924,7 +1938,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/009.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1877
 						},
 						{
 							"type": "entries",
@@ -1985,7 +2001,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/010.webp"
-							}
+							},
+							"width": 1842,
+							"height": 2389
 						},
 						{
 							"type": "inset",
@@ -2409,7 +2427,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/011.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1593
 						},
 						{
 							"type": "list",
@@ -2826,7 +2846,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/MaBJoV/012.webp"
-									}
+									},
+									"width": 1846,
+									"height": 2390
 								},
 								{
 									"type": "inset",
@@ -2998,7 +3020,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/013.webp"
-							}
+							},
+							"width": 721,
+							"height": 477
 						},
 						"Your group belongs to the Adventurer's Guild, a loose organization that supports those courageous\u2014or foolhardy\u2014enough to pick up the professional mantle of adventuring.",
 						"Adventurers are a varied lot, ranging from less scrupulous bounty hunters, mercenaries and treasure hunters to more altruistic archeologists and explorers. But they share a common bond\u2014all are thrill seekers who live luxuriously off the spoils they find in monster infested ruins and dungeons... assuming they continue to live.",
@@ -3233,7 +3257,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/014.webp"
-							}
+							},
+							"width": 2051,
+							"height": 1404
 						}
 					],
 					"id": "091"
@@ -3248,7 +3274,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/015.webp"
-							}
+							},
+							"width": 746,
+							"height": 456
 						},
 						"Candlekeep is a library-fortress on the Sword Coast and famed for being the greatest collection of books and scrolls in Faerûn. Exceptional scholars and wizards visit Candlekeep at least once in their lifetimes, if not many more times. Because of this, the monks have many allies to call upon if Candlekeep is ever in danger. Powerful archmages such as Alustriel, Elminster and the Simbul will all come to the library's aid if needed.",
 						"Candlekeep is considered a great temple to many of the gods of knowledge, including Oghma, Gond, Deneir and Milil. It has been the home to many of the world's most famous sages, including the great prophet, Alaundo.",
@@ -3385,7 +3413,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/016.webp"
-							}
+							},
+							"width": 2060,
+							"height": 1386
 						},
 						{
 							"type": "entries",
@@ -3573,7 +3603,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/018.webp"
-							}
+							},
+							"width": 749,
+							"height": 485
 						},
 						"Sune is the goddess of beauty, also known as Lady Firehair and the Lady of Love. She represents not only physical beauty, but the beauty of music, fragrances and delicious foods. Her worshippers seek out the pleasure that comes from experiencing beauty in all its forms.",
 						"The Church of Sune believes that all mortals deserve the opportunity to experience beauty during their brief lives. The church goes about ensuring that this opportunity exists in two manners. The first is the support of artistic endeavors. This covers a wide variety of ventures including culinary arts, music, painting, sculpting and others. Clerics of Sune seek out exceptional artistic talent and provide them with monetary grants or help them become members of prestigious organizations.",
@@ -3584,7 +3616,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/017.webp"
-							}
+							},
+							"width": 2057,
+							"height": 1233
 						},
 						{
 							"type": "entries",
@@ -3963,7 +3997,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/019.webp"
-							}
+							},
+							"width": 735,
+							"height": 486
 						},
 						"An organization devoted to protecting the natural world, the Emerald Enclave allows those of any race or profession to join their ranks. The Emerald Enclave is opposed to everything that is unnatural and destructive toward nature. This includes elemental evil, the undead, demonic forces and abominations from the Far Realm.",
 						"While members are not opposed to civilization, they do strive to preserve a balance between nature and the civilized world. Often, the Emerald Enclave will come to the defense of a town or city when it comes under the threat of powerful elemental forces or otherworldly invaders.",
@@ -3982,7 +4018,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/020.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1419
 						},
 						{
 							"type": "entries",
@@ -4233,7 +4271,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/021.webp"
-							}
+							},
+							"width": 715,
+							"height": 437
 						},
 						"The Flaming Fist is a powerful mercenary company based in the city of Baldur's Gate. They are the most famous mercenary company in Faerûn and many consider them the most powerful military force on the Sword Coast. Their leaders are primarily driven by the accumulation of wealth and glory. Some members have more altruistic motivations such as bringing peace to the cities and towns of the Sword Coast.",
 						"The Flaming Fist is Baldur's Gate's army and provides law enforcement to the city and the surrounding area. In addition, the Flaming Fist has forts and castles across the Sword Coast and even further in order to extend its power and reach. The Fist has established a presence in places as far as the jungles of Chult and the continents of Maztica, and Anchorome.",
@@ -4314,7 +4354,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/022.webp"
-							}
+							},
+							"width": 2063,
+							"height": 1311
 						},
 						{
 							"type": "entries",
@@ -4601,7 +4643,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/023.webp"
-							}
+							},
+							"width": 739,
+							"height": 459
 						},
 						"The Harpers are an old and influential organization of nobles, spellcasters and spies. They are secretive and most members have almost complete autonomy to operate how they want. Most Harpers work alone or in small groups. They freely share information between members, but rarely do they have coordinated strategies.",
 						"The purpose of the Harpers has always been to work against evil and tyranny. They believe in an individual's right to freedom and will often undermine regimes that are despotic or support slavery. While they focus on threats that originate in the world of Faerûn, they will intercede if an extraplanar evil begins to have undue influence upon the world. Harpers are also keen to keep ancient and powerful magic out of the hands of easily corruptible politicians.",
@@ -4682,7 +4726,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/024.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1443
 						},
 						{
 							"type": "entries",
@@ -4842,7 +4888,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/025.webp"
-							}
+							},
+							"width": 733,
+							"height": 452
 						},
 						"The Knights of Bahamut are an ancient order founded with the assistance of the elder draconic entity called Bahamut. They were famed for bonding with some of the most powerful and beautiful creatures in the multiverse\u2014metallic dragons. Legends tell of how a single knight was capable of turning the tide of an entire battle or breaking the siege of a city. But the Knights of Bahamut were short lived, lasting only a few decades before being exterminated by their enemies. That was a thousand years ago.",
 						"The last surviving knight, a half-elf named Suldil, wishes to bring back the ancient Order. The Oath of Bahamut is the sacred rite that bonds a mortal and a dragon together. In order for the sacred rite to work, it must be blessed by Bahamut. Thus, the first task of the fledgling knight is to gain Bahamut's favor. After that, metallic dragon eggs must be found. They cannot be stolen from their parents. Only eggs that have not been stolen and whose parents are dead are considered viable.",
@@ -4916,7 +4964,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/026.webp"
-							}
+							},
+							"width": 2051,
+							"height": 1407
 						},
 						{
 							"type": "entries",
@@ -5063,7 +5113,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/027.webp"
-							}
+							},
+							"width": 725,
+							"height": 431
 						},
 						"This order was founded by the undead siblings, Jon and {@creature Bodhi Irenicus|MaBJoV}, and named after the elven house that they were born into. Its primary mission is to seek out magical secrets that will help Jon and Bodhi escape from their prison realm in the Shadowfell. They do this by searching the tombs of dead spellcasters and sages. Members of the Order of Icarus are sent to kill rival necromancers, liches and vampiric spellcasters. Members even kidnap powerful wizards and clerics (who worship gods of the Death domain).",
 						"Members are drawn from those trapped in the Shadowfell reflection of Suldanessellar. These are either travelers who have recently been lured to the Shadowfell or those who were born and grew up there.",
@@ -5152,7 +5204,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/028.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1497
 						},
 						{
 							"type": "entries",
@@ -5407,7 +5461,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/030.webp"
-							}
+							},
+							"width": 736,
+							"height": 435
 						},
 						"The Raven Circle is a secret sect devoted to the enigmatic Raven Queen. The Raven Queen is a powerful entity that resides on the Shadowfell. She is obsessed with collecting memories associated with loss and tragedy.",
 						"One of the greatest secrets of the Raven Circle is their members ability to use the Shadowfell to travel the world. The Shadowfell is a dark reflection or \"echo\" of the Prime Material Plane. When first entering the Shadowfell, it appears very similar to the area of the world it reflects. However, for most, the further the Shadowfell is explored the more divergent from the Prime Material it will become. Soon the distorted nature of the plane makes it easy to become lost. Members of the Raven Circle are able to see through these distortions and can thus navigate the Shadowfell without losing their place in the Prime Material. This ability also means that the Circle often uses domains within the Shadowfell as bases of operations.",
@@ -5486,7 +5542,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/029.webp"
-							}
+							},
+							"width": 2057,
+							"height": 1118
 						},
 						{
 							"type": "entries",
@@ -5783,7 +5841,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/031.webp"
-							}
+							},
+							"width": 726,
+							"height": 445
 						},
 						"The Shadow Thieves are the most powerful thief's guild in Faerûn. While originally based in the city of Waterdeep, the guild is now headquartered in Athkatla. Unlike other guilds of its kind that remain local to a single city, the Shadow Thieves run criminal operations all along the Sword Coast. This also includes enclaves in a few cities within the Underdark. The Shadow Thieves are primarily concerned with the accumulation of wealth through whatever means necessary.",
 						"The Shadow Thieves engage in almost every form of criminal activity. This includes black mail, smuggling, piracy, burglary, illegal drugs. The only criminal activities that they avoid are prostitution and slavery.",
@@ -5860,7 +5920,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/MaBJoV/032.webp"
-							}
+							},
+							"width": 2070,
+							"height": 1500
 						},
 						{
 							"type": "entries",

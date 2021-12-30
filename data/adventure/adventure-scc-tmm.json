@@ -13,7 +13,9 @@
 						"type": "internal",
 						"path": "book/SCC/084-05-001.chapter-splash.webp"
 					},
-					"title": "The annual Magister's Masquerade is a night of magic and fun that third-year students will never forget"
+					"title": "The annual Magister's Masquerade is a night of magic and fun that third-year students will never forget",
+					"width": 1700,
+					"height": 2261
 				},
 				{
 					"type": "section",
@@ -220,7 +222,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/SCC/085-05-002.invitation.webp"
-									}
+									},
+									"width": 850,
+									"height": 966
 								},
 								{
 									"type": "list",
@@ -267,7 +271,9 @@
 								"type": "internal",
 								"path": "book/SCC/086-05-003.dead-augusta-tullus.webp"
 							},
-							"title": "Dean Augusta Tullus"
+							"title": "Dean Augusta Tullus",
+							"width": 1700,
+							"height": 1168
 						},
 						"At the reception, the characters can catch up with other students and enjoy magical snacks. The event concludes with a student getting ill (see \"{@adventure One Too Many?|SCC-TMM|0|One Too Many?}\")\u2014foreshadowing events later in this adventure\u2014and disgruntled students demanding the characters face them in a magical contest (see \"{@adventure The Challenge|SCC-TMM|0|The Challenge}\"). This challenge works best if it comes from a character's Rival.",
 						{
@@ -527,7 +533,9 @@
 								"type": "internal",
 								"path": "book/SCC/087-05-004.furygale.webp"
 							},
-							"title": "Students sometimes sneak off to the Furygale Repository, a dangerous disposal site for failed magic, to duel away from prying eyes"
+							"title": "Students sometimes sneak off to the Furygale Repository, a dangerous disposal site for failed magic, to duel away from prying eyes",
+							"width": 1700,
+							"height": 1275
 						},
 						{
 							"type": "entries",
@@ -556,7 +564,9 @@
 												"path": "book/SCC/088-map-5.1-furygale-repository.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.1: furygale repository"
+											"title": "Map 5.1: furygale repository",
+											"width": 3000,
+											"height": 4071
 										},
 										{
 											"type": "list",
@@ -645,7 +655,9 @@
 										"type": "internal",
 										"path": "book/SCC/089-05-005.the-magic-of-furygale.webp"
 									},
-									"title": "The magic of Furygale is erratic and dangerous. Students dueling there often get in over their heads"
+									"title": "The magic of Furygale is erratic and dangerous. Students dueling there often get in over their heads",
+									"width": 1700,
+									"height": 1250
 								}
 							]
 						},
@@ -718,7 +730,9 @@
 										"type": "internal",
 										"path": "book/SCC/090-05-006.lorehold-professors.webp"
 									},
-									"title": "Lorehold professors often use relics they've unearthed in their lectures about magical objects"
+									"title": "Lorehold professors often use relics they've unearthed in their lectures about magical objects",
+									"width": 1700,
+									"height": 1168
 								}
 							]
 						},
@@ -832,7 +846,9 @@
 																"type": "internal",
 																"path": "book/SCC/091-05-007.magic-and-style.webp"
 															},
-															"title": "Magic and style are on full display at a Strixhaven fashion show"
+															"title": "Magic and style are on full display at a Strixhaven fashion show",
+															"width": 850,
+															"height": 1169
 														}
 													]
 												},
@@ -1135,7 +1151,9 @@
 														"type": "internal",
 														"path": "book/SCC/092-05-008.those-who-visit-sedgemoor.webp"
 													},
-													"title": "Those who visit Sedgemoor are bound to discover its wondrous inhabitants and hidden mysteries"
+													"title": "Those who visit Sedgemoor are bound to discover its wondrous inhabitants and hidden mysteries",
+													"width": 1700,
+													"height": 1330
 												}
 											]
 										}
@@ -1296,7 +1314,9 @@
 										"type": "internal",
 										"path": "book/SCC/093-05-009.magic-or-dance.webp"
 									},
-									"title": "Whether learning magic or dance, Strixhaven students throw themselves into their studies with zeal"
+									"title": "Whether learning magic or dance, Strixhaven students throw themselves into their studies with zeal",
+									"width": 850,
+									"height": 1170
 								},
 								"The day of the dance classes, when the characters show up at the Rose Stage, read or paraphrase the following text:",
 								{
@@ -1423,7 +1443,9 @@
 												"path": "book/SCC/094-map-5.2-kollema-hall.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.2: kollema hall"
+											"title": "Map 5.2: kollema hall",
+											"width": 3000,
+											"height": 4314
 										},
 										{
 											"type": "entries",
@@ -1817,7 +1839,9 @@
 										"type": "internal",
 										"path": "book/SCC/095-05-010.from-spell-mishaps.webp"
 									},
-									"title": "From spell mishaps to pigment storms, plenty could go wrong the day of the Magister's Masquerade"
+									"title": "From spell mishaps to pigment storms, plenty could go wrong the day of the Magister's Masquerade",
+									"width": 1700,
+									"height": 1247
 								},
 								{
 									"type": "entries",
@@ -2070,7 +2094,9 @@
 												"path": "book/SCC/096-map-5.3-lorehold-deans-wing.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.3: lorehold deans wing"
+											"title": "Map 5.3: lorehold deans wing",
+											"width": 4343,
+											"height": 3000
 										},
 										{
 											"type": "entries",
@@ -2194,7 +2220,9 @@
 																"type": "internal",
 																"path": "book/SCC/097-05-011.ancient-guardians.webp"
 															},
-															"title": "Ancient guardians defend the Deans' Wing from intruders"
+															"title": "Ancient guardians defend the Deans' Wing from intruders",
+															"width": 1700,
+															"height": 1334
 														}
 													]
 												}
@@ -2291,7 +2319,9 @@
 												"path": "book/SCC/098-map-5.4-deans-repository.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.4: deans repository"
+											"title": "Map 5.4: deans repository",
+											"width": 2211,
+											"height": 3000
 										},
 										{
 											"type": "entries",
@@ -2441,7 +2471,9 @@
 										"type": "internal",
 										"path": "book/SCC/099-05-012.students-from-different-colleges.webp"
 									},
-									"title": "Students from different colleges working together are stronger than they would be alone\u2014a lesson often learned by year's end"
+									"title": "Students from different colleges working together are stronger than they would be alone\u2014a lesson often learned by year's end",
+									"width": 1700,
+									"height": 1148
 								},
 								{
 									"type": "entries",

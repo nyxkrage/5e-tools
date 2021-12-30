@@ -170,7 +170,9 @@
 								"type": "internal",
 								"path": "book/SCC/050-03-026.biblioplex.webp"
 							},
-							"title": "Some Strixhaven students take studying very seriously. Others would rather play with magic in the Biblioplex"
+							"title": "Some Strixhaven students take studying very seriously. Others would rather play with magic in the Biblioplex",
+							"width": 1700,
+							"height": 1240
 						},
 						{
 							"type": "entries",
@@ -243,7 +245,9 @@
 												"type": "internal",
 												"path": "book/SCC/051-03-027.concentration.webp"
 											},
-											"title": "Many students employ deep concentration techniques to help them tackle their rigorous class schedules"
+											"title": "Many students employ deep concentration techniques to help them tackle their rigorous class schedules",
+											"width": 850,
+											"height": 997
 										},
 										{
 											"type": "list",
@@ -292,7 +296,9 @@
 										"path": "book/SCC/052-map-3.1-the-biblioplex.webp"
 									},
 									"imageType": "map",
-									"title": "Map 3.1: the biblioplex"
+									"title": "Map 3.1: the biblioplex",
+									"width": 4100,
+									"height": 5580
 								},
 								{
 									"type": "entries",
@@ -414,7 +420,9 @@
 												"type": "internal",
 												"path": "book/SCC/053-03-028.biblioplex.webp"
 											},
-											"title": "The Biblioplex is a storied hall of learning on campus as well as a meeting place for friends of all stripes"
+											"title": "The Biblioplex is a storied hall of learning on campus as well as a meeting place for friends of all stripes",
+											"width": 1700,
+											"height": 1247
 										}
 									]
 								},
@@ -509,7 +517,9 @@
 												"type": "internal",
 												"path": "book/SCC/054-03-029.cleaning.webp"
 											},
-											"title": "Cleaning up after students is often a harried undertaking. Luckily, the many Biblioplex assistants are up to the task"
+											"title": "Cleaning up after students is often a harried undertaking. Luckily, the many Biblioplex assistants are up to the task",
+											"width": 1700,
+											"height": 1333
 										}
 									]
 								}
@@ -601,7 +611,9 @@
 										"type": "internal",
 										"path": "book/SCC/055-03-030.snarl.webp"
 									},
-									"title": "The magic snarl at the heart of the Hall of Oracles shines through the Biblioplex like a miniature sun"
+									"title": "The magic snarl at the heart of the Hall of Oracles shines through the Biblioplex like a miniature sun",
+									"width": 1700,
+									"height": 1163
 								}
 							]
 						},
@@ -773,7 +785,9 @@
 										"path": "book/SCC/056-map-3.2-firejolt-cafe.webp"
 									},
 									"imageType": "map",
-									"title": "Map 3.2: firejolt cafe"
+									"title": "Map 3.2: firejolt cafe",
+									"width": 3000,
+									"height": 2072
 								},
 								{
 									"type": "entries",
@@ -975,7 +989,9 @@
 										"type": "internal",
 										"path": "book/SCC/057-03-031.frogs.webp"
 									},
-									"title": "Frogs are common on campus and are often kept as pets"
+									"title": "Frogs are common on campus and are often kept as pets",
+									"width": 1700,
+									"height": 1268
 								}
 							]
 						}
@@ -1071,7 +1087,9 @@
 												"path": "book/SCC/058-map-3.3-bows-end-tavern.webp"
 											},
 											"imageType": "map",
-											"title": "Map 3.3: bows end tavern"
+											"title": "Map 3.3: bows end tavern",
+											"width": 3000,
+											"height": 2182
 										},
 										{
 											"type": "entries",
@@ -1213,7 +1231,9 @@
 														"type": "internal",
 														"path": "book/SCC/059-03-032.tavern.webp"
 													},
-													"title": "Bow's End Tavern caters to a wide range of tastes and dietary needs"
+													"title": "Bow's End Tavern caters to a wide range of tastes and dietary needs",
+													"width": 1700,
+													"height": 1019
 												}
 											]
 										},
@@ -1369,7 +1389,9 @@
 														"type": "internal",
 														"path": "book/SCC/060-03-033.biblioplex-assistants.webp"
 													},
-													"title": "Students keep the biblioplex assistants busy with their many requests while studying"
+													"title": "Students keep the biblioplex assistants busy with their many requests while studying",
+													"width": 1700,
+													"height": 1250
 												}
 											]
 										}
@@ -1534,7 +1556,9 @@
 												"path": "book/SCC/061-map-3.4-captain-dapplewings-manor.webp"
 											},
 											"imageType": "map",
-											"title": "Map 3.4: captain dapplewing's manor"
+											"title": "Map 3.4: captain dapplewing's manor",
+											"width": 2211,
+											"height": 3000
 										},
 										{
 											"type": "entries",
@@ -1655,7 +1679,9 @@
 														"type": "internal",
 														"path": "book/SCC/062-03-034.webp"
 													},
-													"title": "Students caught breaking into Captain Dapplewing's Manor after hours face punishment"
+													"title": "Students caught breaking into Captain Dapplewing's Manor after hours face punishment",
+													"width": 1700,
+													"height": 1085
 												}
 											]
 										},
@@ -2055,7 +2081,9 @@
 								"type": "internal",
 								"path": "book/SCC/063-03-035.webp"
 							},
-							"title": "The Rose Stage hosts everything from intimate poetry readings to grandiose multimedia performances"
+							"title": "The Rose Stage hosts everything from intimate poetry readings to grandiose multimedia performances",
+							"width": 1700,
+							"height": 1168
 						},
 						{
 							"type": "section",
@@ -2086,7 +2114,9 @@
 												"path": "book/SCC/064-map-3.5-the-rose-stage.webp"
 											},
 											"imageType": "map",
-											"title": "Map 3.5: the rose stage"
+											"title": "Map 3.5: the rose stage",
+											"width": 3000,
+											"height": 2072
 										},
 										{
 											"type": "entries",
@@ -2352,7 +2382,9 @@
 														"type": "internal",
 														"path": "book/SCC/065-03-036.concerts.webp"
 													},
-													"title": "World-class concerts happen regularly on the Rose Stage"
+													"title": "World-class concerts happen regularly on the Rose Stage",
+													"width": 1700,
+													"height": 1330
 												}
 											]
 										}
@@ -2482,7 +2514,9 @@
 												"path": "book/SCC/066-map-3.6-sedgemoor.webp"
 											},
 											"imageType": "map",
-											"title": "Map 3.6: sedgemoor"
+											"title": "Map 3.6: sedgemoor",
+											"width": 3000,
+											"height": 4071
 										},
 										{
 											"type": "entries",
@@ -2592,7 +2626,9 @@
 																"type": "internal",
 																"path": "book/SCC/067-03-037.strange-creatures.webp"
 															},
-															"title": "Strange creatures live in the swampy areas of Strixhaven's campus. Sometimes those creatures are dangerous"
+															"title": "Strange creatures live in the swampy areas of Strixhaven's campus. Sometimes those creatures are dangerous",
+															"width": 1700,
+															"height": 1323
 														}
 													]
 												}

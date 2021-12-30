@@ -13,7 +13,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/TLK/001.webp"
-					}
+					},
+					"width": 1165,
+					"height": 1190
 				},
 				{
 					"type": "section",
@@ -33,7 +35,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/002.webp"
-											}
+											},
+											"width": 723,
+											"height": 807
 										},
 										"The Wizard Weirding is a mind flayer alhoon in disguise. It uses disguise self to appear as a male human wizard named Weirding. Long ago, it left the hive in search of power and immortality through magic. To blend in with the general population of Faerun, the alhoon married a human woman and adopted her child as his own. Over time, the alhoon was discovered by his wife, and was forced to eat her brain. Currently the alhoon runs the outpost of Weirding where he mines the local mountains for minerals to fund his research. The Wizard Weirding uses the people of Weirding as the subjects of his mind experiments.",
 										"The Wizard Weirding will attempt to capture new and interesting adventurers and either devour their brains, or preform experiments on them. If confronted violently the Wizard Weirding will attack the party and use the mind controlled population of the outpost to prevent anyone from escaping.",
@@ -65,7 +69,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/003.webp"
-											}
+											},
+											"width": 671,
+											"height": 748
 										},
 										"Mez Kara is an elven {@creature apprentice wizard|VGM|apprentice} to the Wizard Weirding. In reality, she is one of his mind controlled thralls. She doesn't know the wizard is an alhoon, but she knows he has granted her power.",
 										"She serves him willingly and is always looking for ways to please him. She will find powerful adventurers of great interest and convince them to stay at the manor house and meet the Wizard Weirding himself.",
@@ -97,7 +103,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/005.webp"
-											}
+											},
+											"width": 649,
+											"height": 698
 										},
 										"Gregor is a miner and bookie. He and his gang take bets from the locals on just about everything. Currently, he is getting ready to make an example of Gnator Gnimmcap for not paying his debts by feeding Gnator's fingers to his lizard folk thug.",
 										"Gregor's gang consists of himself, a male lizard folk named Tooth, and a female goliath barbarian named Cat Keeper. Tooth can be distracted by tasty meats. Cat keeper has a weakness for cats. Otherwise they are brutes that will do anything Gregor asks of them. Gregor dreams of being part of a proper gang like the Zhentarim.",
@@ -128,7 +136,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/010.webp"
-											}
+											},
+											"width": 442,
+											"height": 534
 										},
 										"Gnator Gnimmcap is the grounds keeper at the Weirding mansion. He has taken to drinking and gambling in order to escape the nightmares brought on by the experimentation of the Wizard Weirding. He has acquired a sizable debt to the bookie Gregor Forskog and is overdue in his payments.",
 										"Gantor Gnimmcap told Cawkrin Jones how to get into the mansion through the cellar in exchange for a 30 gold pieces (which he has now gambled away). In exchange for helping with his gambling debts, Gnator will gladly help adventurers, as long as it doesn't put him in danger."
@@ -159,7 +169,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/004.webp"
-											}
+											},
+											"width": 604,
+											"height": 555
 										},
 										"Tonk Hammertoes is the bartender and owner of Bucket's Bottom. Tonk has been experimented on a little too much. He is short on words and intelligence. He will gladly serve ale, but getting useful information out of him is difficult. He has seen a Kenku, but when, where, and who the Kenku was exactly escapes his memory."
 									],
@@ -188,7 +200,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/006.webp"
-											}
+											},
+											"width": 629,
+											"height": 678
 										},
 										"Celest refuses to speak with her father and spends most of her time in her room crying. She is desperate to escape and will bargain with the players if she is convinced they will help her.",
 										"Celeste is the step daughter of the Wizard Weirding. She wants to leave the the manor and the village to explore the world on her own. Her dream is to visit the great city of Waterdeep with her boyfriend, Dicky Whit. Three nights ago Dicky helped her escape through her window, but they were caught by her father. She hasn't seen Dicky since and worries that her father has scared him off. She can't escape on her own due to the {@creature kamadan|ToA}",
@@ -222,7 +236,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/007.webp"
-											}
+											},
+											"width": 665,
+											"height": 712
 										},
 										"Cawkrin is currently trapped in an enchanted painting in the Wizard's Study. When he touched one of the Glass Cases, he was magically transported into the painting. Cawkrin is a Kenku and thief. If released, he will help the party in whatever way possible. He does not know Weirding's secret.",
 										"Use the {@creature master thief|VGM} stat block from Volos Guide To Monsters for Cawkrin's stats."
@@ -648,7 +664,9 @@
 											"href": {
 												"type": "internal",
 												"path": "adventure/TLK/008.webp"
-											}
+											},
+											"width": 549,
+											"height": 650
 										},
 										"{@creature Kobold} who specializes in punching folks in the nuts. He is covered in dragon feces. If released from his iron cage Quinn Quinn will attempt to punch any male in the gonads while screaming, \"I'm Nut Puncher Quinn Quinn!\" and then run away."
 									],
@@ -674,7 +692,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/TLK/009.webp"
-					}
+					},
+					"width": 1153,
+					"height": 1503
 				}
 			],
 			"id": "000"

@@ -177,7 +177,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/NRH-TLT/010.webp"
-							}
+							},
+							"width": 701,
+							"height": 1185
 						},
 						{
 							"type": "entries",
@@ -420,14 +422,18 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/NRH-TLT/sheet009.webp"
-					}
+					},
+					"width": 1275,
+					"height": 825
 				},
 				{
 					"type": "image",
 					"href": {
 						"type": "internal",
 						"path": "adventure/NRH-TLT/sheet010.webp"
-					}
+					},
+					"width": 1275,
+					"height": 825
 				}
 			],
 			"id": "000"

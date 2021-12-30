@@ -18,7 +18,9 @@
 					"href": {
 						"type": "internal",
 						"path": "book/SCC/000-00-001.welcome-splash.webp"
-					}
+					},
+					"width": 1700,
+					"height": 1250
 				},
 				"A magical world boasts many places where students can study magic and many sages who take eager learners under their wings. But being accepted to Strixhaven University is a special honor, the dream of many young students. Strixhaven is a place of enlightenment and learning, and both its graduates and its delegates are typically welcomed and respected wherever they go.",
 				"Founded seven centuries ago by five ancient dragons, Strixhaven is the premier institution of magical learning, drawing promising young mages from all over. Each equipped with its own campus and faculty, Strixhaven's five colleges\u2014summarized in the Colleges of Strixhaven table\u2014cover a vast array of academic and magical specialties.",
@@ -184,7 +186,9 @@
 										"type": "internal",
 										"path": "book/SCC/001-00-002.strixhaven-university.webp"
 									},
-									"title": "Strixhaven University, with the (Center) Biblioplex Surrounded by (Top) Silverquill and (Going Clockwise) Quandrix, Witherbloom, Prismari, and Lorehold"
+									"title": "Strixhaven University, with the (Center) Biblioplex Surrounded by (Top) Silverquill and (Going Clockwise) Quandrix, Witherbloom, Prismari, and Lorehold",
+									"width": 1700,
+									"height": 2068
 								}
 							]
 						}
@@ -204,7 +208,9 @@
 						"type": "internal",
 						"path": "book/SCC/002-01-001.chapter-splash.webp"
 					},
-					"title": "During a duel in the Hall of Oracles, a student transforms her opponent into a goat, who is held back by a friend"
+					"title": "During a duel in the Hall of Oracles, a student transforms her opponent into a goat, who is held back by a friend",
+					"width": 1700,
+					"height": 2266
 				},
 				{
 					"type": "section",
@@ -353,7 +359,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/003-01-013.webp"
-							}
+							},
+							"width": 750,
+							"height": 300
 						},
 						"Well-maintained roads connect the six campuses, and walking from one to another can take a half-hour or more. Regular shuttles\u2014large carriages drawn by horselike automata\u2014run on an hourly schedule between a station near the Biblioplex and each of the satellite campuses, making the journey in about 15 minutes. In addition, each campus has multiple permanent teleportation circles, which faculty and more advanced students can use when they require instantaneous travel, and several magical portals exist as well. These portals can be unpredictable: they aren't necessarily open all the time, they don't always lead to the same places, and some require complicated conditions or keys to open.",
 						{
@@ -362,7 +370,9 @@
 								"type": "internal",
 								"path": "book/SCC/004-01-002.archway-commons.webp"
 							},
-							"title": "Archway Commons is a favorite spot for students to gather"
+							"title": "Archway Commons is a favorite spot for students to gather",
+							"width": 1700,
+							"height": 1233
 						},
 						{
 							"type": "entries",
@@ -378,7 +388,9 @@
 										"path": "book/SCC/005-map-1.1-central-campus.webp"
 									},
 									"imageType": "map",
-									"title": "Map 1.1: central campus"
+									"title": "Map 1.1: central campus",
+									"width": 3000,
+									"height": 2026
 								},
 								{
 									"type": "entries",
@@ -437,7 +449,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/006-01-003.lorehold.webp"
-							}
+							},
+							"width": 750,
+							"height": 300
 						},
 						{
 							"type": "entries",
@@ -451,7 +465,9 @@
 										"type": "internal",
 										"path": "book/SCC/007-01-004.heart-of-lorehold.webp"
 									},
-									"title": "The heart of Lorehold College overlooks a chasm littered with ancient ruins"
+									"title": "The heart of Lorehold College overlooks a chasm littered with ancient ruins",
+									"width": 1700,
+									"height": 1250
 								},
 								{
 									"type": "entries",
@@ -613,7 +629,9 @@
 										"path": "book/SCC/008-map-1.2-lorehold-campus.webp"
 									},
 									"imageType": "map",
-									"title": "Map 1.2: lorehold campus"
+									"title": "Map 1.2: lorehold campus",
+									"width": 3000,
+									"height": 2026
 								},
 								{
 									"type": "entries",
@@ -655,7 +673,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/009-01-005.prismari-college.webp"
-							}
+							},
+							"width": 750,
+							"height": 300
 						},
 						{
 							"type": "entries",
@@ -779,7 +799,9 @@
 										"type": "internal",
 										"path": "book/SCC/010-01-006.prismari-college-offers-breathtaking-views.webp"
 									},
-									"title": "Prismari College offers breathtaking views to inspire its artists"
+									"title": "Prismari College offers breathtaking views to inspire its artists",
+									"width": 1700,
+									"height": 1272
 								},
 								{
 									"type": "entries",
@@ -840,7 +862,9 @@
 										"path": "book/SCC/011-map-1.3.webp"
 									},
 									"imageType": "map",
-									"title": "Map 1.3: Prismari Campus"
+									"title": "Map 1.3: Prismari Campus",
+									"width": 3000,
+									"height": 2025
 								},
 								{
 									"type": "entries",
@@ -881,7 +905,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/012-01-007.quandrix-college.webp"
-							}
+							},
+							"width": 750,
+							"height": 300
 						},
 						{
 							"type": "entries",
@@ -977,7 +1003,9 @@
 										"type": "internal",
 										"path": "book/SCC/013-01-008.torus-hall.webp"
 									},
-									"title": "The geometry of Torus Hall is the most prominent feature of Quandrix College"
+									"title": "The geometry of Torus Hall is the most prominent feature of Quandrix College",
+									"width": 1700,
+									"height": 1248
 								},
 								{
 									"type": "entries",
@@ -1037,7 +1065,9 @@
 										"path": "book/SCC/014-map-1.4-quandrix-campus.webp"
 									},
 									"imageType": "map",
-									"title": "Map 1.4: quandrix campus"
+									"title": "Map 1.4: quandrix campus",
+									"width": 3000,
+									"height": 2026
 								},
 								{
 									"type": "entries",
@@ -1086,7 +1116,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/015-01-009.silverquill-college.webp"
-							}
+							},
+							"width": 750,
+							"height": 300
 						},
 						{
 							"type": "entries",
@@ -1182,7 +1214,9 @@
 										"type": "internal",
 										"path": "book/SCC/016-01-010.webp"
 									},
-									"title": "The stately buildings of Silverquill promote an atmosphere of dignified study"
+									"title": "The stately buildings of Silverquill promote an atmosphere of dignified study",
+									"width": 1700,
+									"height": 1273
 								},
 								{
 									"type": "entries",
@@ -1250,7 +1284,9 @@
 										"path": "book/SCC/017-map-1.5-silverquill-campus.webp"
 									},
 									"imageType": "map",
-									"title": "Map 1.5: silverquill campus"
+									"title": "Map 1.5: silverquill campus",
+									"width": 3000,
+									"height": 2026
 								},
 								{
 									"type": "entries",
@@ -1291,7 +1327,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/018-01-011.witherbloom-college.webp"
-							}
+							},
+							"width": 750,
+							"height": 300
 						},
 						{
 							"type": "entries",
@@ -1387,7 +1425,9 @@
 										"type": "internal",
 										"path": "book/SCC/019-01-012.deep-in-the-bayou.webp"
 									},
-									"title": "Deep in the bayou of Sedgemoor, Widdershins Hall is the heart of Witherbloom College"
+									"title": "Deep in the bayou of Sedgemoor, Widdershins Hall is the heart of Witherbloom College",
+									"width": 1700,
+									"height": 1250
 								},
 								{
 									"type": "entries",
@@ -1464,7 +1504,9 @@
 										"path": "book/SCC/020-map-1.6-witherbloom-campus.webp"
 									},
 									"imageType": "map",
-									"title": "Map 1.6: witherbloom campus"
+									"title": "Map 1.6: witherbloom campus",
+									"width": 3000,
+									"height": 2026
 								},
 								{
 									"type": "entries",
@@ -1516,7 +1558,9 @@
 						"type": "internal",
 						"path": "book/SCC/021-02-001.chapter-splash.webp"
 					},
-					"title": "A group of Strixhaven students\u2014each from a different college\u2014descend into the depths below an ancient ruin"
+					"title": "A group of Strixhaven students\u2014each from a different college\u2014descend into the depths below an ancient ruin",
+					"width": 1700,
+					"height": 2110
 				},
 				{
 					"type": "section",
@@ -1751,7 +1795,9 @@
 						"type": "internal",
 						"path": "book/SCC/025-03-001.chapter-splash.webp"
 					},
-					"title": "Strixhaven students are often in awe of their surroundings at the famed university of magic"
+					"title": "Strixhaven students are often in awe of their surroundings at the famed university of magic",
+					"width": 1700,
+					"height": 2261
 				},
 				{
 					"type": "section",
@@ -1874,7 +1920,9 @@
 												"type": "internal",
 												"path": "book/SCC/026-03-002.first-year-students.webp"
 											},
-											"title": "First-year students rush to class carrying armloads of books\u2014and all their excitement for the start of a new academic year"
+											"title": "First-year students rush to class carrying armloads of books\u2014and all their excitement for the start of a new academic year",
+											"width": 1700,
+											"height": 1098
 										}
 									]
 								}
@@ -1927,7 +1975,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/027-03-003.strixhaven-memories.webp"
-							}
+							},
+							"width": 2000,
+							"height": 1529
 						},
 						{
 							"type": "list",
@@ -1997,7 +2047,9 @@
 										"type": "internal",
 										"path": "book/SCC/028-03-004.webp"
 									},
-									"title": "Students find many magical ways to celebrate their achievements"
+									"title": "Students find many magical ways to celebrate their achievements",
+									"width": 850,
+									"height": 1322
 								},
 								"While a student participates in an Extracurricular, they gain a Student Die and a Relationship Point, as explained below.",
 								{
@@ -2452,7 +2504,9 @@
 												"type": "internal",
 												"path": "book/SCC/029-03-005.webp"
 											},
-											"title": "Strixhaven student employees work beside staff members to fill the many jobs available on campus"
+											"title": "Strixhaven student employees work beside staff members to fill the many jobs available on campus",
+											"width": 850,
+											"height": 1064
 										}
 									]
 								},
@@ -2818,7 +2872,9 @@
 								"type": "internal",
 								"path": "book/SCC/030-03-006.a-witherbloom-student-heals-a-friend.webp"
 							},
-							"title": "A Witherbloom student heals a friend from Silverquill"
+							"title": "A Witherbloom student heals a friend from Silverquill",
+							"width": 1700,
+							"height": 1095
 						},
 						{
 							"type": "section",
@@ -2897,7 +2953,9 @@
 												"type": "internal",
 												"path": "book/SCC/031-03-007.sunset-date.webp"
 											},
-											"title": "Students discuss their shared interests during a sunset date"
+											"title": "Students discuss their shared interests during a sunset date",
+											"width": 1700,
+											"height": 984
 										},
 										{
 											"type": "entries",
@@ -2992,7 +3050,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/032-03-008.aurora.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3029,7 +3089,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/033-03-009.bhedum.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3070,7 +3132,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/034-03-010.cadoras.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3111,7 +3175,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/035-03-011.drazhomir.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3148,7 +3214,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/036-03-012.grayson.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3185,7 +3253,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/037-03-013.greta.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										"Greta makes a point to write regularly to her older brother, Grog, whom she misses terribly.",
 										{
@@ -3223,7 +3293,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/038-03-014.javenesh.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3259,7 +3331,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/039-03-015.larine.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3296,7 +3370,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/040-03-016.melwythorne.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3337,7 +3413,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/041-03-017.mina-lee.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3374,7 +3452,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/042-03-018.nora-ann-wu.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3410,7 +3490,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/043-03-019.quentillius.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3451,7 +3533,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/044-03-020.rosie.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3488,7 +3572,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/045-03-021.rubina.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3530,7 +3616,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/046-03-022.shuvadri.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3567,7 +3655,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/047-03-023.tilana.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3609,7 +3699,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/048-03-024.urzmaktok.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3646,7 +3738,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/SCC/049-03-025.zanther.webp"
-											}
+											},
+											"width": 850,
+											"height": 1177
 										},
 										{
 											"type": "inset",
@@ -3726,7 +3820,9 @@
 						"type": "internal",
 						"path": "book/SCC/116-07-001.chapter-splash.webp"
 					},
-					"title": "Strixhaven students battle a mage hunter and an Oriq recruiter"
+					"title": "Strixhaven students battle a mage hunter and an Oriq recruiter",
+					"width": 1700,
+					"height": 2264
 				},
 				{
 					"type": "table",
@@ -4033,7 +4129,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/SCC/129-07-013.lorehold-scholars.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1310
 								},
 								{
 									"type": "list",
@@ -4058,7 +4156,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/SCC/137-07-021.prismari-scholars.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1133
 								},
 								{
 									"type": "list",
@@ -4083,7 +4183,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/SCC/140-07-024.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1107
 								},
 								{
 									"type": "list",
@@ -4108,7 +4210,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/SCC/145-07-029.silverquill-scholars.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1110
 								},
 								{
 									"type": "list",
@@ -4133,7 +4237,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/SCC/152-07-036.witherbloom-scholars.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1133
 								},
 								{
 									"type": "list",
@@ -4162,7 +4268,9 @@
 					"href": {
 						"type": "internal",
 						"path": "book/SCC/156-strixhaven-campus-map.webp"
-					}
+					},
+					"width": 3500,
+					"height": 5000
 				}
 			]
 		}

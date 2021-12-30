@@ -10,7 +10,9 @@
 					"href": {
 						"type": "internal",
 						"path": "book/FTD/000-00-001.dragon-splash.webp"
-					}
+					},
+					"width": 1700,
+					"height": 908
 				},
 				{
 					"type": "insetReadaloud",
@@ -46,7 +48,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/FTD/001-00-002.webp"
-							}
+							},
+							"width": 850,
+							"height": 1168
 						},
 						"{@book Chapter 1|FTD|1} introduces draconic-themed options for adventurers, including three variant dragonborn races, two dragon-oriented subclasses (the Drakewarden ranger and the Way of the Ascendant Dragon monk), feats, and roleplaying suggestions that can connect characters of any class to a draconic theme.",
 						"{@book Chapter 2|FTD|2} discusses magic related to dragons, including new spells, magic items, and draconic gifts (supernatural gifts explicitly connected to a dragon's power).",
@@ -163,7 +167,9 @@
 						"type": "internal",
 						"path": "book/FTD/002-01-001.chapter-splash.webp"
 					},
-					"title": "In his guise as a young monk, Bahamut helps a pair of adventurers put an end to a young red dragon's depredations"
+					"title": "In his guise as a young monk, Bahamut helps a pair of adventurers put an end to a young red dragon's depredations",
+					"width": 1700,
+					"height": 2200
 				},
 				{
 					"type": "section",
@@ -246,7 +252,9 @@
 										"type": "internal",
 										"path": "book/FTD/dragon monk.webp"
 									},
-									"title": "A human monk practices a form inspired by dragon flight"
+									"title": "A human monk practices a form inspired by dragon flight",
+									"width": 1700,
+									"height": 1121
 								},
 								{
 									"type": "image",
@@ -254,7 +262,9 @@
 										"type": "internal",
 										"path": "book/FTD/drakewarden ranger.webp"
 									},
-									"title": "A dragonborn drakewarden shares affection with her drake companion"
+									"title": "A dragonborn drakewarden shares affection with her drake companion",
+									"width": 850,
+									"height": 1015
 								}
 							]
 						}
@@ -358,7 +368,9 @@
 						"type": "internal",
 						"path": "book/FTD/008-02-001.chapter-splash.webp"
 					},
-					"title": "In any form, Bahamut delights in the \"Aha!\" moments of teaching young students"
+					"title": "In any form, Bahamut delights in the \"Aha!\" moments of teaching young students",
+					"width": 1700,
+					"height": 2201
 				},
 				{
 					"type": "section",
@@ -616,7 +628,9 @@
 										"type": "internal",
 										"path": "book/FTD/011-02-004.a-magic-weapon.webp"
 									},
-									"title": "A magic weapon recovered from a dragon's hoard carries some of the dragon's magic"
+									"title": "A magic weapon recovered from a dragon's hoard carries some of the dragon's magic",
+									"width": 850,
+									"height": 1090
 								},
 								"Hoard items are presented here in alphabetical order. A hoard item's rarity changes depending on its current state, as shown in each item description.",
 								{
@@ -741,7 +755,9 @@
 										"type": "internal",
 										"path": "book/FTD/012-02-005.a-dragons-blood.webp"
 									},
-									"title": "A dragon's blood can be as powerful as it is toxic"
+									"title": "A dragon's blood can be as powerful as it is toxic",
+									"width": 1700,
+									"height": 1130
 								},
 								{
 									"type": "inset",
@@ -787,7 +803,9 @@
 						"type": "internal",
 						"path": "book/FTD/013-03-001.chapter-splash.webp"
 					},
-					"title": "In his guise as Fizban the Fabulous, Bahamut helps two unlikely heroes escape the wrath of the red dragon Pyros"
+					"title": "In his guise as Fizban the Fabulous, Bahamut helps two unlikely heroes escape the wrath of the red dragon Pyros",
+					"width": 1700,
+					"height": 2246
 				},
 				{
 					"type": "section",
@@ -909,7 +927,9 @@
 										"type": "internal",
 										"path": "book/FTD/014-03-002.dragons-of-the-same.webp"
 									},
-									"title": "Dragons of the same kind can vary widely in shape, size, color, and ornamentation"
+									"title": "Dragons of the same kind can vary widely in shape, size, color, and ornamentation",
+									"width": 1700,
+									"height": 1072
 								},
 								{
 									"type": "table",
@@ -1064,7 +1084,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/FTD/015-03-003.webp"
-									}
+									},
+									"width": 850,
+									"height": 1115
 								},
 								{
 									"type": "table",
@@ -1139,7 +1161,9 @@
 												"type": "internal",
 												"path": "book/FTD/016-03-004.commonly-known-as.webp"
 											},
-											"title": "Commonly known as \"Old Gnawbone,\" Claugiyliamatar is often seen with a mangled corpse hanging from her mouth"
+											"title": "Commonly known as \"Old Gnawbone,\" Claugiyliamatar is often seen with a mangled corpse hanging from her mouth",
+											"width": 850,
+											"height": 1030
 										},
 										"Many dragons are better known by nicknames and epithets. Klauth is commonly called Old Snarl, and Khellendros is remembered as Skie and the Storm over Krynn. Ingeloakastimizilian is Icingdeath, Imvaernarhro is Inferno, and K'rshinthintl and Claugiyliamatar are called Cyan Bloodbane and Old Gnawbones, respectively.",
 										"When naming a dragon, take whatever approach appeals to you. But bear in mind that dragons need memorable names, and if you or your players have trouble pronouncing a name, it's likely to be quickly forgotten\u2014or jokingly abbreviated.",
@@ -1410,7 +1434,9 @@
 										"type": "internal",
 										"path": "book/FTD/017-03-005.blue-wyrmling.webp"
 									},
-									"title": "Blue Wyrmling"
+									"title": "Blue Wyrmling",
+									"width": 850,
+									"height": 837
 								},
 								{
 									"type": "entries",
@@ -1471,7 +1497,9 @@
 												"type": "internal",
 												"path": "book/FTD/018-03-006.young-blue-dragon.webp"
 											},
-											"title": "Young blue dragon"
+											"title": "Young blue dragon",
+											"width": 850,
+											"height": 673
 										},
 										"This stage is when most dragons first establish their own territory and lair. A young dragon's territory covers an area about 50 miles across. This is also when dragons start to form the magical ties that bind them to both their hoards and the regions around their lairs.",
 										"Hunting dragons typically fly on a more-or-less circular path out to one edge of their territory and back in a day, traveling about 75 miles in total. Young dragons also use their hunting flights to keep tabs on happenings within their territory and are keenly aware of other creatures whose territory neighbors or overlaps their own. A young dragon can become a significant threat to a city or kingdom, either through overt violence or subtle manipulation.",
@@ -1528,7 +1556,9 @@
 												"type": "internal",
 												"path": "book/FTD/019-03-007.adult-blue-dragon.webp"
 											},
-											"title": "Adult blue dragon"
+											"title": "Adult blue dragon",
+											"width": 850,
+											"height": 1113
 										},
 										{
 											"type": "table",
@@ -1585,7 +1615,9 @@
 												"type": "internal",
 												"path": "book/FTD/020-03-008.ancient-blue-dragon.webp"
 											},
-											"title": "Ancient blue dragon"
+											"title": "Ancient blue dragon",
+											"width": 850,
+											"height": 1026
 										}
 									]
 								},
@@ -1720,7 +1752,9 @@
 										"type": "internal",
 										"path": "book/FTD/021-03-009.miners-discover.webp"
 									},
-									"title": "Miners discover an amethyst dragon egg"
+									"title": "Miners discover an amethyst dragon egg",
+									"width": 1700,
+									"height": 1077
 								},
 								{
 									"type": "entries",
@@ -1964,7 +1998,9 @@
 										"type": "internal",
 										"path": "book/FTD/022-03-010.the-black-dracolich.webp"
 									},
-									"title": "The black dracolich Ebondeath is venerated by a sect of the Cult of the Dragon"
+									"title": "The black dracolich Ebondeath is venerated by a sect of the Cult of the Dragon",
+									"width": 1700,
+									"height": 1137
 								}
 							]
 						},
@@ -2051,7 +2087,9 @@
 										"type": "internal",
 										"path": "book/FTD/023-03-011.bahamut.webp"
 									},
-									"title": "Bahamut is often accompanied by seven ancient gold dragons in his journeys on the Material Plane"
+									"title": "Bahamut is often accompanied by seven ancient gold dragons in his journeys on the Material Plane",
+									"width": 850,
+									"height": 1087
 								},
 								"A few other dragons also command reverence from their kin. These are often greatwyrms who have undergone a sort of apotheosis, joining multiple echoes of themselves into a single powerful form. A few are ancient dragons who have cultivated their dragonsight to such a degree that they can coordinate the actions of their echoes across the Material Plane, influencing events on multiple worlds at once. Humanoids might consider these dragons gods, but as with Bahamut and Tiamat, dragons respect these figures for their wisdom, their might, their magic, and their wealth; they don't worship them. Such enlightened dragons include Aasterinian (a brass dragon who serves as a messenger for Bahamut and is sometimes identified as a god of invention), Chronepsis (a black dragon who now resides in the Outlands, sometimes imagined as a god of fate), and Tamara (a silver dragon of transcendent beneficence, described as a god of life). A number of such dragons of legend are discussed in more detail in sidebars in {@book chapters 5|FTD|5} and {@book 6|FTD|6}.",
 								"Dragons are not religious by nature. They can grow to become some of the most formidable creatures in the multiverse without relying on any external power, and they learn self-sufficiency and self-interest from the moment of their hatching. They do not appeal to divine powers for aid, nor do they beseech them for mercy. That said, some dragons could be described as spiritual. A dragon might cultivate an awareness of the interconnectedness of all that exists and strive to nurture the health of the whole or to exploit that connection. But even the most spiritual dragons have a keen sense of their own importance."
@@ -2165,7 +2203,9 @@
 														"type": "internal",
 														"path": "book/FTD/024-03-012.an-adventurer-closes.webp"
 													},
-													"title": "An adventurer closes a portal, preventing an agent of Tiamat from emerging to aid the Cult of the Dragon"
+													"title": "An adventurer closes a portal, preventing an agent of Tiamat from emerging to aid the Cult of the Dragon",
+													"width": 1700,
+													"height": 1250
 												}
 											]
 										}
@@ -2315,7 +2355,9 @@
 														"type": "internal",
 														"path": "book/FTD/025-03-013.hidecarved-dragons.webp"
 													},
-													"title": "Hidecarved dragons adorn their scales with mystic words"
+													"title": "Hidecarved dragons adorn their scales with mystic words",
+													"width": 850,
+													"height": 1160
 												},
 												{
 													"type": "table",
@@ -2562,7 +2604,9 @@
 												"type": "internal",
 												"path": "book/FTD/026-03-014.to-kugluk.webp"
 											},
-											"title": "To Kugluk, the fiery breath of his \"Great Uncle\" is a toasty blessing"
+											"title": "To Kugluk, the fiery breath of his \"Great Uncle\" is a toasty blessing",
+											"width": 1700,
+											"height": 1137
 										}
 									]
 								},
@@ -2826,7 +2870,9 @@
 								"type": "internal",
 								"path": "book/FTD/027-03-015.an-encounter-with-a-dragon.webp"
 							},
-							"title": "An encounter with a dragon can be devastating to people and property alike"
+							"title": "An encounter with a dragon can be devastating to people and property alike",
+							"width": 1700,
+							"height": 1131
 						},
 						{
 							"type": "table",
@@ -2971,7 +3017,9 @@
 										"type": "internal",
 										"path": "book/FTD/028-03-016.sometimes-the-only-solution.webp"
 									},
-									"title": "Sometimes the only solution is to slay the dragon"
+									"title": "Sometimes the only solution is to slay the dragon",
+									"width": 1700,
+									"height": 1354
 								},
 								"An adventure featuring a dragon in a monster's role lends itself to a location-based structure. That location is likely the dragon's lair, since it's difficult to pin a dragon down for an all-out fight in most other sites. You can use one of the lair maps in {@book chapter 5|FTD|5} of this book as the key location for such an adventure, fleshing the site out with features and inhabitants using the {@book guidelines|DMG|5|Dungeons} in the {@book Dungeon Master's Guide|DMG}."
 							]
@@ -3038,7 +3086,9 @@
 										"type": "internal",
 										"path": "book/FTD/029-03-017.in-the-heart.webp"
 									},
-									"title": "In the heart of the jungle, the black greatwyrm Rhashaak keeps watch over a ruined city"
+									"title": "In the heart of the jungle, the black greatwyrm Rhashaak keeps watch over a ruined city",
+									"width": 1700,
+									"height": 2203
 								}
 							]
 						}
@@ -3056,7 +3106,9 @@
 								"type": "internal",
 								"path": "book/FTD/030-03-018.laurana-and-kitiara.webp"
 							},
-							"title": "Laurana and Kitiara\u2014generals and dragonriders in opposing armies\u2014battle in the temple of the Dragon Queen"
+							"title": "Laurana and Kitiara\u2014generals and dragonriders in opposing armies\u2014battle in the temple of the Dragon Queen",
+							"width": 1700,
+							"height": 1119
 						},
 						{
 							"type": "list",
@@ -3092,7 +3144,9 @@
 										"type": "internal",
 										"path": "book/FTD/031-03-019.a-half-dragon-conqueror.webp"
 									},
-									"title": "A half-dragon conqueror acquiring an Orb of Dragonkind can throw a world into chaos"
+									"title": "A half-dragon conqueror acquiring an Orb of Dragonkind can throw a world into chaos",
+									"width": 850,
+									"height": 854
 								},
 								{
 									"type": "list",
@@ -3201,7 +3255,9 @@
 										"type": "internal",
 										"path": "book/FTD/032-03-020.tiamats-emergence.webp"
 									},
-									"title": "Tiamat's emergence from Avernus could define the course of a campaign"
+									"title": "Tiamat's emergence from Avernus could define the course of a campaign",
+									"width": 1700,
+									"height": 1116
 								},
 								{
 									"type": "entries",
@@ -3263,7 +3319,9 @@
 						"type": "internal",
 						"path": "book/FTD/033-04-001.chapter-splash.webp"
 					},
-					"title": "Fizban argues with a smug statue in the lair of an amused brass dragon"
+					"title": "Fizban argues with a smug statue in the lair of an amused brass dragon",
+					"width": 1700,
+					"height": 2200
 				},
 				{
 					"type": "section",
@@ -3487,7 +3545,9 @@
 												"type": "internal",
 												"path": "book/FTD/034-04-002.an-ancient-dragons-hoard.webp"
 											},
-											"title": "An ancient dragon's hoard can hold enough wealth to cause the rise and the ruin of dynasties"
+											"title": "An ancient dragon's hoard can hold enough wealth to cause the rise and the ruin of dynasties",
+											"width": 1700,
+											"height": 1137
 										}
 									]
 								},
@@ -3785,7 +3845,9 @@
 										"type": "internal",
 										"path": "book/FTD/035-04-003.skilled-burglar.webp"
 									},
-									"title": "While a dragon slumbers, a skilled burglar might be able to make off with a treasure or two, but looting the entire hoard is another matter"
+									"title": "While a dragon slumbers, a skilled burglar might be able to make off with a treasure or two, but looting the entire hoard is another matter",
+									"width": 1700,
+									"height": 1135
 								}
 							]
 						}
@@ -3886,7 +3948,9 @@
 												"type": "internal",
 												"path": "book/FTD/036-04-004.green-dragons-are-poison.webp"
 											},
-											"title": "Green dragons are poison\u2014from their blood and fangs to the wispy gases of their breath and the sinister insinuations they whisper to the weak-willed"
+											"title": "Green dragons are poison\u2014from their blood and fangs to the wispy gases of their breath and the sinister insinuations they whisper to the weak-willed",
+											"width": 1700,
+											"height": 2175
 										}
 									]
 								}
@@ -3976,7 +4040,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/FTD/037-04-005.gold-coins.webp"
-									}
+									},
+									"width": 850,
+									"height": 287
 								},
 								{
 									"type": "table",
@@ -4098,7 +4164,9 @@
 										"type": "internal",
 										"path": "book/FTD/038-04-006.trying-to-loot.webp"
 									},
-									"title": "Trying to loot a dragon's hoard without waking its owner is a reckless endeavor"
+									"title": "Trying to loot a dragon's hoard without waking its owner is a reckless endeavor",
+									"width": 1700,
+									"height": 1100
 								},
 								{
 									"type": "table",
@@ -4355,7 +4423,9 @@
 						"type": "internal",
 						"path": "book/FTD/039-05-001.chapter-splash.webp"
 					},
-					"title": "Fizban addresses a council of metallic dragons on a matter of crucial importance, probably unrelated to baked goods"
+					"title": "Fizban addresses a council of metallic dragons on a matter of crucial importance, probably unrelated to baked goods",
+					"width": 1700,
+					"height": 2093
 				},
 				{
 					"type": "section",
@@ -4752,7 +4822,9 @@
 												"path": "book/FTD/040-map-5.1-amethyst-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.1: amethyst dragon lair"
+											"title": "Map 5.1: amethyst dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -4761,7 +4833,9 @@
 												"path": "book/FTD/041-map-5.1-amethyst-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -5230,7 +5304,9 @@
 												"path": "book/FTD/042-map-5.2-black-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.2: black dragon lair"
+											"title": "Map 5.2: black dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -5239,7 +5315,9 @@
 												"path": "book/FTD/043-map-5.2-black-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -5364,7 +5442,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/FTD/044-05-002.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1137
 								},
 								{
 									"type": "table",
@@ -5776,7 +5856,9 @@
 												"type": "internal",
 												"path": "book/FTD/045-05-003.iymrith.webp"
 											},
-											"title": "Iymrith, \"Doom of the Desert,\" flies above her lair"
+											"title": "Iymrith, \"Doom of the Desert,\" flies above her lair",
+											"width": 1700,
+											"height": 1137
 										}
 									]
 								}
@@ -5799,7 +5881,9 @@
 												"path": "book/FTD/046-map-5.3-blue-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.3: blue dragon lair"
+											"title": "Map 5.3: blue dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -5808,7 +5892,9 @@
 												"path": "book/FTD/047-map-5.3-blue-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -6342,7 +6428,9 @@
 												"path": "book/FTD/048-map-5.4-brass-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.4: brass dragon lair"
+											"title": "Map 5.4: brass dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -6351,7 +6439,9 @@
 												"path": "book/FTD/049-map-5.4-brass-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -6936,7 +7026,9 @@
 														"path": "book/FTD/050-map-5.5-bronze-dragon-lair.webp"
 													},
 													"imageType": "map",
-													"title": "Map 5.5: bronze dragon lair"
+													"title": "Map 5.5: bronze dragon lair",
+													"width": 4800,
+													"height": 6000
 												},
 												{
 													"type": "image",
@@ -6945,7 +7037,9 @@
 														"path": "book/FTD/051-map-5.5-bronze-dragon-lair-player.webp"
 													},
 													"imageType": "mapPlayer",
-													"title": "Player Version"
+													"title": "Player Version",
+													"width": 4800,
+													"height": 6000
 												}
 											]
 										}
@@ -7461,7 +7555,9 @@
 												"path": "book/FTD/052-map-5.6-copper-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.6: copper dragon lair"
+											"title": "Map 5.6: copper dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -7470,7 +7566,9 @@
 												"path": "book/FTD/053-map-5.6-copper-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -7956,7 +8054,9 @@
 												"path": "book/FTD/054-map-5.7-crystal-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.7: crystal dragon lair"
+											"title": "Map 5.7: crystal dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -7965,7 +8065,9 @@
 												"path": "book/FTD/055-map-5.7-crystal-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -8914,7 +9016,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/FTD/056-05-004.webp"
-											}
+											},
+											"width": 1700,
+											"height": 1084
 										}
 									]
 								}
@@ -9442,7 +9546,9 @@
 												"path": "book/FTD/065-map-5.8-emerald-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.8: emerald dragon lair"
+											"title": "Map 5.8: emerald dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -9451,7 +9557,9 @@
 												"path": "book/FTD/066-map-5.8-emerald-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -9874,7 +9982,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/FTD/067-05-005.webp"
-											}
+											},
+											"width": 850,
+											"height": 1090
 										},
 										{
 											"type": "list",
@@ -10320,7 +10430,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/FTD/068-05-006.webp"
-											}
+											},
+											"width": 1700,
+											"height": 1137
 										}
 									]
 								}
@@ -10342,7 +10454,9 @@
 												"path": "book/FTD/069-map-5.9-gold-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.9: gold dragon lair"
+											"title": "Map 5.9: gold dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -10351,7 +10465,9 @@
 												"path": "book/FTD/070-map-5.9-gold-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -10914,7 +11030,9 @@
 												"path": "book/FTD/071-map-5.10-green-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.10: green dragon lair"
+											"title": "Map 5.10: green dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -10923,7 +11041,9 @@
 												"path": "book/FTD/072-map-5.10-green-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -11008,7 +11128,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/FTD/073-05-007.webp"
-											}
+											},
+											"width": 1700,
+											"height": 1145
 										}
 									]
 								}
@@ -11505,7 +11627,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/FTD/074-05-008.webp"
-									}
+									},
+									"width": 1700,
+									"height": 1135
 								},
 								{
 									"type": "table",
@@ -11855,7 +11979,9 @@
 												"path": "book/FTD/075-map-5.11-red-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.11: red dragon lair"
+											"title": "Map 5.11: red dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -11864,7 +11990,9 @@
 												"path": "book/FTD/076-map-5.11-red-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -12370,7 +12498,9 @@
 												"path": "book/FTD/077-map-5.12-sapphire-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.12: sapphire dragon lair"
+											"title": "Map 5.12: sapphire dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -12379,7 +12509,9 @@
 												"path": "book/FTD/078-map-5.12-sapphire-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -13300,7 +13432,9 @@
 												"path": "book/FTD/079-map-5.13-silver-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.13: silver dragon lair"
+											"title": "Map 5.13: silver dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -13309,7 +13443,9 @@
 												"path": "book/FTD/080-map-5.13-silver-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -13788,7 +13924,9 @@
 												"path": "book/FTD/081-map-5.14-topaz-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.14: topaz dragon lair"
+											"title": "Map 5.14: topaz dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -13797,7 +13935,9 @@
 												"path": "book/FTD/082-map-5.14-topaz-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -14279,7 +14419,9 @@
 												"path": "book/FTD/083-map-5.15-white-dragon-lair.webp"
 											},
 											"imageType": "map",
-											"title": "Map 5.15: white dragon lair"
+											"title": "Map 5.15: white dragon lair",
+											"width": 4800,
+											"height": 6000
 										},
 										{
 											"type": "image",
@@ -14288,7 +14430,9 @@
 												"path": "book/FTD/084-map-5.15-white-dragon-lair-player.webp"
 											},
 											"imageType": "mapPlayer",
-											"title": "Player Version"
+											"title": "Player Version",
+											"width": 4800,
+											"height": 6000
 										}
 									]
 								},
@@ -14324,7 +14468,9 @@
 											"href": {
 												"type": "internal",
 												"path": "book/FTD/085-05-009.webp"
-											}
+											},
+											"width": 850,
+											"height": 1156
 										},
 										{
 											"type": "list",
@@ -14501,7 +14647,9 @@
 						"type": "internal",
 						"path": "book/FTD/057-06-001.chapter-splash.webp"
 					},
-					"title": "A rampaging blue greatwyrm threatens a world's existence, and Bahamut stands alongside the world's greatest heroes"
+					"title": "A rampaging blue greatwyrm threatens a world's existence, and Bahamut stands alongside the world's greatest heroes",
+					"width": 1700,
+					"height": 2267
 				},
 				{
 					"type": "list",

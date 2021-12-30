@@ -192,8 +192,12 @@ class Omnisearch {
 			);
 		}
 
+		if (this._state.isSrdOnly) {
+			results = results.filter(r => r.doc.r);
+		}
+
 		if (!this._state.isShowUa) {
-			results = results.filter(r => !r.doc.s || !SourceUtil._isNonstandardSourceWiz(r.doc.s));
+			results = results.filter(r => !r.doc.s || !SourceUtil.isNonstandardSourceWotc(r.doc.s));
 		}
 
 		if (!this._state.isShowBlacklisted && ExcludeUtil.getList().length) {
@@ -223,19 +227,17 @@ class Omnisearch {
 	}
 
 	static _pDoSearch_renderLinks (results, page = 0) {
-		let isInitialHooks = true;
-
 		if (this._$btnToggleUa) this._$btnToggleUa.detach();
 		else {
 			this._$btnToggleUa = $(`<button class="btn btn-default btn-xs mr-2" title="Include Unearthed Arcana and other unofficial source results" tabindex="-1">Include UA/etc.</button>`)
 				.on("click", () => this._state.isShowUa = !this._state.isShowUa);
 
-			const hkIsUa = () => {
+			const hk = (val) => {
 				this._$btnToggleUa.toggleClass("active", this._state.isShowUa);
-				this._pDoSearch();
+				if (val != null) this._pDoSearch();
 			};
-			this._state._addHookBase("isShowUa", hkIsUa);
-			hkIsUa();
+			this._state._addHookBase("isShowUa", hk);
+			hk();
 		}
 
 		if (this._$btnToggleBlacklisted) this._$btnToggleBlacklisted.detach();
@@ -243,21 +245,33 @@ class Omnisearch {
 			this._$btnToggleBlacklisted = $(`<button class="btn btn-default btn-xs mr-2" title="Include blacklisted content results" tabindex="-1">Include Blacklisted</button>`)
 				.on("click", async () => this._state.isShowBlacklisted = !this._state.isShowBlacklisted);
 
-			const hkIsBlacklisted = () => {
+			const hk = (val) => {
 				this._$btnToggleBlacklisted.toggleClass("active", this._state.isShowBlacklisted);
-				if (!isInitialHooks) this._pDoSearch();
+				if (val != null) this._pDoSearch();
 			};
-			this._state._addHookBase("isShowBlacklisted", hkIsBlacklisted);
-			hkIsBlacklisted();
+			this._state._addHookBase("isShowBlacklisted", hk);
+			hk();
 		}
-		isInitialHooks = false;
+
+		if (this._$btnToggleSrd) this._$btnToggleSrd.detach();
+		else {
+			this._$btnToggleSrd = $(`<button class="btn btn-default btn-xs mr-2" title="Only show Systems Reference Document content results" tabindex="-1">SRD Only</button>`)
+				.on("click", async () => this._state.isSrdOnly = !this._state.isSrdOnly);
+
+			const hk = (val) => {
+				this._$btnToggleSrd.toggleClass("active", this._state.isSrdOnly);
+				if (val != null) this._pDoSearch();
+			};
+			this._state._addHookBase("isSrdOnly", hk);
+			hk();
+		}
 
 		this._$searchOut.empty();
 
 		const $btnHelp = $(`<button class="btn btn-default btn-xs" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`)
 			.click(() => this.doShowHelp());
 
-		this._$searchOut.append($(`<div class="text-right"/>`).append([this._$btnToggleUa, this._$btnToggleBlacklisted, $btnHelp]));
+		this._$searchOut.append($(`<div class="text-right"/>`).append([this._$btnToggleUa, this._$btnToggleBlacklisted, this._$btnToggleSrd, $btnHelp]));
 		const base = page * this._MAX_RESULTS;
 		for (let i = base; i < Math.max(Math.min(results.length, this._MAX_RESULTS + base), base); ++i) {
 			const r = results[i].doc;
@@ -265,7 +279,7 @@ class Omnisearch {
 			const $link = this.$getResultLink(r)
 				.keydown(evt => this.handleLinkKeyDown(evt, $link));
 
-			const {s: source, p: page} = r;
+			const {s: source, p: page, r: isSrd} = r;
 			const ptPageInner = page ? `p${page}` : "";
 			const adventureBookSourceHref = SourceUtil.getAdventureBookSourceHref(source, page);
 			const ptPage = ptPageInner && adventureBookSourceHref
@@ -281,6 +295,7 @@ class Omnisearch {
 				${$link}
 				<div class="inline-block">
 					${ptSource}
+					${isSrd ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document">[SRD]</span>` : ""}
 					${ptPage}
 				</div>
 			</div>`.appendTo(this._$searchOut);
@@ -333,12 +348,14 @@ class Omnisearch {
 	static initState () {
 		if (this._state) return;
 
-		const saved = StorageUtil.syncGet(this._STORAGE_NAME) || {isShowUa: true, isShowBlacklisted: false};
+		const saved = StorageUtil.syncGet(this._STORAGE_NAME) || {isShowUa: true, isShowBlacklisted: false, isSrdOnly: false};
 		class SearchState extends BaseComponent {
 			get isShowUa () { return this._state.isShowUa; }
 			get isShowBlacklisted () { return this._state.isShowBlacklisted; }
+			get isSrdOnly () { return this._state.isSrdOnly; }
 			set isShowUa (val) { this._state.isShowUa = val; }
 			set isShowBlacklisted (val) { this._state.isShowBlacklisted = val; }
+			set isSrdOnly (val) { this._state.isSrdOnly = val; }
 		}
 		this._state = SearchState.fromObject(saved);
 		this._state._addHookAll("state", () => {
@@ -348,10 +365,13 @@ class Omnisearch {
 
 	static addHookUa (hk) { this._state._addHookBase("isShowUa", hk); }
 	static addHookBlacklisted (hk) { this._state._addHookBase("isShowBlacklisted", hk); }
+	static addHookSrdOnly (hk) { this._state._addHookBase("isSrdOnly", hk); }
 	static doToggleUa () { this._state.isShowUa = !this._state.isShowUa; }
 	static doToggleBlacklisted () { this._state.isShowBlacklisted = !this._state.isShowBlacklisted; }
+	static doToggleSrdOnly () { this._state.isSrdOnly = !this._state.isSrdOnly; }
 	static get isShowUa () { return this._state.isShowUa; }
 	static get isShowBlacklisted () { return this._state.isShowBlacklisted; }
+	static get isSrdOnly () { return this._state.isSrdOnly; }
 
 	static async _pDoSearchLoad () {
 		const data = Omnidexer.decompressIndex(await DataUtil.loadJSON(`${Renderer.get().baseUrl}search/index.json`));
@@ -500,6 +520,7 @@ Omnisearch.highestId = -1;
 
 Omnisearch._$btnToggleUa = null;
 Omnisearch._$btnToggleBlacklisted = null;
+Omnisearch._$btnToggleSrd = null;
 Omnisearch._$searchOut = null;
 Omnisearch._$searchOutWrapper = null;
 Omnisearch._$searchInputWrapper = null;

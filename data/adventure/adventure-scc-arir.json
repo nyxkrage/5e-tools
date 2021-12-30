@@ -12,7 +12,9 @@
 						"type": "internal",
 						"path": "book/SCC/100-06-001.chapter-splash.webp"
 					},
-					"title": "When the characters discover {@creature Murgaxor|SCC}'s deadly plan, they must spring into action"
+					"title": "When the characters discover {@creature Murgaxor|SCC}'s deadly plan, they must spring into action",
+					"width": 1700,
+					"height": 2261
 				},
 				{
 					"type": "section",
@@ -162,7 +164,9 @@
 										"type": "internal",
 										"path": "book/SCC/101-06-002.webp"
 									},
-									"title": "Fourth-year courses are the university's most challenging, and students often employ magical study techniques to get by"
+									"title": "Fourth-year courses are the university's most challenging, and students often employ magical study techniques to get by",
+									"width": 1700,
+									"height": 1250
 								}
 							]
 						}
@@ -330,7 +334,9 @@
 										"type": "internal",
 										"path": "book/SCC/102-06-003.idyllic-huts.webp"
 									},
-									"title": "Idyllic huts dot the bayou surrounding Witherbloom College's campus"
+									"title": "Idyllic huts dot the bayou surrounding Witherbloom College's campus",
+									"width": 1700,
+									"height": 1387
 								},
 								{
 									"type": "entries",
@@ -533,7 +539,9 @@
 										"path": "book/SCC/103-map-6.1-the-detention-bog.webp"
 									},
 									"imageType": "map",
-									"title": "Map 6.1: the detention bog"
+									"title": "Map 6.1: the detention bog",
+									"width": 2211,
+									"height": 3000
 								},
 								{
 									"type": "entries",
@@ -583,7 +591,9 @@
 														"type": "internal",
 														"path": "book/SCC/104-06-004.detention-bog.webp"
 													},
-													"title": "When the Detention Bog isn't officially in use, students practice experimental magic here"
+													"title": "When the Detention Bog isn't officially in use, students practice experimental magic here",
+													"width": 1700,
+													"height": 1280
 												}
 											]
 										}
@@ -762,7 +772,9 @@
 												"type": "internal",
 												"path": "book/SCC/105-06-005.murgaxor-grenshel.webp"
 											},
-											"title": "{@creature Murgaxor|SCC} Grenshel"
+											"title": "{@creature Murgaxor|SCC} Grenshel",
+											"width": 850,
+											"height": 1063
 										},
 										"A mean-spirited, egotistical spellcaster, {@creature Murgaxor|SCC} was censured repeatedly for disregarding safety protocols, hexing and cursing peers, and using harmful magic while on campus.",
 										"University officials believe {@creature Murgaxor|SCC} began his illicit experiments with life-draining magic shortly after he enrolled as a student.",
@@ -809,7 +821,9 @@
 												"path": "book/SCC/106-map-6.2-fortress-badlands.webp"
 											},
 											"imageType": "map",
-											"title": "Map 6.2: fortress badlands"
+											"title": "Map 6.2: fortress badlands",
+											"width": 3000,
+											"height": 4071
 										},
 										"Unless noted otherwise, entryways and ceilings in the caves are 10 feet high, and the caves are lit by {@spell continual flame} spells cast on wall sconces.",
 										{
@@ -1055,7 +1069,9 @@
 																"type": "internal",
 																"path": "book/SCC/107-06-006.lorehold-expeditions.webp"
 															},
-															"title": "Lorehold expeditions into the badlands sometimes awaken more than mere memories"
+															"title": "Lorehold expeditions into the badlands sometimes awaken more than mere memories",
+															"width": 1700,
+															"height": 1106
 														}
 													]
 												}
@@ -1109,7 +1125,9 @@
 												"path": "book/SCC/108-map-6.3-underground-cave.webp"
 											},
 											"imageType": "map",
-											"title": "Map 6.3: underground cave"
+											"title": "Map 6.3: underground cave",
+											"width": 2211,
+											"height": 3000
 										},
 										{
 											"type": "list",
@@ -1299,7 +1317,9 @@
 												"type": "internal",
 												"path": "book/SCC/109-06-007.adventurers-never-know.webp"
 											},
-											"title": "Adventurers never know what lurks within an ancient ruin"
+											"title": "Adventurers never know what lurks within an ancient ruin",
+											"width": 850,
+											"height": 1224
 										},
 										"This scene is the final opportunity for the characters to interact with their fellow students on campus before this adventure's climax and conclusion. As such, this Relationship encounter is more free-form than others.",
 										"Since this is the last such encounter before the adventure's finale, this scene should be of personal importance to each character. If a player wishes to cement a Beloved Relationship when they normally couldn't or gain a Friend even if they don't have enough Relationship Points, allow them to do so to reflect the poignant nature of this moment.",
@@ -1400,7 +1420,9 @@
 												"path": "book/SCC/110-map-6.4-ruins-of-caerdoon.webp"
 											},
 											"imageType": "map",
-											"title": "Map 6.4: ruins of caerdoon"
+											"title": "Map 6.4: ruins of caerdoon",
+											"width": 3000,
+											"height": 4071
 										},
 										{
 											"type": "entries",
@@ -1473,7 +1495,9 @@
 																"type": "internal",
 																"path": "book/SCC/111-06-008.the-ruins-near-strixhaven.webp"
 															},
-															"title": "The ruins near Strixhaven are watched over by strange creatures"
+															"title": "The ruins near Strixhaven are watched over by strange creatures",
+															"width": 1700,
+															"height": 1303
 														}
 													]
 												}
@@ -1569,7 +1593,9 @@
 														"type": "internal",
 														"path": "book/SCC/112-06-009.khelvor.webp"
 													},
-													"title": "Khelvor the daemogoth eagerly anticipates the suffering that will occur when {@creature Murgaxor|SCC}'s ritual is complete"
+													"title": "Khelvor the daemogoth eagerly anticipates the suffering that will occur when {@creature Murgaxor|SCC}'s ritual is complete",
+													"width": 850,
+													"height": 1097
 												},
 												{
 													"type": "insetReadaloud",
@@ -1672,7 +1698,9 @@
 										"type": "internal",
 										"path": "book/SCC/113-06-010.the-ruins-of-caerdoon-hold.webp"
 									},
-									"title": "The Ruins of Caerdoon hold many remnants of ancient warfare"
+									"title": "The Ruins of Caerdoon hold many remnants of ancient warfare",
+									"width": 1700,
+									"height": 1084
 								}
 							]
 						},
@@ -1728,7 +1756,9 @@
 										"path": "book/SCC/114-map-6.5-fortress-of-caerdoon-basement.webp"
 									},
 									"imageType": "map",
-									"title": "Map 6.5: fortress of caerdoon basement"
+									"title": "Map 6.5: fortress of caerdoon basement",
+									"width": 3000,
+									"height": 2072
 								},
 								{
 									"type": "entries",
@@ -1963,7 +1993,9 @@
 										"type": "internal",
 										"path": "book/SCC/115-06-011.faculty-members.webp"
 									},
-									"title": "Strixhaven's faculty members celebrate the characters' victory over {@creature Murgaxor|SCC}"
+									"title": "Strixhaven's faculty members celebrate the characters' victory over {@creature Murgaxor|SCC}",
+									"width": 1700,
+									"height": 1382
 								},
 								"If the characters stop {@creature Murgaxor|SCC}'s ritual, the mishaps plaguing Strixhaven University cease, and the corruption affecting Strixhaven's scholars vanishes. If {@creature Murgaxor|SCC} survives the ritual's premature end, the characters have a choice to make. They can take him back to Strixhaven to stand trial for his crimes, or they can administer justice themselves.",
 								"News of {@creature Murgaxor|SCC}'s defeat lifts the gloom on campus and restores its typically joyful atmosphere. Professor Sharpbeak tells the characters that the faculty plans to honor the heroes on their graduation day with a celebration attended by their Friends, Beloveds, and even Rivals. The faculty also offers each character a token of gratitude, in the form of a rare or uncommon magic item of the character's choice."

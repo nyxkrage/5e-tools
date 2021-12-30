@@ -210,7 +210,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/NRH-AT/014.webp"
-							}
+							},
+							"width": 1931,
+							"height": 2156
 						},
 						{
 							"type": "entries",
@@ -512,84 +514,108 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet013.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet014.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet015.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet016.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet017.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet018.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet019.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet020.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet021.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet022.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet023.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-AT/sheet024.webp"
-									}
+									},
+									"width": 1275,
+									"height": 825
 								}
 							]
 						}

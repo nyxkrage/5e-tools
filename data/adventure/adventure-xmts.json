@@ -9,7 +9,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/XMtS/1.webp"
-					}
+					},
+					"width": 960,
+					"height": 904
 				},
 				"A prison escape for an unlikely group of heroes turns into a race for an ancient relic sought by the Legion of Dusk. Can you brave the unknown and capture the treasure before the enemy does? This D&D adventure is set on the plane of Ixalan, and uses 4th-level pregenerated characters.",
 				{
@@ -41,7 +43,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/XMtS/2.webp"
-					}
+					},
+					"width": 625,
+					"height": 462
 				}
 			],
 			"id": "002"
@@ -192,7 +196,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/XMtS/3.webp"
-							}
+							},
+							"width": 552,
+							"height": 913
 						}
 					],
 					"id": "00c"
@@ -300,7 +306,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/XMtS/4.webp"
-							}
+							},
+							"width": 561,
+							"height": 669
 						}
 					],
 					"id": "013"
@@ -384,7 +392,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/XMtS/5.webp"
-							}
+							},
+							"width": 1242,
+							"height": 809
 						}
 					],
 					"id": "01c"
@@ -479,7 +489,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/XMtS/6.webp"
-							}
+							},
+							"width": 536,
+							"height": 664
 						}
 					],
 					"id": "021"
@@ -514,7 +526,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/XMtS/7.webp"
-									}
+									},
+									"width": 524,
+									"height": 566
 								},
 								{
 									"type": "entries",
@@ -551,7 +565,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/XMtS/8.webp"
-							}
+							},
+							"width": 1242,
+							"height": 959
 						}
 					],
 					"id": "026"
@@ -615,7 +631,9 @@
 						"type": "internal",
 						"path": "adventure/XMtS/conquerors foothold.webp"
 					},
-					"title": "Conqueror's Foothold"
+					"title": "Conqueror's Foothold",
+					"width": 822,
+					"height": 604
 				},
 				{
 					"type": "image",
@@ -623,7 +641,9 @@
 						"type": "internal",
 						"path": "adventure/XMtS/field of ruin.webp"
 					},
-					"title": "Field of Ruin"
+					"title": "Field of Ruin",
+					"width": 822,
+					"height": 604
 				},
 				{
 					"type": "image",
@@ -631,7 +651,9 @@
 						"type": "internal",
 						"path": "adventure/XMtS/primal wellspring.webp"
 					},
-					"title": "Primal Wellspring"
+					"title": "Primal Wellspring",
+					"width": 822,
+					"height": 594
 				},
 				{
 					"type": "image",
@@ -639,7 +661,9 @@
 						"type": "internal",
 						"path": "adventure/XMtS/unclaimed territory.webp"
 					},
-					"title": "Unclaimed Territory"
+					"title": "Unclaimed Territory",
+					"width": 822,
+					"height": 604
 				},
 				{
 					"type": "image",
@@ -647,7 +671,9 @@
 						"type": "internal",
 						"path": "adventure/XMtS/temple of aclazotz.webp"
 					},
-					"title": "Temple of Aclazotz"
+					"title": "Temple of Aclazotz",
+					"width": 882,
+					"height": 648
 				}
 			],
 			"id": "02f"
@@ -662,7 +688,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/XMtS/map of ixalan.webp"
-					}
+					},
+					"width": 1403,
+					"height": 936
 				}
 			],
 			"id": "030"
@@ -697,7 +725,9 @@
 								"href": {
 									"type": "internal",
 									"path": "adventure/XMtS/dowsing dagger.webp"
-								}
+								},
+								"width": 280,
+								"height": 206
 							},
 							"A curved jade blade fashioned by the River Heralds, this {@item +1 dagger} can detect the presence of fresh water within 200 feet of the wielder."
 						],
@@ -709,7 +739,9 @@
 								"href": {
 									"type": "internal",
 									"path": "adventure/XMtS/pirates cutlass.webp"
-								}
+								},
+								"width": 280,
+								"height": 206
 							},
 							"This {@item +1 shortsword} is a terrifying weapon with a serrated edge. It grants its wielder advantage on Charisma ({@skill Intimidation}) checks when brandished."
 						],
@@ -721,7 +753,9 @@
 								"href": {
 									"type": "internal",
 									"path": "adventure/XMtS/primal amulet.webp"
-								}
+								},
+								"width": 281,
+								"height": 203
 							},
 							"This beaded jade necklace bears an ancient symbol of the River Heralds. When worn, the primal amulet allows its wearer to cast {@spell speak with animals}, {@spell locate object}, and {@spell pass without trace}. Once the amulet has been used to cast a spell, it can't be used to cast that spell again until the next dawn."
 						],
@@ -733,7 +767,9 @@
 								"href": {
 									"type": "internal",
 									"path": "adventure/XMtS/prying blade.webp"
-								}
+								},
+								"width": 280,
+								"height": 208
 							},
 							"A hooked blade useful on board a ship or as a cutting tool in the wilderness, this {@item +1 shortsword} grants its wielder advantage on Strength ({@skill Athletics}) checks to climb or to escape while {@condition restrained}."
 						],
@@ -745,7 +781,9 @@
 								"href": {
 									"type": "internal",
 									"path": "adventure/XMtS/sorcerous spyglass.webp"
-								}
+								},
+								"width": 280,
+								"height": 206
 							},
 							"This elegant brass {@item spyglass|phb} features an intricate lens mechanism. A creature looking through the sorcerous spyglass has advantage on Wisdom ({@skill Perception}) checks to detect things that can be seen. In addition, the user can view magical auras while looking through the spyglass, as if under the effect of a {@spell detect magic} spell."
 						],
@@ -757,7 +795,9 @@
 								"href": {
 									"type": "internal",
 									"path": "adventure/XMtS/vanquishers banner.webp"
-								}
+								},
+								"width": 280,
+								"height": 206
 							},
 							"This battle-worn but unbroken standard bears the insignia of one of the forces of the Legion of Dusk. A creature that holds the vanquisher's banner can use a bonus action to grant an ally advantage on the ally's next attack roll, saving throw, or ability check."
 						]
@@ -787,7 +827,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/alante.webp"
 								},
-								"title": "{@5etools Alante, Cleric of the Five Sacraments|pdf/adventure/XMtS/alante.pdf}"
+								"title": "{@5etools Alante, Cleric of the Five Sacraments|pdf/adventure/XMtS/alante.pdf}",
+								"width": 507,
+								"height": 582
 							},
 							{
 								"type": "image",
@@ -795,7 +837,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/artinoq.webp"
 								},
-								"title": "{@5etools Artinoq, Atzocan Archer|pdf/adventure/XMtS/artinoq.pdf}"
+								"title": "{@5etools Artinoq, Atzocan Archer|pdf/adventure/XMtS/artinoq.pdf}",
+								"width": 507,
+								"height": 582
 							}
 						]
 					]
@@ -815,7 +859,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/sharkbait.webp"
 								},
-								"title": "Sharkbait"
+								"title": "Sharkbait",
+								"width": 507,
+								"height": 562
 							},
 							{
 								"type": "image",
@@ -823,7 +869,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/rouxil.webp"
 								},
-								"title": "{@5etools Rouxil, Emperor's Vanguard|pdf/adventure/XMtS/rouxil.pdf}"
+								"title": "{@5etools Rouxil, Emperor's Vanguard|pdf/adventure/XMtS/rouxil.pdf}",
+								"width": 507,
+								"height": 582
 							}
 						]
 					]
@@ -843,7 +891,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/velisha.webp"
 								},
-								"title": "{@5etools Velisha, Shaper of Highbranch|pdf/adventure/XMtS/velisha.pdf}"
+								"title": "{@5etools Velisha, Shaper of Highbranch|pdf/adventure/XMtS/velisha.pdf}",
+								"width": 507,
+								"height": 582
 							},
 							{
 								"type": "image",
@@ -851,7 +901,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/ellie.webp"
 								},
-								"title": "{@5etools Ellie Redcap, Fathom Fleet Firebrand|pdf/adventure/XMtS/ellie.pdf}"
+								"title": "{@5etools Ellie Redcap, Fathom Fleet Firebrand|pdf/adventure/XMtS/ellie.pdf}",
+								"width": 507,
+								"height": 582
 							}
 						]
 					]
@@ -873,7 +925,9 @@
 									"type": "internal",
 									"path": "adventure/XMtS/turk.webp"
 								},
-								"title": "{@5etools Turk Two Coins, Ruthless Knave|pdf/adventure/XMtS/turk.pdf}"
+								"title": "{@5etools Turk Two Coins, Ruthless Knave|pdf/adventure/XMtS/turk.pdf}",
+								"width": 507,
+								"height": 582
 							},
 							""
 						]

@@ -12,7 +12,9 @@
 						"type": "internal",
 						"path": "book/SCC/068-04-001.chapter-splash.webp"
 					},
-					"title": "With their full abilities on display, Strixhaven students often create breathtaking spectacles when they play the game of Mage Tower"
+					"title": "With their full abilities on display, Strixhaven students often create breathtaking spectacles when they play the game of Mage Tower",
+					"width": 1700,
+					"height": 2261
 				},
 				{
 					"type": "section",
@@ -199,7 +201,9 @@
 							"href": {
 								"type": "internal",
 								"path": "book/SCC/069-04-002.ticket.webp"
-							}
+							},
+							"width": 850,
+							"height": 2319
 						},
 						"The academic year has barely dawned when the characters wrap up a day of their new courses and head toward Bow's End Tavern on the central campus for some socializing.",
 						"In this scene, the characters learn about the Battle of Strixhaven, a Mage Tower game. Another student is part of this scene\u2014ideally a student the characters have interacted with, or you may choose another student from the \"{@adventure Fellow Students|SCC-CK|0|Fellow Students}\" section in {@adventure chapter 3|SCC-CK|0}.",
@@ -303,7 +307,9 @@
 										"type": "internal",
 										"path": "book/SCC/070-04-003.mascots.webp"
 									},
-									"title": "Mascots are common sights on campus\u2014and sometimes they gather and cause mischief"
+									"title": "Mascots are common sights on campus\u2014and sometimes they gather and cause mischief",
+									"width": 1700,
+									"height": 1290
 								}
 							]
 						},
@@ -405,7 +411,9 @@
 										"path": "book/SCC/071-map-4.1-wiltroot-hall-and-outer-grounds.webp"
 									},
 									"imageType": "map",
-									"title": "Map 4.1: wiltroot hall and outer grounds"
+									"title": "Map 4.1: wiltroot hall and outer grounds",
+									"width": 3684,
+									"height": 5000
 								},
 								{
 									"type": "entries",
@@ -524,7 +532,9 @@
 														"type": "internal",
 														"path": "book/SCC/072-04-004.pests-in-sedgemoor.webp"
 													},
-													"title": "Some pests in Sedgemoor, eluding capture, grow to prodigious size"
+													"title": "Some pests in Sedgemoor, eluding capture, grow to prodigious size",
+													"width": 1700,
+													"height": 1105
 												}
 											]
 										}
@@ -621,7 +631,9 @@
 												"type": "internal",
 												"path": "book/SCC/073-04-005.sedgemoor.webp"
 											},
-											"title": "Sedgemoor is expansive and can be intimidating even for older students who explore its grounds"
+											"title": "Sedgemoor is expansive and can be intimidating even for older students who explore its grounds",
+											"width": 1700,
+											"height": 1238
 										},
 										"Lothannep likes this hut but will be ejected once the Witherbloom faculty discovers the weird's presence. A character can befriend Lothannep by engaging it in friendly conversation and succeeding on a DC 13 Charisma ({@skill Persuasion}) check, with advantage if the character is a Witherbloom student. The water weird can be persuaded to relocate to another body of water, but only if a character toward which it is friendly suggests it.",
 										{
@@ -776,7 +788,9 @@
 								"type": "internal",
 								"path": "book/SCC/074-04-006.scribing-magic.webp"
 							},
-							"title": "Scribing magic is an important field of study at Strixhaven, as sloppiness can have strange effects"
+							"title": "Scribing magic is an important field of study at Strixhaven, as sloppiness can have strange effects",
+							"width": 1700,
+							"height": 1329
 						},
 						{
 							"type": "entries",
@@ -870,7 +884,9 @@
 										"type": "internal",
 										"path": "book/SCC/075-04-007.pests.webp"
 									},
-									"title": "From a distance, pests look round, squishy, and cuddly. Up close, they're sharp"
+									"title": "From a distance, pests look round, squishy, and cuddly. Up close, they're sharp",
+									"width": 1700,
+									"height": 1111
 								},
 								{
 									"type": "entries",
@@ -992,7 +1008,9 @@
 												"path": "book/SCC/076-map-4.2-aerojaunt-field.webp"
 											},
 											"imageType": "map",
-											"title": "Map 4.2: aerojaunt field"
+											"title": "Map 4.2: aerojaunt field",
+											"width": 3000,
+											"height": 4071
 										},
 										{
 											"type": "entries",
@@ -1054,7 +1072,9 @@
 														"type": "internal",
 														"path": "book/SCC/077-04-008.battle-of-strixhaven.webp"
 													},
-													"title": "Practice for the Battle of Strixhaven leads to the year-end event that takes place in Strixhaven Stadium"
+													"title": "Practice for the Battle of Strixhaven leads to the year-end event that takes place in Strixhaven Stadium",
+													"width": 1700,
+													"height": 1263
 												}
 											]
 										},
@@ -1286,7 +1306,9 @@
 												"type": "internal",
 												"path": "book/SCC/078-04-009.shenanigans.webp"
 											},
-											"title": "Magical shenanigans are common on campus. Students especially love magically getting some air"
+											"title": "Magical shenanigans are common on campus. Students especially love magically getting some air",
+											"width": 850,
+											"height": 1045
 										},
 										{
 											"type": "entries",
@@ -1370,7 +1392,9 @@
 								"type": "internal",
 								"path": "book/SCC/079-04-010.precision.webp"
 							},
-							"title": "Precision is key. Saying \"books on mage hunters\" isn't the same as saying \"books about mage hunters\""
+							"title": "Precision is key. Saying \"books on mage hunters\" isn't the same as saying \"books about mage hunters\"",
+							"width": 1700,
+							"height": 1153
 						},
 						{
 							"type": "section",
@@ -1400,7 +1424,9 @@
 												"path": "book/SCC/080-map-4.3-scriptoria-collections.webp"
 											},
 											"imageType": "map",
-											"title": "Map 4.3: scriptoria collections"
+											"title": "Map 4.3: scriptoria collections",
+											"width": 3000,
+											"height": 2226
 										},
 										{
 											"type": "list",
@@ -1585,7 +1611,9 @@
 										"type": "internal",
 										"path": "book/SCC/081-04-011.song.webp"
 									},
-									"title": "Some students live for performing and burst into song"
+									"title": "Some students live for performing and burst into song",
+									"width": 1700,
+									"height": 1127
 								},
 								{
 									"type": "entries",
@@ -1694,7 +1722,9 @@
 												"path": "book/SCC/082-map-4.4-strixhaven-stadium.webp"
 											},
 											"imageType": "map",
-											"title": "Map 4.4: strixhaven stadium"
+											"title": "Map 4.4: strixhaven stadium",
+											"width": 3000,
+											"height": 4071
 										},
 										{
 											"type": "entries",
@@ -1759,7 +1789,9 @@
 												"type": "internal",
 												"path": "book/SCC/083-04-012.battle-of-strixhaven.webp"
 											},
-											"title": "The Battle of Strixhaven is among the most storied events on campus. Games are often talked about for years after they're played"
+											"title": "The Battle of Strixhaven is among the most storied events on campus. Games are often talked about for years after they're played",
+											"width": 1700,
+											"height": 1246
 										},
 										{
 											"type": "entries",

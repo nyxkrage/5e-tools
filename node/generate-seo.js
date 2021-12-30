@@ -1,6 +1,5 @@
 /**
  * Generator script which creates stub per-entity pages for SEO.
- * TODO: flip `IS_DEV_MODE` when developing, to avoid referencing external libraries/production files.
  */
 
 const fs = require("fs");
@@ -12,8 +11,10 @@ function rd (path) {
 	return JSON.parse(fs.readFileSync(path, "utf-8"));
 }
 
-const IS_DEV_MODE = false;
+const IS_DEV_MODE = !!process.env.VET_SEO_IS_DEV_MODE;
 const BASE_SITE_URL = process.env.VET_BASE_SITE_URL || "https://5e.tools/";
+const isSkipUaEtc = !!process.env.VET_SEO_IS_SKIP_UA_ETC;
+const isOnlyVanilla = !!process.env.VET_SEO_IS_ONLY_VANILLA;
 const version = rd("package.json").version;
 
 const lastMod = (() => {
@@ -117,6 +118,8 @@ const toGenerate = [
 		pGetEntries: () => {
 			const index = rd(`data/spells/index.json`);
 			const fileData = Object.entries(index)
+				.filter(([source]) => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(source))
+				.filter(([source]) => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(source))
 				.map(([_, filename]) => rd(`data/spells/${filename}`));
 			return fileData.map(it => MiscUtil.copy(it.spell)).reduce((a, b) => a.concat(b));
 		},
@@ -128,6 +131,8 @@ const toGenerate = [
 		pGetEntries: () => {
 			const index = rd(`data/bestiary/index.json`);
 			const fileData = Object.entries(index)
+				.filter(([source]) => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(source))
+				.filter(([source]) => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(source))
 				.map(([source, filename]) => ({source: source, json: rd(`data/bestiary/${filename}`)}));
 			// Filter to prevent duplicates from "otherSources" copies
 			return fileData.map(it => MiscUtil.copy(it.json.monster.filter(mon => mon.source === it.source))).reduce((a, b) => a.concat(b));
@@ -138,7 +143,10 @@ const toGenerate = [
 	{
 		page: "items",
 		pGetEntries: async () => {
-			return Renderer.item.pBuildList();
+			const out = await Renderer.item.pBuildList();
+			return out
+				.filter(it => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(it.source))
+				.filter(it => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(it.source));
 		},
 		style: 1,
 		isFluff: 1,

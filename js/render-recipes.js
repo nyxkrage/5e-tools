@@ -35,6 +35,8 @@ class RenderRecipes {
 
 				<div class="rd-recipes__wrp-ingredients ${ptMakes || ptServes || opts.$selScaleFactor ? "mt-1" : ""}">${Renderer.get().render({entries: it._fullIngredients}, 0)}</div>
 
+				${it._fullEquipment?.length ? `<div class="rd-recipes__wrp-ingredients mt-4"><div class="flex-vh-center bold mb-1 small-caps">Equipment</div><div>${Renderer.get().render({entries: it._fullEquipment})}</div></div>` : ""}
+
 				${it.noteCook ? `<div class="w-100 flex-col mt-4"><div class="flex-vh-center bold mb-1 small-caps">Cook's Notes</div><div class="italic">${Renderer.get().render({entries: it.noteCook})}</div></div>` : ""}
 			</div>
 

@@ -1304,6 +1304,9 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	MAC: "Modifies AC",
 	TP: "Teleportation",
 	FMV: "Forced Movement",
+	RO: "Rollable Effects",
+	LGTS: "Creates Sunlight",
+	LGT: "Creates Light",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -2393,6 +2396,7 @@ SRC_SCC_TMM = "SCC-TMM";
 SRC_SCC_ARiR = "SCC-ARiR";
 SRC_SCREEN = "Screen";
 SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
+SRC_SCREEN_DUNGEON_KIT = "ScreenDungeonKit";
 SRC_HEROES_FEAST = "HF";
 SRC_CM = "CM";
 SRC_NRH = "NRH";
@@ -2590,6 +2594,7 @@ Parser.SOURCE_JSON_TO_FULL[SRC_SCC_TMM] = `The Magister's Masquerade`;
 Parser.SOURCE_JSON_TO_FULL[SRC_SCC_ARiR] = `A Reckoning in Ruins`;
 Parser.SOURCE_JSON_TO_FULL[SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
+Parser.SOURCE_JSON_TO_FULL[SRC_SCREEN_DUNGEON_KIT] = "Dungeon Master's Screen: Dungeon Kit";
 Parser.SOURCE_JSON_TO_FULL[SRC_HEROES_FEAST] = "Heroes' Feast";
 Parser.SOURCE_JSON_TO_FULL[SRC_CM] = "Candlekeep Mysteries";
 Parser.SOURCE_JSON_TO_FULL[SRC_NRH] = NRH_NAME;
@@ -2766,7 +2771,8 @@ Parser.SOURCE_JSON_TO_ABV[SRC_SCC_HfMT] = "SCC-HfMT";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCC_TMM] = "SCC-TMM";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCC_ARiR] = "SCC-ARiR";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN] = "Screen";
-Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN_WILDERNESS_KIT] = "Wild";
+Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN_WILDERNESS_KIT] = "ScWild";
+Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN_DUNGEON_KIT] = "ScDun";
 Parser.SOURCE_JSON_TO_ABV[SRC_HEROES_FEAST] = "HF";
 Parser.SOURCE_JSON_TO_ABV[SRC_CM] = "CM";
 Parser.SOURCE_JSON_TO_ABV[SRC_NRH] = "NRH";
@@ -2943,6 +2949,7 @@ Parser.SOURCE_JSON_TO_DATE[SRC_SCC_TMM] = "2021-12-07";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCC_ARiR] = "2021-12-07";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
+Parser.SOURCE_JSON_TO_DATE[SRC_SCREEN_DUNGEON_KIT] = "2020-09-21";
 Parser.SOURCE_JSON_TO_DATE[SRC_HEROES_FEAST] = "2020-10-27";
 Parser.SOURCE_JSON_TO_DATE[SRC_CM] = "2021-03-16";
 Parser.SOURCE_JSON_TO_DATE[SRC_NRH] = "2021-09-01";
@@ -3152,6 +3159,7 @@ Parser.SOURCES_VANILLA = new Set([
 	SRC_FTD,
 	SRC_SCREEN,
 	SRC_SCREEN_WILDERNESS_KIT,
+	SRC_SCREEN_DUNGEON_KIT,
 ]);
 
 // Any opinionated set of sources that are """hilarious, dude"""

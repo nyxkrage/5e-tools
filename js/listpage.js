@@ -168,6 +168,8 @@ class ListPage {
 		const homebrew = await (this._brewDataSource ? this._brewDataSource() : BrewUtil.pAddBrewData());
 		await this._pHandleBrew(homebrew);
 
+		this._pageFilter.trimState();
+
 		BrewUtil.makeBrewButton("manage-brew");
 		await ListUtil.pLoadState();
 		RollerUtil.addListRollButton();

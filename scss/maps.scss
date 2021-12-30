@@ -17,15 +17,21 @@
 		}
 
 		&__ {
+			&btn-chapter-scroll {
+				width: 20px;
+				opacity: 0;
+				margin: -2px 3px;
+			}
+
 			&label-cb {
 				border-bottom: 1px solid $rgb-border-grey;
 
 				&:hover {
 					background-color: $rgb-bg--alt;
-				}
 
-				&--chapter {
-					padding-left: 20px;
+					.maps-menu__btn-chapter-scroll {
+						opacity: 1;
+					}
 				}
 			}
 		}

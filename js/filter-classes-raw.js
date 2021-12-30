@@ -779,6 +779,8 @@ class ModalFilterClasses extends ModalFilter {
 				});
 			};
 
+			pageFilter.trimState();
+
 			pageFilter.filterBox.on(FilterBox.EVNT_VALCHANGE, handleFilterChange);
 			pageFilter.filterBox.render();
 			handleFilterChange();

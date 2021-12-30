@@ -4295,7 +4295,7 @@
 								"One of the bronze caskets holds 400 cp, and the other one has 300 pp concealed beneath a layer of 100 cp."
 							]
 						},
-						"If the lid of the strongbox is opened by anyone but Frupy, a {@spell glyph of warding} inside is triggered, producing a {@i firebal} l spell centered on the chest (save DC 15). The strongbox itself holds nothing of value, but it has a trick panel in the side, which requires a successful DC 20 Wisdom (Perception) check to find.",
+						"If the lid of the strongbox is opened by anyone but Frupy, a {@spell glyph of warding} inside is triggered, producing a {@spell fireball} spell centered on the chest (save DC 15). The strongbox itself holds nothing of value, but it has a trick panel in the side, which requires a successful DC 20 Wisdom (Perception) check to find.",
 						"The panel, if opened, allows access to a jade box (worth 500 gp). This box has a false bottom, found with another successful DC 20 Wisdom (Perception) check, that contains spell scrolls of two random 7th-level spells of a particular class (DM's choice).",
 						"All but one of the copper coffers contain unguents and the like; the third coffer examined contains four pieces of gem-set gold jewelry worth 750 gp each.",
 						"The drawers in the chest hold worthless personal articles, except for the fifth drawer from the bottom, where under some underthings Queen Frupy has concealed three potions: {@item potion of fire resistance}, {@item potion of mind control (beast)|TftYP|potion of mind control (mammal)}, and {@item potion of mind control (monster)|TftYP|potion of mind control (fire giant)}, the latter of which she plans to use on the king.",

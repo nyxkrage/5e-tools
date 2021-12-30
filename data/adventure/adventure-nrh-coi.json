@@ -274,7 +274,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/NRH-CoI/008.webp"
-									}
+									},
+									"width": 1960,
+									"height": 1470
 								},
 								{
 									"type": "entries",
@@ -438,14 +440,18 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/NRH-CoI/sheet007.webp"
-					}
+					},
+					"width": 1275,
+					"height": 825
 				},
 				{
 					"type": "image",
 					"href": {
 						"type": "internal",
 						"path": "adventure/NRH-CoI/sheet008.webp"
-					}
+					},
+					"width": 1275,
+					"height": 825
 				}
 			],
 			"id": "000"

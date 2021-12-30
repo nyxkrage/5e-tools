@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "spells.json",
-	"version": "1.7.2",
+	"version": "1.7.3",
 	"title": "Spells",
 	"type": "object",
 
@@ -399,11 +399,11 @@
 				},
 				"miscTags": {
 					"type": "array",
-					"description": "FMV: Forced Movement\n HL: Healing\n MAC: Modifies AC\n PRM: Permanent Effects\n SCL: Scaling Effects\n  SMN: Summons Creature\n SGT: Requires Sight\n THP: Grants Temporary Hit Points\n TP: Teleportation",
+					"description": "FMV: Forced Movement\n HL: Healing\n LGT: Creates Light\n LGTS: Creates Sunlight\n MAC: Modifies AC\n PRM: Permanent Effects\n RO: Rollable Effects\n SCL: Scaling Effects\n  SMN: Summons Creature\n SGT: Requires Sight\n THP: Grants Temporary Hit Points\n TP: Teleportation",
 					"uniqueItems": true,
 					"items": {
 						"type": "string",
-						"enum": ["FMV", "HL", "MAC", "PRM", "SCL", "SMN", "SGT", "THP", "TP"]
+						"enum": ["FMV", "HL", "LGT", "LGTS","MAC", "PRM", "RO", "SCL", "SMN", "SGT", "THP", "TP"]
 					}
 				},
 				"affectsCreatureType": {

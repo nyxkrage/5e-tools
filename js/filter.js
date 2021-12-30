@@ -35,6 +35,8 @@ class PageFilter {
 		return this._filterBox;
 	}
 
+	trimState () { return this._filterBox.trimState_(); }
+
 	// region Helpers
 	static _getClassFilterItem ({className, classSource, isVariantClass, definedInSource}) {
 		const nm = className.split("(")[0].trim();
@@ -206,6 +208,8 @@ class ModalFilter {
 				return this._pageFilter.toDisplay(f, it);
 			});
 		};
+
+		this._pageFilter.trimState();
 
 		this._pageFilter.filterBox.on(FilterBox.EVNT_VALCHANGE, handleFilterChange);
 		this._pageFilter.filterBox.render();
@@ -474,6 +478,10 @@ class FilterBox extends ProxyBase {
 
 	async _pDoSaveState () {
 		await StorageUtil.pSetForPage(this._getNamespacedStorageKey(), this._getSaveableState());
+	}
+
+	trimState_ () {
+		this._filters.forEach(f => f.trimState_());
 	}
 
 	render () {
@@ -1139,6 +1147,7 @@ class FilterBase extends BaseComponent {
 	setFromValues () { throw new Error(`Unimplemented!`); }
 	handleSearch () { throw new Error(`Unimplemented`); }
 	_doTeardown () { /* No-op */ }
+	trimState_ () { /* No-op */ }
 }
 FilterBase._DEFAULT_META = {
 	isHidden: false,
@@ -2504,8 +2513,6 @@ class RangeFilter extends FilterBase {
 
 		this._min = Number(opts.min || 0);
 		this._max = Number(opts.max || 0);
-		this._hasPredefinedMin = opts.min != null;
-		this._hasPredefinedMax = opts.max != null;
 		this._labels = opts.isLabelled ? opts.labels : null;
 		this._isAllowGreater = !!opts.isAllowGreater;
 		this._isRequireFullRangeMatch = !!opts.isRequireFullRangeMatch;
@@ -2535,6 +2542,11 @@ class RangeFilter extends FilterBase {
 		this._$btnMiniGt = null;
 		this._$btnMiniLt = null;
 		this._$btnMiniEq = null;
+
+		// region Trimming
+		this._seenMin = this._min;
+		this._seenMax = this._max;
+		// endregion
 	}
 
 	set isUseDropdowns (val) { this._meta.isUseDropdowns = !!val; }
@@ -2549,48 +2561,42 @@ class RangeFilter extends FilterBase {
 	}
 
 	setStateFromLoaded (filterState) {
-		if (filterState && filterState[this.header]) {
-			const toLoad = filterState[this.header];
+		if (!filterState?.[this.header]) return;
 
-			// region Ensure the provided min/max are a lower/upper bounds for the range to be set
-			if (this._hasPredefinedMax) {
-				const tgt = (toLoad.state || {});
+		const toLoad = filterState[this.header];
 
-				if (tgt.max == null) tgt.max = this._max;
-				else if (tgt.max > this._max) tgt.max = this._max;
+		// region Ensure to-be-loaded state is populated with sensible data
+		const tgt = (toLoad.state || {});
 
-				if (tgt.curMax == null) tgt.curMax = tgt.max;
-				else if (tgt.curMax > tgt.max) tgt.curMax = tgt.max;
-			}
-
-			if (this._hasPredefinedMin) {
-				const tgt = (toLoad.state || {});
-
-				if (tgt.min == null) tgt.min = this._min;
-				else if (tgt.min < this._min) tgt.min = this._min;
-
-				if (tgt.curMin == null) tgt.curMin = tgt.min;
-				else if (tgt.curMin < tgt.min) tgt.curMin = tgt.min;
-			}
-			// endregion
-
-			this.setBaseStateFromLoaded(toLoad);
-
-			// Reduce the maximum/minimum ranges to their current values +/-1
-			//   This allows the range filter to recover from being stretched out by homebrew
-			//   The off-by-one trick is to prevent later filter expansion from assuming the filters are set to their min/max
-			if (toLoad.state && !this._labels) {
-				if (!this._hasPredefinedMax && toLoad.state.curMax != null && toLoad.state.max != null) {
-					if (toLoad.state.curMax + 1 < toLoad.state.max) toLoad.state.max = toLoad.state.curMax + 1;
-				}
-
-				if (!this._hasPredefinedMin && toLoad.state.curMin != null && toLoad.state.min != null) {
-					if (toLoad.state.curMin - 1 > toLoad.state.min) toLoad.state.min = toLoad.state.curMin - 1;
-				}
-			}
-
-			Object.assign(this._state, toLoad.state);
+		if (tgt.max == null) tgt.max = this._max;
+		else if (this._max > tgt.max) {
+			if (tgt.max === tgt.curMax) tgt.curMax = this._max; // If it's set to "max", respect this
+			tgt.max = this._max;
 		}
+
+		if (tgt.curMax == null) tgt.curMax = tgt.max;
+		else if (tgt.curMax > tgt.max) tgt.curMax = tgt.max;
+
+		if (tgt.min == null) tgt.min = this._min;
+		else if (this._min < tgt.min) {
+			if (tgt.min === tgt.curMin) tgt.curMin = this._min; // If it's set to "min", respect this
+			tgt.min = this._min;
+		}
+
+		if (tgt.curMin == null) tgt.curMin = tgt.min;
+		else if (tgt.curMin < tgt.min) tgt.curMin = tgt.min;
+		// endregion
+
+		this.setBaseStateFromLoaded(toLoad);
+
+		Object.assign(this._state, toLoad.state);
+	}
+
+	trimState_ () {
+		if (this._seenMin <= this._state.min && this._seenMax >= this._state.max) return;
+
+		const nxtState = {min: this._seenMin, curMin: this._seenMin, max: this._seenMax, curMax: this._seenMax};
+		this._proxyAssignSimple("state", nxtState);
 	}
 
 	getSubHashes () {
@@ -2704,7 +2710,7 @@ class RangeFilter extends FilterBase {
 	}
 
 	_getDisplayText (value, {isBeyondMax = false, isTooltip = false} = {}) {
-		value = `${this._labels ? this._labelDisplayFn ? this._labelDisplayFn(value) : value : (isTooltip && this._displayFnTooltip) ? this._displayFnTooltip(value) : this._displayFn ? this._displayFn(value) : value}${isBeyondMax ? "+" : ""}`;
+		value = `${this._labels ? this._labelDisplayFn ? this._labelDisplayFn(this._labels[value]) : this._labels[value] : (isTooltip && this._displayFnTooltip) ? this._displayFnTooltip(value) : this._displayFn ? this._displayFn(value) : value}${isBeyondMax ? "+" : ""}`;
 		if (this._suffix) value += this._suffix;
 		return value;
 	}
@@ -2751,19 +2757,7 @@ class RangeFilter extends FilterBase {
 		// prepare slider options
 		const getSliderOpts = () => {
 			const fnDisplay = (val, {isTooltip = false} = {}) => {
-				let out;
-
-				if (this._labels) {
-					if (this._labelSortFn) this._labels.sort(this._labelSortFn);
-
-					const labels = this._labelDisplayFn ? this._labels.map(it => this._labelDisplayFn(it)) : this._labels;
-
-					out = labels[val] ?? val;
-				} else {
-					out = this._getDisplayText(val, {isBeyondMax: this._isAllowGreater && val === this._state.max, isTooltip});
-				}
-
-				return out;
+				return this._getDisplayText(val, {isBeyondMax: this._isAllowGreater && val === this._state.max, isTooltip});
 			};
 
 			return {
@@ -2900,16 +2894,16 @@ class RangeFilter extends FilterBase {
 
 				this._$btnMiniEq
 					.attr("state", this._state.min === this._state.curMin && this._state.max === this._state.curMax ? FilterBox._PILL_STATES[0] : FilterBox._PILL_STATES[1])
-					.text(`${this.header} = ${this._labels ? this._labels[this._state.curMin] : this._state.curMin}`);
+					.text(`${this.header} = ${this._getDisplayText(this._state.curMin, {isBeyondMax: this._isAllowGreater && this._state.curMin === this._state.max})}`);
 			} else {
 				if (this._state.min !== this._state.curMin) {
 					this._$btnMiniGt.attr("state", FilterBox._PILL_STATES[1])
-						.text(`${this.header} ≥ ${this._labels ? this._labels[this._state.curMin] : this._state.curMin}${this._suffix || ""}`);
+						.text(`${this.header} ≥ ${this._getDisplayText(this._state.curMin)}`);
 				} else this._$btnMiniGt.attr("state", FilterBox._PILL_STATES[0]);
 
 				if (this._state.max !== this._state.curMax) {
 					this._$btnMiniLt.attr("state", FilterBox._PILL_STATES[1])
-						.text(`${this.header} ≤ ${this._labels ? this._labels[this._state.curMax] : this._state.curMax}${this._suffix || ""}`);
+						.text(`${this.header} ≤ ${this._getDisplayText(this._state.curMax)}`);
 				} else this._$btnMiniLt.attr("state", FilterBox._PILL_STATES[0]);
 
 				this._$btnMiniEq.attr("state", FilterBox._PILL_STATES[0]);
@@ -2980,6 +2974,10 @@ class RangeFilter extends FilterBase {
 
 		if (this._labels) {
 			const slice = this._labels.slice(filterState.min, filterState.max + 1);
+
+			// Special case for "isAllowGreater" filters, which assumes the labels are numerical values
+			if (this._isAllowGreater && filterState.max === this._state.max && entryVal > this._state.max) return true;
+
 			if (entryVal instanceof Array) return !!entryVal.find(it => slice.includes(it));
 			return slice.includes(entryVal);
 		} else {
@@ -3027,6 +3025,9 @@ class RangeFilter extends FilterBase {
 
 	_addItem_addNumber (number) {
 		if (number == null || isNaN(number)) return;
+
+		this._seenMin = Math.min(this._seenMin, number);
+		this._seenMax = Math.max(this._seenMax, number);
 
 		if (this._sparseValues && !this._sparseValues.includes(number)) {
 			this._sparseValues.push(number);

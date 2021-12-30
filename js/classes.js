@@ -91,6 +91,8 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		const homebrew = await BrewUtil.pAddBrewData();
 		await this._pHandleBrew(homebrew);
 
+		this._pageFilter.trimState();
+
 		BrewUtil.makeBrewButton("manage-brew");
 		await ListUtil.pLoadState();
 		RollerUtil.addListRollButton(true);

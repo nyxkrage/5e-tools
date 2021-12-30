@@ -1224,6 +1224,7 @@ PropOrder._RECIPE = [
 	"makes",
 	"serves",
 	"ingredients",
+	"equipment",
 	"instructions",
 	"noteCook",
 

@@ -9997,7 +9997,10 @@
 							"depth": 1,
 							"header": "30. Sea Cave"
 						},
-						"The Sea Ghost",
+						{
+							"header": "The Sea Ghost",
+							"index": 1
+						},
 						{
 							"depth": 1,
 							"header": "1. Main Deck"

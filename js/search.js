@@ -10,8 +10,6 @@ class SearchPage {
 	}
 
 	static _render () {
-		let isInitialHooks = true;
-
 		Omnisearch.initState();
 
 		const $iptSearch = $(`<input class="form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`)
@@ -31,9 +29,9 @@ class SearchPage {
 
 		const $btnToggleUa = $(`<button class="btn btn-default" title="Filter Unearthed Arcana and other unofficial source results">Include UA</button>`)
 			.click(() => Omnisearch.doToggleUa());
-		const hkUa = () => {
+		const hkUa = (val) => {
 			$btnToggleUa.toggleClass("active", Omnisearch.isShowUa);
-			if (isInitialHooks) return;
+			if (val == null) return;
 			this._doSearch();
 		};
 		Omnisearch.addHookUa(hkUa);
@@ -41,13 +39,23 @@ class SearchPage {
 
 		const $btnToggleBlacklisted = $(`<button class="btn btn-default" title="Filter blacklisted content results">Include Blacklisted</button>`)
 			.click(() => Omnisearch.doToggleBlacklisted());
-		const hkBlacklisted = () => {
+		const hkBlacklisted = (val) => {
 			$btnToggleBlacklisted.toggleClass("active", Omnisearch.isShowBlacklisted);
-			if (isInitialHooks) return;
+			if (val == null) return;
 			this._doSearch();
 		};
 		Omnisearch.addHookBlacklisted(hkBlacklisted);
 		hkBlacklisted();
+
+		const $btnToggleSrd = $(`<button class="btn btn-default" title="Filter non- Systems Reference Document results">SRD Only</button>`)
+			.click(() => Omnisearch.doToggleSrdOnly());
+		const hkSrd = (val) => {
+			$btnToggleSrd.toggleClass("active", Omnisearch.isSrdOnly);
+			if (val == null) return;
+			this._doSearch();
+		};
+		Omnisearch.addHookSrdOnly(hkSrd);
+		hkSrd();
 
 		const handleMassExpandCollapse = mode => {
 			SearchPage._isAllExpanded = mode;
@@ -76,6 +84,7 @@ class SearchPage {
 					<div class="flex-v-center btn-group mr-2">
 						${$btnToggleUa}
 						${$btnToggleBlacklisted}
+						${$btnToggleSrd}
 					</div>
 					<div class="btn-group flex-v-center">
 						${$btnCollapseAll}
@@ -85,8 +94,6 @@ class SearchPage {
 			</div>
 			${SearchPage._$wrpResults}
 		</div>`;
-
-		isInitialHooks = false;
 
 		this._doSearch();
 	}
@@ -129,14 +136,14 @@ class SearchPage {
 
 					const $link = Omnisearch.$getResultLink(r);
 
-					const {s: source, p: page, h: isHoverable, c: category, u: hash} = r;
+					const {s: source, p: page, h: isHoverable, c: category, u: hash, r: isSrd} = r;
 					const ptPageInner = page ? `page ${page}` : "";
 					const adventureBookSourceHref = SourceUtil.getAdventureBookSourceHref(source, page);
 					const ptPage = ptPageInner && adventureBookSourceHref
 						? `<a href="${adventureBookSourceHref}">${ptPageInner}</a>`
 						: ptPageInner;
 
-					const ptSourceInner = source ? `<i>${Parser.sourceJsonToFull(source)}</i> (<span class="${Parser.sourceJsonToColor(source)}" ${BrewUtil.sourceJsonToStyle(source)}>${Parser.sourceJsonToAbv(source)}</span>)` : `<span></span>`;
+					const ptSourceInner = source ? `<i>${Parser.sourceJsonToFull(source)}</i> (<span class="${Parser.sourceJsonToColor(source)}" ${BrewUtil.sourceJsonToStyle(source)}>${Parser.sourceJsonToAbv(source)}</span>)${isSrd ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document">[SRD]</span>` : ""}` : `<span></span>`;
 					const ptSource = ptPage || !adventureBookSourceHref
 						? ptSourceInner
 						: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;

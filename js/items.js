@@ -401,6 +401,8 @@ class ItemsPage extends ListPage {
 			.then(this._pHandleBrew.bind(this))
 			.then(() => BrewUtil.bind({lists: [this._mundaneList, this._magicList], pHandleBrew: this._pHandleBrew.bind(this)}))
 			.then(async () => {
+				this._pageFilter.trimState();
+
 				BrewUtil.makeBrewButton("manage-brew");
 				BrewUtil.bind({lists: [this._mundaneList, this._magicList], filterBox: this._pageFilter.filterBox, sourceFilter: this._pageFilter.sourceFilter});
 				await ListUtil.pLoadState();

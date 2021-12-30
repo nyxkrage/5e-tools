@@ -102,11 +102,11 @@ class MapsPage extends BaseComponent {
 
 		const propsDisplayChapter = [];
 		const rendersChapter = sourceMeta.chapters
-			.map((chapter, ixChapter) => this._render_chapter({chapter, ixChapter, propsDisplayChapter, renderState, source, propDisplaySource}));
+			.map((chapter, ixChapter) => this._render_chapter({chapter, ixChapter, propsDisplayChapter, renderState, source, sourceMeta, propDisplaySource}));
 
 		// region Display
 		const $wrpContent = $$`<div class="flex-col w-100 px-4 py-2 maps-gallery__wrp-book">
-			<h3 class="mt-0 mb-2">${Parser.sourceJsonToFull(source)}</h3>
+			<h3 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${Parser.sourceJsonToFull(source)}|${source}}`)}</h3>
 			${rendersChapter.map(({$wrpContent}) => $wrpContent)}
 			<hr class="hr-4">
 		</div>`;
@@ -164,7 +164,7 @@ class MapsPage extends BaseComponent {
 		return {$wrpMenu, $wrpContent, searchName, propDisplaySource};
 	}
 
-	_render_chapter ({chapter, ixChapter, propsDisplayChapter, renderState, source, propDisplaySource}) {
+	_render_chapter ({chapter, ixChapter, propsDisplayChapter, renderState, source, sourceMeta, propDisplaySource}) {
 		const {propDisplayChapter} = this._getPropsChapter(source, ixChapter);
 		if (this._state[propDisplayChapter] === undefined) this.__state[propDisplayChapter] = false;
 		propsDisplayChapter.push(propDisplayChapter);
@@ -182,15 +182,24 @@ class MapsPage extends BaseComponent {
 		};
 		this._addHookBase(propDisplayChapter, hkBubbleUp);
 
+		const $btnScrollTo = $(`<button class="btn btn-default btn-xxs maps-menu__btn-chapter-scroll no-shrink" title="Scroll To"><span class="glyphicon glyphicon-triangle-right"></span></button>`)
+			.click(() => {
+				if (!this._state[propDisplayChapter]) this._state[propDisplayChapter] = true;
+				$wrpContent[0].scrollIntoView({block: "nearest", inline: "nearest"});
+			});
+
 		const $cbChapter = ComponentUiUtil.$getCbBool(this, propDisplayChapter, {displayNullAsIndeterminate: true});
 
-		const $wrpMenu = $$`<label class="split-v-center maps-menu__label-cb maps-menu__label-cb--chapter clickable">
-			<div class="mr-3 text-clip-ellipsis" title="${chapter.name.qq()}">${chapter.name}</div>
-			${$cbChapter.addClass("no-shrink")}
-		</label>`;
+		const $wrpMenu = $$`<div class="flex-v-center maps-menu__label-cb">
+			${$btnScrollTo}
+			<label class="split-v-center clickable w-100 min-w-0">
+				<div class="mr-3 text-clip-ellipsis" title="${chapter.name.qq()}">${chapter.name}</div>
+				${$cbChapter.addClass("no-shrink")}
+			</label>
+		</div>`;
 
 		const $wrpContent = $$`<div class="flex-col w-100 maps-gallery__wrp-chapter px-2 py-3 my-2 shadow-big">
-			<h4 class="mt-0 mb-2">${chapter.name}</h4>
+			<h4 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${chapter.name}|${source}|${chapter.ix}}`)}</h4>
 			<div class="flex flex-wrap">${chapter.images.map(it => Renderer.get().render(it))}</div>
 		</div>`;
 

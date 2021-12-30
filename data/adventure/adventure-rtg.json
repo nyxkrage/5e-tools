@@ -10,7 +10,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/RtG/001.webp"
-					}
+					},
+					"width": 1242,
+					"height": 919
 				},
 				"This adventure is designed for four to six ORC characters, levels 6 to 8, and is optimized for five characters with an average party level (APL) of 6. Characters outside this level range shouldn't participate in this adventure without heavy modification to the difficulty of the encounters. This adventure takes place in the Forgotten Realms near Turmish, in the western Orsraun Mountains just north of the Flooded Forest. To run this adventure, you need the fifth edition Player's Handbook, Dungeon Master's Guide, and Monster Manual. Stat Blocks. The Monster Manual contains stat blocks for most of the monsters and nonplayer characters (NPCs) found in this adventure. Whenever this adventure presents a new monster or NPC, you'll find its stat block near the encounter in which it appears, or in appendix A. When a creature's name appears in bold type, that's a visual cue pointing you to the creature's stat block in the Monster Manual.",
 				{
@@ -170,7 +172,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/RtG/002.webp"
-							}
+							},
+							"width": 1226,
+							"height": 559
 						},
 						{
 							"type": "entries",
@@ -260,7 +264,9 @@
 										"path": "adventure/RtG/003.webp"
 									},
 									"title": "Map 1",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 578,
+									"height": 816
 								},
 								"The following locations are keyed to map 1.",
 								{
@@ -654,7 +660,9 @@
 										"path": "adventure/RtG/004.webp"
 									},
 									"title": "Map 2",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 1188,
+									"height": 459
 								},
 								{
 									"type": "entries",
@@ -833,7 +841,9 @@
 										"path": "adventure/RtG/005.webp"
 									},
 									"title": "Map 3",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 1084,
+									"height": 636
 								},
 								{
 									"type": "entries",
@@ -1292,7 +1302,9 @@
 										"path": "adventure/RtG/006.webp"
 									},
 									"title": "Map 4",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 530,
+									"height": 895
 								},
 								{
 									"type": "entries",
@@ -1435,7 +1447,9 @@
 										"path": "adventure/RtG/006.webp"
 									},
 									"title": "Map 4",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 530,
+									"height": 895
 								},
 								{
 									"type": "entries",
@@ -1633,7 +1647,9 @@
 										"path": "adventure/RtG/007.webp"
 									},
 									"title": "Map 5",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 579,
+									"height": 664
 								},
 								{
 									"type": "entries",
@@ -2143,7 +2159,9 @@
 										"path": "adventure/RtG/008.webp"
 									},
 									"title": "Map 6",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 1127,
+									"height": 555
 								},
 								{
 									"type": "entries",
@@ -2278,7 +2296,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/RtG/009.webp"
-									}
+									},
+									"width": 1242,
+									"height": 593
 								},
 								{
 									"type": "entries",
@@ -2448,7 +2468,9 @@
 										"path": "adventure/RtG/010.webp"
 									},
 									"title": "Map 7",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 564,
+									"height": 797
 								},
 								{
 									"type": "entries",
@@ -2638,7 +2660,9 @@
 										"path": "adventure/RtG/011.webp"
 									},
 									"title": "Map 8",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 707,
+									"height": 861
 								},
 								{
 									"type": "entries",
@@ -2753,7 +2777,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/RtG/012.webp"
-									}
+									},
+									"width": 1242,
+									"height": 769
 								},
 								{
 									"type": "entries",
@@ -2878,7 +2904,9 @@
 										"path": "adventure/RtG/013.webp"
 									},
 									"title": "Map 9",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 995,
+									"height": 774
 								},
 								{
 									"type": "entries",
@@ -3093,7 +3121,9 @@
 								"path": "adventure/RtG/014.webp"
 							},
 							"title": "Map 10",
-							"imageType": "map"
+							"imageType": "map",
+							"width": 571,
+							"height": 957
 						},
 						{
 							"type": "entries",
@@ -3259,7 +3289,9 @@
 										"path": "adventure/RtG/014.webp"
 									},
 									"title": "Map 10",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 571,
+									"height": 957
 								},
 								{
 									"type": "entries",
@@ -3428,7 +3460,9 @@
 										"path": "adventure/RtG/015.webp"
 									},
 									"title": "Map 11",
-									"imageType": "map"
+									"imageType": "map",
+									"width": 520,
+									"height": 1293
 								},
 								{
 									"type": "entries",
@@ -3498,14 +3532,18 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/RtG/016.webp"
-					}
+					},
+					"width": 1238,
+					"height": 1632
 				},
 				{
 					"type": "image",
 					"href": {
 						"type": "internal",
 						"path": "adventure/RtG/017.webp"
-					}
+					},
+					"width": 1221,
+					"height": 1615
 				}
 			],
 			"id": "159"

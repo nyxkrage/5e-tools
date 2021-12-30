@@ -133,7 +133,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/AZfyT/findbroker.webp"
-					}
+					},
+					"width": 1366,
+					"height": 828
 				},
 				{
 					"type": "section",
@@ -194,7 +196,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/AZfyT/golgari locket.webp"
-									}
+									},
+									"width": 1200,
+									"height": 734
 								},
 								{
 									"type": "entries",
@@ -246,7 +250,9 @@
 					"href": {
 						"type": "internal",
 						"path": "book/GGR/026-213.png"
-					}
+					},
+					"width": 1000,
+					"height": 611
 				},
 				{
 					"type": "section",
@@ -336,7 +342,9 @@
 							"href": {
 								"type": "internal",
 								"path": "adventure/AZfyT/flying horror.webp"
-							}
+							},
+							"width": 1200,
+							"height": 876
 						}
 					],
 					"id": "010"
@@ -431,7 +439,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/AZfyT/sage row savant.webp"
-					}
+					},
+					"width": 1145,
+					"height": 750
 				},
 				{
 					"type": "section",
@@ -467,7 +477,9 @@
 									"href": {
 										"type": "internal",
 										"path": "adventure/AZfyT/electrostatic field.webp"
-									}
+									},
+									"width": 1242,
+									"height": 708
 								},
 								{
 									"type": "entries",
@@ -520,7 +532,9 @@
 					"href": {
 						"type": "internal",
 						"path": "adventure/AZfyT/rubblebelt raiders.webp"
-					}
+					},
+					"width": 1271,
+					"height": 820
 				},
 				{
 					"type": "section",
@@ -536,7 +550,9 @@
 									"href": {
 										"type": "internal",
 										"path": "book/GGR/095-415.png"
-									}
+									},
+									"width": 2513,
+									"height": 3338
 								},
 								"Herringbone has spent the last couple of days here after completing a transaction with the warband's leader. Most of the rest of the warband is out raiding, but Herringbone stayed around to keep the few squatters company.",
 								{

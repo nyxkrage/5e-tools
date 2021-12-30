@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.146.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -50,6 +50,8 @@ VeCt = {
 	STR_GENERIC: "Generic",
 
 	SYM_UI_SKIP: Symbol("uiSkip"),
+
+	SYM_WALKER_BREAK: Symbol("walkerBreak"),
 
 	LOC_ORIGIN_CANCER: "https://5e.tools",
 
@@ -381,10 +383,10 @@ SourceUtil = {
 	},
 
 	isNonstandardSource (source) {
-		return source != null && !BrewUtil.hasSourceJson(source) && SourceUtil._isNonstandardSourceWiz(source);
+		return source != null && !BrewUtil.hasSourceJson(source) && SourceUtil.isNonstandardSourceWotc(source);
 	},
 
-	_isNonstandardSourceWiz (source) {
+	isNonstandardSourceWotc (source) {
 		return source.startsWith(SRC_UA_PREFIX) || source.startsWith(SRC_PS_PREFIX) || source.startsWith(SRC_AL_PREFIX) || Parser.SOURCES_NON_STANDARD_WOTC.has(source);
 	},
 
@@ -1360,72 +1362,63 @@ MiscUtil = {
 	 * @param [opts.isAllowDeleteStrings] (Unimplemented) // TODO
 	 * @param [opts.isDepthFirst] If array/object recursion should occur before array/object primitive handling.
 	 * @param [opts.isNoModification] If the walker should not attempt to modify the data.
+	 * @param [opts.isBreakOnReturn] If the walker should fast-exist on any handler returning a value.
 	 */
 	getWalker (opts) {
 		opts = opts || {};
+
+		if (opts.isBreakOnReturn && !opts.isNoModification) throw new Error(`"isBreakOnReturn" may only be used in "isNoModification" mode!`);
+
 		const keyBlacklist = opts.keyBlacklist || new Set();
 
-		const fn = (obj, primitiveHandlers, lastKey, stack) => {
-			if (obj == null) {
-				if (primitiveHandlers.null) return MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.null, obj, lastKey, stack});
-				return obj;
+		const getMappedPrimitive = (obj, primitiveHandlers, lastKey, stack, prop, propPre, propPost) => {
+			if (primitiveHandlers[propPre]) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers[propPre], obj, lastKey, stack});
+			if (primitiveHandlers[prop]) {
+				const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers[prop], obj, lastKey, stack});
+				if (out === VeCt.SYM_WALKER_BREAK) return out;
+				if (!opts.isNoModification) obj = out;
 			}
+			if (primitiveHandlers[propPost]) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers[propPost], obj, lastKey, stack});
+			return obj;
+		};
 
-			const doObjectRecurse = () => {
-				Object.keys(obj).forEach(k => {
-					const v = obj[k];
-					if (!keyBlacklist.has(k)) {
-						const out = fn(v, primitiveHandlers, k, stack);
-						if (!opts.isNoModification) obj[k] = out;
-					}
-				});
-			};
+		const doObjectRecurse = (obj, primitiveHandlers, stack) => {
+			const didBreak = Object.keys(obj).some(k => {
+				const v = obj[k];
+				if (keyBlacklist.has(k)) return;
+
+				const out = fn(v, primitiveHandlers, k, stack);
+				if (out === VeCt.SYM_WALKER_BREAK) return true;
+				if (!opts.isNoModification) obj[k] = out;
+			});
+			if (didBreak) return VeCt.SYM_WALKER_BREAK;
+		};
+
+		const fn = (obj, primitiveHandlers, lastKey, stack) => {
+			if (obj === null) return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "null", "preNull", "postNull");
 
 			const to = typeof obj;
 			switch (to) {
-				case undefined:
-					if (primitiveHandlers.preUndefined) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preUndefined, obj, lastKey, stack});
-					if (primitiveHandlers.undefined) {
-						const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.undefined, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postUndefined) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postUndefined, obj, lastKey, stack});
-					return obj;
-				case "boolean":
-					if (primitiveHandlers.preBoolean) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preBoolean, obj, lastKey, stack});
-					if (primitiveHandlers.boolean) {
-						const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.boolean, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postBoolean) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postBoolean, obj, lastKey, stack});
-					return obj;
-				case "number":
-					if (primitiveHandlers.preNumber) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preNumber, obj, lastKey, stack});
-					if (primitiveHandlers.number) {
-						const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.number, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postNumber) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postNumber, obj, lastKey, stack});
-					return obj;
-				case "string":
-					if (primitiveHandlers.preString) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preString, obj, lastKey, stack});
-					if (primitiveHandlers.string) {
-						const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.string, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postString) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postString, obj, lastKey, stack});
-					return obj;
+				case "undefined": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "undefined", "preUndefined", "postUndefined");
+				case "boolean": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "boolean", "preBoolean", "postBoolean");
+				case "number": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "number", "preNumber", "postNumber");
+				case "string": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "string", "preString", "postString");
 				case "object": {
 					if (obj instanceof Array) {
 						if (primitiveHandlers.preArray) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
 						if (opts.isDepthFirst) {
 							if (stack) stack.push(obj);
-							const out = obj.map(it => fn(it, primitiveHandlers, lastKey, stack));
+							const out = new Array(obj.length);
+							for (let i = 0, len = out.length; i < len; ++i) {
+								out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
+								if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
+							}
 							if (!opts.isNoModification) obj = out;
 							if (stack) stack.pop();
 
 							if (primitiveHandlers.array) {
 								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
+								if (out === VeCt.SYM_WALKER_BREAK) return out;
 								if (!opts.isNoModification) obj = out;
 							}
 							if (obj == null) {
@@ -1434,10 +1427,15 @@ MiscUtil = {
 						} else {
 							if (primitiveHandlers.array) {
 								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
+								if (out === VeCt.SYM_WALKER_BREAK) return out;
 								if (!opts.isNoModification) obj = out;
 							}
 							if (obj != null) {
-								const out = obj.map(it => fn(it, primitiveHandlers, lastKey, stack));
+								const out = new Array(obj.length);
+								for (let i = 0, len = out.length; i < len; ++i) {
+									out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
+									if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
+								}
 								if (!opts.isNoModification) obj = out;
 							} else {
 								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
@@ -1449,11 +1447,13 @@ MiscUtil = {
 						if (primitiveHandlers.preObject) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
 						if (opts.isDepthFirst) {
 							if (stack) stack.push(obj);
-							doObjectRecurse();
+							const flag = doObjectRecurse(obj, primitiveHandlers, stack);
+							if (flag === VeCt.SYM_WALKER_BREAK) return flag;
 							if (stack) stack.pop();
 
 							if (primitiveHandlers.object) {
 								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
+								if (out === VeCt.SYM_WALKER_BREAK) return out;
 								if (!opts.isNoModification) obj = out;
 							}
 							if (obj == null) {
@@ -1462,12 +1462,14 @@ MiscUtil = {
 						} else {
 							if (primitiveHandlers.object) {
 								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
+								if (out === VeCt.SYM_WALKER_BREAK) return out;
 								if (!opts.isNoModification) obj = out;
 							}
 							if (obj == null) {
 								if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
 							} else {
-								doObjectRecurse();
+								const flag = doObjectRecurse(obj, primitiveHandlers, stack);
+								if (flag === VeCt.SYM_WALKER_BREAK) return flag;
 							}
 						}
 						if (primitiveHandlers.postObject) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
@@ -1483,10 +1485,12 @@ MiscUtil = {
 
 	_getWalker_applyHandlers ({opts, handlers, obj, lastKey, stack}) {
 		handlers = handlers instanceof Array ? handlers : [handlers];
-		handlers.forEach(h => {
+		const didBreak = handlers.some(h => {
 			const out = h(obj, lastKey, stack);
+			if (opts.isBreakOnReturn && out) return true;
 			if (!opts.isNoModification) obj = out;
 		});
+		if (didBreak) return VeCt.SYM_WALKER_BREAK;
 		return obj;
 	},
 
@@ -1496,6 +1500,7 @@ MiscUtil = {
 	},
 
 	/**
+	 * TODO refresh to match sync version
 	 * @param [opts]
 	 * @param [opts.keyBlacklist]
 	 * @param [opts.isAllowDeleteObjects] If returning `undefined` from an object handler should be treated as a delete.
@@ -2084,6 +2089,7 @@ UrlUtil.PG_CHANGELOG = "changelog.html";
 UrlUtil.PG_CHAR_CREATION_OPTIONS = "charcreationoptions.html";
 UrlUtil.PG_RECIPES = "recipes.html";
 UrlUtil.PG_CLASS_SUBCLASS_FEATURES = "classfeatures.html";
+UrlUtil.PG_MAPS = "maps.html";
 
 UrlUtil.URL_TO_HASH_BUILDER = {};
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
@@ -2169,6 +2175,7 @@ UrlUtil.PG_TO_NAME[UrlUtil.PG_CHANGELOG] = "Changelog";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_CHAR_CREATION_OPTIONS] = "Other Character Creation Options";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_RECIPES] = "Recipes";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_CLASS_SUBCLASS_FEATURES] = "Class & Subclass Features";
+UrlUtil.PG_TO_NAME[UrlUtil.PG_MAPS] = "Maps";
 
 UrlUtil.CAT_TO_PAGE = {};
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_CREATURE] = UrlUtil.PG_BESTIARY;
@@ -4352,7 +4359,6 @@ RollerUtil = {
 
 	getColRollType (colLabel) {
 		if (typeof colLabel !== "string") return false;
-		if (/^{@dice [^}]+}$/.test(colLabel.trim())) return true;
 		colLabel = Renderer.stripTags(colLabel);
 
 		if (Renderer.dice.lang.getTree3(colLabel)) return RollerUtil.ROLL_COL_STANDARD;
@@ -4361,7 +4367,7 @@ RollerUtil = {
 		colLabel = colLabel.replace(RollerUtil._REGEX_ROLLABLE_COL_LABEL, "$1");
 		if (Renderer.dice.lang.getTree3(colLabel)) return RollerUtil.ROLL_COL_VARIABLE;
 
-		return 0;
+		return RollerUtil.ROLL_COL_NONE;
 	},
 
 	getFullRollCol (lbl) {
