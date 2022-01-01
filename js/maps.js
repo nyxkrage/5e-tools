@@ -106,7 +106,7 @@ class MapsPage extends BaseComponent {
 
 		// region Display
 		const $wrpContent = $$`<div class="flex-col w-100 px-4 py-2 maps-gallery__wrp-book">
-			<h3 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${Parser.sourceJsonToFull(source)}|${source}}`)}</h3>
+			<h3 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${Parser.sourceJsonToFull(source)}|${sourceMeta.id}}`)}</h3>
 			${rendersChapter.map(({$wrpContent}) => $wrpContent)}
 			<hr class="hr-4">
 		</div>`;
@@ -199,7 +199,7 @@ class MapsPage extends BaseComponent {
 		</div>`;
 
 		const $wrpContent = $$`<div class="flex-col w-100 maps-gallery__wrp-chapter px-2 py-3 my-2 shadow-big">
-			<h4 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${chapter.name}|${source}|${chapter.ix}}`)}</h4>
+			<h4 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${chapter.name}|${sourceMeta.id}|${chapter.ix}}`)}</h4>
 			<div class="flex flex-wrap">${chapter.images.map(it => Renderer.get().render(it))}</div>
 		</div>`;
 

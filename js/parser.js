@@ -588,11 +588,11 @@ Parser.sourceJsonToColor = function (source) {
 };
 
 Parser.stringToSlug = function (str) {
-	return str.trim().toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
+	return str.trim().toLowerCase().toAscii().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
 };
 
 Parser.stringToCasedSlug = function (str) {
-	return str.replace(/[^\w ]+/g, "").replace(/ +/g, "-");
+	return str.toAscii().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
 };
 
 Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"];

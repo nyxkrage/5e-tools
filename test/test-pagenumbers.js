@@ -45,9 +45,7 @@ const BLACKLIST_SOURCES = new Set([
 	"SDW",
 ]);
 
-const SUB_KEYS = {
-	race: ["subraces"],
-};
+const SUB_KEYS = {};
 
 function run (isModificationMode) {
 	console.log(`##### Checking for Missing Page Numbers #####`);

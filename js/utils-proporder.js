@@ -1072,11 +1072,7 @@ PropOrder._VARIANTRULE = [
 	"type",
 	"entries",
 ];
-PropOrder._RACE = [
-	"name",
-	"alias",
-
-	"source",
+PropOrder._RACE_SUBRACE = [
 	"page",
 	"srd",
 	"basicRules",
@@ -1126,11 +1122,6 @@ PropOrder._RACE = [
 
 	"entries",
 
-	new PropOrder._ArrayKey("subraces", {
-		fnGetOrder: () => PropOrder._RACE,
-		fnSort: (a, b) => SortUtil.ascSortLower(a.name || "", b.name || "") || SortUtil.ascSortLower(a.source || "", b.source || ""),
-	}),
-
 	"overwrite",
 
 	"hasFluff",
@@ -1150,10 +1141,29 @@ PropOrder._RACE = [
 		fnSort: (a, b) => SortUtil.ascSortLower(a.name || "", b.name || "") || SortUtil.ascSortLower(a.source || "", b.source || ""),
 	}),
 ];
+PropOrder._RACE = [
+	"name",
+	"alias",
+
+	"source",
+
+	...PropOrder._RACE_SUBRACE,
+];
 PropOrder._RACE__COPY_MOD = [
 	"*",
 	"_",
 	...PropOrder._RACE,
+];
+PropOrder._SUBRACE = [
+	"name",
+	"alias",
+
+	"source",
+
+	"raceName",
+	"raceSource",
+
+	...PropOrder._RACE_SUBRACE,
 ];
 PropOrder._TABLE = [
 	"name",
@@ -1291,6 +1301,7 @@ PropOrder._PROP_TO_LIST = {
 	"variantrule": PropOrder._VARIANTRULE,
 	"spellFluff": PropOrder._GENERIC_FLUFF,
 	"race": PropOrder._RACE,
+	"subrace": PropOrder._SUBRACE,
 	"table": PropOrder._TABLE,
 	"trap": PropOrder._TRAP,
 	"hazard": PropOrder._HAZARD,

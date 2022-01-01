@@ -9,13 +9,9 @@ class TestFoundry {
 		switch (originalFilename) {
 			case "races.json": {
 				ut.patchLoadJson();
-
-				const rawRaceData = await DataUtil.loadJSON(originalPath);
-				const raceData = Renderer.race.mergeSubraces(rawRaceData.race, {isAddBaseRaces: true});
-
+				const out = await DataUtil.race.loadJSON({isAddBaseRaces: true});
 				ut.unpatchLoadJson();
-
-				return {race: raceData};
+				return out;
 			}
 
 			default: return ut.readJson(originalPath);

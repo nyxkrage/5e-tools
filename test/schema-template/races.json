@@ -11,6 +11,12 @@
 				"name": {
 					"type": "string"
 				},
+				"raceName": {
+					"type": "string"
+				},
+				"raceSource": {
+					"type": "string"
+				},
 				"alias": {
 					"type": "array",
 					"items": {
@@ -18,23 +24,6 @@
 					}
 				},
 				"$$ifBrew": {
-					"race": {
-						"description": "For use in homebrew files featuring standalone subraces of existing full races.",
-						"type": "object",
-						"properties": {
-							"name": {
-								"type": "string"
-							},
-							"source": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"name",
-							"source"
-						],
-						"additionalProperties": false
-					},
 					"fluff": {
 						"$ref": "#/definitions/fluff"
 					}
@@ -229,12 +218,6 @@
 				},
 				"soundClip": {
 					"$ref": "entry.json#/definitions/mediaHref"
-				},
-				"subraces": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/subraceData"
-					}
 				},
 				"darkvision": {
 					"type": "integer"
@@ -502,7 +485,6 @@
 		},
 
 		"subrace": {
-			"description": "Homebrew use only.",
 			"anyOf": [
 				{
 					"type": "object",
@@ -511,11 +493,21 @@
 							"$ref": "#/definitions/subraceData"
 						},
 						{
-							"required": [
-								"name",
-								"source",
-								"race"
-							]
+							"$$ifSite": {
+								"required": [
+									"source",
+									"raceName",
+									"raceSource"
+								]
+							},
+							"$$ifBrew": {
+								"required": [
+									"name",
+									"source",
+									"raceName",
+									"raceSource"
+								]
+							}
 						}
 					]
 				},
@@ -578,18 +570,16 @@
 				"$ref": "#/definitions/race"
 			}
 		},
-		"$$ifBrew": {
-			"subrace": {
-				"type": "array",
-				"items": {
-					"$ref": "#/definitions/subrace"
-				}
+		"subrace": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/subrace"
 			}
 		},
 		"_meta": {
 			"$ref": "util.json#/definitions/metaBlock"
 		}
 	},
-	"required": ["race"],
+	"required": ["race", "subrace"],
 	"additionalProperties": false
 }

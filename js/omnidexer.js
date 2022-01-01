@@ -106,6 +106,8 @@ class Omnidexer {
 			});
 		};
 
+		if (arbiter.postLoad) json = arbiter.postLoad(json);
+
 		const dataArr = Omnidexer.getProperty(json, arbiter.listProp);
 		if (dataArr) {
 			for (let i = 0; i < dataArr.length; ++i) {
@@ -725,6 +727,7 @@ class IndexableFileRaces extends IndexableFile {
 			file: "races.json",
 			listProp: "race",
 			baseUrl: "races.html",
+			postLoad: DataUtil.race._getPostProcessedSiteJson,
 			isOnlyDeep: true,
 			isHover: true,
 		});

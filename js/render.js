@@ -507,6 +507,9 @@ function Renderer () {
 			height: entry.height,
 			href: this._renderImage_getUrl(entry),
 			hrefThumbnail: this._renderImage_getUrlThumbnail(entry),
+			page: entry.page,
+			source: entry.source,
+			hash: entry.hash,
 		};
 	};
 
@@ -3675,7 +3678,7 @@ Renderer.spell = {
 				if (sr.raceSpells) {
 					if (!sr.race?.name || !sr.race?.source || !sr.source) return;
 					const srName = Renderer.race.getSubraceName(sr.race.name, sr.name);
-					sr.raceSpells.forEach(it => Renderer.spell._populateHomebrewLookup_handleSpellListItemRace(it, srName, sr.source, sr.race.name, sr.race.source));
+					sr.raceSpells.forEach(it => Renderer.spell._populateHomebrewLookup_handleSpellListItemRace(it, srName, sr.source, sr.raceName, sr.raceSource));
 				}
 			});
 		}
@@ -4783,9 +4786,9 @@ Renderer.race = {
 		const nxtData = [];
 
 		subraces.forEach(sr => {
-			if (!sr.race || !sr.race.name || !sr.race.source) throw new Error(`Subrace was missing parent race!`);
+			if (!sr.raceName || !sr.raceSource) throw new Error(`Subrace was missing parent "raceName" and/or "raceSource"!`);
 
-			const _baseRace = allRaces.find(r => r.name === sr.race.name && r.source === sr.race.source);
+			const _baseRace = allRaces.find(r => r.name === sr.raceName && r.source === sr.raceSource);
 			if (!_baseRace) throw new Error(`Could not find parent race for subrace!`);
 
 			// If the base race is a _real_ base race, add our new subrace to its list of subraces
@@ -4795,7 +4798,7 @@ Renderer.race = {
 			}
 
 			// Attempt to graft multiple subraces from the same data set onto the same base race copy
-			let baseRace = nxtData.find(r => r.name === sr.race.name && r.source === sr.race.source);
+			let baseRace = nxtData.find(r => r.name === sr.raceName && r.source === sr.raceSource);
 			if (!baseRace) {
 				// copy and remove base-race-specific data
 				baseRace = MiscUtil.copy(_baseRace);
@@ -8941,7 +8944,8 @@ Renderer.hover = {
 
 			// region adventure/books/references
 			case UrlUtil.PG_QUICKREF: return Renderer.hover._pCacheAndGet_pLoadQuickref(page, source, hash, opts);
-			case UrlUtil.PG_ADVENTURE: return Renderer.hover._pCacheAndGet_pLoadAdventure(page, source, hash, opts);
+			case UrlUtil.PG_ADVENTURE: return Renderer.hover._pCacheAndGet_pLoadAdventureBook(page, source, hash, opts);
+			case UrlUtil.PG_BOOK: return Renderer.hover._pCacheAndGet_pLoadAdventureBook(page, source, hash, opts);
 			// enregion
 
 			// region per-page fluff
@@ -9199,8 +9203,12 @@ Renderer.hover = {
 		return Renderer.hover.getFromCache(page, source, hash, opts);
 	},
 
-	async _pCacheAndGet_pLoadAdventure (page, source, hash, opts) {
+	async _pCacheAndGet_pLoadAdventureBook (page, source, hash, opts) {
 		const loadKey = `${page}${source}`;
+
+		const prop = page === UrlUtil.PG_ADVENTURE ? `adventure` : `book`;
+		const propData = `${prop}Data`;
+		const indexFilename = page === UrlUtil.PG_ADVENTURE ? `adventures.json` : `books.json`;
 
 		const isNotLoadedAndIsSourceAvailableBrew = await Renderer.hover._pCacheAndGet_pDoLoadWithLock(
 			page,
@@ -9212,17 +9220,17 @@ Renderer.hover = {
 				const brew = await BrewUtil.pAddBrewData();
 
 				// Get only the ids that exist in both data + contents
-				const brewDataIds = (brew.adventureData || []).filter(it => it.id).map(it => it.id);
-				const brewContentsIds = new Set(...(brew.adventure || []).filter(it => it.id).map(it => it.id));
+				const brewDataIds = (brew[propData] || []).filter(it => it.id).map(it => it.id);
+				const brewContentsIds = new Set(...(brew[prop] || []).filter(it => it.id).map(it => it.id));
 				const matchingBrewIds = brewDataIds.filter(id => brewContentsIds.has(id));
 
 				matchingBrewIds.forEach(id => {
-					const brewData = (brew.adventureData || []).find(it => it.id === id);
-					const brewContents = (brew.adventure || []).find(it => it.id === id);
+					const brewData = (brew[propData] || []).find(it => it.id === id);
+					const brewContents = (brew[prop] || []).find(it => it.id === id);
 
 					const pack = {
-						adventure: brewContents,
-						adventureData: brewData,
+						[prop]: brewContents,
+						[propData]: brewData,
 					};
 
 					const hash = UrlUtil.URL_TO_HASH_BUILDER[page](brewContents);
@@ -9230,14 +9238,14 @@ Renderer.hover = {
 				});
 				// endregion
 
-				const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/adventures.json`);
-				const fromIndex = index.adventure.find(it => UrlUtil.URL_TO_HASH_BUILDER[page](it) === hash);
+				const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${indexFilename}`);
+				const fromIndex = index[prop].find(it => UrlUtil.URL_TO_HASH_BUILDER[page](it) === hash);
 				if (fromIndex) {
-					const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/adventure/adventure-${hash}.json`);
+					const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${prop}/${prop}-${hash}.json`);
 
 					const pack = {
-						adventure: fromIndex,
-						adventureData: json,
+						[prop]: fromIndex,
+						[propData]: json,
 					};
 
 					Renderer.hover._addToCache(page, fromIndex.source, hash, pack);

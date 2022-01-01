@@ -935,10 +935,8 @@ class RaceDataCheck extends GenericDataCheck {
 	static run () {
 		const file = `data/races.json`;
 		const races = require(`../${file}`);
-		races.race.forEach(r => {
-			this._handleRaceOrSubraceRaw(file, r);
-			(r.subraces || []).forEach(sr => this._handleRaceOrSubraceRaw(file, sr, r));
-		});
+		races.race.forEach(r => this._handleRaceOrSubraceRaw(file, r));
+		races.subrace.forEach(sr => this._handleRaceOrSubraceRaw(file, sr));
 	}
 }
 
@@ -1016,6 +1014,11 @@ EscapeCharacterCheck._CHARS = 16;
 class DuplicateEntityCheck {
 	static checkFile (file, contents) {
 		DuplicateEntityCheck.errors = [];
+
+		if (file.endsWith("data/races.json")) {
+			contents = MiscUtil.copy(contents);
+			contents = DataUtil.race._getPostProcessedSiteJson(contents);
+		}
 
 		Object.entries(contents)
 			.filter(([_, arr]) => arr instanceof Array)

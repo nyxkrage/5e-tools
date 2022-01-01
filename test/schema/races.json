@@ -10,6 +10,12 @@
 				"name": {
 					"type": "string"
 				},
+				"raceName": {
+					"type": "string"
+				},
+				"raceSource": {
+					"type": "string"
+				},
 				"alias": {
 					"type": "array",
 					"items": {
@@ -271,12 +277,6 @@
 				},
 				"soundClip": {
 					"$ref": "entry.json#/definitions/mediaHref"
-				},
-				"subraces": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/subraceData"
-					}
 				},
 				"darkvision": {
 					"type": "integer"
@@ -652,12 +652,6 @@
 						"soundClip": {
 							"$ref": "entry.json#/definitions/mediaHref"
 						},
-						"subraces": {
-							"type": "array",
-							"items": {
-								"$ref": "#/definitions/subraceData"
-							}
-						},
 						"darkvision": {
 							"type": "integer"
 						},
@@ -883,12 +877,6 @@
 						"soundClip": {
 							"$ref": "entry.json#/definitions/mediaHref"
 						},
-						"subraces": {
-							"type": "array",
-							"items": {
-								"$ref": "#/definitions/subraceData"
-							}
-						},
 						"darkvision": {
 							"type": "integer"
 						},
@@ -1070,12 +1058,17 @@
 			]
 		},
 		"subrace": {
-			"description": "Homebrew use only.",
 			"anyOf": [
 				{
 					"type": "object",
 					"properties": {
 						"name": {
+							"type": "string"
+						},
+						"raceName": {
+							"type": "string"
+						},
+						"raceSource": {
 							"type": "string"
 						},
 						"alias": {
@@ -1294,15 +1287,21 @@
 					},
 					"additionalProperties": false,
 					"required": [
-						"name",
 						"source",
-						"race"
+						"raceName",
+						"raceSource"
 					]
 				},
 				{
 					"type": "object",
 					"properties": {
 						"name": {
+							"type": "string"
+						},
+						"raceName": {
+							"type": "string"
+						},
+						"raceSource": {
 							"type": "string"
 						},
 						"alias": {
@@ -1570,12 +1569,19 @@
 				"$ref": "#/definitions/race"
 			}
 		},
+		"subrace": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/subrace"
+			}
+		},
 		"_meta": {
 			"$ref": "util.json#/definitions/metaBlock"
 		}
 	},
 	"required": [
-		"race"
+		"race",
+		"subrace"
 	],
 	"additionalProperties": false
 }

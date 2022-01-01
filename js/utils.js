@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -3724,9 +3724,7 @@ DataUtil = {
 	},
 
 	race: {
-		_MERGE_REQUIRES_PRESERVE: {
-			subraces: true,
-		},
+		_MERGE_REQUIRES_PRESERVE: {},
 		_mergeCache: {},
 		async pMergeCopy (raceList, race, options) {
 			return DataUtil.generic._pMergeCopy(DataUtil.race, UrlUtil.PG_RACES, raceList, race, options);
@@ -3737,7 +3735,7 @@ DataUtil = {
 		async loadJSON ({isAddBaseRaces = false} = {}) {
 			if (!DataUtil.race._pIsLoadings[isAddBaseRaces]) {
 				DataUtil.race._pIsLoadings[isAddBaseRaces] = (async () => {
-					const rawRaceData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/races.json`);
+					const rawRaceData = DataUtil.race._getPostProcessedSiteJson(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/races.json`));
 					const raceData = Renderer.race.mergeSubraces(rawRaceData.race, {isAddBaseRaces});
 					raceData.forEach(it => it.__prop = "race");
 					DataUtil.race._loadCache[isAddBaseRaces] = {race: raceData};
@@ -3745,6 +3743,20 @@ DataUtil = {
 			}
 			await DataUtil.race._pIsLoadings[isAddBaseRaces];
 			return DataUtil.race._loadCache[isAddBaseRaces];
+		},
+
+		_getPostProcessedSiteJson (rawRaceData) {
+			rawRaceData = MiscUtil.copy(rawRaceData);
+			(rawRaceData.subrace || []).forEach(sr => {
+				const r = rawRaceData.race.find(it => it.name === sr.raceName && it.source === sr.raceSource);
+				if (!r) return JqueryUtil.doToast({content: `Failed to find race "${sr.raceName}" (${sr.raceSource})`, type: "danger"});
+				const cpySr = MiscUtil.copy(sr);
+				delete cpySr.raceName;
+				delete cpySr.raceSource;
+				(r.subraces = r.subraces || []).push(sr);
+			});
+			delete rawRaceData.subrace;
+			return rawRaceData;
 		},
 
 		async loadBrew ({isAddBaseRaces = true} = {}) {
@@ -4073,6 +4085,8 @@ DataUtil = {
 				laterPrinting.push(src);
 			});
 			data.deity.forEach(g => g._isEnhanced = true);
+
+			return data;
 		},
 
 		loadJSON: async function () {
@@ -4652,11 +4666,13 @@ BrewUtil = {
 
 				await this._pAddLocalBrewData(homebrew);
 
-				BrewUtil._mutMakeBrewCompatible(homebrew);
+				const isMigration = BrewUtil._mutMakeBrewCompatible(homebrew);
 
 				BrewUtil.homebrew = homebrew;
 
 				BrewUtil._resetSourceCache();
+
+				if (isMigration) BrewUtil._persistHomebrewDebounced();
 
 				return BrewUtil.homebrew;
 			} catch (e) {
@@ -4666,25 +4682,20 @@ BrewUtil = {
 	},
 
 	_mutMakeBrewCompatible (homebrew) {
-		let hasOldSubclasses = false;
+		let isMigration = false;
 
-		if (homebrew.class) {
-			homebrew.class.forEach(cls => {
-				if (cls.subclasses) {
-					hasOldSubclasses = true;
-					cls.subclasses.forEach(sc => {
-						sc.className = sc.className || cls.name;
-						sc.classSource = sc.classSource || cls.source;
-						(homebrew.subclass = homebrew.subclass || []).push(sc);
-					});
-					delete cls.subclasses;
-				}
+		// region Race
+		if (homebrew.subrace) {
+			homebrew.subrace.forEach(sr => {
+				if (!sr.race) return;
+				isMigration = true;
+				sr.raceName = sr.race.name;
+				sr.raceSource = sr.race.source || sr.source || SRC_PHB;
 			});
 		}
+		// endregion
 
-		if (hasOldSubclasses) {
-			JqueryUtil.doToast({type: "warning", content: `Converted legacy homebrew subclasses\u2014you should re-load your class homebrews, as this backwards compatibility will be removed in future!`});
-		}
+		return isMigration;
 	},
 
 	async pPurgeBrew (error) {
