@@ -31,9 +31,10 @@ jobs:
                path: 'img'
 
          -  name: Upload Release
-            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip'
+            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip ${{ env.RELEASE_VERSION }}'
             env:
-               GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+               GITHUB_TOKEN_ALT: ${{ secrets.RELEASE_TOKEN }}
          # endregion
 
          - name: Build SEO Pages
