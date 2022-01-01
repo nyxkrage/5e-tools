@@ -31,11 +31,9 @@ jobs:
                path: 'img'
 
          -  name: Upload Release
-            uses: ncipollo/release-action@v1
-            with:
-               generateReleaseNotes: true
-               artifacts: "5etools-${{ env.RELEASE_VERSION }}.zip,img-${{ env.RELEASE_VERSION }}.zip"
-               token: ${{ secrets.GITHUB_TOKEN }}
+            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip'
+            env:
+               GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
          # endregion
 
          - name: Build SEO Pages
