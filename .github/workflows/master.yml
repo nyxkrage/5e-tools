@@ -31,7 +31,7 @@ jobs:
                path: 'img'
 
          -  name: Upload Release
-            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip -m "" ${{ env.RELEASE_VERSION }}'
+            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
             env:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          # endregion
