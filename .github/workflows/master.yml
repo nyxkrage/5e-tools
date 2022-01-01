@@ -47,7 +47,7 @@ jobs:
 
          # See: https://github.com/JamesIves/github-pages-deploy-action
          - name: Deploy
-           uses: JamesIves/github-pages-deploy-action@master
+           uses: JamesIves/github-pages-deploy-action@releases/v4
            with:
               branch: gh-pages
               folder: .
