@@ -30,6 +30,11 @@ jobs:
                filename: 'img-${{ env.RELEASE_VERSION }}.zip'
                path: 'img'
 
+         - name: List Files
+           run: |
+           ls -lah
+           ls -lah img
+
          -  name: Upload Release
             run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
             env:
