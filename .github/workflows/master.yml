@@ -67,7 +67,12 @@ jobs:
                path: 'img'
 
          -  name: Upload Release
-            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}-adventure.zip -a img-${{ env.RELEASE_VERSION }}-book.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
+            # Add the files one-by-one in an effort to avoid timeouts
+            run: |
+               'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
+               'hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-adventure.zip'
+               'hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-book.zip'
+               'hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}.zip'
             env:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          # endregion

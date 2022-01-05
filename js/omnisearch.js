@@ -18,10 +18,10 @@ class Omnisearch {
 			</div>
 		`.appendTo($nav);
 
-		this._$searchOutWrapper = $(`<div class="omni__wrp-output"/>`).insertAfter($nav);
+		this._$searchOutWrapper = $(`<div class="omni__wrp-output ve-flex"/>`).hideVe().insertAfter($nav);
 		this._$searchOut = $(`<div class="omni__output"/>`).appendTo(this._$searchOutWrapper);
 
-		$(window).on("click", () => this._$searchOutWrapper.hide());
+		$(window).on("click", () => this._$searchOutWrapper.hideVe());
 
 		this._$searchOut.on("click", e => {
 			e.stopPropagation();
@@ -300,7 +300,7 @@ class Omnisearch {
 				</div>
 			</div>`.appendTo(this._$searchOut);
 		}
-		this._$searchOutWrapper.css("display", "ve-flex");
+		this._$searchOutWrapper.showVe();
 
 		// add pagination if there are many results
 		if (results.length > this._MAX_RESULTS) {

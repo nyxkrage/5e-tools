@@ -1893,7 +1893,12 @@
 	},
 	{
 		"ver": "1.147.10",
-		"date": "2022-01-01",
+		"date": "2022-01-04",
 		"txt": "- Added Table View to Bestiary\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.147.11",
+		"date": "2022-01-04",
+		"txt": "- Fixed Omnisearch window not displaying when searching"
 	}
 ]
