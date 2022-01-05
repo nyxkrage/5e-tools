@@ -180,10 +180,10 @@ class LootGenUi extends BaseComponent {
 	_render_$getStages ({$stg, $stgLhs, $stgRhs}) {
 		if (!$stg) return {$stgLhs, $stgRhs};
 
-		$stgLhs = $(`<div class="flex w-50 h-100"></div>`);
-		$stgRhs = $(`<div class="flex-col w-50 h-100"></div>`);
+		$stgLhs = $(`<div class="ve-flex w-50 h-100"></div>`);
+		$stgRhs = $(`<div class="ve-flex-col w-50 h-100"></div>`);
 
-		$$`<div class="flex w-100 h-100">
+		$$`<div class="ve-flex w-100 h-100">
 			${$stgLhs}
 			<div class="vr-2 h-100"></div>
 			${$stgRhs}
@@ -210,7 +210,7 @@ class LootGenUi extends BaseComponent {
 		const $btnClear = $(`<button class="btn btn-danger btn-xs">Clear Output</button>`)
 			.click(() => this._doClearOutput());
 
-		$$`<div class="flex-col py-2 px-3">
+		$$`<div class="ve-flex-col py-2 px-3">
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Challenge Rating</div>
 				${$selChallenge}
@@ -221,7 +221,7 @@ class LootGenUi extends BaseComponent {
 				${$cbIsHoard}
 			</label>
 
-			<div class="flex-v-center mb-2">
+			<div class="ve-flex-v-center mb-2">
 				${$btnRoll}
 				${$btnClear}
 			</div>
@@ -394,7 +394,7 @@ class LootGenUi extends BaseComponent {
 		const $hrHelp = $(`<hr class="hr-3">`);
 		const $dispHelp = $(`<div class="ve-small italic"></div>`);
 		const $hrTable = $(`<hr class="hr-3">`);
-		const $dispTable = $(`<div class="flex-col w-100"></div>`);
+		const $dispTable = $(`<div class="ve-flex-col w-100"></div>`);
 
 		const hkTable = () => {
 			const tableMeta = this._lt_tableMetas[this._state.lt_ixTable];
@@ -414,13 +414,13 @@ class LootGenUi extends BaseComponent {
 		this._addHookBase("lt_ixTable", hkTable);
 		hkTable();
 
-		$$`<div class="flex-col py-2 px-3">
+		$$`<div class="ve-flex-col py-2 px-3">
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Table</div>
 				${$selTable}
 			</label>
 
-			<div class="flex-v-center mb-2">
+			<div class="ve-flex-v-center mb-2">
 				${$btnRoll}
 				${$btnClear}
 			</div>
@@ -479,7 +479,7 @@ class LootGenUi extends BaseComponent {
 			},
 		);
 
-		const $stgDefault = $$`<div class="flex-col w-100">
+		const $stgDefault = $$`<div class="ve-flex-col w-100">
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Character Level</div>
 				${$selCharLevel}
@@ -497,8 +497,8 @@ class LootGenUi extends BaseComponent {
 			},
 		);
 
-		const $stgExactLevel = $$`<div class="flex-col w-100">
-			<div class="flex-col mb-2">
+		const $stgExactLevel = $$`<div class="ve-flex-col w-100">
+			<div class="ve-flex-col mb-2">
 				<div class="mb-2">Character Level</div>
 				${$sliderLevel}
 			</div>
@@ -520,7 +520,7 @@ class LootGenUi extends BaseComponent {
 		this._addHookBase("pl_isExactLevel", hkIsExactLevel);
 		hkIsExactLevel();
 
-		$$`<div class="flex-col py-2 px-3">
+		$$`<div class="ve-flex-col py-2 px-3">
 			<p>
 				Generates a set of magical items for a party, based on the tables and rules in ${this.constructor._er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}, pages 135-136.
 			</p>
@@ -541,7 +541,7 @@ class LootGenUi extends BaseComponent {
 				${$cbIsExactLevel}
 			</label>
 
-			<div class="flex-v-center mb-2">
+			<div class="ve-flex-v-center mb-2">
 				${$btnRoll}
 				${$btnClear}
 			</div>
@@ -674,7 +674,7 @@ class LootGenUi extends BaseComponent {
 		const $btnClear = $(`<button class="btn btn-danger btn-xs">Clear Output</button>`)
 			.click(() => this._doClearOutput());
 
-		$$`<div class="flex-col py-2 px-3">
+		$$`<div class="ve-flex-col py-2 px-3">
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Dragon Age</div>
 				${$selDragonAge}
@@ -685,7 +685,7 @@ class LootGenUi extends BaseComponent {
 				${$cbIsPreferRandomMagicItems}
 			</label>
 
-			<div class="flex-v-center mb-2">
+			<div class="ve-flex-v-center mb-2">
 				${$btnRoll}
 				${$btnClear}
 			</div>
@@ -763,7 +763,7 @@ class LootGenUi extends BaseComponent {
 		const $btnClear = $(`<button class="btn btn-danger btn-xs">Clear Output</button>`)
 			.click(() => this._doClearOutput());
 
-		$$`<div class="flex-col py-2 px-3">
+		$$`<div class="ve-flex-col py-2 px-3">
 			<h4 class="mt-1 mb-3">Gem/Art Object Generator</h4>
 
 			<label class="split-v-center mb-3">
@@ -781,7 +781,7 @@ class LootGenUi extends BaseComponent {
 				${$iptTargetGoldAmount}
 			</label>
 
-			<div class="flex-v-center mb-2">
+			<div class="ve-flex-v-center mb-2">
 				${$btnRoll}
 				${$btnClear}
 			</div>
@@ -856,9 +856,9 @@ class LootGenUi extends BaseComponent {
 	}
 
 	_render_output ({$wrp}) {
-		this._$wrpOutputRows = $(`<div class="w-100 h-100 flex-col overflow-y-auto smooth-scroll"></div>`);
+		this._$wrpOutputRows = $(`<div class="w-100 h-100 ve-flex-col overflow-y-auto smooth-scroll"></div>`);
 
-		$$`<div class="flex-col w-100 h-100">
+		$$`<div class="ve-flex-col w-100 h-100">
 			<h4 class="my-0"><i>Output</i></h4>
 			${this._$wrpOutputRows}
 		</div>`
@@ -1044,7 +1044,7 @@ class LootGenOutput {
 			${$eleTitleSplit}
 		</h4>`;
 
-		this._$wrp = $$`<div class="flex-col lootg__wrp-output py-3 px-2 my-2 mr-1">
+		this._$wrp = $$`<div class="ve-flex-col lootg__wrp-output py-3 px-2 my-2 mr-1">
 			${$dispTitle}
 			<ul>
 				${this._render_$getPtValueSummary()}
@@ -1601,7 +1601,7 @@ class LootGenMagicItem extends BaseComponent {
 		const $btnReroll = this._$getBtnReroll();
 
 		return $$`<li class="split-v-center">
-			<div class="flex-v-center flex-wrap pr-3">
+			<div class="ve-flex-v-center ve-flex-wrap pr-3">
 				${$dispBaseEntry}
 				${$dispRoll}
 			</div>
@@ -1678,9 +1678,9 @@ class LootGenMagicItemSpellScroll extends LootGenMagicItem {
 		const $btnReroll = this._$getBtnReroll();
 
 		return $$`<li class="split-v-center">
-			<div class="flex-v-center flex-wrap pr-3">
+			<div class="ve-flex-v-center ve-flex-wrap pr-3">
 				${$dispBaseEntry}
-				<div class="flex-v-center italic mr-2">
+				<div class="ve-flex-v-center italic mr-2">
 					<span>(</span>
 					${$btnRerollSpell}
 					${$dispSpell}
@@ -1732,9 +1732,9 @@ class LootGenMagicItemSubItems extends LootGenMagicItem {
 		const $btnReroll = this._$getBtnReroll();
 
 		return $$`<li class="split-v-center">
-			<div class="flex-v-center flex-wrap pr-3">
+			<div class="ve-flex-v-center ve-flex-wrap pr-3">
 				${$dispBaseEntry}
-				<div class="flex-v-center italic mr-2">
+				<div class="ve-flex-v-center italic mr-2">
 					<span>(</span>
 					${$btnRerollSubItem}
 					${$dispSubItem}
@@ -1786,7 +1786,7 @@ class LootGenMagicItemTable extends LootGenMagicItem {
 
 		const $btnReroll = this._$getBtnReroll();
 
-		const $btnRerollSub = $(`<span class="roller render-roller ve-small self-flex-end">[reroll]</span>`)
+		const $btnRerollSub = $(`<span class="roller render-roller ve-small self-ve-flex-end">[reroll]</span>`)
 			.mousedown(evt => evt.preventDefault())
 			.click(async () => {
 				const {subRowRoll, subRow, subItem} = await LootGenMagicItemTable.pGetSubRollMeta({
@@ -1800,16 +1800,16 @@ class LootGenMagicItemTable extends LootGenMagicItem {
 				this._state.tableRoll = subRowRoll;
 			});
 
-		return $$`<li class="flex-col">
+		return $$`<li class="ve-flex-col">
 			<div class="split-v-center">
-				<div class="flex-v-center flex-wrap pr-3">
+				<div class="ve-flex-v-center ve-flex-wrap pr-3">
 					${$dispBaseEntry}
 					${$dispRoll}
 				</div>
 				${$btnReroll}
 			</div>
 			<div class="split-v-center pl-2">
-				<div class="flex-v-center flex-wrap pr-3">
+				<div class="ve-flex-v-center ve-flex-wrap pr-3">
 					<span class="ml-1 mr-2">&rarr;</span>
 					${$dispTableEntry}
 					${$dispTableRoll}

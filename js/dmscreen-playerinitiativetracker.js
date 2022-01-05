@@ -36,18 +36,18 @@ class InitiativeTrackerPlayer {
 						view.$wrpInitial.append($btnConnectRemote).append($btnConnectLocal);
 					});
 
-				const $wrpClient = $$`<div class="flex-col w-100">
-					<div class="flex-vh-center px-4 mb-2">
+				const $wrpClient = $$`<div class="ve-flex-col w-100">
+					<div class="ve-flex-vh-center px-4 mb-2">
 						<span style="min-width: fit-content;" class="mr-2">Player Name</span>
 						${$iptPlayerName}
 					</div>
 
-					<div class="flex-vh-center px-4 mb-2">
+					<div class="ve-flex-vh-center px-4 mb-2">
 						<span style="min-width: fit-content;" class="mr-2">Server Token</span>
 						${$iptServerToken}
 					</div>
 
-					<div class="split px-4 flex-vh-center">
+					<div class="split px-4 ve-flex-vh-center">
 						${$btnGenConnect}${$btnCancel}
 					</div>
 				</div>`.appendTo(view.$wrpInitial);
@@ -119,7 +119,7 @@ class InitiativeTrackerPlayer {
 							}
 						});
 
-					const $wrpSel = $$`<div class="flex-vh-center mb-2">
+					const $wrpSel = $$`<div class="ve-flex-vh-center mb-2">
 						${$selTracker}
 						${$btnOk}
 					</div>`.appendTo(view.$wrpInitial);
@@ -134,7 +134,7 @@ class InitiativeTrackerPlayer {
 				}
 			});
 
-		view.$wrpInitial = $$`<div class="flex-vh-center h-100 flex-col dm__panel-bg">
+		view.$wrpInitial = $$`<div class="ve-flex-vh-center h-100 ve-flex-col dm__panel-bg">
 			${$btnConnectRemote}
 			${$btnConnectLocal}
 		</div>`.appendTo($wrpTracker);

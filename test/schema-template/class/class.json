@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "2.9.1",
+	"version": "2.9.2",
 	"$id": "class.json",
 
 	"type": "object",
@@ -113,6 +113,14 @@
 				"isClassFeatureVariant": {"type": "boolean"},
 				"otherSources": {
 					"$ref": "../util.json#/definitions/otherSources"
+				},
+				"$$ifBrew": {
+					"foundryData": {
+						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryImg": {
+						"$ref": "../util.json#/definitions/foundryImg"
+					}
 				}
 			},
 			"required": [
@@ -125,6 +133,7 @@
 			],
 			"additionalProperties": false
 		},
+
 		"subclassFeature": {
 			"type": "object",
 			"properties": {
@@ -153,6 +162,14 @@
 				},
 				"otherSources": {
 					"$ref": "../util.json#/definitions/otherSources"
+				},
+				"$$ifBrew": {
+					"foundryData": {
+						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryImg": {
+						"$ref": "../util.json#/definitions/foundryImg"
+					}
 				}
 			},
 			"required": [
@@ -366,6 +383,12 @@
 								"items": {"$ref": "#/definitions/spellRef"}
 							}
 						}
+					},
+					"foundryData": {
+						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryImg": {
+						"$ref": "../util.json#/definitions/foundryImg"
 					}
 				}
 			},
@@ -707,6 +730,12 @@
 					"requirementsSpecial": {
 						"description": "For homebrew use.",
 						"type": "string"
+					},
+					"foundryData": {
+						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryImg": {
+						"$ref": "../util.json#/definitions/foundryImg"
 					}
 				}
 			},

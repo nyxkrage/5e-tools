@@ -38,7 +38,7 @@ class ItemsPage extends ListPage {
 		if (item._fIsMundane) {
 			const eleLi = e_({
 				tag: "div",
-				clazz: `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
+				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
 				click: (evt) => this._mundaneList.doSelect(listItem, evt),
 				contextmenu: (evt) => ListUtil.openContextMenu(evt, this._mundaneList, listItem),
 				children: [
@@ -84,7 +84,7 @@ class ItemsPage extends ListPage {
 		} else {
 			const eleLi = e_({
 				tag: "div",
-				clazz: `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
+				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
 				click: (evt) => this._magicList.doSelect(listItem, evt),
 				contextmenu: (evt) => ListUtil.openContextMenu(evt, this._magicList, listItem),
 				children: [
@@ -144,7 +144,7 @@ class ItemsPage extends ListPage {
 		const hash = UrlUtil.autoEncodeHash(item);
 
 		const $dispCount = $(`<span class="text-center col-2 pr-0">${count}</span>`);
-		const $ele = $$`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-6 pl-0">${item.name}</span>
 				<span class="text-center col-2">${item.weight ? `${item.weight} lb${item.weight > 1 ? "s" : ""}.` : "\u2014"}</span>
@@ -414,9 +414,9 @@ class ItemsPage extends ListPage {
 					"Items",
 					this._dataList,
 					{
-						name: {name: "Name", transform: true},
-						source: {name: "Source", transform: (it) => `<span class="${Parser.sourceJsonToColor(it)}" title="${Parser.sourceJsonToFull(it)}" ${BrewUtil.sourceJsonToStyle(it.source)}>${Parser.sourceJsonToAbv(it)}</span>`},
-						rarity: {name: "Rarity", transform: true},
+						name: UtilsTableview.COL_TRANSFORM_NAME,
+						source: UtilsTableview.COL_TRANSFORM_SOURCE,
+						rarity: {name: "Rarity"},
 						_type: {name: "Type", transform: it => [it._typeHtml || "", it._subTypeHtml || ""].filter(Boolean).join(", ")},
 						_attunement: {name: "Attunement", transform: it => it._attunement ? it._attunement.slice(1, it._attunement.length - 1) : ""},
 						_properties: {name: "Properties", transform: it => Renderer.item.getDamageAndPropertiesText(it).filter(Boolean).join(", ")},

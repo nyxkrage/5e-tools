@@ -775,7 +775,7 @@ NavBar.InteractionManager = class {
 		}
 
 		const $dispProgress = $(`<div class="page__disp-download-progress-bar"/>`);
-		const $dispPct = $(`<div class="page__disp-download-progress-text flex-vh-center bold">0%</div>`);
+		const $dispPct = $(`<div class="page__disp-download-progress-text ve-flex-vh-center bold">0%</div>`);
 
 		const $btnCancel = $(`<button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>`)
 			.click(() => {

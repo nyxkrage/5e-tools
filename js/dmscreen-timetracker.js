@@ -631,9 +631,9 @@ class TimeTrackerRoot extends TimeTrackerBase {
 	render ($parent) {
 		$parent.empty();
 
-		const $wrpClock = $(`<div class="flex-col w-100 h-100 overflow-y-auto">`);
-		const $wrpCalendar = $(`<div class="flex-col w-100 h-100 overflow-y-auto flex-h-center">`);
-		const $wrpSettings = $(`<div class="flex-col w-100 h-100 overflow-y-auto">`);
+		const $wrpClock = $(`<div class="ve-flex-col w-100 h-100 overflow-y-auto">`);
+		const $wrpCalendar = $(`<div class="ve-flex-col w-100 h-100 overflow-y-auto ve-flex-h-center">`);
+		const $wrpSettings = $(`<div class="ve-flex-col w-100 h-100 overflow-y-auto">`);
 
 		const pod = this.getPod();
 
@@ -661,8 +661,8 @@ class TimeTrackerRoot extends TimeTrackerBase {
 		const $btnReset = $(`<button class="btn btn-xs btn-danger" title="Reset Clock/Calendar Time to First Day"><span class="glyphicon glyphicon-refresh"></span></button>`)
 			.click(() => confirm("Are you sure?") && Object.assign(this._state, {time: 0, isBrowseMode: false, browseTime: null}));
 
-		$$`<div class="flex-col h-100">
-			<div class="flex p-1 no-shrink">
+		$$`<div class="ve-flex-col h-100">
+			<div class="ve-flex p-1 no-shrink">
 				${$btnShowClock}${$btnShowCalendar}${$btnShowSettings}${$btnReset}
 			</div>
 			<hr class="hr-0 mb-2 no-shrink">
@@ -787,9 +787,9 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 
 		const $dispReadableDate = $(`<div class="small-caps"/>`);
 		const $dispReadableYear = $(`<div class="small-caps small text-muted mb-2"/>`);
-		const $wrpMoons = $(`<div class="flex flex-wrap w-100 no-shrink flex-vh-center mb-3"/>`);
+		const $wrpMoons = $(`<div class="ve-flex ve-flex-wrap w-100 no-shrink ve-flex-vh-center mb-3"/>`);
 
-		const $wrpDayNight = $(`<div class="flex w-100 no-shrink flex-h-center flex-v-baseline mt-2"/>`);
+		const $wrpDayNight = $(`<div class="ve-flex w-100 no-shrink ve-flex-h-center ve-flex-v-baseline mt-2"/>`);
 
 		const getSecsToNextDay = (timeInfo) => {
 			const {
@@ -876,11 +876,11 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 		const $iptSeconds = $getIpt("secondsPerMinute", "numSecs");
 
 		const $wrpDays = $(`<div class="small-caps text-center mb-1"/>`);
-		const $wrpHours = $$`<div class="flex flex-vh-center">${$iptHours}</div>`;
-		const $wrpMinutes = $$`<div class="flex flex-vh-center">${$iptMinutes}</div>`;
-		const $wrpSeconds = $$`<div class="flex flex-vh-center">${$iptSeconds}</div>`;
+		const $wrpHours = $$`<div class="ve-flex ve-flex-vh-center">${$iptHours}</div>`;
+		const $wrpMinutes = $$`<div class="ve-flex ve-flex-vh-center">${$iptMinutes}</div>`;
+		const $wrpSeconds = $$`<div class="ve-flex ve-flex-vh-center">${$iptSeconds}</div>`;
 
-		const $wrpEventsEncounters = $(`<div class="flex-vh-center relative flex-wrap dm-time__wrp-clock-events"/>`);
+		const $wrpEventsEncounters = $(`<div class="ve-flex-vh-center relative ve-flex-wrap dm-time__wrp-clock-events"/>`);
 		const $hrEventsEncounters = $(`<hr class="hr-2">`);
 
 		// cache rendering
@@ -920,11 +920,11 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 				} else {
 					$wrpMoons.show();
 					todayMoonInfos.forEach(moon => {
-						$$`<div class="flex-v-center mr-2 ui-tip__parent">
+						$$`<div class="ve-flex-v-center mr-2 ui-tip__parent">
 							${TimeTrackerBase.$getCvsMoon(moon).addClass("mr-2").addClass("dm-time__clock-moon-phase").title(null)}
-							<div class="flex-col ui-tip__child">
-								<div class="flex">${moon.name}</div>
-								<div class="flex small"><i class="mr-1 no-wrap">${moon.phaseName}</i><span class="text-muted no-wrap">(Day ${moon.dayOfPeriod + 1}/${moon.period})</span></div>
+							<div class="ve-flex-col ui-tip__child">
+								<div class="ve-flex">${moon.name}</div>
+								<div class="ve-flex small"><i class="mr-1 no-wrap">${moon.phaseName}</i><span class="text-muted no-wrap">(Day ${moon.dayOfPeriod + 1}/${moon.period})</span></div>
 							</div>
 						</div>`.appendTo($wrpMoons);
 					});
@@ -1125,41 +1125,41 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 		const $btnAddTurn = $(`<button class="btn btn-xs btn-default" title="Add Round (6 seconds) (SHIFT for Subtract)">Add Round</button>`)
 			.click(evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("secondsPerRound"), {isBase: true}));
 
-		const $wrpWeather = $(`<div class="flex dm-time__wrp-weather">`);
+		const $wrpWeather = $(`<div class="ve-flex dm-time__wrp-weather">`);
 		this._compWeather.render($wrpWeather, this._parent);
 
-		$$`<div class="flex h-100">
-			<div class="flex-col flex-vh-center w-100">
+		$$`<div class="ve-flex h-100">
+			<div class="ve-flex-col ve-flex-vh-center w-100">
 				${$dispReadableDate}
 				${$dispReadableYear}
 				${$wrpMoons}
-				<div class="flex flex-v-center relative">
-					<div class="flex-col">
-						<div class="flex-vh-center">${$btnAddHour}</div>
+				<div class="ve-flex ve-flex-v-center relative">
+					<div class="ve-flex-col">
+						<div class="ve-flex-vh-center">${$btnAddHour}</div>
 						${$wrpHours}
-						<div class="flex-vh-center">${$btnSubHour}</div>
+						<div class="ve-flex-vh-center">${$btnSubHour}</div>
 					</div>
 					<div class="dm-time__sep-time">:</div>
-					<div class="flex-col">
-						<div class="flex-vh-center">${$btnAddMinute}</div>
+					<div class="ve-flex-col">
+						<div class="ve-flex-vh-center">${$btnAddMinute}</div>
 						${$wrpMinutes}
-						<div class="flex-vh-center">${$btnSubMinute}</div>
+						<div class="ve-flex-vh-center">${$btnSubMinute}</div>
 					</div>
 					<div class="dm-time__sep-time">:</div>
-					<div class="flex-col">
-						<div class="flex-vh-center">${$btnAddSecond}</div>
+					<div class="ve-flex-col">
+						<div class="ve-flex-vh-center">${$btnAddSecond}</div>
 						${$wrpSeconds}
-						<div class="flex-vh-center">${$btnSubSecond}</div>
+						<div class="ve-flex-vh-center">${$btnSubSecond}</div>
 					</div>
-					<div class="flex-col ml-2">${$btnIsPaused}</div>
+					<div class="ve-flex-col ml-2">${$btnIsPaused}</div>
 				</div>
 				${$wrpDayNight}
 				<hr class="hr-3">
-				<div class="flex-col">
-					<div class="flex mb-2">
+				<div class="ve-flex-col">
+					<div class="ve-flex mb-2">
 						${$btnAddLongRest}${$btnAddShortRest}${$btnAddTurn}
 					</div>
-					<div class="flex">
+					<div class="ve-flex">
 						${$btnNextSunrise}
 						${$btnNextDay}
 					</div>
@@ -1168,9 +1168,9 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 
 			<div class="dm-time__bar-clock"></div>
 
-			<div class="flex-col no-shrink pr-1 flex-h-center">
+			<div class="ve-flex-col no-shrink pr-1 ve-flex-h-center">
 				${$wrpDays}
-				<div class="small flex-vh-center btn-group">
+				<div class="small ve-flex-vh-center btn-group">
 					${$btnSubDay}${$btnAddDay}
 				</div>
 				<hr class="hr-2">
@@ -1390,11 +1390,11 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 		this._addHookBase("windSpeed", hookEnvEffects);
 		hookEnvEffects();
 
-		$$`<div class="flex-col w-100 flex-vh-center">
-			<div class="flex-vh-center small mb-1"><span class="small-caps mr-2">Weather</span>${$btnRandomise}</div>
+		$$`<div class="ve-flex-col w-100 ve-flex-vh-center">
+			<div class="ve-flex-vh-center small mb-1"><span class="small-caps mr-2">Weather</span>${$btnRandomise}</div>
 			<div class="mb-2">${$btnTemperature}${$btnPrecipitation}</div>
 
-			<div class="flex-col flex-vh-center">
+			<div class="ve-flex-col ve-flex-vh-center">
 				<div class="small small-caps">Wind</div>
 				<div class="mb-1">${$btnWindDirection}</div>
 				<div>${$btnWindSpeed}</div>
@@ -1490,7 +1490,7 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				};
 			})
 			.map(v => {
-				const $btn = $$`<div class="m-2 btn btn-default ui__btn-xxl-square flex-col flex-h-center">
+				const $btn = $$`<div class="m-2 btn btn-default ui__btn-xxl-square ve-flex-col ve-flex-h-center">
 						<div class="ui-icn__wrp-icon ${v.iconClass} mb-1"></div>
 						<div class="whitespace-normal w-100">${v.name}</div>
 					</div>`
@@ -1523,7 +1523,7 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				};
 			})
 			.map(v => {
-				const $btn = $$`<div class="m-2 btn btn-default ui__btn-xxl-square flex-col flex-h-center">
+				const $btn = $$`<div class="m-2 btn btn-default ui__btn-xxl-square ve-flex-col ve-flex-h-center">
 						<div class="ui-icn__wrp-icon ${v.iconClass} mb-1"></div>
 						<div class="whitespace-normal w-100">${v.name}</div>
 					</div>`
@@ -1560,7 +1560,7 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				};
 			})
 			.map(v => {
-				const $btn = $$`<div class="m-2 btn btn-default ui__btn-xxl-square flex-col flex-h-center">
+				const $btn = $$`<div class="m-2 btn btn-default ui__btn-xxl-square ve-flex-col ve-flex-h-center">
 						${v.iconContent}
 						<div class="whitespace-normal w-100">${v.name}</div>
 					</div>`
@@ -1583,23 +1583,23 @@ class TimeTrackerRoot_Clock_RandomWeather extends BaseComponent {
 				} else doClose(true);
 			});
 
-		$$`<div class="flex-col w-100 h-100">
-			<div class="flex-col">
+		$$`<div class="ve-flex-col w-100 h-100">
+			<div class="ve-flex-col">
 				<h5>Allowed Temperatures</h5>
-				<div class="flex">${$btnsTemperature}</div>
+				<div class="ve-flex">${$btnsTemperature}</div>
 			</div>
-			<div class="flex-col">
+			<div class="ve-flex-col">
 				<h5>Allowed Precipitation Types</h5>
-				<div class="flex">${$btnsPrecipitation}</div>
+				<div class="ve-flex">${$btnsPrecipitation}</div>
 			</div>
-			<div class="flex-v-center mt-2">
+			<div class="ve-flex-v-center mt-2">
 				<h5 class="mr-2">Prevailing Wind Direction</h5>${$btnWindDirection}
 			</div>
-			<div class="flex-col">
+			<div class="ve-flex-col">
 				<h5>Allowed Wind Speeds</h5>
-				<div class="flex">${$btnsWindSpeed}</div>
+				<div class="ve-flex">${$btnsWindSpeed}</div>
 			</div>
-			<div class="flex-vh-center">${$btnOk}</div>
+			<div class="ve-flex-vh-center">${$btnOk}</div>
 		</div>`.appendTo($modalInner);
 	}
 
@@ -1810,9 +1810,9 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		this._parent.addHook("moons", hookCalendar);
 		hookCalendar();
 
-		$$`<div class="flex-col h-100 flex-h-center">
+		$$`<div class="ve-flex-col h-100 ve-flex-h-center">
 			${$dispDayReadableDate}
-			<div class="split mb-2 flex-v-top">
+			<div class="split mb-2 ve-flex-v-top">
 				${$dispYear}
 				${$btnBrowseMode}
 			</div>
@@ -1938,21 +1938,21 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				doModTime(diffDays * secsPerDay);
 			});
 
-		const $wrpDateControls = $$`<div class="flex flex-vh-center">
-			<div class="flex btn-group mr-2">
+		const $wrpDateControls = $$`<div class="ve-flex ve-flex-vh-center">
+			<div class="ve-flex btn-group mr-2">
 				${$btnSubYear}
 				${$btnSubMonth}
 				${$btnSubWeek}
 				${$btnSubDay}
 			</div>
-			<div class="mr-2 flex-v-center">
+			<div class="mr-2 ve-flex-v-center">
 				${$iptYear}
 				<div class="no-shrink dm-time__calendar-date-sep">/</div>
 				${$iptMonth}
 				${$iptDay ? `<div class="no-shrink dm-time__calendar-date-sep">/</div>` : ""}
 				${$iptDay}
 			</div>
-			<div class="flex-h-right btn-group">
+			<div class="ve-flex-h-right btn-group">
 				${$btnAddDay}
 				${$btnAddWeek}
 				${$btnAddMonth}
@@ -2014,7 +2014,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 
 			if (xPos === 0 && opts.hasRowLabels && i < daysInMonth) {
 				const weekNum = Math.floor(monthStartDayOfYear / daysPerWeek) + yPos;
-				$(`<div class="small text-muted small-caps flex-vh-center" title="Week ${weekNum}">${weekNum}</div>`)
+				$(`<div class="small text-muted small-caps ve-flex-vh-center" title="Week ${weekNum}">${weekNum}</div>`)
 					.css({
 						"grid-column-start": `${xPos + 1}`,
 						"grid-column-end": `${xPos + 2}`,
@@ -2047,7 +2047,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						}
 					});
 
-					moonPart = $$`<div class="dm-time__disp-day-moon flex-col">${$renderedMoons}</div>`;
+					moonPart = $$`<div class="dm-time__disp-day-moon ve-flex-col">${$renderedMoons}</div>`;
 				} else moonPart = "";
 
 				$ele = $$`<div class="dm-time__disp-calendar-day btn-xxs m-1 relative ${i === date && !opts.isHideDay ? "dm-time__disp-calendar-day--active" : ""}">
@@ -2148,7 +2148,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						placeholder: "Select an encounter",
 						title: "Select Saved Encounter",
 						fnGetExtraState: () => ({isCopy: $cbCopy.prop("checked")}),
-						$elePost: $$`<label class="flex-label flex-h-center w-100 mb-2">
+						$elePost: $$`<label class="ve-flex-label ve-flex-h-center w-100 mb-2">
 								<span class="mr-2 help" title="Turning this on will make a copy of the encounter as it currently exists, allowing the original to be modified or deleted without affecting the copy. Leaving this off will instead keep a reference to the encounter, so any change to the encounter will be reflected here.">Make Copy of Encounter</span>
 								${$cbCopy}
 							</label>`,
@@ -2282,16 +2282,16 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		});
 
 		const $hrMoons = $(`<hr class="hr-2 no-shrink">`);
-		const $wrpMoons = $(`<div class="flex flex-wrap w-100 no-shrink flex-v-center"/>`);
+		const $wrpMoons = $(`<div class="ve-flex ve-flex-wrap w-100 no-shrink ve-flex-v-center"/>`);
 		const hookMoons = () => {
 			const todayMoonInfos = getMoonInfos(moonDay);
 			$wrpMoons.empty();
 			todayMoonInfos.forEach(moon => {
-				$$`<div class="flex-v-center mr-2">
+				$$`<div class="ve-flex-v-center mr-2">
 					${TimeTrackerBase.$getCvsMoon(moon).addClass("mr-2")}
-					<div class="flex-col">
-						<div class="flex">${moon.name}</div>
-						<div class="flex small"><i class="mr-1">${moon.phaseName}</i><span class="text-muted">(Day ${moon.dayOfPeriod + 1}/${moon.period})</span></div>
+					<div class="ve-flex-col">
+						<div class="ve-flex">${moon.name}</div>
+						<div class="ve-flex small"><i class="mr-1">${moon.phaseName}</i><span class="text-muted">(Day ${moon.dayOfPeriod + 1}/${moon.period})</span></div>
 					</div>
 				</div>`.appendTo($wrpMoons);
 			});
@@ -2300,7 +2300,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		this._parent.addHook("moons", hookMoons);
 		hookMoons();
 
-		const $wrpEvents = $(`<div class="flex-col w-100 overflow-y-auto dm-time__day-entry-wrapper"/>`);
+		const $wrpEvents = $(`<div class="ve-flex-col w-100 overflow-y-auto dm-time__day-entry-wrapper"/>`);
 		const hookEvents = () => {
 			const todayEvents = getEvents(year, eventDay);
 			$wrpEvents.empty();
@@ -2311,7 +2311,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				this._tmpComps.push(comp);
 				comp.render($wrpEvents, this._parent, fnOpenCalendarPicker);
 			});
-			if (!todayEvents.length) $wrpEvents.append(`<div class="flex-vh-center italic">(No events)</div>`);
+			if (!todayEvents.length) $wrpEvents.append(`<div class="ve-flex-vh-center italic">(No events)</div>`);
 			if (this._eventToEdit) {
 				const toEdit = this._tmpComps.find(it => it._state.id === this._eventToEdit);
 				this._eventToEdit = null;
@@ -2321,7 +2321,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 		this._parent.addHook("events", hookEvents);
 		hookEvents();
 
-		const $wrpEncounters = $(`<div class="flex-col w-100 overflow-y-auto dm-time__day-entry-wrapper"/>`);
+		const $wrpEncounters = $(`<div class="ve-flex-col w-100 overflow-y-auto dm-time__day-entry-wrapper"/>`);
 		const hookEncounters = async () => {
 			await this._pLock("encounters");
 
@@ -2414,16 +2414,16 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						this._parent.triggerMapUpdate("encounters");
 					});
 
-				$$`<div class="flex-v-center w-100 py-1 px-2 stripe-even">
+				$$`<div class="ve-flex-v-center w-100 py-1 px-2 stripe-even">
 					${$iptName}
 					${$btnRunEncounter}
 					${$btnResetUse}
 					${$btnSaveToFile}
-					<label class="flex-v-center ${timeInputs ? "mr-2" : "mr-3"}">
+					<label class="ve-flex-v-center ${timeInputs ? "mr-2" : "mr-3"}">
 						<div class="mr-1 no-wrap">Has Time?</div>
 						${$cbHasTime}
 					</label>
-					${timeInputs ? $$`<div class="flex-v-center mr-3">
+					${timeInputs ? $$`<div class="ve-flex-v-center mr-3">
 						${timeInputs.$iptHours}
 						<div>:</div>
 						${timeInputs.$iptMinutes}
@@ -2434,25 +2434,25 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 					${$btnDelete}
 				</div>`.appendTo($wrpEncounters);
 			});
-			if (!todayEncounters.length) $wrpEncounters.append(`<div class="flex-vh-center italic">(No encounters)</div>`);
+			if (!todayEncounters.length) $wrpEncounters.append(`<div class="ve-flex-vh-center italic">(No encounters)</div>`);
 
 			this._unlock("encounters");
 		};
 		this._parent.addHook("encounters", hookEncounters);
 		hookEncounters();
 
-		$$`<div class="flex-col w-100 h-100 px-2">
+		$$`<div class="ve-flex-col w-100 h-100 px-2">
 			${$wrpMoons}
 			${$hrMoons}
-			<div class="split flex-v-center mb-1 no-shrink">
+			<div class="split ve-flex-v-center mb-1 no-shrink">
 				<div class="underline dm-time__day-entry-header">Events</div>
-				<div class="btn-group flex">${$btnAddEvent}${$btnAddEventAtTime}</div>
+				<div class="btn-group ve-flex">${$btnAddEvent}${$btnAddEventAtTime}</div>
 			</div>
 			${$wrpEvents}
 			<hr class="hr-2 no-shrink">
-			<div class="split flex-v-center mb-1 no-shrink">
+			<div class="split ve-flex-v-center mb-1 no-shrink">
 				<div class="underline dm-time__day-entry-header">Encounters</div>
-				<div class="btn-group flex">${$btnAddEncounter}${$btnAddEncounterAtTime}</div>
+				<div class="btn-group ve-flex">${$btnAddEncounter}${$btnAddEncounterAtTime}</div>
 			</div>
 			${$wrpEncounters}
 		</div>`.appendTo($modalInner);
@@ -2509,7 +2509,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						},
 					);
 
-					const $wrpExact = $$`<div class="flex-vh-center">
+					const $wrpExact = $$`<div class="ve-flex-vh-center">
 						${$iptExHour}
 						<div class="mr-1">:</div>
 						${$iptExMinutes}
@@ -2548,7 +2548,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 						},
 					);
 
-					const $wrpOffset = $$`<div class="flex-vh-center">
+					const $wrpOffset = $$`<div class="ve-flex-vh-center">
 						${$iptOffsetHour}
 						<div class="mr-2 no-wrap">hours,</div>
 						${$iptOffsetMinutes}
@@ -2567,8 +2567,8 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 					const $btnOk = $(`<button class="btn btn-default">Enter</button>`)
 						.click(() => doClose(true));
 
-					$$`<div class="flex-col h-100">
-						<div class="flex-vh-center flex-col w-100 h-100">
+					$$`<div class="ve-flex-col h-100">
+						<div class="ve-flex-vh-center ve-flex-col w-100 h-100">
 							${$selMode}
 							${$wrpExact}
 							${$wrpOffset}
@@ -2834,7 +2834,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			TimeTrackerRoot.getGenericSeason,
 			{
 				fnSort: (a, b) => SortUtil.ascSort(a.startDay, b.startDay),
-				isEmptyMessage: `<div class="flex-vh-center my-1 italic w-100">(No seasons)</div>`,
+				isEmptyMessage: `<div class="ve-flex-vh-center my-1 italic w-100">(No seasons)</div>`,
 			},
 		);
 		const metaYears = this._render_getChildMeta(
@@ -2844,7 +2844,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			TimeTrackerRoot.getGenericYear,
 			{
 				fnSort: (a, b) => SortUtil.ascSort(a.year, b.year),
-				isEmptyMessage: `<div class="flex-vh-center my-1 italic w-100">(No named years)</div>`,
+				isEmptyMessage: `<div class="ve-flex-vh-center my-1 italic w-100">(No named years)</div>`,
 			},
 		);
 		const metaEras = this._render_getChildMeta(
@@ -2854,7 +2854,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			TimeTrackerRoot.getGenericEra,
 			{
 				fnSort: (a, b) => SortUtil.ascSort(a.startYear, b.startYear),
-				isEmptyMessage: `<div class="flex-vh-center my-1 italic w-100">(No eras)</div>`,
+				isEmptyMessage: `<div class="ve-flex-vh-center my-1 italic w-100">(No eras)</div>`,
 			},
 		);
 		const metaMoons = this._render_getChildMeta(
@@ -2864,7 +2864,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 			TimeTrackerRoot.getGenericMoon,
 			{
 				fnSort: (a, b) => SortUtil.ascSort(a.phaseOffset, b.phaseOffset) || SortUtil.ascSort(a.name, b.name),
-				isEmptyMessage: `<div class="flex-vh-center my-1 italic w-100">(No moons)</div>`,
+				isEmptyMessage: `<div class="ve-flex-vh-center my-1 italic w-100">(No moons)</div>`,
 			},
 		);
 
@@ -2913,8 +2913,8 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		const $headDays = $$`<div class="split-v-center mb-1"><div class="bold">Days</div>${$btnHideSectDays}</div>`;
 
 		const $sectMonths = $$`<div class="no-shrink w-100">
-			<div class="flex w-100 mb-1 mt-1">
-				<div class="w-100 flex-v-center">Name</div>
+			<div class="ve-flex w-100 mb-1 mt-1">
+				<div class="w-100 ve-flex-v-center">Name</div>
 				<div class="w-25 no-shrink text-center mr-2">Days</div>
 				<div class="dm-time__spc-drag-header no-shrink mr-2"/>
 				${metaMonths.$btnAdd.addClass("no-shrink")}
@@ -2925,8 +2925,8 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		const $headMonths = $$`<div class="split-v-center mb-1"><div class="bold">Months</div>${$btnHideSectMonths}</div>`;
 
 		const $sectSeasons = $$`<div class="no-shrink w-100">
-			<div class="flex w-100 mb-1 mt-1">
-				<div class="w-100 flex-v-center">Name</div>
+			<div class="ve-flex w-100 mb-1 mt-1">
+				<div class="w-100 ve-flex-v-center">Name</div>
 				<div class="w-15 no-shrink text-center mr-2 help-subtle" title="In hours. For example, to have the sun rise at 05:00, enter &quot;5&quot;.">Sunrise</div>
 				<div class="w-15 no-shrink text-center mr-2 help-subtle" title="In hours. For example, to have the sun set at 22:00, enter &quot;22&quot;.">Sunset</div>
 				<div class="w-15 no-shrink text-center mr-2 help-subtle" title="For example, to have a season start on the 1st day of the year, enter &quot;1&quot;.">Start</div>
@@ -2939,8 +2939,8 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		const $headSeasons = $$`<div class="split-v-center mb-1"><div class="bold">Seasons</div>${$btnHideSectSeasons}</div>`;
 
 		const $sectYears = $$`<div class="no-shrink w-100">
-			<div class="flex w-100 mb-1 mt-1">
-				<div class="w-100 flex-v-center">Name</div>
+			<div class="ve-flex w-100 mb-1 mt-1">
+				<div class="w-100 ve-flex-v-center">Name</div>
 				<div class="w-25 no-shrink text-center mr-2">Year</div>
 				${metaYears.$btnAdd.addClass("no-shrink")}
 			</div>
@@ -2950,8 +2950,8 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		const $headYears = $$`<div class="split-v-center mb-1"><div class="bold">Named Years</div>${$btnHideSectYears}</div>`;
 
 		const $sectEras = $$`<div class="no-shrink w-100">
-			<div class="flex w-100 mb-1 mt-1">
-				<div class="w-100 flex-v-center">Name</div>
+			<div class="ve-flex w-100 mb-1 mt-1">
+				<div class="w-100 ve-flex-v-center">Name</div>
 				<div class="w-15 no-shrink text-center mr-2">Abbv.</div>
 				<div class="w-15 no-shrink text-center mr-2">Start</div>
 				<div class="w-15 no-shrink text-center mr-2">End</div>
@@ -2963,8 +2963,8 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		const $headEras = $$`<div class="split-v-center mb-1"><div class="bold">Eras</div>${$btnHideSectEras}</div>`;
 
 		const $sectMoons = $$`<div class="no-shrink w-100">
-			<div class="flex w-100 mb-1 mt-1">
-				<div class="w-100 flex-v-center">Moon</div>
+			<div class="ve-flex w-100 mb-1 mt-1">
+				<div class="w-100 ve-flex-v-center">Moon</div>
 				<div class="w-25 no-shrink text-center mr-2 help-subtle" title="For example, to have a new moon appear on the third day of the first year, enter &quot;3&quot;.">Offset</div>
 				<div class="w-25 no-shrink text-center mr-2 help-subtle" title="Measured in days. Multiples of eight are recommended, as there are eight distinct moon phases.">Period</div>
 				${metaMoons.$btnAdd.addClass("no-shrink")}
@@ -2976,7 +2976,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 
 		btnHideHooks.forEach(fn => fn());
 
-		$$`<div class="flex-col pl-2 pr-3">
+		$$`<div class="ve-flex-col pl-2 pr-3">
 			${$headClock}
 			${$sectClock}
 			<hr class="hr-0 mb-2">
@@ -3023,7 +3023,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 	_render_getChildMeta (prop, Cls, name, fnGetGeneric, opts) {
 		opts = opts || {};
 
-		const $wrp = $(`<div class="flex-col w-100 relative"/>`);
+		const $wrp = $(`<div class="ve-flex-col w-100 relative"/>`);
 
 		let lastState;
 		const hook = () => {
@@ -3094,7 +3094,7 @@ class TimeTrackerRoot_Settings_Day extends TimeTrackerComponent {
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger no-shrink" title="Delete Day"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => this._state.isDeleted = true);
 
-		this._$rendered = $$`<div class="flex my-1 dm-time__row-delete">
+		this._$rendered = $$`<div class="ve-flex my-1 dm-time__row-delete">
 			${$iptName}
 			${$padDrag}
 			${$btnRemove}
@@ -3134,7 +3134,7 @@ class TimeTrackerRoot_Settings_Month extends TimeTrackerComponent {
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger no-shrink" title="Delete Month"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => this._state.isDeleted = true);
 
-		this._$rendered = $$`<div class="flex my-1 dm-time__row-delete">
+		this._$rendered = $$`<div class="ve-flex my-1 dm-time__row-delete">
 			${$iptName}
 			${$iptDays}
 			${$padDrag}
@@ -3169,7 +3169,7 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 		};
 		this._addHookBase("entries", hookEntries);
 
-		const $wrpEntries = $$`<div class="flex">
+		const $wrpEntries = $$`<div class="ve-flex">
 			<div class="no-shrink dm-time__bar-entry"></div>
 			${$dispEntries}
 		</div>`;
@@ -3241,16 +3241,16 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 		hookName();
 		hookShowHide();
 
-		$$`<div class="flex-col py-1 px-2 stripe-even">
-			<div class="flex w-100">
+		$$`<div class="ve-flex-col py-1 px-2 stripe-even">
+			<div class="ve-flex w-100">
 				${$iptName}
 				${$btnShowHide}
 				${$btnEdit}
-				<label class="flex-v-center ${timeInputs ? "mr-2" : "mr-3"}">
+				<label class="ve-flex-v-center ${timeInputs ? "mr-2" : "mr-3"}">
 					<div class="mr-1 no-wrap">Has Time?</div>
 					${$cbHasTime}
 				</label>
-				${timeInputs ? $$`<div class="flex-v-center mr-3">
+				${timeInputs ? $$`<div class="ve-flex-v-center mr-3">
 					${timeInputs.$iptHours}
 					<div>:</div>
 					${timeInputs.$iptMinutes}
@@ -3286,10 +3286,10 @@ class TimeTrackerRoot_Settings_Event extends TimeTrackerComponent {
 		const $btnOk = $(`<button class="btn btn-default">Save</button>`)
 			.click(() => doClose(true));
 
-		$$`<div class="flex-col h-100">
+		$$`<div class="ve-flex-col h-100">
 			${$iptName}
 			${$iptEntries}
-			<div class="flex-h-right no-shrink">${$btnOk}</div>
+			<div class="ve-flex-h-right no-shrink">${$btnOk}</div>
 		</div>`.appendTo($modalInner);
 	}
 
@@ -3327,7 +3327,7 @@ class TimeTrackerRoot_Settings_Season extends TimeTrackerComponent {
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger no-shrink" title="Delete Season"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => this._state.isDeleted = true);
 
-		$$`<div class="flex my-1">
+		$$`<div class="ve-flex my-1">
 			${$iptName}
 			${$iptSunrise}
 			${$iptSunset}
@@ -3351,7 +3351,7 @@ class TimeTrackerRoot_Settings_Year extends TimeTrackerComponent {
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger no-shrink" title="Delete Year"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => this._state.isDeleted = true);
 
-		$$`<div class="flex my-1">
+		$$`<div class="ve-flex my-1">
 			${$iptName}
 			${$iptYear}
 			${$btnRemove}
@@ -3375,7 +3375,7 @@ class TimeTrackerRoot_Settings_Era extends TimeTrackerComponent {
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger no-shrink" title="Delete Year"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => this._state.isDeleted = true);
 
-		$$`<div class="flex my-1">
+		$$`<div class="ve-flex my-1">
 			${$iptName}
 			${$iptAbbreviation}
 			${$iptYearsStart}
@@ -3399,7 +3399,7 @@ class TimeTrackerRoot_Settings_Moon extends TimeTrackerComponent {
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger no-shrink" title="Delete Moon"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => this._state.isDeleted = true);
 
-		$$`<div class="flex my-1">
+		$$`<div class="ve-flex my-1">
 			${$iptName}
 			${$iptColor}
 			${$iptPhaseOffset}

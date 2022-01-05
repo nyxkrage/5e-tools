@@ -32,7 +32,7 @@ class DmMapper {
 			isUncappedHeight: true,
 		});
 
-		$modalInner.append(`<div class="flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
+		$modalInner.append(`<div class="ve-flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
 
 		const {page, source, hash} = SearchWidget.docToPageSourceHash(chosenDoc);
 		const adventurePack = await Renderer.hover.pCacheAndGet(page, source, hash);
@@ -75,13 +75,13 @@ class DmMapper {
 		if (!mapDatas.length) {
 			$modalInner
 				.empty()
-				.append(`<div class="flex-vh-center w-100 h-100"><span class="dnd-font">Adventure did not contain any valid maps!</span></div>`);
+				.append(`<div class="ve-flex-vh-center w-100 h-100"><span class="dnd-font">Adventure did not contain any valid maps!</span></div>`);
 			return;
 		}
 
 		$modalInner
 			.empty()
-			.removeClass("flex-col")
+			.removeClass("ve-flex-col")
 			.addClass("text-center");
 
 		mapDatas.map(mapData => {
@@ -112,7 +112,7 @@ class DmMapperRoot extends BaseComponent {
 	render ($parent) {
 		$parent.empty();
 
-		$parent.append(`<div class="flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
+		$parent.append(`<div class="ve-flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
 
 		RenderMap.$pGetRendered(this._state)
 			.then($ele => $parent.empty().append($ele));

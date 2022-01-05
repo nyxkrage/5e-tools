@@ -43,7 +43,7 @@ class ManageBrew {
 								keys.forEach(k => {
 									const toDisplay = displayFn ? displayFn(BrewUtil.homebrewMeta, metaType, k) : k.toTitleCase();
 
-									const $row = $(`<div class="lst__row manbrew__row lst--border flex-v-center lst__row-inner">
+									const $row = $(`<div class="lst__row manbrew__row lst--border ve-flex-v-center lst__row-inner">
 										<span class="action col-10">${toDisplay}</span>
 									</div>`).appendTo($lst);
 

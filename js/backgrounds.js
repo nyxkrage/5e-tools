@@ -21,7 +21,7 @@ class BackgroundPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(bg, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const name = bg.name.replace("Variant ", "");
 		const hash = UrlUtil.autoEncodeHash(bg);
@@ -65,7 +65,7 @@ class BackgroundPage extends ListPage {
 		const hash = UrlUtil.autoEncodeHash(bg);
 		const skills = Renderer.background.getSkillSummary(bg.skillProficiencies || [], true);
 
-		const $ele = $$`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-4 pl-0">${name}</span>
 				<span class="col-8 pr-0">${skills}</span>

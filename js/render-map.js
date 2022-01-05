@@ -317,9 +317,9 @@ class RenderMap {
 				zoomChangeDebounced(direction);
 			});
 
-		const $out = $$`<div class="flex-col w-100 h-100">
-			<div class="flex no-shrink p-2">
-				<div class="btn-group flex mr-2">
+		const $out = $$`<div class="ve-flex-col w-100 h-100">
+			<div class="ve-flex no-shrink p-2">
+				<div class="btn-group ve-flex mr-2">
 					${$btnZoomMinus}
 					${$btnZoomPlus}
 				</div>

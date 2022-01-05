@@ -420,7 +420,7 @@ class CreatureBuilder extends Builder {
 			},
 		);
 		const [infoTab, speciesTab, coreTab, defenseTab, abilTab, miscTab] = tabs;
-		$$`<div class="flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
 		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
 
 		// INFO
@@ -653,7 +653,7 @@ class CreatureBuilder extends Builder {
 				$wrp.empty().remove();
 				setStateCreature();
 			});
-		const $wrp = $$`<div class="flex mb-2">${$iptPrefix}${$iptTag}${$btnAddGeneric}${$btnRemove}</div>`;
+		const $wrp = $$`<div class="ve-flex mb-2">${$iptPrefix}${$iptTag}${$btnAddGeneric}${$btnRemove}</div>`;
 		const out = {$wrp, $iptPrefix, $iptTag};
 		tagRows.push(out);
 		return out;
@@ -712,7 +712,7 @@ class CreatureBuilder extends Builder {
 		const $cbFullName = $(`<input type="checkbox">`)
 			.change(() => setState(1))
 			.prop("checked", this._state.shortName === true);
-		const $stageMatchesName = $$`<label class="flex-v-center"><div class="mr-2">Enabled</div>${$cbFullName}</label>`
+		const $stageMatchesName = $$`<label class="ve-flex-v-center"><div class="mr-2">Enabled</div>${$cbFullName}</label>`
 			.toggleVe(initialMode === "1")
 			.appendTo($rowInner);
 
@@ -820,9 +820,9 @@ class CreatureBuilder extends Builder {
 			.change(() => doUpdateState());
 		const $iptNote = $(`<input class="form-control form-control--minimal input-xs mx-1" placeholder="Alignment note">`)
 			.change(() => doUpdateState());
-		const $stageMultiple = $$`<div class="flex-col">
-			<div class="mb-2 flex-v-center">${$iptChance}<span>%</span></div>
-			<div class="mb-2 flex-v-center"><span>(</span>${$iptNote}<span>)</span></div>
+		const $stageMultiple = $$`<div class="ve-flex-col">
+			<div class="mb-2 ve-flex-v-center">${$iptChance}<span>%</span></div>
+			<div class="mb-2 ve-flex-v-center"><span>(</span>${$iptNote}<span>)</span></div>
 		</div>`.toggleVe(initialMode === "1");
 		if (initialMode === "1" && alignment) {
 			$iptChance.val(alignment.chance);
@@ -842,7 +842,7 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">${$selMode}${$stageSingle}${$stageMultiple}${$stageSpecial}${$$`<div class="text-right">${$btnRemove}</div>`}</div>`;
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">${$selMode}${$stageSingle}${$stageMultiple}${$stageSpecial}${$$`<div class="text-right">${$btnRemove}</div>`}</div>`;
 		const out = {$wrp, getAlignment};
 		alignmentRows.push(out);
 		return out;
@@ -977,7 +977,7 @@ class CreatureBuilder extends Builder {
 				CreatureBuilder.__$getAcInput__getFromRow(null, fromRows, doUpdateState).$wrpFrom.appendTo($wrpFromRows);
 				doUpdateState();
 			});
-		const $stageFrom = $$`<div class="mb-2 flex-col">
+		const $stageFrom = $$`<div class="mb-2 ve-flex-col">
 		${$wrpFromRows}
 		${$$`<div>${$btnAddFrom}</div>`}
 		</div>`.toggleVe(initialMode === "1");
@@ -990,11 +990,11 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="flex-v-center mb-2">${$iptAc}${$iptSpecial}${$selMode}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+			<div class="ve-flex-v-center mb-2">${$iptAc}${$iptSpecial}${$selMode}</div>
 			${$$`<div>${$stageFrom}</div>`}
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Condition</span>${$iptCond}</div>
-			<label class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Surround with brackets</span>${$cbBraces}</label>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Condition</span>${$iptCond}</div>
+			<label class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Surround with brackets</span>${$cbBraces}</label>
 			${$$`<div class="text-right">${$btnRemove}</div>`}
 		</div>`;
 		const out = {$wrp, getAc};
@@ -1049,7 +1049,7 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $wrpFrom = $$`<div class="flex mb-2 mkbru__wrp-rows--removable-nested-1">${$iptFrom}${$btnCommon}${$btnSearchItem}${$btnRemove}</div>`;
+		const $wrpFrom = $$`<div class="ve-flex mb-2 mkbru__wrp-rows--removable-nested-1">${$iptFrom}${$btnCommon}${$btnSearchItem}${$btnRemove}</div>`;
 
 		const outFrom = {$wrpFrom, getAcFrom};
 		fromRows.push(outFrom);
@@ -1192,8 +1192,8 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $wrpSimpleFormula = $$`<div class="flex-col">
-		<div class="flex-v-center mb-2">
+		const $wrpSimpleFormula = $$`<div class="ve-flex-col">
+		<div class="ve-flex-v-center mb-2">
 			<span class="mr-2 mkbru__sub-name--50">Formula</span>
 			${$selSimpleNum}
 			<span class="mr-2">d</span>
@@ -1202,7 +1202,7 @@ class CreatureBuilder extends Builder {
 			${$iptSimpleMod}
 			${$btnAutoSimpleFormula}
 		</div>
-		<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Average</span>${$iptSimpleAverage}${$btnAutoSimpleAverage}</div>
+		<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Average</span>${$iptSimpleAverage}${$btnAutoSimpleAverage}</div>
 		</div>`.toggleVe(initialMode === "1").appendTo($rowInner);
 		if (initialMode === "0") {
 			const formulaParts = CreatureBuilder.__$getHpInput__getFormulaParts(this._state.hp.formula);
@@ -1245,9 +1245,9 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $wrpComplexFormula = $$`<div class="flex-col">
-		<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Formula</span>${$iptComplexFormula}</div>
-		<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Average</span>${$iptComplexAverage}${$btnAutoComplexAverage}</div>
+		const $wrpComplexFormula = $$`<div class="ve-flex-col">
+		<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Formula</span>${$iptComplexFormula}</div>
+		<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Average</span>${$iptComplexAverage}${$btnAutoComplexAverage}</div>
 		</div>`.toggleVe(initialMode === "0").appendTo($rowInner);
 		if (initialMode === "1") {
 			$iptComplexFormula.val(this._state.hp.formula);
@@ -1311,13 +1311,13 @@ class CreatureBuilder extends Builder {
 				} else $iptSpeed.val(initial);
 			}
 
-			return $$`<div class="flex-v-center mb-2">
+			return $$`<div class="ve-flex-v-center mb-2">
 			<span class="mr-2 mkbru__sub-name--33">${name}</span>
-			<div class="flex-v-center">${$iptSpeed}<span class="mr-2">ft.</span>${$iptCond}</div>
+			<div class="ve-flex-v-center">${$iptSpeed}<span class="mr-2">ft.</span>${$iptCond}</div>
 			</div>`;
 		};
 
-		$$`<div class="flex-col">
+		$$`<div class="ve-flex-col">
 		${$getRow("Walk", "walk")}
 		${$getRow("Burrow", "burrow")}
 		${$getRow("Climb", "climb")}
@@ -1339,7 +1339,7 @@ class CreatureBuilder extends Builder {
 					cb();
 				});
 
-			return $$`<div class="flex-v-center mb-2 flex-col mr-1">
+			return $$`<div class="ve-flex-v-center mb-2 ve-flex-col mr-1">
 			<span class="mb-2 bold">${prop.toUpperCase()}</span>
 			${$iptAbil}
 			</div>`;
@@ -1390,7 +1390,7 @@ class CreatureBuilder extends Builder {
 			this._addHook("state", prop, hook);
 			this._addHook("meta", "profBonus", hook);
 
-			return $$`<div class="flex-v-center flex-col mr-1 mb-2">
+			return $$`<div class="ve-flex-v-center ve-flex-col mr-1 mb-2">
 			<span class="mr-2 bold">${prop.toUpperCase()}</span>
 			${$iptVal}${$btnProf}
 			</div>`;
@@ -1470,7 +1470,7 @@ class CreatureBuilder extends Builder {
 			this._addHook("state", abilProp, hook);
 			this._addHook("meta", "profBonus", hook);
 
-			return $$`<div class="flex-v-center mb-2">
+			return $$`<div class="ve-flex-v-center mb-2">
 			<span class="mr-2 mkbru__sub-name--33">${name}</span>
 			<div class="text-muted mkbru_mon__skill-attrib-label mr-2 help-subtle" title="This skill is affected by the creature's ${Parser.attAbvToFull((Parser.skillToAbilityAbv(prop)))} score">(${Parser.skillToAbilityAbv(prop).toUpperCase()})</div>
 			${$iptVal}${$btnProf}${$btnExpert}
@@ -1543,7 +1543,7 @@ class CreatureBuilder extends Builder {
 				cb();
 			});
 
-		$$`<div class="flex-v-center">${$iptPerception}${$btnAuto}</div>`.appendTo($rowInner);
+		$$`<div class="ve-flex-v-center">${$iptPerception}${$btnAuto}</div>`.appendTo($rowInner);
 
 		return $row;
 	}
@@ -1671,13 +1671,13 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $wrpChildren = $(`<div class="flex-col"/>`);
-		const $wrpControls = $$`<div class="mb-2 flex-v-center">${$btnAddChild}${$btnAddChildGroup}${$iptNotePre}${$iptNotePost}${$btnRemove}</div>`;
+		const $wrpChildren = $(`<div class="ve-flex-col"/>`);
+		const $wrpControls = $$`<div class="mb-2 ve-flex-v-center">${$btnAddChild}${$btnAddChildGroup}${$iptNotePre}${$iptNotePost}${$btnRemove}</div>`;
 
 		const $ele = (() => {
-			const $base = $$`<div class="flex-col ${depth ? "" : "mkbru__wrp-rows"}">${$wrpControls}${$wrpChildren}</div>`;
+			const $base = $$`<div class="ve-flex-col ${depth ? "" : "mkbru__wrp-rows"}">${$wrpControls}${$wrpChildren}</div>`;
 			if (!depth) return $base;
-			else return $$`<div class="flex-v-center w-100"><div class="mkbru_mon__row-indent"/>${$base}</div>`;
+			else return $$`<div class="ve-flex-v-center w-100"><div class="mkbru_mon__row-indent"/>${$base}</div>`;
 		})();
 
 		if (initial) {
@@ -1710,7 +1710,7 @@ class CreatureBuilder extends Builder {
 					if (value != null) $iptSpecial.val(value);
 
 					return {
-						$ele: $$`<div class="mb-2 split flex-v-center mkbru__wrp-btn-xxs">${$iptSpecial}${$btnRemove}</div>`,
+						$ele: $$`<div class="mb-2 split ve-flex-v-center mkbru__wrp-btn-xxs">${$iptSpecial}${$btnRemove}</div>`,
 						getState: () => {
 							const raw = $iptSpecial.val().trim();
 							if (raw) return {special: raw};
@@ -1720,7 +1720,7 @@ class CreatureBuilder extends Builder {
 				}
 				default: {
 					return {
-						$ele: $$`<div class="mb-2 split flex-v-center mkbru__wrp-btn-xxs"><span class="mr-2">&bull; ${type.uppercaseFirst()}</span>${$btnRemove}</div>`,
+						$ele: $$`<div class="mb-2 split ve-flex-v-center mkbru__wrp-btn-xxs"><span class="mr-2">&bull; ${type.uppercaseFirst()}</span>${$btnRemove}</div>`,
 						getState: () => type,
 					};
 				}
@@ -1769,7 +1769,7 @@ class CreatureBuilder extends Builder {
 
 		const $btnSort = BuilderUi.$getSplitCommasSortButton($iptSenses, doUpdateState);
 
-		$$`<div class="flex-v-center">${$iptSenses}${$btnAddGeneric}${$btnSort}</div>`.appendTo($rowInner);
+		$$`<div class="ve-flex-v-center">${$iptSenses}${$btnAddGeneric}${$btnSort}</div>`.appendTo($rowInner);
 
 		return $row;
 	}
@@ -1809,7 +1809,7 @@ class CreatureBuilder extends Builder {
 
 		const $btnSort = BuilderUi.$getSplitCommasSortButton($iptLanguages, doUpdateState, {bottom: [/telepathy/i]});
 
-		$$`<div class="flex-v-center">${$iptLanguages}${$btnAddGeneric}${$btnSort}</div>`.appendTo($rowInner);
+		$$`<div class="ve-flex-v-center">${$iptLanguages}${$btnAddGeneric}${$btnSort}</div>`.appendTo($rowInner);
 
 		return $row;
 	}
@@ -1881,7 +1881,7 @@ class CreatureBuilder extends Builder {
 				this._state.cr.lair = $selCrLair.val();
 				cb();
 			});
-		const $stageLair = $$`<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">While in lair</span>${$selCrLair}</div>`
+		const $stageLair = $$`<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">While in lair</span>${$selCrLair}</div>`
 			.appendTo($rowInner).toggleVe(initialMode === "1");
 		initialMode === "1" && $selCrLair.val(this._state.cr.cr);
 		// endregion
@@ -1892,7 +1892,7 @@ class CreatureBuilder extends Builder {
 				this._state.cr.coven = $selCrCoven.val();
 				cb();
 			});
-		const $stageCoven = $$`<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">While in coven</span>${$selCrCoven}</div>`
+		const $stageCoven = $$`<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">While in coven</span>${$selCrCoven}</div>`
 			.appendTo($rowInner).toggleVe(initialMode === "2");
 		initialMode === "2" && $selCrCoven.val(this._state.cr.cr);
 		// endregion
@@ -1910,9 +1910,9 @@ class CreatureBuilder extends Builder {
 				} else delete parent._state.cr;
 			}
 		}();
-		const $stageCustom = $$`<div class="flex-col mb-2">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--25">CR</span>${compCrCustom.renderInputCr()}</div>
-			<div class="flex-v-center"><span class="mr-2 mkbru__sub-name--25">XP</span>${compCrCustom.renderInputXp()}</div>
+		const $stageCustom = $$`<div class="ve-flex-col mb-2">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--25">CR</span>${compCrCustom.renderInputCr()}</div>
+			<div class="ve-flex-v-center"><span class="mr-2 mkbru__sub-name--25">XP</span>${compCrCustom.renderInputXp()}</div>
 		</div>`
 			.appendTo($rowInner).toggleVe(initialMode === "3");
 		if (initialMode === "3") {
@@ -1970,7 +1970,7 @@ class CreatureBuilder extends Builder {
 				cb();
 			});
 
-		$$`<div class="flex-v-center">${$iptProfBonus}${$btnAuto}</div>`.appendTo($rowInner);
+		$$`<div class="ve-flex-v-center">${$iptProfBonus}${$btnAuto}</div>`.appendTo($rowInner);
 
 		return $row;
 	}
@@ -2177,9 +2177,9 @@ class CreatureBuilder extends Builder {
 			.change(() => doUpdateState());
 		if (trait && trait.footerEntries) $iptFooter.val(UiUtil.getEntriesAsText(trait.footerEntries));
 
-		const $wrpControls = $$`<div class="flex-v-center mb-2">${$iptName}${$btnToggleHeader}${$btnToggleFooter}${$btnAddSpell}</div>`;
-		const $wrpSubRows = $$`<div class="flex-col"></div>`;
-		const $wrpSubRowsOuter = $$`<div class="flex-col">${$iptHeader}${$wrpSubRows}${$iptFooter}</div>`;
+		const $wrpControls = $$`<div class="ve-flex-v-center mb-2">${$iptName}${$btnToggleHeader}${$btnToggleFooter}${$btnAddSpell}</div>`;
+		const $wrpSubRows = $$`<div class="ve-flex-col"></div>`;
+		const $wrpSubRowsOuter = $$`<div class="ve-flex-col">${$iptHeader}${$wrpSubRows}${$iptFooter}</div>`;
 
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger" title="Remove Trait"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => {
@@ -2194,7 +2194,7 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $ele = $$`<div class="flex-col mkbru__wrp-rows">
+		const $ele = $$`<div class="ve-flex-col mkbru__wrp-rows">
 		${$wrpControls}
 		${$wrpSubRowsOuter}
 		<div class="text-right mb-2">${$btnRemove}</div>
@@ -2246,7 +2246,7 @@ class CreatureBuilder extends Builder {
 			} else return null;
 		};
 
-		const $wrpItems = $(`<div class="flex-col"/>`);
+		const $wrpItems = $(`<div class="ve-flex-col"/>`);
 
 		const $btnAdd = $(`<button class="btn btn-xxs btn-default mr-2" title="Add Spell"><span class="glyphicon glyphicon-plus"/></button>`)
 			.click(async () => {
@@ -2313,10 +2313,10 @@ class CreatureBuilder extends Builder {
 						}
 					})();
 
-					out.$ele = $$`<div class="flex mkbru_mon__spell-header-wrp mr-4">
+					out.$ele = $$`<div class="ve-flex mkbru_mon__spell-header-wrp mr-4">
 					${$iptFreq}
 					<span class="mr-2 italic">${name}</span>
-					<label class="flex-v-baseline text-muted small ml-auto"><span class="mr-1">(Each? </span>${$cbEach}<span>)</span></label>
+					<label class="ve-flex-v-baseline text-muted small ml-auto"><span class="mr-1">(Each? </span>${$cbEach}<span>)</span></label>
 					</div>`;
 
 					out.getKeyPath = () => [meta.type, `${UiUtil.strToInt($iptFreq.val(), 1, {fallbackOnNaN: 1, min: 1, max: 9})}${$cbEach.prop("checked") ? "e" : ""}`];
@@ -2339,11 +2339,11 @@ class CreatureBuilder extends Builder {
 						.prop("checked", !!meta.lower)
 						.change(() => doUpdateState());
 
-					out.$ele = $$`<div class="flex mkbru_mon__spell-header-wrp mr-4">
+					out.$ele = $$`<div class="ve-flex mkbru_mon__spell-header-wrp mr-4">
 					<div class="italic">${Parser.spLevelToFull(meta.level)}-level Spells</div>
-					<div class="flex-v-center text-muted small ml-auto"><span>(</span>${$iptSlots}<span class="mr-2">Slots</span></div>
+					<div class="ve-flex-v-center text-muted small ml-auto"><span>(</span>${$iptSlots}<span class="mr-2">Slots</span></div>
 					<div class="mkbru_mon__spell-header-divider mr-2"/>
-					<label class="flex-v-center text-muted small"><span class="mr-1">Warlock?</span>${$cbWarlock}<span>)</span></label>
+					<label class="ve-flex-v-center text-muted small"><span class="mr-1">Warlock?</span>${$cbWarlock}<span>)</span></label>
 					</div>`;
 					out.getKeyPath = () => ["spells", `${meta.level}`, "spells"];
 					out.getAdditionalData = () => {
@@ -2365,10 +2365,10 @@ class CreatureBuilder extends Builder {
 			return out;
 		})();
 
-		const $ele = $$`<div class="flex-col">
-		<div class="split flex-v-center mb-2">
+		const $ele = $$`<div class="ve-flex-col">
+		<div class="split ve-flex-v-center mb-2">
 			${metaPart.$ele}
-			<div class="flex-v-center mkbru__wrp-btn-xxs">${$btnAdd}${$btnRemove}</div>
+			<div class="ve-flex-v-center mkbru__wrp-btn-xxs">${$btnAdd}${$btnRemove}</div>
 		</div>
 		${$wrpItems}
 		<div class="mkbru_mon__spell-divider mb-2"/>
@@ -2408,9 +2408,9 @@ class CreatureBuilder extends Builder {
 				doUpdateState();
 			});
 
-		const $ele = $$`<div class="split flex-v-center mb-2 mkbru_mon__spell-wrp-edit">
+		const $ele = $$`<div class="split ve-flex-v-center mb-2 mkbru_mon__spell-wrp-edit">
 		${$wrpRender}${$iptSpell}
-		<div class="flex-v-center mkbru__wrp-btn-xxs">${$btnToggleEdit}${$btnRemove}</div>
+		<div class="ve-flex-v-center mkbru__wrp-btn-xxs">${$btnToggleEdit}${$btnRemove}</div>
 		</div>`;
 
 		const getState = () => spellEntry;
@@ -2510,10 +2510,10 @@ class CreatureBuilder extends Builder {
 								const $iptMeleeDamBonus = $(`<input class="form-control form-control--minimal input-xs mr-2" placeholder="+X (additional bonus damage)">`);
 								const $iptMeleeDamType = $(`<input class="form-control form-control--minimal input-xs" placeholder="Melee Damage Type" autocomplete="off">`)
 									.typeahead({source: Parser.DMG_TYPES});
-								const $stageMelee = $$`<div class="flex-col"><hr class="hr-3">
+								const $stageMelee = $$`<div class="ve-flex-col"><hr class="hr-3">
 								<div class="bold mb-2">Melee</div>
-								<div class="flex-v-center mb-2"><span class="mr-2 no-shrink">Melee Range (ft.)</span>${$iptMeleeRange}</div>
-								<div class="flex-v-center mb-2">${$iptMeleeDamDiceCount}<span class="mr-2">d</span>${$iptMeleeDamDiceNum}${$iptMeleeDamBonus}${$iptMeleeDamType}</div>
+								<div class="ve-flex-v-center mb-2"><span class="mr-2 no-shrink">Melee Range (ft.)</span>${$iptMeleeRange}</div>
+								<div class="ve-flex-v-center mb-2">${$iptMeleeDamDiceCount}<span class="mr-2">d</span>${$iptMeleeDamDiceNum}${$iptMeleeDamBonus}${$iptMeleeDamType}</div>
 								</div>`;
 
 								const $iptRangedShort = $(`<input class="form-control form-control--minimal input-xs mr-2">`);
@@ -2523,13 +2523,13 @@ class CreatureBuilder extends Builder {
 								const $iptRangedDamBonus = $(`<input class="form-control form-control--minimal input-xs mr-2" placeholder="+X (additional bonus damage)">`);
 								const $iptRangedDamType = $(`<input class="form-control form-control--minimal input-xs" placeholder="Ranged Damage Type">`)
 									.typeahead({source: Parser.DMG_TYPES});
-								const $stageRanged = $$`<div class="flex-col"><hr class="hr-3">
+								const $stageRanged = $$`<div class="ve-flex-col"><hr class="hr-3">
 								<div class="bold mb-2">Ranged</div>
-								<div class="flex-v-center mb-2">
+								<div class="ve-flex-v-center mb-2">
 									<span class="mr-2 no-shrink">Short Range (ft.)</span>${$iptRangedShort}
 									<span class="mr-2 no-shrink">Long Range (ft.)</span>${$iptRangedLong}
 								</div>
-								<div class="flex-v-center mb-2">${$iptRangedDamDiceCount}<span class="mr-2">d</span>${$iptRangedDamDiceNum}${$iptRangedDamBonus}${$iptRangedDamType}</div>
+								<div class="ve-flex-v-center mb-2">${$iptRangedDamDiceCount}<span class="mr-2">d</span>${$iptRangedDamDiceNum}${$iptRangedDamBonus}${$iptRangedDamType}</div>
 								</div>`.hideVe();
 
 								const $iptVersatileDamDiceCount = $(`<input class="form-control form-control--minimal input-xs mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`);
@@ -2537,9 +2537,9 @@ class CreatureBuilder extends Builder {
 								const $iptVersatileDamBonus = $(`<input class="form-control form-control--minimal input-xs mr-2" placeholder="+X (additional bonus damage)">`);
 								const $iptVersatileDamType = $(`<input class="form-control form-control--minimal input-xs" placeholder="Two-Handed Damage Type">`)
 									.typeahead({source: Parser.DMG_TYPES});
-								const $stageVersatile = $$`<div class="flex-col"><hr class="hr-3">
+								const $stageVersatile = $$`<div class="ve-flex-col"><hr class="hr-3">
 								<div class="bold mb-2">Versatile Damage</div>
-								<div class="flex-v-center mb-2">${$iptVersatileDamDiceCount}<span class="mr-2">d</span>${$iptVersatileDamDiceNum}${$iptVersatileDamBonus}${$iptVersatileDamType}</div>
+								<div class="ve-flex-v-center mb-2">${$iptVersatileDamDiceCount}<span class="mr-2">d</span>${$iptVersatileDamDiceNum}${$iptVersatileDamBonus}${$iptVersatileDamType}</div>
 								</div>`.hideVe();
 
 								const $iptBonusDamDiceCount = $(`<input class="form-control form-control--minimal input-xs mr-2 mkbru_mon__ipt-attack-dice" placeholder="Number of Dice" min="1" value="1">`);
@@ -2547,9 +2547,9 @@ class CreatureBuilder extends Builder {
 								const $iptBonusDamBonus = $(`<input class="form-control form-control--minimal input-xs mr-2" placeholder="+X (additional bonus damage)">`);
 								const $iptBonusDamType = $(`<input class="form-control form-control--minimal input-xs" placeholder="Bonus Damage Type">`)
 									.typeahead({source: Parser.DMG_TYPES});
-								const $stageBonusDamage = $$`<div class="flex-col"><hr class="hr-3">
+								const $stageBonusDamage = $$`<div class="ve-flex-col"><hr class="hr-3">
 								<div class="bold mb-2">Bonus Damage</div>
-								<div class="flex-v-center mb-2">${$iptBonusDamDiceCount}<span class="mr-2">d</span>${$iptBonusDamDiceNum}${$iptBonusDamBonus}${$iptBonusDamType}</div>
+								<div class="ve-flex-v-center mb-2">${$iptBonusDamDiceCount}<span class="mr-2">d</span>${$iptBonusDamDiceNum}${$iptBonusDamBonus}${$iptBonusDamType}</div>
 								</div>`.hideVe();
 
 								const $btnConfirm = $(`<button class="btn btn-sm btn-default mr-2">Add</button>`)
@@ -2692,22 +2692,22 @@ class CreatureBuilder extends Builder {
 
 								if (this._generateAttackCache) setState(this._generateAttackCache);
 
-								$$`<div class="flex-col">
-								<div class="flex-v-center mb-2">
+								$$`<div class="ve-flex-col">
+								<div class="ve-flex-v-center mb-2">
 									${$iptName}
-									<label class="flex-v-center mr-2"><span class="mr-2">Melee</span>${$cbMelee}</label>
-									<label class="flex-v-center"><span class="mr-2">Ranged</span>${$cbRanged}</label>
+									<label class="ve-flex-v-center mr-2"><span class="mr-2">Melee</span>${$cbMelee}</label>
+									<label class="ve-flex-v-center"><span class="mr-2">Ranged</span>${$cbRanged}</label>
 								</div>
-								<div class="flex-v-center">
-									<label class="flex-v-center mr-2"><span class="mr-2">Finesse</span>${$cbFinesse}</label>
-									<label class="flex-v-center mr-2"><span class="mr-2">Versatile</span>${$cbVersatile}</label>
-									<label class="flex-v-center"><span class="mr-2">Bonus Damage</span>${$cbBonusDamage}</label>
+								<div class="ve-flex-v-center">
+									<label class="ve-flex-v-center mr-2"><span class="mr-2">Finesse</span>${$cbFinesse}</label>
+									<label class="ve-flex-v-center mr-2"><span class="mr-2">Versatile</span>${$cbVersatile}</label>
+									<label class="ve-flex-v-center"><span class="mr-2">Bonus Damage</span>${$cbBonusDamage}</label>
 								</div>
 								${$stageMelee}
 								${$stageRanged}
 								${$stageVersatile}
 								${$stageBonusDamage}
-								<div class="flex-v-center flex-h-right mt-2 pb-1 px-1">${$btnConfirm}${$btnReset}</div>
+								<div class="ve-flex-v-center ve-flex-h-right mt-2 pb-1 px-1">${$btnConfirm}${$btnReset}</div>
 								</div>`.appendTo($modalInner);
 							});
 						},
@@ -2869,21 +2869,21 @@ class CreatureBuilder extends Builder {
 
 			(this._$eles.$selVariantSources = this._$eles.$selVariantSources || []).push($selVariantSource);
 
-			const $ele = $$`<div class="flex-col">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Source</span>${$selVariantSource}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Page</span>${$iptPage}</div>
+			const $ele = $$`<div class="ve-flex-col">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Source</span>${$selVariantSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--50">Page</span>${$iptPage}</div>
 			</div>`;
 
 			return {$ele, getState};
 		})() : null;
 
-		const $ele = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-		<div class="split flex-v-center mb-2">
+		const $ele = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+		<div class="split ve-flex-v-center mb-2">
 			${$iptName}
-			<div class="flex-v-center">${$btnUp}${$btnDown}${$dragOrder}</div>
+			<div class="ve-flex-v-center">${$btnUp}${$btnDown}${$dragOrder}</div>
 		</div>
 		${sourceControls ? sourceControls.$ele : null}
-		<div class="flex-v-center">${$iptEntries}</div>
+		<div class="ve-flex-v-center">${$iptEntries}</div>
 		<div class="text-right">${$btnRemove}</div>
 		</div>`;
 
@@ -2986,7 +2986,7 @@ class CreatureBuilder extends Builder {
 			cb();
 		};
 
-		$$`<div class="flex">${$iptUrl}${$btnPreview}</div>`.appendTo($rowInner);
+		$$`<div class="ve-flex">${$iptUrl}${$btnPreview}</div>`.appendTo($rowInner);
 
 		return $row;
 	}
@@ -3003,14 +3003,14 @@ class CreatureBuilder extends Builder {
 			cb();
 		};
 
-		const $wrpIpts = $(`<div class="flex-col w-100 mr-2"/>`);
+		const $wrpIpts = $(`<div class="ve-flex-col w-100 mr-2"/>`);
 		const inputs = [];
 		Parser.ENVIRONMENTS.forEach(val => {
 			const $cb = $(`<input class="mkbru__ipt-cb mkbru_mon__cb-environment" type="checkbox">`)
 				.prop("checked", this._state.environment && this._state.environment.includes(val))
 				.change(() => doUpdateState());
 			inputs.push({$ipt: $cb, getVal: () => val});
-			$$`<label class="flex-v-center split stripe-odd--faint"><span>${StrUtil.toTitleCase(val)}</span>${$cb}</label>`.appendTo($wrpIpts);
+			$$`<label class="ve-flex-v-center split stripe-odd--faint"><span>${StrUtil.toTitleCase(val)}</span>${$cb}</label>`.appendTo($wrpIpts);
 		});
 
 		const additionalEnvs = (this._state.environment || []).filter(it => !Parser.ENVIRONMENTS.includes(it)).filter(it => it && it.trim());
@@ -3025,9 +3025,9 @@ class CreatureBuilder extends Builder {
 				CreatureBuilder.__$getEnvironmentInput__getCustomRow(doUpdateState, inputs).$ele.appendTo($wrpIpts);
 			});
 
-		$$`<div class="flex-col">
+		$$`<div class="ve-flex-col">
 		${$wrpIpts}
-		<div class="flex-v-center">${$btnAddCustom}</div>
+		<div class="ve-flex-v-center">${$btnAddCustom}</div>
 		</div>`.appendTo($rowInner);
 
 		return $row;
@@ -3055,7 +3055,7 @@ class CreatureBuilder extends Builder {
 				const raw = $iptEnv.val().toLowerCase().trim();
 				return raw || false;
 			},
-			$ele: $$`<label class="flex-v-center split stripe-odd--faint mt-2"><span>${$iptEnv}</span>${$cb}${$btnRemove}</label>`,
+			$ele: $$`<label class="ve-flex-v-center split stripe-odd--faint mt-2"><span>${$iptEnv}</span>${$cb}${$btnRemove}</label>`,
 		};
 
 		envRows.push(out);
@@ -3086,7 +3086,7 @@ class CreatureBuilder extends Builder {
 
 		if (this._state.soundClip) $iptUrl.val(this._state.soundClip.url);
 
-		$$`<div class="flex">${$iptUrl}</div>`.appendTo($rowInner);
+		$$`<div class="ve-flex">${$iptUrl}</div>`.appendTo($rowInner);
 
 		return $row;
 	}
@@ -3116,7 +3116,7 @@ class CreatureBuilder extends Builder {
 			},
 		);
 		const [statTab, infoTab, imageTab, dataTab, markdownTab] = tabs;
-		$$`<div class="flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
 		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
 
 		// statblock

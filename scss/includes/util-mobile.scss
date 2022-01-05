@@ -13,7 +13,7 @@
 			display: none !important;
 		}
 
-		&flex-col {
+		&ve-flex-col {
 			display: flex !important;
 			flex-direction: column !important;
 		}
@@ -40,22 +40,22 @@
 			text-align: center !important;
 		}
 
-		&flex-col {
+		&ve-flex-col {
 			display: flex !important;
 			flex-direction: column !important;
 		}
 
-		&flex-row {
+		&ve-flex-row {
 			display: flex !important;
 			flex-direction: row !important;
 		}
 
-		&flex-col-reverse {
+		&ve-flex-col-reverse {
 			display: flex !important;
 			flex-direction: column-reverse !important;
 		}
 
-		&flex-ai-start {
+		&ve-flex-ai-start {
 			align-items: flex-start !important;
 		}
 

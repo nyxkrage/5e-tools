@@ -804,7 +804,7 @@ ___
 					</label></div>`;
 				});
 
-			RendererMarkdown.__$wrpSettings = $$`<div class="flex-v-col w-100 h-100">${$rows}</div>`;
+			RendererMarkdown.__$wrpSettings = $$`<div class="ve-flex-v-col w-100 h-100">${$rows}</div>`;
 		}
 		RendererMarkdown.__$wrpSettings.appendTo($modalInner);
 	}

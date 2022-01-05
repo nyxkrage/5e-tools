@@ -180,7 +180,7 @@ class Blacklist {
 		);
 		Blacklist._comp.addHook("category", () => this._doHandleSourceCategorySelChange(data));
 
-		Blacklist._$wrpSelName = $(`<div class="w-100 flex"></div>`);
+		Blacklist._$wrpSelName = $(`<div class="w-100 ve-flex"></div>`);
 		this._doHandleSourceCategorySelChange(data);
 
 		const $btnAddExclusion = $(`<button class="btn btn-default btn-xs">Add Exclusion</button>`)
@@ -199,64 +199,64 @@ class Blacklist {
 			});
 		// endregion
 
-		$$`<div class="mb-5 flex-v-center">
-			<div class="flex-vh-center mr-4">
+		$$`<div class="mb-5 ve-flex-v-center">
+			<div class="ve-flex-vh-center mr-4">
 				<div class="mr-2">UA/Etc. Sources</div>
-				<div class="flex-v-center btn-group">
+				<div class="ve-flex-v-center btn-group">
 					${$btnExcludeAllUa}
 					${$btnIncludeAllUa}
 				</div>
 			</div>
 
-			<div class="flex-vh-center mr-3">
+			<div class="ve-flex-vh-center mr-3">
 				<div class="mr-2">Comedy Sources</div>
-				<div class="flex-v-center btn-group">
+				<div class="ve-flex-v-center btn-group">
 					${$btnExcludeAllComedySources}
 					${$btnIncludeAllComedySources}
 				</div>
 			</div>
 
-			<div class="flex-vh-center mr-3">
+			<div class="ve-flex-vh-center mr-3">
 				<div class="mr-2">Non-<i>Forgotten Realms</i></div>
-				<div class="flex-v-center btn-group">
+				<div class="ve-flex-v-center btn-group">
 					${$btnExcludeAllNonForgottenRealmsSources}
 					${$btnIncludeAllNonForgottenRealmsSources}
 				</div>
 			</div>
 
-			<div class="flex-vh-center mr-3">
+			<div class="ve-flex-vh-center mr-3">
 				<div class="mr-2">All Sources</div>
-				<div class="flex-v-center btn-group">
+				<div class="ve-flex-v-center btn-group">
 					${$btnExcludeAllSources}
 					${$btnIncludeAllSources}
 				</div>
 			</div>
 		</div>
 
-		<div class="flex-v-end mb-5">
-			<div class="flex-col w-25 pr-2">
+		<div class="ve-flex-v-end mb-5">
+			<div class="ve-flex-col w-25 pr-2">
 				<label class="mb-1">Source</label>
 				${$selSource}
 			</div>
 
-			<div class="flex-col w-25 px-2">
+			<div class="ve-flex-col w-25 px-2">
 				<label class="mb-1">Category</label>
 				${$selCategory}
 			</div>
 
-			<div class="flex-col w-25 px-2">
+			<div class="ve-flex-col w-25 px-2">
 				<label class="mb-1">Name</label>
 				${Blacklist._$wrpSelName}
 			</div>
 
-			<div class="flex-col w-25 pl-2">
+			<div class="ve-flex-col w-25 pl-2">
 				<div class="mt-auto">
 					${$btnAddExclusion}
 				</div>
 			</div>
 		</div>
 
-		<div class="w-100 flex-v-center">
+		<div class="w-100 ve-flex-v-center">
 			<div class="btn-group mr-2">
 				${$btnExport}
 				${$btnImport}
@@ -266,11 +266,11 @@ class Blacklist {
 	}
 
 	static _getBtnHtml_addToBlacklist () {
-		return `<button class="btn btn-danger btn-xs btn-icon flex-vh-center" title="Add to Blacklist"><span class="glyphicon glyphicon-trash"></span></button>`;
+		return `<button class="btn btn-danger btn-xs btn-icon ve-flex-vh-center" title="Add to Blacklist"><span class="glyphicon glyphicon-trash"></span></button>`;
 	}
 
 	static _getBtnHtml_removeFromBlacklist () {
-		return `<button class="btn btn-success btn-xs btn-icon flex-vh-center" title="Remove from Blacklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
+		return `<button class="btn btn-success btn-xs btn-icon ve-flex-vh-center" title="Remove from Blacklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
 	}
 
 	static _doHandleSourceCategorySelChange (data) {
@@ -363,7 +363,7 @@ class Blacklist {
 				Blacklist._remove(id, hash, category, source);
 			});
 
-		const $ele = $$`<div class="no-click flex-v-center lst__row lst--border lst__row-inner no-shrink">
+		const $ele = $$`<div class="no-click ve-flex-v-center lst__row lst--border lst__row-inner no-shrink">
 			<span class="col-5 text-center">${Parser.sourceJsonToFull(source)}</span>
 			<span class="col-3 text-center">${display.displayCategory}</span>
 			<span class="bold col-3 text-center">${displayName}</span>

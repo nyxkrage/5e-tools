@@ -608,7 +608,7 @@ class SideMenu {
 		});
 		renderDivider();
 
-		const $wrpFullscreen = $(`<div class="sidemenu__row flex-vh-center-around"></div>`).appendTo(this.$mnu);
+		const $wrpFullscreen = $(`<div class="sidemenu__row ve-flex-vh-center-around"></div>`).appendTo(this.$mnu);
 		const $btnFullscreen = $(`<button class="btn btn-primary">Toggle Fullscreen</button>`).appendTo($wrpFullscreen);
 		this.board.$btnFullscreen = $btnFullscreen;
 		$btnFullscreen.on("click", () => {
@@ -636,7 +636,7 @@ class SideMenu {
 		renderDivider();
 
 		const $wrpSaveLoad = $(`<div class="sidemenu__row--vert"/>`).appendTo(this.$mnu);
-		const $wrpSaveLoadFile = $(`<div class="sidemenu__row flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
+		const $wrpSaveLoadFile = $(`<div class="sidemenu__row ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
 		const $btnSaveFile = $(`<button class="btn btn-primary">Save to File</button>`).appendTo($wrpSaveLoadFile);
 		$btnSaveFile.on("click", () => {
 			DataUtil.userDownload(`dm-screen`, this.board.getSaveableState(), {fileType: "dm-screen"});
@@ -651,7 +651,7 @@ class SideMenu {
 			this.board.doReset();
 			await this.board.pDoLoadStateFrom(jsons[0]);
 		});
-		const $wrpSaveLoadUrl = $(`<div class="sidemenu__row flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
+		const $wrpSaveLoadUrl = $(`<div class="sidemenu__row ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
 		const $btnSaveLink = $(`<button class="btn btn-primary">Save to URL</button>`).appendTo($wrpSaveLoadUrl);
 		$btnSaveLink.on("click", async () => {
 			const encoded = `${window.location.href.split("#")[0]}#${encodeURIComponent(JSON.stringify(this.board.getSaveableState()))}`;
@@ -1772,7 +1772,7 @@ class Panel {
 
 	doRenderTabs () {
 		if (this.isTabs) {
-			this.$pnlWrpTabs.css({display: "flex"});
+			this.$pnlWrpTabs.css({display: "ve-flex"});
 			this.$pnlWrpContent.addClass("panel-content-wrapper-tabs");
 			this.$pnlAddTab.addClass("hidden");
 		} else {
@@ -1996,7 +1996,7 @@ class Panel {
 
 	_get$BtnSelTab (ix, title, tabCanRename) {
 		title = title || "[Untitled]";
-		const $btnSelTab = $(`<span class="btn btn-default content-tab flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title overflow-ellipsis" title="${title}">${title}</span></span>`)
+		const $btnSelTab = $(`<span class="btn btn-default content-tab ve-flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title overflow-ellipsis" title="${title}">${title}</span></span>`)
 			.on("mousedown", (evt) => {
 				if (evt.which === 1) {
 					this.setActiveTab(ix);
@@ -2667,7 +2667,7 @@ class AddMenu {
 
 	render () {
 		if (!this._$menuInner) {
-			this._$menuInner = $(`<div class="flex-col w-100 h-100">`);
+			this._$menuInner = $(`<div class="ve-flex-col w-100 h-100">`);
 			const $tabBar = $(`<div class="panel-addmenu-bar"/>`).appendTo(this._$menuInner);
 			this.$tabView = $(`<div class="panel-addmenu-view"/>`).appendTo(this._$menuInner);
 
@@ -3594,9 +3594,9 @@ class AdventureOrBookView {
 			<table class="stats stats--book stats--book-hover"><tr class="text"><td colspan="6">${this._$wrpContent}</td></tr></table>
 		</div>`;
 
-		const $wrp = $$`<div class="flex-col h-100">
+		const $wrp = $$`<div class="ve-flex-col h-100">
 		${this._$wrpContentOuter}
-		<div class="flex no-shrink dm-book__wrp-controls">${this._$titlePrev}${$btnPrev}${$btnNext}${this._$titleNext}</div>
+		<div class="ve-flex no-shrink dm-book__wrp-controls">${this._$titlePrev}${$btnPrev}${$btnNext}${this._$titleNext}</div>
 		</div>`;
 
 		// assumes the data has already been loaded/cached

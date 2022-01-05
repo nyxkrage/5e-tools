@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.9"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.10"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -1780,7 +1780,7 @@ ContextUtil = {
 				return $row;
 			});
 
-			this._$ele = $$`<div class="flex-col ui-ctx__wrp py-2">${$elesAction}</div>`
+			this._$ele = $$`<div class="ve-flex-col ui-ctx__wrp py-2">${$elesAction}</div>`
 				.hideVe()
 				.appendTo(document.body);
 		};
@@ -4735,7 +4735,7 @@ BrewUtil = {
 
 		const page = BrewUtil._PAGE || UrlUtil.getCurrentPage();
 
-		const $brewList = $(`<div class="manbrew__current_brew flex-col h-100 mt-1"></div>`);
+		const $brewList = $(`<div class="manbrew__current_brew ve-flex-col h-100 mt-1"></div>`);
 
 		await BrewUtil._pRenderBrewScreen_pRefreshBrewList($brewList);
 
@@ -4794,17 +4794,17 @@ BrewUtil = {
 
 		const $btnDelAll = opts.isModal ? null : BrewUtil._$getBtnDeleteAll();
 
-		const $wrpBtns = $$`<div class="flex-vh-center no-shrink mobile__flex-col">
-			<div class="flex-v-center mobile__mb-2">
-				<div class="flex-v-center btn-group mr-2">
+		const $wrpBtns = $$`<div class="ve-flex-vh-center no-shrink mobile__ve-flex-col">
+			<div class="ve-flex-v-center mobile__mb-2">
+				<div class="ve-flex-v-center btn-group mr-2">
 					${$btnGet}
 					${$btnCustomUrl}
 				</div>
 				${$btnLoadFromFile}
 				${$btnLoadFromUrl}
 			</div>
-			<div class="flex-v-center">
-				<a href="https://github.com/TheGiddyLimit/homebrew" class="flex-v-center" target="_blank" rel="noopener noreferrer"><button class="btn btn-default btn-sm">Browse Source Repository</button></a>
+			<div class="ve-flex-v-center">
+				<a href="https://github.com/TheGiddyLimit/homebrew" class="ve-flex-v-center" target="_blank" rel="noopener noreferrer"><button class="btn btn-default btn-sm">Browse Source Repository</button></a>
 				${$btnDelAll}
 			</div>
 		</div>`;
@@ -4840,7 +4840,7 @@ BrewUtil = {
 
 		const $btnAll = $(`<button class="btn btn-default btn-xs" disabled title="(Excluding samples)">Add All</button>`);
 
-		const $wrpRows = $$`<div class="list"><div class="lst__row flex-col"><div class="lst__wrp-cells lst--border lst__row-inner flex w-100"><span style="font-style: italic;">Loading...</span></div></div></div>`;
+		const $wrpRows = $$`<div class="list"><div class="lst__row ve-flex-col"><div class="lst__wrp-cells lst--border lst__row-inner ve-flex w-100"><span style="font-style: italic;">Loading...</span></div></div></div>`;
 
 		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control w-100" placeholder="Find homebrew...">`)
 			.keydown(evt => {
@@ -4868,9 +4868,9 @@ BrewUtil = {
 		<div class="mt-1"><i>A list of homebrew available in the public repository. Click a name to load the homebrew, or view the source directly.<br>
 		Contributions are welcome; see the <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" target="_blank" rel="noopener noreferrer">README</a>, or stop by our <a href="https://discord.gg/5etools" target="_blank" rel="noopener noreferrer">Discord</a>.</i></div>
 		<hr class="hr-1">
-		<div class="flex-h-right mb-1">${$btnToggleDisplayNonPageBrews}${$btnAll}</div>
+		<div class="ve-flex-h-right mb-1">${$btnToggleDisplayNonPageBrews}${$btnAll}</div>
 		${$iptSearch}
-		<div class="filtertools manbrew__filtertools btn-group input-group input-group--bottom flex no-shrink">
+		<div class="filtertools manbrew__filtertools btn-group input-group input-group--bottom ve-flex no-shrink">
 			<button class="col-4 sort btn btn-default btn-xs" data-sort="name">Name</button>
 			<button class="col-3 sort btn btn-default btn-xs" data-sort="author">Author</button>
 			<button class="col-1-2 sort btn btn-default btn-xs" data-sort="category">Category</button>
@@ -4957,7 +4957,7 @@ BrewUtil = {
 				.click(() => BrewUtil.addBrewRemote($btnAdd, it.download_url || "", true));
 
 			const $row = $$`<div class="lst__row lst__row-inner not-clickable lst--border lst__row--focusable" tabindex="1">
-				<div class="lst__wrp-cells flex w-100">
+				<div class="lst__wrp-cells ve-flex w-100">
 					${$btnAdd}
 					<span class="col-3">${it._brewAuthor}</span>
 					<span class="col-1-2 text-center">${it._brewCat}</span>
@@ -5089,7 +5089,7 @@ BrewUtil = {
 
 	async _pRenderBrewScreen_pRefreshBrewList ($brewList) {
 		function showSourceManager (source, showAll) {
-			const $wrpBtnDel = $(`<div class="flex-v-center"></div>`);
+			const $wrpBtnDel = $(`<div class="ve-flex-v-center"></div>`);
 
 			const {$modalInner, doClose} = UiUtil.getShowModal({
 				isHeight100: true,
@@ -5102,12 +5102,12 @@ BrewUtil = {
 			});
 
 			const $cbAll = $(`<input type="checkbox">`);
-			const $wrpRows = $$`<div class="list flex-col w-100"></div>`;
+			const $wrpRows = $$`<div class="list ve-flex-col w-100"></div>`;
 			const $iptSearch = $(`<input type="search" class="search manbrew__search form-control w-100 mt-1" placeholder="Search entries...">`);
 			const $wrpBtnsSort = $$`<div class="filtertools manbrew__filtertools btn-group">
 				<button class="col-6 sort btn btn-default btn-xs" data-sort="name">Name</button>
 				<button class="col-5 sort btn btn-default btn-xs" data-sort="category">Category</button>
-				<label class="wrp-cb-all pr-0 flex-vh-center mb-0 h-100">${$cbAll}</label>
+				<label class="wrp-cb-all pr-0 ve-flex-vh-center mb-0 h-100">${$cbAll}</label>
 			</div>`;
 			$$($modalInner)`
 				${$iptSearch}
@@ -5173,12 +5173,12 @@ BrewUtil = {
 							const dispCat = BrewUtil._pRenderBrewScreen_getDisplayCat(cat, true);
 
 							const eleLi = document.createElement("div");
-							eleLi.className = "lst__row flex-col px-0";
+							eleLi.className = "lst__row ve-flex-col px-0";
 
-							eleLi.innerHTML = `<label class="lst--border lst__row-inner no-select mb-0 flex-v-center">
+							eleLi.innerHTML = `<label class="lst--border lst__row-inner no-select mb-0 ve-flex-v-center">
 								<div class="col-6 bold">${it.name}</div>
-								<div class="col-5 flex-vh-center">${dispCat}${it.extraInfo}</div>
-								<div class="pr-0 col-1 flex-vh-center"><input type="checkbox" class="no-events"></div>
+								<div class="col-5 ve-flex-vh-center">${dispCat}${it.extraInfo}</div>
+								<div class="pr-0 col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>
 							</label>`;
 
 							const listItem = new ListItem(
@@ -5236,8 +5236,8 @@ BrewUtil = {
 		if (!BrewUtil.homebrew) return;
 
 		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control" placeholder="Search active homebrew...">`);
-		const $wrpList = $(`<div class="list-display-only brew-list brew-list--target manbrew__list flex-col w-100 mb-3"></div>`);
-		const $wrpListGroup = $(`<div class="list-display-only brew-list brew-list--groups no-shrink flex-col w-100" style="height: initial;"></div>`);
+		const $wrpList = $(`<div class="list-display-only brew-list brew-list--target manbrew__list ve-flex-col w-100 mb-3"></div>`);
+		const $wrpListGroup = $(`<div class="list-display-only brew-list brew-list--groups no-shrink ve-flex-col w-100" style="height: initial;"></div>`);
 
 		const list = new List({
 			$iptSearch,
@@ -5248,15 +5248,15 @@ BrewUtil = {
 		});
 
 		const $lst = $$`
-			<div class="flex-col h-100">
+			<div class="ve-flex-col h-100">
 				${$iptSearch}
-				<div class="filtertools manbrew__filtertools btn-group input-group input-group--bottom flex no-shrink">
+				<div class="filtertools manbrew__filtertools btn-group input-group input-group--bottom ve-flex no-shrink">
 					<button class="col-5 sort btn btn-default btn-xs ve-grow" data-sort="source">Source</button>
 					<button class="col-5 sort btn btn-default btn-xs" data-sort="authors">Authors</button>
 					<button class="col-1 btn btn-default btn-xs" disabled>Origin</button>
 					<button class="col-1 ve-grow btn btn-default btn-xs" disabled>&nbsp;</button>
 				</div>
-				<div class="flex w-100 h-100 overflow-y-auto relative">${$wrpList}</div>
+				<div class="ve-flex w-100 h-100 overflow-y-auto relative">${$wrpList}</div>
 			</div>
 		`.appendTo($brewList);
 		$wrpListGroup.appendTo($brewList);
@@ -5295,7 +5295,7 @@ BrewUtil = {
 			const $btnDeleteAll = $(`<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>`)
 				.on("click", () => BrewUtil._pRenderBrewScreen_pDeleteSource($brewList, src.json, true, src._all));
 
-			$$`<div class="${isFooterGroup ? `flex-v-center flex-h-right` : `flex-vh-center ve-grow`} btn-group">
+			$$`<div class="${isFooterGroup ? `ve-flex-v-center ve-flex-h-right` : `ve-flex-vh-center ve-grow`} btn-group">
 				${$btnViewManage}
 				${btnConvertedBy}
 				${$btnDeleteAll}
@@ -5310,7 +5310,7 @@ BrewUtil = {
 			const validAuthors = (!src.authors ? [] : !(src.authors instanceof Array) ? [] : src.authors).join(", ");
 			const isGroup = src._unknown || src._all;
 
-			const $row = $(`<div class="manbrew__row flex-v-center lst__row lst--border lst__row-inner no-shrink">
+			const $row = $(`<div class="manbrew__row ve-flex-v-center lst__row lst--border lst__row-inner no-shrink">
 				<span class="col-5 source manbrew__source">${isGroup ? "<i>" : ""}${src.full}${isGroup ? "</i>" : ""}</span>
 				<span class="col-5 authors">${validAuthors}</span>
 				<${src.url ? "a" : "span"} class="col-1 text-center" ${src.url ? `href="${src.url}" target="_blank" rel="noopener noreferrer"` : ""}>${src.url ? "View Source" : ""}</${src.url ? "a" : "span"}>
@@ -5331,7 +5331,7 @@ BrewUtil = {
 		});
 
 		const createGroupRow = (fullText, modeProp) => {
-			const $row = $(`<div class="manbrew__row flex-h-right flex-v-center">
+			const $row = $(`<div class="manbrew__row ve-flex-h-right ve-flex-v-center">
 				<div class="source manbrew__source text-right"><i class="mr-3">${fullText}</i></div>
 			</div>`);
 			createButtons({[modeProp]: true}, $row, true);
@@ -5812,6 +5812,7 @@ BrewUtil = {
 					break;
 				case UrlUtil.PG_MANAGE_BREW:
 				case UrlUtil.PG_DEMO_RENDER:
+				case UrlUtil.PG_MAPS:
 				case VeCt.PG_NONE:
 					// No-op
 					break;
@@ -6679,7 +6680,7 @@ function BookModeView (opts) {
 	this._renderContent = async ($wrpContent, $dispName, $wrpControlsToPass) => {
 		this._$wrpRenderedContent = this._$wrpRenderedContent
 			? this._$wrpRenderedContent.empty().append($wrpContent)
-			: $$`<div class="bkmv__scroller h-100 overflow-y-auto ${isFlex ? "flex" : ""}">${this.isHideContentOnNoneShown ? null : $wrpContent}</div>`;
+			: $$`<div class="bkmv__scroller h-100 overflow-y-auto ${isFlex ? "ve-flex" : ""}">${this.isHideContentOnNoneShown ? null : $wrpContent}</div>`;
 		this._$wrpRenderedContent.appendTo(this._$wrpBook);
 
 		const numShown = await this.popTblGetNumShown({$wrpContent, $dispName, $wrpControls: $wrpControlsToPass});
@@ -6695,16 +6696,16 @@ function BookModeView (opts) {
 				const $btnClose = $(`<button class="btn btn-default">Close</button>`)
 					.click(() => this.close());
 
-				this._$wrpNoneShown = $$`<div class="w-100 flex-col flex-h-center no-shrink bkmv__footer mb-3">
-					<div class="mb-2 flex-vh-center min-h-0">${this.$eleNoneVisible}</div>
-					${this.isHideButtonCloseNone ? null : $$`<div class="flex-vh-center">${$btnClose}</div>`}
+				this._$wrpNoneShown = $$`<div class="w-100 ve-flex-col ve-flex-h-center no-shrink bkmv__footer mb-3">
+					<div class="mb-2 ve-flex-vh-center min-h-0">${this.$eleNoneVisible}</div>
+					${this.isHideButtonCloseNone ? null : $$`<div class="ve-flex-vh-center">${$btnClose}</div>`}
 				</div>`;
 			}
 			this._$wrpNoneShown.appendTo(this.isHideContentOnNoneShown ? this._$wrpRenderedContent : this._$wrpBook);
 		}
 	};
 
-	// NOTE: Avoid using `flex` css, as it doesn't play nice with printing
+	// NOTE: Avoid using `ve-flex` css, as it doesn't play nice with printing
 	this.pOpen = async () => {
 		if (this.active) return;
 		this.active = true;
@@ -6723,7 +6724,7 @@ function BookModeView (opts) {
 
 		// region controls
 		// Optionally usable "controls" section at the top of the pane
-		const $wrpControls = $(`<div class="w-100 flex-col bkmv__wrp-controls"></div>`)
+		const $wrpControls = $(`<div class="w-100 ve-flex-col bkmv__wrp-controls"></div>`)
 			.appendTo(this._$wrpBook);
 
 		let $wrpControlsToPass = $wrpControls;
@@ -6752,8 +6753,8 @@ function BookModeView (opts) {
 			if (lastColumns != null) $selColumns.val(lastColumns);
 			$selColumns.change();
 
-			$wrpControlsToPass = $$`<div class="w-100 flex">
-				<div class="flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${$selColumns}</div>
+			$wrpControlsToPass = $$`<div class="w-100 ve-flex">
+				<div class="ve-flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${$selColumns}</div>
 			</div>`.appendTo($wrpControls);
 		}
 		// endregion
@@ -7127,7 +7128,7 @@ if (!IS_VTT && typeof window !== "undefined") {
 					const $tgt = $wrp.closest(".cancer__anchor").find(".cancer__disp-cancer");
 					if ($tgt.length) {
 						anyFound = true;
-						$tgt.css({display: "flex"}).text("Advertisements");
+						$tgt.css({display: "ve-flex"}).text("Advertisements");
 						clearInterval(iv);
 					}
 				}, 250);

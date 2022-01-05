@@ -15,6 +15,25 @@ jobs:
          -  name: Set env
             run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
+         -  name: Build SEO Pages
+            env:
+               VET_SEO_IS_DEV_MODE: true
+               VET_BASE_SITE_URL: https://5etools-mirror-1.github.io/
+               VET_SEO_IS_SKIP_UA_ETC: true
+            run: |
+               npm run build:seo
+
+         # See: https://github.com/JamesIves/github-pages-deploy-action
+         -  name: Deploy
+            uses: JamesIves/github-pages-deploy-action@releases/v4
+            with:
+               branch: gh-pages
+               folder: .
+
+         # Avoid including SEO pages in the release zips
+         -  name: Cleanup
+            run: 'rm -rf bestiary items spells'
+
          # region See: https://github.com/TheDoctor0/zip-release
          -  name: Archive Release
             uses: thedoctor0/zip-release@master
@@ -23,32 +42,32 @@ jobs:
                filename: '5etools-${{ env.RELEASE_VERSION }}.zip'
                exclusions: '*.git* /*node_modules/* /*.github/* /*img/*'
 
-#         -  name: Archive Images
-#            uses: thedoctor0/zip-release@master
-#            with:
-#               type: 'zip'
-#               filename: 'img-${{ env.RELEASE_VERSION }}.zip'
-#               path: 'img'
+         -  name: Archive Images (Adventure)
+            uses: thedoctor0/zip-release@master
+            with:
+               type: 'zip'
+               filename: 'img-${{ env.RELEASE_VERSION }}-adventure.zip'
+               path: 'img/adventure'
+
+         -  name: Archive Images (Book)
+            uses: thedoctor0/zip-release@master
+            with:
+               type: 'zip'
+               filename: 'img-${{ env.RELEASE_VERSION }}-book.zip'
+               path: 'img/book'
+
+         -  name: Archive Images (Cleanup)
+            run: 'rm -rf img/adventure img/book'
+
+         -  name: Archive Images (Other)
+            uses: thedoctor0/zip-release@master
+            with:
+               type: 'zip'
+               filename: 'img-${{ env.RELEASE_VERSION }}.zip'
+               path: 'img'
 
          -  name: Upload Release
-#             Disable image uploads--the zip is too large :(
-#             run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
-            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
+            run: 'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}.zip -a img-${{ env.RELEASE_VERSION }}-adventure.zip -a img-${{ env.RELEASE_VERSION }}-book.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
             env:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          # endregion
-
-         - name: Build SEO Pages
-           env:
-              VET_SEO_IS_DEV_MODE: true
-              VET_BASE_SITE_URL: https://5etools-mirror-1.github.io/
-              VET_SEO_IS_SKIP_UA_ETC: true
-           run: |
-              npm run build:seo
-
-         # See: https://github.com/JamesIves/github-pages-deploy-action
-         - name: Deploy
-           uses: JamesIves/github-pages-deploy-action@releases/v4
-           with:
-              branch: gh-pages
-              folder: .

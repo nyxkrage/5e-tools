@@ -86,7 +86,7 @@ class BooksList {
 
 			const $elesContents = [];
 			it.contents.map((chapter, ixChapter) => {
-				const $lnkChapter = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="flex w-100 bklist__row-chapter lst--border lst__row-inner lst__row lst__wrp-cells bold">
+				const $lnkChapter = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex w-100 bklist__row-chapter lst--border lst__row-inner lst__row lst__wrp-cells bold">
 					${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}
 				</a>`;
 				$elesContents.push($lnkChapter);
@@ -101,16 +101,16 @@ class BooksList {
 					const headerTextClean = headerText.toLowerCase().trim();
 					const headerPos = headerCounts[headerTextClean] || 0;
 					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
-					const $lnk = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst--border lst__row-inner lst__wrp-cells bklist__row-section flex w-100">
+					const $lnk = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst--border lst__row-inner lst__wrp-cells bklist__row-section ve-flex w-100">
 						${BookUtil.getContentsSectionHeader(header)}
 					</a>`;
 					$elesContents.push($lnk);
 				});
 			});
 
-			const $wrpContents = $$`<div class="flex w-100 relative">
+			const $wrpContents = $$`<div class="ve-flex w-100 relative">
 				<div class="vr-0 absolute bklist__vr-contents"></div>
-				<div class="flex-col w-100 bklist__wrp-rows-inner">${$elesContents}</div>
+				<div class="ve-flex-col w-100 bklist__wrp-rows-inner">${$elesContents}</div>
 			</div>`.hideVe();
 
 			const $btnToggleExpand = $(`<span class="px-2 py-1p bold">[+]</span>`)
@@ -121,9 +121,9 @@ class BooksList {
 					$wrpContents.toggleVe();
 				});
 
-			const $eleLi = $$`<div class="flex-col w-100">
+			const $eleLi = $$`<div class="ve-flex-col w-100">
 				<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="split-v-center lst--border lst__row-inner lst__row ${isExcluded ? `lst__row--blacklisted` : ""}">
-					<span class="w-100 flex">${this._rowBuilderFn(it)}</span>
+					<span class="w-100 ve-flex">${this._rowBuilderFn(it)}</span>
 					${$btnToggleExpand}
 				</a>
 				${$wrpContents}
@@ -140,9 +140,9 @@ class BooksList {
 			this._list.addItem(listItem);
 
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="flex-col flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blacklisted` : ""} py-3 px-2 ${Parser.sourceJsonToColor(it.source)}" ${BrewUtil.sourceJsonToStyle(it.source)}>
+			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blacklisted` : ""} py-3 px-2 ${Parser.sourceJsonToColor(it.source)}" ${BrewUtil.sourceJsonToStyle(it.source)}>
 				<img src="${it.coverUrl || `${Renderer.get().baseMediaUrls["img"] || Renderer.get().baseUrl}img/covers/blank.png`}" class="mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
-				<div class="bks__bookshelf-item-name flex-vh-center text-center">${it.name}</div>
+				<div class="bks__bookshelf-item-name ve-flex-vh-center text-center">${it.name}</div>
 			</a>`)[0];
 			const listItemAlt = new ListItem(
 				this._dataIx,

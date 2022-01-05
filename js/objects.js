@@ -20,7 +20,7 @@ class ObjectsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(obj, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(obj.source);
 		const hash = UrlUtil.autoEncodeHash(obj);
@@ -63,7 +63,7 @@ class ObjectsPage extends ListPage {
 		const hash = UrlUtil.autoEncodeHash(obj);
 		const size = Parser.sizeAbvToFull(obj.size);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-9 pl-0">${obj.name}</span>
 				<span class="col-3 pr-0 text-center">${size}</span>

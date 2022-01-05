@@ -24,7 +24,7 @@ class RenderBestiary {
 	}
 
 	static _getPronunciationButton (mon) {
-		return `<button class="btn btn-xs btn-default btn-name-pronounce ml-2 mb-2 self-flex-end">
+		return `<button class="btn btn-xs btn-default btn-name-pronounce ml-2 mb-2 self-ve-flex-end">
 			<span class="glyphicon glyphicon-volume-up name-pronounce-icon"></span>
 			<audio class="name-pronounce">
 			   <source src="${Renderer.utils.getMediaUrl(mon, "soundClip", "audio")}" type="audio/mpeg">
@@ -162,7 +162,7 @@ class RenderBestiary {
 
 		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy);
 		if (!mon.environment?.length) return [pageTrInner];
-		return [pageTrInner, `<div class="mb-1 mt-2"><b>Environment:</b> ${mon.environment.sort(SortUtil.ascSortLower).map(it => it.toTitleCase()).join(", ")}</div>`];
+		return [pageTrInner, `<div class="mb-1 mt-2"><b>Environment:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`];
 	}
 
 	static $getRenderedLegendaryGroup (legGroup) {

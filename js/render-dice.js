@@ -82,16 +82,14 @@ Renderer.dice = {
 
 	// region Roll box UI
 	_showBox () {
-		if (Renderer.dice._$wrpRoll.css("display") !== "flex") {
-			Renderer.dice._$minRoll.hide();
-			Renderer.dice._$wrpRoll.css("display", "flex");
-			Renderer.dice._$iptRoll.prop("placeholder", `${Renderer.dice._getRandomPlaceholder()} or "/help"`);
-		}
+		Renderer.dice._$minRoll.hideVe();
+		Renderer.dice._$wrpRoll.showVe();
+		Renderer.dice._$iptRoll.prop("placeholder", `${Renderer.dice._getRandomPlaceholder()} or "/help"`);
 	},
 
 	_hideBox () {
-		Renderer.dice._$minRoll.show();
-		Renderer.dice._$wrpRoll.css("display", "");
+		Renderer.dice._$minRoll.showVe();
+		Renderer.dice._$wrpRoll.hideVe();
 	},
 
 	_getRandomPlaceholder () {
@@ -106,7 +104,7 @@ Renderer.dice = {
 
 	/** Initialise the roll box UI. */
 	async _pInit () {
-		const $wrpRoll = $(`<div class="rollbox"></div>`);
+		const $wrpRoll = $(`<div class="rollbox"></div>`).hideVe();
 		const $minRoll = $(`<div class="rollbox-min"><span class="glyphicon glyphicon-chevron-up"></span></div>`).on("click", () => {
 			Renderer.dice._showBox();
 			Renderer.dice._$iptRoll.focus();
@@ -673,7 +671,7 @@ Renderer.dice = {
 		if (!tree) return JqueryUtil.doToast({type: "danger", content: `Invalid roll input!`});
 
 		const title = (rolledBy.label || "").toTitleCase() || "Roll Dice";
-		const $dispDice = $(`<div class="p-2 bold flex-vh-center rll__prompt-header">${tree.toString()}</div>`);
+		const $dispDice = $(`<div class="p-2 bold ve-flex-vh-center rll__prompt-header">${tree.toString()}</div>`);
 		if (opts.isResultUsed) {
 			return InputUiUtil.pGetUserNumber({
 				title,

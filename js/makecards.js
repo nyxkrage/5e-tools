@@ -55,7 +55,7 @@ class MakeCards extends BaseComponent {
 			});
 
 		$$($wrpConfig)`<h5 class="split-v-center"><div>New Card Defaults</div>${$btnResetDefaults}</h5>
-		<div class="flex-v-center bold">
+		<div class="ve-flex-v-center bold">
 			<div class="col-4 text-center pr-2">Type</div>
 			<div class="col-4 text-center p-2">Color</div>
 			<div class="col-4 text-center pl-2">Icon</div>
@@ -77,10 +77,10 @@ class MakeCards extends BaseComponent {
 			this._addHookBase(kIcon, hkIcon);
 			hkIcon();
 
-			return $$`<div class="flex-v-center stripe-even m-1">
-				<div class="col-4 flex-vh-center pr-2">${entityMeta.searchTitle}</div>
-				<div class="col-4 flex-vh-center p-2">${$iptColor}</div>
-				<div class="col-4 flex-vh-center pl-2">${$btnChooseIcon}</div>
+			return $$`<div class="ve-flex-v-center stripe-even m-1">
+				<div class="col-4 ve-flex-vh-center pr-2">${entityMeta.searchTitle}</div>
+				<div class="col-4 ve-flex-vh-center p-2">${$iptColor}</div>
+				<div class="col-4 ve-flex-vh-center pl-2">${$btnChooseIcon}</div>
 			</div>`;
 		};
 
@@ -119,7 +119,7 @@ class MakeCards extends BaseComponent {
 				});
 				DataUtil.userDownload("rpg-cards", toDownload, {isSipAdditionalMetadata: true});
 			});
-		$$`<div class="w-100 no-shrink flex-v-center mb-3">${$iptSearch}${$btnAdd}${$btnReset}${$btnExport}</div>`.appendTo($wrpContainer);
+		$$`<div class="w-100 no-shrink ve-flex-v-center mb-3">${$iptSearch}${$btnAdd}${$btnReset}${$btnExport}</div>`.appendTo($wrpContainer);
 		// endregion
 
 		// region Mass operations bar
@@ -165,7 +165,7 @@ class MakeCards extends BaseComponent {
 
 		const $btnMass = $(`<button class="btn btn-xs btn-default" title="Carry out actions on selected cards">Mass...</button>`)
 			.click(evt => ContextUtil.pOpenMenu(evt, menuMass));
-		$$`<div class="w-100 no-shrink flex-v-center mb-2">${$btnMass}</div>`.appendTo($wrpContainer);
+		$$`<div class="w-100 no-shrink ve-flex-v-center mb-2">${$btnMass}</div>`.appendTo($wrpContainer);
 		// endregion
 
 		// region Main content
@@ -175,19 +175,19 @@ class MakeCards extends BaseComponent {
 				const isSel = $cbSelAll.prop("checked");
 				this._list.visibleItems.forEach(it => it.data.$cbSel.prop("checked", isSel));
 			});
-		$$`<div class="w-100 no-shrink flex-v-center bold">
-			<div class="col-1 mr-2 flex-vh-center">${$cbSelAll}</div>
-			<div class="col-3 mr-2 flex-vh-center">Name</div>
-			<div class="col-1-5 mr-2 flex-vh-center">Source</div>
-			<div class="col-1-5 mr-2 flex-vh-center">Type</div>
-			<div class="col-1-1 mr-2 flex-vh-center">Color</div>
-			<div class="col-1-1 mr-2 flex-vh-center">Icon</div>
-			<div class="col-1 mr-2 flex-vh-center">Count</div>
-			<div class="col-1-1 flex-v-center flex-h-right"/>
+		$$`<div class="w-100 no-shrink ve-flex-v-center bold">
+			<div class="col-1 mr-2 ve-flex-vh-center">${$cbSelAll}</div>
+			<div class="col-3 mr-2 ve-flex-vh-center">Name</div>
+			<div class="col-1-5 mr-2 ve-flex-vh-center">Source</div>
+			<div class="col-1-5 mr-2 ve-flex-vh-center">Type</div>
+			<div class="col-1-1 mr-2 ve-flex-vh-center">Color</div>
+			<div class="col-1-1 mr-2 ve-flex-vh-center">Icon</div>
+			<div class="col-1 mr-2 ve-flex-vh-center">Count</div>
+			<div class="col-1-1 ve-flex-v-center ve-flex-h-right"/>
 		</div>`.appendTo($wrpContainer);
 
 		const $wrpList = $(`<div class="w-100 h-100"/>`);
-		$$`<div class="flex-col h-100 w-100 overflow-y-auto mt-2 overflow-x-hidden">${$wrpList}</div>`.appendTo($wrpContainer);
+		$$`<div class="ve-flex-col h-100 w-100 overflow-y-auto mt-2 overflow-x-hidden">${$wrpList}</div>`.appendTo($wrpContainer);
 
 		this._list = new List({$iptSearch, $wrpList, isUseJquery: true});
 		this._list.init();
@@ -370,15 +370,15 @@ class MakeCards extends BaseComponent {
 				this._doSaveStateDebounced();
 			});
 
-		const $ele = $$`<label class="flex-v-center my-1 w-100 lst__row lst--border lst__row-inner">
-			<div class="col-1 mr-2 flex-vh-center">${$cbSel}</div>
-			<div class="col-3 mr-2 flex-v-center">${loaded.name}</div>
-			<div class="col-1-5 mr-2 flex-vh-center ${Parser.sourceJsonToColor(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${BrewUtil.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
-			<div class="col-1-5 mr-2 flex-vh-center">${cardMeta.entityType.toTitleCase()}</div>
-			<div class="col-1-1 mr-2 flex-vh-center">${$iptRgb}</div>
-			<div class="col-1-1 mr-2 flex-vh-center">${$btnIcon}</div>
-			<div class="col-1 mr-2 flex-vh-center">${$iptCount}</div>
-			<div class="col-1-1 flex-v-center flex-h-right">${$btnCopy}${$btnDelete}</div>
+		const $ele = $$`<label class="ve-flex-v-center my-1 w-100 lst__row lst--border lst__row-inner">
+			<div class="col-1 mr-2 ve-flex-vh-center">${$cbSel}</div>
+			<div class="col-3 mr-2 ve-flex-v-center">${loaded.name}</div>
+			<div class="col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToColor(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${BrewUtil.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="col-1-5 mr-2 ve-flex-vh-center">${cardMeta.entityType.toTitleCase()}</div>
+			<div class="col-1-1 mr-2 ve-flex-vh-center">${$iptRgb}</div>
+			<div class="col-1-1 mr-2 ve-flex-vh-center">${$btnIcon}</div>
+			<div class="col-1 mr-2 ve-flex-vh-center">${$iptCount}</div>
+			<div class="col-1-1 ve-flex-v-center ve-flex-h-right">${$btnCopy}${$btnDelete}</div>
 		</label>`;
 
 		const listItem = new ListItem(
@@ -619,7 +619,7 @@ class MakeCards extends BaseComponent {
 				},
 			});
 			$iptStr.appendTo($modalInner);
-			$$`<div class="flex-vh-center">${$btnOk}</div>`.appendTo($modalInner);
+			$$`<div class="ve-flex-vh-center">${$btnOk}</div>`.appendTo($modalInner);
 			$iptStr.focus();
 			$iptStr.select();
 		});

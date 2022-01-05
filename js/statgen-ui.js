@@ -215,7 +215,7 @@ class StatGenUi extends BaseComponent {
 					},
 				)
 					.addClass("max-w-200p");
-				$$`<div class="flex-v-center statgen-shared__wrp-header">
+				$$`<div class="ve-flex-v-center statgen-shared__wrp-header">
 					<div class="mr-2"><b>Mode</b></div>
 					${$selMode}
 				</div>
@@ -225,7 +225,7 @@ class StatGenUi extends BaseComponent {
 			tabMetas.forEach(it => it.$wrpTab.appendTo($parent));
 		}
 
-		const $wrpAll = $(`<div class="flex-col w-100 h-100"></div>`);
+		const $wrpAll = $(`<div class="ve-flex-col w-100 h-100"></div>`);
 		this._render_all($wrpAll);
 
 		const hkTab = () => {
@@ -267,8 +267,8 @@ class StatGenUi extends BaseComponent {
 				});
 			});
 
-		const $wrpRolled = $(`<div class="flex-v-center mr-auto statgen-rolled__wrp-results py-1"></div>`);
-		const $wrpRolledOuter = $$`<div class="flex-v-center"><div class="mr-2">=</div>${$wrpRolled}</div>`;
+		const $wrpRolled = $(`<div class="ve-flex-v-center mr-auto statgen-rolled__wrp-results py-1"></div>`);
+		const $wrpRolledOuter = $$`<div class="ve-flex-v-center"><div class="mr-2">=</div>${$wrpRolled}</div>`;
 
 		const hkRolled = () => {
 			$wrpRolledOuter.toggleVe(this._state.rolled_rolls.length);
@@ -276,25 +276,25 @@ class StatGenUi extends BaseComponent {
 
 			$wrpRolled.html(this._state.rolled_rolls.map((it, i) => {
 				const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
-				return `<div class="px-3 py-1 help-subtle flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="flex-vh-center statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
+				return `<div class="px-3 py-1 help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
 			}));
 		};
 		this._addHookBase("rolled_rolls", hkRolled);
 		hkRolled();
 
-		return $$`<div class="flex-col mb-3 mr-auto">
-			<div class="flex mb-2">
-				<div class="flex-col flex-h-center mr-3">
-					<label class="flex-v-center"><div class="mr-2 no-shrink w-100p">Formula:</div>${this._$rollIptFormula}</label>
+		return $$`<div class="ve-flex-col mb-3 mr-auto">
+			<div class="ve-flex mb-2">
+				<div class="ve-flex-col ve-flex-h-center mr-3">
+					<label class="ve-flex-v-center"><div class="mr-2 no-shrink w-100p">Formula:</div>${this._$rollIptFormula}</label>
 
-					${this._isCharacterMode ? null : $$`<label class="flex-v-center mt-2"><div class="mr-2 no-shrink w-100p">Number of rolls:</div>${$iptRollCount}</label>`}
+					${this._isCharacterMode ? null : $$`<label class="ve-flex-v-center mt-2"><div class="mr-2 no-shrink w-100p">Number of rolls:</div>${$iptRollCount}</label>`}
 				</div>
 				${$btnRoll}
 			</div>
 
 			${$wrpRolledOuter}
 
-			<div class="flex-v-center">${$btnRandom}</div>
+			<div class="ve-flex-v-center">${$btnRandom}</div>
 		</div>`;
 	}
 
@@ -308,15 +308,15 @@ class StatGenUi extends BaseComponent {
 				});
 			});
 
-		return $$`<div class="flex-col mb-3 mr-auto">
+		return $$`<div class="ve-flex-col mb-3 mr-auto">
 			<div class="mb-2">Assign these numbers to your abilities as desired:</div>
 			<div class="bold mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
-			<div class="flex">${$btnRandom}</div>
+			<div class="ve-flex">${$btnRandom}</div>
 		</div>`;
 	}
 
 	_render_$getStgManualHeader () {
-		return $$`<div class="flex-col mb-3 mr-auto">
+		return $$`<div class="ve-flex-col mb-3 mr-auto">
 			<div>Enter your desired ability scores in the &quot;Base&quot; column below.</div>
 		</div>`;
 	}
@@ -412,28 +412,28 @@ class StatGenUi extends BaseComponent {
 				}
 			});
 
-		return $$`<div class="flex mobile__flex-col mb-2">
-			<div class="flex-v-center">
+		return $$`<div class="ve-flex mobile__ve-flex-col mb-2">
+			<div class="ve-flex-v-center">
 				<div class="statgen-pb__cell mr-4 mobile__hidden"></div>
 
-				<label class="flex-col mr-2">
+				<label class="ve-flex-col mr-2">
 					<div class="mb-1 text-center">Budget</div>
 					${$iptBudget}
 				</label>
 
-				<label class="flex-col mr-2">
+				<label class="ve-flex-col mr-2">
 					<div class="mb-1 text-center">Remain</div>
 					${$iptRemaining}
 				</label>
 			</div>
 
-			<div class="flex-v-center mobile__mt-2">
-				<div class="flex-col mr-2">
+			<div class="ve-flex-v-center mobile__mt-2">
+				<div class="ve-flex-col mr-2">
 					<div class="mb-1 text-center mobile__hidden">&nbsp;</div>
 					${$btnReset}
 				</div>
 
-				<div class="flex-col">
+				<div class="ve-flex-col">
 					<div class="mb-1 text-center mobile__hidden">&nbsp;</div>
 					${$btnRandom}
 				</div>
@@ -463,12 +463,12 @@ class StatGenUi extends BaseComponent {
 				this._state.pb_rules = this._getDefaultStatePointBuyCosts().pb_rules;
 			});
 
-		const $stgCustomCostControls = $$`<div class="flex-col mb-auto ml-2 mobile__ml-0 mobile__mt-3">
-			<div class="btn-group-vertical flex-col mb-2">${$btnAddLower}${$btnAddHigher}</div>
-			<div class="flex-v-center">${$btnResetRules}</div>
+		const $stgCustomCostControls = $$`<div class="ve-flex-col mb-auto ml-2 mobile__ml-0 mobile__mt-3">
+			<div class="btn-group-vertical ve-flex-col mb-2">${$btnAddLower}${$btnAddHigher}</div>
+			<div class="ve-flex-v-center">${$btnResetRules}</div>
 		</div>`;
 
-		const $stgCostRows = $$`<div class="flex-col"></div>`;
+		const $stgCostRows = $$`<div class="ve-flex-col"></div>`;
 
 		const renderableCollectionRules = new StatGenUi.RenderableCollectionPbRules(
 			this,
@@ -501,16 +501,16 @@ class StatGenUi extends BaseComponent {
 		this._addHookBase("pb_isCustom", hkIsCustomReset);
 		hkIsCustomReset();
 
-		return $$`<div class="flex-col">
+		return $$`<div class="ve-flex-col">
 			<h4>Ability Score Point Cost</h4>
 
-			<div class="flex-col">
-				<div class="flex mobile__flex-col">
-					<div class="flex-col mr-3mobile__mr-0">
-						<div class="flex-v-center mb-1">
-							<div class="statgen-pb__col-cost flex-vh-center bold">Score</div>
-							<div class="statgen-pb__col-cost flex-vh-center bold">Modifier</div>
-							<div class="statgen-pb__col-cost flex-vh-center bold">Point Cost</div>
+			<div class="ve-flex-col">
+				<div class="ve-flex mobile__ve-flex-col">
+					<div class="ve-flex-col mr-3mobile__mr-0">
+						<div class="ve-flex-v-center mb-1">
+							<div class="statgen-pb__col-cost ve-flex-vh-center bold">Score</div>
+							<div class="statgen-pb__col-cost ve-flex-vh-center bold">Modifier</div>
+							<div class="statgen-pb__col-cost ve-flex-vh-center bold">Point Cost</div>
 							<div class="statgen-pb__col-cost-delete"></div>
 						</div>
 
@@ -523,7 +523,7 @@ class StatGenUi extends BaseComponent {
 
 			<hr class="hr-4 mb-2">
 
-			<label class="flex-v-center">
+			<label class="ve-flex-v-center">
 				<div class="mr-2">Custom Rules</div>
 				${ComponentUiUtil.$getCbBool(this, "pb_isCustom")}
 			</label>
@@ -720,8 +720,8 @@ class StatGenUi extends BaseComponent {
 
 		const metasTotalAndMod = this._render_getMetasTotalAndMod();
 
-		const $wrpRace = $(`<div class="flex"></div>`);
-		const $wrpRaceOuter = $$`<div class="flex-col">
+		const $wrpRace = $(`<div class="ve-flex"></div>`);
+		const $wrpRaceOuter = $$`<div class="ve-flex-col">
 			<div class="my-1 statgen-pb__header statgen-pb__header--group mr-3 text-center italic">Race</div>
 
 			${$wrpRace}
@@ -783,7 +783,7 @@ class StatGenUi extends BaseComponent {
 		this._addHookBase("common_ixRace", hkBtnPreviewRace);
 		hkBtnPreviewRace();
 
-		const $dispPreviewRace = $(`<div class="flex-col mb-2"></div>`);
+		const $dispPreviewRace = $(`<div class="ve-flex-col mb-2"></div>`);
 		const hkPreviewRace = () => {
 			if (!this._state.common_isPreviewRace) return $dispPreviewRace.hideVe();
 
@@ -800,11 +800,11 @@ class StatGenUi extends BaseComponent {
 			this,
 			"common_isShowTashasRules",
 			{
-				html: `<button class="btn btn-xxs btn-default ve-small p-0 statgen-shared__btn-toggle-tashas-rules flex-vh-center" title="Toggle &quot;Customizing Your Origin&quot; Section"><span class="glyphicon glyphicon-eye-open"></span></button>`,
+				html: `<button class="btn btn-xxs btn-default ve-small p-0 statgen-shared__btn-toggle-tashas-rules ve-flex-vh-center" title="Toggle &quot;Customizing Your Origin&quot; Section"><span class="glyphicon glyphicon-eye-open"></span></button>`,
 			},
 		);
 
-		const $dispTashas = $(`<div class="flex-col"><div class="italic ve-muted">Loading...</div></div>`);
+		const $dispTashas = $(`<div class="ve-flex-col"><div class="italic ve-muted">Loading...</div></div>`);
 		Renderer.hover.pCacheAndGet(UrlUtil.PG_VARIANTRULES, SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: SRC_TCE}))
 			.then(rule => {
 				$$($dispTashas.empty())`${Renderer.hover.$getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="hr-3">`;
@@ -830,56 +830,56 @@ class StatGenUi extends BaseComponent {
 			${$stgArrayHeader}
 			${$stgManualHeader}
 
-			<div class="flex mobile-ish__flex-col w-100 px-3">
-				<div class="flex-col">
+			<div class="ve-flex mobile-ish__ve-flex-col w-100 px-3">
+				<div class="ve-flex-col">
 					${$stgPbHeader}
 
-					<div class="flex">
-						<div class="flex-col mr-3">
+					<div class="ve-flex">
+						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header flex-h-right">${$btnResetRolledOrArrayOrManual}</div>
+							<div class="my-1 statgen-pb__header ve-flex-h-right">${$btnResetRolledOrArrayOrManual}</div>
 
-							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell flex-v-center flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
+							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
 						</div>
 
-						<div class="flex-col mr-3">
+						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 bold statgen-pb__header flex-vh-center">Base</div>
+							<div class="my-1 bold statgen-pb__header ve-flex-vh-center">Base</div>
 							${$wrpsBase}
 						</div>
 
 						${$wrpRaceOuter}
 
-						<div class="flex-col mr-3">
+						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header flex-vh-center help text-muted" title="Input any additional/custom bonuses here">User</div>
+							<div class="my-1 statgen-pb__header ve-flex-vh-center help text-muted" title="Input any additional/custom bonuses here">User</div>
 							${$wrpsUser}
 						</div>
 
-						<div class="flex-col mr-3">
+						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header flex-vh-center">Total</div>
+							<div class="my-1 statgen-pb__header ve-flex-vh-center">Total</div>
 							${metasTotalAndMod.map(it => it.$wrpIptTotal)}
 						</div>
 
-						<div class="flex-col mr-3">
+						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header flex-vh-center" title="Modifier">Mod.</div>
+							<div class="my-1 statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
 							${metasTotalAndMod.map(it => it.$wrpIptMod)}
 						</div>
 					</div>
 
-					<div class="flex-col">
+					<div class="ve-flex-col">
 						<div class="mb-1">Select a Race</div>
-						<div class="flex-v-center mb-2">
-							<div class="flex-v-center btn-group w-100 mr-2">${$btnFilterForRace}${$selRace}</div>
+						<div class="ve-flex-v-center mb-2">
+							<div class="ve-flex-v-center btn-group w-100 mr-2">${$btnFilterForRace}${$selRace}</div>
 							<div>${$btnPreviewRace}</div>
 						</div>
-						<label class="flex-v-center mb-1">
+						<label class="ve-flex-v-center mb-1">
 							<div class="mr-1">Allow Origin Customization</div>
 							${ComponentUiUtil.$getCbBool(this, "common_isTashas")}
 						</label>
-						<div class="flex">
+						<div class="ve-flex">
 							<div class="ve-small ve-muted italic mr-1">${Renderer.get().render(`An {@variantrule Customizing Your Origin|TCE|optional rule}`)}</div>
 							${$btnToggleTashasPin}
 							<div class="ve-small ve-muted italic ml-1">${Renderer.get().render(`from Tasha's Cauldron of Everything, page 8.`)}</div>
@@ -920,32 +920,32 @@ class StatGenUi extends BaseComponent {
 		const $wrpAsi = this._render_$getWrpAsi();
 
 		$$($wrpTab)`
-			<div class="flex mobile-ish__flex-col w-100 px-3">
-				<div class="flex-col">
-					<div class="flex">
-						<div class="flex-col mr-3">
+			<div class="ve-flex mobile-ish__ve-flex-col w-100 px-3">
+				<div class="ve-flex-col">
+					<div class="ve-flex">
+						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
 
-							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell flex-v-center flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
+							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
 						</div>
 
-						<div class="flex-col mr-3">
-							<div class="my-1 bold statgen-pb__header flex-vh-center" title="Current">Curr.</div>
+						<div class="ve-flex-col mr-3">
+							<div class="my-1 bold statgen-pb__header ve-flex-vh-center" title="Current">Curr.</div>
 							${$wrpsExisting}
 						</div>
 
-						<div class="flex-col mr-3">
-							<div class="my-1 statgen-pb__header flex-vh-center help text-muted" title="Input any additional/custom bonuses here">User</div>
+						<div class="ve-flex-col mr-3">
+							<div class="my-1 statgen-pb__header ve-flex-vh-center help text-muted" title="Input any additional/custom bonuses here">User</div>
 							${$wrpsUser}
 						</div>
 
-						<div class="flex-col mr-3">
-							<div class="my-1 statgen-pb__header flex-vh-center">Total</div>
+						<div class="ve-flex-col mr-3">
+							<div class="my-1 statgen-pb__header ve-flex-vh-center">Total</div>
 							${metasTotalAndMod.map(it => it.$wrpIptTotal)}
 						</div>
 
-						<div class="flex-col mr-3">
-							<div class="my-1 statgen-pb__header flex-vh-center" title="Modifier">Mod.</div>
+						<div class="ve-flex-col mr-3">
+							<div class="my-1 statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
 							${metasTotalAndMod.map(it => it.$wrpIptMod)}
 						</div>
 					</div>
@@ -1016,7 +1016,7 @@ class StatGenUi extends BaseComponent {
 	}
 
 	_render_$getWrpAsi () {
-		const $wrpAsi = $(`<div class="flex-col w-100"></div>`);
+		const $wrpAsi = $(`<div class="ve-flex-col w-100"></div>`);
 		this._compAsi.render($wrpAsi);
 		return $wrpAsi;
 	}
@@ -1116,8 +1116,8 @@ class StatGenUi extends BaseComponent {
 				</div>`;
 			});
 
-			$ptBase = $$`<div class="flex-col mr-3">
-				<div class="my-1 statgen-pb__header flex-vh-center">Static</div>
+			$ptBase = $$`<div class="ve-flex-col mr-3">
+				<div class="my-1 statgen-pb__header ve-flex-vh-center">Static</div>
 				${$wrpsRace}
 			</div>`;
 		}
@@ -1155,11 +1155,11 @@ class StatGenUi extends BaseComponent {
 				this._pbRaceHookMetas.push({unhook: () => this._removeHookBase("common_raceChoiceMetasFrom", hk)});
 				hk();
 
-				return $$`<label class="my-1 statgen-pb__cell flex-vh-center">${$cb}</label>`;
+				return $$`<label class="my-1 statgen-pb__cell ve-flex-vh-center">${$cb}</label>`;
 			});
 
-			$ptChooseFrom = $$`<div class="flex-col mr-3">
-				<div class="my-1 statgen-pb__header statgen-pb__header--choose-from flex-vh-center">
+			$ptChooseFrom = $$`<div class="ve-flex-col mr-3">
+				<div class="my-1 statgen-pb__header statgen-pb__header--choose-from ve-flex-vh-center">
 					<div class="${count !== 1 ? `mr-1` : ""}">${UiUtil.intToBonus(amount)}</div>${count !== 1 ? `<div class="ve-small ve-muted">(x${count})</div>` : ""}
 				</div>
 				${$wrpsChoose}
@@ -1199,11 +1199,11 @@ class StatGenUi extends BaseComponent {
 					this._pbRaceHookMetas.push({unhook: () => this._removeHookBase("common_raceChoiceMetasWeighted", hk)});
 					hk();
 
-					return $$`<label class="my-1 statgen-pb__cell flex-vh-center">${$cb}</label>`;
+					return $$`<label class="my-1 statgen-pb__cell ve-flex-vh-center">${$cb}</label>`;
 				});
 
-				return $$`<div class="flex-col mr-3">
-					<div class="my-1 statgen-pb__header statgen-pb__header--choose-from flex-vh-center">${UiUtil.intToBonus(weight)}</div>
+				return $$`<div class="ve-flex-col mr-3">
+					<div class="my-1 statgen-pb__header statgen-pb__header--choose-from ve-flex-vh-center">${UiUtil.intToBonus(weight)}</div>
 					${$wrpsChoose}
 				</div>`;
 			});
@@ -1603,16 +1603,16 @@ StatGenUi.CompAsi = class extends BaseComponent {
 							this._parent.addHookBase(propIxAsiPointTwo, hkSelected);
 							hkSelected();
 
-							return $$`<div class="flex-col h-100 mr-2">
+							return $$`<div class="ve-flex-col h-100 mr-2">
 							<div class="statgen-asi__cell text-center pb-1" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>
-							<div class="flex-vh-center statgen-asi__cell relative">
+							<div class="ve-flex-vh-center statgen-asi__cell relative">
 								<div class="absolute no-events statgen-asi__disp-plus">+</div>
 								${$ipt}
 							</div>
 						</div>`;
 						});
 
-						$stgAsi = $$`<div class="flex-v-center">
+						$stgAsi = $$`<div class="ve-flex-v-center">
 							${$colsAsi}
 						</div>`;
 					}
@@ -1638,7 +1638,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 					this._parent.addHookBase(propMode, hkMode);
 					hkMode();
 
-					const $row = $$`<div class="flex-v-end py-3 px-1">
+					const $row = $$`<div class="ve-flex-v-end py-3 px-1">
 						<div class="btn-group">${$btnAsi}${$btnFeat}</div>
 						<div class="vr-4"></div>
 						${$stgAsi}
@@ -1690,8 +1690,8 @@ StatGenUi.CompAsi = class extends BaseComponent {
 			if ((ent?.feats?.length || 0) > 1) {
 				const {$sel: $selGroup, unhook: unhookIxGroup} = UtilAdditionalFeats.getSelIxSetMeta({comp: this._parent, prop: propIxSel, available: ent.feats});
 				fnsCleanupEnt.push(unhookIxGroup);
-				$$`<div class="flex-col mb-2">
-					<div class="flex-v-center mb-2">
+				$$`<div class="ve-flex-col mb-2">
+					<div class="ve-flex-v-center mb-2">
 						<div class="mr-2">Feat Set:</div>
 						${$selGroup.addClass("max-w-200p")}
 					</div>
@@ -1700,7 +1700,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 				this._parent.state[propIxSel] = 0;
 			}
 
-			const $wrpRowsInner = $(`<div class="w-100 flex-col min-h-0"></div>`).appendTo($wrpRows);
+			const $wrpRowsInner = $(`<div class="w-100 ve-flex-col min-h-0"></div>`).appendTo($wrpRows);
 
 			const hkIxSel = (isNotFirstRun) => {
 				fnsCleanupGroup.splice(0, fnsCleanupGroup.length).forEach(fn => fn());
@@ -1722,7 +1722,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 					fnsCleanupGroup.push(cleanup);
 					hkIxFeat();
 
-					const $row = $$`<div class="flex-v-end py-3 px-1 statgen-asi__row">
+					const $row = $$`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
 						<div class="btn-group"><div class="w-100p text-center">Feat</div></div>
 						<div class="vr-4"></div>
 						${$stgFeat}
@@ -1736,7 +1736,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 					fnsCleanupGroup.push(cleanup);
 					hkIxFeat();
 
-					const $row = $$`<div class="flex-v-end py-3 px-1 statgen-asi__row">
+					const $row = $$`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
 						<div class="btn-group"><div class="w-100p text-center">Feat</div></div>
 						<div class="vr-4"></div>
 						${$stgFeat}
@@ -1776,13 +1776,13 @@ StatGenUi.CompAsi = class extends BaseComponent {
 			});
 
 		// region Feat
-		const $dispFeat = $(`<div class="flex-v-center mr-2"></div>`);
-		const $stgSelectAbilitySet = $$`<div class="flex-v-center mr-2"></div>`;
-		const $stgFeatNoChoice = $$`<div class="flex-v-center mr-2"></div>`;
-		const $stgFeatChooseAsiFrom = $$`<div class="flex-v-end"></div>`;
-		const $stgFeatChooseAsiWeighted = $$`<div class="flex-v-center"></div>`;
+		const $dispFeat = $(`<div class="ve-flex-v-center mr-2"></div>`);
+		const $stgSelectAbilitySet = $$`<div class="ve-flex-v-center mr-2"></div>`;
+		const $stgFeatNoChoice = $$`<div class="ve-flex-v-center mr-2"></div>`;
+		const $stgFeatChooseAsiFrom = $$`<div class="ve-flex-v-end"></div>`;
+		const $stgFeatChooseAsiWeighted = $$`<div class="ve-flex-v-center"></div>`;
 
-		const $stgFeat = $$`<div class="flex-v-center">
+		const $stgFeat = $$`<div class="ve-flex-v-center">
 			${$btnChooseFeat}
 			${$dispFeat}
 			${$stgSelectAbilitySet}
@@ -1806,7 +1806,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 
 			const feat = featStatic || this._parent.feats[this._parent.state[propIxFeat]];
 
-			$stgFeat.removeClass("flex-v-end").addClass("flex-v-center");
+			$stgFeat.removeClass("ve-flex-v-end").addClass("ve-flex-v-center");
 			$dispFeat.toggleClass("italic ve-muted", !feat);
 			$dispFeat.html(feat ? Renderer.get().render(`{@feat ${feat.name.toLowerCase()}|${feat.source}}`) : `(Choose a feat)`);
 
@@ -1848,7 +1848,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 
 					// region Choices
 					if (abilitySet.choose && abilitySet.choose.from) {
-						$stgFeat.removeClass("flex-v-center").addClass("flex-v-end");
+						$stgFeat.removeClass("ve-flex-v-center").addClass("ve-flex-v-end");
 						$stgFeatChooseAsiFrom.showVe().empty();
 						$stgFeatChooseAsiWeighted.empty().hideVe();
 
@@ -1871,9 +1871,9 @@ StatGenUi.CompAsi = class extends BaseComponent {
 						rowMetas.forEach(meta => {
 							meta.$cb.change(() => this._doPulseThrottled());
 
-							$$`<label class="flex-col no-select">
-								<div class="flex-vh-center statgen-asi__cell-feat" title="${Parser.attAbvToFull(meta.value)}">${meta.value.toUpperCase()}</div>
-								<div class="flex-vh-center statgen-asi__cell-feat">${meta.$cb}</div>
+							$$`<label class="ve-flex-col no-select">
+								<div class="ve-flex-vh-center statgen-asi__cell-feat" title="${Parser.attAbvToFull(meta.value)}">${meta.value.toUpperCase()}</div>
+								<div class="ve-flex-vh-center statgen-asi__cell-feat">${meta.$cb}</div>
 							</label>`.appendTo($stgFeatChooseAsiFrom);
 						});
 					} else if (abilitySet.choose && abilitySet.choose.weighted) {
@@ -1915,15 +1915,15 @@ StatGenUi.CompAsi = class extends BaseComponent {
 	}
 
 	render ($wrpAsi) {
-		const $wrpRowsAsi = $(`<div class="flex-col w-100 overflow-y-auto"></div>`);
-		const $wrpRowsRace = $(`<div class="flex-col w-100 overflow-y-auto"></div>`);
-		const $wrpRowsCustom = $(`<div class="flex-col w-100 overflow-y-auto"></div>`);
+		const $wrpRowsAsi = $(`<div class="ve-flex-col w-100 overflow-y-auto"></div>`);
+		const $wrpRowsRace = $(`<div class="ve-flex-col w-100 overflow-y-auto"></div>`);
+		const $wrpRowsCustom = $(`<div class="ve-flex-col w-100 overflow-y-auto"></div>`);
 
 		this._render_renderAsiFeatSection("common_cntAsi", "ability", $wrpRowsAsi);
 		this._render_renderAsiFeatSection("common_cntFeatsCustom", "custom", $wrpRowsCustom);
 		this._render_renderAdditionalFeatSection({propEntity: "common_ixRace", namespace: "race", $wrpRows: $wrpRowsRace});
 
-		const $stgRace = $$`<div class="flex-col">
+		const $stgRace = $$`<div class="ve-flex-col">
 			<hr class="hr-3 hr--dotted">
 			<h4 class="my-2 bold">Racial Feats</h4>
 			${$wrpRowsRace}
@@ -1947,7 +1947,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 
 			<hr class="hr-3 hr--dotted">
 			<h4 class="my-2 bold">Additional Feats</h4>
-			<label class="w-100 flex-v-center mb-2">
+			<label class="w-100 ve-flex-v-center mb-2">
 				<div class="mr-2 no-shrink">Number of additional feats:</div>${$iptCountFeatsCustom}
 			</label>
 			${$wrpRowsCustom}
@@ -1958,10 +1958,10 @@ StatGenUi.CompAsi = class extends BaseComponent {
 		if (!this._parent.isCharacterMode) {
 			const $iptCountAsi = ComponentUiUtil.$getIptInt(this._parent, "common_cntAsi", 0, {min: 0, max: 20})
 				.addClass("w-100p text-center");
-			return $$`<label class="w-100 flex-v-center mb-2"><div class="mr-2 no-shrink">Number of Ability Score Increases to apply:</div>${$iptCountAsi}</label>`;
+			return $$`<label class="w-100 ve-flex-v-center mb-2"><div class="mr-2 no-shrink">Number of Ability Score Increases to apply:</div>${$iptCountAsi}</label>`;
 		}
 
-		const $out = $$`<div class="w-100 flex-v-center mb-2 italic ve-muted">No ability score increases available.</div>`;
+		const $out = $$`<div class="w-100 ve-flex-v-center mb-2 italic ve-muted">No ability score increases available.</div>`;
 		const hkCntAsis = () => $out.toggleVe(this._parent.state.common_cntAsi === 0);
 		this._parent.addHookBase("common_cntAsi", hkCntAsis);
 		hkCntAsis();
@@ -2132,7 +2132,7 @@ StatGenUi.RenderableCollectionPbRules = class extends RenderableCollectionBase {
 			parentComp._triggerCollectionUpdate("pb_rules");
 		});
 
-		const $dispCost = $(`<div class="flex-vh-center"></div>`);
+		const $dispCost = $(`<div class="ve-flex-vh-center"></div>`);
 		const hkCost = () => $dispCost.text(comp._state.cost);
 		comp._addHookBase("cost", hkCost);
 		hkCost();
@@ -2152,10 +2152,10 @@ StatGenUi.RenderableCollectionPbRules = class extends RenderableCollectionBase {
 				parentComp.state.pb_rules = parentComp.state.pb_rules.filter(it => it !== rule);
 			});
 
-		const $wrpRow = $$`<div class="flex py-1 stripe-even statgen-pb__row-cost">
-			<div class="statgen-pb__col-cost flex-vh-center">${comp._state.score}</div>
-			<div class="statgen-pb__col-cost flex-vh-center">${Parser.getAbilityModifier(comp._state.score)}</div>
-			<div class="statgen-pb__col-cost flex-vh-center px-3">
+		const $wrpRow = $$`<div class="ve-flex py-1 stripe-even statgen-pb__row-cost">
+			<div class="statgen-pb__col-cost ve-flex-vh-center">${comp._state.score}</div>
+			<div class="statgen-pb__col-cost ve-flex-vh-center">${Parser.getAbilityModifier(comp._state.score)}</div>
+			<div class="statgen-pb__col-cost ve-flex-vh-center px-3">
 				${$dispCost}
 				${$iptCost}
 			</div>

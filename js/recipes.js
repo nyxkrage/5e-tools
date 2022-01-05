@@ -56,7 +56,7 @@ class RecipesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
@@ -99,7 +99,7 @@ class RecipesPage extends ListPage {
 		const name = it._displayName || it.name;
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-9 pl-0">${name}</span>
 				<span class="col-3 text-center pr-0">${it.type || "\u2014"}</span>

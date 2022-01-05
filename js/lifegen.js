@@ -870,8 +870,8 @@ function sectLifeEvents () {
 		const $btnReroll = $(`<button class="btn btn-default btn-xxs">Reroll</button>`)
 			.click(() => doRollAndDisplay({isScrollIntoView: true}));
 
-		const $wrpEvent = $$`<div class="flex-col">
-			<div class="flex-v-center mb-1 mt-2">
+		const $wrpEvent = $$`<div class="ve-flex-col">
+			<div class="ve-flex-v-center mb-1 mt-2">
 				<h5 class="my-0 mr-2">Life Event ${i + 1}</h5>
 				${$btnReroll}
 			</div>

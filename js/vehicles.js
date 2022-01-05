@@ -21,7 +21,7 @@ class VehiclesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
@@ -63,7 +63,7 @@ class VehiclesPage extends ListPage {
 	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col"><a href="#${hash}" class="lst--border lst__row-inner">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col"><a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="col-8 pl-0 text-center">${it.vehicleType ? Parser.vehicleTypeToFull(it.vehicleType) : it.upgradeType.map(t => Parser.vehicleTypeToFull(t))}</span>
 			<span class="bold col-4 pr-0">${it.name}</span>
 		</a></div>`)

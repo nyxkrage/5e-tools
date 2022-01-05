@@ -137,8 +137,8 @@ class InitiativeTracker {
 
 		const $wrpControls = $(`<div class="dm-init-wrp-controls"/>`).appendTo($wrpTracker);
 
-		const $wrpAddNext = $(`<div class="flex"/>`).appendTo($wrpControls);
-		const $wrpAdd = $(`<div class="btn-group flex"/>`).appendTo($wrpAddNext);
+		const $wrpAddNext = $(`<div class="ve-flex"/>`).appendTo($wrpControls);
+		const $wrpAdd = $(`<div class="btn-group ve-flex"/>`).appendTo($wrpAddNext);
 		const $btnAdd = $(`<button class="btn btn-primary btn-xs dm-init-lockable" title="Add Player"><span class="glyphicon glyphicon-plus"/></button>`).appendTo($wrpAdd);
 		const $btnAddMonster = $(`<button class="btn btn-success btn-xs dm-init-lockable mr-2" title="Add Monster"><span class="glyphicon glyphicon-print"/></button>`).appendTo($wrpAdd);
 		$(`<button class="btn btn-default btn-xs mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"/></button>`).appendTo($wrpAddNext)
@@ -148,7 +148,7 @@ class InitiativeTracker {
 			.change(() => doUpdateExternalStates())
 			.appendTo($wrpAddNext);
 
-		const $wrpSort = $(`<div class="btn-group flex"/>`).appendTo($wrpControls);
+		const $wrpSort = $(`<div class="btn-group ve-flex"/>`).appendTo($wrpControls);
 		$(`<button title="Sort Alphabetically" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-sort-by-alphabet"/></button>`).appendTo($wrpSort)
 			.click(() => {
 				if (cfg.sort === ALPHA) flipDir();
@@ -221,7 +221,7 @@ class InitiativeTracker {
 			return false;
 		};
 
-		const $wrpUtils = $(`<div class="flex"/>`).appendTo($wrpControls);
+		const $wrpUtils = $(`<div class="ve-flex"/>`).appendTo($wrpControls);
 		$(`<button class="btn btn-primary btn-xs mr-2" title="Player Window"><span class="glyphicon glyphicon-user"/></button>`)
 			.appendTo($wrpUtils)
 			.click(() => {
@@ -295,7 +295,7 @@ class InitiativeTracker {
 				const $wrpConnected = UiUtil.$getAddModalRow($modalInner, "div").addClass("flx-col");
 
 				const showConnected = () => {
-					if (!srvPeer) return $wrpConnected.html(`<div class="w-100 flex-vh-center"><i>No clients connected.</i></div>`);
+					if (!srvPeer) return $wrpConnected.html(`<div class="w-100 ve-flex-vh-center"><i>No clients connected.</i></div>`);
 
 					let stack = `<div class="w-100"><h5>Connected Clients:</h5><ul>`;
 					srvPeer.getActiveConnections()
@@ -316,7 +316,7 @@ class InitiativeTracker {
 			return srvPeer.token;
 		});
 
-		const $wrpLockSettings = $(`<div class="btn-group flex"/>`).appendTo($wrpUtils);
+		const $wrpLockSettings = $(`<div class="btn-group ve-flex"/>`).appendTo($wrpUtils);
 		const $btnLock = $(`<button class="btn btn-danger btn-xs" title="Lock Tracker"><span class="glyphicon glyphicon-lock"></span></button>`).appendTo($wrpLockSettings);
 		$btnLock.on("click", () => {
 			if (cfg.isLocked) {
@@ -540,7 +540,7 @@ class InitiativeTracker {
 				return Number(val);
 			};
 
-			const $wrpCbRoll = $(`<label class="ui-search__ipt-search-sub-wrp flex-vh-center"> <span>Roll HP</span></label>`).appendTo($controls);
+			const $wrpCbRoll = $(`<label class="ui-search__ipt-search-sub-wrp ve-flex-vh-center"> <span>Roll HP</span></label>`).appendTo($controls);
 			const $cbRoll = $(`<input class="mr-1" type="checkbox">`).prop("checked", cfg.isRollHp).on("change", () => cfg.isRollHp = $cbRoll.prop("checked")).prependTo($wrpCbRoll);
 			const $results = $(`<div class="ui-search__wrp-results"/>`).appendTo($modalInner);
 
@@ -954,7 +954,7 @@ class InitiativeTracker {
 
 					const conds = InitiativeTrackerUtil.CONDITIONS;
 					for (let i = 0; i < conds.length; i += 3) {
-						const $row = $(`<div class="flex-v-center mb-2"/>`).appendTo($wrpRows);
+						const $row = $(`<div class="ve-flex-v-center mb-2"/>`).appendTo($wrpRows);
 						const populateCol = (cond) => {
 							const $col = $(`<div class="col-4 text-center"/>`).appendTo($row);
 							if (cond) {
@@ -969,12 +969,12 @@ class InitiativeTracker {
 
 					$wrpRows.append(`<hr>`);
 
-					$(`<div class="flex-v-center mb-2">
+					$(`<div class="ve-flex-v-center mb-2">
 						<div class="col-5 pr-2">Name (optional)</div>
 						<div class="col-2 text-center">Color</div>
 						<div class="col-5 pl-2">Duration (optional)</div>
 					</div>`).appendTo($wrpRows);
-					const $controls = $(`<div class="flex-v-center mb-2"/>`).appendTo($wrpRows);
+					const $controls = $(`<div class="ve-flex-v-center mb-2"/>`).appendTo($wrpRows);
 					const [$wrpName, $wrpColor, $wrpTurns] = ["pr-2", "", "pl-2"].map(it => $(`<div class="col-${it ? 5 : 2} ${it} text-center"/>`).appendTo($controls));
 					const $iptName = $(`<input class="form-control">`)
 						.on("keydown", (e) => {
@@ -987,7 +987,7 @@ class InitiativeTracker {
 							if (e.which === 13) $btnAdd.click();
 						})
 						.appendTo($wrpTurns);
-					const $wrpAdd = $(`<div class="flex-v-center">`).appendTo($wrpRows);
+					const $wrpAdd = $(`<div class="ve-flex-v-center">`).appendTo($wrpRows);
 					const $wrpAddInner = $(`<div class="col-12 text-center">`).appendTo($wrpAdd);
 					const $btnAdd = $(`<button class="btn btn-primary">Set Condition</button>`)
 						.click(() => {
@@ -1201,7 +1201,7 @@ class InitiativeTracker {
 				})();
 
 				const eleType = isCheckbox ? "label" : "div";
-				$$`<${eleType} class="dm_init__stat ${isCheckbox ? "flex-vh-center" : ""}" data-id="${c.id}">${$ipt}</${eleType}>`.appendTo($mid);
+				$$`<${eleType} class="dm_init__stat ${isCheckbox ? "ve-flex-vh-center" : ""}" data-id="${c.id}">${$ipt}</${eleType}>`.appendTo($mid);
 			});
 		};
 

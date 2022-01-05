@@ -20,7 +20,7 @@ class LanguagesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
@@ -64,7 +64,7 @@ class LanguagesPage extends ListPage {
 	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-8 pl-0">${it.name}</span>
 				<span class="col-2 text-center">${(it.type || "\u2014").uppercaseFirst()}</span>
@@ -190,9 +190,9 @@ class LanguagesPage extends ListPage {
 							if (val != null) updateText(val);
 						});
 
-					$$`<div class="flex-col w-100">
+					$$`<div class="ve-flex-col w-100">
 						${$styleFont}
-						${$selFont ? $$`<label class="flex-v-center mb-2"><div class="mr-2">Font:</div>${$selFont}</div>` : ""}
+						${$selFont ? $$`<label class="ve-flex-v-center mb-2"><div class="mr-2">Font:</div>${$selFont}</div>` : ""}
 						${$iptSample}
 						${$ptOutput}
 						<hr class="hr-4">

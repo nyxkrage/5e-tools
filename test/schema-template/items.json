@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "items.json",
-	"version": "1.11.2",
+	"version": "1.11.3",
 	"type": "object",
 	"definitions": {
 		"itemData": {
@@ -452,6 +452,9 @@
 					"foundryEffects": {"type": "array", "items": {"$ref": "util.json#/definitions/foundryEffectObject"}},
 					"fluff": {
 						"$ref": "shared-items.json#/definitions/fluff"
+					},
+					"foundryImg": {
+						"$ref": "util.json#/definitions/foundryImg"
 					}
 				}
 			},

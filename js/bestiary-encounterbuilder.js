@@ -200,7 +200,7 @@ class EncounterBuilder extends ProxyBase {
 		// endregion
 
 		$$(this._wrpRandomAndAdjust)`<div class="row">
-			<div class="flex-h-right">
+			<div class="ve-flex-h-right">
 				<div class="btn-group mr-3">
 					${$btnRandom}
 					${$btnRandomMode}
@@ -237,14 +237,14 @@ class EncounterBuilder extends ProxyBase {
 
 		this._$wrpGroupInfoLhs = this._renderGroupAndDifficulty_$getGroupInfoLhs();
 		this._$hrHasCreatures = $(`<hr class="hr-1">`);
-		this._$wrpDifficulty = $$`<div class="flex">
+		this._$wrpDifficulty = $$`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_$getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_$getDifficultyRhs()}
 		</div>`;
 
 		$$(this._wrpGroupAndDifficulty)`
 		<h3 class="mt-1 m-2">Group Info</h3>
-		<div class="flex">
+		<div class="ve-flex">
 			${this._$wrpGroupInfoLhs}
 			${this._renderGroupAndDifficulty_$getGroupInfoRhs()}
 		</div>
@@ -254,9 +254,9 @@ class EncounterBuilder extends ProxyBase {
 
 		<hr class="hr-1">
 
-		<div class="flex-v-center mb-2">
+		<div class="ve-flex-v-center mb-2">
 			${$btnSaveToUrl}
-			<div class="btn-group flex-v-center mr-2">
+			<div class="btn-group ve-flex-v-center mr-2">
 				${$btnSaveToFile}
 				${$btnLoadFromFile}
 			</div>
@@ -264,7 +264,7 @@ class EncounterBuilder extends ProxyBase {
 			${$btnReset}
 		</div>
 
-		<div class="flex">
+		<div class="ve-flex">
 			${$btnBackToStatblocks}
 		</div>`;
 	}
@@ -305,7 +305,7 @@ class EncounterBuilder extends ProxyBase {
 				this._updateUiIsAdvanced(this._isAdvanced);
 			});
 
-		this._$wrpAddidionalPlayers = $$`<div class="mb-1 flex">
+		this._$wrpAddidionalPlayers = $$`<div class="mb-1 ve-flex">
 			<div class="ecgen__wrp_add_players_btn_wrp">
 				${this._$btnAddPlayers}
 			</div>
@@ -318,7 +318,7 @@ class EncounterBuilder extends ProxyBase {
 		</div>`).hideVe();
 
 		return $$`<div class="w-70">
-			<div class="flex ecgen__players_head_simple">
+			<div class="ve-flex ecgen__players_head_simple">
 				<div class="w-20">Players:</div>
 				<div class="w-20">Level:</div>
 			</div>
@@ -331,7 +331,7 @@ class EncounterBuilder extends ProxyBase {
 
 			${this._$wrpAddidionalPlayers}
 
-			<label class="flex-v-center">
+			<label class="ve-flex-v-center">
 				<div class="mr-2">Advanced Mode</div>
 				${this._$cbIsAdvanced}
 			</label>
@@ -936,7 +936,7 @@ class EncounterBuilder extends ProxyBase {
 	_addAdvancedColumnFooter () {
 		const wrpFooter = e_({
 			tag: "div",
-			clazz: "ecgen__player_advanced_narrow flex-v-baseline flex-h-center no-shrink no-grow mr-1",
+			clazz: "ecgen__player_advanced_narrow ve-flex-v-baseline ve-flex-h-center no-shrink no-grow mr-1",
 			children: [
 				e_({
 					tag: "button",
@@ -1054,7 +1054,7 @@ class EncounterBuilder extends ProxyBase {
 			children: [
 				e_({
 					tag: "div",
-					clazz: `w-100 flex ecgen__player_advanced_flex`,
+					clazz: `w-100 ve-flex ecgen__player_advanced_flex`,
 					children: [
 						iptName,
 						iptLevel,
@@ -1119,7 +1119,7 @@ class EncounterBuilder extends ProxyBase {
 
 		const wrpRow = e_({
 			tag: "div",
-			clazz: `flex-v-center mb-2`,
+			clazz: `ve-flex-v-center mb-2`,
 			children: [
 				e_({
 					tag: "div",
@@ -1139,7 +1139,7 @@ class EncounterBuilder extends ProxyBase {
 
 				isFirst ? null : e_({
 					tag: "div",
-					clazz: `ml-2 flex-v-center`,
+					clazz: `ml-2 ve-flex-v-center`,
 					children: [
 						e_({
 							tag: "button",
@@ -1347,7 +1347,7 @@ class EncounterBuilder extends ProxyBase {
 			.click(async () => {
 				const inStorage = await EncounterUtil.pGetSavedState();
 				const {$modalInner, doClose} = UiUtil.getShowModal({title: "Saved Encounters"});
-				const $wrpRows = $(`<div class="flex-col w-100 h-100"/>`).appendTo($modalInner);
+				const $wrpRows = $(`<div class="ve-flex-col w-100 h-100"/>`).appendTo($modalInner);
 
 				const encounters = inStorage.savedEncounters;
 				if (Object.keys(encounters).length) {
@@ -1383,17 +1383,17 @@ class EncounterBuilder extends ProxyBase {
 										.filter(it => it !== k)
 										.mergeMap(it => ({[it]: this._state.savedEncounters[it]}));
 									$row.remove();
-									if (!--rendered) $$`<div class="w-100 flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
+									if (!--rendered) $$`<div class="w-100 ve-flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
 									this.pSetSavedEncountersThrottled();
 								});
 
-							const $row = $$`<div class="flex-v-center w-100 mb-2">
+							const $row = $$`<div class="ve-flex-v-center w-100 mb-2">
 								${$iptName}
 								${$btnLoad}
 								${$btnDelete}
 							</div>`.appendTo($wrpRows);
 						});
-				} else $$`<div class="w-100 flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
+				} else $$`<div class="w-100 ve-flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
 			});
 
 		const hookActiveKey = () => {
@@ -1404,9 +1404,9 @@ class EncounterBuilder extends ProxyBase {
 		this._addHook("state", "activeKey", hookActiveKey);
 		hookActiveKey();
 
-		$$`<div class="flex-col" style="align-items: flex-end;">
+		$$`<div class="ve-flex-col" style="align-items: flex-end;">
 			${this._$iptName}
-			<div class="flex-h-right">${this._$btnNew}${this._$btnSave}${this._$btnReload}${this._$btnLoad}</div>
+			<div class="ve-flex-h-right">${this._$btnNew}${this._$btnSave}${this._$btnReload}${this._$btnLoad}</div>
 		</div>`.appendTo($wrpControls);
 	}
 

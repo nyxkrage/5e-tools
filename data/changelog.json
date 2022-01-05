@@ -1890,5 +1890,10 @@
 		"ver": "1.147.1",
 		"date": "2022-01-01",
 		"txt": "- Fixed map Dynamic Viewer failing to show clicked-on areas in Maps page\n- Fixed map Dynamic Viewer failing to open in Book pages\n- (Brew) Fixed Maps page header links being potentially incorrect \n- (Brew) Switched from \"race\" -> \"subraces\" structure to root-level \"race\" and \"subrace\" properties in race data\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.147.10",
+		"date": "2022-01-01",
+		"txt": "- Added Table View to Bestiary\n- (Fixed typos/added tags)"
 	}
 ]

@@ -153,7 +153,7 @@ class SpellBuilder extends Builder {
 			},
 		);
 		const [infoTab, detailsTab, sourcesTab, miscTab] = tabs;
-		$$`<div class="flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
 		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
 
 		// INFO
@@ -190,7 +190,7 @@ class SpellBuilder extends Builder {
 
 		// FLAVOR/MISC
 		this.$getFluffInput(cb).appendTo(miscTab.$wrpTab);
-		$(`<div class="flex-vh-center w-100 mb-2"><i>Note: the following data is used by filters on the Spells page.</i></div>`).appendTo(miscTab.$wrpTab);
+		$(`<div class="ve-flex-vh-center w-100 mb-2"><i>Note: the following data is used by filters on the Spells page.</i></div>`).appendTo(miscTab.$wrpTab);
 		BuilderUi.$getStateIptBooleanArray(
 			"Damage Inflicted",
 			cb,
@@ -326,9 +326,9 @@ class SpellBuilder extends Builder {
 		const out = {getOtherSource};
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Page</span>${$iptPage}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Page</span>${$iptPage}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		Builder.$getBtnRemoveRow(doUpdateState, otherSourceRows, out, $wrp, "Other Source").appendTo($wrpBtnRemove);
@@ -396,13 +396,13 @@ class SpellBuilder extends Builder {
 
 		const out = {getTime};
 
-		const $stageCond = $$`<div class="flex-v-center mb-2">
+		const $stageCond = $$`<div class="ve-flex-v-center mb-2">
 			<span class="mr-2 mkbru__sub-name--33">Condition</span>${$iptCond}
 		</div>`.toggleVe(ixInitial === 2);
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="flex-v-center mb-2">${$iptNum}${$selUnit}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+			<div class="ve-flex-v-center mb-2">${$iptNum}${$selUnit}</div>
 			${$stageCond}
 			${$wrpBtnRemove}
 		</div>`;
@@ -448,7 +448,7 @@ class SpellBuilder extends Builder {
 				$selDistance.val(`${DIST_TYPES.findIndex(it => it.hasAmount)}`).change();
 			} else doUpdateState();
 		});
-		$$`<div class="flex-v-center">
+		$$`<div class="ve-flex-v-center">
 			<span class="mr-2 mkbru__sub-name--33">Range Type</span>
 			${$selRange}
 		</div>`.appendTo($rowInner);
@@ -465,7 +465,7 @@ class SpellBuilder extends Builder {
 				$selDistance.val(`${DIST_TYPES.findIndex(it => it.hasAmount)}`).change();
 			} else doUpdateState();
 		});
-		const $stageDistance = $$`<div class="flex-v-center mt-2">
+		const $stageDistance = $$`<div class="ve-flex-v-center mt-2">
 			<span class="mr-2 mkbru__sub-name--33">Distance Type</span>
 			${$selDistance}
 		</div>`.appendTo($rowInner).toggleVe(isInitialDistance);
@@ -475,7 +475,7 @@ class SpellBuilder extends Builder {
 		const $iptAmount = $(`<input class="form-control form-control--minimal input-xs">`)
 			.change(() => doUpdateState())
 			.val(initialAmount);
-		const $stageAmount = $$`<div class="flex-v-center mt-2">
+		const $stageAmount = $$`<div class="ve-flex-v-center mt-2">
 			<span class="mr-2 mkbru__sub-name--33">Distance Amount</span>
 			${$iptAmount}
 		</div>`.appendTo($rowInner).toggleVe(isInitialAmount);
@@ -553,14 +553,14 @@ class SpellBuilder extends Builder {
 		$$``.appendTo($rowInner);
 
 		$$`<div>
-			<div class="flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Verbal</div>${$cbVerbal}</div>
-			<div class="flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Somatic</div>${$cbSomatic}</div>
-			<div class="flex-v-center mt-2"><div class="mr-2 mkbru__sub-name--33">Royalty</div>${$cbRoyalty}</div>
-			<div class="flex-v-center"><div class="mr-2 mkbru__sub-name--33">Material Type</div>${$selMaterial}</div>
+			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Verbal</div>${$cbVerbal}</div>
+			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Somatic</div>${$cbSomatic}</div>
+			<div class="ve-flex-v-center mt-2"><div class="mr-2 mkbru__sub-name--33">Royalty</div>${$cbRoyalty}</div>
+			<div class="ve-flex-v-center"><div class="mr-2 mkbru__sub-name--33">Material Type</div>${$selMaterial}</div>
 		</div>`.appendTo($rowInner);
 
 		// BASIC MATERIAL
-		const $stageMaterial = $$`<div class="flex-v-center mt-2"><div class="mr-2 mkbru__sub-name--33">Materials</div>${$iptMaterial}</div>`.appendTo($rowInner).toggleVe(initialMaterialMode === "1" || initialMaterialMode === "2");
+		const $stageMaterial = $$`<div class="ve-flex-v-center mt-2"><div class="mr-2 mkbru__sub-name--33">Materials</div>${$iptMaterial}</div>`.appendTo($rowInner).toggleVe(initialMaterialMode === "1" || initialMaterialMode === "2");
 
 		// CONSUMABLE MATERIAL
 		const $cbConsumed = $(`<input type="checkbox" class="mkbru__ipt-cb--plain">`)
@@ -571,8 +571,8 @@ class SpellBuilder extends Builder {
 			.change(() => doUpdateState());
 		const TITLE_FILTERS_EXTERNAL = "Used in filtering/external applications. The full text of the material component should be entered in the &quot;Materials&quot; field, above.";
 		const $stageMaterialConsumable = $$`<div class="mt-2">
-			<div class="flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33 help" title="${TITLE_FILTERS_EXTERNAL}">Is Consumed</div>${$cbConsumed}</div>
-			<div class="flex-v-center"><div class="mr-2 mkbru__sub-name--33 help" title="${TITLE_FILTERS_EXTERNAL} Specified in copper pieces (1gp = 100cp).">Component Cost</div>${$iptCost}<div>cp</div></div>
+			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33 help" title="${TITLE_FILTERS_EXTERNAL}">Is Consumed</div>${$cbConsumed}</div>
+			<div class="ve-flex-v-center"><div class="mr-2 mkbru__sub-name--33 help" title="${TITLE_FILTERS_EXTERNAL} Specified in copper pieces (1gp = 100cp).">Component Cost</div>${$iptCost}<div>cp</div></div>
 		</div>`.appendTo($rowInner).toggleVe(initialMaterialMode === "2");
 
 		return $row;
@@ -599,8 +599,8 @@ class SpellBuilder extends Builder {
 			.change(() => doUpdateState());
 
 		$$`<div>
-			<div class="flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Ritual</div>${$cbRitual}</div>
-			<div class="flex-v-center"><div class="mr-2 mkbru__sub-name--33">Technomagic</div>${$cbTechnomagic}</div>
+			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Ritual</div>${$cbRitual}</div>
+			<div class="ve-flex-v-center"><div class="mr-2 mkbru__sub-name--33">Technomagic</div>${$cbTechnomagic}</div>
 		</div>`.appendTo($rowInner);
 
 		return $row;
@@ -683,15 +683,15 @@ class SpellBuilder extends Builder {
 		const $cbUpTo = $(`<input type="checkbox" class="mkbru__ipt-cb--plain">`)
 			.prop("checked", duration.duration ? duration.duration.upTo : false)
 			.change(() => doUpdateState());
-		const $stageAmount = $$`<div class="flex-col mb-2">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Concentration</span>${$cbConc}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For a spell with Concentration, this has no effect, as it is assumed that the spell can be ended at any time by ending concentration.">Up To...</span>${$cbUpTo}</div>
-			<div class="flex-v-center">${$iptAmount}${$selAmountType}</div>
+		const $stageAmount = $$`<div class="ve-flex-col mb-2">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Concentration</span>${$cbConc}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For a spell with Concentration, this has no effect, as it is assumed that the spell can be ended at any time by ending concentration.">Up To...</span>${$cbUpTo}</div>
+			<div class="ve-flex-v-center">${$iptAmount}${$selAmountType}</div>
 		</div>`.toggleVe(!!typeInitial.hasAmount);
 
 		// ENDS
 		const endRows = [];
-		const $wrpEndRows = $(`<div class="flex-col"/>`);
+		const $wrpEndRows = $(`<div class="ve-flex-col"/>`);
 		const $btnAddEnd = $(`<button class="btn btn-xs btn-default">Add &quot;Until&quot; Clause</button>`)
 			.click(() => {
 				SpellBuilder.__$getDurationInput__getDurationRow__getEndRow(doUpdateState, endRows, "dispel").$wrp.appendTo($wrpEndRows);
@@ -706,8 +706,8 @@ class SpellBuilder extends Builder {
 		const out = {getDuration};
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Duration Type</span>${$selDurationType}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Duration Type</span>${$selDurationType}</div>
 			${$stageAmount}
 			${$stageEnds}
 			${$wrpBtnRemove}
@@ -732,9 +732,9 @@ class SpellBuilder extends Builder {
 		const out = {getEnd};
 
 		const $wrpBtnRemove = $(`<div/>`);
-		const $wrp = $$`<div class="flex">
+		const $wrp = $$`<div class="ve-flex">
 			<div class="mkbru__sub-name--33 mr-2"></div>
-			<div class="mb-2 flex-v-center w-100">${$selEndType}${$wrpBtnRemove}</div>
+			<div class="mb-2 ve-flex-v-center w-100">${$selEndType}${$wrpBtnRemove}</div>
 		</div>`;
 		Builder.$getBtnRemoveRow(doUpdateState, endRows, out, $wrp, "Until Clause", {isExtraSmall: true}).appendTo($wrpBtnRemove);
 
@@ -804,9 +804,9 @@ class SpellBuilder extends Builder {
 		const out = {getClass};
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${$iptClass}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${$selClassSource}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${$iptClass}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${$selClassSource}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		Builder.$getBtnRemoveRow(doUpdateState, classRows, out, $wrp, "Class", {isProtectLast: true}).appendTo($wrpBtnRemove);
@@ -853,12 +853,12 @@ class SpellBuilder extends Builder {
 		const out = {getSubclass};
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${$iptClass}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${$selClassSource}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Name</span>${$iptSubclass}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Source</span>${$selSubclassSource}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, for a Circle of the Coast Land Druid, enter &quot;Coast&quot;">Sub-Subclass Name</span>${$iptSubSubclass}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${$iptClass}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${$selClassSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Name</span>${$iptSubclass}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Source</span>${$selSubclassSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, for a Circle of the Coast Land Druid, enter &quot;Coast&quot;">Sub-Subclass Name</span>${$iptSubSubclass}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		Builder.$getBtnRemoveRow(doUpdateState, subclassRows, out, $wrp, "Subclass").appendTo($wrpBtnRemove);
@@ -924,11 +924,11 @@ class SpellBuilder extends Builder {
 		const out = {getRace};
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${$iptRace}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="The name of the base race, e.g. &quot;Elf&quot;. This is used in filtering.">Base Name</span>${$iptBaseRace}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${SRC_PHB}&quot;">Base Source</span>${$selBaseSource}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${$iptRace}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="The name of the base race, e.g. &quot;Elf&quot;. This is used in filtering.">Base Name</span>${$iptBaseRace}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${SRC_PHB}&quot;">Base Source</span>${$selBaseSource}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		Builder.$getBtnRemoveRow(doUpdateState, raceRows, out, $wrp, "Race").appendTo($wrpBtnRemove);
@@ -983,9 +983,9 @@ class SpellBuilder extends Builder {
 		const out = {getBackground};
 
 		const $wrpBtnRemove = $(`<div class="text-right mb-2"/>`);
-		const $wrp = $$`<div class="flex-col mkbru__wrp-rows">
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${$iptName}</div>
-			<div class="flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
+		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${$iptName}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		Builder.$getBtnRemoveRow(doUpdateState, bgRows, out, $wrp, "Background").appendTo($wrpBtnRemove);
@@ -1031,7 +1031,7 @@ class SpellBuilder extends Builder {
 			},
 		);
 		const [spellTab, infoTab, imageTab, dataTab, markdownTab] = tabs;
-		$$`<div class="flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
 		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
 
 		// Spell

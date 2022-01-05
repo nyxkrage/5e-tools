@@ -300,7 +300,7 @@ class Omnisearch {
 				</div>
 			</div>`.appendTo(this._$searchOut);
 		}
-		this._$searchOutWrapper.css("display", "flex");
+		this._$searchOutWrapper.css("display", "ve-flex");
 
 		// add pagination if there are many results
 		if (results.length > this._MAX_RESULTS) {

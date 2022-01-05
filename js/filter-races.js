@@ -53,7 +53,7 @@ class AbilityScoreFilter extends FilterBase {
 
 		const wrpControls = this._getHeaderControls(opts);
 
-		this.__wrpPills = e_({tag: "div", clazz: `fltr__wrp-pills overflow-x-auto flex-col w-100`});
+		this.__wrpPills = e_({tag: "div", clazz: `fltr__wrp-pills overflow-x-auto ve-flex-col w-100`});
 		const hook = () => this.__wrpPills.toggleVe(!this._meta.isHidden);
 		this._addHook("meta", "isHidden", hook);
 		hook();
@@ -66,7 +66,7 @@ class AbilityScoreFilter extends FilterBase {
 		this.__$wrpFilter = $$`<div>
 			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
 			<div class="split fltr__h mb-1">
-				<div class="ml-2 fltr__h-text flex-h-center">${opts.isMulti ? `<span class="mr-2">\u2012</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
+				<div class="ml-2 fltr__h-text ve-flex-h-center">${opts.isMulti ? `<span class="mr-2">\u2012</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
 				${wrpControls}
 			</div>
 			${this.__wrpPills}
@@ -87,11 +87,11 @@ class AbilityScoreFilter extends FilterBase {
 
 		const wrpStateBtnsOuter = e_({
 			tag: "div",
-			clazz: "flex-v-center fltr__h-wrp-state-btns-outer",
+			clazz: "ve-flex-v-center fltr__h-wrp-state-btns-outer",
 			children: [
 				e_({
 					tag: "div",
-					clazz: "btn-group flex-v-center w-100",
+					clazz: "btn-group ve-flex-v-center w-100",
 					children: [
 						btnClear,
 					],
@@ -99,7 +99,7 @@ class AbilityScoreFilter extends FilterBase {
 			],
 		});
 
-		const wrpSummary = e_({tag: "div", clazz: "flex-vh-center ve-hidden"});
+		const wrpSummary = e_({tag: "div", clazz: "ve-flex-vh-center ve-hidden"});
 
 		const btnShowHide = e_({
 			tag: "button",
@@ -128,7 +128,7 @@ class AbilityScoreFilter extends FilterBase {
 
 		return e_({
 			tag: "div",
-			clazz: `flex-v-center fltr__h-wrp-btns-outer`,
+			clazz: `ve-flex-v-center fltr__h-wrp-btns-outer`,
 			children: [
 				wrpSummary,
 				wrpStateBtnsOuter,
@@ -149,7 +149,7 @@ class AbilityScoreFilter extends FilterBase {
 				this.__wrpPillsRows[it.ability] = {
 					row: e_({
 						tag: "div",
-						clazz: "flex-v-center w-100 my-1",
+						clazz: "ve-flex-v-center w-100 my-1",
 						children: [
 							e_({
 								tag: "div",
@@ -984,17 +984,17 @@ class ModalFilterRaces extends ModalFilter {
 
 	_getListItem (pageFilter, race, rI) {
 		const eleRow = document.createElement("div");
-		eleRow.className = "px-0 w-100 flex-col no-shrink";
+		eleRow.className = "px-0 w-100 ve-flex-col no-shrink";
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](race);
 		const ability = race.ability ? Renderer.getAbilityData(race.ability) : {asTextShort: "None"};
 		const size = (race.size || [SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/");
 		const source = Parser.sourceJsonToAbv(race.source);
 
-		eleRow.innerHTML = `<div class="w-100 flex-vh-center lst--border no-select lst__wrp-cells">
-			<div class="col-0-5 pl-0 flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border no-select lst__wrp-cells">
+			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
-			<div class="col-0-5 px-1 flex-vh-center">
+			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 

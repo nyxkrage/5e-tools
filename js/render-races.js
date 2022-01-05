@@ -26,7 +26,7 @@ class RenderRaces {
 	}
 
 	static _getPronunciationButton (race) {
-		return `<button class="btn btn-xs btn-default btn-name-pronounce ml-2 mb-2 self-flex-end">
+		return `<button class="btn btn-xs btn-default btn-name-pronounce ml-2 mb-2 self-ve-flex-end">
 			<span class="glyphicon glyphicon-volume-up name-pronounce-icon"></span>
 			<audio class="name-pronounce">
 			   <source src="${Renderer.utils.getMediaUrl(race, "soundClip", "audio")}" type="audio/mpeg">
@@ -57,8 +57,8 @@ class RenderRaces {
 						`${race.heightAndWeight.baseWeight} lb.`,
 						`+<span data-race-heightmod="true"></span>`,
 						`× <span data-race-weightmod="true"></span> lb.`,
-						`<div class="flex-vh-center">
-							<div class="ve-hidden race__disp-result-height-weight flex-v-baseline">
+						`<div class="ve-flex-vh-center">
+							<div class="ve-hidden race__disp-result-height-weight ve-flex-v-baseline">
 								<div class="mr-1">=</div>
 								<div class="race__disp-result-height"></div>
 								<div class="mr-2">; </div>
@@ -156,7 +156,7 @@ class RenderRaces {
 			try {
 				if (!isPreLocked) await lock.pLock();
 
-				$btnRoll.parent().removeClass(`flex-vh-center`).addClass(`split-v-center`);
+				$btnRoll.parent().removeClass(`ve-flex-vh-center`).addClass(`split-v-center`);
 				await pRollHeight();
 				await pRollWeight();
 				$dispResult.removeClass(`ve-hidden`);

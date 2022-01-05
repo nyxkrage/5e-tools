@@ -130,29 +130,29 @@ class ModalFilter {
 
 		await this._pInit();
 
-		const $ovlLoading = $(`<div class="w-100 h-100 flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($wrp);
+		const $ovlLoading = $(`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($wrp);
 
 		const $iptSearch = (opts.$iptSearch || $(`<input class="form-control lst__search lst__search--no-border-h h-100" type="search" placeholder="Search...">`)).disableSpellcheck();
 		const $btnReset = opts.$btnReset || $(`<button class="btn btn-default">Reset</button>`);
-		const $dispNumVisible = $(`<div class="lst__wrp-search-visible no-events flex-vh-center"></div>`);
+		const $dispNumVisible = $(`<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>`);
 
 		const $wrpIptSearch = $$`<div class="w-100 relative">
 			${$iptSearch}
-			<div class="lst__wrp-search-glass no-events flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+			<div class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
 			${$dispNumVisible}
 		</div>`;
 
-		const $wrpFormTop = $$`<div class="flex input-group btn-group w-100 lst__form-top">${$wrpIptSearch}${$btnReset}</div>`;
+		const $wrpFormTop = $$`<div class="ve-flex input-group btn-group w-100 lst__form-top">${$wrpIptSearch}${$btnReset}</div>`;
 
 		const $wrpFormBottom = opts.$wrpMiniPills || $(`<div class="w-100"></div>`);
 
-		const $wrpFormHeaders = $(`<div class="input-group input-group--bottom flex no-shrink"></div>`);
+		const $wrpFormHeaders = $(`<div class="input-group input-group--bottom ve-flex no-shrink"></div>`);
 		const $cbSelAll = opts.isBuildUi || this._isRadio ? null : $(`<input type="checkbox">`);
 		const $btnSendAllToRight = opts.isBuildUi ? $(`<button class="btn btn-xxs btn-default col-1" title="Add All"><span class="glyphicon glyphicon-arrow-right"></span></button>`) : null;
 
 		if (!opts.isBuildUi) {
-			if (this._isRadio) $wrpFormHeaders.append(`<label class="btn btn-default btn-xs col-0-5 flex-vh-center" disabled></label>`);
-			else $$`<label class="btn btn-default btn-xs col-0-5 flex-vh-center">${$cbSelAll}</label>`.appendTo($wrpFormHeaders);
+			if (this._isRadio) $wrpFormHeaders.append(`<label class="btn btn-default btn-xs col-0-5 ve-flex-vh-center" disabled></label>`);
+			else $$`<label class="btn btn-default btn-xs col-0-5 ve-flex-vh-center">${$cbSelAll}</label>`.appendTo($wrpFormHeaders);
 		}
 
 		const $btnTogglePreviewAll = this._$getColumnHeaderPreviewAll(opts)
@@ -161,7 +161,7 @@ class ModalFilter {
 		this._$getColumnHeaders().forEach($ele => $wrpFormHeaders.append($ele));
 		if (opts.isBuildUi) $btnSendAllToRight.appendTo($wrpFormHeaders);
 
-		const $wrpForm = $$`<div class="flex-col w-100 mb-1">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
+		const $wrpForm = $$`<div class="ve-flex-col w-100 mb-1">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
 		const $wrpList = this._$getWrpList();
 
 		const $btnConfirm = opts.isBuildUi ? null : $(`<button class="btn btn-default">Confirm</button>`);
@@ -217,10 +217,10 @@ class ModalFilter {
 
 		$ovlLoading.remove();
 
-		const $wrpInner = $$`<div class="flex-col h-100">
+		const $wrpInner = $$`<div class="ve-flex-col h-100">
 			${$wrpForm}
 			${$wrpList}
-			${opts.isBuildUi ? null : $$`<hr class="hr-1"><div class="flex-vh-center">${$btnConfirm}</div>`}
+			${opts.isBuildUi ? null : $$`<hr class="hr-1"><div class="ve-flex-vh-center">${$btnConfirm}</div>`}
 		</div>`.appendTo($wrp.empty());
 
 		return {
@@ -605,17 +605,17 @@ class FilterBox extends ProxyBase {
 		const $btnCancel = $(`<button class="btn btn-default fltr__btn-close">Cancel</button>`)
 			.click(() => this._modalMeta.doClose(false));
 
-		$$(this._modalMeta.$modal)`<div class="split mb-2 mt-2 flex-v-center mobile__flex-col">
-			<div class="flex-v-baseline mobile__flex-col">
+		$$(this._modalMeta.$modal)`<div class="split mb-2 mt-2 ve-flex-v-center mobile__ve-flex-col">
+			<div class="ve-flex-v-baseline mobile__ve-flex-col">
 				<h4 class="m-0 mr-2 mobile__mb-2">Filters</h4>
 				${metaIptSearch.$wrp.addClass("mobile__mb-2")}
 			</div>
-			<div class="flex-v-center mobile__flex-col">
-				<div class="flex-v-center mobile__m-1">
+			<div class="ve-flex-v-center mobile__ve-flex-col">
+				<div class="ve-flex-v-center mobile__m-1">
 					<div class="mr-2">Combine as</div>
 					${$wrpBtnCombineFilters}
 				</div>
-				<div class="flex-v-center mobile__m-1">
+				<div class="ve-flex-v-center mobile__m-1">
 					<div class="btn-group mr-2">
 						${$btnShowAllFilters}
 						${$btnHideAllFilters}
@@ -633,7 +633,7 @@ class FilterBox extends ProxyBase {
 			${$children}
 		</div>
 		<hr class="my-1 w-100">
-		<div class="w-100 flex-vh-center my-1">${$btnSave}${$btnCancel}</div>`;
+		<div class="w-100 ve-flex-vh-center my-1">${$btnSave}${$btnCancel}</div>`;
 	}
 
 	_openSettingsModal () {
@@ -1523,11 +1523,11 @@ class Filter extends FilterBase {
 
 		const wrpStateBtnsOuter = e_({
 			tag: "div",
-			clazz: "flex-v-center fltr__h-wrp-state-btns-outer",
+			clazz: "ve-flex-v-center fltr__h-wrp-state-btns-outer",
 			children: [
 				e_({
 					tag: "div",
-					clazz: "btn-group flex-v-center w-100",
+					clazz: "btn-group ve-flex-v-center w-100",
 					children: [
 						btnAll,
 						btnClear,
@@ -1539,7 +1539,7 @@ class Filter extends FilterBase {
 		});
 		this._getHeaderControls_addExtraStateBtns(opts, wrpStateBtnsOuter);
 
-		const wrpSummary = e_({tag: "div", clazz: "flex-vh-center ve-hidden"});
+		const wrpSummary = e_({tag: "div", clazz: "ve-flex-vh-center ve-hidden"});
 
 		const btnCombineBlue = e_({
 			tag: "button",
@@ -1592,11 +1592,11 @@ class Filter extends FilterBase {
 
 		return e_({
 			tag: "div",
-			clazz: `flex-v-center fltr__h-wrp-btns-outer`,
+			clazz: `ve-flex-v-center fltr__h-wrp-btns-outer`,
 			children: [
 				wrpSummary,
 				wrpStateBtnsOuter,
-				e_({tag: "span", clazz: `btn-group ml-2 flex-v-center`, children: [btnCombineBlue, btnCombineRed]}),
+				e_({tag: "span", clazz: `btn-group ml-2 ve-flex-v-center`, children: [btnCombineBlue, btnCombineRed]}),
 				btnShowHide,
 			],
 		});
@@ -1621,7 +1621,7 @@ class Filter extends FilterBase {
 
 		if (this._nests) {
 			const wrpNestHead = e_({tag: "div", clazz: "fltr__wrp-pills--sub"}).appendTo(this.__wrpPills);
-			this.__$wrpNestHeadInner = e_({tag: "div", clazz: "flex flex-wrap"}).appendTo(wrpNestHead);
+			this.__$wrpNestHeadInner = e_({tag: "div", clazz: "ve-flex ve-flex-wrap"}).appendTo(wrpNestHead);
 
 			const wrpNestHeadSummary = e_({tag: "div", clazz: "fltr__summary_nest"}).appendTo(wrpNestHead);
 
@@ -1665,7 +1665,7 @@ class Filter extends FilterBase {
 		this.__$wrpFilter = $$`<div>
 			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider ${opts.isMulti ? "fltr__dropdown-divider--indented" : ""} mb-1"></div>`}
 			<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-				<div class="ml-2 fltr__h-text flex-h-center">${opts.isMulti ? `<span class="mr-2">\u2012</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
+				<div class="ml-2 fltr__h-text ve-flex-h-center">${opts.isMulti ? `<span class="mr-2">\u2012</span>` : ""}${this._getRenderedHeader()}${btnMobToggleControls}</div>
 				${wrpControls}
 			</div>
 			${this.__wrpPills}
@@ -2233,7 +2233,7 @@ class SourceFilter extends Filter {
 
 		e_({
 			tag: "div",
-			clazz: `btn-group mr-2 w-100 flex-v-center mobile__m-1 mobile__mb-2`,
+			clazz: `btn-group mr-2 w-100 ve-flex-v-center mobile__m-1 mobile__mb-2`,
 			children: [
 				btnSupplements,
 				btnAdventures,
@@ -2328,7 +2328,7 @@ class SourceFilter extends Filter {
 
 		const wrpWrpSlider = e_({
 			tag: "div",
-			clazz: `"w-100 flex pt-2 pb-5 mb-2 mt-1 fltr-src__wrp-slider`,
+			clazz: `"w-100 ve-flex pt-2 pb-5 mb-2 mt-1 fltr-src__wrp-slider`,
 			children: [
 				wrpSlider,
 			],
@@ -2414,7 +2414,7 @@ class SourceFilter extends Filter {
 
 		const grpBtnsActive = e_({
 			tag: "div",
-			clazz: `flex-v-center btn-group`,
+			clazz: `ve-flex-v-center btn-group`,
 			children: [
 				btnCancel,
 				btnConfirm,
@@ -2423,7 +2423,7 @@ class SourceFilter extends Filter {
 
 		const grpBtnsInactive = e_({
 			tag: "div",
-			clazz: `flex-v-center btn-group`,
+			clazz: `ve-flex-v-center btn-group`,
 			children: [
 				btnClear,
 				btnShowSlider,
@@ -2432,12 +2432,12 @@ class SourceFilter extends Filter {
 
 		return e_({
 			tag: "div",
-			clazz: `flex-col w-100`,
+			clazz: `ve-flex-col w-100`,
 			children: [
 				super._doRenderPills_doRenderWrpGroup_getHrDivider(),
 				e_({
 					tag: "div",
-					clazz: `mb-1 flex-h-right`,
+					clazz: `mb-1 ve-flex-h-right`,
 					children: [
 						grpBtnsActive,
 						grpBtnsInactive,
@@ -2679,7 +2679,7 @@ class RangeFilter extends FilterBase {
 		const $btnReset = $(`<button class="btn btn-default btn-xs">Reset</button>`).click(() => this.reset());
 		const $wrpBtns = $$`<div>${$btnForceMobile}${$btnReset}</div>`;
 
-		const $wrpSummary = $(`<div class="flex-v-center fltr__summary_item fltr__summary_item--include"></div>`).hideVe();
+		const $wrpSummary = $(`<div class="ve-flex-v-center fltr__summary_item fltr__summary_item--include"></div>`).hideVe();
 
 		const $btnShowHide = $(`<button class="btn btn-default btn-xs ml-2 ${this._meta.isHidden ? "active" : ""}">Hide</button>`)
 			.click(() => this._meta.isHidden = !this._meta.isHidden);
@@ -2702,7 +2702,7 @@ class RangeFilter extends FilterBase {
 		hkIsHidden();
 
 		return $$`
-		<div class="flex-v-center">
+		<div class="ve-flex-v-center">
 			${$wrpBtns}
 			${$wrpSummary}
 			${$btnShowHide}
@@ -2804,7 +2804,7 @@ class RangeFilter extends FilterBase {
 				this._state.curMax = max;
 			},
 		});
-		$$`<div class="flex-v-center w-100 px-3 py-1">${selMin}${selMax}</div>`.appendTo($wrpDropdowns);
+		$$`<div class="ve-flex-v-center w-100 px-3 py-1">${selMin}${selMax}</div>`.appendTo($wrpDropdowns);
 		// endregion
 
 		const handleCurUpdate = () => {
@@ -2831,7 +2831,7 @@ class RangeFilter extends FilterBase {
 			$wrpSlider.addClass("ve-grow");
 			$wrpDropdowns.addClass("ve-grow");
 
-			return this.__$wrpFilter = $$`<div class="flex">
+			return this.__$wrpFilter = $$`<div class="ve-flex">
 				<div class="fltr__range-inline-label">${this._getRenderedHeader()}</div>
 				${$wrpSlider}
 				${$wrpDropdowns}
@@ -2839,10 +2839,10 @@ class RangeFilter extends FilterBase {
 		} else {
 			const btnMobToggleControls = this._getBtnMobToggleControls($wrpControls);
 
-			return this.__$wrpFilter = $$`<div class="flex-col">
+			return this.__$wrpFilter = $$`<div class="ve-flex-col">
 				${opts.isFirst ? "" : `<div class="fltr__dropdown-divider mb-1"></div>`}
 				<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-					<div class="fltr__h-text flex-h-center">${this._getRenderedHeader()}${btnMobToggleControls}</div>
+					<div class="fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}${btnMobToggleControls}</div>
 					${$wrpControls}
 				</div>
 				${$wrpSlider}
@@ -3190,15 +3190,15 @@ class OptionsFilter extends FilterBase {
 		const $wrpButtons = $$`<div>${$btns}</div>`;
 
 		if (opts.isMulti) {
-			return this.__$wrpFilter = $$`<div class="flex">
+			return this.__$wrpFilter = $$`<div class="ve-flex">
 				<div class="fltr__range-inline-label">${this._getRenderedHeader()}</div>
 				${$wrpButtons}
 			</div>`;
 		} else {
-			return this.__$wrpFilter = $$`<div class="flex-col">
+			return this.__$wrpFilter = $$`<div class="ve-flex-col">
 				${opts.isFirst ? "" : `<div class="fltr__dropdown-divider mb-1"></div>`}
 				<div class="split fltr__h ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-					<div class="fltr__h-text flex-h-center">${this._getRenderedHeader()}</div>
+					<div class="fltr__h-text ve-flex-h-center">${this._getRenderedHeader()}</div>
 					${$wrpControls}
 				</div>
 				${$wrpButtons}
@@ -3258,9 +3258,9 @@ class OptionsFilter extends FilterBase {
 
 	_$getHeaderControls () {
 		const $btnReset = $(`<button class="btn btn-default btn-xs">Reset</button>`).click(() => this.reset());
-		const $wrpBtns = $$`<div class="flex-v-center">${$btnReset}</div>`;
+		const $wrpBtns = $$`<div class="ve-flex-v-center">${$btnReset}</div>`;
 
-		const $wrpSummary = $(`<div class="flex-v-center fltr__summary_item fltr__summary_item--include"></div>`).hideVe();
+		const $wrpSummary = $(`<div class="ve-flex-v-center fltr__summary_item fltr__summary_item--include"></div>`).hideVe();
 
 		const $btnShowHide = $(`<button class="btn btn-default btn-xs ml-2 ${this._meta.isHidden ? "active" : ""}">Hide</button>`)
 			.click(() => this._meta.isHidden = !this._meta.isHidden);
@@ -3280,7 +3280,7 @@ class OptionsFilter extends FilterBase {
 		hkIsHidden();
 
 		return $$`
-		<div class="flex-v-center">
+		<div class="ve-flex-v-center">
 			${$wrpBtns}
 			${$wrpSummary}
 			${$btnShowHide}
@@ -3447,7 +3447,7 @@ class MultiFilter extends FilterBase {
 			click: () => this._filters.forEach(it => it.reset()),
 		});
 
-		const wrpBtns = e_({tag: "div", clazz: "flex", children: [btnForceMobile, btnResetAll].filter(Boolean)});
+		const wrpBtns = e_({tag: "div", clazz: "ve-flex", children: [btnForceMobile, btnResetAll].filter(Boolean)});
 		this._getHeaderControls_addExtraStateBtns(opts, wrpBtns);
 
 		const btnShowHide = e_({
@@ -3456,7 +3456,7 @@ class MultiFilter extends FilterBase {
 			text: "Hide",
 			click: () => this._meta.isHidden = !this._meta.isHidden,
 		});
-		const wrpControls = e_({tag: "div", clazz: "flex-v-center", children: [wrpSummary, wrpBtns, btnShowHide]});
+		const wrpControls = e_({tag: "div", clazz: "ve-flex-v-center", children: [wrpSummary, wrpBtns, btnShowHide]});
 
 		const hookShowHide = () => {
 			wrpBtns.toggleVe(!this._meta.isHidden);
@@ -3489,10 +3489,10 @@ class MultiFilter extends FilterBase {
 
 		const wrpControls = this._getHeaderControls(opts);
 
-		return this.__$wrpFilter = $$`<div class="flex-col">
+		return this.__$wrpFilter = $$`<div class="ve-flex-col">
 			${opts.isFirst ? "" : `<div class="fltr__dropdown-divider mb-1"></div>`}
 			<div class="split fltr__h fltr__h--multi ${this._minimalUi ? "fltr__minimal-hide" : ""} mb-1">
-				<div class="flex-v-center">
+				<div class="ve-flex-v-center">
 					<div class="mr-2">${this._getRenderedHeader()}</div>
 					${$btnAndOr}
 				</div>

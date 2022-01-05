@@ -20,7 +20,7 @@ class DeitiesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(g, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(g.source);
 		const hash = UrlUtil.autoEncodeHash(g);
@@ -71,7 +71,7 @@ class DeitiesPage extends ListPage {
 		const alignment = g.alignment ? g.alignment.join("") : "\u2014";
 		const domains = g.domains.join(", ");
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-4 pl-0">${g.name}</span>
 				<span class="col-2">${g.pantheon}</span>

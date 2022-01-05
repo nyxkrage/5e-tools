@@ -101,7 +101,7 @@ class LegendaryGroupBuilder extends Builder {
 			},
 		);
 		const [infoTab, lairActionsTab, regionalEffectsTab, mythicEncounterTab] = tabs;
-		$$`<div class="flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center w-100 no-shrink ui-tab__wrp-tab-heads--border">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
 		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
 
 		// INFO
@@ -151,7 +151,7 @@ class LegendaryGroupBuilder extends Builder {
 			},
 		);
 		const [legGroupTab, dataTab] = tabs;
-		$$`<div class="flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center w-100 no-shrink">${tabs.map(it => it.$btnTab)}</div>`.appendTo($wrp);
 		tabs.forEach(it => it.$wrpTab.appendTo($wrp));
 
 		// Legendary Group

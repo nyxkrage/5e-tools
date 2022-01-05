@@ -21,7 +21,7 @@ class CharCreationOptionsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const hash = UrlUtil.autoEncodeHash(it);
 		const source = Parser.sourceJsonToAbv(it.source);
@@ -62,7 +62,7 @@ class CharCreationOptionsPage extends ListPage {
 	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $$`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="col-5 text-center pl-0">${it._fOptionType}</span>
 				<span class="bold col-7 pr-0">${it.name}</span>

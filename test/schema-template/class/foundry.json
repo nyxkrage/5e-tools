@@ -42,6 +42,9 @@
 				},
 				"conditionImmune": {
 					"$ref": "../util.json#/definitions/conditionImmunityArrayPlayer"
+				},
+				"resources": {
+					"$ref": "../util.json#/definitions/resourcesArray"
 				}
 			},
 			"additionalProperties": false

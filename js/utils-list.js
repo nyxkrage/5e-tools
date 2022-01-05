@@ -857,7 +857,7 @@ const ListUtil = {
 	},
 
 	bindShowTableButton (id, title, dataList, colTransforms, filter, sorter) {
-		$(`#${id}`).click("click", () => ListUtil.showTable(title, dataList, colTransforms, filter, sorter));
+		$(`#${id}`).click("click", () => UtilsTableview.show({title, dataList, colTransforms, filter, sorter}));
 	},
 
 	basicFilterGenerator () {
@@ -873,65 +873,6 @@ const ListUtil = {
 
 	getVisibleIds () {
 		return ListUtil._primaryLists.map(l => l.visibleItems.map(it => it.ix)).flat();
-	},
-
-	// FIXME move this out
-	showTable (title, dataList, colTransforms, filter, sorter) {
-		const {$modal} = UiUtil.getShowModal({
-			isWidth100: true,
-			isHeight100: true,
-			isUncappedWidth: true,
-			isUncappedHeight: true,
-			isEmpty: true,
-		});
-
-		const $pnlControl = $(`<div class="split my-3"/>`).appendTo($modal);
-		const $pnlCols = $(`<div class="flex" style="align-items: center;"/>`).appendTo($pnlControl);
-		Object.values(colTransforms).forEach((c, i) => {
-			const $wrpCb = $(`<label class="flex-${c.flex || 1} px-2 mr-2 no-wrap flex-inline-v-center"><span class="mr-2">${c.name}</span></label>`).appendTo($pnlCols);
-			const $cbToggle = $(`<input type="checkbox" data-name="${c.name}" checked>`)
-				.click(() => {
-					const toToggle = $modal.find(`.col_${i}`);
-					if ($cbToggle.prop("checked")) {
-						toToggle.show();
-					} else {
-						toToggle.hide();
-					}
-				})
-				.appendTo($wrpCb);
-		});
-		const $pnlBtns = $(`<div/>`).appendTo($pnlControl);
-		function getAsCsv () {
-			const headers = $pnlCols.find(`input:checked`).map((i, e) => $(e).data("name")).get();
-			const rows = $modal.find(`.data-row`).map((i, e) => $(e)).get().map($e => {
-				return $e.children().filter(`td:visible`).map((j, d) => $(d).text().trim()).get();
-			});
-			return DataUtil.getCsv(headers, rows);
-		}
-		const $btnCsv = $(`<button class="btn btn-primary mr-3">Download CSV</button>`).click(() => {
-			DataUtil.userDownloadText(`${title}.csv`, getAsCsv());
-		}).appendTo($pnlBtns);
-		const $btnCopy = $(`<button class="btn btn-primary">Copy CSV to Clipboard</button>`).click(async () => {
-			await MiscUtil.pCopyTextToClipboard(getAsCsv());
-			JqueryUtil.showCopiedEffect($btnCopy);
-		}).appendTo($pnlBtns);
-		$modal.append(`<hr class="hr-1">`);
-
-		if (typeof filter === "object" && filter.generator) filter = filter.generator();
-
-		let stack = `<div class="overflow-y-auto w-100 h-100 flex-col"><table class="table-striped stats stats--book stats--book-large" style="width: 100%;"><thead><tr>${Object.values(colTransforms).map((c, i) => `<th class="col_${i} px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr></thead><tbody>`;
-		const listCopy = JSON.parse(JSON.stringify(dataList)).filter((it, i) => filter ? filter(i) : it);
-		if (sorter) listCopy.sort(sorter);
-		listCopy.forEach(it => {
-			stack += `<tr class="data-row">`;
-			stack += Object.keys(colTransforms).map((k, i) => {
-				const c = colTransforms[k];
-				return `<td class="col_${i} px-2" colspan="${c.flex || 1}">${c.transform === true ? it[k] : c.transform(k[0] === "_" ? it : it[k])}</td>`;
-			}).join("");
-			stack += `</tr>`;
-		});
-		stack += `</tbody></table></div>`;
-		$modal.append(stack);
 	},
 
 	addListShowHide () {

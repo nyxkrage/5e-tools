@@ -53,7 +53,7 @@ class BaseConverter extends BaseComponent {
 	get prop () { return this._prop; }
 
 	renderSidebar (parent, $parent) {
-		const $wrpSidebar = $(`<div class="w-100 flex-col"/>`).appendTo($parent);
+		const $wrpSidebar = $(`<div class="w-100 ve-flex-col"/>`).appendTo($parent);
 		const hkShowSidebar = () => $wrpSidebar.toggleClass("hidden", parent.get("converter") !== this._converterId);
 		parent.addHook("converter", hkShowSidebar);
 		hkShowSidebar();
@@ -79,7 +79,7 @@ class BaseConverter extends BaseComponent {
 				});
 		});
 
-		$$`<div class="sidemenu__row flex-vh-center-around">${$btnsSamples}</div>`.appendTo($wrpSidebar);
+		$$`<div class="sidemenu__row ve-flex-vh-center-around">${$btnsSamples}</div>`.appendTo($wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
 	}
@@ -91,7 +91,7 @@ class BaseConverter extends BaseComponent {
 
 		if (hasModes) {
 			const $selMode = ComponentUiUtil.$getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-sm select-inline"/>`, fnDisplay: it => `Parse as ${BaseConverter._getDisplayMode(it)}`});
-			$$`<div class="sidemenu__row flex-vh-center-around">${$selMode}</div>`.appendTo($wrpSidebar);
+			$$`<div class="sidemenu__row ve-flex-vh-center-around">${$selMode}</div>`.appendTo($wrpSidebar);
 		}
 
 		if (this._titleCaseFields) {
@@ -893,7 +893,7 @@ class ConverterUi extends BaseComponent {
 		ConverterUiUtil.renderSideMenuDivider($mnu);
 		// endregion
 
-		const $wrpConverters = $(`<div class="w-100 flex-col"/>`).appendTo($mnu);
+		const $wrpConverters = $(`<div class="w-100 ve-flex-col"/>`).appendTo($mnu);
 		Object
 			.keys(this._converters)
 			.sort(SortUtil.ascSortLower)

@@ -733,7 +733,7 @@ function Renderer () {
 		const pagePart = !isInlineTitle ? this._getPagePart(entry) : "";
 		const partExpandCollapse = !isInlineTitle ? `<span class="rd__h-toggle ml-2 clickable" data-rd-h-toggle-button="true">[\u2013]</span>` : "";
 		const partPageExpandCollapse = pagePart || partExpandCollapse
-			? `<span class="flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`
+			? `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`
 			: "";
 		const nextDepth = incDepth && meta.depth < 2 ? meta.depth + 1 : meta.depth;
 		const styleString = this._renderEntriesSubtypes_getStyleString(entry, meta, isInlineTitle);
@@ -858,7 +858,7 @@ function Renderer () {
 
 		const pagePart = this._getPagePart(entry, true);
 		const partExpandCollapse = `<span class="rd__h-toggle ml-2 clickable" data-rd-h-special-toggle-button="true">[\u2013]</span>`;
-		const partPageExpandCollapse = `<span class="flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
+		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
@@ -891,7 +891,7 @@ function Renderer () {
 
 		const pagePart = this._getPagePart(entry, true);
 		const partExpandCollapse = `<span class="rd__h-toggle ml-2 clickable" data-rd-h-special-toggle-button="true">[\u2013]</span>`;
-		const partPageExpandCollapse = `<span class="flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
+		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
@@ -922,7 +922,7 @@ function Renderer () {
 
 		const pagePart = this._getPagePart(entry, true);
 		const partExpandCollapse = `<span class="rd__h-toggle ml-2 clickable" data-rd-h-special-toggle-button="true">[\u2013]</span>`;
-		const partPageExpandCollapse = `<span class="flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
+		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset" ${dataString}>`;
 		textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><span class="entry-title-inner">Variant: ${entry.name}</span>${partPageExpandCollapse}</span>`;
@@ -1319,8 +1319,8 @@ function Renderer () {
 	this._renderCode = function (entry, textStack, meta, options) {
 		const isWrapped = !!StorageUtil.syncGet("rendererCodeWrap");
 		textStack[0] += `
-			<div class="flex-col h-100">
-				<div class="flex no-shrink pt-1">
+			<div class="ve-flex-col h-100">
+				<div class="ve-flex no-shrink pt-1">
 					<button class="btn btn-default btn-xs mb-1 mr-2" onclick="Renderer.events.handleClick_copyCode(event, this)">Copy Code</button>
 					<button class="btn btn-default btn-xs mb-1 ${isWrapped ? "active" : ""}" onclick="Renderer.events.handleClick_toggleCodeWrap(event, this)">Word Wrap</button>
 				</div>
@@ -2489,19 +2489,19 @@ Renderer.utils = {
 		const tagPartSourceEnd = `</${pageLinkPart ? "a" : "span"}>`;
 
 		const ptBrewSourceLink = BrewUtil.hasSourceJson(it.source) && BrewUtil.sourceJsonToSource(it.source)?.url
-			? `<a href="${BrewUtil.sourceJsonToSource(it.source).url}" title="View Homebrew Source" class="self-flex-center ml-2 ve-muted rd__stats-name-brew-link" target="_blank" rel="noopener noreferrer"><span class="	glyphicon glyphicon-share"></span></a>`
+			? `<a href="${BrewUtil.sourceJsonToSource(it.source).url}" title="View Homebrew Source" class="self-ve-flex-center ml-2 ve-muted rd__stats-name-brew-link" target="_blank" rel="noopener noreferrer"><span class="	glyphicon glyphicon-share"></span></a>`
 			: "";
 
 		// Add data-page/source/hash attributes for external script use (e.g. Rivet)
 		const $ele = $$`<tr>
 			<th class="rnd-name ${opts.extraThClasses ? opts.extraThClasses.join(" ") : ""}" colspan="6" ${dataPart}>
 				<div class="name-inner">
-					<div class="flex-v-center">
+					<div class="ve-flex-v-center">
 						<h1 class="stats-name copyable m-0" onmousedown="event.preventDefault()" onclick="Renderer.utils._pHandleNameClick(this)">${opts.prefix || ""}${it._displayName || it.name}${opts.suffix || ""}</h1>
 						${opts.controlRhs || ""}
-						${!IS_VTT && ExtensionUtil.ACTIVE && opts.page ? `<button title="Send to Foundry (SHIFT for Temporary Import)" class="btn btn-xs btn-default btn-stats-name mx-2 mb-2 self-flex-end" onclick="ExtensionUtil.pDoSendStats(event, this)"><span class="glyphicon glyphicon-send"></span></button>` : ""}
+						${!IS_VTT && ExtensionUtil.ACTIVE && opts.page ? `<button title="Send to Foundry (SHIFT for Temporary Import)" class="btn btn-xs btn-default btn-stats-name mx-2 mb-2 self-ve-flex-end" onclick="ExtensionUtil.pDoSendStats(event, this)"><span class="glyphicon glyphicon-send"></span></button>` : ""}
 					</div>
-					<div class="stats-source flex-v-baseline">
+					<div class="stats-source ve-flex-v-baseline">
 						${tagPartSourceStart} class="help-subtle ${it.source ? `${Parser.sourceJsonToColor(it.source)}" title="${Parser.sourceJsonToFull(it.source)}${Renderer.utils.getSourceSubText(it)}` : ""}" ${BrewUtil.sourceJsonToStyle(it.source)}>${it.source ? Parser.sourceJsonToAbv(it.source) : ""}${tagPartSourceEnd}
 
 						${Renderer.utils.isDisplayPage(it.page) ? ` ${tagPartSourceStart} class="rd__stats-name-page ml-1" title="Page ${it.page}">p${it.page}${tagPartSourceEnd}` : ""}
@@ -5469,7 +5469,7 @@ Renderer.monster = {
 	},
 
 	getTypeAlignmentPart (mon) { return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Parser.sizeAbvToFull(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${Parser.monTypeToFullObj(mon.type).asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment)}` : ""}`; },
-	getSavesPart (mon) { return `${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; },
+	getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; },
 	getSensesPart (mon) { return `${mon.senses ? `${Renderer.monster.getRenderedSenses(mon.senses)}, ` : ""}passive Perception ${mon.passive || "\u2014"}`; },
 
 	getRenderWithPlugins ({renderer, mon, fn}) {
@@ -5705,6 +5705,8 @@ Renderer.monster = {
 	},
 
 	getSkillsString (renderer, mon) {
+		if (!mon.skill) return "";
+
 		function doSortMapJoinSkillKeys (obj, keys, joinWithOr) {
 			const toJoin = keys.sort(SortUtil.ascSort).map(s => `<span data-mon-skill="${s.toTitleCase()}|${obj[s]}">${renderer.render(`{@skill ${s.toTitleCase()}}`)} ${Renderer.get().render(`{@skillCheck ${s.replace(/ /g, "_")} ${obj[s]}}`)}</span>`);
 			return joinWithOr ? toJoin.joinConjunct(", ", " or ") : toJoin.join(", ");
@@ -5720,7 +5722,8 @@ Renderer.monster = {
 			});
 			const special = mon.skill.special && Renderer.get().render(mon.skill.special);
 			return [skills, others, special].filter(Boolean).join(", ");
-		} else return skills;
+		}
+		return skills;
 	},
 
 	getTokenUrl (mon) {
@@ -5834,6 +5837,8 @@ Renderer.monster = {
 		if (dragonVariant) rStack.push(dragonVariant);
 		return rStack.join("");
 	},
+
+	getRenderedEnvironment (envs) { return (envs || []).sort(SortUtil.ascSortLower).map(it => it.toTitleCase()).join(", "); },
 
 	pGetFluff (mon) {
 		return Renderer.utils.pGetFluff({
@@ -6342,7 +6347,7 @@ Renderer.item = {
 	},
 
 	getTypeRarityAndAttunementHtml (typeRarityText, subTypeText, tierText) {
-		return `<div class="flex-col">
+		return `<div class="ve-flex-col">
 			${typeRarityText || tierText ? `<div class="split ${subTypeText ? "mb-1" : ""}">
 				<div class="italic">${(typeRarityText || "").uppercaseFirst()}</div>
 				<div class="no-wrap ${tierText ? `ml-2` : ""}">${(tierText || "").uppercaseFirst()}</div>
@@ -7604,31 +7609,31 @@ Renderer.recipe = {
 	getBodyHtml (it) {
 		const {ptMakes, ptServes} = Renderer.recipe._getMakesServesHtml(it);
 
-		return `<div class="flex w-100 rd-recipes__wrp-recipe">
-			<div class="flex-1 flex-col br-1p pr-2">
+		return `<div class="ve-flex w-100 rd-recipes__wrp-recipe">
+			<div class="ve-flex-1 ve-flex-col br-1p pr-2">
 				${ptMakes || ""}
 				${ptServes || ""}
 
 				<div class="rd-recipes__wrp-ingredients ${ptMakes || ptServes ? "mt-1" : ""}">${Renderer.get().render({entries: it._fullIngredients}, 0)}</div>
 
-				${it._fullEquipment?.length ? `<div class="rd-recipes__wrp-ingredients mt-4"><div class="flex-vh-center bold mb-1 small-caps">Equipment</div><div>${Renderer.get().render({entries: it._fullEquipment})}</div></div>` : ""}
+				${it._fullEquipment?.length ? `<div class="rd-recipes__wrp-ingredients mt-4"><div class="ve-flex-vh-center bold mb-1 small-caps">Equipment</div><div>${Renderer.get().render({entries: it._fullEquipment})}</div></div>` : ""}
 
-				${it.noteCook ? `<div class="w-100 flex-col mt-4"><div class="flex-vh-center bold mb-1 small-caps">Cook's Notes</div><div class="italic">${Renderer.get().render({entries: it.noteCook})}</div></div>` : ""}
+				${it.noteCook ? `<div class="w-100 ve-flex-col mt-4"><div class="ve-flex-vh-center bold mb-1 small-caps">Cook's Notes</div><div class="italic">${Renderer.get().render({entries: it.noteCook})}</div></div>` : ""}
 			</div>
 
-			<div class="pl-2 flex-2 rd-recipes__wrp-instructions">
+			<div class="pl-2 ve-flex-2 rd-recipes__wrp-instructions">
 				${Renderer.get().setFirstSection(true).render({entries: it.instructions}, 2)}
 			</div>
 		</div>`;
 	},
 
 	_getMakesServesHtml (it) {
-		const ptMakes = it.makes ? `<div class="mb-2 flex-v-center">
+		const ptMakes = it.makes ? `<div class="mb-2 ve-flex-v-center">
 			<div class="bold small-caps mr-2">Makes</div>
 			<div>${it._scaleFactor ? `${it._scaleFactor}× ` : ""}${Renderer.get().render(it.makes || it.serves)}</div>
 		</div>` : null;
 
-		const ptServes = it.serves ? `<div class="mb-2 flex-v-center">
+		const ptServes = it.serves ? `<div class="mb-2 ve-flex-v-center">
 			<div class="bold small-caps mr-2">Serves</div>
 			<div>${it.serves.min ?? it.serves.exact}${it.serves.min != null ? " to " : ""}${it.serves.max ?? ""}</div>
 		</div>` : null;
@@ -8559,7 +8564,7 @@ Renderer.hover = {
 		$brdrTop.attr("data-display-title", false);
 		$brdrTop.on("dblclick", () => doToggleMinimizedMaximized());
 		$brdrTop.append($hovTitle);
-		const $brdTopRhs = $(`<div class="flex" style="margin-left: auto;"></div>`).appendTo($brdrTop);
+		const $brdTopRhs = $(`<div class="ve-flex" style="margin-left: auto;"></div>`).appendTo($brdrTop);
 
 		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
 			const $btnGotoPage = $(`<a class="top-border-icon glyphicon glyphicon-modal-window" style="margin-right: 2px;" title="Go to Page" href="${opts.pageUrl}"></a>`)

@@ -28,7 +28,7 @@ class TablesPage extends ListPage {
 		const sortName = it.name.replace(/^\s*([\d,.]+)\s*gp/, (...m) => m[1].replace(Parser._numberCleanRegexp, "").padStart(9, "0"));
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
@@ -68,7 +68,7 @@ class TablesPage extends ListPage {
 	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col"><a href="#${hash}" class="lst--border lst__row-inner" title="${it.name}"><span class="bold col-12 px-0">${it.name}</span></a></div>`)
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col"><a href="#${hash}" class="lst--border lst__row-inner" title="${it.name}"><span class="bold col-12 px-0">${it.name}</span></a></div>`)
 			.contextmenu(evt => ListUtil.openSubContextMenu(evt, listItem))
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 

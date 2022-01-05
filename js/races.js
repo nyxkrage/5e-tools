@@ -52,7 +52,7 @@ class RacesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(race, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const hash = UrlUtil.autoEncodeHash(race);
 		const ability = race.ability ? Renderer.getAbilityData(race.ability) : {asTextShort: "None"};
@@ -99,7 +99,7 @@ class RacesPage extends ListPage {
 	pGetSublistItem (race, ix) {
 		const hash = UrlUtil.autoEncodeHash(race);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 				<a href="#${UrlUtil.autoEncodeHash(race)}" class="lst--border lst__row-inner">
 					<span class="bold col-5 pl-0">${race.name}</span>
 					<span class="col-5">${race._slAbility}</span>

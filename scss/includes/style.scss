@@ -552,7 +552,6 @@ input[type=checkbox].sidemenu__row__label__cb {
 .rollbox {
 	@include shadow-1();
 
-	display: none;
 	position: fixed;
 	width: 260px;
 	height: 335px;
@@ -1776,6 +1775,16 @@ input[type=checkbox].readonly {
 		}
 	}
 }
+
+// region Table View
+.tview__ {
+	&row {
+		> td {
+			min-width: 100px;
+		}
+	}
+}
+// endregion
 
 .ecgen__ {
 	&visible,

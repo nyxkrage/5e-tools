@@ -444,7 +444,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			<span class="col-4 text-center ${Parser.sourceJsonToColor(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}" ${BrewUtil.sourceJsonToStyle(cls.source)}>${source}</span>
 		</a>`);
 
-		const $ele = $$`<li class="lst__row flex-col ${isExcluded ? "row--blacklisted" : ""}">${$lnk}</li>`;
+		const $ele = $$`<li class="lst__row ve-flex-col ${isExcluded ? "row--blacklisted" : ""}">${$lnk}</li>`;
 
 		return new ListItem(
 			clsI,
@@ -1228,11 +1228,11 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 
 		const $btnToggleFluff = ComponentUiUtil.$getBtnBool(this, "isShowFluff", {text: "Info"}).title("Toggle Class Info");
 
-		$$`<div class="flex-v-center m-1 btn-group mr-3 no-shrink">${$btnToggleFeatures}${$btnToggleFeatureVariants}${$btnToggleFluff}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center m-1 btn-group mr-3 no-shrink">${$btnToggleFeatures}${$btnToggleFeatureVariants}${$btnToggleFluff}</div>`.appendTo($wrp);
 		// endregion
 
 		// region subclasses
-		const $wrpScTabs = $(`<div class="flex-v-center flex-wrap mr-2 w-100"/>`).appendTo($wrp);
+		const $wrpScTabs = $(`<div class="ve-flex-v-center ve-flex-wrap mr-2 w-100"/>`).appendTo($wrp);
 		this._listSubclass = new List({$wrpList: $wrpScTabs, isUseJquery: true, fnSort: ClassesPage._fnSortSubclassFilterItems});
 
 		cls.subclasses.forEach((sc, i) => {
@@ -1241,7 +1241,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			this._listSubclass.addItem(listItem);
 		});
 
-		const $dispCount = $(`<div class="text-muted m-1 cls-tabs__sc-not-shown flex-vh-center"/>`);
+		const $dispCount = $(`<div class="text-muted m-1 cls-tabs__sc-not-shown ve-flex-vh-center"/>`);
 		this._listSubclass.addItem(new ListItem(
 			-1,
 			$dispCount,
@@ -1353,9 +1353,9 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		// Remove the temporary "hidden" class used to prevent popping
 		this._listSubclass.items.forEach(it => it.ele.showVe());
 
-		const $btnToggleSources = ComponentUiUtil.$getBtnBool(this, "isShowScSources", {$ele: $(`<button class="btn btn-xs btn-default flex-1" title="Show Subclass Sources"><span class="glyphicon glyphicon-book"/></button>`)});
+		const $btnToggleSources = ComponentUiUtil.$getBtnBool(this, "isShowScSources", {$ele: $(`<button class="btn btn-xs btn-default ve-flex-1" title="Show Subclass Sources"><span class="glyphicon glyphicon-book"/></button>`)});
 
-		const $btnShuffle = $(`<button title="Feeling Lucky?" class="btn btn-xs btn-default flex-1"><span class="glyphicon glyphicon-random"/></button>`)
+		const $btnShuffle = $(`<button title="Feeling Lucky?" class="btn btn-xs btn-default ve-flex-1"><span class="glyphicon glyphicon-random"/></button>`)
 			.click(() => {
 				if (!this._listSubclass.visibleItems.length) return JqueryUtil.doToast({content: "No subclasses to choose from!", type: "warning"});
 
@@ -1377,8 +1377,8 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 				}
 			});
 
-		$$`<div class="flex-v-center m-1 no-shrink">${$selFilterPreset}</div>`.appendTo($wrp);
-		$$`<div class="flex-v-center m-1 btn-group no-shrink">
+		$$`<div class="ve-flex-v-center m-1 no-shrink">${$selFilterPreset}</div>`.appendTo($wrp);
+		$$`<div class="ve-flex-v-center m-1 btn-group no-shrink">
 			${$btnSelAll}${$btnShuffle}${$btnReset}${$btnToggleSources}
 		</div>`.appendTo($wrp);
 	}
@@ -1410,7 +1410,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		MiscUtil.pDefer(hkSourcesVisible);
 
 		// Initially have these "hidden," to prevent them popping out when we filter them
-		const $btn = $$`<button class="btn btn-default btn-xs flex-v-center m-1 ve-hidden ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}">
+		const $btn = $$`<button class="btn btn-default btn-xs ve-flex-v-center m-1 ve-hidden ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}">
 				${$dispName}
 				${$dispSource}
 			</button>`
@@ -1718,7 +1718,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			pageTitle: "Subclass Comparison",
 			isFlex: true,
 			popTblGetNumShown: ({$wrpContent}) => {
-				$wrpContent.removeClass("bkmv__wrp").addClass("h-100").addClass("flex-col");
+				$wrpContent.removeClass("bkmv__wrp").addClass("h-100").addClass("ve-flex-col");
 				$wrpContent.parent().addClass("stats").addClass("stats--book");
 
 				const renderStack = [];
@@ -1736,7 +1736,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 				levelsWithFeatures.forEach((lvl, i) => {
 					const isLastRow = i === levelsWithFeatures - 1;
 
-					renderStack.push(`<div class="flex ${isLastRow ? "mb-4" : ""}">`);
+					renderStack.push(`<div class="ve-flex ${isLastRow ? "mb-4" : ""}">`);
 					cls.subclasses
 						.filter(sc => !this.constructor.isSubclassExcluded_(cls, sc))
 						.forEach((sc, ixSubclass) => {
@@ -1839,13 +1839,13 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 	}
 
 	_render_renderAltViews_$getStgCompViewNoneVisible () {
-		const $wrpRows = $(`<div class="flex-col min-h-0"></div>`);
+		const $wrpRows = $(`<div class="ve-flex-col min-h-0"></div>`);
 
 		const $btnAdjustFilters = $(`<span class="clickable help no-select" title="Click Here!">adjust your filters</span>`)
 			.click(() => this.filterBox.show());
 		const $dispNoneAvailable = $$`<div class="ve-small ve-muted italic">No subclasses are available. Please ${$btnAdjustFilters} first.</div>`;
 
-		const $stgCompViewNoneVisible = $$`<div class="flex-col h-100">
+		const $stgCompViewNoneVisible = $$`<div class="ve-flex-col h-100">
 			<div class="mb-2 initial-message">Please select some subclasses:</div>
 			${$wrpRows}
 			${$dispNoneAvailable}
@@ -1902,7 +1902,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 					this._subclassComparisonView.close();
 				});
 
-			$$`<div class="flex-h-right mt-2">${$btnSave}${$btnClose}</div>`
+			$$`<div class="ve-flex-h-right mt-2">${$btnSave}${$btnClose}</div>`
 				.appendTo($wrpRows);
 		};
 		this._listSubclass.on("updated", () => onListUpdate());
@@ -2179,13 +2179,13 @@ ClassesPage.ClassBookView = class {
 		// Top bar
 		const $btnClose = $(`<span class="delete-icon glyphicon glyphicon-remove"/>`)
 			.click(() => this._parent.set("isViewActiveBook", false));
-		$$`<div class="bkmv__spacer-name flex-h-right no-shrink">${$btnClose}</div>`.appendTo(this._$wrpBook);
+		$$`<div class="bkmv__spacer-name ve-flex-h-right no-shrink">${$btnClose}</div>`.appendTo(this._$wrpBook);
 
-		const $pnlMenu = $(`<div class="cls-bkmv__wrp-tabs flex-h-center"/>`).appendTo(this._$wrpBook);
+		const $pnlMenu = $(`<div class="cls-bkmv__wrp-tabs ve-flex-h-center"/>`).appendTo(this._$wrpBook);
 
 		// Main panel
 		const $tblBook = $(`<table class="stats stats--book stats--book-large"/>`);
-		$$`<div class="flex-col overflow-y-auto container">${$tblBook}</div>`.appendTo(this._$wrpBook);
+		$$`<div class="ve-flex-col overflow-y-auto container">${$tblBook}</div>`.appendTo(this._$wrpBook);
 
 		const renderStack = [];
 		Renderer.get().setFirstSection(true);

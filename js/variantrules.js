@@ -25,7 +25,7 @@ class VariantRulesPage extends ListPage {
 		}
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(rule.source);
 		const hash = UrlUtil.autoEncodeHash(rule);
@@ -67,7 +67,7 @@ class VariantRulesPage extends ListPage {
 	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col"><a href="#${hash}" class="lst--border lst__row-inner">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col"><a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-10 pl-0">${it.name}</span>
 				<span class="col-3 text-center pr-0">${it.ruleType ? Parser.ruleTypeToFull(it.ruleType) : "\u2014"}</span>
 			</a></div>`)

@@ -73,20 +73,20 @@ class SearchPage {
 		const $btnExpandAll = $(`<button class="btn btn-default" title="Expand All Results"><span class="glyphicon glyphicon-plus"></span></button>`)
 			.click(() => handleMassExpandCollapse(true));
 
-		SearchPage._$wrpResults = $(`<div class="flex-col w-100">${this._getWrpResult_message("Loading...")}</div>`);
+		SearchPage._$wrpResults = $(`<div class="ve-flex-col w-100">${this._getWrpResult_message("Loading...")}</div>`);
 
-		$$(SearchPage._$wrp)`<div class="flex-col w-100 pg-search__wrp">
-			<div class="flex-v-center mb-2 mobile__flex-col">
-				<div class="flex-v-center input-group btn-group mr-2 w-100 mobile__mb-2">${$iptSearch}${$btnSearch}</div>
+		$$(SearchPage._$wrp)`<div class="ve-flex-col w-100 pg-search__wrp">
+			<div class="ve-flex-v-center mb-2 mobile__ve-flex-col">
+				<div class="ve-flex-v-center input-group btn-group mr-2 w-100 mobile__mb-2">${$iptSearch}${$btnSearch}</div>
 
-				<div class="flex-v-center">
+				<div class="ve-flex-v-center">
 					${$btnHelp}
-					<div class="flex-v-center btn-group mr-2">
+					<div class="ve-flex-v-center btn-group mr-2">
 						${$btnToggleUa}
 						${$btnToggleBlacklisted}
 						${$btnToggleSrd}
 					</div>
-					<div class="btn-group flex-v-center">
+					<div class="btn-group ve-flex-v-center">
 						${$btnCollapseAll}
 						${$btnExpandAll}
 					</div>
@@ -148,21 +148,21 @@ class SearchPage {
 						? ptSourceInner
 						: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
-					const $dispImage = $(`<div class="flex-col pg-search__disp-token mr-3 no-shrink"></div>`);
-					const $dispPreview = $(`<div class="flex-col mobile__w-100"></div>`);
-					const $wrpPreviewControls = $(`<div class="flex-col mobile__mb-2 mobile__w-100 h-100"></div>`);
+					const $dispImage = $(`<div class="ve-flex-col pg-search__disp-token mr-3 no-shrink"></div>`);
+					const $dispPreview = $(`<div class="ve-flex-col mobile__w-100"></div>`);
+					const $wrpPreviewControls = $(`<div class="ve-flex-col mobile__mb-2 mobile__w-100 h-100"></div>`);
 
 					const out = {};
 
-					const $row = $$`<div class="my-2 py-2 pl-3 pr-2 pg-search__wrp-result flex relative mobile__flex-col">
-						<div class="flex-v-center mobile__mb-2 w-100">
+					const $row = $$`<div class="my-2 py-2 pl-3 pr-2 pg-search__wrp-result ve-flex relative mobile__ve-flex-col">
+						<div class="ve-flex-v-center mobile__mb-2 w-100">
 							${$dispImage}
-							<div class="flex-col flex-h-center mr-auto">
+							<div class="ve-flex-col ve-flex-h-center mr-auto">
 								<div class="mb-2">${$link}</div>
 								<div>${ptSource}${ptPage ? `, ${ptPage}` : ""}</div>
 							</div>
 						</div>
-						<div class="flex-v-center mobile__flex-col-reverse mobile__flex-ai-start">
+						<div class="ve-flex-v-center mobile__ve-flex-col-reverse mobile__ve-flex-ai-start">
 							${$dispPreview}
 							${$wrpPreviewControls}
 						</div>
@@ -235,7 +235,7 @@ class SearchPage {
 	}
 
 	static _getWrpResult_message (message) {
-		return `<div class="my-2 py-2 px-3 pg-search__wrp-result flex-vh-center"><i>${message.qq()}</i></div>`;
+		return `<div class="my-2 py-2 px-3 pg-search__wrp-result ve-flex-vh-center"><i>${message.qq()}</i></div>`;
 	}
 }
 SearchPage._STORAGE_KEY_IS_EXPANDED = "isExpanded";

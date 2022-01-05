@@ -697,21 +697,21 @@ class ModalFilterClasses extends ModalFilter {
 		} else {
 			await this._pInit();
 
-			const $ovlLoading = $(`<div class="w-100 h-100 flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($modalInner);
+			const $ovlLoading = $(`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($modalInner);
 
 			const $iptSearch = $(`<input class="form-control" type="search" placeholder="Search...">`);
 			const $btnReset = $(`<button class="btn btn-default">Reset</button>`);
-			const $wrpFormTop = $$`<div class="flex input-group btn-group w-100 lst__form-top">${$iptSearch}${$btnReset}</div>`;
+			const $wrpFormTop = $$`<div class="ve-flex input-group btn-group w-100 lst__form-top">${$iptSearch}${$btnReset}</div>`;
 
 			const $wrpFormBottom = $(`<div class="w-100"></div>`);
 
-			const $wrpFormHeaders = $(`<div class="input-group input-group--bottom flex no-shrink">
+			const $wrpFormHeaders = $(`<div class="input-group input-group--bottom ve-flex no-shrink">
 				<div class="btn btn-default disabled col-1 pl-0"></div>
 				<button class="col-9 sort btn btn-default btn-xs" data-sort="name">Name</button>
 				<button class="col-2 pr-0 sort btn btn-default btn-xs ve-grow" data-sort="source">Source</button>
 			</div>`);
 
-			const $wrpForm = $$`<div class="flex-col w-100 mb-2">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
+			const $wrpForm = $$`<div class="ve-flex-col w-100 mb-2">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
 			const $wrpList = this._$getWrpList();
 
 			const $btnConfirm = $(`<button class="btn btn-default">Confirm</button>`);
@@ -787,10 +787,10 @@ class ModalFilterClasses extends ModalFilter {
 
 			$ovlLoading.remove();
 
-			const $wrpModalInner = $$`<div class="flex-col h-100">
+			const $wrpModalInner = $$`<div class="ve-flex-col h-100">
 				${$wrpForm}
 				${$wrpList}
-				<div class="flex-vh-center">${$btnConfirm}</div>
+				<div class="ve-flex-vh-center">${$btnConfirm}</div>
 			</div>`.appendTo($modalInner);
 
 			this._filterCache = {$wrpModalInner, $btnConfirm, pageFilter, list, allData, $iptSearch};
@@ -869,11 +869,11 @@ class ModalFilterClasses extends ModalFilter {
 
 	_getListItems_getClassItem (pageFilter, cls, clsI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = "w-100 flex lst--border no-select lst__wrp-cells";
+		eleLabel.className = "w-100 ve-flex lst--border no-select lst__wrp-cells";
 
 		const source = Parser.sourceJsonToAbv(cls.source);
 
-		eleLabel.innerHTML = `<div class="col-1 pl-0 flex-vh-center"><div class="fltr-cls__tgl"></div></div>
+		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
 		<div class="bold col-9">${cls.name}</div>
 		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${BrewUtil.sourceJsonToStyle(cls.source)}>${source}</div>`;
 
@@ -893,12 +893,12 @@ class ModalFilterClasses extends ModalFilter {
 
 	_getListItems_getSubclassItem (pageFilter, cls, clsI, sc, scI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = "w-100 flex lst--border no-select lst__wrp-cells";
+		eleLabel.className = "w-100 ve-flex lst--border no-select lst__wrp-cells";
 
 		const source = Parser.sourceJsonToAbv(sc.source);
 
-		eleLabel.innerHTML = `<div class="col-1 pl-0 flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="col-9 pl-1 flex-v-center"><span class="mx-3">\u2014</span> ${sc.name}</div>
+		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
+		<div class="col-9 pl-1 ve-flex-v-center"><span class="mx-3">\u2014</span> ${sc.name}</div>
 		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${BrewUtil.sourceJsonToStyle(sc.source)}>${source}</div>`;
 
 		return new ListItem(

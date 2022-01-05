@@ -204,7 +204,7 @@ class InitiativeTrackerPlayerMessageHandler {
 
 		if (data.n) {
 			this._$meta.append(`
-				<div class="${this._isCompact ? "flex-vh-center" : "flex-v-center"}${this._isCompact ? " mb-3" : ""}">
+				<div class="${this._isCompact ? "ve-flex-vh-center" : "ve-flex-v-center"}${this._isCompact ? " mb-3" : ""}">
 					<div class="mr-2">Round: </div>
 					<div class="bold">${data.n}</div>
 				</div>
@@ -259,7 +259,7 @@ class InitiativeTrackerPlayerMessageHandler {
 				<div class="initp__r_hp">
 					<div class="initp__r_hp_pill" style="background: ${hpColor};">${hpText}</div>
 				</div>
-				${(rowData.k || []).map(statVal => `<div class="initp__r_stat flex-vh-center">
+				${(rowData.k || []).map(statVal => `<div class="initp__r_stat ve-flex-vh-center">
 					${statVal.u ? "?" : statVal.v === true ? `<span class="text-success glyphicon glyphicon-ok"/>` : statVal.v === false ? `<span class="text-danger glyphicon glyphicon-remove"/>` : statVal.v}
 				</div>`).join("")}
 				<div class="initp__r_score${this._isCompact ? " initp__r_score--compact" : ""}">${rowData.i}</div>

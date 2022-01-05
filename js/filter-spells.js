@@ -63,7 +63,7 @@ class MultiFilterClasses extends MultiFilter {
 
 		e_({
 			tag: "div",
-			clazz: `btn-group w-100 flex-v-center mobile__m-1 mobile__mb-2`,
+			clazz: `btn-group w-100 ve-flex-v-center mobile__m-1 mobile__mb-2`,
 			children: [
 				btnToggleVariantSplit,
 			],
@@ -628,7 +628,7 @@ class ModalFilterSpells extends ModalFilter {
 
 	_getListItem (pageFilter, spell, spI) {
 		const eleRow = document.createElement("div");
-		eleRow.className = "px-0 w-100 flex-col no-shrink";
+		eleRow.className = "px-0 w-100 ve-flex-col no-shrink";
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS](spell);
 		const source = Parser.sourceJsonToAbv(spell.source);
@@ -638,10 +638,10 @@ class ModalFilterSpells extends ModalFilter {
 		const concentration = spell._isConc ? "×" : "";
 		const range = Parser.spRangeToFull(spell.range);
 
-		eleRow.innerHTML = `<div class="w-100 flex-vh-center lst--border no-select lst__wrp-cells">
-			<div class="col-0-5 pl-0 flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border no-select lst__wrp-cells">
+			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
-			<div class="col-0-5 px-1 flex-vh-center">
+			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 

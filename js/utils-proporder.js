@@ -699,7 +699,6 @@ PropOrder._FEAT = [
 	"prerequisite",
 	"ability",
 
-	new PropOrder._ArrayKey("proficiencyTags", {fnSort: SortUtil.ascSortLower}),
 	"skillProficiencies",
 	"languageProficiencies",
 	"toolProficiencies",
@@ -1029,6 +1028,8 @@ PropOrder._OPTIONALFEATURE = [
 	"armorProficiencies",
 
 	"additionalSpells",
+
+	"consumes",
 
 	"entries",
 ];

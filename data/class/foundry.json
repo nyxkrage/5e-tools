@@ -842,6 +842,67 @@
 			}
 		},
 		{
+			"name": "Combat Superiority",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 3,
+			"entryData": {
+				"resources": [
+					{
+						"name": "Superiority Dice",
+						"type": "dicePool",
+						"recharge": "restShort",
+						"count": "floor((@classes.fighter.levels + 1) / 8) + 4",
+						"number": 1,
+						"faces": "8 + (sign(ceil((@classes.fighter.levels - 2) / 8) - 1) * 2)"
+					}
+				]
+			}
+		},
+		{
+			"name": "Additional Superiority Die",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 7,
+			"isIgnored": true
+		},
+		{
+			"name": "Additional Superiority Die",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 15,
+			"isIgnored": true
+		},
+		{
+			"name": "Improved Combat Superiority (d10)",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 10,
+			"isIgnored": true
+		},
+		{
+			"name": "Improved Combat Superiority (d12)",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "PHB",
+			"level": 18,
+			"isIgnored": true
+		},
+		{
 			"name": "Maneuvers",
 			"source": "PHB",
 			"className": "Fighter",

@@ -105,7 +105,7 @@ class MapsPage extends BaseComponent {
 			.map((chapter, ixChapter) => this._render_chapter({chapter, ixChapter, propsDisplayChapter, renderState, source, sourceMeta, propDisplaySource}));
 
 		// region Display
-		const $wrpContent = $$`<div class="flex-col w-100 px-4 py-2 maps-gallery__wrp-book">
+		const $wrpContent = $$`<div class="ve-flex-col w-100 px-4 py-2 maps-gallery__wrp-book">
 			<h3 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${Parser.sourceJsonToFull(source)}|${sourceMeta.id}}`)}</h3>
 			${rendersChapter.map(({$wrpContent}) => $wrpContent)}
 			<hr class="hr-4">
@@ -115,12 +115,12 @@ class MapsPage extends BaseComponent {
 		// region Menu
 		const $cbSource = ComponentUiUtil.$getCbBool(this, propDisplaySource, {displayNullAsIndeterminate: true});
 
-		const $wrpMenu = $$`<div class="flex-col w-100">
+		const $wrpMenu = $$`<div class="ve-flex-col w-100">
 			<label class="split-v-center maps-menu__label-cb pl-2 clickable">
 				<div class="mr-3 text-clip-ellipsis" title="${titleName.qq()}">${shortNameHtml}</div>
 				${$cbSource.addClass("no-shrink")}
 			</label>
-			<div class="flex-col">
+			<div class="ve-flex-col">
 				${rendersChapter.map(({$wrpMenu}) => $wrpMenu)}
 			</div>
 		</div>`;
@@ -190,7 +190,7 @@ class MapsPage extends BaseComponent {
 
 		const $cbChapter = ComponentUiUtil.$getCbBool(this, propDisplayChapter, {displayNullAsIndeterminate: true});
 
-		const $wrpMenu = $$`<div class="flex-v-center maps-menu__label-cb">
+		const $wrpMenu = $$`<div class="ve-flex-v-center maps-menu__label-cb">
 			${$btnScrollTo}
 			<label class="split-v-center clickable w-100 min-w-0">
 				<div class="mr-3 text-clip-ellipsis" title="${chapter.name.qq()}">${chapter.name}</div>
@@ -198,9 +198,9 @@ class MapsPage extends BaseComponent {
 			</label>
 		</div>`;
 
-		const $wrpContent = $$`<div class="flex-col w-100 maps-gallery__wrp-chapter px-2 py-3 my-2 shadow-big">
+		const $wrpContent = $$`<div class="ve-flex-col w-100 maps-gallery__wrp-chapter px-2 py-3 my-2 shadow-big">
 			<h4 class="mt-0 mb-2">${Renderer.get().render(`{@${sourceMeta.prop} ${chapter.name}|${sourceMeta.id}|${chapter.ix}}`)}</h4>
-			<div class="flex flex-wrap">${chapter.images.map(it => Renderer.get().render(it))}</div>
+			<div class="ve-flex ve-flex-wrap">${chapter.images.map(it => Renderer.get().render(it))}</div>
 		</div>`;
 
 		const hkDisplayChapter = () => $wrpContent.toggleVe(this._state[propDisplayChapter]);
@@ -272,13 +272,13 @@ class MapsPage extends BaseComponent {
 		this._addHookBase("imageScale", hkImageScale);
 		hkImageScale();
 
-		const $dispNoneVisible = $(`<div class="flex-vh-center ve-muted w-100 h-100 initial-message italic">Select some sources to view from the sidebar</div>`);
+		const $dispNoneVisible = $(`<div class="ve-flex-vh-center ve-muted w-100 h-100 initial-message italic">Select some sources to view from the sidebar</div>`);
 		const hkAnyVisible = () => $dispNoneVisible.toggleVe(this._state.isAllChecked === false);
 		this._addHookBase("isAllChecked", hkAnyVisible);
 		hkAnyVisible();
 
 		$$($root.empty())`
-			<div class="flex-col h-100 no-shrink maps-menu pr-4 py-3 shadow-big overflow-y-auto smooth-scroll scrollbar-stable mobile__w-100 mobile__my-4">
+			<div class="ve-flex-col h-100 no-shrink maps-menu pr-4 py-3 shadow-big overflow-y-auto smooth-scroll scrollbar-stable mobile__w-100 mobile__my-4">
 				<label class="split-v-center pl-2 py-1">
 					<div class="mr-3 no-shrink">Image Scale</div>
 					${$sldImageScale}
@@ -294,7 +294,7 @@ class MapsPage extends BaseComponent {
 				${rendersSource.map(({$wrpMenu}) => $wrpMenu)}
 			</div>
 
-			<div class="w-100 h-100 mobile__h-initial overflow-y-auto smooth-scroll flex-col">
+			<div class="w-100 h-100 mobile__h-initial overflow-y-auto smooth-scroll ve-flex-col">
 				${$dispNoneVisible}
 				${rendersSource.map(({$wrpContent}) => $wrpContent)}
 			</div>

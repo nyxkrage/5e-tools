@@ -20,7 +20,7 @@ class TrapsHazardsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
@@ -63,7 +63,7 @@ class TrapsHazardsPage extends ListPage {
 		const hash = UrlUtil.autoEncodeHash(it);
 		const trapType = Parser.trapHazTypeToFull(it.trapHazType);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="col-4 text-center pl-0">${trapType}</span>
 				<span class="bold col-8 pr-0">${it.name}</span>

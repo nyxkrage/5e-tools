@@ -1384,7 +1384,7 @@ Parser.monCrToFull = function (cr, {xp = null, isMythic = false} = {}) {
 };
 
 Parser.getFullImmRes = function (toParse) {
-	if (!toParse.length) return "";
+	if (!toParse?.length) return "";
 
 	let maxDepth = 0;
 
@@ -1431,6 +1431,7 @@ Parser.getFullImmRes = function (toParse) {
 };
 
 Parser.getFullCondImm = function (condImm, isPlainText) {
+	if (!condImm?.length) return "";
 	function render (condition) {
 		return isPlainText ? condition : Renderer.get().render(`{@condition ${condition}}`);
 	}
@@ -1644,6 +1645,7 @@ Parser.alignmentAbvToFull = function (alignment) {
 };
 
 Parser.alignmentListToFull = function (alignList) {
+	if (!alignList) return "";
 	if (alignList.some(it => typeof it !== "string")) {
 		if (alignList.some(it => typeof it === "string")) throw new Error(`Mixed alignment types: ${JSON.stringify(alignList)}`);
 		// filter out any nonexistent alignments, as we don't care about "alignment does not exist" if there are other alignments

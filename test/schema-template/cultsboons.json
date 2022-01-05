@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "cultsboons.json",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "object",
 	"properties": {
 		"cult": {
@@ -68,6 +68,11 @@
 						"items": {
 							"$ref": "entry.json"
 						}
+					},
+					"$$ifBrew": {
+						"foundryImg": {
+							"$ref": "util.json#/definitions/foundryImg"
+						}
 					}
 				},
 				"required": [
@@ -130,6 +135,11 @@
 						"uniqueItems": true,
 						"items": {
 							"$ref": "entry.json"
+						}
+					},
+					"$$ifBrew": {
+						"foundryImg": {
+							"$ref": "util.json#/definitions/foundryImg"
 						}
 					}
 				},

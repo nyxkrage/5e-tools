@@ -61,7 +61,7 @@ class UtilsChangelog {
 			const isLast = i === changelog.length - 1;
 
 			const titlePart = it.title ? `, &quot;<span ${it.titleAlt ? `class="help" title="AKA &quot;${it.titleAlt.escapeQuotes()}&quot; Edition"` : ""}>${it.title.escapeQuotes()}</span>&quot; Edition` : "";
-			$wrp.prepend(`<div class="flex-col" id="v${it.ver}">
+			$wrp.prepend(`<div class="ve-flex-col" id="v${it.ver}">
 				<div class="split-v-center">
 					<h${hLevel} class="bold">v${isLast ? `<a href="https://get.5e.tools/">` : ""}${it.ver}${isLast ? `</a>` : ""}${titlePart}</h${hLevel}>
 					<span class="text-muted">${it.date}</span>

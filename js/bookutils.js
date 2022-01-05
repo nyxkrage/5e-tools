@@ -305,7 +305,7 @@ class BookUtil {
 				});
 			hdlNarrowUpdate();
 
-			$$`<div class="no-print flex-v-center btn-group">${$btnEntireBook}${$btnToggleNarrow}</div>`.appendTo($wrpControls);
+			$$`<div class="no-print ve-flex-v-center btn-group">${$btnEntireBook}${$btnToggleNarrow}</div>`.appendTo($wrpControls);
 		} else $(`<button class="btn btn-xs btn-default no-print">Back to Top</button>`).click(() => MiscUtil.scrollPageTop()).appendTo($wrpControls);
 
 		const showNxt = ~ixChapter && ixChapter < data.length - 1;
@@ -447,7 +447,7 @@ class BookUtil {
 
 	static initScrollTopFloat () {
 		const $wrpScrollTop = Omnisearch.addScrollTopFloat();
-		BookUtil.$wrpFloatControls = $(`<div class="flex-vh-center w-100 mb-2 btn-group"/>`).prependTo($wrpScrollTop);
+		BookUtil.$wrpFloatControls = $(`<div class="ve-flex-vh-center w-100 mb-2 btn-group"/>`).prependTo($wrpScrollTop);
 	}
 
 	// custom loading to serve multiple sources
@@ -755,7 +755,7 @@ class BookUtil {
 				.click(() => BookUtil.scrollPageTop(ixChapter));
 			BookUtil.curRender.$lnksChapter.push($lnk);
 
-			const $header = $$`<div class="flex-col">${$lnk}</div>`;
+			const $header = $$`<div class="ve-flex-col">${$lnk}</div>`;
 			$eles.push($header);
 
 			const $chapterBlock = BookUtil.$getContentsChapterBlock(options.book.id, ixChapter, chapter, options.addPrefix);
@@ -769,8 +769,8 @@ class BookUtil {
 				<a href="#${UrlUtil.encodeForHash(book.id)}" class="bk__contents_header_link lst__wrp-cells lst__row-inner bold" title="${book.name}">
 					<span class="name">${book.name}</span>
 				</a>
-				<div class="flex-v-center">
-					<a href="${this._getHrefShowAll(book.id)}" class="bk__contents_show_all px-2 py-1p flex-v-center lst__wrp-cells lst__row-inner" title="View Entire ${BookUtil.contentType.uppercaseFirst()} (Warning: Slow)">
+				<div class="ve-flex-v-center">
+					<a href="${this._getHrefShowAll(book.id)}" class="bk__contents_show_all px-2 py-1p ve-flex-v-center lst__wrp-cells lst__row-inner" title="View Entire ${BookUtil.contentType.uppercaseFirst()} (Warning: Slow)">
 						<span class="glyphicon glyphicon glyphicon-book" style="top: 0;"/>
 					</a>
 					${BookUtil.curRender.$btnToggleExpandAll}
@@ -811,7 +811,7 @@ class BookUtil {
 					BookUtil.scrollClick(ixChapter, headerText, headerIndex);
 				});
 
-			const $ele = $$`<div class="flex-col">
+			const $ele = $$`<div class="ve-flex-col">
 				${$lnk}
 			</div>`;
 			$eles.push($ele);
@@ -819,7 +819,7 @@ class BookUtil {
 			(this.curRender.$lnksHeader[ixChapter] = this.curRender.$lnksHeader[ixChapter] || []).push($lnk);
 		});
 
-		const $out = $$`<div class="flex-col pl-4 ml-2">
+		const $out = $$`<div class="ve-flex-col pl-4 ml-2">
 			${$eles}
 		</div>`;
 

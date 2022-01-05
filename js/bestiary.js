@@ -50,6 +50,73 @@ class BestiaryPage extends ListPageMultiSource {
 				popTblGetNumShown: (opts) => this._bookView_popTblGetNumShown(opts),
 			},
 
+			tableViewOptions: {
+				title: "Bestiary",
+				colTransforms: {
+					name: UtilsTableview.COL_TRANSFORM_NAME,
+					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+					size: {name: "Size", transform: size => Parser.sizeAbvToFull(size)},
+					type: {name: "Type", transform: type => Parser.monTypeToFullObj(type).asText},
+					alignment: {name: "Alignment", transform: align => Parser.alignmentListToFull(align)},
+					ac: {name: "AC", transform: ac => Parser.acToFull(ac)},
+					hp: {name: "HP", transform: hp => Renderer.monster.getRenderedHp(hp)},
+					_speed: {name: "Speed", transform: mon => Parser.getSpeedString(mon)},
+					...Parser.ABIL_ABVS.mergeMap(ab => ({[ab]: {name: Parser.attAbvToFull(ab)}})),
+					_save: {name: "Saving Throws", transform: mon => Renderer.monster.getSavesPart(mon)},
+					_skill: {name: "Skills", transform: mon => Renderer.monster.getSkillsString(Renderer.get(), mon)},
+					vulnerable: {name: "Damage Vulnerabilities", transform: it => Parser.getFullImmRes(it)},
+					resist: {name: "Damage Resistances", transform: it => Parser.getFullImmRes(it)},
+					immune: {name: "Damage Immunities", transform: it => Parser.getFullImmRes(it)},
+					conditionImmune: {name: "Condition Immunities", transform: it => Parser.getFullCondImm(it)},
+					_senses: {name: "Senses", transform: mon => Renderer.monster.getSensesPart(mon)},
+					languages: {name: "Languages", transform: it => Renderer.monster.getRenderedLanguages(it)},
+					_cr: {name: "CR", transform: mon => Parser.monCrToFull(mon.cr, {isMythic: !!mon.mythic})},
+					_trait: {
+						name: "Traits",
+						transform: mon => {
+							const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, Renderer.get());
+							const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
+							return (allTraits || []).map(it => it.rendered || Renderer.get().render(it, 2)).join("");
+						},
+						flex: 3,
+					},
+					_action: {
+						name: "Actions",
+						transform: mon => {
+							const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, Renderer.get());
+							const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
+							return (allActions || []).map(it => it.rendered || Renderer.get().render(it, 2)).join("");
+						},
+						flex: 3,
+					},
+					bonus: {name: "Bonus Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
+					reaction: {name: "Reactions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
+					legendary: {name: "Legendary Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
+					mythic: {name: "Mythic Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
+					_lairActions: {
+						name: "Lair Actions",
+						transform: mon => {
+							const legGroup = DataUtil.monster.getMetaGroup(mon);
+							if (!legGroup?.lairActions?.length) return "";
+							return legGroup.lairActions.map(x => Renderer.get().render({entries: x})).join("");
+						},
+						flex: 3,
+					},
+					_regionalEffects: {
+						name: "Regional Effects",
+						transform: mon => {
+							const legGroup = DataUtil.monster.getMetaGroup(mon);
+							if (!legGroup?.regionalEffects?.length) return "";
+							return legGroup.regionalEffects.map(x => Renderer.get().render({entries: x})).join("");
+						},
+						flex: 3,
+					},
+					environment: {name: "Environment", transform: it => Renderer.monster.getRenderedEnvironment(it)},
+				},
+				filter: {generator: ListUtil.basicFilterGenerator},
+				sorter: (a, b) => SortUtil.ascSort(a.name, b.name) || SortUtil.ascSort(a.source, b.source),
+			},
+
 			bindPopoutButtonOptions: {
 				handlerGenerator: BestiaryPage.popoutHandlerGenerator.bind(BestiaryPage),
 				title: "Popout Window (SHIFT for Source Data; CTRL for Markdown Render)",
@@ -132,7 +199,7 @@ class BestiaryPage extends ListPageMultiSource {
 		const $btnDownloadMarkdownSettings = $(`<button class="btn btn-default btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"/></button>`)
 			.click(async () => RendererMarkdown.pShowSettingsModal());
 
-		$$`<div class="flex-v-center btn-group ml-2">
+		$$`<div class="ve-flex-v-center btn-group ml-2">
 			${$btnDownloadMarkdown}
 			${$btnCopyMarkdown}
 			${$btnDownloadMarkdownSettings}
@@ -158,7 +225,7 @@ class BestiaryPage extends ListPageMultiSource {
 
 		const eleLi = e_({
 			tag: "div",
-			clazz: `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
+			clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
 			click: (evt) => this._handleBestiaryLiClick(evt, listItem),
 			contextmenu: (evt) => this._handleBestiaryLiContext(evt, listItem),
 			children: [
@@ -288,7 +355,7 @@ class BestiaryPage extends ListPageMultiSource {
 		const sublistButtonsMeta = this._encounterBuilder.getSublistButtonsMeta(listItem);
 		listItem.data.fnsUpdate.push(sublistButtonsMeta.fnUpdate);
 
-		listItem.ele = $$`<div class="lst__row lst__row--sublist flex-col lst__row--bestiary-sublist">
+		listItem.ele = $$`<div class="lst__row lst__row--sublist ve-flex-col lst__row--bestiary-sublist">
 			<a href="#${hash}" draggable="false" class="ecgen__hidden lst--border lst__row-inner">
 				<span class="bold col-5 pl-0">${name}</span>
 				<span class="col-3-8">${type}</span>
@@ -880,7 +947,7 @@ class BestiaryPage extends ListPageMultiSource {
 			const $btnOptions = $(`<button class="btn btn-default btn-xs btn-stats-name"><span class="glyphicon glyphicon-option-vertical"/></button>`)
 				.click(evt => ContextUtil.pOpenMenu(evt, menu));
 
-			return $$`<div class="flex-v-center btn-group ml-2">${$btnOptions}</div>`;
+			return $$`<div class="ve-flex-v-center btn-group ml-2">${$btnOptions}</div>`;
 		})();
 
 		return Renderer.utils.pBuildFluffTab({

@@ -420,99 +420,99 @@ i > i {
 	display: inline !important;
 }
 
-.inline-flex {
+.ve-inline-flex {
 	display: inline-flex !important;
 }
 
-.flex {
+.ve-flex {
 	display: flex !important;
 }
 
-.flex-col {
+.ve-flex-col {
 	display: flex !important;
 	flex-direction: column !important;
 }
 
-.flex-v-center {
+.ve-flex-v-center {
 	display: flex !important;
 	align-items: center !important;
 }
 
-.inline-flex-v-center {
+.ve-inline-flex-v-center {
 	display: inline-flex !important;
 	align-items: center !important;
 }
 
-.flex-v-top {
+.ve-flex-v-top {
 	display: flex;
 	align-items: flex-start;
 }
 
-.flex-v-baseline {
+.ve-flex-v-baseline {
 	display: flex !important;
 	align-items: baseline !important;
 }
 
-.flex-v-end {
+.ve-flex-v-end {
 	display: flex !important;
 	align-items: flex-end !important;
 }
 
-.flex-v-stretch {
+.ve-flex-v-stretch {
 	display: flex !important;
 	align-items: stretch !important;
 }
 
-.flex-h-center {
+.ve-flex-h-center {
 	display: flex !important;
 	justify-content: center !important;
 }
 
-.flex-h-right {
+.ve-flex-h-right {
 	display: flex !important;
 	justify-content: flex-end !important;
 }
 
-.flex-vh-center {
+.ve-flex-vh-center {
 	display: flex !important;
 	align-items: center !important;
 	justify-content: center !important;
 }
 
-.flex-vh-center-around {
+.ve-flex-vh-center-around {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 }
 
-.flex-inline-col {
+.ve-flex-inline-col {
 	display: inline-flex !important;
 	flex-direction: column !important;
 }
 
-.flex-inline-v-center {
+.ve-flex-inline-v-center {
 	display: inline-flex !important;
 	align-items: center !important;
 	justify-content: center !important;
 }
 
-.self-flex-start {
+.self-ve-flex-start {
 	align-self: flex-start !important;
 }
 
-.self-flex-center {
+.self-ve-flex-center {
 	align-self: center !important;
 }
 
-.self-flex-end {
+.self-ve-flex-end {
 	align-self: flex-end !important;
 }
 
-.self-flex-stretch {
+.self-ve-flex-stretch {
 	align-self: stretch !important;
 }
 
-.flex-fill {
+.ve-flex-fill {
 	flex-basis: 100%;
 }
 
@@ -528,27 +528,27 @@ i > i {
 	flex-grow: 0 !important;
 }
 
-.flex-1 {
+.ve-flex-1 {
 	flex: 1 !important;
 }
 
-.flex-2 {
+.ve-flex-2 {
 	flex: 2 !important;
 }
 
-.flex-3 {
+.ve-flex-3 {
 	flex: 3 !important;
 }
 
-.flex-4 {
+.ve-flex-4 {
 	flex: 4 !important;
 }
 
-.flex-5 {
+.ve-flex-5 {
 	flex: 5 !important;
 }
 
-.flex-wrap {
+.ve-flex-wrap {
 	display: flex !important;
 	flex-wrap: wrap !important;
 }

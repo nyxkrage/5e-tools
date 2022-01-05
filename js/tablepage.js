@@ -72,11 +72,11 @@ class TablePage {
 	}
 
 	_$getContentsBlock (i, meta) {
-		const $out = $(`<div class="flex-col w-100"></div>`);
+		const $out = $(`<div class="ve-flex-col w-100"></div>`);
 		let stack = "";
 		meta.tables.forEach((table, j) => {
 			const tableName = this._fnGetTableName(meta, table);
-			stack += `<div class="lst__row flex-col"><a id="${i},${j}" class="lst--border lst__row-inner" href="#${this._fnGetTableHash(meta, table)}" title="${tableName}">${tableName}</a></div>`;
+			stack += `<div class="lst__row ve-flex-col"><a id="${i},${j}" class="lst--border lst__row-inner" href="#${this._fnGetTableHash(meta, table)}" title="${tableName}">${tableName}</a></div>`;
 		});
 		$out.fastSetHtml(stack);
 		return $out;
