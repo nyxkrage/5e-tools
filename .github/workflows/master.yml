@@ -69,10 +69,10 @@ jobs:
          -  name: Upload Release
             # Add the files one-by-one in an effort to avoid timeouts
             run: |
-               'hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}'
-               'hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-adventure.zip'
-               'hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-book.zip'
-               'hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}.zip'
+               hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}
+               hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-adventure.zip
+               hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-book.zip
+               hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}.zip
             env:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          # endregion

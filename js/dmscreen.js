@@ -1772,11 +1772,11 @@ class Panel {
 
 	doRenderTabs () {
 		if (this.isTabs) {
-			this.$pnlWrpTabs.css({display: "ve-flex"});
+			this.$pnlWrpTabs.showVe();
 			this.$pnlWrpContent.addClass("panel-content-wrapper-tabs");
 			this.$pnlAddTab.addClass("hidden");
 		} else {
-			this.$pnlWrpTabs.css({display: ""});
+			this.$pnlWrpTabs.hideVe();
 			this.$pnlWrpContent.removeClass("panel-content-wrapper-tabs");
 			this.$pnlAddTab.removeClass("hidden");
 		}
@@ -1862,7 +1862,7 @@ class Panel {
 			this.$btnAddInner = $btnAdd;
 			this.$pnlWrpContent = $wrpContent;
 
-			const $wrpTabs = $(`<div class="content-tab-bar"/>`).appendTo($pnl);
+			const $wrpTabs = $(`<div class="content-tab-bar ve-flex"/>`).hideVe().appendTo($pnl);
 			const $wrpTabsInner = $(`<div class="content-tab-bar-inner"/>`).on("wheel", (evt) => {
 				const delta = evt.originalEvent.deltaY;
 				const curr = $wrpTabsInner.scrollLeft();

@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.11"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.12"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -7128,7 +7128,7 @@ if (!IS_VTT && typeof window !== "undefined") {
 					const $tgt = $wrp.closest(".cancer__anchor").find(".cancer__disp-cancer");
 					if ($tgt.length) {
 						anyFound = true;
-						$tgt.css({display: "ve-flex"}).text("Advertisements");
+						$tgt.css({display: "flex"}).text("Advertisements");
 						clearInterval(iv);
 					}
 				}, 250);

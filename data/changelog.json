@@ -1900,5 +1900,10 @@
 		"ver": "1.147.11",
 		"date": "2022-01-04",
 		"txt": "- Fixed Omnisearch window not displaying when searching"
+	},
+	{
+		"ver": "1.147.12",
+		"date": "2022-01-05",
+		"txt": "- Fixed DM Screen panel tab bar not showing when more than one tab is added to a panel\n- Fixed DM Screen Dice Roller requiring you to scroll down to see the input box\n- (Brew) Fixed sort buttons not working when searching in the Homebrew Manager list views\n- (Fixed typos/added tags)"
 	}
 ]

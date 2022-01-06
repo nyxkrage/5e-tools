@@ -219,20 +219,14 @@ class List {
 	}
 
 	_doSort () {
-		const isFuzzySearchActive = this._isFuzzy && this._searchTerm;
-
-		// Temporarily disable sorting, since we want to keep the fuzzy result order (most relevant item first) rather
-		//   than our more general sort.
-		if (!isFuzzySearchActive) {
-			const opts = {
-				sortBy: this._sortBy,
-				// The sort function should generally ignore this, as we do the reversing here. We expose it in case there
-				//   is specific functionality that requires it.
-				sortDir: this._sortDir,
-			};
-			if (this._fnSort) this._filteredSortedItems.sort((a, b) => this._fnSort(a, b, opts));
-			if (this._sortDir === "desc") this._filteredSortedItems.reverse();
-		}
+		const opts = {
+			sortBy: this._sortBy,
+			// The sort function should generally ignore this, as we do the reversing here. We expose it in case there
+			//   is specific functionality that requires it.
+			sortDir: this._sortDir,
+		};
+		if (this._fnSort) this._filteredSortedItems.sort((a, b) => this._fnSort(a, b, opts));
+		if (this._sortDir === "desc") this._filteredSortedItems.reverse();
 
 		this._doRender();
 	}

@@ -104,7 +104,7 @@ Renderer.dice = {
 
 	/** Initialise the roll box UI. */
 	async _pInit () {
-		const $wrpRoll = $(`<div class="rollbox"></div>`).hideVe();
+		const $wrpRoll = $(`<div class="rollbox ve-flex-col min-h-0"></div>`).hideVe();
 		const $minRoll = $(`<div class="rollbox-min"><span class="glyphicon glyphicon-chevron-up"></span></div>`).on("click", () => {
 			Renderer.dice._showBox();
 			Renderer.dice._$iptRoll.focus();
