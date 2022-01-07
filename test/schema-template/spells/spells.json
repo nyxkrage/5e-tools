@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "spells.json",
-	"version": "1.7.4",
+	"version": "1.7.5",
 	"title": "Spells",
 	"type": "object",
 
@@ -483,7 +483,19 @@
 					"type": "integer"
 				},
 				"unit": {
-					"type": "string"
+					"type": "string",
+					"$$ifSiteElse_key": {
+						"keySite": "enum",
+						"keyBrew": "examples",
+						"value": [
+							"action",
+							"bonus",
+							"reaction",
+							"round",
+							"minute",
+							"hour"
+						]
+					}
 				},
 				"condition": {
 					"type": "string"
