@@ -138,8 +138,6 @@ class BestiaryPage extends ListPageMultiSource {
 			jsonDir: "data/bestiary/",
 		});
 
-		this._seenHashes = new Set();
-
 		this._$btnProf = null;
 		this._$dispCrTotal = null;
 
@@ -148,6 +146,8 @@ class BestiaryPage extends ListPageMultiSource {
 		this._profDicMode = PROF_MODE_BONUS;
 
 		this._encounterBuilder = null;
+
+		this._$dispToken = null;
 	}
 
 	// region Expose for encounter builder
@@ -211,7 +211,7 @@ class BestiaryPage extends ListPageMultiSource {
 
 	getListItem (mon, mI) {
 		const hash = UrlUtil.autoEncodeHash(mon);
-		if (!mon.uniqueId && this._seenHashes.has(hash)) return null;
+		if (this._seenHashes.has(hash)) return null;
 		this._seenHashes.add(hash);
 
 		Renderer.monster.updateParsed(mon);
@@ -626,13 +626,15 @@ class BestiaryPage extends ListPageMultiSource {
 			this._$btnProf = null;
 		}
 
+		this._$dispToken = this._$dispToken || $(`#float-token`);
+
 		// reset tabs
 		const tabMetas = [
 			new Renderer.utils.TabButton({
 				label: "Statblock",
 				fnChange: () => {
 					$wrpBtnProf.append(this._$btnProf);
-					$(`#float-token`).show();
+					this._$dispToken.showVe();
 				},
 				fnPopulate: () => this._renderStatblock_doBuildStatsTab({mon, isScaledCr, isScaledSpellSummon, isScaledClassSummon}),
 				isVisible: true,
@@ -641,7 +643,7 @@ class BestiaryPage extends ListPageMultiSource {
 				label: "Info",
 				fnChange: () => {
 					this._$btnProf = $wrpBtnProf.children().length ? $wrpBtnProf.children().detach() : this._$btnProf;
-					$(`#float-token`).hide();
+					this._$dispToken.hideVe();
 				},
 				fnPopulate: () => this._renderStatblock_doBuildFluffTab(),
 				isVisible: Renderer.utils.hasFluffText(mon, "monsterFluff"),
@@ -650,7 +652,7 @@ class BestiaryPage extends ListPageMultiSource {
 				label: "Images",
 				fnChange: () => {
 					this._$btnProf = $wrpBtnProf.children().length ? $wrpBtnProf.children().detach() : this._$btnProf;
-					$(`#float-token`).hide();
+					this._$dispToken.hideVe();
 				},
 				fnPopulate: () => this._renderStatblock_doBuildFluffTab({isImageTab: true}),
 				isVisible: Renderer.utils.hasFluffImages(mon, "monsterFluff"),
@@ -808,7 +810,7 @@ class BestiaryPage extends ListPageMultiSource {
 			});
 		});
 
-		const $floatToken = $(`#float-token`).empty();
+		const $floatToken = this._$dispToken.empty();
 
 		const hasToken = mon.tokenUrl || mon.hasToken;
 		if (!hasToken) return;
@@ -1088,28 +1090,16 @@ class EncounterBuilderUtils {
 		let CR_THRESH_MODE = "statisticallySignificant";
 
 		switch (CR_THRESH_MODE) {
-			// "Statistically significant" method--note that even with custom butchering of the terminology, this produces
-			//   very passive filtering; the threshold is 0 in the vast majority of cases.
+			// "Statistically significant" method--note that this produces very passive filtering; the threshold is below
+			//   the minimum CR in the vast majority of cases.
 			case "statisticallySignificant": {
-				let cutoff = 0;
 				const cpy = MiscUtil.copy(crValues)
 					.sort(SortUtil.ascSort);
-				while (cpy.length > 1) {
-					const avgRest = cpy.slice(1).mean();
-					const deviationRest = cpy.slice(1).meanAbsoluteDeviation();
 
-					// This should really be `(deviationRest * 2)`, as two deviations = "statistically significant", however
-					//   using real maths produces awkward results for our tiny sample size.
-					cutoff = avgRest - deviationRest;
+				const avg = cpy.mean();
+				const deviation = cpy.meanAbsoluteDeviation();
 
-					if (cpy[0] < cutoff) {
-						cpy.shift();
-					} else {
-						break;
-					}
-				}
-
-				return cutoff;
+				return avg - (deviation * 2);
 			}
 
 			case "5etools": {

@@ -429,23 +429,6 @@ Parser.LANGUAGES_ALL = [
 	...Parser.LANGUAGES_SECRET,
 ].sort();
 
-Parser.dragonColorToFull = function (c) {
-	return Parser._parse_aToB(Parser.DRAGON_COLOR_TO_FULL, c);
-};
-
-Parser.DRAGON_COLOR_TO_FULL = {
-	B: "black",
-	U: "blue",
-	G: "green",
-	R: "red",
-	W: "white",
-	A: "brass",
-	Z: "bronze",
-	C: "copper",
-	O: "gold",
-	S: "silver",
-};
-
 Parser.acToFull = function (ac, renderer) {
 	if (typeof ac === "string") return ac; // handle classic format
 

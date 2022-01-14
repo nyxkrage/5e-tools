@@ -1786,7 +1786,7 @@ class LootGenMagicItemTable extends LootGenMagicItem {
 
 		const $btnReroll = this._$getBtnReroll();
 
-		const $btnRerollSub = $(`<span class="roller render-roller ve-small self-ve-flex-end">[reroll]</span>`)
+		const $btnRerollSub = $(`<span class="roller render-roller ve-small ve-self-flex-end">[reroll]</span>`)
 			.mousedown(evt => evt.preventDefault())
 			.click(async () => {
 				const {subRowRoll, subRow, subItem} = await LootGenMagicItemTable.pGetSubRollMeta({

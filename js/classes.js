@@ -887,7 +887,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 				.map((it, ixFeature) => {
 					const featureId = `${ixLvl}-${ixFeature}`;
 
-					const $lnk = $(`<a>${it.name}</a>`)
+					const $lnk = $(`<a>${it._displayNameTable || it._displayName || it.name}</a>`)
 						.click(() => {
 							this._lastScrollFeature = null;
 							this._state.feature = null;
@@ -1041,6 +1041,9 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		this._addHookBase("isHideSidebar", hkSidebarHidden);
 		// (call the hook later)
 
+		const $btnSendToFoundry = ExtensionUtil.ACTIVE ? $(Renderer.utils.getBtnSendToFoundryHtml({isMb: false})) : null;
+		const dataPartSendToFoundry = `data-page="${UrlUtil.PG_CLASSES}" data-source="${cls.source.qq()}" data-hash="${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls).qq()}"`;
+
 		// region Requirements
 		const $getRenderedRequirements = (requirements, intro = null) => {
 			const renderPart = (obj, joiner = ", ") => Object.keys(obj).filter(k => Parser.ABIL_ABVS.includes(k)).sort(SortUtil.ascSortAtts).map(k => `${Parser.attAbvToFull(k)} ${obj[k]}`).join(joiner);
@@ -1169,7 +1172,12 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 
 		$$`<table class="stats shadow-big">
 			<tr><th class="border" colspan="6"></th></tr>
-			<tr><th colspan="6"><div class="split-v-center pr-1"><div class="cls-side__name">${cls.name}</div>${$btnToggleSidebar}</div></th></tr>
+			<tr><th colspan="6">
+				<div class="split-v-center pr-1" ${dataPartSendToFoundry}>
+					<div class="cls-side__name">${cls.name}</div>
+					<div class="ve-flex-v-center">${$btnSendToFoundry}${$btnToggleSidebar}</div>
+				</div>
+			</th></tr>
 			${cls.authors ? `<tr><th colspan="6">By ${cls.authors.join(", ")}</th></tr>` : ""}
 
 			${$ptRequirements}

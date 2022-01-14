@@ -3,7 +3,7 @@
 	"$id": "util.json",
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.11.5",
+	"version": "1.11.6",
 	"definitions": {
 		"metaBlock": {
 			"type": "object",
@@ -1891,6 +1891,30 @@
 					"type"
 				]
 			}
+		},
+		"consumesObject": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"enum": [
+						"Superiority Dice",
+						"Ki",
+						"Channel Divinity",
+						"Psionic Energy Dice",
+						"Wild Shape",
+						"Sorcery Points",
+						"Arcane Shot"
+					]
+				},
+				"amount": {
+					"type": "integer"
+				}
+			},
+			"required": [
+				"name"
+			],
+			"additionalProperties": false
 		},
 		"dataDamageTags": {
 			"type": "string",

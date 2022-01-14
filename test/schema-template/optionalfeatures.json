@@ -89,15 +89,7 @@
 				"skillToolLanguageProficiencies": {
 					"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
 				},
-				"consumes": {
-					"type": "object",
-					"properties": {
-						"name": {"type": "string"},
-						"amount": {"type": "integer"}
-					},
-					"required": ["name"],
-					"additionalProperties": false
-				},
+				"consumes": {"$ref": "util.json#/definitions/consumesObject"},
 				"$$ifBrew": {
 					"foundryData": {"$ref": "util.json#/definitions/foundryDataObject"},
 					"foundryEffects": {

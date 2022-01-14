@@ -70,8 +70,6 @@ class SpellsPage extends ListPageMultiSource {
 			jsonDir: "data/spells/",
 		});
 
-		this._seenHashes = new Set();
-
 		this._lastFilterValues = null;
 		this._subclassLookup = {};
 	}
@@ -191,7 +189,7 @@ class SpellsPage extends ListPageMultiSource {
 
 	getListItem (spell, spI) {
 		const hash = UrlUtil.autoEncodeHash(spell);
-		if (!spell.uniqueId && this._seenHashes.has(hash)) return null;
+		if (this._seenHashes.has(hash)) return null;
 		this._seenHashes.add(hash);
 
 		const isExcluded = ExcludeUtil.isExcluded(hash, "spell", spell.source);

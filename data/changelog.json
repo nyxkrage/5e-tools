@@ -1905,5 +1905,10 @@
 		"ver": "1.147.12",
 		"date": "2022-01-05",
 		"txt": "- Fixed DM Screen panel tab bar not showing when more than one tab is added to a panel\n- Fixed DM Screen Dice Roller requiring you to scroll down to see the input box\n- (Brew) Fixed sort buttons not working when searching in the Homebrew Manager list views\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.147.14",
+		"date": "2022-01-14",
+		"txt": "- Added page numbers to VRGR book content\n- Added Rivet \"Send to Foundry\" button to Classes page, when the extension is loaded\n- Marginally improved performance of list pages containing tokens (Bestiary, Vehicles, Objects) [speeding up loading by a whopping ~150 ms]\n- Fixed Other Options and Features page failing to include reprint sources in Source filter/when filtering by source\n- Simplified Bestiary Encounter Builder calculation of XP multiplier, making it more \"vanilla.\" Additional tweaks, such as setting the minimum CR threshold to be included in multiplier calculation, will be added back later as user-controlled settings; attempts to automate this have thus far been too error-prone.\n- (Brew) Fixed \"Group\" and \"Dragon Casting Color\" inputs in Creature Homebrew Builder\n- (Brew) Fixed loading/handling of homebrew subraces in Omnisearch and on the Races page\n- (Fixed typos/added tags)/added tags)"
 	}
 ]

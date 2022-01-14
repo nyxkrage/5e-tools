@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "2.9.2",
+	"version": "2.10.1",
 	"$id": "class.json",
 
 	"type": "object",
@@ -114,12 +114,49 @@
 				"otherSources": {
 					"$ref": "../util.json#/definitions/otherSources"
 				},
+				"consumes": {"$ref": "../util.json#/definitions/consumesObject"},
 				"$$ifBrew": {
 					"foundryData": {
 						"$ref": "../util.json#/definitions/foundryDataObject"
 					},
 					"foundryImg": {
 						"$ref": "../util.json#/definitions/foundryImg"
+					},
+					"languageProficiencies": {
+						"$ref": "../util.json#/definitions/languageProficiencies"
+					},
+					"skillProficiencies": {
+						"$ref": "../util.json#/definitions/skillProficiencies"
+					},
+					"weaponProficiencies": {
+						"$ref": "../util.json#/definitions/weaponProficiencies"
+					},
+					"armorProficiencies": {
+						"$ref": "../util.json#/definitions/armorProficiencies"
+					},
+					"toolProficiencies": {
+						"$ref": "../util.json#/definitions/toolProficiencies"
+					},
+					"savingThrowProficiencies": {
+						"$ref": "../util.json#/definitions/savingThrowProficiencies"
+					},
+					"expertise": {
+						"$ref": "../util.json#/definitions/expertise"
+					},
+					"resist": {
+						"$ref": "../util.json#/definitions/damageResistArrayPlayer"
+					},
+					"immune": {
+						"$ref": "../util.json#/definitions/damageImmunityArrayPlayer"
+					},
+					"vulnerable": {
+						"$ref": "../util.json#/definitions/damageVulnerabilityArrayPlayer"
+					},
+					"conditionImmune": {
+						"$ref": "../util.json#/definitions/conditionImmunityArrayPlayer"
+					},
+					"resources": {
+						"$ref": "../util.json#/definitions/resourcesArray"
 					}
 				}
 			},
@@ -163,12 +200,49 @@
 				"otherSources": {
 					"$ref": "../util.json#/definitions/otherSources"
 				},
+				"consumes": {"$ref": "../util.json#/definitions/consumesObject"},
 				"$$ifBrew": {
 					"foundryData": {
 						"$ref": "../util.json#/definitions/foundryDataObject"
 					},
 					"foundryImg": {
 						"$ref": "../util.json#/definitions/foundryImg"
+					},
+					"languageProficiencies": {
+						"$ref": "../util.json#/definitions/languageProficiencies"
+					},
+					"skillProficiencies": {
+						"$ref": "../util.json#/definitions/skillProficiencies"
+					},
+					"weaponProficiencies": {
+						"$ref": "../util.json#/definitions/weaponProficiencies"
+					},
+					"armorProficiencies": {
+						"$ref": "../util.json#/definitions/armorProficiencies"
+					},
+					"toolProficiencies": {
+						"$ref": "../util.json#/definitions/toolProficiencies"
+					},
+					"savingThrowProficiencies": {
+						"$ref": "../util.json#/definitions/savingThrowProficiencies"
+					},
+					"expertise": {
+						"$ref": "../util.json#/definitions/expertise"
+					},
+					"resist": {
+						"$ref": "../util.json#/definitions/damageResistArrayPlayer"
+					},
+					"immune": {
+						"$ref": "../util.json#/definitions/damageImmunityArrayPlayer"
+					},
+					"vulnerable": {
+						"$ref": "../util.json#/definitions/damageVulnerabilityArrayPlayer"
+					},
+					"conditionImmune": {
+						"$ref": "../util.json#/definitions/conditionImmunityArrayPlayer"
+					},
+					"resources": {
+						"$ref": "../util.json#/definitions/resourcesArray"
 					}
 				}
 			},
@@ -352,6 +426,13 @@
 									},
 									"gainSubclassFeature": {
 										"type": "boolean"
+									},
+									"gainSubclassFeatureHasContent": {
+										"description": "Features with \"gainSubclassFeature\" are generally ignored by e.g. VTT integrations, as having no meaningful content to import to sheets. Setting this flag informs the integration that this feature should not be ignored.",
+										"type": "boolean"
+									},
+									"tableDisplayName": {
+										"type": "string"
 									}
 								},
 								"required": ["subclassFeature"]
@@ -359,6 +440,7 @@
 						]
 					}
 				},
+				"optionalfeatureProgression": {"$ref": "#/definitions/optionalfeatureProgression"},
 				"subclassTableGroups": {
 					"type": "array",
 					"items": { "$ref": "#/definitions/classTableGroup"}
@@ -451,6 +533,56 @@
 				}
 			},
 			"additionalProperties": false
+		},
+
+		"optionalfeatureProgression": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {"type": "string"},
+					"featureType": {
+						"type": "array",
+						"items": {"$ref": "../util.json#/definitions/dataOptionalfeatureType"},
+						"uniqueItems": true
+					},
+					"progression": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {"type": "integer"},
+								"minItems": 20,
+								"maxItems": 20
+							},
+							{
+								"type": "object",
+								"patternProperties": {
+									"^\\d+$": {"type": "integer"}
+								},
+								"additionalProperties": false
+							}
+						]
+					},
+					"required": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {"type": "array", "items": {"type": "string"}},
+								"minItems": 20,
+								"maxItems": 20
+							},
+							{
+								"type": "object",
+								"patternProperties": {
+									"^\\d+$": {"type": "array", "items": {"type": "string"}}
+								},
+								"additionalProperties": false
+							}
+						]
+					}
+				},
+				"required": ["name", "featureType", "progression"]
+			}
 		},
 
 		"class": {
@@ -644,27 +776,7 @@
 					},
 					"additionalProperties": false
 				},
-				"optionalfeatureProgression": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"name": {"type": "string"},
-							"featureType": {
-								"type": "array",
-								"items": {"$ref": "../util.json#/definitions/dataOptionalfeatureType"},
-								"uniqueItems": true
-							},
-							"progression": {
-								"type": "array",
-								"items": {"type": "integer"},
-								"minItems": 20,
-								"maxItems": 20
-							}
-						},
-						"required": ["name", "featureType", "progression"]
-					}
-				},
+				"optionalfeatureProgression": {"$ref": "#/definitions/optionalfeatureProgression"},
 				"classFeatures": {
 					"type": "array",
 					"description": "Format: \" name | className | classSource | level | source \" , PHB is assumed as classSource and featureSource is assumed to be the same as classSource.",

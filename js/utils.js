@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.13"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.14"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -1960,7 +1960,7 @@ UrlUtil = {
 			(cls.classFeatures || []).forEach((lvlFeatureList, ixLvl) => {
 				lvlFeatureList
 					// don't add "you gain a subclass feature" or ASI's
-					.filter(feature => !feature.gainSubclassFeature
+					.filter(feature => (!feature.gainSubclassFeature || feature.gainSubclassFeatureHasContent)
 						&& feature.name !== "Ability Score Improvement"
 						&& feature.name !== "Proficiency Versatility")
 					.forEach((feature, ixFeature) => {
@@ -2119,7 +2119,38 @@ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_LANGUAGES] = (it) => UrlUtil.encodeForHas
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CHAR_CREATION_OPTIONS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RECIPES] = (it) => `${UrlUtil.encodeForHash([it.name, it.source])}${it._scaleFactor ? `${HASH_PART_SEP}${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}${it._scaleFactor}` : ""}`;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASS_SUBCLASS_FEATURES] = (it) => (it.__prop === "subclassFeature" || it.subclassSource) ? UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](it) : UrlUtil.URL_TO_HASH_BUILDER["classFeature"](it);
+
 // region Fake pages (props)
+UrlUtil.URL_TO_HASH_BUILDER["monster"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY];
+UrlUtil.URL_TO_HASH_BUILDER["spell"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS];
+UrlUtil.URL_TO_HASH_BUILDER["background"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS];
+UrlUtil.URL_TO_HASH_BUILDER["item"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["class"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES];
+UrlUtil.URL_TO_HASH_BUILDER["condition"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
+UrlUtil.URL_TO_HASH_BUILDER["disease"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
+UrlUtil.URL_TO_HASH_BUILDER["feat"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS];
+UrlUtil.URL_TO_HASH_BUILDER["optionalfeature"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES];
+UrlUtil.URL_TO_HASH_BUILDER["psionic"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_PSIONICS];
+UrlUtil.URL_TO_HASH_BUILDER["race"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES];
+UrlUtil.URL_TO_HASH_BUILDER["reward"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_REWARDS];
+UrlUtil.URL_TO_HASH_BUILDER["variantrule"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES];
+UrlUtil.URL_TO_HASH_BUILDER["adventure"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURES];
+UrlUtil.URL_TO_HASH_BUILDER["book"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOKS];
+UrlUtil.URL_TO_HASH_BUILDER["deity"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_DEITIES];
+UrlUtil.URL_TO_HASH_BUILDER["cult"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CULTS_BOONS];
+UrlUtil.URL_TO_HASH_BUILDER["boon"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CULTS_BOONS];
+UrlUtil.URL_TO_HASH_BUILDER["object"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OBJECTS];
+UrlUtil.URL_TO_HASH_BUILDER["trap"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TRAPS_HAZARDS];
+UrlUtil.URL_TO_HASH_BUILDER["hazard"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TRAPS_HAZARDS];
+UrlUtil.URL_TO_HASH_BUILDER["table"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES];
+UrlUtil.URL_TO_HASH_BUILDER["tableGroup"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES];
+UrlUtil.URL_TO_HASH_BUILDER["vehicle"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VEHICLES];
+UrlUtil.URL_TO_HASH_BUILDER["vehicleUpgrade"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VEHICLES];
+UrlUtil.URL_TO_HASH_BUILDER["action"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ACTIONS];
+UrlUtil.URL_TO_HASH_BUILDER["language"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_LANGUAGES];
+UrlUtil.URL_TO_HASH_BUILDER["charoption"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CHAR_CREATION_OPTIONS];
+UrlUtil.URL_TO_HASH_BUILDER["recipe"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RECIPES];
+
 UrlUtil.URL_TO_HASH_BUILDER["subclass"] = it => {
 	const hashParts = [
 		UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES]({name: it.className, source: it.classSource}),
@@ -2385,46 +2416,50 @@ SortUtil = {
 		return aSpecial && bSpecial ? 0 : aSpecial ? 1 : bSpecial ? -1 : Parser.ABIL_ABVS.indexOf(a) - Parser.ABIL_ABVS.indexOf(b);
 	},
 
+	ascSortSize (a, b) { return Parser.SIZE_ABVS.indexOf(a) - Parser.SIZE_ABVS.indexOf(b); },
+
 	initBtnSortHandlers ($wrpBtnsSort, list) {
-		let $dispCaretInitial = null;
-		const $dispCarets = [];
+		let dispCaretInitial = null;
 
-		$wrpBtnsSort.find(".sort").each((i, e) => {
-			const $btnSort = $(e);
-			const $dispCaret = SortUtil._initBtnSortHandlers_getAddCaret($btnSort);
+		const dispCarets = [...$wrpBtnsSort[0].querySelectorAll(".sort")]
+			.map(btnSort => {
+				const dispCaret = e_({
+					tag: "span",
+					clazz: "lst__caret",
+				})
+					.appendTo(btnSort);
 
-			$dispCarets.push($dispCaret);
+				const btnSortField = btnSort.dataset.sort;
 
-			if ($btnSort.data("sort") === list.sortBy) $dispCaretInitial = $dispCaret;
+				if (btnSortField === list.sortBy) dispCaretInitial = dispCaret;
 
-			$btnSort.click(evt => {
-				evt.stopPropagation();
-				const direction = list.sortDir === "asc" ? "desc" : "asc";
-				SortUtil._initBtnSortHandlers_showCaret({$dispCarets, $dispCaret, direction});
-				list.sort($btnSort.data("sort"), direction);
+				e_({
+					ele: btnSort,
+					click: evt => {
+						evt.stopPropagation();
+						const direction = list.sortDir === "asc" ? "desc" : "asc";
+						SortUtil._initBtnSortHandlers_showCaret({dispCarets, dispCaret, direction});
+						list.sort(btnSortField, direction);
+					},
+				});
+
+				return dispCaret;
 			});
-		});
 
-		$dispCaretInitial = $dispCaretInitial || $dispCarets[0]; // Fall back on displaying the first caret
+		dispCaretInitial = dispCaretInitial || dispCarets[0]; // Fall back on displaying the first caret
 
-		SortUtil._initBtnSortHandlers_showCaret({$dispCaret: $dispCaretInitial, $dispCarets, direction: list.sortDir});
-	},
-
-	_initBtnSortHandlers_getAddCaret ($btnSort) {
-		const $existing = $btnSort.find(`.lst__caret`);
-		if ($existing.length) return $existing;
-		return $(`<span class="lst__caret"></span>`).appendTo($btnSort);
+		SortUtil._initBtnSortHandlers_showCaret({dispCaret: dispCaretInitial, dispCarets, direction: list.sortDir});
 	},
 
 	_initBtnSortHandlers_showCaret (
 		{
-			$dispCaret,
-			$dispCarets,
+			dispCaret,
+			dispCarets,
 			direction,
 		},
 	) {
-		$dispCarets.forEach($it => $it.removeClass("lst__caret--active"));
-		$dispCaret.addClass("lst__caret--active").toggleClass("lst__caret--reverse", direction === "asc");
+		dispCarets.forEach($it => $it.removeClass("lst__caret--active"));
+		dispCaret.addClass("lst__caret--active").toggleClass("lst__caret--reverse", direction === "asc");
 	},
 
 	ascSortAdventure (a, b) {
@@ -3735,17 +3770,21 @@ DataUtil = {
 		async loadJSON ({isAddBaseRaces = false} = {}) {
 			if (!DataUtil.race._pIsLoadings[isAddBaseRaces]) {
 				DataUtil.race._pIsLoadings[isAddBaseRaces] = (async () => {
-					const rawRaceData = DataUtil.race._getPostProcessedSiteJson(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/races.json`));
-					const raceData = Renderer.race.mergeSubraces(rawRaceData.race, {isAddBaseRaces});
-					raceData.forEach(it => it.__prop = "race");
-					DataUtil.race._loadCache[isAddBaseRaces] = {race: raceData};
+					DataUtil.race._loadCache[isAddBaseRaces] = DataUtil.race.getPostProcessedSiteJson(
+						await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/races.json`),
+						{isAddBaseRaces},
+					);
 				})();
 			}
 			await DataUtil.race._pIsLoadings[isAddBaseRaces];
 			return DataUtil.race._loadCache[isAddBaseRaces];
 		},
 
-		_getPostProcessedSiteJson (rawRaceData) {
+		async loadRawJSON () {
+			return DataUtil.loadJSON(`${Renderer.get().baseUrl}data/races.json`);
+		},
+
+		getPostProcessedSiteJson (rawRaceData, {isAddBaseRaces = false} = {}) {
 			rawRaceData = MiscUtil.copy(rawRaceData);
 			(rawRaceData.subrace || []).forEach(sr => {
 				const r = rawRaceData.race.find(it => it.name === sr.raceName && it.source === sr.raceSource);
@@ -3756,14 +3795,42 @@ DataUtil = {
 				(r.subraces = r.subraces || []).push(sr);
 			});
 			delete rawRaceData.subrace;
-			return rawRaceData;
+			const raceData = Renderer.race.mergeSubraces(rawRaceData.race, {isAddBaseRaces});
+			raceData.forEach(it => it.__prop = "race");
+			return {race: raceData};
 		},
 
 		async loadBrew ({isAddBaseRaces = true} = {}) {
+			const rawSite = await DataUtil.race.loadRawJSON();
 			const brew = await BrewUtil.pAddBrewData();
-			let fromBrew = MiscUtil.copy(brew.race || []);
-			fromBrew = Renderer.race.mergeSubraces(fromBrew, {isAddBaseRaces});
-			return {race: fromBrew};
+			return DataUtil.race.getPostProcessedBrewJson(rawSite, brew, {isAddBaseRaces});
+		},
+
+		getPostProcessedBrewJson (rawSite, brew, {isAddBaseRaces = false} = {}) {
+			rawSite = MiscUtil.copy(rawSite);
+			brew = MiscUtil.copy(brew);
+
+			const rawSiteUsed = [];
+			(brew.subrace || []).forEach(sr => {
+				const rSite = rawSite.race.find(it => it.name === sr.raceName && it.source === sr.raceSource);
+				const rBrew = (brew.race || []).find(it => it.name === sr.raceName && it.source === sr.raceSource);
+				if (!rSite && !rBrew) return JqueryUtil.doToast({content: `Failed to find race "${sr.raceName}" (${sr.raceSource})`, type: "danger"});
+				const rTgt = rSite || rBrew;
+				const cpySr = MiscUtil.copy(sr);
+				delete cpySr.raceName;
+				delete cpySr.raceSource;
+				(rTgt.subraces = rTgt.subraces || []).push(sr);
+				if (rSite && !rawSiteUsed.includes(rSite)) rawSiteUsed.push(rSite);
+			});
+			delete brew.subrace;
+
+			const raceDataBrew = Renderer.race.mergeSubraces(brew.race || [], {isAddBaseRaces});
+			// Never add base races from site races when building brew race list
+			const raceDataSite = Renderer.race.mergeSubraces(rawSiteUsed, {isAddBaseRaces: false});
+
+			const out = [...raceDataBrew, ...raceDataSite];
+			out.forEach(it => it.__prop = "race");
+			return {race: out};
 		},
 	},
 
@@ -3931,7 +3998,7 @@ DataUtil = {
 			const byLevel = {}; // Build a map of `level: [classFeature]`
 			for (const classFeatureRef of (cls.classFeatures || [])) {
 				const uid = classFeatureRef.classFeature ? classFeatureRef.classFeature : classFeatureRef;
-				const {name, className, classSource, level, source} = DataUtil.class.unpackUidClassFeature(uid);
+				const {name, className, classSource, level, source, displayText} = DataUtil.class.unpackUidClassFeature(uid);
 				if (!name || !className || !level || isNaN(level)) continue; // skip over broken links
 
 				if (source === SRC_5ETOOLS_TMP) continue; // Skip over temp/nonexistent links
@@ -3948,7 +4015,11 @@ DataUtil = {
 					continue;
 				}
 
+				if (displayText) classFeature._displayName = displayText;
+				if (classFeatureRef.tableDisplayName) classFeature._displayNameTable = classFeatureRef.tableDisplayName;
+
 				if (classFeatureRef.gainSubclassFeature) classFeature.gainSubclassFeature = true;
+				if (classFeatureRef.gainSubclassFeatureHasContent) classFeature.gainSubclassFeatureHasContent = true;
 
 				if (cls.otherSources && cls.source === classFeature.source) classFeature.otherSources = MiscUtil.copy(cls.otherSources);
 
@@ -3978,8 +4049,11 @@ DataUtil = {
 
 			for (const subclassFeatureRef of (sc.subclassFeatures || [])) {
 				const uid = subclassFeatureRef.subclassFeature ? subclassFeatureRef.subclassFeature : subclassFeatureRef;
-				const {name, className, classSource, subclassShortName, subclassSource, level, source} = DataUtil.class.unpackUidSubclassFeature(uid);
+				const {name, className, classSource, subclassShortName, subclassSource, level, source, displayText} = DataUtil.class.unpackUidSubclassFeature(uid);
 				if (!name || !className || !subclassShortName || !level || isNaN(level)) continue; // skip over broken links
+
+				if (source === SRC_5ETOOLS_TMP) continue; // Skip over temp/nonexistent links
+
 				const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"]({name, className, classSource, subclassShortName, subclassSource, level, source});
 
 				// Skip blacklisted
@@ -3991,6 +4065,8 @@ DataUtil = {
 					JqueryUtil.doToast({type: "danger", content: `Failed to find <code>subclassFeature</code> <code>${uid}</code>`});
 					continue;
 				}
+
+				if (displayText) subclassFeature._displayName = displayText;
 
 				if (sc.otherSources && sc.source === subclassFeature.source) subclassFeature.otherSources = MiscUtil.copy(sc.otherSources);
 
@@ -5714,10 +5790,10 @@ BrewUtil = {
 
 			const pDeleteFn = BrewUtil._getPDeleteFunction(prop);
 			for (const entity of json[prop]) {
-				const brewHash = BrewUtil._getDevBrewHash(page, prop, entity);
+				const brewHash = BrewUtil._getDevBrewHash(prop, entity);
 				if (existingLookup[brewHash] && entity.uniqueId !== existingLookup[brewHash]) {
 					if (isLocalPreload) {
-						const ixExisting = homebrew[prop].findIndex(ex => BrewUtil._getDevBrewHash(page, prop, ex) === brewHash);
+						const ixExisting = homebrew[prop].findIndex(ex => BrewUtil._getDevBrewHash(prop, ex) === brewHash);
 						if (~ixExisting) homebrew[prop].splice(ixExisting, 1);
 					} else {
 						await pDeleteFn(existingLookup[brewHash]);
@@ -5838,13 +5914,16 @@ BrewUtil = {
 		}
 	},
 
-	_getDevBrewHash (page, prop, it) {
-		return UrlUtil.URL_TO_HASH_BUILDER[page]
-			? UrlUtil.URL_TO_HASH_BUILDER[page](it)
-			: UrlUtil.URL_TO_HASH_BUILDER[prop]
-				? UrlUtil.URL_TO_HASH_BUILDER[prop](it)
-				// Handle magic variants
-				: `${it.inherits && it.inherits.source ? it.inherits.source : it.source}__${it.name}`;
+	_getDevBrewHash (prop, it) {
+		if (UrlUtil.URL_TO_HASH_BUILDER[prop]) return UrlUtil.URL_TO_HASH_BUILDER[prop](it);
+		// Handle magic variants; subraces; etc
+		const name = it.name;
+		const source = it.inherits?.source ?? it.source;
+		if (name || source) return `${source}__${name}`;
+		// Item properties
+		if (it.abbreviation) return it.abbreviation;
+		// As a last resort, randomise the ID. We prefer accidentally duplicating to accidentally deleting.
+		return CryptUtil.uid();
 	},
 
 	makeBrewButton: (id) => {
@@ -6962,7 +7041,7 @@ ExtensionUtil = {
 	},
 
 	async pDoSendStats (evt, ele) {
-		const $parent = $(ele).closest(`th.rnd-name`);
+		const $parent = $(ele).closest(`[data-page]`);
 		const page = $parent.attr("data-page");
 		const source = $parent.attr("data-source");
 		const hash = $parent.attr("data-hash");

@@ -21,7 +21,7 @@ window.addEventListener("load", async () => {
 		const href = $e.attr("href");
 		if (!href.startsWith("http") && href.endsWith(".html")) $e.attr("href", `../${href}`);
 
-		if (href.startsWith("https://wiki.5e.tools")) $e.remove();
+		if (href.startsWith("https://wiki.tercept.net")) $e.remove();
 	});
 
 	switch (_SEO_PAGE) {

@@ -65,9 +65,9 @@ class PageFilterFeats extends PageFilter {
 			feat.languageProficiencies ? "Language Proficiency" : null,
 		].filter(it => it);
 		if (feat.skillToolLanguageProficiencies?.length) {
-			if (feat.skillToolLanguageProficiencies.some(it => (it.choose?.from || []).includes("anySkill"))) feat._fBenifits.push("Skill Proficiency");
-			if (feat.skillToolLanguageProficiencies.some(it => (it.choose?.from || []).includes("anyTool"))) feat._fBenifits.push("Tool Proficiency");
-			if (feat.skillToolLanguageProficiencies.some(it => (it.choose?.from || []).includes("anyLanguage"))) feat._fBenifits.push("Language Proficiency");
+			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anySkill")))) feat._fBenifits.push("Skill Proficiency");
+			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyTool")))) feat._fBenifits.push("Tool Proficiency");
+			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyLanguage")))) feat._fBenifits.push("Language Proficiency");
 		}
 		feat._fMisc = feat.srd ? ["SRD"] : [];
 

@@ -499,15 +499,25 @@ class CreatureBuilder extends Builder {
 		this.__$getTokenInput(cb).appendTo(miscTab.$wrpTab);
 		this.$getFluffInput(cb).appendTo(miscTab.$wrpTab);
 		this.__$getEnvironmentInput(cb).appendTo(miscTab.$wrpTab);
-		BuilderUi.$getStateIptString("Group", cb, this._state, {title: "The family this creature belongs to, e.g. 'Modrons' in the case of a Duodrone."}, "group").appendTo(miscTab.$wrpTab);
+		BuilderUi.$getStateIptStringArray(
+			"Group",
+			cb,
+			this._state,
+			{
+				shortName: "Group",
+				title: "The family this creature belongs to, e.g. 'Modrons' in the case of a Duodrone.",
+			},
+			"group",
+		).appendTo(miscTab.$wrpTab);
 		this.__$getSoundClipInput(cb).appendTo(miscTab.$wrpTab);
 		BuilderUi.$getStateIptEnum(
 			"Dragon Casting Color",
 			cb,
 			this._state,
 			{
-				vals: Object.keys(Parser.DRAGON_COLOR_TO_FULL).sort((a, b) => SortUtil.ascSort(Parser.dragonColorToFull(a), Parser.dragonColorToFull(b))),
-				fnDisplay: (abv) => Parser.dragonColorToFull(abv).uppercaseFirst(),
+				vals: ["black", "blue", "green", "red", "white", "brass", "bronze", "copper", "gold", "silver", "deep"]
+					.sort(SortUtil.ascSortLower),
+				fnDisplay: (abv) => abv.toTitleCase(),
 				type: "string",
 			},
 			"dragonCastingColor",

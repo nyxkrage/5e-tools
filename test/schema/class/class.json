@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "2.9.2",
+	"version": "2.10.1",
 	"$id": "class.json",
 	"type": "object",
 	"definitions": {
@@ -139,6 +139,9 @@
 				},
 				"otherSources": {
 					"$ref": "../util.json#/definitions/otherSources"
+				},
+				"consumes": {
+					"$ref": "../util.json#/definitions/consumesObject"
 				}
 			},
 			"required": [
@@ -208,6 +211,9 @@
 				},
 				"otherSources": {
 					"$ref": "../util.json#/definitions/otherSources"
+				},
+				"consumes": {
+					"$ref": "../util.json#/definitions/consumesObject"
 				}
 			},
 			"required": [
@@ -386,6 +392,13 @@
 											},
 											"gainSubclassFeature": {
 												"type": "boolean"
+											},
+											"gainSubclassFeatureHasContent": {
+												"description": "Features with \"gainSubclassFeature\" are generally ignored by e.g. VTT integrations, as having no meaningful content to import to sheets. Setting this flag informs the integration that this feature should not be ignored.",
+												"type": "boolean"
+											},
+											"tableDisplayName": {
+												"type": "string"
 											}
 										},
 										"required": [
@@ -394,6 +407,9 @@
 									}
 								]
 							}
+						},
+						"optionalfeatureProgression": {
+							"$ref": "#/definitions/optionalfeatureProgression"
 						},
 						"subclassTableGroups": {
 							"type": "array",
@@ -559,6 +575,13 @@
 											},
 											"gainSubclassFeature": {
 												"type": "boolean"
+											},
+											"gainSubclassFeatureHasContent": {
+												"description": "Features with \"gainSubclassFeature\" are generally ignored by e.g. VTT integrations, as having no meaningful content to import to sheets. Setting this flag informs the integration that this feature should not be ignored.",
+												"type": "boolean"
+											},
+											"tableDisplayName": {
+												"type": "string"
 											}
 										},
 										"required": [
@@ -567,6 +590,9 @@
 									}
 								]
 							}
+						},
+						"optionalfeatureProgression": {
+							"$ref": "#/definitions/optionalfeatureProgression"
 						},
 						"subclassTableGroups": {
 							"type": "array",
@@ -729,6 +755,13 @@
 									},
 									"gainSubclassFeature": {
 										"type": "boolean"
+									},
+									"gainSubclassFeatureHasContent": {
+										"description": "Features with \"gainSubclassFeature\" are generally ignored by e.g. VTT integrations, as having no meaningful content to import to sheets. Setting this flag informs the integration that this feature should not be ignored.",
+										"type": "boolean"
+									},
+									"tableDisplayName": {
+										"type": "string"
 									}
 								},
 								"required": [
@@ -737,6 +770,9 @@
 							}
 						]
 					}
+				},
+				"optionalfeatureProgression": {
+					"$ref": "#/definitions/optionalfeatureProgression"
 				},
 				"subclassTableGroups": {
 					"type": "array",
@@ -867,6 +903,77 @@
 				}
 			},
 			"additionalProperties": false
+		},
+		"optionalfeatureProgression": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"featureType": {
+						"type": "array",
+						"items": {
+							"$ref": "../util.json#/definitions/dataOptionalfeatureType"
+						},
+						"uniqueItems": true
+					},
+					"progression": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "integer"
+								},
+								"minItems": 20,
+								"maxItems": 20
+							},
+							{
+								"type": "object",
+								"patternProperties": {
+									"^\\d+$": {
+										"type": "integer"
+									}
+								},
+								"additionalProperties": false
+							}
+						]
+					},
+					"required": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								},
+								"minItems": 20,
+								"maxItems": 20
+							},
+							{
+								"type": "object",
+								"patternProperties": {
+									"^\\d+$": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								},
+								"additionalProperties": false
+							}
+						]
+					}
+				},
+				"required": [
+					"name",
+					"featureType",
+					"progression"
+				]
+			}
 		},
 		"class": {
 			"anyOf": [
@@ -1072,35 +1179,7 @@
 							"additionalProperties": false
 						},
 						"optionalfeatureProgression": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"name": {
-										"type": "string"
-									},
-									"featureType": {
-										"type": "array",
-										"items": {
-											"$ref": "../util.json#/definitions/dataOptionalfeatureType"
-										},
-										"uniqueItems": true
-									},
-									"progression": {
-										"type": "array",
-										"items": {
-											"type": "integer"
-										},
-										"minItems": 20,
-										"maxItems": 20
-									}
-								},
-								"required": [
-									"name",
-									"featureType",
-									"progression"
-								]
-							}
+							"$ref": "#/definitions/optionalfeatureProgression"
 						},
 						"classFeatures": {
 							"type": "array",
@@ -1435,35 +1514,7 @@
 							"additionalProperties": false
 						},
 						"optionalfeatureProgression": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"name": {
-										"type": "string"
-									},
-									"featureType": {
-										"type": "array",
-										"items": {
-											"$ref": "../util.json#/definitions/dataOptionalfeatureType"
-										},
-										"uniqueItems": true
-									},
-									"progression": {
-										"type": "array",
-										"items": {
-											"type": "integer"
-										},
-										"minItems": 20,
-										"maxItems": 20
-									}
-								},
-								"required": [
-									"name",
-									"featureType",
-									"progression"
-								]
-							}
+							"$ref": "#/definitions/optionalfeatureProgression"
 						},
 						"classFeatures": {
 							"type": "array",
@@ -1798,35 +1849,7 @@
 					"additionalProperties": false
 				},
 				"optionalfeatureProgression": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"name": {
-								"type": "string"
-							},
-							"featureType": {
-								"type": "array",
-								"items": {
-									"$ref": "../util.json#/definitions/dataOptionalfeatureType"
-								},
-								"uniqueItems": true
-							},
-							"progression": {
-								"type": "array",
-								"items": {
-									"type": "integer"
-								},
-								"minItems": 20,
-								"maxItems": 20
-							}
-						},
-						"required": [
-							"name",
-							"featureType",
-							"progression"
-						]
-					}
+					"$ref": "#/definitions/optionalfeatureProgression"
 				},
 				"classFeatures": {
 					"type": "array",

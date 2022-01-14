@@ -14,6 +14,8 @@ class ObjectsPage extends ListPage {
 
 			dataProps: ["object"],
 		});
+
+		this._$dispToken = null;
 	}
 
 	getListItem (obj, obI, isExcluded) {
@@ -94,12 +96,12 @@ class ObjectsPage extends ListPage {
 
 		this._$pgContent.empty().append(RenderObjects.$getRenderedObject(obj));
 
-		const $floatToken = $(`#float-token`).empty();
+		(this._$dispToken = this._$dispToken || $(`#float-token`)).empty();
 
 		const hasToken = obj.tokenUrl || obj.hasToken;
 		if (hasToken) {
 			const imgLink = Renderer.object.getTokenUrl(obj);
-			$floatToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(obj.name || "").qq()}" loading="lazy"></a>`);
+			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(obj.name || "").qq()}" loading="lazy"></a>`);
 		}
 
 		ListUtil.updateSelected();

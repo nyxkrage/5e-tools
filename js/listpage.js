@@ -63,6 +63,8 @@ class ListPage {
 		this._ixData = 0;
 		this._bookView = null;
 		this._$pgContent = null;
+
+		this._seenHashes = new Set();
 	}
 
 	_bookView_popTblGetNumShown ({$wrpContent, $dispName, $wrpControls}, {fnPartition} = {}) {

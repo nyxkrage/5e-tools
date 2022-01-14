@@ -346,6 +346,7 @@ class IndexableFile {
 	 * @param opts.isOnlyDeep
 	 * @param opts.additionalIndexes
 	 * @param opts.isSkipBrew
+	 * @param [opts.pFnPreProcBrew] An un-bound function
 	 */
 	constructor (opts) {
 		this.category = opts.category;
@@ -364,6 +365,7 @@ class IndexableFile {
 		this.isOnlyDeep = opts.isOnlyDeep;
 		this.additionalIndexes = opts.additionalIndexes;
 		this.isSkipBrew = opts.isSkipBrew;
+		this.pFnPreProcBrew = opts.pFnPreProcBrew;
 	}
 
 	/**
@@ -727,9 +729,18 @@ class IndexableFileRaces extends IndexableFile {
 			file: "races.json",
 			listProp: "race",
 			baseUrl: "races.html",
-			postLoad: DataUtil.race._getPostProcessedSiteJson,
 			isOnlyDeep: true,
 			isHover: true,
+			postLoad: data => {
+				return DataUtil.race.getPostProcessedSiteJson(data, {isAddBaseRaces: true});
+			},
+			pFnPreProcBrew: async brew => {
+				if (!brew.race?.length && !brew.subrace?.length) return brew;
+
+				const site = await DataUtil.race.loadRawJSON();
+
+				return DataUtil.race.getPostProcessedBrewJson(site, brew, {isAddBaseRaces: true});
+			},
 		});
 	}
 

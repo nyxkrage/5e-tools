@@ -49,12 +49,15 @@ class RacesPage extends ListPage {
 	}
 
 	getListItem (race, rcI, isExcluded) {
+		const hash = UrlUtil.autoEncodeHash(race);
+		if (this._seenHashes.has(hash)) return null;
+		this._seenHashes.add(hash);
+
 		this._pageFilter.mutateAndAddToFilters(race, isExcluded);
 
 		const eleLi = document.createElement("div");
 		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
-		const hash = UrlUtil.autoEncodeHash(race);
 		const ability = race.ability ? Renderer.getAbilityData(race.ability) : {asTextShort: "None"};
 		const size = (race.size || [SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/");
 		const source = Parser.sourceJsonToAbv(race.source);

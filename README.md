@@ -6,7 +6,7 @@ Visit the [main site](https://5e.tools/index.html) or go to the unofficial GitHu
 
 ## Help and Support
 
-Please see [our wiki](https://wiki.5e.tools/) for FAQs, installation guides, supported integrations, and more.
+Please see [our wiki](https://wiki.tercept.net/) for FAQs, installation guides, supported integrations, and more.
 
 ---
 

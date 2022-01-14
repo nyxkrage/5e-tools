@@ -1012,12 +1012,17 @@ class EscapeCharacterCheck {
 EscapeCharacterCheck._CHARS = 16;
 
 class DuplicateEntityCheck {
-	static checkFile (file, contents) {
+	static checkFile (file, contents, {isSkipVersionCheck = false, isSkipBaseCheck = false} = {}) {
 		DuplicateEntityCheck.errors = [];
 
-		if (file.endsWith("data/races.json")) {
+		if (file.endsWith("data/races.json") && !isSkipVersionCheck) {
+			// First, run check for races on the raw race/subrace data
+			this.checkFile(file, contents, {isSkipVersionCheck: true});
+
+			// Then, merge races+subraces, so we can run a check on versions
 			contents = MiscUtil.copy(contents);
-			contents = DataUtil.race._getPostProcessedSiteJson(contents);
+			contents = DataUtil.race.getPostProcessedSiteJson(contents);
+			isSkipBaseCheck = true;
 		}
 
 		Object.entries(contents)
@@ -1025,10 +1030,11 @@ class DuplicateEntityCheck {
 			.forEach(([prop, arr]) => {
 				const positions = {};
 				arr.forEach((ent, i) => {
-					this._doAddPosition({prop, ent, ixArray: i, positions});
+					isSkipBaseCheck || this._doAddPosition({prop, ent, ixArray: i, positions});
+
 					if (!ent._versions) return;
 
-					DataUtil.proxy.getVersions(prop, ent)
+					isSkipVersionCheck || DataUtil.proxy.getVersions(prop, ent)
 						.forEach((entVer, j) => {
 							this._doAddPosition({prop, ent: entVer, ixArray: i, ixVersion: j, positions});
 						});
@@ -1036,7 +1042,7 @@ class DuplicateEntityCheck {
 
 				if (Object.keys(positions).length) {
 					const withDuplicates = Object.entries(positions)
-						.filter(([k, v]) => v.length > 1);
+						.filter(([, v]) => v.length > 1);
 					if (withDuplicates.length) {
 						MSG.DuplicateEntityCheck += `Duplicate entity keys in ${file} array .${prop}! See below:\n`;
 						withDuplicates.forEach(([k, v]) => {

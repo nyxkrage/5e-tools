@@ -498,6 +498,8 @@ PropOrder._SUBCLASS = [
 
 	"additionalSpells",
 
+	"optionalfeatureProgression",
+
 	"subclassTableGroups",
 	"subclassFeatures",
 ];
@@ -523,6 +525,9 @@ PropOrder._CLASS_FEATURE = [
 
 	"header",
 	"type",
+
+	"consumes",
+
 	"entries",
 ];
 PropOrder._SUBCLASS_FEATURE = [
@@ -546,6 +551,9 @@ PropOrder._SUBCLASS_FEATURE = [
 
 	"header",
 	"type",
+
+	"consumes",
+
 	"entries",
 ];
 PropOrder._LANGUAGE = [
@@ -1094,7 +1102,7 @@ PropOrder._RACE_SUBRACE = [
 	"lineage",
 	"creatureTypes",
 
-	"size",
+	new PropOrder._ArrayKey("size", {fnSort: SortUtil.ascSortSize}),
 	"speed",
 	"ability",
 

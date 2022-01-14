@@ -4433,6 +4433,9 @@ class ComponentUiUtil {
 				const $cb = isRequired
 					? $(`<input type="checkbox" disabled checked title="This option is required.">`)
 					: ComponentUiUtil.$getCbBool(comp, propIsActive);
+
+				if (isRequired) comp._state[propIsActive] = true;
+
 				if (!isRequired) {
 					hk = () => {
 						// region Selection order

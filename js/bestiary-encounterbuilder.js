@@ -375,15 +375,15 @@ class EncounterBuilder extends ProxyBase {
 		this._$dispXpRawTotal = $(`<h4>Total XP: ?</h4>`);
 		this._$dispXpRawPerPlayer = $(`<i>(? per player)</i>`);
 
-		this._$hovXpAdjustedInfo = $(`<span class="glyphicon glyphicon-info-sign"></span>`);
+		this._$hovXpAdjustedInfo = $(`<span class="glyphicon glyphicon-info-sign mr-2"></span>`);
 
-		this._$dispXpAdjustedTotal = $(`<h4 class="inline-block">Adjusted XP: ?</h4>`);
+		this._$dispXpAdjustedTotal = $(`<h4 class="ve-flex-v-center">Adjusted XP: ?</h4>`);
 		this._$dispXpAdjustedPerPlayer = $(`<i>(? per player)</i>`);
 
 		return $$`<div class="w-50 text-right">
 			${this._$dispXpRawTotal}
 			<div>${this._$dispXpRawPerPlayer}</div>
-			<div>${this._$hovXpAdjustedInfo} ${this._$dispXpAdjustedTotal}</div>
+			<div class="ve-flex-v-center ve-flex-h-right">${this._$hovXpAdjustedInfo}${this._$dispXpAdjustedTotal}</div>
 			<div>${this._$dispXpAdjustedPerPlayer}</div>
 		</div>`;
 	}
@@ -749,7 +749,7 @@ class EncounterBuilder extends ProxyBase {
 				Renderer.hover.updatePredefinedHover(this._infoHoverId, infoEntry);
 			}
 
-			this._$dispXpAdjustedTotal.text(`Adjusted XP: ${encounter.adjustedXp.toLocaleString()}`);
+			this._$dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounter.meta.playerAdjustedXpMult})</span>: ${encounter.adjustedXp.toLocaleString()}`);
 			this._$dispXpAdjustedPerPlayer.text(`(${Math.floor(encounter.adjustedXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
 		} else {
 			this._$hrHasCreatures.hideVe();

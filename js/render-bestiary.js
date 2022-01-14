@@ -24,9 +24,9 @@ class RenderBestiary {
 	}
 
 	static _getPronunciationButton (mon) {
-		return `<button class="btn btn-xs btn-default btn-name-pronounce ml-2 mb-2 self-ve-flex-end">
+		return `<button class="btn btn-xs btn-default btn-name-pronounce ml-2 mb-2 ve-self-flex-end">
 			<span class="glyphicon glyphicon-volume-up name-pronounce-icon"></span>
-			<audio class="name-pronounce">
+			<audio class="name-pronounce" preload="none">
 			   <source src="${Renderer.utils.getMediaUrl(mon, "soundClip", "audio")}" type="audio/mpeg">
 			</audio>
 		</button>`;

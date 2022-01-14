@@ -2499,7 +2499,7 @@ Renderer.utils = {
 					<div class="ve-flex-v-center">
 						<h1 class="stats-name copyable m-0" onmousedown="event.preventDefault()" onclick="Renderer.utils._pHandleNameClick(this)">${opts.prefix || ""}${it._displayName || it.name}${opts.suffix || ""}</h1>
 						${opts.controlRhs || ""}
-						${!IS_VTT && ExtensionUtil.ACTIVE && opts.page ? `<button title="Send to Foundry (SHIFT for Temporary Import)" class="btn btn-xs btn-default btn-stats-name mx-2 mb-2 self-ve-flex-end" onclick="ExtensionUtil.pDoSendStats(event, this)"><span class="glyphicon glyphicon-send"></span></button>` : ""}
+						${!IS_VTT && ExtensionUtil.ACTIVE && opts.page ? Renderer.utils.getBtnSendToFoundryHtml() : ""}
 					</div>
 					<div class="stats-source ve-flex-v-baseline">
 						${tagPartSourceStart} class="help-subtle ${it.source ? `${Parser.sourceJsonToColor(it.source)}" title="${Parser.sourceJsonToFull(it.source)}${Renderer.utils.getSourceSubText(it)}` : ""}" ${BrewUtil.sourceJsonToStyle(it.source)}>${it.source ? Parser.sourceJsonToAbv(it.source) : ""}${tagPartSourceEnd}
@@ -2514,6 +2514,10 @@ Renderer.utils = {
 
 		if (opts.asJquery) return $ele;
 		else return $ele[0].outerHTML;
+	},
+
+	getBtnSendToFoundryHtml ({isMb = true} = {}) {
+		return `<button title="Send to Foundry (SHIFT for Temporary Import)" class="btn btn-xs btn-default btn-stats-name mx-2 ${isMb ? "mb-2" : ""} ve-self-flex-end" onclick="ExtensionUtil.pDoSendStats(event, this)"><span class="glyphicon glyphicon-send"></span></button>`;
 	},
 
 	isDisplayPage (page) { return page != null && ((!isNaN(page) && page > 0) || isNaN(page)); },
@@ -4002,6 +4006,7 @@ Renderer.spell = {
 							spell,
 							raceName: "Half-Elf (Variant; Moon Elf or Sun Elf Descent)",
 							raceBaseName: "Half-Elf",
+							raceSource: SRC_SCAG,
 						});
 					}
 
@@ -4011,6 +4016,7 @@ Renderer.spell = {
 							variantClassSpells: variantWizardSpells,
 							raceName: "Half-Elf (Variant; Moon Elf or Sun Elf Descent)",
 							raceBaseName: "Half-Elf",
+							raceSource: SRC_SCAG,
 						});
 					}
 				}
@@ -4790,6 +4796,10 @@ Renderer.race = {
 
 			const _baseRace = allRaces.find(r => r.name === sr.raceName && r.source === sr.raceSource);
 			if (!_baseRace) throw new Error(`Could not find parent race for subrace!`);
+
+			// Avoid adding duplicates, by tracking already-seen subraces
+			if ((_baseRace._seenSubraces || []).some(it => it.name === sr.name && it.source === sr.source)) return;
+			(_baseRace._seenSubraces = _baseRace._seenSubraces || []).push({name: sr.name, source: sr.source});
 
 			// If the base race is a _real_ base race, add our new subrace to its list of subraces
 			if (_baseRace._isBaseRace) {

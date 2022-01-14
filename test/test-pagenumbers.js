@@ -63,7 +63,8 @@ function run (isModificationMode) {
 					if (data instanceof Array) {
 						const noPage = data
 							.filter(it => !BLACKLIST_SOURCES.has((it.inherits ? it.inherits.source : it.source) || it.source))
-							.filter(it => !(it.inherits ? it.inherits.page : it.page));
+							.filter(it => !(it.inherits ? it.inherits.page : it.page))
+							.filter(it => !it._copy?._preserve?.page);
 
 						const subKeys = SUB_KEYS[k];
 						if (subKeys) {

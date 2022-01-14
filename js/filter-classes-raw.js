@@ -46,7 +46,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		return baseClass;
 	}
 
-	static async pPostLoad (data) {
+	static async pPostLoad (data, {...opts} = {}) {
 		data = MiscUtil.copy(data);
 
 		// Ensure homebrew is initialised
@@ -122,12 +122,12 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		await this._pPreloadSideData();
 
 		await Promise.all(data.class.map(async cls => {
-			await Promise.all((cls.classFeatures || []).map(cf => this.pInitClassFeatureLoadeds({classFeature: cf, className: cls.name})));
+			await Promise.all((cls.classFeatures || []).map(cf => this.pInitClassFeatureLoadeds({...opts, classFeature: cf, className: cls.name})));
 
 			if (cls.classFeatures) cls.classFeatures = cls.classFeatures.filter(it => !it.isIgnored);
 
 			await Promise.all((cls.subclasses || []).map(async sc => {
-				await Promise.all((sc.subclassFeatures || []).map(scf => this.pInitSubclassFeatureLoadeds({subclassFeature: scf, className: cls.name, subclassName: sc.name})));
+				await Promise.all((sc.subclassFeatures || []).map(scf => this.pInitSubclassFeatureLoadeds({...opts, subclassFeature: scf, className: cls.name, subclassName: sc.name})));
 
 				if (sc.subclassFeatures) sc.subclassFeatures = sc.subclassFeatures.filter(it => !it.isIgnored);
 			}));
@@ -136,7 +136,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		return data.class;
 	}
 
-	static async pInitClassFeatureLoadeds ({classFeature, className}) {
+	static async pInitClassFeatureLoadeds ({classFeature, className, ...opts}) {
 		if (typeof classFeature !== "object") throw new Error(`Expected an object of the form {classFeature: "<UID>"}`);
 
 		const unpacked = DataUtil.class.unpackUidClassFeature(classFeature.classFeature);
@@ -164,21 +164,23 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			return;
 		}
 
-		const subLoadeds = await this._pLoadSubEntries(
+		const {entityRoot: entityRootNxt, subLoadeds} = await this._pLoadSubEntries(
 			this._getPostLoadWalker(),
 			entityRoot,
 			{
+				...opts,
 				ancestorType: "classFeature",
 				ancestorMeta: {
 					_ancestorClassName: className,
 				},
 			},
 		);
+		loadedRoot.entity = entityRootNxt;
 
 		classFeature.loadeds = [loadedRoot, ...subLoadeds];
 	}
 
-	static async pInitSubclassFeatureLoadeds ({subclassFeature, className, subclassName}) {
+	static async pInitSubclassFeatureLoadeds ({subclassFeature, className, subclassName, ...opts}) {
 		if (typeof subclassFeature !== "object") throw new Error(`Expected an object of the form {subclassFeature: "<UID>"}`);
 
 		const unpacked = DataUtil.class.unpackUidSubclassFeature(subclassFeature.subclassFeature);
@@ -211,10 +213,11 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			subclassFeature.isGainAtNextFeatureLevel = true;
 		}
 
-		const subLoadeds = await this._pLoadSubEntries(
+		const {entityRoot: entityRootNxt, subLoadeds} = await this._pLoadSubEntries(
 			this._getPostLoadWalker(),
 			entityRoot,
 			{
+				...opts,
 				ancestorType: "subclassFeature",
 				ancestorMeta: {
 					_ancestorClassName: className,
@@ -222,12 +225,14 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 				},
 			},
 		);
+		loadedRoot.entity = entityRootNxt;
 
 		subclassFeature.loadeds = [loadedRoot, ...subLoadeds];
 	}
 
-	static async pInitFeatLoadeds ({feat, raw}) {
+	static async pInitFeatLoadeds ({feat, raw, ...opts}) {
 		return this._pInitGenericLoadeds({
+			...opts,
 			ent: feat,
 			prop: "feat",
 			page: UrlUtil.PG_FEATS,
@@ -236,8 +241,9 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		});
 	}
 
-	static async pInitOptionalFeatureLoadeds ({optionalfeature, raw}) {
+	static async pInitOptionalFeatureLoadeds ({optionalfeature, raw, ...opts}) {
 		return this._pInitGenericLoadeds({
+			...opts,
 			ent: optionalfeature,
 			prop: "optionalfeature",
 			page: UrlUtil.PG_OPT_FEATURES,
@@ -246,8 +252,9 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		});
 	}
 
-	static async pInitRewardLoadeds ({reward, raw}) {
+	static async pInitRewardLoadeds ({reward, raw, ...opts}) {
 		return this._pInitGenericLoadeds({
+			...opts,
 			ent: reward,
 			prop: "reward",
 			page: UrlUtil.PG_REWARDS,
@@ -256,8 +263,9 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		});
 	}
 
-	static async pInitCharCreationOptionLoadeds ({charoption, raw}) {
+	static async pInitCharCreationOptionLoadeds ({charoption, raw, ...opts}) {
 		return this._pInitGenericLoadeds({
+			...opts,
 			ent: charoption,
 			prop: "charoption",
 			page: UrlUtil.PG_CHAR_CREATION_OPTIONS,
@@ -266,7 +274,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		});
 	}
 
-	static async _pInitGenericLoadeds ({ent, prop, page, propAncestorName, raw}) {
+	static async _pInitGenericLoadeds ({ent, prop, page, propAncestorName, raw, ...opts}) {
 		if (typeof ent !== "object") throw new Error(`Expected an object of the form {${prop}: "<UID>"}`);
 
 		const unpacked = DataUtil.generic.unpackUid(ent[prop]);
@@ -292,16 +300,18 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			return;
 		}
 
-		const subLoadeds = await this._pLoadSubEntries(
+		const {entityRoot: entityRootNxt, subLoadeds} = await this._pLoadSubEntries(
 			this._getPostLoadWalker(),
 			entityRoot,
 			{
+				...opts,
 				ancestorType: prop,
 				ancestorMeta: {
 					[propAncestorName]: entityRoot.name,
 				},
 			},
 		);
+		loadedRoot.entity = entityRootNxt;
 
 		ent.loadeds = [loadedRoot, ...subLoadeds];
 	}
@@ -344,25 +354,20 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	/**
 	 * Walk the data, loading references.
 	 */
-	static async _pLoadSubEntries (walker, loadedRoot, {ancestorType, ancestorMeta}) {
+	static async _pLoadSubEntries (walker, entityRoot, {ancestorType, ancestorMeta, ...opts}) {
 		const out = [];
 
 		const pRecurse = async toWalk => {
 			const references = [];
 			const path = [];
 
-			walker.walk(
+			toWalk = walker.walk(
 				toWalk,
 				{
 					array: (arr) => {
-						arr = arr.filter(it => {
-							if (it.type !== "refClassFeature" && it.type !== "refSubclassFeature" && it.type !== "refOptionalfeature") return true;
-
-							it.parentName = (path.last() || {}).name;
-							references.push(it);
-
-							return false;
-						});
+						arr = arr
+							.map(it => this._pLoadSubEntries_getMappedWalkerArrayEntry({...opts, it, path, references}))
+							.filter(Boolean);
 						return arr;
 					},
 					preObject: (obj) => {
@@ -405,7 +410,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 						const {source} = unpacked;
 						const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
 
-						const entity = await Renderer.hover.pCacheAndGet("raw_classFeature", source, hash, {isCopy: true});
+						let entity = await Renderer.hover.pCacheAndGet("raw_classFeature", source, hash, {isCopy: true});
 
 						if (!entity) {
 							this._handleReferenceError(`Failed to load "classFeature" reference "${ent.classFeature}"`);
@@ -432,7 +437,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						await pRecurse(entity);
+						entity = await pRecurse(entity);
 
 						break;
 					}
@@ -441,7 +446,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 						const {source} = unpacked;
 						const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
 
-						const entity = await Renderer.hover.pCacheAndGet("raw_subclassFeature", source, hash, {isCopy: true});
+						let entity = await Renderer.hover.pCacheAndGet("raw_subclassFeature", source, hash, {isCopy: true});
 
 						if (!entity) {
 							this._handleReferenceError(`Failed to load "subclassFeature" reference "${ent.subclassFeature}"`);
@@ -468,7 +473,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						await pRecurse(entity);
+						entity = await pRecurse(entity);
 
 						break;
 					}
@@ -495,7 +500,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							displayName: ent._displayNamePrefix ? `${ent._displayNamePrefix}${entity.name}` : null,
 							...ancestorMeta,
 							foundryData: {
-								requirements: `${loadedRoot.className} ${loadedRoot.level}${loadedRoot.subclassShortName ? ` (${loadedRoot.subclassShortName})` : ""}`,
+								requirements: `${entityRoot.className} ${entityRoot.level}${entityRoot.subclassShortName ? ` (${entityRoot.subclassShortName})` : ""}`,
 							},
 						});
 
@@ -515,11 +520,22 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 					default: throw new Error(`Unhandled type "${ent.type}"`);
 				}
 			}
+
+			return toWalk;
 		};
 
-		await pRecurse(loadedRoot);
+		entityRoot = await pRecurse(entityRoot);
 
-		return out;
+		return {entityRoot, subLoadeds: out};
+	}
+
+	static _pLoadSubEntries_getMappedWalkerArrayEntry ({it, path, references, ...opts}) {
+		if (it.type !== "refClassFeature" && it.type !== "refSubclassFeature" && it.type !== "refOptionalfeature") return it;
+
+		it.parentName = (path.last() || {}).name;
+		references.push(it);
+
+		return null;
 	}
 
 	static populateEntityTempData (
@@ -545,7 +561,6 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		PageFilterClassesRaw._WALKER = PageFilterClassesRaw._WALKER || MiscUtil.getWalker({
 			keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST,
 			isDepthFirst: true,
-			isNoModification: true,
 		});
 		return PageFilterClassesRaw._WALKER;
 	}

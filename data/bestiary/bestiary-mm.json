@@ -38151,7 +38151,6 @@
 			],
 			"conditionInflict": [
 				"grappled",
-				"invisible",
 				"restrained"
 			],
 			"hasToken": true,
@@ -38345,9 +38344,6 @@
 			"miscTags": [
 				"MW"
 			],
-			"conditionInflict": [
-				"invisible"
-			],
 			"conditionInflictSpell": [
 				"paralyzed"
 			],
@@ -38492,9 +38488,6 @@
 			],
 			"miscTags": [
 				"MW"
-			],
-			"conditionInflict": [
-				"invisible"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -38664,8 +38657,7 @@
 				"RCH"
 			],
 			"conditionInflict": [
-				"grappled",
-				"invisible"
+				"grappled"
 			],
 			"hasToken": true,
 			"hasFluff": true,

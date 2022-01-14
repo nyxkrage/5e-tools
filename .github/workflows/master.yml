@@ -15,13 +15,9 @@ jobs:
          -  name: Set env
             run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-         # See: https://github.com/TheDoctor0/zip-release
          -  name: Archive Release
-            uses: thedoctor0/zip-release@master
-            with:
-               type: 'zip'
-               filename: '5etools-${{ env.RELEASE_VERSION }}.zip'
-               exclusions: '*.git* /*node_modules/* /*.github/* /*img/*'
+            run: |
+               zip -r -x '*.git*' '*node_modules*' '*.github*' '*img*' 5etools-${{ env.RELEASE_VERSION }}.zip .
 
          -  name: Add Cache-Busting Strings
             run: |
@@ -41,12 +37,9 @@ jobs:
                branch: gh-pages
                folder: .
 
-         -  name: Archive Images (Adventure)
-            uses: thedoctor0/zip-release@master
-            with:
-               type: 'zip'
-               filename: 'img-${{ env.RELEASE_VERSION }}-adventure.zip'
-               path: 'img/adventure'
+         -  name: Archive Images
+            run: |
+               zip -r -s 500m img-${{ env.RELEASE_VERSION }}.zip img/
 
          -  name: Archive Images (Book)
             uses: thedoctor0/zip-release@master
@@ -69,8 +62,6 @@ jobs:
             # Add the files one-by-one in an effort to avoid timeouts
             run: |
                hub release create -a 5etools-${{ env.RELEASE_VERSION }}.zip -m ${{ env.RELEASE_VERSION }} ${{ env.RELEASE_VERSION }}
-               hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}.zip
-               hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-book.zip
-               hub release edit ${{ env.RELEASE_VERSION }} -m '' -a img-${{ env.RELEASE_VERSION }}-adventure.zip
+               for f in $(find . -name 'img-${{ env.RELEASE_VERSION }}.*' -print); do hub release edit ${{ env.RELEASE_VERSION }} -m '' -a $f; done
             env:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
