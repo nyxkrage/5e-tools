@@ -1175,9 +1175,9 @@ class InitiativeTracker {
 							.change(() => doUpdateExternalStates());
 
 						const populateFromBlock = () => {
-							$ipt.attr("populate-running", true);
 							const meta = InitiativeTracker.STAT_COLUMNS[c.p];
 							if (isMon && meta) {
+								$ipt.attr("populate-running", true);
 								const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY]({name: name, source: source});
 								const populateStats = async () => {
 									const mon = await Renderer.hover.pCacheAndGet(UrlUtil.PG_BESTIARY, source, hash);

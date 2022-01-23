@@ -1910,5 +1910,10 @@
 		"ver": "1.147.14",
 		"date": "2022-01-14",
 		"txt": "- Added page numbers to VRGR book content\n- Added Rivet \"Send to Foundry\" button to Classes page, when the extension is loaded\n- Marginally improved performance of list pages containing tokens (Bestiary, Vehicles, Objects) [speeding up loading by a whopping ~150 ms]\n- Fixed Other Options and Features page failing to include reprint sources in Source filter/when filtering by source\n- Simplified Bestiary Encounter Builder calculation of XP multiplier, making it more \"vanilla.\" Additional tweaks, such as setting the minimum CR threshold to be included in multiplier calculation, will be added back later as user-controlled settings; attempts to automate this have thus far been too error-prone.\n- (Brew) Fixed \"Group\" and \"Dragon Casting Color\" inputs in Creature Homebrew Builder\n- (Brew) Fixed loading/handling of homebrew subraces in Omnisearch and on the Races page\n- (Fixed typos/added tags)/added tags)"
+	},
+	{
+		"ver": "1.147.15",
+		"date": "2022-01-23",
+		"txt": "- Added \"Settings\" category to Books navbar dropdown\n- Blacklist \"Source\" selection is now sufficient for the \"Name\" selector to be populated (previously, a \"Category\" had to be selected first)\n- Added more categories to Blacklist\n- Added Rivet \"Send to Foundry\" button to Blacklist, when the extension is loaded \n- Fixed Blacklist sort buttons failing to sort the list  \n- Fixed DM Screen Initiative Tracker clearing custom columns when locking/unlocking\n- Fixed Bestiary Table View rendering of lair/regional actions\n- (Brew) Homebrew adventures/books are now added to Adventures/Books navbar dropdowns\n- (Brew) Fixed Creature Text Converter treating spellcasting \"Cantrips ...\" sections as separate traits\n- (Brew) Fixed Creature Builder crash when loading some uninteresting forms of legacy data\n- (Fixed typos/added tags)/added tags)"
 	}
 ]

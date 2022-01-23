@@ -106,6 +106,7 @@ Shared UI components
 		&--background {
 			background: $rgb-bg--night;
 			border-color: $rgb-border-grey--trans-night;
+			border-bottom-color: darken($rgb-border-grey--trans-night, 15%);
 		}
 	}
 

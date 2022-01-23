@@ -38,7 +38,7 @@ class ManageBrew {
 							$wrpSect.empty();
 							if (keys.length) {
 								$wrpSect.append(`<div class="bold">${title}:</div>`);
-								const $lst = $(`<div class="list-display-only pt-0"></div>`).appendTo($wrpSect);
+								const $lst = $(`<div class="list-display-only smooth-scroll overflow-y-auto h-100 pt-0"></div>`).appendTo($wrpSect);
 
 								keys.forEach(k => {
 									const toDisplay = displayFn ? displayFn(BrewUtil.homebrewMeta, metaType, k) : k.toTitleCase();

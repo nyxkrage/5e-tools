@@ -1693,7 +1693,7 @@
 				{
 					"name": "Awaken Greed",
 					"entries": [
-						"Bael casts charm person or major image."
+						"Bael casts {@spell charm person} or major image."
 					]
 				},
 				{
@@ -2019,7 +2019,7 @@
 				{
 					"name": "Labyrinthine Recall",
 					"entries": [
-						"Baphomet can perfectly recall any path he has traveled, and he is immune to the maze spell."
+						"Baphomet can perfectly recall any path he has traveled, and he is immune to the {@spell maze} spell."
 					]
 				},
 				{
@@ -10691,7 +10691,7 @@
 				{
 					"name": "Sow Discord",
 					"entries": [
-						"Graz'zt casts crown of madness or dissonant whispers."
+						"Graz'zt casts {@spell crown of madness} or dissonant whispers."
 					]
 				},
 				{
@@ -11947,7 +11947,7 @@
 				{
 					"name": "Acid Splash",
 					"entries": [
-						"Juiblex casts acid splash."
+						"Juiblex casts {@spell acid splash}."
 					]
 				},
 				{
@@ -15305,7 +15305,7 @@
 				{
 					"name": "Master of Undeath",
 					"entries": [
-						"When Orcus casts {@spell animate dead} or {@spell create undead}, he chooses the level at which the spell is cast, and the creatures created by the spells remain under his control indefinitely. Additionally, he can cast create undead even when it isn't night."
+						"When Orcus casts {@spell animate dead} or {@spell create undead}, he chooses the level at which the spell is cast, and the creatures created by the spells remain under his control indefinitely. Additionally, he can cast {@spell create undead} even when it isn't night."
 					]
 				}
 			],
@@ -15339,7 +15339,7 @@
 				{
 					"name": "A Taste of Undeath",
 					"entries": [
-						"Orcus casts chill touch (17th level)."
+						"Orcus casts {@spell chill touch} (17th level)."
 					]
 				},
 				{

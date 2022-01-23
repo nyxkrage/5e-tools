@@ -131,12 +131,12 @@ class ItemsPage extends ListPage {
 
 	handleFilterChange () {
 		const f = this._pageFilter.filterBox.getValues();
-		function listFilter (li) {
+		const listFilter = li => {
 			const it = this._dataList[li.ix];
 			return this._pageFilter.toDisplay(f, it);
-		}
-		this._mundaneList.filter(listFilter.bind(this));
-		this._magicList.filter(listFilter.bind(this));
+		};
+		this._mundaneList.filter(listFilter);
+		this._magicList.filter(listFilter);
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
@@ -345,9 +345,9 @@ class ItemsPage extends ListPage {
 		const $outVisibleResults = $(`.lst__wrp-search-visible`);
 		const $wrpListMundane = $(`.itm__wrp-list--mundane`);
 		const $wrpListMagic = $(`.itm__wrp-list--magic`);
+		const $elesMundane = $(`.ele-mundane`);
+		const $elesMagic = $(`.ele-magic`);
 		this._mundaneList.on("updated", () => {
-			const $elesMundane = $(`.ele-mundane`);
-
 			// Force-show the mundane list if there are no items on display
 			if (this._magicList.visibleItems.length) $elesMundane.toggleVe(!!this._mundaneList.visibleItems.length);
 			else $elesMundane.showVe();
@@ -361,9 +361,6 @@ class ItemsPage extends ListPage {
 			$wrpListMundane.toggleClass(`itm__wrp-list--empty`, this._mundaneList.visibleItems.length === 0);
 		});
 		this._magicList.on("updated", () => {
-			const $elesMundane = $(`.ele-mundane`);
-			const $elesMagic = $(`.ele-magic`);
-
 			$elesMagic.toggleVe(!!this._magicList.visibleItems.length);
 			// Force-show the mundane list if there are no items on display
 			if (!this._magicList.visibleItems.length) $elesMundane.showVe();

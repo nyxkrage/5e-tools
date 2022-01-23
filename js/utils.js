@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.14"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.15"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -52,6 +52,8 @@ VeCt = {
 	SYM_UI_SKIP: Symbol("uiSkip"),
 
 	SYM_WALKER_BREAK: Symbol("walkerBreak"),
+
+	SYM_UTIL_TIMEOUT: Symbol("timeout"),
 
 	LOC_ORIGIN_CANCER: "https://5e.tools",
 
@@ -2125,9 +2127,13 @@ UrlUtil.URL_TO_HASH_BUILDER["monster"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_
 UrlUtil.URL_TO_HASH_BUILDER["spell"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS];
 UrlUtil.URL_TO_HASH_BUILDER["background"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS];
 UrlUtil.URL_TO_HASH_BUILDER["item"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["itemGroup"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["baseitem"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["variant"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["class"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES];
 UrlUtil.URL_TO_HASH_BUILDER["condition"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
 UrlUtil.URL_TO_HASH_BUILDER["disease"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
+UrlUtil.URL_TO_HASH_BUILDER["status"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
 UrlUtil.URL_TO_HASH_BUILDER["feat"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS];
 UrlUtil.URL_TO_HASH_BUILDER["optionalfeature"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES];
 UrlUtil.URL_TO_HASH_BUILDER["psionic"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_PSIONICS];
@@ -2462,6 +2468,23 @@ SortUtil = {
 		dispCaret.addClass("lst__caret--active").toggleClass("lst__caret--reverse", direction === "asc");
 	},
 
+	/** Add more list sort on-clicks to existing sort buttons. */
+	initBtnSortHandlersAdditional ($wrpBtnsSort, list) {
+		[...$wrpBtnsSort[0].querySelectorAll(".sort")]
+			.map(btnSort => {
+				const btnSortField = btnSort.dataset.sort;
+
+				e_({
+					ele: btnSort,
+					click: evt => {
+						evt.stopPropagation();
+						const direction = list.sortDir === "asc" ? "desc" : "asc";
+						list.sort(btnSortField, direction);
+					},
+				});
+			});
+	},
+
 	ascSortAdventure (a, b) {
 		return SortUtil.ascSortDateString(b.published, a.published)
 			|| SortUtil.ascSortLower(a.parentSource || "", b.parentSource || "")
@@ -2518,6 +2541,18 @@ DataUtil = {
 		return DataUtil._loaded[url];
 	},
 
+	_mutAddProps (data) {
+		if (data && typeof data === "object") {
+			for (const k in data) {
+				if (data[k] instanceof Array) {
+					for (let i = 0, len = data[k].length; i < len; ++i) {
+						data[k][i].__prop = k;
+					}
+				}
+			}
+		}
+	},
+
 	async loadJSON (url, ...otherData) {
 		const procUrl = UrlUtil.link(url);
 
@@ -2541,6 +2576,7 @@ DataUtil = {
 	},
 
 	async pDoMetaMerge (ident, data, options) {
+		DataUtil._mutAddProps(data);
 		DataUtil._merging[ident] = DataUtil._merging[ident] || DataUtil._pDoMetaMerge(ident, data, options);
 		await DataUtil._merging[ident];
 		return DataUtil._merged[ident];
@@ -2647,9 +2683,9 @@ DataUtil = {
 		return `${toCsv(headers)}\n${rows.map(r => toCsv(r)).join("\n")}`;
 	},
 
-	userDownload (filename, data, {fileType = null, isSipAdditionalMetadata = false, propVersion = "siteVersion", valVersion = VERSION_NUMBER} = {}) {
+	userDownload (filename, data, {fileType = null, isSkipAdditionalMetadata = false, propVersion = "siteVersion", valVersion = VERSION_NUMBER} = {}) {
 		filename = `${filename}.json`;
-		if (isSipAdditionalMetadata || data instanceof Array) return DataUtil._userDownload(filename, JSON.stringify(data, null, "\t"), "text/json");
+		if (isSkipAdditionalMetadata || data instanceof Array) return DataUtil._userDownload(filename, JSON.stringify(data, null, "\t"), "text/json");
 
 		data = {[propVersion]: valVersion, ...data};
 		if (fileType != null) data = {fileType, ...data};
@@ -5246,7 +5282,7 @@ BrewUtil = {
 						.map(it => mapCategoryEntry(cat, it))
 						.sort((a, b) => SortUtil.ascSort(a.name, b.name))
 						.forEach((it, i) => {
-							const dispCat = BrewUtil._pRenderBrewScreen_getDisplayCat(cat, true);
+							const dispCat = BrewUtil._pRenderBrewScreen_getDisplayCat(cat, {isManager: true});
 
 							const eleLi = document.createElement("div");
 							eleLi.className = "lst__row ve-flex-col px-0";
@@ -5312,8 +5348,8 @@ BrewUtil = {
 		if (!BrewUtil.homebrew) return;
 
 		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control" placeholder="Search active homebrew...">`);
-		const $wrpList = $(`<div class="list-display-only brew-list brew-list--target manbrew__list ve-flex-col w-100 mb-3"></div>`);
-		const $wrpListGroup = $(`<div class="list-display-only brew-list brew-list--groups no-shrink ve-flex-col w-100" style="height: initial;"></div>`);
+		const $wrpList = $(`<div class="list-display-only smooth-scroll overflow-y-auto h-100 brew-list brew-list--target manbrew__list ve-flex-col w-100 mb-3"></div>`);
+		const $wrpListGroup = $(`<div class="list-display-only smooth-scroll overflow-y-auto brew-list brew-list--groups no-shrink ve-flex-col w-100" style="height: initial;"></div>`);
 
 		const list = new List({
 			$iptSearch,
@@ -5482,28 +5518,14 @@ BrewUtil = {
 		}
 	},
 
-	_pRenderBrewScreen_getDisplayCat (cat, isManager) {
-		switch (cat) {
-			case "variantrule": return "Variant Rule";
-			case "legendaryGroup": return "Legendary Group";
-			case "optionalfeature": return "Optional Feature";
-			case "adventure": return isManager ? "Adventure Contents/Info" : "Adventure";
-			case "adventureData": return "Adventure Text";
-			case "book": return isManager ? "Book Contents/Info" : "Book";
-			case "bookData": return "Book Text";
-			case "itemProperty": return "Item Property";
-			case "itemEntry": return "Item Entry";
-			case "baseitem": return "Base Item";
-			case "variant": return "Magic Item Variant";
-			case "itemGroup": return "Item Group";
-			case "monsterFluff": return "Monster Fluff";
-			case "itemFluff": return "Item Fluff";
-			case "makebrewCreatureTrait": return "Homebrew Builder Creature Trait";
-			case "classFeature": return "Class Feature";
-			case "subclassFeature": return "Subclass Feature";
-			case "charoption": return "Other Character Creation Option";
-			default: return cat.uppercaseFirst();
+	_pRenderBrewScreen_getDisplayCat (prop, {isManager = false} = {}) {
+		if (isManager) {
+			switch (prop) {
+				case "adventure": return "Adventure Contents/Info";
+				case "book": return "Book Contents/Info";
+			}
 		}
+		return Parser.getPropDisplayName(prop);
 	},
 
 	handleLoadbrewClick: async (ele) => {
@@ -5715,7 +5737,7 @@ BrewUtil = {
 		obj.uniqueId = CryptUtil.md5(JSON.stringify(obj));
 	},
 
-	_DIRS: ["action", "adventure", "background", "book", "boon", "charoption", "class", "condition", "creature", "cult", "deity", "disease", "feat", "hazard", "item", "language", "magicvariant", "makebrew", "object", "optionalfeature", "psionic", "race", "recipe", "reward", "spell", "spellFluff", /* "status", */ "subclass", "subrace", "table", "trap", "variantrule", "vehicle", "classFeature", "subclassFeature"],
+	_DIRS: ["action", "adventure", "background", "book", "boon", "charoption", "class", "condition", "creature", "cult", "deity", "disease", "feat", "hazard", "item", "language", "magicvariant", "makebrew", "object", "optionalfeature", "psionic", "race", "recipe", "reward", "spell", /* "status", */ "subclass", "subrace", "table", "trap", "variantrule", "vehicle", "classFeature", "subclassFeature"],
 	_STORABLE: ["class", "subclass", "classFeature", "subclassFeature", "spell", "spellFluff", "monster", "legendaryGroup", "monsterFluff", "background", "feat", "optionalfeature", "race", "raceFluff", "subrace", "deity", "item", "baseitem", "variant", "itemProperty", "itemType", "itemFluff", "itemGroup", "itemEntry", "psionic", "reward", "object", "trap", "hazard", "variantrule", "condition", "disease", "status", "adventure", "adventureData", "book", "bookData", "table", "tableGroup", "vehicle", "vehicleUpgrade", "action", "cult", "boon", "language", "languageScript", "makebrewCreatureTrait", "charoption", "charoptionFluff", "recipe"],
 	async pDoHandleBrewJson (json, page, pFuncRefresh) {
 		page = BrewUtil._PAGE || page;
@@ -6899,7 +6921,7 @@ ExcludeUtil = {
 	},
 
 	getList () {
-		return ExcludeUtil._excludes || [];
+		return MiscUtil.copy(ExcludeUtil._excludes || []);
 	},
 
 	async pSetList (toSet) {
@@ -6921,7 +6943,7 @@ ExcludeUtil = {
 		opts = opts || {};
 
 		source = source.source || source;
-		const out = !!ExcludeUtil._excludes.find(row => (row.source === "*" || row.source === source) && (row.category === "*" || row.category === category) && (row.hash === "*" || row.hash === hash));
+		const out = !!ExcludeUtil._excludes.find(row => (row.source === "*" || row.source.toLowerCase() === source.toLowerCase()) && (row.category === "*" || row.category === category) && (row.hash === "*" || row.hash === hash));
 		if (out && !opts.isNoCount) ++ExcludeUtil._excludeCount;
 		return out;
 	},
@@ -6929,34 +6951,12 @@ ExcludeUtil = {
 	isAllContentExcluded (list) { return (!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount); },
 	getAllContentBlacklistedHtml () { return `<div class="initial-message">(All content <a href="blacklist.html">blacklisted</a>)</div>`; },
 
-	addExclude (displayName, hash, category, source) {
-		if (!ExcludeUtil._excludes.find(row => row.source === source && row.category === category && row.hash === hash)) {
-			ExcludeUtil._excludes.push({displayName, hash, category, source});
-			ExcludeUtil.pSave();
-			return true;
-		}
-		return false;
-	},
-
-	removeExclude (hash, category, source) {
-		const ix = ExcludeUtil._excludes.findIndex(row => row.source === source && row.category === category && row.hash === hash);
-		if (~ix) {
-			ExcludeUtil._excludes.splice(ix, 1);
-			ExcludeUtil.pSave();
-		}
-	},
-
 	async _pSave () {
 		return StorageUtil.pSet(VeCt.STORAGE_EXCLUDES, ExcludeUtil._excludes);
 	},
 
 	// The throttled version, available post-initialisation
 	async pSave () { /* no-op */ },
-
-	resetExcludes () {
-		ExcludeUtil._excludes = [];
-		ExcludeUtil.pSave();
-	},
 };
 
 // ENCOUNTERS ==========================================================================================================

@@ -1023,7 +1023,7 @@ class SpellcastingTraitConvert {
 	}
 
 	static _parseToHit (line) {
-		return line.replace(/( \+)(\d+)( to hit with spell)/g, (m0, m1, m2, m3) => ` {@hit ${m2}}${m3}`);
+		return line.replace(/ ([-+])(\d+)( to hit with spell)/g, (m0, m1, m2, m3) => ` {@hit ${m1 === "-" ? "-" : ""}${m2}}${m3}`);
 	}
 
 	static mutSpellcastingAbility (spellcastingEntry) {

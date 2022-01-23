@@ -319,35 +319,24 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	/**
 	 * Pre-load any side data which is to be merged into the main data.
 	 */
-	static async _pPreloadSideData () { /* Implement as required */ }
-
-	/**
-	 * Get side data which is to be merged into the main data.
-	 */
-	static async _pGetSideData (entity, type) { return null; }
+	static async _pPreloadSideData () {
+		await Promise.all(Object.values(PageFilterClassesRaw._IMPLS_SIDE_DATA).map(Impl => Impl.pPreloadSideData()));
+	}
 
 	/**
 	 *  Apply side data, and check for ignored features.
 	 */
 	static async _pGetIgnoredAndApplySideData (entity, type) {
-		switch (type) {
-			case "classFeature":
-			case "subclassFeature":
-			case "optionalfeature":
-			case "feat":
-			case "reward":
-			default: {
-				const sideData = await this._pGetSideData(entity, type);
+		if (!PageFilterClassesRaw._IMPLS_SIDE_DATA[type]) throw new Error(`Unhandled type "${type}"`);
 
-				if (!sideData) return false;
-				if (sideData.isIgnored) return true;
+		const sideData = await PageFilterClassesRaw._IMPLS_SIDE_DATA[type].pGetSideData(entity, type);
 
-				if (sideData.entries) entity.entries = MiscUtil.copy(sideData.entries);
-				if (sideData.entryData) entity.entryData = MiscUtil.copy(sideData.entryData);
+		if (!sideData) return false;
+		if (sideData.isIgnored) return true;
 
-				break;
-			}
-		}
+		if (sideData.entries) entity.entries = MiscUtil.copy(sideData.entries);
+		if (sideData.entryData) entity.entryData = MiscUtil.copy(sideData.entryData);
+
 		return false;
 	}
 
@@ -564,9 +553,12 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		});
 		return PageFilterClassesRaw._WALKER;
 	}
+
+	static setImplSideData (prop, Impl) { PageFilterClassesRaw._IMPLS_SIDE_DATA[prop] = Impl; }
 	// endregion
 }
 PageFilterClassesRaw._WALKER = null;
+PageFilterClassesRaw._IMPLS_SIDE_DATA = {};
 
 class ModalFilterClasses extends ModalFilter {
 	/**

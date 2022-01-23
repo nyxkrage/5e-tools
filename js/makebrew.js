@@ -1022,7 +1022,7 @@ class BuilderUi {
 		if (options.nullable == null) options.nullable = true;
 
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple(name, {isMarked: true});
-		const initialState = MiscUtil.get(state, ...path) || [];
+		const initialState = this._$getStateIptStringArray_getInitialState(state, ...path);
 		const stringRows = [];
 
 		const doUpdateState = () => {
@@ -1043,6 +1043,13 @@ class BuilderUi {
 			});
 
 		return $row;
+	}
+
+	static _$getStateIptStringArray_getInitialState (state, ...path) {
+		const initialState = MiscUtil.get(state, ...path) || [];
+		if (initialState == null || initialState instanceof Array) return initialState;
+		// Tolerate/"migrate" single-string data, as this is a common change in data structures
+		if (typeof initialState === "string") return [initialState];
 	}
 
 	static _$getStateIptStringArray_getRow (doUpdateState, stringRows, initialString) {

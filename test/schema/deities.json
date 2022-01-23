@@ -113,7 +113,8 @@
 					"$ref": "util.json#/definitions/basicRules"
 				},
 				"customExtensionOf": {
-					"type": "string"
+					"type": "string",
+					"description": "A UID of an existing deity that this deity extends. e.g. \"Bahgtru|Orc|SCAG\""
 				},
 				"piety": {
 					"type": "boolean"
@@ -290,7 +291,8 @@
 							"$ref": "util.json#/definitions/basicRules"
 						},
 						"customExtensionOf": {
-							"type": "string"
+							"type": "string",
+							"description": "A UID of an existing deity that this deity extends. e.g. \"Bahgtru|Orc|SCAG\""
 						},
 						"piety": {
 							"type": "boolean"
@@ -470,7 +472,8 @@
 							"$ref": "util.json#/definitions/basicRules"
 						},
 						"customExtensionOf": {
-							"type": "string"
+							"type": "string",
+							"description": "A UID of an existing deity that this deity extends. e.g. \"Bahgtru|Orc|SCAG\""
 						},
 						"piety": {
 							"type": "boolean"

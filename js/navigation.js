@@ -110,10 +110,10 @@ class NavBar {
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "plutonium.html", "Plutonium (Foundry Module) Features");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/BR20", "Roll20 Script Help");
+		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "changelog.html", "Changelog");
-		this._addElement_li(NavBar._CAT_UTILITIES, `https://wiki.tercept.net/en/5eTools/${NavBar._getCurrentPage().replace(/.html$/i, "")}`, "Help", {isExternal: true}); // FIXME(Wiki) update this as required
+		this._addElement_li(NavBar._CAT_UTILITIES, `https://wiki.tercept.net/en/5eTools/HelpPages/${NavBar._getCurrentPage().replace(/.html$/i, "")}`, "Help", {isExternal: true});
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "privacy-policy.html", "Privacy Policy");
 
@@ -197,6 +197,7 @@ class NavBar {
 			DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-nav-adventure-book-index.json`),
 			ExcludeUtil.pInitialise(),
 		]);
+		const brew = await BrewUtil.pAddBrewData();
 
 		[
 			{
@@ -212,7 +213,12 @@ class NavBar {
 				fnSort: SortUtil.ascSortAdventure.bind(SortUtil),
 			},
 		].forEach(({prop, parentCategory, page, fnSort}) => {
-			const metas = adventureBookIndex[prop]
+			const formBrew = MiscUtil.copy(brew[prop] || []);
+			formBrew.forEach(it => {
+				if (it.parentSource) it.parentName = Parser.sourceJsonToFull(it.parentSource);
+			});
+
+			const metas = [...adventureBookIndex[prop], ...formBrew]
 				.filter(it => !ExcludeUtil.isExcluded(UrlUtil.encodeForHash(it.id), prop, it.source, {isNoCount: true}));
 
 			if (!metas.length) return;
@@ -654,6 +660,7 @@ NavBar._ADV_BOOK_GROUPS = {
 	"book": [
 		{group: "core", displayName: "Core"},
 		{group: "supplement", displayName: "Supplements"},
+		{group: "setting", displayName: "Settings"},
 		{group: "supplement-alt", displayName: "Extras"},
 		{group: "homebrew", displayName: "Homebrew"},
 		{group: "screen", displayName: "Screens"},

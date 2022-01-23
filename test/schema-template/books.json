@@ -22,7 +22,7 @@
 					"group": {
 						"description": "The group under which this book should be listed in the navbar.",
 						"type": "string",
-						"enum": ["core", "supplement", "supplement-alt", "homebrew", "screen", "other"]
+						"enum": ["core", "supplement", "supplement-alt", "setting", "homebrew", "screen", "other"]
 					},
 					"author": {
 						"type": "string"

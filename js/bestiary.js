@@ -98,7 +98,7 @@ class BestiaryPage extends ListPageMultiSource {
 						transform: mon => {
 							const legGroup = DataUtil.monster.getMetaGroup(mon);
 							if (!legGroup?.lairActions?.length) return "";
-							return legGroup.lairActions.map(x => Renderer.get().render({entries: x})).join("");
+							return Renderer.get().render({entries: legGroup.lairActions});
 						},
 						flex: 3,
 					},
@@ -107,7 +107,7 @@ class BestiaryPage extends ListPageMultiSource {
 						transform: mon => {
 							const legGroup = DataUtil.monster.getMetaGroup(mon);
 							if (!legGroup?.regionalEffects?.length) return "";
-							return legGroup.regionalEffects.map(x => Renderer.get().render({entries: x})).join("");
+							return Renderer.get().render({entries: legGroup.regionalEffects});
 						},
 						flex: 3,
 					},

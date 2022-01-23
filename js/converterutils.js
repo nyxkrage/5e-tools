@@ -448,9 +448,8 @@ class DiceConvert {
 	static _walkerStringHandler (isTagHits, str) {
 		if (isTagHits) {
 			// replace e.g. "+X to hit"
-			str = str.replace(/\b([-+])?\d+(?= to hit)\b/g, function (match) {
-				const cleanMatch = match.startsWith("+") ? match.replace("+", "") : match;
-				return `{@hit ${cleanMatch}}`;
+			str = str.replace(/(?<op>[-+])?(?<bonus>\d+)(?= to hit)\b/g, (...m) => {
+				return `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`;
 			});
 		}
 
@@ -792,8 +791,11 @@ class ConvertUtil {
 	 * (Inline titles)
 	 * Checks if a line of text starts with a name, e.g.
 	 * "Big Attack. Lorem ipsum..." vs "Lorem ipsum..."
+	 * @param line
+	 * @param exceptions A set of (lowercase) exceptions which should always be treated as "not a name" (e.g. "cantrips")
+	 * @returns {boolean}
 	 */
-	static isNameLine (line) {
+	static isNameLine (line, {exceptions = null} = {}) {
 		const spl = this._getMergedSplitName({line});
 		if (spl.map(it => it.trim()).filter(Boolean).length === 1) return false;
 
@@ -809,10 +811,12 @@ class ConvertUtil {
 			return !isStopword;
 		});
 
-		const namePartNoStopwords = cleanTokens.join("");
+		const namePartNoStopwords = cleanTokens.join("").trim();
 
 		// if it's an ability score, it's not a name
-		if (Object.values(Parser.ATB_ABV_TO_FULL).includes(namePartNoStopwords.trim())) return false;
+		if (Object.values(Parser.ATB_ABV_TO_FULL).includes(namePartNoStopwords)) return false;
+
+		if (exceptions && exceptions.has(namePartNoStopwords.toLowerCase())) return false;
 
 		// if it's in title case after removing all stopwords, it's a name
 		return namePartNoStopwords.toTitleCase() === namePartNoStopwords;

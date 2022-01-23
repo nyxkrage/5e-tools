@@ -117,7 +117,7 @@ class MakeCards extends BaseComponent {
 						tags: entityMeta.fnGetTags(it.values.entity),
 					};
 				});
-				DataUtil.userDownload("rpg-cards", toDownload, {isSipAdditionalMetadata: true});
+				DataUtil.userDownload("rpg-cards", toDownload, {isSkipAdditionalMetadata: true});
 			});
 		$$`<div class="w-100 no-shrink ve-flex-v-center mb-3">${$iptSearch}${$btnAdd}${$btnReset}${$btnExport}</div>`.appendTo($wrpContainer);
 		// endregion

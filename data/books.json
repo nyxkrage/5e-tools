@@ -462,7 +462,7 @@
 			"name": "Sword Coast Adventurer's Guide",
 			"id": "SCAG",
 			"source": "SCAG",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/SCAG.png",
 			"published": "2015-11-03",
 			"author": "Wizards RPG Team",
@@ -847,7 +847,7 @@
 			"name": "Guildmasters' Guide to Ravnica",
 			"id": "GGR",
 			"source": "GGR",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/GGR.png",
 			"published": "2018-11-20",
 			"contents": [
@@ -1255,7 +1255,7 @@
 			"name": "Eberron: Rising from the Last War",
 			"id": "ERLW",
 			"source": "ERLW",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/ERLW.png",
 			"published": "2019-11-19",
 			"contents": [
@@ -1513,7 +1513,7 @@
 			"name": "Explorer's Guide to Wildemount",
 			"id": "EGW",
 			"source": "EGW",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/EGW.png",
 			"published": "2020-03-17",
 			"contents": [
@@ -1812,7 +1812,7 @@
 			"name": "Mythic Odysseys of Theros",
 			"id": "MOT",
 			"source": "MOT",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/MOT.png",
 			"published": "2020-06-02",
 			"contents": [
@@ -2135,7 +2135,7 @@
 			"name": "Van Richten's Guide to Ravenloft",
 			"id": "VRGR",
 			"source": "VRGR",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/VRGR.png",
 			"published": "2021-05-18",
 			"contents": [
@@ -3113,7 +3113,7 @@
 			"name": "Strixhaven: A Curriculum of Chaos",
 			"id": "SCC",
 			"source": "SCC",
-			"group": "supplement",
+			"group": "setting",
 			"coverUrl": "img/covers/SCC.png",
 			"published": "2021-12-07",
 			"author": "Wizards RPG Team",

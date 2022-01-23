@@ -3866,7 +3866,7 @@ class ComponentUiUtil {
 
 		const activeClass = opts.activeClass || "active";
 		const stateName = opts.stateName || "state";
-		const stateProp = opts.stateProp || "_state";
+		const stateProp = opts.stateProp || `_${stateName}`;
 
 		const btn = (ele ? e_({ele}) : e_({
 			ele: ele,
@@ -3924,10 +3924,15 @@ class ComponentUiUtil {
 	 * @param [opts.$ele] Element to use.
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the input.
 	 * @param [opts.displayNullAsIndeterminate]
+	 * @param [opts.stateName] State name.
+	 * @param [opts.stateProp] State prop.
 	 * @return {JQuery}
 	 */
 	static $getCbBool (component, prop, opts) {
 		opts = opts || {};
+
+		const stateName = opts.stateName || "state";
+		const stateProp = opts.stateProp || `_${stateName}`;
 
 		const cb = e_({
 			tag: "input",
@@ -3936,20 +3941,20 @@ class ComponentUiUtil {
 				if (evt.key === "Escape") cb.blur();
 			},
 			change: () => {
-				component._state[prop] = cb.checked;
+				component[stateProp][prop] = cb.checked;
 			},
 		});
 
 		const hook = () => {
-			cb.checked = !!component._state[prop];
-			if (opts.displayNullAsIndeterminate) cb.indeterminate = component._state[prop] == null;
+			cb.checked = !!component[stateProp][prop];
+			if (opts.displayNullAsIndeterminate) cb.indeterminate = component[stateProp][prop] == null;
 		};
-		component._addHookBase(prop, hook);
+		component._addHook(stateName, prop, hook);
 		hook();
 
 		const $cb = $(cb);
 
-		return opts.asMeta ? ({$cb, unhook: () => component._removeHookBase(prop, hook)}) : $cb;
+		return opts.asMeta ? ({$cb, unhook: () => component._removeHook(stateName, prop, hook)}) : $cb;
 	}
 
 	/**

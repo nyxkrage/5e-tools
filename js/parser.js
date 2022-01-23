@@ -3315,6 +3315,33 @@ Parser.getTagSource = function (tag, source) {
 	return Parser.TAG_TO_DEFAULT_SOURCE[tag];
 };
 
+Parser.PROP_TO_DISPLAY_NAME = {
+	"variantrule": "Variant Rule",
+	"optionalfeature": "Optional Feature",
+	"variant": "Magic Item Variant",
+	"classFeature": "Class Feature",
+	"subclassFeature": "Subclass Feature",
+	"baseitem": "Item (Base)",
+	"item": "Item",
+	"itemGroup": "Item Group",
+	"legendaryGroup": "Legendary Group",
+	"adventure": "Adventure",
+	"adventureData": "Adventure Text",
+	"book": "Book",
+	"bookData": "Book Text",
+	"itemProperty": "Item Property",
+	"itemEntry": "Item Entry",
+	"monsterFluff": "Monster Fluff",
+	"itemFluff": "Item Fluff",
+	"makebrewCreatureTrait": "Homebrew Builder Creature Trait",
+	"charoption": "Other Character Creation Option",
+	"vehicleUpgrade": "Vehicle Upgrade",
+};
+Parser.getPropDisplayName = function (prop) {
+	if (Parser.PROP_TO_DISPLAY_NAME[prop]) return Parser.PROP_TO_DISPLAY_NAME[prop];
+	return prop.uppercaseFirst();
+};
+
 Parser.ITEM_TYPE_JSON_TO_ABV = {
 	"A": "ammunition",
 	"AF": "ammunition",
@@ -3460,17 +3487,20 @@ Parser.metric = {
 	FEET_TO_METRES: 0.3, // 5 ft = 1.5 m
 	POUNDS_TO_KILOGRAMS: 0.5, // 2 lb = 1 kg
 
-	getMetricNumber ({originalValue, originalUnit}) {
+	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {
 		if (isNaN(originalValue)) return originalValue;
 		originalValue = Number(originalValue);
 		if (!originalValue) return originalValue;
 
+		let out = null;
 		switch (originalUnit) {
-			case "mi.": case "mi": case UNT_MILES: return originalValue * Parser.metric.MILES_TO_KILOMETRES;
-			case "ft.": case "ft": case UNT_FEET: return originalValue * Parser.metric.FEET_TO_METRES;
-			case "lb.": case "lb": case "lbs": return originalValue * Parser.metric.POUNDS_TO_KILOGRAMS;
+			case "mi.": case "mi": case UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
+			case "ft.": case "ft": case UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
+			case "lb.": case "lb": case "lbs": out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
 			default: return originalValue;
 		}
+		if (toFixed != null) return out.toFixed(toFixed);
+		return out;
 	},
 
 	getMetricUnit ({originalUnit, isShortForm = false, isPlural = true}) {

@@ -357,7 +357,7 @@ class CreatureParser extends BaseParser {
 				curLine = toConvert[i];
 
 				// collect subsequent paragraphs
-				while (curLine && !ConvertUtil.isNameLine(curLine) && !startNextPhase(curLine)) {
+				while (curLine && !ConvertUtil.isNameLine(curLine, {exceptions: new Set(["cantrips"])}) && !startNextPhase(curLine)) {
 					if (BaseParser._isContinuationLine(curTrait.entries, curLine)) {
 						curTrait.entries.last(`${curTrait.entries.last().trim()} ${curLine.trim()}`);
 					} else {

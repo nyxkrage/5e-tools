@@ -951,6 +951,21 @@
 			]
 		},
 		{
+			"name": "Alchemist's Doom",
+			"source": "SCC",
+			"page": 179,
+			"_copy": {
+				"name": "Alchemist's Fire (flask)",
+				"source": "PHB"
+			},
+			"type": "G",
+			"rarity": "unknown",
+			"value": null,
+			"entries": [
+				"This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist's fire as an improvised weapon. On a hit, the target takes 7 ({@dice 2d6}) fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames."
+			]
+		},
+		{
 			"name": "Alchemist's Fire (flask)",
 			"source": "PHB",
 			"page": 148,
@@ -6385,6 +6400,17 @@
 			"type": "$",
 			"rarity": "none",
 			"value": 25000
+		},
+		{
+			"name": "Catapult Munition",
+			"source": "SCC",
+			"page": 174,
+			"type": "G",
+			"rarity": "unknown",
+			"entries": [
+				"A catapult munition roughly the size and weight of a cannonball.",
+				"The munition can be thrown up to 30 feet and explodes on impact. Any creature within a 15-foot-radius sphere centered on the point of impact must make a DC 14 Dexterity saving throw, taking 35 ({@damage 10d6}) fire damage on a failed save, or half as much damage on a successful one. In addition, each object in that area that isn't being worn or carried takes 35 ({@damage 10d6}) fire damage."
+			]
 		},
 		{
 			"name": "Cauldron of Plenty",
@@ -21367,6 +21393,16 @@
 			"rarity": "uncommon",
 			"entries": [
 				"White dust swirls constantly within this pale gray potion. When you drink the potion, it cures you of mummy rot."
+			]
+		},
+		{
+			"name": "Murgaxor's Elixir of Life",
+			"source": "SCC",
+			"page": 179,
+			"type": "G",
+			"rarity": "unknown",
+			"entries": [
+				"Whoever drinks this concoction gains advantage on death saving throws for 24 hours."
 			]
 		},
 		{

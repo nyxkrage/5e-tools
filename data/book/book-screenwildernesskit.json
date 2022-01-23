@@ -102,11 +102,11 @@
 								],
 								[
 									"7",
-									"The group discovers a monument. Roll on the Monuments table."
+									"The group discovers a monument. Roll on the {@table  Wilderness Journeys; Monuments|ScreenWildernessKit|Monuments} table."
 								],
 								[
 									"8",
-									"The group wanders into a strange place. Roll on the Weird Locales table."
+									"The group wanders into a strange place. Roll on the {@table Wilderness Journeys; Weird Locales|ScreenWildernessKit|Weird Locales} table."
 								]
 							]
 						}
