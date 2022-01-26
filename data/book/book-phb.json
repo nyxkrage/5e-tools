@@ -6580,9 +6580,8 @@
 									"page": 177,
 									"entries": [
 										"The DM decides when circumstances are appropriate for hiding. When you try to hide, make a Dexterity ({@skill Stealth}) check. Until you are discovered or you stop hiding, that check's total is contested by the Wisdom ({@skill Perception}) check of any creature that actively searches for signs of your presence.",
-										"You can't hide from a creature that can see you clearly, and if you make noise (such as shouting a warning or knocking over a vase), you give away your position. An {@condition invisible} creature can't be seen, so it can always try to hide. Signs of its passage might still be noticed, however, and it still has to stay quiet.",
-										"In combat, most creatures stay alert for signs of danger all around, so if you come out of hiding and approach a creature, it usually sees you. However, under certain circumstances, the Dungeon Master might allow you to stay hidden as you approach a creature that is distracted, allowing you to gain advantage on an attack before you are seen.",
-										"Ultimately, the DM decides when circumstances are appropriate for hiding.",
+										"You can't hide from a creature that can see you clearly, and you give away your position if you make noise, such as shouting a warning or knocking over a vase. An {@condition invisible} creature can always try to hide. Signs of its passage might still be noticed, and it does have to stay quiet.",
+										"In combat, most creatures stay alert for signs of danger all around, so if you come out of hiding and approach a creature, it usually sees you. However, under certain circumstances, the DM might allow you to stay hidden as you approach a creature that is distracted, allowing you to gain advantage on an attack roll before you are seen.",
 										{
 											"type": "entries",
 											"name": "Passive Perception",

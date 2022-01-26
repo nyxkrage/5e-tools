@@ -123,7 +123,9 @@
 	}
 	// endregion
 
-	&variant-feature:not(.subclass-feature):not(.subclass-feature--sub) {
+	// region Header coloring
+	// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
+	&feature-variant-subclass {
 		.rd__h--0,
 		.rd__h--1,
 		.rd__h--2 {
@@ -131,6 +133,124 @@
 			border-bottom-color: $rgb-class-variant;
 		}
 	}
+
+	&feature-variant-ua-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-ua;
+			border-bottom-color: $rgb-class-ua;
+		}
+	}
+
+	&feature-variant-brew-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant-brew;
+			border-bottom-color: $rgb-class-variant-brew;
+		}
+	}
+
+	&feature-subclass-reprint {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass--stale;
+			border-bottom-color: $rgb-subclass--stale;
+		}
+	}
+
+	&feature-ua-subclass-reprint {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass-ua--stale;
+			border-bottom-color: $rgb-subclass-ua--stale;
+		}
+	}
+
+	&feature-brew-subclass-reprint {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant-brew;
+			border-bottom-color: $rgb-class-variant-brew;
+		}
+	}
+
+	&feature-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass;
+			border-bottom-color: $rgb-subclass;
+		}
+	}
+
+	&feature-ua-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass-ua;
+			border-bottom-color: $rgb-subclass-ua;
+		}
+	}
+
+	&feature-brew-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-brew;
+			border-bottom-color: $rgb-class-brew;
+		}
+	}
+
+	&feature-variant {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant;
+			border-bottom-color: $rgb-class-variant;
+		}
+	}
+
+	&feature-variant-ua {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-ua;
+			border-bottom-color: $rgb-class-ua;
+		}
+	}
+
+	&feature-variant-brew {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant-brew;
+			border-bottom-color: $rgb-class-variant-brew;
+		}
+	}
+
+	&feature-ua {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-ua;
+			border-bottom-color: $rgb-class-ua;
+		}
+	}
+
+	&feature-brew {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-brew;
+			border-bottom-color: $rgb-class-brew;
+		}
+	}
+	// endregion
 }
 
 .night-mode .cls__ {
@@ -242,7 +362,9 @@
 	}
 	// endregion
 
-	&variant-feature:not(.subclass-feature):not(.subclass-feature--sub) {
+	// region Header coloring
+	// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
+	&feature-variant-subclass {
 		.rd__h--0,
 		.rd__h--1,
 		.rd__h--2 {
@@ -250,6 +372,124 @@
 			border-bottom-color: $rgb-class-variant--night;
 		}
 	}
+
+	&feature-variant-ua-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-ua--night;
+			border-bottom-color: $rgb-class-ua--night;
+		}
+	}
+
+	&feature-variant-brew-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant-brew--night;
+			border-bottom-color: $rgb-class-variant-brew--night;
+		}
+	}
+
+	&feature-subclass-reprint {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass--night-stale;
+			border-bottom-color: $rgb-subclass--night-stale;
+		}
+	}
+
+	&feature-ua-subclass-reprint {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass-ua--night-stale;
+			border-bottom-color: $rgb-subclass-ua--night-stale;
+		}
+	}
+
+	&feature-brew-subclass-reprint {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant-brew--night;
+			border-bottom-color: $rgb-class-variant-brew--night;
+		}
+	}
+
+	&feature-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass--night;
+			border-bottom-color: $rgb-subclass--night;
+		}
+	}
+
+	&feature-ua-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-subclass-ua--night;
+			border-bottom-color: $rgb-subclass-ua--night;
+		}
+	}
+
+	&feature-brew-subclass {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-brew--night;
+			border-bottom-color: $rgb-class-brew--night;
+		}
+	}
+
+	&feature-variant {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant--night;
+			border-bottom-color: $rgb-class-variant--night;
+		}
+	}
+
+	&feature-variant-ua {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-ua--night;
+			border-bottom-color: $rgb-class-ua--night;
+		}
+	}
+
+	&feature-variant-brew {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-variant-brew--night;
+			border-bottom-color: $rgb-class-variant-brew--night;
+		}
+	}
+
+	&feature-ua {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-ua--night;
+			border-bottom-color: $rgb-class-ua--night;
+		}
+	}
+
+	&feature-brew {
+		.rd__h--0,
+		.rd__h--1,
+		.rd__h--2 {
+			color: $rgb-class-brew--night;
+			border-bottom-color: $rgb-class-brew--night;
+		}
+	}
+	// endregion
 }
 // endregion
 
@@ -342,51 +582,6 @@
 
 // region main text
 .cls-main__ {
-	&sc-feature {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: $rgb-subclass;
-			border-bottom-color: $rgb-subclass;
-		}
-
-		&--reprinted {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-subclass--stale;
-				border-bottom-color: $rgb-subclass--stale;
-			}
-		}
-
-		&--spicy {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-subclass-ua;
-				border-bottom-color: $rgb-subclass-ua;
-			}
-		}
-
-		&--stale {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-subclass-ua--stale;
-				border-bottom-color: $rgb-subclass-ua--stale;
-			}
-		}
-
-		&--brew {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-class-brew;
-				border-bottom-color: $rgb-class-brew;
-			}
-		}
-	}
-
 	&msg-no-content {
 		height: 40px;
 		color: $rgb-name-red;
@@ -408,51 +603,6 @@
 }
 
 .night-mode .cls-main__ {
-	&sc-feature {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: $rgb-subclass--night;
-			border-bottom-color: $rgb-subclass--night;
-		}
-
-		&--reprinted {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-subclass--night-stale;
-				border-bottom-color: $rgb-subclass--night-stale;
-			}
-		}
-
-		&--spicy {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-subclass-ua--night;
-				border-bottom-color: $rgb-subclass-ua--night;
-			}
-		}
-
-		&--stale {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-subclass-ua--night-stale;
-				border-bottom-color: $rgb-subclass-ua--night-stale;
-			}
-		}
-
-		&--brew {
-			.rd__h--0,
-			.rd__h--1,
-			.rd__h--2 {
-				color: $rgb-class-brew--night;
-				border-bottom-color: $rgb-class-brew--night;
-			}
-		}
-	}
-
 	&msg-no-content {
 		color: $rgb-name-red--night;
 	}

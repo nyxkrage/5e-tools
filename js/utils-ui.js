@@ -4277,7 +4277,7 @@ class ComponentUiUtil {
 
 		let $btnAdd;
 		if (opts.isFreeText) {
-			$btnAdd = $(`<button class="btn btn-xxs btn-default ui-pick__btn-add">+</button>`)
+			$btnAdd = $(`<button class="btn btn-xxs btn-default ui-pick__btn-add ml-auto">+</button>`)
 				.click(async () => {
 					const input = await InputUiUtil.pGetUserString();
 					if (input == null || input === VeCt.SYM_UI_SKIP) return;
@@ -4303,12 +4303,13 @@ class ComponentUiUtil {
 
 				const $btnRemove = $(`<button class="btn btn-danger ui-pick__btn-remove text-center">×</button>`)
 					.click(() => this._state[k] = false);
-				$$`<div class="ve-flex mx-1 mb-1 ui-pick__disp-pill"><div class="px-1 ui-pick__disp-text ve-flex-v-center">${opts.fnDisplay ? opts.fnDisplay(k) : k}</div>${$btnRemove}</div>`.appendTo($parent);
+				const txt = `${opts.fnDisplay ? opts.fnDisplay(k) : k}`;
+				$$`<div class="ve-flex mx-1 mb-1 ui-pick__disp-pill max-w-100 min-w-0"><div class="px-1 ui-pick__disp-text ve-flex-v-center text-clip-ellipsis" title="${txt.qq()}">${txt}</div>${$btnRemove}</div>`.appendTo($parent);
 			});
 		};
 
-		const $wrpPills = $(`<div class="ve-flex ve-flex-wrap w-100"></div>`);
-		const $wrp = $$`<div class="ve-flex-v-center">${$btnAdd}${$wrpPills}</div>`;
+		const $wrpPills = $(`<div class="ve-flex ve-flex-wrap max-w-100 min-w-0"></div>`);
+		const $wrp = $$`<div class="ve-flex-v-center w-100">${$btnAdd}${$wrpPills}</div>`;
 		pickComp._addHookAll("state", () => {
 			component._state[prop] = Object.keys(pickComp._state).filter(k => pickComp._state[k]);
 			pickComp.render($wrpPills);

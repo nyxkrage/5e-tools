@@ -9527,8 +9527,6 @@ Renderer.hover = {
 								delete cpy.subclassSource;
 								delete cpy.level;
 								delete cpy.header;
-								if (ent.source === cpy.source) delete cpy.source;
-								if (ent.page === cpy.page) delete cpy.page;
 								if (toReplaceMeta.name) cpy.name = toReplaceMeta.name;
 								toReplaceMeta.array[toReplaceMeta.ix] = cpy;
 							}
@@ -9552,8 +9550,6 @@ Renderer.hover = {
 								cntReplaces++;
 								delete cpy.featureType;
 								delete cpy.prerequisite;
-								if (ent.source === cpy.source) delete cpy.source;
-								if (ent.page === cpy.page) delete cpy.page;
 								if (toReplaceMeta.name) cpy.name = toReplaceMeta.name;
 								toReplaceMeta.array[toReplaceMeta.ix] = cpy;
 							}

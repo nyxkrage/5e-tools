@@ -139,6 +139,11 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		if (data.class && data.class.length) (isAddedAnyClass = true) && this._addData_addClassData(data);
 		if (data.subclass && data.subclass.length) (isAddedAnySubclass = true) && this._addData_addSubclassData(data);
 
+		const walker = MiscUtil.getWalker({
+			keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST,
+			isNoModification: true,
+		});
+
 		// region Add to filters, and handle post-subclass-load mutations
 		this._dataList.forEach(cls => {
 			this._pageFilter.constructor.mutateForFilters(cls);
@@ -147,6 +152,23 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			if (SourceUtil.isNonstandardSource(cls.source) || BrewUtil.hasSourceJson(cls.source)) {
 				if (cls.fluff) cls.fluff.filter(f => f.source === cls.source).forEach(f => f._isStandardSource = true);
 				cls.subclasses.filter(sc => sc.source === cls.source).forEach(sc => sc._isStandardSource = true);
+			}
+
+			// Add "reprinted" flags to subclass features of reprinted subclasses, to use when coloring headers
+			if (cls.subclasses?.length) {
+				cls.subclasses
+					.filter(sc => sc.isReprinted && sc.subclassFeatures?.length)
+					.forEach(sc => {
+						walker.walk(
+							sc.subclassFeatures,
+							{
+								object: (obj) => {
+									if (obj.level == null) return;
+									obj.isReprinted = true;
+								},
+							},
+						);
+					});
 			}
 
 			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls), "class", cls.source);
@@ -1938,10 +1960,38 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		// Add extra classses to our features as we render them
 		Renderer.get()
 			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, (entry) => {
-				if (!entry.source) return null;
-				if (!entry.isClassFeatureVariant) return null;
-				if (!SourceUtil.isNonstandardSource(entry.source) && entry.isClassFeatureVariant) return ["cls__variant-feature"];
-				return null;
+				if (typeof entry === "string") return null;
+
+				// FIXME(future) "subclassShortName" is deleted in `Renderer.hover.pDoDereferenceNestedAndCache` so is not
+				//   available for e.g. Cleric subclass "Blessed Strikes". We don't currently differentiate between
+				//   "variant subclass feature" and "variant class feature," color-wise, so this is not (yet) an issue.
+				if (entry.subclassShortName) {
+					if (entry.isClassFeatureVariant) {
+						if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-variant-brew-subclass"];
+						if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-variant-ua-subclass"];
+						return ["cls__feature-variant-subclass"];
+					}
+
+					if (entry.isReprinted) {
+						if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-brew-subclass-reprint"];
+						if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-ua-subclass-reprint"];
+						return ["cls__feature-subclass-reprint"];
+					}
+
+					if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-brew-subclass"];
+					if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-ua-subclass"];
+					return ["cls__feature-subclass"];
+				}
+
+				if (entry.isClassFeatureVariant) {
+					if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-variant-brew"];
+					if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-variant-ua"];
+					return ["cls__feature-variant"];
+				}
+
+				if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-brew"];
+				if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-ua"];
+				return [];
 			});
 
 		$content.append(Renderer.utils.getBorderTr());

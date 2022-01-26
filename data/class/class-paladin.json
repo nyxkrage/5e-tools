@@ -3271,7 +3271,7 @@
 				"You gain oath spells at the paladin levels listed in the Oath of the Watchers table. See the Sacred Oath class feature for how oath spells work.",
 				{
 					"type": "table",
-					"caption": "Oath of the Watchers Spells  Spells",
+					"caption": "Oath of the Watchers Spells",
 					"colLabels": [
 						"Paladin Level",
 						"Spells"
@@ -3472,7 +3472,7 @@
 				"You gain oath spells at the paladin levels listed in the Oath of the Watchers table. See the Sacred Oath class feature for how oath spells work.",
 				{
 					"type": "table",
-					"caption": "Oath of the Watchers Spells  Spells",
+					"caption": "Oath of the Watchers Spells",
 					"colLabels": [
 						"Paladin Level",
 						"Spells"

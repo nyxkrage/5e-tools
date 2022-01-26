@@ -220,8 +220,7 @@
 									"id": "39d",
 									"entries": [
 										"Each participant fills a teacup with hot tea and places it on the table. The participants then roll initiative. At least one Scufflecup participant is a student who isn't a player character.",
-										"On each of their turns, a participant can use a bonus action to mentally command their teacup either to attack another teacup within range or to try to shove another teacup off the table, using the rules for {@book shoving|PHB|9|Shoving a Creature} in the {@book Player's Handbook|PHB}. A participant loses the game if their teacup drops to 0 hit points or if their teacup falls off the table.",
-										"REMOVED_BLOCK_CREATURE= {@creature Scufflecup Teacup|SCC}",
+										"On each of their turns, a participant can use a bonus action to mentally command their {@creature Scufflecup Teacup|SCC|teacup} either to attack another teacup within range or to try to shove another teacup off the table, using the rules for {@book shoving|PHB|9|Shoving a Creature} in the {@book Player's Handbook|PHB}. A participant loses the game if their teacup drops to 0 hit points or if their teacup falls off the table.",
 										"The participant with the last cup standing wins. The winner receives a purse of donations from the crowd that totals 1,000 gp."
 									]
 								},

@@ -530,7 +530,8 @@ class BlacklistUi {
 	_addListItem_getItemStyles () { return `no-click ve-flex-v-center lst__row lst--border lst__row-inner no-shrink`; }
 
 	async _pAdd () {
-		const {hash, name: displayName, category} = this._comp.name;
+		const {hash, name: displayName, category: categoryName} = this._comp.name;
+		const category = categoryName === "*" ? this._comp.category : categoryName;
 
 		if (
 			this._comp.source === "*"
