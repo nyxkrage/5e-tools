@@ -3221,6 +3221,26 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Mordenkainen Presents: Monsters of the Multiverse",
+			"id": "MPMM",
+			"source": "MPMM",
+			"group": "supplement",
+			"coverUrl": "img/covers/MPMM.png",
+			"published": "2022-01-25",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Using This Book"
+				},
+				{
+					"name": "Fantastical Races"
+				},
+				{
+					"name": "Bestiary"
+				}
+			]
 		}
 	]
 }

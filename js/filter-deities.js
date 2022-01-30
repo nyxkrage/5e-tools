@@ -14,7 +14,6 @@ class PageFilterDeities extends PageFilter {
 
 	constructor () {
 		super();
-		this._sourceFilter = new SourceFilter();
 		this._pantheonFilter = new Filter({header: "Pantheon", items: []});
 		this._categoryFilter = new Filter({header: "Category", items: [VeCt.STR_NONE]});
 		this._alignmentFilter = new Filter({

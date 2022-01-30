@@ -810,6 +810,22 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Dual Wielder",
+			"source": "PHB",
+			"effects": [
+				{
+					"name": "AC Increase",
+					"changes": [
+						{
+							"key": "data.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 1
+						}
+					]
+				}
+			]
 		}
 	]
 }

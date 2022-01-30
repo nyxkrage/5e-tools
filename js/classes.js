@@ -1594,7 +1594,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			$wrpBody,
 
 			depthData,
-			additionalCssClasses,
+			additionalCssClasses = "",
 		},
 	) {
 		// Skip inline entries
@@ -1605,8 +1605,6 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			&& !this.filterBox.toDisplayByFilters(filterValues, {filter: this._pageFilter.sourceFilter, value: isUseSubclassSources && depthData.source === this.activeClassRaw.source ? this._pageFilter.getActiveSource(filterValues) : depthData.source})
 		) return;
 
-		// If there was not a class specified, then this is not a subclass item, so we can color it with grellow as required
-		additionalCssClasses = additionalCssClasses || (depthData.source && SourceUtil.isNonstandardSource(depthData.source) ? `cls-nav__item--spicy` : "");
 		const displayDepth = Math.min(depthData.depth + 1, 2);
 		$(`<div class="cls-nav__item cls-nav__item--depth-${displayDepth} ${additionalCssClasses}">${depthData.name}</div>`)
 			.click(() => {
@@ -1634,33 +1632,21 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 
 		if (!this._state.isHideFeatures && depthData) {
 			depthData.filter(it => it.name).forEach(it => {
-				// Workaround to match the renderer's output/CSS rule logic
-				if (it.isClassFeatureVariant) {
-					if (SourceUtil.isNonstandardSource(it.source)) {
-						this._render_renderOutline_doMakeItem({
-							depthData: it,
-							additionalCssClasses: `cls-nav__item--spicy`,
-							filterValues,
-							isUseSubclassSources,
-							$wrpBody,
-						});
-					} else {
-						this._render_renderOutline_doMakeItem({
-							depthData: it,
-							additionalCssClasses: `cls-nav__item--variant-feature`,
-							filterValues,
-							isUseSubclassSources,
-							$wrpBody,
-						});
-					}
-				} else {
-					this._render_renderOutline_doMakeItem({
-						depthData: it,
-						filterValues,
-						isUseSubclassSources,
-						$wrpBody,
-					});
-				}
+				const additionalCssClassesRaw = this._getColorStyleClasses(
+					it,
+					{
+						isForceStandardSource: it.source === this.activeClass.source,
+						prefix: "cls-nav__item--",
+					},
+				);
+
+				this._render_renderOutline_doMakeItem({
+					depthData: it,
+					additionalCssClasses: additionalCssClassesRaw.join(" "),
+					filterValues,
+					isUseSubclassSources,
+					$wrpBody,
+				});
 			});
 		}
 
@@ -1674,6 +1660,15 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			// If we didn't render the intro for gaining a subclass feature, do so now
 			if (this._state.isHideFeatures && depthData) {
 				depthData.filter(it => it.name).forEach(it => {
+					const additionalCssClassesRaw = this._getColorStyleClasses(
+						it,
+						{
+							isSubclass: true,
+							isForceStandardSource: true,
+							prefix: "cls-nav__item--",
+						},
+					);
+
 					this._render_renderOutline_doMakeItem({
 						depthData: it,
 						filterValues,
@@ -1691,22 +1686,21 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 				const scLvlFeatures = sc.subclassFeatures.find(it => it[0]?.level === ixLvl + 1);
 				if (!scLvlFeatures) return;
 
-				const mod = ClassesPage.getSubclassCssMod(this.activeClass, sc);
-				const modClassBase = `cls-nav__item--sc-${mod}`;
-
 				scLvlFeatures.forEach((scFeature, ixScFeature) => {
 					const depthData = MiscUtil.get(this._outlineData, stateKey, scFeature.level, ixScFeature);
 					depthData.filter(it => it.name).map(it => {
-						// Workaround to match the renderer's output/CSS rule logic
-						let modClass = modClassBase;
-						if (it.isClassFeatureVariant) {
-							if (SourceUtil.isNonstandardSource(it.source)) modClass += ` cls-nav__item--spicy`;
-							else modClass += ` cls-nav__item--variant-feature`;
-						}
+						const additionalCssClassesRaw = this._getColorStyleClasses(
+							it,
+							{
+								isSubclass: true,
+								isForceStandardSource: sc._isStandardSource,
+								prefix: "cls-nav__item--",
+							},
+						);
 
 						this._render_renderOutline_doMakeItem({
 							depthData: it,
-							additionalCssClasses: modClass,
+							additionalCssClasses: additionalCssClassesRaw.join(" "),
 							filterValues,
 							isUseSubclassSources,
 							$wrpBody,
@@ -1728,6 +1722,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 				"Depending on your choice of subclass, you may gain certain subclass features\u2014or meet prerequisites for acquiring them\u2014at this level.",
 			],
 			gainSubclassFeature: true,
+			_isStandardSource: true,
 		};
 	}
 
@@ -1952,6 +1947,36 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		return "fresh";
 	}
 
+	_getColorStyleClasses (entry, {isForceStandardSource, prefix, isSubclass} = {}) {
+		if (isSubclass) {
+			if (entry.isClassFeatureVariant) {
+				if (entry.source && !isForceStandardSource && BrewUtil.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew-subclass`];
+				if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-variant-ua-subclass`];
+				return [`${prefix}feature-variant-subclass`];
+			}
+
+			if (entry.isReprinted) {
+				if (entry.source && !isForceStandardSource && BrewUtil.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass-reprint`];
+				if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-ua-subclass-reprint`];
+				return [`${prefix}feature-subclass-reprint`];
+			}
+
+			if (entry.source && !isForceStandardSource && BrewUtil.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass`];
+			if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-ua-subclass`];
+			return [`${prefix}feature-subclass`];
+		}
+
+		if (entry.isClassFeatureVariant) {
+			if (entry.source && !isForceStandardSource && BrewUtil.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew`];
+			if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-variant-ua`];
+			return [`${prefix}feature-variant`];
+		}
+
+		if (entry.source && !isForceStandardSource && BrewUtil.hasSourceJson(entry.source)) return [`${prefix}feature-brew`];
+		if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-ua`];
+		return [];
+	}
+
 	_render_renderClassContent () {
 		const $content = $(document.getElementById("pagecontent")).empty();
 		const cls = this.activeClass;
@@ -1962,36 +1987,12 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, (entry) => {
 				if (typeof entry === "string") return null;
 
-				// FIXME(future) "subclassShortName" is deleted in `Renderer.hover.pDoDereferenceNestedAndCache` so is not
-				//   available for e.g. Cleric subclass "Blessed Strikes". We don't currently differentiate between
-				//   "variant subclass feature" and "variant class feature," color-wise, so this is not (yet) an issue.
-				if (entry.subclassShortName) {
-					if (entry.isClassFeatureVariant) {
-						if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-variant-brew-subclass"];
-						if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-variant-ua-subclass"];
-						return ["cls__feature-variant-subclass"];
-					}
+				const sc = entry.subclassShortName
+					? (cls.subclasses || []).find(it => it.shortName === entry.subclassShortName && it.source === entry.subclassSource)
+					: null;
+				const isForceStandardSource = sc ? sc._isStandardSource : (entry.source === cls.source);
 
-					if (entry.isReprinted) {
-						if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-brew-subclass-reprint"];
-						if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-ua-subclass-reprint"];
-						return ["cls__feature-subclass-reprint"];
-					}
-
-					if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-brew-subclass"];
-					if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-ua-subclass"];
-					return ["cls__feature-subclass"];
-				}
-
-				if (entry.isClassFeatureVariant) {
-					if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-variant-brew"];
-					if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-variant-ua"];
-					return ["cls__feature-variant"];
-				}
-
-				if (entry.source && BrewUtil.hasSourceJson(entry.source)) return ["cls__feature-brew"];
-				if (entry.source && SourceUtil.isNonstandardSource(entry.source)) return ["cls__feature-ua"];
-				return [];
+				return this._getColorStyleClasses(entry, {isSubclass: !!entry.subclassShortName, isForceStandardSource, prefix: "cls__"});
 			});
 
 		$content.append(Renderer.utils.getBorderTr());
@@ -2008,7 +2009,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 					if (f.source && f.source !== cls.source && cpy.entries) cpy.entries.unshift(`{@note The following information is from ${Parser.sourceJsonToFull(f.source)}${Renderer.utils.isDisplayPage(f.page) ? `, page ${f.page}` : ""}.}`);
 				}
 
-				stack += Renderer.get().setDepthTracker(depthArr).render(cpy);
+				stack += Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["_isStandardSource"]}).render(cpy);
 			});
 
 			const $trFluff = $(`<tr class="cls-main__cls-fluff"><td colspan="6"/></tr>`).fastSetHtml(stack).appendTo($content);
@@ -2020,6 +2021,11 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			const ptrHasHandledSubclassFeatures = {_: false};
 
 			lvlFeatures.forEach((feature, ixFeature) => {
+				if (feature.source === cls.source) {
+					feature = MiscUtil.copy(feature);
+					feature._isStandardSource = true;
+				}
+
 				this._render_renderClassContent_renderFeature({
 					ixLvl,
 					feature,
@@ -2086,7 +2092,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			},
 			fn: () => {
 				return $(`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"><td colspan="6"/></tr>`)
-					.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["isClassFeatureVariant"]}).render(feature))
+					.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(feature))
 					.appendTo($content);
 			},
 		});
@@ -2144,7 +2150,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 					},
 					fn: () => {
 						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature ${cssMod}" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"/></tr>`)
-							.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["isClassFeatureVariant"]}).render(toRender))
+							.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(toRender))
 							.appendTo($content);
 					},
 				});

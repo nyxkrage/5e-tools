@@ -10,7 +10,6 @@ class PageFilterTrapsHazards extends PageFilter {
 	constructor () {
 		super();
 
-		this._sourceFilter = new SourceFilter();
 		this._typeFilter = new Filter({
 			header: "Type",
 			items: [

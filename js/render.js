@@ -211,31 +211,31 @@ function Renderer () {
 	};
 
 	this._handleTrackDepth = function (entry, depth) {
-		if (entry.name && this._depthTracker) {
-			this._lastDepthTrackerInheritedProps = MiscUtil.copy(this._lastDepthTrackerInheritedProps);
-			if (entry.source) this._lastDepthTrackerInheritedProps.source = entry.source;
-			if (this._depthTrackerAdditionalPropsInherited?.length) {
-				this._depthTrackerAdditionalPropsInherited.forEach(prop => this._lastDepthTrackerInheritedProps[prop] = entry[prop] || this._lastDepthTrackerInheritedProps[prop]);
-			}
+		if (!entry.name || !this._depthTracker) return;
 
-			const additionalData = this._depthTrackerAdditionalProps.length
-				? this._depthTrackerAdditionalProps.mergeMap(it => ({[it]: entry[it]}))
-				: {};
-
-			this._depthTracker.push({
-				...this._lastDepthTrackerInheritedProps,
-				...additionalData,
-				depth,
-				name: entry.name,
-				type: entry.type,
-				ixHeader: this._headerIndex,
-				source: this._lastDepthTrackerInheritedProps.source,
-				data: entry.data,
-				page: entry.page,
-				alias: entry.alias,
-				entry,
-			});
+		this._lastDepthTrackerInheritedProps = MiscUtil.copy(this._lastDepthTrackerInheritedProps);
+		if (entry.source) this._lastDepthTrackerInheritedProps.source = entry.source;
+		if (this._depthTrackerAdditionalPropsInherited?.length) {
+			this._depthTrackerAdditionalPropsInherited.forEach(prop => this._lastDepthTrackerInheritedProps[prop] = entry[prop] || this._lastDepthTrackerInheritedProps[prop]);
 		}
+
+		const additionalData = this._depthTrackerAdditionalProps.length
+			? this._depthTrackerAdditionalProps.mergeMap(it => ({[it]: entry[it]}))
+			: {};
+
+		this._depthTracker.push({
+			...this._lastDepthTrackerInheritedProps,
+			...additionalData,
+			depth,
+			name: entry.name,
+			type: entry.type,
+			ixHeader: this._headerIndex,
+			source: this._lastDepthTrackerInheritedProps.source,
+			data: entry.data,
+			page: entry.page,
+			alias: entry.alias,
+			entry,
+		});
 	};
 
 	// region Plugins
@@ -815,6 +815,7 @@ function Renderer () {
 				style: "list-hang-notitle",
 				items: entry.entries.map(ent => {
 					if (typeof ent === "string") return ent;
+					if (ent.type === "item") return ent;
 
 					const out = {...ent, type: "item"};
 					if (ent.name) out.name = this._inlineHeaderTerminators.has(ent.name[ent.name.length - 1]) ? out.name : `${out.name}.`;
@@ -2214,151 +2215,158 @@ Renderer.parseScaleDice = function (tag, text) {
 	return out;
 };
 
-Renderer.getAbilityData = function (abArr) {
-	function doRenderOuter (abObj) {
-		const mainAbs = [];
-		const asCollection = [];
-		const areNegative = [];
-		const toConvertToText = [];
-		const toConvertToShortText = [];
+Renderer.getAbilityData = function (abArr, {isOnlyShort, isCurrentLineage} = {}) {
+	if (isOnlyShort && isCurrentLineage) return new Renderer._AbilityData({asTextShort: "Lineage (choose)"});
 
-		if (abObj != null) {
-			handleAllAbilities(abObj);
-			handleAbilitiesChoose();
-			return new Renderer._AbilityData(toConvertToText.join("; "), toConvertToShortText.join("; "), asCollection, areNegative);
-		}
+	const outerStack = (abArr || [null]).map(it => Renderer.getAbilityData._doRenderOuter(it));
+	if (outerStack.length <= 1) return outerStack[0];
+	return new Renderer._AbilityData({
+		asText: `Choose one of: ${outerStack.map((it, i) => `(${Parser.ALPHABET[i].toLowerCase()}) ${it.asText}`).join(" ")}`,
+		asTextShort: `${outerStack.map((it, i) => `(${Parser.ALPHABET[i].toLowerCase()}) ${it.asTextShort}`).join(" ")}`,
+		asCollection: [...new Set(outerStack.map(it => it.asCollection).flat())],
+		areNegative: [...new Set(outerStack.map(it => it.areNegative).flat())],
+	});
+};
 
-		return new Renderer._AbilityData("", "", [], []);
+Renderer.getAbilityData._doRenderOuter = function (abObj) {
+	const mainAbs = [];
+	const asCollection = [];
+	const areNegative = [];
+	const toConvertToText = [];
+	const toConvertToShortText = [];
 
-		function handleAllAbilities (abObj, targetList) {
-			MiscUtil.copy(Parser.ABIL_ABVS)
-				.sort((a, b) => SortUtil.ascSort(abObj[b] || 0, abObj[a] || 0))
-				.forEach(shortLabel => handleAbility(abObj, shortLabel, targetList));
-		}
+	if (abObj != null) {
+		handleAllAbilities(abObj);
+		handleAbilitiesChoose();
+		return new Renderer._AbilityData({
+			asText: toConvertToText.join("; "),
+			asTextShort: toConvertToShortText.join("; "),
+			asCollection: asCollection,
+			areNegative: areNegative,
+		});
+	}
 
-		function handleAbility (abObj, shortLabel, optToConvertToTextStorage) {
-			if (abObj[shortLabel] != null) {
-				const isNegMod = abObj[shortLabel] < 0;
-				const toAdd = `${shortLabel.uppercaseFirst()} ${(isNegMod ? "" : "+")}${abObj[shortLabel]}`;
+	return new Renderer._AbilityData();
 
-				if (optToConvertToTextStorage) {
-					optToConvertToTextStorage.push(toAdd);
-				} else {
-					toConvertToText.push(toAdd);
-					toConvertToShortText.push(toAdd);
-				}
+	function handleAllAbilities (abObj, targetList) {
+		MiscUtil.copy(Parser.ABIL_ABVS)
+			.sort((a, b) => SortUtil.ascSort(abObj[b] || 0, abObj[a] || 0))
+			.forEach(shortLabel => handleAbility(abObj, shortLabel, targetList));
+	}
 
-				mainAbs.push(shortLabel.uppercaseFirst());
-				asCollection.push(shortLabel);
-				if (isNegMod) areNegative.push(shortLabel);
+	function handleAbility (abObj, shortLabel, optToConvertToTextStorage) {
+		if (abObj[shortLabel] != null) {
+			const isNegMod = abObj[shortLabel] < 0;
+			const toAdd = `${shortLabel.uppercaseFirst()} ${(isNegMod ? "" : "+")}${abObj[shortLabel]}`;
+
+			if (optToConvertToTextStorage) {
+				optToConvertToTextStorage.push(toAdd);
+			} else {
+				toConvertToText.push(toAdd);
+				toConvertToShortText.push(toAdd);
 			}
-		}
 
-		function handleAbilitiesChoose () {
-			if (abObj.choose != null) {
-				const ch = abObj.choose;
-				let outStack = "";
-				if (ch.weighted) {
-					const w = ch.weighted;
-					const froms = w.from.map(it => it.uppercaseFirst());
-					const isAny = froms.length === 6;
-					let cntProcessed = 0;
-
-					const areIncreaseShort = [];
-					const areIncrease = w.weights.filter(it => it >= 0).sort(SortUtil.ascSort).reverse().map(it => {
-						areIncreaseShort.push(`+${it}`);
-						if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}+${it}`;
-						return `one ${cntProcessed++ ? `other ` : ""}ability to increase by ${it}`;
-					});
-
-					const areReduceShort = [];
-					const areReduce = w.weights.filter(it => it < 0).map(it => -it).sort(SortUtil.ascSort).map(it => {
-						areReduceShort.push(`-${it}`);
-						if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}-${it}`;
-						return `one ${cntProcessed++ ? `other ` : ""}ability to decrease by ${it}`;
-					});
-
-					const startText = isAny
-						? `Choose `
-						: `From ${froms.joinConjunct(", ", " and ")} choose `;
-
-					const ptAreaIncrease = isAny
-						? areIncrease.concat(areReduce).join("; ")
-						: areIncrease.concat(areReduce).joinConjunct(", ", isAny ? "; " : " and ");
-					toConvertToText.push(`${startText}${ptAreaIncrease}`);
-					toConvertToShortText.push(`${isAny ? "Any combination " : ""}${areIncreaseShort.concat(areReduceShort).join("/")}${isAny ? "" : ` from ${froms.join("/")}`}`);
-				} else {
-					const allAbilities = ch.from.length === 6;
-					const allAbilitiesWithParent = isAllAbilitiesWithParent(ch);
-					let amount = ch.amount === undefined ? 1 : ch.amount;
-					amount = (amount < 0 ? "" : "+") + amount;
-					if (allAbilities) {
-						outStack += "any ";
-					} else if (allAbilitiesWithParent) {
-						outStack += "any other ";
-					}
-					if (ch.count != null && ch.count > 1) {
-						outStack += `${Parser.numberToText(ch.count)} `;
-					}
-					if (allAbilities || allAbilitiesWithParent) {
-						outStack += `${ch.count > 1 ? "unique " : ""}${amount}`;
-					} else {
-						for (let j = 0; j < ch.from.length; ++j) {
-							let suffix = "";
-							if (ch.from.length > 1) {
-								if (j === ch.from.length - 2) {
-									suffix = " or ";
-								} else if (j < ch.from.length - 2) {
-									suffix = ", ";
-								}
-							}
-							let thsAmount = ` ${amount}`;
-							if (ch.from.length > 1) {
-								if (j !== ch.from.length - 1) {
-									thsAmount = "";
-								}
-							}
-							outStack += ch.from[j].uppercaseFirst() + thsAmount + suffix;
-						}
-					}
-				}
-
-				if (outStack.trim()) {
-					toConvertToText.push(`Choose ${outStack}`);
-					toConvertToShortText.push(outStack.uppercaseFirst());
-				}
-			}
-		}
-
-		function isAllAbilitiesWithParent (chooseAbs) {
-			const tempAbilities = [];
-			for (let i = 0; i < mainAbs.length; ++i) {
-				tempAbilities.push(mainAbs[i].toLowerCase());
-			}
-			for (let i = 0; i < chooseAbs.from.length; ++i) {
-				const ab = chooseAbs.from[i].toLowerCase();
-				if (!tempAbilities.includes(ab)) tempAbilities.push(ab);
-				if (!asCollection.includes(ab.toLowerCase)) asCollection.push(ab.toLowerCase());
-			}
-			return tempAbilities.length === 6;
+			mainAbs.push(shortLabel.uppercaseFirst());
+			asCollection.push(shortLabel);
+			if (isNegMod) areNegative.push(shortLabel);
 		}
 	}
 
-	const outerStack = (abArr || [null]).map(it => doRenderOuter(it));
-	if (outerStack.length <= 1) return outerStack[0];
-	return new Renderer._AbilityData(
-		`Choose one of: ${outerStack.map((it, i) => `(${Parser.ALPHABET[i].toLowerCase()}) ${it.asText}`).join(" ")}`,
-		`${outerStack.map((it, i) => `(${Parser.ALPHABET[i].toLowerCase()}) ${it.asTextShort}`).join(" ")}`,
-		[...new Set(outerStack.map(it => it.asCollection).flat())],
-		[...new Set(outerStack.map(it => it.areNegative).flat())],
-	);
+	function handleAbilitiesChoose () {
+		if (abObj.choose != null) {
+			const ch = abObj.choose;
+			let outStack = "";
+			if (ch.weighted) {
+				const w = ch.weighted;
+				const froms = w.from.map(it => it.uppercaseFirst());
+				const isAny = froms.length === 6;
+				let cntProcessed = 0;
+
+				const areIncreaseShort = [];
+				const areIncrease = w.weights.filter(it => it >= 0).sort(SortUtil.ascSort).reverse().map(it => {
+					areIncreaseShort.push(`+${it}`);
+					if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}+${it}`;
+					return `one ${cntProcessed++ ? `other ` : ""}ability to increase by ${it}`;
+				});
+
+				const areReduceShort = [];
+				const areReduce = w.weights.filter(it => it < 0).map(it => -it).sort(SortUtil.ascSort).map(it => {
+					areReduceShort.push(`-${it}`);
+					if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}-${it}`;
+					return `one ${cntProcessed++ ? `other ` : ""}ability to decrease by ${it}`;
+				});
+
+				const startText = isAny
+					? `Choose `
+					: `From ${froms.joinConjunct(", ", " and ")} choose `;
+
+				const ptAreaIncrease = isAny
+					? areIncrease.concat(areReduce).join("; ")
+					: areIncrease.concat(areReduce).joinConjunct(", ", isAny ? "; " : " and ");
+				toConvertToText.push(`${startText}${ptAreaIncrease}`);
+				toConvertToShortText.push(`${isAny ? "Any combination " : ""}${areIncreaseShort.concat(areReduceShort).join("/")}${isAny ? "" : ` from ${froms.join("/")}`}`);
+			} else {
+				const allAbilities = ch.from.length === 6;
+				const allAbilitiesWithParent = isAllAbilitiesWithParent(ch);
+				let amount = ch.amount === undefined ? 1 : ch.amount;
+				amount = (amount < 0 ? "" : "+") + amount;
+				if (allAbilities) {
+					outStack += "any ";
+				} else if (allAbilitiesWithParent) {
+					outStack += "any other ";
+				}
+				if (ch.count != null && ch.count > 1) {
+					outStack += `${Parser.numberToText(ch.count)} `;
+				}
+				if (allAbilities || allAbilitiesWithParent) {
+					outStack += `${ch.count > 1 ? "unique " : ""}${amount}`;
+				} else {
+					for (let j = 0; j < ch.from.length; ++j) {
+						let suffix = "";
+						if (ch.from.length > 1) {
+							if (j === ch.from.length - 2) {
+								suffix = " or ";
+							} else if (j < ch.from.length - 2) {
+								suffix = ", ";
+							}
+						}
+						let thsAmount = ` ${amount}`;
+						if (ch.from.length > 1) {
+							if (j !== ch.from.length - 1) {
+								thsAmount = "";
+							}
+						}
+						outStack += ch.from[j].uppercaseFirst() + thsAmount + suffix;
+					}
+				}
+			}
+
+			if (outStack.trim()) {
+				toConvertToText.push(`Choose ${outStack}`);
+				toConvertToShortText.push(outStack.uppercaseFirst());
+			}
+		}
+	}
+
+	function isAllAbilitiesWithParent (chooseAbs) {
+		const tempAbilities = [];
+		for (let i = 0; i < mainAbs.length; ++i) {
+			tempAbilities.push(mainAbs[i].toLowerCase());
+		}
+		for (let i = 0; i < chooseAbs.from.length; ++i) {
+			const ab = chooseAbs.from[i].toLowerCase();
+			if (!tempAbilities.includes(ab)) tempAbilities.push(ab);
+			if (!asCollection.includes(ab.toLowerCase)) asCollection.push(ab.toLowerCase());
+		}
+		return tempAbilities.length === 6;
+	}
 };
 
-Renderer._AbilityData = function (asText, asTextShort, asCollection, areNegative) {
-	this.asText = asText;
-	this.asTextShort = asTextShort;
-	this.asCollection = asCollection;
-	this.areNegative = areNegative;
+Renderer._AbilityData = function ({asText, asTextShort, asCollection, areNegative} = {}) {
+	this.asText = asText || "";
+	this.asTextShort = asTextShort || "";
+	this.asCollection = asCollection || [];
+	this.areNegative = areNegative || [];
 };
 
 /**
@@ -2539,8 +2547,8 @@ Renderer.utils = {
 		return isExcluded ? `<div class="text-center text-danger"><b><i>Warning: This content has been <a href="blacklist.html">blacklisted</a>.</i></b></div>` : "";
 	},
 
-	getSourceAndPageTrHtml (it) {
-		const html = Renderer.utils.getSourceAndPageHtml(it);
+	getSourceAndPageTrHtml (it, {tag, fnUnpackUid} = {}) {
+		const html = Renderer.utils.getSourceAndPageHtml(it, {tag, fnUnpackUid});
 		return html ? `<b>Source:</b> ${html}` : "";
 	},
 
@@ -2548,17 +2556,39 @@ Renderer.utils = {
 		if (!it[prop] || !it[prop].length) return "";
 
 		return `${introText} ${it[prop].map(as => {
-			if (as.entry) return Renderer.get().render(isText ? Renderer.stripTags(as.entry) : as.entry);
-			return `${isText ? "" : `<i title="${Parser.sourceJsonToFull(as.source)}">`}${Parser.sourceJsonToAbv(as.source)}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(as.page) ? `, page ${as.page}` : ""}`;
+			if (as.entry) return (isText ? Renderer.stripTags : Renderer.get().render)(as.entry);
+			return `${isText ? "" : `<i class="help-subtle" title="${Parser.sourceJsonToFull(as.source).qq()}">`}${Parser.sourceJsonToAbv(as.source)}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(as.page) ? `, page ${as.page}` : ""}`;
 		}).join("; ")}`;
 	},
 
-	getSourceAndPageHtml (it) { return this._getSourceAndPageHtmlOrText(it); },
-	getSourceAndPageText (it) { return this._getSourceAndPageHtmlOrText(it, true); },
+	_getReprintedAsHtmlOrText (ent, {isText, tag, fnUnpackUid} = {}) {
+		if (!ent.reprintedAs) return "";
+		if (!tag || !fnUnpackUid) return "";
 
-	_getSourceAndPageHtmlOrText (it, isText) {
+		const ptReprinted = ent.reprintedAs
+			.map(it => {
+				const {name, source, displayText} = fnUnpackUid(it);
+
+				if (isText) {
+					return `${Renderer.stripTags(displayText || name)} in ${Parser.sourceJsonToAbv(source)}`;
+				}
+
+				const asTag = `{@${tag} ${name}|${source}${displayText ? `|${displayText}` : ""}}`;
+
+				return `${Renderer.get().render(asTag)} in <i class="help-subtle" title="${Parser.sourceJsonToFull(source).qq()}">${Parser.sourceJsonToAbv(source)}</i>`;
+			})
+			.join("; ");
+
+		return `Reprinted as ${ptReprinted}`;
+	},
+
+	getSourceAndPageHtml (it, {tag, fnUnpackUid} = {}) { return this._getSourceAndPageHtmlOrText(it, {tag, fnUnpackUid}); },
+	getSourceAndPageText (it, {tag, fnUnpackUid} = {}) { return this._getSourceAndPageHtmlOrText(it, {isText: true, tag, fnUnpackUid}); },
+
+	_getSourceAndPageHtmlOrText (it, {isText, tag, fnUnpackUid} = {}) {
 		const sourceSub = Renderer.utils.getSourceSubText(it);
 		const baseText = `${isText ? `` : `<i title="${Parser.sourceJsonToFull(it.source)}${sourceSub}">`}${Parser.sourceJsonToAbv(it.source)}${sourceSub}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(it.page) ? `, page ${it.page}` : ""}`;
+		const reprintedAsText = Renderer.utils._getReprintedAsHtmlOrText(it, {isText, tag, fnUnpackUid});
 		const addSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "additionalSources", "Additional information from", isText);
 		const otherSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "otherSources", "Also found in", isText);
 		const externalSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "externalSources", "External sources:", isText);
@@ -2567,7 +2597,7 @@ Renderer.utils = {
 		const basicRulesText = it.basicRules ? `the Basic Rules${typeof it.basicRules === "string" ? ` (as &quot;${it.basicRules}&quot;)` : ""}` : "";
 		const srdAndBasicRulesText = (srdText || basicRulesText) ? `Available in ${[srdText, basicRulesText].filter(it => it).join(" and ")}` : "";
 
-		return `${[baseText, addSourceText, otherSourceText, srdAndBasicRulesText, externalSourceText].filter(it => it).join(". ")}${baseText && (addSourceText || otherSourceText || srdAndBasicRulesText || externalSourceText) ? "." : ""}`;
+		return `${[baseText, addSourceText, reprintedAsText, otherSourceText, srdAndBasicRulesText, externalSourceText].filter(it => it).join(". ")}${baseText && (addSourceText || otherSourceText || srdAndBasicRulesText || externalSourceText) ? "." : ""}`;
 	},
 
 	async _pHandleNameClick (ele) {
@@ -2575,8 +2605,8 @@ Renderer.utils = {
 		JqueryUtil.showCopiedEffect($(ele));
 	},
 
-	getPageTr (it) {
-		return `<tr><td colspan=6>${Renderer.utils.getSourceAndPageTrHtml(it)}</td></tr>`;
+	getPageTr (it, {tag, fnUnpackUid} = {}) {
+		return `<tr><td colspan=6>${Renderer.utils.getSourceAndPageTrHtml(it, {tag, fnUnpackUid})}</td></tr>`;
 	},
 
 	getAbilityRoller (statblock, ability) {
@@ -4647,32 +4677,7 @@ Renderer.race = {
 					}),
 				};
 
-				baseRace._baseRaceEntries = [
-					{
-						type: "section",
-						entries: [
-							"This race has multiple subraces, as listed below:",
-							lst,
-						],
-					},
-					{
-						type: "section",
-						entries: [
-							{
-								type: "entries",
-								entries: [
-									{
-										type: "entries",
-										name: "Traits",
-										entries: [
-											...MiscUtil.copy(baseRace.entries),
-										],
-									},
-								],
-							},
-						],
-					},
-				];
+				Renderer.race._mutBaseRaceEntries(baseRace, lst);
 
 				delete baseRace.subraces;
 
@@ -4683,6 +4688,43 @@ Renderer.race = {
 		});
 
 		return out;
+	},
+
+	_mutMakeBaseRace (baseRace) {
+		if (baseRace._isBaseRace) return;
+
+		baseRace._isBaseRace = true;
+
+		Renderer.race._mutBaseRaceEntries(baseRace, {type: "list", items: []});
+	},
+
+	_mutBaseRaceEntries (baseRace, lst) {
+		baseRace._baseRaceEntries = [
+			{
+				type: "section",
+				entries: [
+					"This race has multiple subraces, as listed below:",
+					lst,
+				],
+			},
+			{
+				type: "section",
+				entries: [
+					{
+						type: "entries",
+						entries: [
+							{
+								type: "entries",
+								name: "Traits",
+								entries: [
+									...MiscUtil.copy(baseRace.entries),
+								],
+							},
+						],
+					},
+				],
+			},
+		];
 	},
 
 	getSubraceName (raceName, subraceName) {
@@ -4800,6 +4842,11 @@ Renderer.race = {
 			// Avoid adding duplicates, by tracking already-seen subraces
 			if ((_baseRace._seenSubraces || []).some(it => it.name === sr.name && it.source === sr.source)) return;
 			(_baseRace._seenSubraces = _baseRace._seenSubraces || []).push({name: sr.name, source: sr.source});
+
+			// If this is a homebrew "base race" which is not marked as such, upgrade it to a base race
+			if (!_baseRace._isBaseRace && BrewUtil.hasSourceJson(_baseRace.source)) {
+				Renderer.race._mutMakeBaseRace(_baseRace);
+			}
 
 			// If the base race is a _real_ base race, add our new subrace to its list of subraces
 			if (_baseRace._isBaseRace) {

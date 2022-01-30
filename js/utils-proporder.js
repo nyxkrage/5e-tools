@@ -1087,6 +1087,7 @@ PropOrder._RACE_SUBRACE = [
 	"basicRules",
 	"additionalSources",
 	"otherSources",
+	"reprintedAs",
 
 	new PropOrder._ObjectKey("_copy", {
 		order: [
@@ -1101,6 +1102,7 @@ PropOrder._RACE_SUBRACE = [
 
 	"lineage",
 	"creatureTypes",
+	"creatureTypeTags",
 
 	new PropOrder._ArrayKey("size", {fnSort: SortUtil.ascSortSize}),
 	"speed",

@@ -229,16 +229,26 @@ Parser.getSpeedString = (ent, {isMetric = false} = {}) => {
 		+ (ent.speed === "Varies" ? "" : ` ${unit} `);
 };
 Parser._getSpeedString_addSpeedMode = ({ent, prop, stack, isMetric, unit}) => {
-	const addSpeed = (s) => stack.push(`${prop === "walk" ? "" : `${prop} `}${Parser._getSpeedString_getVal({propSpeed: s, isMetric})} ${unit}${Parser._getSpeedString_getCondition({propSpeed: s})}`);
-
-	if (ent.speed[prop] || prop === "walk") addSpeed(ent.speed[prop] || 0);
-	if (ent.speed.alternate && ent.speed.alternate[prop]) ent.speed.alternate[prop].forEach(addSpeed);
+	if (ent.speed[prop] || prop === "walk") Parser._getSpeedString_addSpeed({prop, speed: ent.speed[prop] || 0, isMetric, unit, stack});
+	if (ent.speed.alternate && ent.speed.alternate[prop]) ent.speed.alternate[prop].forEach(speed => Parser._getSpeedString_addSpeed({prop, speed, isMetric, unit, stack}));
 };
-Parser._getSpeedString_getVal = ({propSpeed, isMetric}) => {
-	const num = propSpeed.number != null ? propSpeed.number : propSpeed;
+Parser._getSpeedString_addSpeed = ({prop, speed, isMetric, unit, stack}) => {
+	const ptName = prop === "walk" ? "" : `${prop} `;
+	const ptValue = Parser._getSpeedString_getVal({prop, speed, isMetric});
+	const ptUnit = speed === true ? "" : ` ${unit}`;
+	const ptCondition = Parser._getSpeedString_getCondition({speed});
+	stack.push([ptName, ptValue, ptUnit, ptCondition].join(""));
+};
+Parser._getSpeedString_getVal = ({prop, speed, isMetric}) => {
+	if (speed === true && prop !== "walk") return "equal to your walking speed";
+
+	const num = speed === true
+		? 0
+		: speed.number != null ? speed.number : speed;
+
 	return isMetric ? Parser.metric.getMetricNumber({originalValue: num, originalUnit: UNT_FEET}) : num;
 };
-Parser._getSpeedString_getCondition = ({propSpeed}) => propSpeed.condition ? ` ${Renderer.get().render(propSpeed.condition)}` : "";
+Parser._getSpeedString_getCondition = ({speed}) => speed.condition ? ` ${Renderer.get().render(speed.condition)}` : "";
 
 Parser.SPEED_MODES = ["walk", "burrow", "climb", "fly", "swim"];
 
@@ -2379,6 +2389,7 @@ SRC_SCC_CK = "SCC-CK";
 SRC_SCC_HfMT = "SCC-HfMT";
 SRC_SCC_TMM = "SCC-TMM";
 SRC_SCC_ARiR = "SCC-ARiR";
+SRC_MPMM = "MPMM";
 SRC_SCREEN = "Screen";
 SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
 SRC_SCREEN_DUNGEON_KIT = "ScreenDungeonKit";
@@ -2577,6 +2588,7 @@ Parser.SOURCE_JSON_TO_FULL[SRC_SCC_CK] = `Campus Kerfuffle`;
 Parser.SOURCE_JSON_TO_FULL[SRC_SCC_HfMT] = `Hunt for Mage Tower`;
 Parser.SOURCE_JSON_TO_FULL[SRC_SCC_TMM] = `The Magister's Masquerade`;
 Parser.SOURCE_JSON_TO_FULL[SRC_SCC_ARiR] = `A Reckoning in Ruins`;
+Parser.SOURCE_JSON_TO_FULL[SRC_MPMM] = `Mordenkainen Presents: Monsters of the Multiverse`;
 Parser.SOURCE_JSON_TO_FULL[SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
 Parser.SOURCE_JSON_TO_FULL[SRC_SCREEN_DUNGEON_KIT] = "Dungeon Master's Screen: Dungeon Kit";
@@ -2755,6 +2767,7 @@ Parser.SOURCE_JSON_TO_ABV[SRC_SCC_CK] = "SCC-CK";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCC_HfMT] = "SCC-HfMT";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCC_TMM] = "SCC-TMM";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCC_ARiR] = "SCC-ARiR";
+Parser.SOURCE_JSON_TO_ABV[SRC_MPMM] = "MPMM";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN] = "Screen";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN_WILDERNESS_KIT] = "ScWild";
 Parser.SOURCE_JSON_TO_ABV[SRC_SCREEN_DUNGEON_KIT] = "ScDun";
@@ -2932,6 +2945,7 @@ Parser.SOURCE_JSON_TO_DATE[SRC_SCC_CK] = "2021-12-07";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCC_HfMT] = "2021-12-07";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCC_TMM] = "2021-12-07";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCC_ARiR] = "2021-12-07";
+Parser.SOURCE_JSON_TO_DATE[SRC_MPMM] = "2022-01-25";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
 Parser.SOURCE_JSON_TO_DATE[SRC_SCREEN_DUNGEON_KIT] = "2020-09-21";
@@ -3142,6 +3156,7 @@ Parser.SOURCES_VANILLA = new Set([
 	SRC_SADS,
 	SRC_TCE,
 	SRC_FTD,
+	SRC_MPMM,
 	SRC_SCREEN,
 	SRC_SCREEN_WILDERNESS_KIT,
 	SRC_SCREEN_DUNGEON_KIT,
@@ -3201,6 +3216,7 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	SRC_MaBJoV,
 	SRC_FTD,
 	SRC_SCC,
+	SRC_MPMM,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;
@@ -3499,7 +3515,7 @@ Parser.metric = {
 			case "lb.": case "lb": case "lbs": out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
 			default: return originalValue;
 		}
-		if (toFixed != null) return out.toFixed(toFixed);
+		if (toFixed != null) return Number(out.toFixed(toFixed));
 		return out;
 	},
 

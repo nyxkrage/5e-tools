@@ -868,7 +868,7 @@ class PageFilterRaces extends PageFilter {
 			if (r.ability.some(it => it.choose)) r._fAbility.push("Player Choice");
 		} else r._fAbility = [];
 
-		const ability = r.ability ? Renderer.getAbilityData(r.ability) : {asTextShort: "None"};
+		const ability = r.ability ? Renderer.getAbilityData(r.ability, {isOnlyShort: true, isCurrentLineage: r.lineage === "VRGR"}) : {asTextShort: "None"};
 		r._slAbility = ability.asTextShort;
 
 		if (r.age?.mature != null && r.age?.max != null) r._fAge = [r.age.mature, r.age.max];

@@ -2121,6 +2121,9 @@ class SourceFilter extends Filter {
 
 		opts.header = opts.header === undefined ? FilterBox.SOURCE_HEADER : opts.header;
 		opts.displayFn = opts.displayFn === undefined ? item => Parser.sourceJsonToFullCompactPrefix(item.item || item) : opts.displayFn;
+		opts.displayFnMini = opts.displayFnMini === undefined ? item => `<span class="glyphicon glyphicon-book"></span> ${Parser.sourceJsonToAbv(item.item || item)}` : opts.displayFnMini;
+		opts.displayFnTitle = opts.displayFnTitle === undefined ? item => Parser.sourceJsonToFull(item.item || item) : opts.displayFnTitle;
+		opts.itemSortFnMini = opts.itemSortFnMini === undefined ? (a, b) => SortUtil.ascSort(Parser.sourceJsonToAbv(a.item), Parser.sourceJsonToAbv(b.item)) : opts.itemSortFnMini;
 		opts.itemSortFn = opts.itemSortFn === undefined ? (a, b) => SortUtil.ascSortLower(Parser.sourceJsonToFull(a.item), Parser.sourceJsonToFull(b.item)) : opts.itemSortFn;
 		opts.groupFn = opts.groupFn === undefined ? SourceUtil.getFilterGroup : opts.groupFn;
 		opts.selFn = opts.selFn === undefined ? PageFilter.defaultSourceSelFn : opts.selFn;

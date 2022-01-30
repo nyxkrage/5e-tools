@@ -21,7 +21,7 @@ class RenderRaces {
 
 		${$ptHeightWeight ? $$`<tr class="text"><td colspan="6"><hr class="rd__hr">${$ptHeightWeight}</td></tr>` : ""}
 
-		${Renderer.utils.getPageTr(race)}
+		${Renderer.utils.getPageTr(race, {tag: "race", fnUnpackUid: (uid) => DataUtil.generic.unpackUid(uid, "race")})}
 		${Renderer.utils.getBorderTr()}`;
 	}
 
@@ -39,8 +39,8 @@ class RenderRaces {
 		if (race._isBaseRace) return null;
 
 		const getRenderedHeight = (height) => {
-			const heightFeet = Math.floor(height / 12);
-			const heightInches = height % 12;
+			const heightFeet = Number(Math.floor(height / 12).toFixed(3));
+			const heightInches = Number((height % 12).toFixed(3));
 			return `${heightFeet ? `${heightFeet}'` : ""}${heightInches ? `${heightInches}"` : ""}`;
 		};
 
@@ -149,7 +149,7 @@ class RenderRaces {
 			const renderedHeight = getRenderedHeight(race.heightAndWeight.baseHeight + resultHeight);
 			const totalWeight = race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight);
 			$dispHeight.text(renderedHeight);
-			$dispWeight.text(totalWeight);
+			$dispWeight.text(Number(totalWeight.toFixed(3)));
 		};
 
 		const pDoFullRoll = async isPreLocked => {

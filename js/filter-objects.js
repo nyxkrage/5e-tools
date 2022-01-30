@@ -4,7 +4,6 @@ class PageFilterObjects extends PageFilter {
 	constructor () {
 		super();
 
-		this._sourceFilter = new SourceFilter();
 		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD"], isMiscFilter: true});
 	}
 

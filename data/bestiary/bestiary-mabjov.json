@@ -9141,7 +9141,7 @@
 				{
 					"name": "Lethargic Song (Humanoid form only)",
 					"entries": [
-						"The wolfwere plays a magical melody on an instrument. Every humanoid within 200 ft. of the wolfwere that can hear the melody must succeed on a {@dc 13} Wisdom saving throw or be slowed for 10 minutes. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
+						"The wolfwere plays a magical melody on an instrument. Every humanoid within 200 ft. of the wolfwere that can hear the melody must succeed on a {@dc 13} Wisdom saving throw or be {@spell slow||slowed} for 10 minutes. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
 					]
 				}
 			],
@@ -9280,7 +9280,7 @@
 				{
 					"name": "Lethargic Song (Humanoid form only)",
 					"entries": [
-						"The wolfwere plays a magical melody on an instrument. Every humanoid within 200 ft. of the wolfwere that can hear the melody must succeed on a {@dc 16} Wisdom saving throw or be slowed for 10 minutes. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
+						"The wolfwere plays a magical melody on an instrument. Every humanoid within 200 ft. of the wolfwere that can hear the melody must succeed on a {@dc 16} Wisdom saving throw or be {@spell slow||slowed} for 10 minutes. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
 					]
 				}
 			],

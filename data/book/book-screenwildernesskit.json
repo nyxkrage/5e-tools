@@ -18,12 +18,12 @@
 								{
 									"type": "item",
 									"name": "1. Weather.",
-									"entry": "The DM determines the predominant weather conditions for the Cycle., you either choose the weather or roll for it on the Weather table on the DM screen."
+									"entry": "The DM determines the predominant weather conditions for the Cycle., you either choose the weather or roll for it on the {@table Weather|DMG} {@note ({@table weather; precipitation|DMG|Precipitation}; {@table weather; wind|DMG|Wind})} table on the DM screen."
 								},
 								{
 									"type": "item",
 									"name": "2. Pace.",
-									"entry": "the players choose the groups travel pace for the cycle: slow, normal, or fast. See the Travel Pace table on the DM screen for details about each pace."
+									"entry": "the players choose the groups travel pace for the cycle: slow, normal, or fast. See the {@table Travel Pace|PHB} table on the DM screen for details about each pace."
 								},
 								{
 									"type": "item",

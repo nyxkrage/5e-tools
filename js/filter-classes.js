@@ -2,13 +2,7 @@
 
 class PageFilterClassesBase extends PageFilter {
 	constructor () {
-		super({
-			sourceFilterOpts: {
-				displayFnMini: it => Parser.sourceJsonToAbv(it),
-				displayFnTitle: it => Parser.sourceJsonToFull(it),
-				itemSortFnMini: (a, b) => SortUtil.ascSort(Parser.sourceJsonToAbv(a.item), Parser.sourceJsonToAbv(b.item)),
-			},
-		});
+		super();
 
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",

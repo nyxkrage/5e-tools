@@ -311,7 +311,18 @@
 			"page": 96,
 			"_copy": {
 				"name": "Giant Badger",
-				"source": "MM"
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Tunneler",
+							"entries": [
+								"When the badger burrows, it leaves tunnels behind."
+							]
+						}
+					}
+				}
 			},
 			"ac": [
 				{

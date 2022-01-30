@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.147.16"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.148.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -2376,8 +2376,8 @@ SortUtil = {
 		if (a.sort == null && b.sort != null) return 1;
 
 		if (!a.name && !b.name) return 0;
-		const aClean = a.name.toLowerCase().trim();
-		const bClean = b.name.toLowerCase().trim();
+		const aClean = Renderer.stripTags(a.name).toLowerCase().trim();
+		const bClean = Renderer.stripTags(b.name).toLowerCase().trim();
 
 		const isOnlyA = a.name.endsWith(" Only)");
 		const isOnlyB = b.name.endsWith(" Only)");
@@ -2873,6 +2873,7 @@ DataUtil = {
 			page: true,
 			otherSources: true,
 			srd: true,
+			basicRules: true,
 			hasFluff: true,
 			hasFluffImages: true,
 			hasToken: true,
@@ -5807,7 +5808,7 @@ BrewUtil = {
 			// in development mode, replace any existing brew
 			const existingLookup = {};
 			homebrew[prop].forEach(it => {
-				const brewHash = BrewUtil._getDevBrewHash(page, prop, it);
+				const brewHash = BrewUtil._getDevBrewHash(prop, it);
 				existingLookup[brewHash] = it.uniqueId;
 			});
 

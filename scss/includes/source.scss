@@ -52,6 +52,7 @@
 	$rgb-source-FTD: #b82a15;
 	$rgb-source-NRH: #bd335b;
 	$rgb-source-SCC: #be9c56;
+	$rgb-source-MPMM: #5c758d;
 
 	&PHB {
 		color: $rgb-source-PHB !important;
@@ -410,6 +411,12 @@
 			border-color: $rgb-source-SCC !important;
 			text-decoration-color: $rgb-source-SCC !important;
 		}
+	}
+
+	&MPMM {
+		color: $rgb-source-MPMM !important;
+		border-color: $rgb-source-MPMM !important;
+		text-decoration-color: $rgb-source-MPMM !important;
 	}
 }
 

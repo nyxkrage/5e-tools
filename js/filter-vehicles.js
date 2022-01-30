@@ -4,7 +4,6 @@ class PageFilterVehicles extends PageFilter {
 	constructor () {
 		super();
 
-		this._sourceFilter = new SourceFilter();
 		this._vehicleTypeFilter = new Filter({
 			header: "Vehicle Type",
 			items: [],

@@ -8,11 +8,7 @@ class PageFilterTables extends PageFilter {
 	// endregion
 
 	constructor () {
-		super();
-
-		this._sourceFilter = new SourceFilter({
-			selFn: PageFilterTables._sourceSelFn,
-		});
+		super({sourceFilterOpts: {selFn: PageFilterTables._sourceSelFn}});
 	}
 
 	static mutateForFilters (it) { /* no-op */ }

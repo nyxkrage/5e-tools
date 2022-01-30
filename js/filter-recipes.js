@@ -4,7 +4,6 @@ class PageFilterRecipes extends PageFilter {
 	constructor () {
 		super();
 
-		this._sourceFilter = new SourceFilter();
 		this._typeFilter = new Filter({
 			header: "Type",
 			displayFn: StrUtil.toTitleCase,
