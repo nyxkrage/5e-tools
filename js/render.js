@@ -983,6 +983,7 @@ function Renderer () {
 			if (entry.constant && !hidden.has("constant")) tempList.items.push({type: "itemSpell", name: `Constant:`, entry: this._renderSpellcasting_getRenderableList(entry.constant).join(", ")});
 			if (entry.will && !hidden.has("will")) tempList.items.push({type: "itemSpell", name: `At will:`, entry: this._renderSpellcasting_getRenderableList(entry.will).join(", ")});
 
+			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "charges", fnGetDurationText: num => ` charge${num === 1 ? "" : "s"}`});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "rest", durationText: "/rest"});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "daily", durationText: "/day"});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "weekly", durationText: "/week"});
@@ -1016,16 +1017,16 @@ function Renderer () {
 		return toRender;
 	};
 
-	this._renderSpellcasting_getEntries_procPerDuration = function ({entry, hidden, tempList, prop, durationText}) {
+	this._renderSpellcasting_getEntries_procPerDuration = function ({entry, hidden, tempList, prop, durationText, fnGetDurationText}) {
 		if (!entry[prop] || hidden.has(prop)) return;
 
 		for (let lvl = 9; lvl > 0; lvl--) {
 			const perDur = entry[prop];
-			if (perDur[lvl]) tempList.items.push({type: "itemSpell", name: `${lvl}${durationText}:`, entry: this._renderSpellcasting_getRenderableList(perDur[lvl]).join(", ")});
+			if (perDur[lvl]) tempList.items.push({type: "itemSpell", name: `${lvl}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}:`, entry: this._renderSpellcasting_getRenderableList(perDur[lvl]).join(", ")});
 			const lvlEach = `${lvl}e`;
 			if (perDur[lvlEach]) {
 				const isHideEach = !perDur[lvl] && perDur[lvlEach].length === 1;
-				tempList.items.push({type: "itemSpell", name: `${lvl}${durationText}${isHideEach ? "" : ` each`}:`, entry: this._renderSpellcasting_getRenderableList(perDur[lvlEach]).join(", ")});
+				tempList.items.push({type: "itemSpell", name: `${lvl}${fnGetDurationText ? fnGetDurationText(lvl) : durationText}${isHideEach ? "" : ` each`}:`, entry: this._renderSpellcasting_getRenderableList(perDur[lvlEach]).join(", ")});
 			}
 		}
 	};
@@ -2567,13 +2568,16 @@ Renderer.utils = {
 
 		const ptReprinted = ent.reprintedAs
 			.map(it => {
-				const {name, source, displayText} = fnUnpackUid(it);
+				const uid = it.uid ?? it;
+				const tag_ = it.tag ?? tag;
+
+				const {name, source, displayText} = fnUnpackUid(uid);
 
 				if (isText) {
 					return `${Renderer.stripTags(displayText || name)} in ${Parser.sourceJsonToAbv(source)}`;
 				}
 
-				const asTag = `{@${tag} ${name}|${source}${displayText ? `|${displayText}` : ""}}`;
+				const asTag = `{@${tag_} ${name}|${source}${displayText ? `|${displayText}` : ""}}`;
 
 				return `${Renderer.get().render(asTag)} in <i class="help-subtle" title="${Parser.sourceJsonToFull(source).qq()}">${Parser.sourceJsonToAbv(source)}</i>`;
 			})
@@ -5525,7 +5529,7 @@ Renderer.monster = {
 		</td></tr>`;
 	},
 
-	getTypeAlignmentPart (mon) { return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Parser.sizeAbvToFull(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${Parser.monTypeToFullObj(mon.type).asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment)}` : ""}`; },
+	getTypeAlignmentPart (mon) { return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Parser.sizeAbvToFull(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${Parser.monTypeToFullObj(mon.type).asText.toTitleCase()}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`; },
 	getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; },
 	getSensesPart (mon) { return `${mon.senses ? `${Renderer.monster.getRenderedSenses(mon.senses)}, ` : ""}passive Perception ${mon.passive || "\u2014"}`; },
 
@@ -5757,7 +5761,8 @@ Renderer.monster = {
 
 		const ixLastAttack = actions.findLastIndex(it => it.entries && it.entries.length && typeof it.entries[0] === "string" && it.entries[0].includes(`{@atk `));
 		const ixNext = actions.findIndex((act, ix) => ix > ixLastAttack && act.name && SortUtil.ascSortLower(act.name, "Spellcasting") >= 0);
-		actions.splice(ixNext, 0, ...spellActions);
+		if (~ixNext) actions.splice(ixNext, 0, ...spellActions);
+		else actions.push(...spellActions);
 		return actions;
 	},
 
@@ -6609,6 +6614,9 @@ Renderer.item = {
 	_createSpecificVariants_createSpecificVariant (baseItem, genericVariant, opts) {
 		const inherits = genericVariant.inherits;
 		const specificVariant = MiscUtil.copy(baseItem);
+
+		// Update prop
+		specificVariant.__prop = "item";
 
 		// Remove "base item" flag
 		delete specificVariant._isBaseItem;

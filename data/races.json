@@ -1023,9 +1023,6 @@
 			"name": "Bugbear",
 			"source": "ERLW",
 			"page": 25,
-			"reprintedAs": [
-				"Bugbear|MPMM"
-			],
 			"size": [
 				"M"
 			],
@@ -1214,6 +1211,9 @@
 					"source": "EGW",
 					"page": 174
 				}
+			],
+			"reprintedAs": [
+				"Bugbear|MPMM"
 			],
 			"size": [
 				"M"
@@ -2173,9 +2173,6 @@
 			"name": "Deep Gnome",
 			"source": "MPMM",
 			"page": 11,
-			"reprintedAs": [
-				"Deep Gnome|MPMM"
-			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"humanoid"
@@ -3395,9 +3392,6 @@
 			"name": "Duergar",
 			"source": "MPMM",
 			"page": 12,
-			"reprintedAs": [
-				"Duergar|MPMM"
-			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"humanoid"
@@ -3696,9 +3690,6 @@
 			"name": "Eladrin",
 			"source": "MPMM",
 			"page": 13,
-			"reprintedAs": [
-				"Eladrin|MPMM"
-			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"humanoid"
@@ -3713,7 +3704,7 @@
 			"age": {
 				"max": 750
 			},
-			"darkvision": 120,
+			"darkvision": 60,
 			"skillProficiencies": [
 				{
 					"perception": true
@@ -3732,7 +3723,7 @@
 					"type": "entries",
 					"name": "Darkvision",
 					"entries": [
-						"You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray."
+						"You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray."
 					]
 				},
 				{
@@ -3787,7 +3778,7 @@
 					"type": "entries",
 					"name": "Trance",
 					"entries": [
-						"You don't need to sleep, and magic can't put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike medication, during which you retain consciousness.",
+						"You don't need to sleep, and magic can't put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
 						"Whenever you finish this trance, you can change your season, and you can gain two proficiencies that you don't have, each one with a weapon or a tool of your choice selected from the Player's Handbook. You mystically acquire these proficiencies by drawing them from shared elven memory, and you retain them until you finish your next long rest."
 					]
 				}
@@ -4729,9 +4720,6 @@
 			"name": "Githyanki",
 			"source": "MPMM",
 			"page": 18,
-			"reprintedAs": [
-				"Githyanki|MPMM"
-			],
 			"lineage": "VRGR",
 			"size": [
 				"M"
@@ -4816,9 +4804,6 @@
 			"name": "Githzerai",
 			"source": "MPMM",
 			"page": 19,
-			"reprintedAs": [
-				"Githzerai|MPMM"
-			],
 			"lineage": "VRGR",
 			"size": [
 				"M"
@@ -4865,7 +4850,7 @@
 					"name": "Githzerai Psionics",
 					"entries": [
 						"You know the {@spell mage hand} cantrip, and the hand is {@condition invisible} when you cast the cantrip with this trait.",
-						"Starting at 3rd level, you can cast the {@spell shield} spell with this trait. Starting at 5th level, you can also cast the {@spell detect thoughts} spell with it. Once you cast {@spell shield} or detect thoughts spell with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
+						"Starting at 3rd level, you can cast the {@spell shield} spell with this trait. Starting at 5th level, you can also cast the {@spell detect thoughts} spell with it. Once you cast {@spell shield} or {@spell detect thoughts} spell with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
 						"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race). None of these spells require spell components when you cast them with this trait."
 					]
 				},
@@ -5147,9 +5132,6 @@
 			"name": "Goblin",
 			"source": "ERLW",
 			"page": 26,
-			"reprintedAs": [
-				"Goblin|MPMM"
-			],
 			"_copy": {
 				"name": "Goblin",
 				"source": "VGM",
@@ -5281,7 +5263,7 @@
 					"type": "entries",
 					"name": "Nimble Escape",
 					"entries": [
-						"You can take the {@action Disengage} or Hide action as a bonus action on each of your turns."
+						"You can take the {@action Disengage} or {@action Hide} action as a bonus action on each of your turns."
 					]
 				}
 			],
@@ -5296,6 +5278,9 @@
 					"source": "EGW",
 					"page": 174
 				}
+			],
+			"reprintedAs": [
+				"Goblin|MPMM"
 			],
 			"size": [
 				"S"
@@ -6739,9 +6724,6 @@
 			"name": "Hobgoblin",
 			"source": "ERLW",
 			"page": 26,
-			"reprintedAs": [
-				"Hobgoblin|MPMM"
-			],
 			"_copy": {
 				"name": "Hobgoblin",
 				"source": "VGM",
@@ -6922,6 +6904,9 @@
 					"source": "EGW",
 					"page": 175
 				}
+			],
+			"reprintedAs": [
+				"Hobgoblin|MPMM"
 			],
 			"size": [
 				"M"
@@ -8513,7 +8498,7 @@
 					"type": "entries",
 					"name": "Natural Armor",
 					"entries": [
-						"You have tough, scaly skin. When you aren't wearing armor, your base AC is 13 + Dexterity modifier. You can use your natural armor to determine your aC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
+						"You have tough, scaly skin. When you aren't wearing armor, your base AC is 13 + Dexterity modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
 					]
 				},
 				{
@@ -9811,9 +9796,6 @@
 			"name": "Orc",
 			"source": "EGW",
 			"page": 178,
-			"reprintedAs": [
-				"Orc|MPMM"
-			],
 			"_copy": {
 				"name": "Orc",
 				"source": "ERLW",
@@ -10042,6 +10024,9 @@
 			"name": "Orc",
 			"source": "VGM",
 			"page": 120,
+			"reprintedAs": [
+				"Orc|MPMM"
+			],
 			"size": [
 				"M"
 			],
@@ -10900,9 +10885,6 @@
 			"name": "Sea Elf",
 			"source": "MPMM",
 			"page": 30,
-			"reprintedAs": [
-				"Sea Elf|MPMM"
-			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"humanoid"
@@ -10986,8 +10968,8 @@
 					"type": "entries",
 					"name": "Trance",
 					"entries": [
-						"You don't need to sleep, and magic can't put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike medication, during which you retain consciousness.",
-						"Whenever you finish this trance, you can change your season, and you can gain two proficiencies that you don't have, each one with a weapon or a tool of your choice selected from the Player's Handbook. You mystically acquire these proficiencies by drawing them from shared elven memory, and you retain them until you finish your next long rest."
+						"You don't need to sleep, and magic can't put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+						"Whenever you finish this trance, you can gain two proficiencies that you don't have, each one with a weapon or a tool of your choice selected from the Player's Handbook. You mystically acquire these proficiencies by drawing them from shared elven memory, and you retain them until you finish your next long rest."
 					]
 				}
 			],
@@ -10997,9 +10979,6 @@
 			"name": "Shadar-Kai",
 			"source": "MPMM",
 			"page": 31,
-			"reprintedAs": [
-				"Shadar-Kai|MPMM"
-			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"humanoid"
@@ -11014,7 +10993,7 @@
 			"age": {
 				"max": 750
 			},
-			"darkvision": 120,
+			"darkvision": 60,
 			"skillProficiencies": [
 				{
 					"perception": true
@@ -11043,7 +11022,7 @@
 					"type": "entries",
 					"name": "Darkvision",
 					"entries": [
-						"You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray."
+						"You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray."
 					]
 				},
 				{
@@ -11071,8 +11050,8 @@
 					"type": "entries",
 					"name": "Trance",
 					"entries": [
-						"You don't need to sleep, and magic can't put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike medication, during which you retain consciousness.",
-						"Whenever you finish this trance, you can change your season, and you can gain two proficiencies that you don't have, each one with a weapon or a tool of your choice selected from the Player's Handbook. You mystically acquire these proficiencies by drawing them from shared elven memory, and you retain them until you finish your next long rest."
+						"You don't need to sleep, and magic can't put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+						"Whenever you finish this trance, you can gain two proficiencies that you don't have, each one with a weapon or a tool of your choice selected from the Player's Handbook. You mystically acquire these proficiencies by drawing them from shared elven memory, and you retain them until you finish your next long rest."
 					]
 				}
 			],
@@ -11191,7 +11170,7 @@
 			"entries": [
 				{
 					"type": "entries",
-					"name": "Bestial Insincts",
+					"name": "Bestial Instincts",
 					"entries": [
 						"Channeling the beast within, you have proficiency in one of the following skills of your choice: {@skill Acrobatics}, {@skill Athletics}, {@skill Intimidation}, or {@skill Survival}."
 					]
@@ -11207,7 +11186,7 @@
 					"type": "entries",
 					"name": "Shifting",
 					"entries": [
-						"As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your normal appearance as a bonus action. When you shift, you gain temporary hit points equal to 2 × your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+						"As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your normal appearance as a bonus action. When you shift, you gain temporary hit points equal to 2 × your proficiency bonus. You can shift a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
 						"Whenever you shift, you gain an additional benefit based on one of the following options (choose when you select this race):",
 						{
 							"type": "list",
@@ -11852,7 +11831,7 @@
 				"walk": 30,
 				"climb": true
 			},
-			"darkvision": 120,
+			"darkvision": 60,
 			"skillProficiencies": [
 				{
 					"perception": true,
@@ -11892,7 +11871,7 @@
 					"type": "entries",
 					"name": "Darkvision",
 					"entries": [
-						"You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray."
+						"You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray."
 					]
 				},
 				{
@@ -12218,9 +12197,6 @@
 			"name": "Tortle",
 			"source": "MPMM",
 			"page": 34,
-			"reprintedAs": [
-				"Tortle|MPMM"
-			],
 			"lineage": "VRGR",
 			"size": [
 				"S",
@@ -12300,6 +12276,9 @@
 					"source": "EGW",
 					"page": 181
 				}
+			],
+			"reprintedAs": [
+				"Tortle|MPMM"
 			],
 			"size": [
 				"M"
@@ -12408,9 +12387,6 @@
 			"name": "Triton",
 			"source": "MOT",
 			"page": 26,
-			"reprintedAs": [
-				"Triton|MPMM"
-			],
 			"_copy": {
 				"name": "Triton",
 				"source": "VGM",
@@ -12503,20 +12479,6 @@
 				},
 				{
 					"type": "entries",
-					"name": "Claws",
-					"entries": [
-						"You have claws that you can use to make unarmed strikes. When you hit with them, the strike deals {@damage 1d6} + your Strength modifier slashing damage, instead of the bludgeoning damage normal for an unarmed strike."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Hold Breath",
-					"entries": [
-						"You can hold your breath for up to 1 hour."
-					]
-				},
-				{
-					"type": "entries",
 					"name": "Control Air and Water",
 					"entries": [
 						"You can cast {@spell fog cloud} with this trait. Starting at 3rd level, you can cast the {@spell gust of wind} spell with this trait. Starting at 5th level, you can also cast the {@spell water walk} spell with it. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast these spells using any spell slots you have of the appropriate level.",
@@ -12551,6 +12513,9 @@
 			"name": "Triton",
 			"source": "VGM",
 			"page": 115,
+			"reprintedAs": [
+				"Triton|MPMM"
+			],
 			"size": [
 				"M"
 			],
@@ -13672,9 +13637,6 @@
 			"name": "Yuan-Ti",
 			"source": "MPMM",
 			"page": 36,
-			"reprintedAs": [
-				"Yuan-Ti|MPMM"
-			],
 			"lineage": "VRGR",
 			"size": [
 				"S",
@@ -13760,6 +13722,9 @@
 			"name": "Yuan-ti Pureblood",
 			"source": "VGM",
 			"page": 120,
+			"reprintedAs": [
+				"Yuan-Ti|MPMM"
+			],
 			"size": [
 				"M"
 			],
@@ -14691,6 +14656,9 @@
 					"page": 104
 				}
 			],
+			"reprintedAs": [
+				"Duergar|MPMM"
+			],
 			"ability": [
 				{
 					"str": 1
@@ -15142,6 +15110,9 @@
 			"raceSource": "PHB",
 			"page": 61,
 			"srd": true,
+			"reprintedAs": [
+				"Eladrin|MPMM"
+			],
 			"ability": [
 				{
 					"cha": 1
@@ -15730,6 +15701,9 @@
 					"page": 163
 				}
 			],
+			"reprintedAs": [
+				"Sea Elf|MPMM"
+			],
 			"speed": {
 				"walk": 30,
 				"swim": 30
@@ -15867,6 +15841,9 @@
 			"raceSource": "PHB",
 			"page": 62,
 			"srd": true,
+			"reprintedAs": [
+				"Shadar-Kai|MPMM"
+			],
 			"ability": [
 				{
 					"con": 1
@@ -16622,7 +16599,7 @@
 					"type": "entries",
 					"name": "Mingle with the Wind",
 					"entries": [
-						"You know the {@spell shocking grasp} cantrip. Starting at 3rd level, you can cast the {@spell feather fall} spell with this trait, without requiring a material component. Starting 5th level, you can also cast the {@spell levitate} spell with this trait, without requiring a material component. Once you cast {@spell feather fall} or levitate with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
+						"You know the {@spell shocking grasp} cantrip. Starting at 3rd level, you can cast the {@spell feather fall} spell with this trait, without requiring a material component. Starting 5th level, you can also cast the {@spell levitate} spell with this trait, without requiring a material component. Once you cast {@spell feather fall} or {@spell levitate} with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
 						"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race)."
 					]
 				}
@@ -16727,7 +16704,7 @@
 					"type": "entries",
 					"name": "Reach to the Blaze",
 					"entries": [
-						"You know the {@spell produce flame} cantrip. Starting at 3rd level, you can cast the {@spell burning hands} spell with this trait. Starting at 5th level, you can also cast the {@spell flame blade} spell with this trait, without a material component. Once you cast {@spell burning hands} or flame blade with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
+						"You know the {@spell produce flame} cantrip. Starting at 3rd level, you can cast the {@spell burning hands} spell with this trait. Starting at 5th level, you can also cast the {@spell flame blade} spell with this trait, without a material component. Once you cast {@spell burning hands} or {@spell flame blade} with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
 						"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race)."
 					]
 				}
@@ -16807,7 +16784,7 @@
 					"type": "entries",
 					"name": "Call to the Wave",
 					"entries": [
-						"You know the {@spell acid splash} cantrip. Starting at 3rd level, you can cast the {@spell create or destroy water} spell with this trait. Starting at 5th level, you can also cast the {@spell water walk} spell with this trait, without requiring a material component. Once you cast {@spell create or destroy water} or water walk with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
+						"You know the {@spell acid splash} cantrip. Starting at 3rd level, you can cast the {@spell create or destroy water} spell with this trait. Starting at 5th level, you can also cast the {@spell water walk} spell with this trait, without requiring a material component. Once you cast {@spell create or destroy water} or {@spell water walk} with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
 						"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race)."
 					]
 				}
@@ -16819,6 +16796,9 @@
 			"raceName": "Gith",
 			"raceSource": "MTF",
 			"page": 96,
+			"reprintedAs": [
+				"Githyanki|MPMM"
+			],
 			"ability": [
 				{
 					"str": 2
@@ -16926,6 +16906,9 @@
 			"raceName": "Gith",
 			"raceSource": "MTF",
 			"page": 96,
+			"reprintedAs": [
+				"Githzerai|MPMM"
+			],
 			"ability": [
 				{
 					"wis": 2
@@ -17153,6 +17136,9 @@
 			"raceSource": "PHB",
 			"page": 113,
 			"srd": true,
+			"reprintedAs": [
+				"Deep Gnome|MPMM"
+			],
 			"ability": [
 				{
 					"dex": 1

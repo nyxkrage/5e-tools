@@ -3,7 +3,7 @@
 	"$id": "entry.json",
 	"title": "Entry",
 	"description": "A recursively renderable object.",
-	"version": "1.5.3",
+	"version": "1.5.4",
 	"definitions": {
 		"_arrayOfSpell": {
 			"type": "array",
@@ -1703,6 +1703,9 @@
 						"yearly": {
 							"$ref": "#/definitions/entrySpellcasting_frequency"
 						},
+						"charges": {
+							"$ref": "#/definitions/entrySpellcasting_frequency"
+						},
 						"spells": {
 							"type": "object",
 							"properties": {
@@ -1793,6 +1796,10 @@
 								"trait",
 								"action"
 							]
+						},
+						"chargesItem": {
+							"type": "string",
+							"description": "The UID of an item which provides the charges required to cast any \"charges\" spells."
 						}
 					},
 					"required": [

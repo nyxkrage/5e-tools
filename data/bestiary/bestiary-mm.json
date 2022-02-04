@@ -10445,7 +10445,7 @@
 								{
 									"type": "item",
 									"name": "Disintegration Ray:",
-									"entry": "{@spell chain lightning} (primary target takes 6d8 lightning damage; two secondary targets within 30 feet of the primary target take 3d8 lightning damage each), eyebite (sickened effect; 1 minute)"
+									"entry": "{@spell chain lightning} (primary target takes 6d8 lightning damage; two secondary targets within 30 feet of the primary target take 3d8 lightning damage each), {@spell eyebite} (sickened effect; 1 minute)"
 								},
 								{
 									"type": "item",

@@ -762,7 +762,8 @@ class ConverterUi extends BaseComponent {
 		});
 
 		$(`#editable`).click(() => {
-			if (confirm(`Edits will be overwritten as you parse new statblocks. Enable anyway?`)) this._outReadOnly = false;
+			this._outReadOnly = false;
+			JqueryUtil.doToast({type: "warning", content: "Enabled editing. Note that edits will be overwritten as you parse new statblocks."});
 		});
 
 		const $btnSaveLocal = $(`#save_local`).click(async () => {
