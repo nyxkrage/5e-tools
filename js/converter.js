@@ -879,14 +879,14 @@ class ConverterUi extends BaseComponent {
 
 		/**
 		 * Wrap a function in an error handler which will wipe the error output, and append future errors to it.
-		 * @param toRun
+		 * @param pToRun
 		 */
-		const catchErrors = (toRun) => {
+		const catchErrors = async (pToRun) => {
 			try {
 				$(`#lastWarnings`).hide().html("");
 				$(`#lastError`).hide().html("");
 				this._editorOut.resize();
-				toRun();
+				await pToRun();
 			} catch (x) {
 				const splitStack = x.stack.split("\n");
 				const atPos = splitStack.length > 1 ? splitStack[1].trim() : "(Unknown location)";

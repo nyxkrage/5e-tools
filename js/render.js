@@ -725,11 +725,10 @@ function Renderer () {
 		return ` <span class="rd__title-link ${isInset ? `rd__title-link--inset` : ""}">${entry.source ? `<span class="help-subtle" title="${Parser.sourceJsonToFull(entry.source)}">${Parser.sourceJsonToAbv(entry.source)}</span> ` : ""}p${entry.page}</span>`;
 	};
 
-	this._inlineHeaderTerminators = new Set([".", ",", "!", "?", ";", ":"]);
 	this._renderEntriesSubtypes = function (entry, textStack, meta, options, incDepth) {
 		const type = entry.type || "entries";
 		const isInlineTitle = meta.depth >= 2;
-		const isAddPeriod = isInlineTitle && entry.name && !this._inlineHeaderTerminators.has(entry.name[entry.name.length - 1]);
+		const isAddPeriod = isInlineTitle && entry.name && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
 		const pagePart = !isInlineTitle ? this._getPagePart(entry) : "";
 		const partExpandCollapse = !isInlineTitle ? `<span class="rd__h-toggle ml-2 clickable" data-rd-h-toggle-button="true">[\u2013]</span>` : "";
 		const partPageExpandCollapse = pagePart || partExpandCollapse
@@ -818,7 +817,7 @@ function Renderer () {
 					if (ent.type === "item") return ent;
 
 					const out = {...ent, type: "item"};
-					if (ent.name) out.name = this._inlineHeaderTerminators.has(ent.name[ent.name.length - 1]) ? out.name : `${out.name}.`;
+					if (ent.name) out.name = Renderer._INLINE_HEADER_TERMINATORS.has(ent.name[ent.name.length - 1]) ? out.name : `${out.name}.`;
 					return out;
 				}),
 			};
@@ -1153,7 +1152,8 @@ function Renderer () {
 
 	this._renderItem = function (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
-		textStack[0] += `<p class="rd__p-list-item"><span class="${entry.style || "bold"} rd__list-item-name">${this.render(entry.name)}</span> `;
+		const isAddPeriod = entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
+		textStack[0] += `<p class="rd__p-list-item"><span class="${entry.style || "bold"} rd__list-item-name">${this.render(entry.name)}${isAddPeriod ? "." : ""}</span> `;
 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
 		else if (entry.entries) {
 			const len = entry.entries.length;
@@ -1165,7 +1165,8 @@ function Renderer () {
 
 	this._renderItemSub = function (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
-		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p class="rd__p-list-item"><span class="italic rd__list-item-name">${entry.name}</span> `, suffix: "</p>"});
+		const isAddPeriod = entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
+		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p class="rd__p-list-item"><span class="italic rd__list-item-name">${entry.name}${isAddPeriod ? "." : ""}</span> `, suffix: "</p>"});
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 
@@ -1840,6 +1841,8 @@ Renderer.ENTRIES_WITH_CHILDREN = [
 	{type: "list", key: "items"},
 	{type: "table", key: "rows"},
 ];
+
+Renderer._INLINE_HEADER_TERMINATORS = new Set([".", ",", "!", "?", ";", ":", `"`]);
 
 Renderer.events = {
 	handleClick_copyCode (evt, ele) {
@@ -6430,17 +6433,18 @@ Renderer.item = {
 	_additionalEntriesMap: {},
 	_addProperty (p) {
 		if (Renderer.item.propertyMap[p.abbreviation]) return;
-		Renderer.item.propertyMap[p.abbreviation] = p.name ? MiscUtil.copy(p) : {
-			name: p.entries[0].name.toLowerCase(),
-			entries: p.entries,
-			template: p.template,
+		const cpy = MiscUtil.copy(p);
+		Renderer.item.propertyMap[p.abbreviation] = p.name ? cpy : {
+			...cpy,
+			name: (p.entries || p.entriesTemplate)[0].name.toLowerCase(),
 		};
 	},
 	_addType (t) {
-		if (Renderer.item.typeMap[t.abbreviation]) return;
-		Renderer.item.typeMap[t.abbreviation] = t.name ? MiscUtil.copy(t) : {
-			name: t.entries[0].name.toLowerCase(),
-			entries: t.entries,
+		if (Renderer.item.typeMap[t.abbreviation]?.entries || Renderer.item.typeMap[t.abbreviation]?.entriesTemplate) return;
+		const cpy = MiscUtil.copy(t);
+		Renderer.item.typeMap[t.abbreviation] = t.name ? cpy : {
+			...cpy,
+			name: (t.entries || t.entriesTemplate)[0].name.toLowerCase(),
 		};
 	},
 	_addEntry (ent) {
@@ -6822,17 +6826,24 @@ Renderer.item = {
 		if (item.type === "GV") item._category = "Generic Variant";
 		if (item._category == null) item._category = "Other";
 		if (item.entries == null) item.entries = [];
-		if (item.type && Renderer.item.typeMap[item.type] && Renderer.item.typeMap[item.type].entries) {
+		if (item.type && (Renderer.item.typeMap[item.type]?.entries || Renderer.item.typeMap[item.type]?.entriesTemplate)) {
 			Renderer.item._initFullEntries(item);
-			Renderer.item.typeMap[item.type].entries.forEach(e => item._fullEntries.push({type: "wrapper", wrapped: e, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}}));
+
+			const propetyEntries = Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: Renderer.item.typeMap[item.type]});
+			propetyEntries.forEach(e => item._fullEntries.push({type: "wrapper", wrapped: e, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}}));
 		}
 		if (item.property) {
 			item.property.forEach(p => {
-				if (!Renderer.item.propertyMap[p]) throw new Error(`Item property ${p} not found. You probably meant to load the property/type reference first; see \`Renderer.item.populatePropertyAndTypeReference()\`.`);
-				if (Renderer.item.propertyMap[p].entries) {
-					Renderer.item._initFullEntries(item);
-					Renderer.item.propertyMap[p].entries.forEach(e => item._fullEntries.push({type: "wrapper", wrapped: e, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "property"}}));
-				}
+				const entProperty = Renderer.item.propertyMap[p];
+
+				if (!entProperty) throw new Error(`Item property ${p} not found. You probably meant to load the property/type reference first; see \`Renderer.item.populatePropertyAndTypeReference()\`.`);
+
+				if (!entProperty.entries && !entProperty.entriesTemplate) return;
+
+				Renderer.item._initFullEntries(item);
+
+				const propetyEntries = Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: entProperty});
+				propetyEntries.forEach(e => item._fullEntries.push({type: "wrapper", wrapped: e, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "property"}}));
 			});
 		}
 		// The following could be encoded in JSON, but they depend on more than one JSON property; maybe fix if really bored later
@@ -6951,6 +6962,25 @@ Renderer.item = {
 			});
 		}
 		// endregion
+	},
+
+	_enhanceItem_getItemPropertyTypeEntries ({item, ent}) {
+		if (!ent.entriesTemplate) return MiscUtil.copy(ent.entries);
+		return MiscUtil
+			.getWalker({
+				keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST,
+			})
+			.walk(
+				MiscUtil.copy(ent.entriesTemplate),
+				{
+					string: (str) => {
+						return Renderer.utils.applyTemplate(
+							item,
+							str,
+						);
+					},
+				},
+			);
 	},
 
 	unenhanceItem (item) {

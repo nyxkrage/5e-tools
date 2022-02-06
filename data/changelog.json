@@ -1931,6 +1931,11 @@
 		"ver": "1.149.0",
 		"date": "2022-02-03",
 		"title": "Anti-Consumer Practices",
-		"txt": "- Added the rest of Monsters of the Multiverse [note that this has been copied from OCR'd text/hand-typed, so expect typos]. Huge thanks to @ Lyra, @ darthbeep, @ Gor, @ MrVauxs, and @ Spappz for pitching in to get all the data entered!\n- (Fixed typos/added tags)"
+		"txt": "- Added the rest of Monsters of the Multiverse [note that this has been copied from OCR'd text/hand-typed, so expect typos]. Huge thanks to @ Lyra, @ darthbeep, @ GoR, @ MrVauxs, and @ Spappz for pitching in to get all the data entered!\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.149.1",
+		"date": "2022-02-05",
+		"txt": "- (Brew) Added support for `{{item.<path>}}` injection in item property and type text \n- (Brew) Fixed the Text Converter failing to display errors in the UI\n- (Fixed typos/added tags)"
 	}
 ]

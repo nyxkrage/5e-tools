@@ -1101,6 +1101,9 @@
 								},
 								"entry": {
 									"$ref": "#"
+								},
+								"nameDot": {
+									"const": false
 								}
 							},
 							"required": [
@@ -1126,6 +1129,9 @@
 									"items": {
 										"$ref": "#"
 									}
+								},
+								"nameDot": {
+									"const": false
 								}
 							},
 							"required": [
@@ -1154,6 +1160,9 @@
 						},
 						"entry": {
 							"$ref": "#"
+						},
+						"nameDot": {
+							"const": false
 						}
 					},
 					"required": [
