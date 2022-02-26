@@ -5,6 +5,10 @@ on:
       tags:
          - 'v**'
 
+env:
+   # See: https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
+   IMAGE_NAME: 5etools
+
 jobs:
    build-and-deploy:
       runs-on: ubuntu-latest
@@ -48,3 +52,29 @@ jobs:
                for f in $(find . -name 'img-${{ env.RELEASE_VERSION }}.*' -print); do hub release edit ${{ env.RELEASE_VERSION }} -m '' -a $f; done
             env:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+         # region See: https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
+         -  name: Build image
+            run: |
+               docker build -t $IMAGE_NAME .
+
+         -  name: Log in to registry
+            run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+         -  name: Push image
+            run: |
+               IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+               # Change all uppercase to lowercase
+               IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+               # Strip git ref prefix from version
+               VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+               # Strip "v" prefix from tag name
+               [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+               # Use Docker `latest` tag convention
+               [ "$VERSION" == "master" ] && VERSION=latest
+               echo IMAGE_ID=$IMAGE_ID
+               echo VERSION=$VERSION
+               docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+               docker push $IMAGE_ID:$VERSION
+         # endregion
