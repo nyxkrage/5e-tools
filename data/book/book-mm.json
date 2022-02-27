@@ -1359,7 +1359,8 @@
 									"page": 85,
 									"entries": [
 										"The dragon has resistance to necrotic damage."
-									]
+									],
+									"id": "04c"
 								},
 								{
 									"type": "entries",
@@ -1367,7 +1368,8 @@
 									"page": 85,
 									"entries": [
 										"The dragon's proficiency bonus is doubled for its Dexterity ({@skill Stealth}) checks."
-									]
+									],
+									"id": "04d"
 								},
 								{
 									"type": "entries",
@@ -1375,7 +1377,8 @@
 									"page": 85,
 									"entries": [
 										"While in dim light or darkness, the dragon has resistance to damage that isn't force, psychic, or radiant."
-									]
+									],
+									"id": "04e"
 								},
 								{
 									"type": "entries",
@@ -1383,7 +1386,8 @@
 									"page": 85,
 									"entries": [
 										"While in dim light or darkness, the dragon can take the {@action Hide} action as a bonus action."
-									]
+									],
+									"id": "04f"
 								},
 								{
 									"type": "entries",
@@ -1391,7 +1395,8 @@
 									"page": 85,
 									"entries": [
 										"While in sunlight, the dragon has disadvantage on attack rolls, as well as on Wisdom ({@skill Perception}) checks that rely on sight."
-									]
+									],
+									"id": "050"
 								},
 								{
 									"type": "entries",
@@ -1399,7 +1404,8 @@
 									"page": 85,
 									"entries": [
 										"If the dragon deals acid, cold, fire, lightning, or poison damage with its bite, change that damage type to necrotic."
-									]
+									],
+									"id": "051"
 								},
 								{
 									"type": "entries",
@@ -1407,11 +1413,14 @@
 									"page": 85,
 									"entries": [
 										"Any damage-dealing breath weapon possessed by the dragon deals necrotic damage instead of its original damage type. A humanoid reduced to 0 hit points by this damage dies, and an undead shadow rises from its corpse and acts immediately after the dragon in the initiative count. The shadow is under the dragon's control."
-									]
+									],
+									"id": "052"
 								}
-							]
+							],
+							"id": "04b"
 						}
-					]
+					],
+					"id": "04a"
 				},
 				{
 					"type": "entries",
@@ -1428,7 +1437,8 @@
 									"page": 180,
 									"entries": [
 										"To avoid recalculating the creature's challenge rating, apply the template only to a creature that meets the optional prerequisite in the Breath Weapon table below. Otherwise, use the guidelines in the Dungeon Master's Guide to recalculate the rating after you apply the template."
-									]
+									],
+									"id": "055"
 								},
 								{
 									"type": "entries",
@@ -1436,7 +1446,8 @@
 									"page": 180,
 									"entries": [
 										"The half-dragon gains {@sense blindsight} with a radius of 10 feet and {@sense darkvision} with a radius of 60 feet."
-									]
+									],
+									"id": "056"
 								},
 								{
 									"type": "entries",
@@ -1477,7 +1488,8 @@
 												]
 											]
 										}
-									]
+									],
+									"id": "057"
 								},
 								{
 									"type": "entries",
@@ -1485,7 +1497,8 @@
 									"page": 180,
 									"entries": [
 										"The half-dragon speaks Draconic in addition to any other languages it knows."
-									]
+									],
+									"id": "058"
 								},
 								{
 									"type": "entries",
@@ -1523,11 +1536,14 @@
 												]
 											]
 										}
-									]
+									],
+									"id": "059"
 								}
-							]
+							],
+							"id": "054"
 						}
-					]
+					],
+					"id": "053"
 				},
 				{
 					"type": "entries",
@@ -1544,7 +1560,8 @@
 									"page": 230,
 									"entries": [
 										"The servant retains its Armor Class, hit points, Hit Dice, Strength, Dexterity, Constitution, vulnerabilities, resistances, and immunities."
-									]
+									],
+									"id": "05c"
 								},
 								{
 									"type": "entries",
@@ -1552,7 +1569,8 @@
 									"page": 230,
 									"entries": [
 										"The servant loses its original saving throw and skill bonuses, special senses, and special traits. It loses any action that isn't Multiattack or a melee weapon attack that deals bludgeoning, piercing, or slashing damage. If it has an action or a melee weapon attack that deals some other type of damage, it loses the ability to deal damage of that type, unless the damage comes from a piece of equipment, such as a magic item."
-									]
+									],
+									"id": "05d"
 								},
 								{
 									"type": "entries",
@@ -1560,7 +1578,8 @@
 									"page": 230,
 									"entries": [
 										"The servant's type is plant, and it loses any tags."
-									]
+									],
+									"id": "05e"
 								},
 								{
 									"type": "entries",
@@ -1568,7 +1587,8 @@
 									"page": 230,
 									"entries": [
 										"The servant is unaligned."
-									]
+									],
+									"id": "05f"
 								},
 								{
 									"type": "entries",
@@ -1576,7 +1596,8 @@
 									"page": 230,
 									"entries": [
 										"Reduce all the servant's speeds by 10 feet, to a minimum of 5 feet."
-									]
+									],
+									"id": "060"
 								},
 								{
 									"type": "entries",
@@ -1584,7 +1605,8 @@
 									"page": 230,
 									"entries": [
 										"The servant's ability scores change as follows: Int 2 (\u22124), Wis 6 (\u22122), Cha 1 (\u22125)."
-									]
+									],
+									"id": "061"
 								},
 								{
 									"type": "entries",
@@ -1592,7 +1614,8 @@
 									"page": 230,
 									"entries": [
 										"The servant has {@sense blindsight} with a radius of 30 feet, and it is blind beyond this radius."
-									]
+									],
+									"id": "062"
 								},
 								{
 									"type": "entries",
@@ -1600,7 +1623,8 @@
 									"page": 230,
 									"entries": [
 										"The servant can't be {@condition blinded}, {@condition charmed}, {@condition frightened}, or {@condition paralyzed}."
-									]
+									],
+									"id": "063"
 								},
 								{
 									"type": "entries",
@@ -1608,7 +1632,8 @@
 									"page": 230,
 									"entries": [
 										"The servant loses all known languages, but it responds to orders given to it by myconids using rapport spores. The servant gives highest priority to orders received from the most powerful myconid."
-									]
+									],
+									"id": "064"
 								},
 								{
 									"type": "entries",
@@ -1616,11 +1641,14 @@
 									"page": 230,
 									"entries": [
 										"If the servant has no other means of dealing damage, it can use its fists or limbs to make unarmed strikes. On a hit, an unarmed strike deals bludgeoning damage equal to {@dice 1d4} + the servant's Strength modifier, or, if the servant is Large, {@dice 2d4} + its Strength modifier."
-									]
+									],
+									"id": "065"
 								}
-							]
+							],
+							"id": "05b"
 						}
-					]
+					],
+					"id": "05a"
 				}
 			],
 			"id": "000"

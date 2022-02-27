@@ -18,7 +18,8 @@
 						"path": "book/PSA/001.webp"
 					}
 				}
-			]
+			],
+			"id": "000"
 		},
 		{
 			"type": "section",
@@ -45,7 +46,8 @@
 							"entries": [
 								"Unknown to any of the plane's inhabitants, the entire society of Amonkhet has been manipulated by Nicol Bolas, who has seized control of the world, the gods, and the magic of the plane. Bolas chose this plane for his schemes because of the presence of a magical substance called lazotep, which interacts with the magic of necromancy in strange and powerful ways. Conveniently, he also found here a pious, structured civilization that he could easily subvert to his own purposes. Making himself the God-Pharaoh, he brought the gods themselves under his control, and eliminated anyone who tried to stand against him. Then he transformed the world into a factory designed to produce a huge army of perfect undead soldiers\u2014mummies embalmed in lazotep.",
 								"Adapting the peculiar magic of the plane, Bolas found a means to preserve the combat skills of the living after death. He has selected five aspects of character that he desires most in his undead soldiers, and has built the society of Amonkhet around a series of trials designed to hone and perfect those aspects of body and mind. Throughout their lives, the people of the plane believe they are drawing nearer to the promised afterlife\u2014and at last they die in the final trial, a mass battle with no survivors. But rather than earning a place in the afterlife, they are instead embalmed in lazotep and stored in Bolas's great necropolis, adding to the ranks of his undead army."
-							]
+							],
+							"id": "003"
 						},
 						{
 							"type": "entries",
@@ -54,7 +56,8 @@
 							"entries": [
 								"Part of the magic of Amonkhet that Bolas has been able to exploit is a necromantic phenomenon called the Curse of Wandering. This naturally occurring magic causes any being who dies on the plane to rise again after a short time, cursed with insatiable hunger and an irresistible drive to attack the living. Desiccated mummies created by the Curse of Wandering fill the desert wasteland that dominates the plane, constantly threatening what little life remains. But the people of Amonkhet do not fear the threat of attack as much as they dread the knowledge that all who live will one day die and fall under the same curse. Death under the effect of the Curse of Wandering is a terrifying afterlife filled with endless suffering.",
 								"What God-Pharaoh Nicol Bolas offers to the people of Amonkhet is an alternative to an eternity of wandering: an afterlife of glorious delights. And all they need to do to attain this eternal bliss is prove that they are worthy. As such, the threat of the Curse of Wandering is a strong motivation for people to undergo the trials of devotion that the God-Pharaoh demands."
-							]
+							],
+							"id": "004"
 						},
 						{
 							"type": "image",
@@ -76,7 +79,8 @@
 									"page": 7,
 									"entries": [
 										"Oketra the True, the cat-headed god of solidarity, teaches that the worthy shall know and respect all others whom the God-Pharaoh deems as worthy. For in the afterlife, all will be together in purpose and in action."
-									]
+									],
+									"id": "006"
 								},
 								{
 									"type": "entries",
@@ -85,7 +89,8 @@
 									"entries": [
 										"Kefnet the Mindful, the ibis-headed god of knowledge, teaches that the worthy shall cultivate a nimble mind\u2014one capable of perceiving the wonders beyond imagining that await in the afterlife",
 										"Strength. Rhonas the Indomitable, the cobra-headed god of strength, teaches that the worthy shall hone a strong body that can endure throughout an endless life."
-									]
+									],
+									"id": "007"
 								},
 								{
 									"type": "entries",
@@ -93,7 +98,8 @@
 									"page": 7,
 									"entries": [
 										"Bontu the Glorified, the crocodile-headed god of ambition, teaches that the worthy shall strive for greatness, as supremacy will be rewarded in the afterlife."
-									]
+									],
+									"id": "008"
 								},
 								{
 									"type": "entries",
@@ -102,7 +108,8 @@
 									"entries": [
 										"Hazoret the Fervent, the jackal-headed god of zeal, teaches that the worthy shall rush toward the afterlife with unhesitating fervor. Relentlessly, they will rise to overcome any obstacle in the way of earning a place at the God-Pharaoh's side.",
 										"Initiates who pass one of the trials are awarded a cartouche\u2014a magical emblem they will take with them to the afterlife. The trials culminate in the Trial of Zeal, which is a combat to the death. Dying in this final battle is proof of worthiness, with a glorified death earning the initiate a place in the afterlife. The bodies of the slain are loaded onto funerary barges and sent through the Gate to the Afterlife. But this is not an end. Rather, it marks the beginning of the most wondrous part of an initiate's existence. Each looks forward to death in the final trial, hoping to find a glorious end at the hand of a close friend, so that together, they can live as Eternals in the afterlife with the God-Pharaoh. Forever."
-									]
+									],
+									"id": "009"
 								},
 								{
 									"type": "image",
@@ -111,9 +118,11 @@
 										"path": "book/PSA/004.webp"
 									}
 								}
-							]
+							],
+							"id": "005"
 						}
-					]
+					],
+					"id": "002"
 				},
 				{
 					"type": "section",
@@ -135,7 +144,8 @@
 										"{@background Vizier|PSA}"
 									]
 								}
-							]
+							],
+							"id": "00b"
 						},
 						{
 							"type": "image",
@@ -144,9 +154,11 @@
 								"path": "book/PSA/005.webp"
 							}
 						}
-					]
+					],
+					"id": "00a"
 				}
-			]
+			],
+			"id": "001"
 		},
 		{
 			"type": "section",
@@ -163,7 +175,8 @@
 						"{@race Naga|PSA}"
 					]
 				}
-			]
+			],
+			"id": "00c"
 		},
 		{
 			"type": "section",
@@ -185,7 +198,8 @@
 									"page": 24,
 									"entries": [
 										"Clerics of the five gods, who are typically viziers of the gods, can choose the domains associated with their gods: Solidarity, Knowledge, Strength, Ambition, or Zeal."
-									]
+									],
+									"id": "010"
 								},
 								{
 									"type": "list",
@@ -204,11 +218,14 @@
 										"path": "book/PSA/008.webp"
 									}
 								}
-							]
+							],
+							"id": "00f"
 						}
-					]
+					],
+					"id": "00e"
 				}
-			]
+			],
+			"id": "00d"
 		},
 		{
 			"type": "section",
@@ -286,7 +303,8 @@
 							"page": 39,
 							"entries": [
 								"Five deadly trials await the people of this plane as they hope for a glorious death\u2014and eternal glory in the afterlife. But their true fate lies in the hands of the sinister Nicol Bolas."
-							]
+							],
+							"id": "013"
 						},
 						{
 							"type": "entries",
@@ -294,7 +312,8 @@
 							"page": 39,
 							"entries": [
 								"Home to the volcanic continent of Shiv, the time-shattered isle of Tolaria, and the cold mountains of Keld, Dominaria is the setting for brutal conflicts and home to powerful mages."
-							]
+							],
+							"id": "014"
 						},
 						{
 							"type": "entries",
@@ -302,7 +321,8 @@
 							"page": 39,
 							"entries": [
 								"For centuries, the archangel Avacyn and her hosts protected the humans of Innistrad from the terrors of the night. But then she turned on the people she was supposed to protect as an alien madness seized the plane."
-							]
+							],
+							"id": "015"
 						},
 						{
 							"type": "entries",
@@ -310,7 +330,8 @@
 							"page": 39,
 							"entries": [
 								"Kaladesh is a vibrant, beautiful land in the midst of an inventors' renaissance, teeming with creativity and optimism."
-							]
+							],
+							"id": "016"
 						},
 						{
 							"type": "entries",
@@ -318,7 +339,8 @@
 							"page": 39,
 							"entries": [
 								"Once known as Mirrodin, this metallic plane has been transformed by the vile Phyrexian corruption. Its natives fought and lost the war for their world, and now struggle to survive each day."
-							]
+							],
+							"id": "017"
 						},
 						{
 							"type": "entries",
@@ -326,7 +348,8 @@
 							"page": 39,
 							"entries": [
 								"This worldwide cityscape holds countless grand halls, decrepit slums, and ancient ruins. Ten guilds maintain an uneasy peace in governing the various aspects of life in the majestic city."
-							]
+							],
+							"id": "018"
 						},
 						{
 							"type": "entries",
@@ -334,7 +357,8 @@
 							"page": 39,
 							"entries": [
 								"Rich with mana, Shandalar is a place where magic flows freely. Planeswalkers seek out this plane for its plentiful, powerful magic."
-							]
+							],
+							"id": "019"
 						},
 						{
 							"type": "entries",
@@ -342,7 +366,8 @@
 							"page": 39,
 							"entries": [
 								"Theros is ruled by an awe-inspiring pantheon of gods. Mortals tremble before them, feel the sting of their petty whims, and live in terror of their wrath."
-							]
+							],
+							"id": "01a"
 						},
 						{
 							"type": "entries",
@@ -350,11 +375,14 @@
 							"page": 39,
 							"entries": [
 								"This land of primal mana is slowly recovering from the unnatural disaster of colossal predators from the Aether rampaging across the plane."
-							]
+							],
+							"id": "01b"
 						}
-					]
+					],
+					"id": "012"
 				}
-			]
+			],
+			"id": "011"
 		}
 	]
 }

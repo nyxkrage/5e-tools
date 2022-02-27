@@ -38,7 +38,8 @@
 							"page": 4,
 							"entries": [
 								"Zendikar is a world rife with adventure opportunities. Bold heroes, covetous treasure hunters, and sages seeking long-forgotten lore can all find numerous ruins to explore, mysteries to uncover, and villains and monsters to slay. Expeditionary houses, academic institutions, wealthy merchants, and retired adventurers all sponsor missions of exploration and discovery. Caravans need guards to protect them from bandits, predators, and the Roil. At the same time, the schemes of villains\u2014from the underhanded vampire sage Anowon to the monstrous demon Planeswalker Ob Nixilis\u2014draw would-be heroes in like moths to the flame."
-							]
+							],
+							"id": "002"
 						},
 						{
 							"type": "entries",
@@ -70,7 +71,8 @@
 														"Benthidrix (Sejiri)"
 													]
 												}
-											]
+											],
+											"id": "005"
 										},
 										{
 											"type": "entries",
@@ -89,7 +91,8 @@
 														"Emeria, the Sky Ruin (Tazeem)"
 													]
 												}
-											]
+											],
+											"id": "006"
 										},
 										{
 											"type": "entries",
@@ -107,15 +110,20 @@
 														"Helix of Zof (Guul Draz)"
 													]
 												}
-											]
+											],
+											"id": "007"
 										}
-									]
+									],
+									"id": "004"
 								}
-							]
+							],
+							"id": "003"
 						}
-					]
+					],
+					"id": "001"
 				}
-			]
+			],
+			"id": "000"
 		},
 		{
 			"type": "section",
@@ -134,7 +142,8 @@
 						"{@race Vampire (Zendikar)|PSZ}"
 					]
 				}
-			]
+			],
+			"id": "008"
 		},
 		{
 			"type": "section",
@@ -190,7 +199,8 @@
 						"{@creature Zendikar Golem|PSZ}"
 					]
 				}
-			]
+			],
+			"id": "009"
 		}
 	]
 }

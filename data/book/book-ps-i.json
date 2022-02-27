@@ -16,7 +16,8 @@
 					],
 					"by": "James Wyatt"
 				}
-			]
+			],
+			"id": "000"
 		},
 		{
 			"type": "section",
@@ -32,7 +33,8 @@
 						"The people of Innistrad are surrounded by monsters. Almost without exception, anything that is not human, whether it's a rat or an angel, is a potential enemy. Even the traditional allies of humanity\u2014from angels and gryffs to herons and hounds\u2014are unreliable at best, as the madness that grips the angels seems to seep into every living thing. And at the same time, humanity's age-old enemies grow ever more dangerous.",
 						"The specific horrors that the people of Innistrad fear most are all reflections of humanity's darker nature. Werewolves are a living embodiment of the secret rage and violence that hide in the human heart. Vampires are the bodily manifestation of carnal desire, hedonistic cravings, and bloodlust. Zombies and geists\u2014the restless spirits of the dead\u2014paint the eventual future of all people in the starkest terms, underlining the grim truths of human mortality. Demons are the unholy inversion of humanity's spiritual longings\u2014the shadow side of the angels' brightness.",
 						"Still, the most dreadful creatures of Innistrad lurk within human towns and cities, pursuing their twisted schemes and unholy desires in the heart of civilization. These are the humans that have been consumed by Innistrad's darkness. Sinister cultists give themselves over to demons and other dark forces. Depraved necromancers raise the dead to do their bidding. Obsessive scholars pry into secrets best left hidden. Crazed scientists toy with forces of life and death in their effort to create artificial life or harness the energy that remains in the spirits of the dead. And even among the common folk\u2014on Innistrad as on every plane\u2014some simply give in to selfish desires and violent rage, killing with knife and garrote rather than sorcery."
-					]
+					],
+					"id": "002"
 				},
 				{
 					"type": "image",
@@ -50,7 +52,8 @@
 						"Except in rare cases where the angels directly involve themselves in combat with monsters, their power is mediated through the Church of Avacyn, which serves as both spiritual and temporal authority in the four provinces of Innistrad. The priests of the church perform ritual blessings on the faithful and their homes to ward off evil, and the church's soldiers and inquisitors have long hunted vampires and werewolves that prey on the people in their charge.",
 						"But that was before Avacyn went mad. Without warning, the searing fury of the archangel\u2014usually reserved for the greatest foes of humanity\u2014was turned on villages full of seemingly innocent people. Angels under Avacyn's leadership impaled the innocent on their spears and scoured the earth with celestial fire. Convinced that the sins of humanity had brought down Avacyn's wrath, the church took up the archangel's cause and sought to purge all sin through inquisition and execution.",
 						"With even the angels and the church turned against humanity, few were left to take up arms against Innistrad's evils. Here and there, renegade cathars disobeyed the mandate of the church and continued to hunt vampires and werewolves instead of punishing the innocent. But increasingly, the common folk\u2014farmers with their pitchforks, smiths with their hammers, and retired soldiers taking battle-worn swords down from above the mantle\u2014discovered new reserves of strength and resiliency to stand against the horrors of the darkness, even when those horrors were parish priests and holy knights."
-					]
+					],
+					"id": "003"
 				},
 				{
 					"type": "image",
@@ -59,7 +62,8 @@
 						"path": "book/PSI/002.webp"
 					}
 				}
-			]
+			],
+			"id": "001"
 		},
 		{
 			"type": "section",
@@ -102,7 +106,8 @@
 						"{@class Sorcerer||Sorcerers} are rare. A spearsage (one of the archmages of Goldnight) could be a sorcerer, especially if you use the favored soul variant presented in Unearthed {@skill Arcana}. A sorcerer might also be a necro-alchemist or a cultist of some sort.",
 						"{@class Warlock||Warlocks} are found primarily in cults of madness (with a Great Old One as patron), demon cults such as the Skirsdag, or witches' covens. A warlock who belongs to the Skirsdag might be a respected member of the church hierarchy, feigning the blessings of Avacynian clergy.",
 						"{@class Wizard||Wizards} are often Avacynian archmages, but can also take up more sinister vocations\u2014ghoulcallers, skaberen, necro-alchemists, mad scientists, and cultists."
-					]
+					],
+					"id": "005"
 				},
 				{
 					"type": "entries",
@@ -112,7 +117,8 @@
 						"Innistrad is not a world with a variety of languages, unlike most D&D settings. The people who inhabit the world all speak the same tongue, and the most common monsters\u2014including vampires, werewolves, and geists\u2014speak it as well, since they were once human.",
 						"Ordinarily, all humans learn an additional language, and many backgrounds give access to languages as well\u2014so the easiest way to deal with these extra languages is to ignore them. Humans speak only Common. If a background gives access to a language, the character can choose a tool proficiency instead.",
 						"Alternatively, you can diversify the languages of Innistrad. Perhaps the Common tongue is the language of the church, used to facilitate communication among people in different provinces, even as each province has its own language or dialect. Characters might also be able to learn Demonic (spoken by demons and devils), Draconic (spoken by dragons), or Primordial (spoken by elementals)."
-					]
+					],
+					"id": "006"
 				},
 				{
 					"type": "section",
@@ -137,7 +143,8 @@
 								"Bishops are the leaders of the spiritual and temporal affairs of the church. Elders govern the parishes that make up each province, combining the administrative responsibilities of a mayor with the religious authority of a minor bishop. Priests attend to the needs of the people at parish churches, village chapels, and crossway altars. All priests have the ability to perform magic, though some are more powerful than others. Most of them focus on the protective blessings that make up the rituals of the church.",
 								"Monks are wandering priests, not connected to a specific location. Some feel called to minister to those isolated people living beyond the reach of a parish priest, but others take up the life of a monk because they disagree with their superiors in the hierarchy. Some are wild-eyed fanatics or heretical teachers, but many are quiet, peaceful souls with firm convictions that set them apart from the church.",
 								"A player character cleric is probably referred to as a monk in the church hierarchy, having the freedom to move around with no responsibility to any congregation. The acolyte background is ideal for such a character. A cleric's choice of domain might reflect a connection to one of the archangels subservient to Avacyn. The Knowledge domain is particularly associated with Bruna and Flight Alabaster, the Life domain is strongly connected to Sigarda and the Host of Herons, and the War domain is tied to Gisela and Flight Goldnight."
-							]
+							],
+							"id": "008"
 						},
 						{
 							"type": "entries",
@@ -157,7 +164,8 @@
 									]
 								},
 								"Cathar characters might be clerics (especially moor chaplains), fighters or paladins (especially Gavony Riders, mausoleum guards, midnight duelists, or parish-blades), or rangers (in the Quiver of Kessig). The soldier background works well for cathars."
-							]
+							],
+							"id": "009"
 						},
 						{
 							"type": "entries",
@@ -169,9 +177,11 @@
 								"Moonsages, the archmages of Alabaster, are concerned with preserving the Blessed Rest, preventing humans from returning as zombies. They use preventative and warding spells, banishing the undead to the void and making sure graves remain sealed.",
 								"Springsages, the archmages of Herons, are healers who use their magic to aid individuals, whole villages, and even the land itself. They act much like wandering priests or monks, traveling the remote reaches to minister to the people and heal the sick.",
 								"Avacynian archmages might be clerics, wizards, or (in the case of the springsages) druids. The favored soul sorcerer presented in Unearthed {@skill Arcana} could also work for an archmage, and the sage background is ideal for such characters."
-							]
+							],
+							"id": "00a"
 						}
-					]
+					],
+					"id": "007"
 				},
 				{
 					"type": "section",
@@ -186,9 +196,11 @@
 								"path": "book/PSI/005.webp"
 							}
 						}
-					]
+					],
+					"id": "00b"
 				}
-			]
+			],
+			"id": "004"
 		},
 		{
 			"type": "entries",
@@ -221,7 +233,8 @@
 						"path": "book/PSI/017.webp"
 					}
 				}
-			]
+			],
+			"id": "00c"
 		},
 		{
 			"type": "section",
@@ -255,7 +268,8 @@
 									"page": 30,
 									"entries": [
 										"Even before Emrakul's arrival, some cultists and those who pried too deep into dark secrets begin to change. In this early stage, physical proportions shift, with one or more of the creature's limbs or some part of the face growing larger, almost always asymmetrically. Noticeable skin blemishes can also appear, most often as boils or clumps of cauliflower-like growths (though these do not yet resemble the lattice of Emrakul's flesh). Creature statistics are unchanged."
-									]
+									],
+									"id": "010"
 								},
 								{
 									"type": "entries",
@@ -263,7 +277,8 @@
 									"page": 30,
 									"entries": [
 										"In the second stage, a creature can develop a dead or bulging eye, huge tumorous growths, curled hands or feet, violent palsy, oozing secretions from the skin or eyes, raw red patches on the skin, and similar deformities. Patches of lattice-like growths often appear on the skin. In some cases, particularly in Nephalia, cultists begin to manifest distinctly fishlike features\u2014goggling eyes, scaled or slimy skin, webbing between the fingers or toes, or gill-like flaps on the face or neck. Creature statistics remain unchanged."
-									]
+									],
+									"id": "011"
 								},
 								{
 									"type": "entries",
@@ -271,7 +286,8 @@
 									"page": 30,
 									"entries": [
 										"In the third stage, the lips shrink away from the teeth, which can rot and fall out. Fingers and toes sometimes fuse together or start transforming into tentacles. Bleeding sores erupt on the skin, or bulbous growths can appear under the skin. Cultists in Nephalia often grow finlike protrusions or pincerlike hands. At this stage, creatures might manifest improved natural armor or weapons, or simple benefits such as the Amphibious trait of a {@creature bullywug}, the Blind Senses of a {@creature grimlock}, Chameleon Skin like a {@creature troglodyte}, the Slippery trait of a {@creature kuo-toa}, or the Spider Climb trait of an {@creature ettercap}."
-									]
+									],
+									"id": "012"
 								},
 								{
 									"type": "entries",
@@ -280,7 +296,8 @@
 									"entries": [
 										"In the fourth stage, a creature's flesh often rots away or grows out of control, either leaving muscle and bone visible beneath or concealing features beneath masses of fleshy lattice or bulbous growths. Bone structure can alter radically, creating additional limbs or turning existing limbs into bizarrely jointed tentacles. Extra eyes can appear in unexpected places, or the head can transform into something resembling a fish or octopus.",
 										"At this stage, a corrupted creature might begin to transform into an entirely different creature. A human could effectively become any of the creatures mentioned above, or some other vaguely humanoid monster such as a {@creature kenku}, a {@creature lizardfolk}, a {@creature sahuagin}, or a {@filter yuan-ti|bestiary|search=yuan-ti}."
-									]
+									],
+									"id": "013"
 								},
 								{
 									"type": "entries",
@@ -295,13 +312,17 @@
 												"path": "book/PSI/007.webp"
 											}
 										}
-									]
+									],
+									"id": "014"
 								}
-							]
+							],
+							"id": "00f"
 						}
-					]
+					],
+					"id": "00e"
 				}
-			]
+			],
+			"id": "00d"
 		},
 		{
 			"type": "section",
@@ -327,7 +348,8 @@
 					"entries": [
 						"The history of Strefan Maurer runs parallel to that of Strahd von Zarovich. After his father's death, Strefan studied magic and forged a pact with the demon Shilgengar in return for the promise of immortality. After murdering his brother Sergei and drinking his blood, Strefan journeyed to Markov Manor and consulted with Edgar Markov. Together, they worked with Shilgengar to create the twelve bloodlines of vampires on Innistrad. Maurer Estate (Castle Ravenloft) was not spirited away to a demiplane\u2014it was already on Innistrad, itself a place of nightmares. And Strefan is not trapped here, so he is not seeking a successor in hopes of escaping. Newcomers to his domain do attract his attention, though, as the possibility of meeting a new consort is always on Strefan's mind.",
 						"Strefan's statistics are unchanged from the statistics of Strahd in the Curse of Strahd adventure, except that he lacks the Vampire Weaknesses feature. Instead, Strefan has the weaknesses shared by Innistrad vampires (see that earlier section)."
-					]
+					],
+					"id": "016"
 				},
 				{
 					"type": "entries",
@@ -359,7 +381,8 @@
 										"path": "book/PSI/009.webp"
 									}
 								}
-							]
+							],
+							"id": "018"
 						},
 						{
 							"type": "entries",
@@ -379,7 +402,8 @@
 										"A mad wizard of great power haunts the foothills of Mount Baratok. He is an outsider and no friend of the vampire's."
 									]
 								}
-							]
+							],
+							"id": "019"
 						},
 						{
 							"type": "entries",
@@ -403,9 +427,11 @@
 										"path": "book/PSI/010.webp"
 									}
 								}
-							]
+							],
+							"id": "01a"
 						}
-					]
+					],
+					"id": "017"
 				},
 				{
 					"type": "entries",
@@ -414,7 +440,8 @@
 					"entries": [
 						"Little changes about this peaceful village as it is described in the Curse of Strahd adventure, except that the religious trappings found in the church use the iconography of the church of Avacyn and the archangel Sigarda. The holy symbol seen in the office is not a sunburst but Avacyn's Y-shaped collar, looking slightly distorted because of the angels' madness. The priest Donavich prays to the angels, not the gods.",
 						"The books found in the church office are called Hymns to the Heron (chants to Sigarda) and The Blade of Truth: The Uses of Logic in the War Against Demonic Heresies, as Fought by the Lunarch Andreas."
-					]
+					],
+					"id": "01b"
 				},
 				{
 					"type": "entries",
@@ -443,7 +470,8 @@
 										"Strangers aren't welcome at Maurer Estate without an invitation."
 									]
 								}
-							]
+							],
+							"id": "01d"
 						},
 						{
 							"type": "entries",
@@ -460,7 +488,8 @@
 										"It is wise to stick to the road. Wild druids, wayward geists, and packs of wolves and werewolves haunt the Somberwald."
 									]
 								}
-							]
+							],
+							"id": "01e"
 						},
 						{
 							"type": "entries",
@@ -476,9 +505,11 @@
 										"Ravens carry lost souls within them, so killing one is bad luck. (There is no truth to this legend.)"
 									]
 								}
-							]
+							],
+							"id": "01f"
 						}
-					]
+					],
+					"id": "01c"
 				},
 				{
 					"type": "entries",
@@ -506,7 +537,8 @@
 						"Local lore about Heron's Light Hold (Argynvostholt) is that an angel died there long ago.",
 						"Saint Andral's Church is dedicated to Avacyn. The inquisitor Seeta has taken up residence in the church, demanding hospitality from Father Lucien, but she spends most of her time in the town square. There, several guillotines are set up for the punishment of heretics. Use the description of baron Vargas Vallakovich in Curse of Strahd to guide your roleplaying of Seeta. Baroness Lydia Petrovna is the nominal ruler of the town, but she has effectively ceded her authority to Seeta and the Lunarch Inquisition.",
 						"The wereravens in the Blue Water Inn are members of the Keepers of the Feather\u2014an order of witches tied to a benevolent raven spirit. The dusk elves among the Bitterhearts are vampires of the Dusken family line."
-					]
+					],
+					"id": "020"
 				},
 				{
 					"type": "entries",
@@ -514,7 +546,8 @@
 					"page": 37,
 					"entries": [
 						"This ancient hold was constructed by a group of knights called the Order of Heron's Light (replacing the adventure's Order of the Silver Dragon), led by the archangel Sigarda herself. Sigarda was not slain in the ancient confrontation with Strefan, but after her knights were all killed, she abandoned the valleys. Though she does not physically appear, she does try to influence the adventurers to help the knights find peace. Rather than a silver dragon, the hold uses imagery of herons."
-					]
+					],
+					"id": "021"
 				},
 				{
 					"type": "entries",
@@ -530,7 +563,8 @@
 							}
 						},
 						"The approach of Emrakul has filled the abbey to overflowing, and physical corruption commensurate with the growing madness has transformed unfortunate victims into creatures akin to the mongrelfolk of the Curse of Strahd adventure. The abbess of the madhouse is an angel who once fought alongside Saint Traft, and who has descended into utter madness since the ancient saint's death."
-					]
+					],
+					"id": "022"
 				},
 				{
 					"type": "entries",
@@ -538,7 +572,8 @@
 					"page": 37,
 					"entries": [
 						"The Needle's Eye traverses the Midland Range to connect Stensia's outland valleys and inland valleys. Its proximity to Ashmouth means it is haunted by demons, including the vrocks atop the gatehouse wall. Far worse, replacing the roc of Mount Ghakis, is the Demonlord of Ashmouth, a terrible and ancient fiend. It uses the statistics of a horned devil, except that it uses a battleaxe instead of a fork."
-					]
+					],
+					"id": "023"
 				},
 				{
 					"type": "entries",
@@ -546,7 +581,8 @@
 					"page": 37,
 					"entries": [
 						"An ancient crone here is dedicated to destroying the Keepers of the Feather, the witches that inhabit the Wizard of Wines."
-					]
+					],
+					"id": "024"
 				},
 				{
 					"type": "entries",
@@ -555,7 +591,8 @@
 					"entries": [
 						"The legendary monster hunter Rem Karolus, called the Blade of the Inquisitors, has become more interested in hunting angels than werewolves. But his protégé Kastinne (replacing the adventure's Ezmerelda) carries on his work while she searches for her mentor. After a demon killed her children and imprisoned their souls, Kastinne left her home among the Bitterhearts and adopted the lifestyle of a wandering monk. Swearing a vow that most called mad, she descended into the ghastly network of caves below Stensia, bent on killing the demon and liberating her children's souls. Against all odds, she emerged triumphant from the caverns to take up a life of demon hunting. She has trained and worked with Rem Karolus ever since.",
 						"The dragon that appears if characters fail to correctly open the door to Karolus's tower is a balefire dragon, but with the statistics of a {@creature young blue dragon}."
-					]
+					],
+					"id": "025"
 				},
 				{
 					"type": "entries",
@@ -564,7 +601,8 @@
 					"entries": [
 						"The Martikov family who run this winery made a pact with a raven spirit of the Somberwald and became forcemages, forming the nucleus of the Keepers of the Feather. These witches stand on the side of humanity against the horrors of Innistrad, and against Strefan Maurer specifically. Their pact gives them magical power, supplemented by their extensive knowledge of herbalism.",
 						"The {@creature druid||druids} and {@filter blight|bestiary|search=blight} here come from Yester Hill."
-					]
+					],
+					"id": "026"
 				},
 				{
 					"type": "entries",
@@ -572,7 +610,8 @@
 					"page": 38,
 					"entries": [
 						"This ancient structure predates any of the known peoples and cultures of Innistrad. The good-aligned wizards who built it anticipated the Helvault by entrapping semidivine evil forces in silver-lined prisons. Everywhere in the temple that amber is described, use silver instead. Both the arcanaloth and the death slaad here are various forms of Innistrad demons."
-					]
+					],
+					"id": "027"
 				},
 				{
 					"type": "entries",
@@ -580,7 +619,8 @@
 					"page": 38,
 					"entries": [
 						"Led by an elder named Rimheit, a group of druids and berserkers dwells atop this hill, revering an ancient yew spirit that inhabits a Gulthias tree. These people dwelled in Stensia long before the current inhabitants came across the mountains and built their villages. The yew spirit is the source of the blights (including the tree blights sometimes called lumberknots) that plague the valleys."
-					]
+					],
+					"id": "028"
 				},
 				{
 					"type": "entries",
@@ -588,7 +628,8 @@
 					"page": 38,
 					"entries": [
 						"The werewolves are a branch of the Mondronen howlpack, who practice dark forms of blood magic."
-					]
+					],
+					"id": "029"
 				},
 				{
 					"type": "entries",
@@ -604,7 +645,8 @@
 								"path": "book/PSI/014.webp"
 							}
 						}
-					]
+					],
+					"id": "02a"
 				},
 				{
 					"type": "entries",
@@ -621,7 +663,8 @@
 									"page": 39,
 									"entries": [
 										"Arrigal is one of the Bitterhearts, and neither his clothing nor his accent are particularly outlandish. He comes to the adventurers when they are in the inland valleys of Stensia, perhaps in Silbern or Wollebank. The people there know that these Bitterhearts come from the outland valleys. The hook is otherwise unchanged."
-									]
+									],
+									"id": "02d"
 								},
 								{
 									"type": "entries",
@@ -629,7 +672,8 @@
 									"page": 39,
 									"entries": [
 										"The scene described here takes place in Wollebank in the inland valleys. Instead of Lady Morwen, the characters dine with Deigenhard, the mayor of Wollebank. Deigenhard is familiar with the Bitterhearts and believes they are little more than bandits, so he asks the player characters to get them moving on their way. If the adventurers follow the Bitterhearts to the outland valleys, they travel northwest along the Somber Road, through the pass of Hofsaddel."
-									]
+									],
+									"id": "02e"
 								},
 								{
 									"type": "entries",
@@ -655,7 +699,8 @@
 												"path": "book/PSI/015.webp"
 											}
 										}
-									]
+									],
+									"id": "02f"
 								},
 								{
 									"type": "entries",
@@ -663,11 +708,14 @@
 									"page": 39,
 									"entries": [
 										"Since there are no mists to transport characters to Stensia's outland valleys, this hook doesn't apply if you are running Curse of Strahd in Innistrad."
-									]
+									],
+									"id": "030"
 								}
-							]
+							],
+							"id": "02c"
 						}
-					]
+					],
+					"id": "02b"
 				},
 				{
 					"type": "entries",
@@ -684,7 +732,8 @@
 									"page": 39,
 									"entries": [
 										"The first time the player characters encounter these Somberwald trappers, the group is led by a man named Paulin (whom the players might recognize from flavor text on a handful of cards in the original Innistrad block). He leaves them with some words of wisdom: \"Bury your dead deep. The boars are hungriest while the corpse is still warm.\" (At your discretion, you can also replace {@creature berserker||berserkers} with a like number of {@creature giant boar||giant boars} in a random encounter.) Harrowing Journey James Paick"
-									]
+									],
+									"id": "033"
 								},
 								{
 									"type": "entries",
@@ -692,7 +741,8 @@
 									"page": 40,
 									"entries": [
 										"Found on Maurer Lake, Bluto has gone mad under the influence of the approach of Emrakul. He has devoted himself to an aquatic being he believes lives in the depths of the lake\u2014something akin to the Gitrog monster or the squidlike Kralmar worshiped by coastal cults in Nephalia. Bluto has gill-like flaps on his neck. At your discretion, you could introduce an encounter with the creature he worships, which might be something like a {@creature giant crocodile}."
-									]
+									],
+									"id": "034"
 								},
 								{
 									"type": "entries",
@@ -700,7 +750,8 @@
 									"page": 40,
 									"entries": [
 										"You can use Mordenkainen as written in Curse of Strahd. Or, in a twisted nod to the storyline of Shadows over Innistrad, this mad planeswalking mage could be Jace Beleren. Create a different list of spells for Jace, focusing on mind-altering and illusion magic."
-									]
+									],
+									"id": "035"
 								},
 								{
 									"type": "entries",
@@ -708,7 +759,8 @@
 									"page": 40,
 									"entries": [
 										"The statistics of these misshapen creatures are the same, but in appearance, they resemble the corrupted, malformed creatures warped by the influence of Emrakul. Rather than claws, they might attack with tentacles (dealing bludgeoning damage) or extra mouths (dealing piercing damage). No magic can restore a mongrelfolk to its previous form."
-									]
+									],
+									"id": "036"
 								},
 								{
 									"type": "entries",
@@ -716,7 +768,8 @@
 									"page": 40,
 									"entries": [
 										"Use the vampire neonate statistics in this document whenever the adventurers encounter vampire spawn, rather than the vampire spawn statistics in the Monster Manual. The first time the adventurers encounter exactly two vampire spawn, they meet the infamous twins of Maurer Estate, two young girls named Ruby and Carmine. The two enjoy pretending to be helpless young girls, lost and alone, in order to get close to their prey."
-									]
+									],
+									"id": "037"
 								},
 								{
 									"type": "entries",
@@ -731,13 +784,17 @@
 												"path": "book/PSI/016.webp"
 											}
 										}
-									]
+									],
+									"id": "038"
 								}
-							]
+							],
+							"id": "032"
 						}
-					]
+					],
+					"id": "031"
 				}
-			]
+			],
+			"id": "015"
 		}
 	]
 }

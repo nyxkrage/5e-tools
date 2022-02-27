@@ -720,15 +720,34 @@
 										"The path climbs to the Mountain Door, at the location marked A on the map. This is the route used by the orcs in {@creature Great Ulfe|TftYP}'s tribe to come and go from their lair.",
 										"If someone checks the path for tracks, a successful DC 10 Wisdom ({@skill Survival}) check reveals that four booted humanoids came down it within the last day and headed into the forest. The trail joins older tracks in the woods and becomes indistinguishable after about half a mile. These tracks belong to orc foraging parties; see \"{@adventure Wait and Watch|TftYP-TFoF|1|Wait and Watch}\" below for more information.",
 										{
-											"type": "image",
-											"href": {
-												"type": "internal",
-												"path": "adventure/TftYP-TFoF/001-totyp-02-02.webp"
-											},
-											"title": "Map 2.1: The Stone Tooth",
-											"width": 1694,
-											"height": 2220,
-											"imageType": "map"
+											"type": "gallery",
+											"images": [
+												{
+													"type": "image",
+													"href": {
+														"type": "internal",
+														"path": "adventure/TftYP-TFoF/001-totyp-02-02.webp"
+													},
+													"title": "Map 2.1: The Stone Tooth",
+													"width": 1694,
+													"height": 2220,
+													"imageType": "map",
+													"id": "164"
+												},
+												{
+													"type": "image",
+													"href": {
+														"type": "internal",
+														"path": "adventure/TftYP-TFoF/002-map-2-1-the-stone-tooth.webp"
+													},
+													"imageType": "mapPlayer",
+													"title": "Player Version",
+													"mapParent": {
+														"id": "164",
+														"autoScale": true
+													}
+												}
+											]
 										}
 									],
 									"id": "02b"
@@ -901,15 +920,34 @@
 						"The uppermost level of Khundrukar, called the Mountain Door, is a natural cavern that was expanded and improved upon by Durgeddin's folk, who created a series of halls and guard chambers that protect the entrance to their realm. The place is still well fortified, even to this day.",
 						"This former dwarven strongpoint is now occupied by a band of orc raiders, led by a fierce ogre who calls himself {@creature Great Ulfe|TftYP}. These raiders emerge from the Mountain Door to hunt and pillage in the surrounding area. To keep their lair secure, the orcs have blocked access to the lower levels of Khundrukar, and they rarely encounter the other denizens of the cave system.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-TFoF/002-totyp-02-03.webp"
-							},
-							"title": "Map 2.2: The Mountain Door",
-							"width": 3000,
-							"height": 1366,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/002-totyp-02-03.webp"
+									},
+									"title": "Map 2.2: The Mountain Door",
+									"width": 3000,
+									"height": 1366,
+									"imageType": "map",
+									"id": "165"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/004-the-mountaind-door-map-pc.webp"
+									},
+									"imageType": "mapPlayer",
+									"title": "Player Version",
+									"mapParent": {
+										"id": "165",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						"The following locations are identified on map 2.2.",
 						{
@@ -1727,19 +1765,19 @@
 					"page": 43,
 					"entries": [
 						"Below the Mountain Door lies the Glitterhame, a large series of natural caverns in the heart of the Stone Tooth. The caverns are beautiful: the walls sparkle and glisten with flecks of semiprecious stone, and millennia of sculpting and erosion by water have created sheets of fluted flowstone, delicate stalactites, and majestic stalagmites. Water streams down through the caverns toward an underground river far below.",
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/TftYP-TFoF/005-totyp-02-06.webp"
+							},
+							"width": 761,
+							"height": 1000
+						},
 						"The Glitterhame is now home to a band of {@creature Troglodyte||troglodytes}, dangerous reptilian savages that haunt underground places. The troglodytes and {@creature Great Ulfe|TftYP}'s tribe maintain an uneasy peace, although skirmishes occur. The troglodytes usually use the old orc tunnel (see {@adventure area 21|TftYP-TFoF|1|21. Orc Tunnel}) to hunt on the surface and leave the orcs alone. In return, {@creature Great Ulfe|TftYP}'s followers rarely invade the troglodytes' domain.",
 						{
 							"type": "gallery",
 							"images": [
-								{
-									"type": "image",
-									"href": {
-										"type": "internal",
-										"path": "adventure/TftYP-TFoF/005-totyp-02-06.webp"
-									},
-									"width": 761,
-									"height": 1000
-								},
 								{
 									"type": "image",
 									"href": {
@@ -1749,7 +1787,21 @@
 									"title": "Map 2.3: The Glitterhame",
 									"width": 3000,
 									"height": 2747,
-									"imageType": "map"
+									"imageType": "map",
+									"id": "166"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/009-tfof02.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "166",
+										"autoScale": true
+									}
 								}
 							]
 						},
@@ -2355,15 +2407,34 @@
 						"None of the monsters that inhabit the complex regularly visit this place. The black dragon Nightscale sometimes swims through its submerged areas, using the river as a back door to its lair.",
 						"A narrow staircase winds down along the chasm walls until reaching bottom, where it offers access to area 28.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-TFoF/008-totyp-02-08.webp"
-							},
-							"title": "Map 2.4: The Sinkhole",
-							"width": 3000,
-							"height": 1428,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/008-totyp-02-08.webp"
+									},
+									"title": "Map 2.4: The Sinkhole",
+									"width": 3000,
+									"height": 1428,
+									"imageType": "map",
+									"id": "167"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/012-tfof03.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "167",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						"The following locations are identified on map 2.4.",
 						{
@@ -2617,15 +2688,34 @@
 						"Unlike the Mountain Door or the Glitterhame, which offer exits to the surface world, the Foundry isn't readily accessible. The area isn't abandoned, though. Undead horrors wait in its darkest recesses, and dwarf-crafted traps still work perfectly well despite their age. In addition, a small number of duergar have come here to breathe life into Durgeddin's old forges and decipher the secrets of the master smith's work.",
 						"If the characters come to this part of the complex from the Black Lake (see the \"Dark Mere\" subsection of \"{@adventure Scout the Area|TftYP-TFoF|1|Scout the Area}\"), they begin in {@adventure area 38|TftYP-TFoF|1|38. The Chasm}.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-TFoF/010-totyp-02-11.webp"
-							},
-							"title": "Map 2.5: The Foundry",
-							"width": 3000,
-							"height": 1704,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/010-totyp-02-11.webp"
+									},
+									"title": "Map 2.5: The Foundry",
+									"width": 3000,
+									"height": 1704,
+									"imageType": "map",
+									"id": "168"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/015-tfof04.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "168",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						"The following locations are identified on map 2.5.",
 						{
@@ -3357,15 +3447,34 @@
 						"The Black Lake is now the domain of Nightscale, a {@creature young black dragon}. Here she has built her hoard, having slowly collected most of the remaining loot from Khundrukar. From the lake, Nightscale can swim to the Sinkhole, climb up to the Glitterhame, or fly up to the Foundry through the chasm there. The troglodytes fear and worship the dragon. The duergar have negotiated an uneasy truce with Nightscale, paying her a modest tribute to leave them alone.",
 						"The following locations are identified on map 2.6.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-TFoF/013-totyp-02-13.webp"
-							},
-							"title": "Map 2.6: The Black Lake",
-							"width": 3000,
-							"height": 1112,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/013-totyp-02-13.webp"
+									},
+									"title": "Map 2.6: The Black Lake",
+									"width": 3000,
+									"height": 1112,
+									"imageType": "map",
+									"id": "169"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-TFoF/019-tfof05.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "169",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						{
 							"type": "entries",

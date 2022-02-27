@@ -713,15 +713,34 @@
 					"entries": [
 						"Map 6.1 shows the layout of the huge timber stronghold of the local clan of hill giants. All outer walls are of logs at least 3 feet in diameter. Inner walls dividing rooms are about 2 feet thick. All inside floors are of stone.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/001-atg01.webp"
-							},
-							"title": "Map 6.1: Hill Giant Stronghold - Upper Level",
-							"width": 2280,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/001-atg01.webp"
+									},
+									"title": "Map 6.1: Hill Giant Stronghold - Upper Level",
+									"width": 2280,
+									"height": 3000,
+									"imageType": "map",
+									"id": "21e"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/002-atg01-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "21e",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						"The steading is in a nasty, damp area, where hard rain is a daily occurrence and wet fog a nightly event. As a result, all wood in the place is very damp and difficult to set aflame.",
 						{
@@ -1334,15 +1353,34 @@
 					"entries": [
 						"Map 6.2 shows the layout of the steading's lower level. The stonework is ancient but holding up well, patched in places with new mortar or shored up with newly hewn stone. All natural cave areas have stalagmites, but for ease of passage the giants have removed stalactites from the central caverns ({@adventure areas 19|TftYP-AtG|1|19. Natural Cavern}\u2013{@adventure 21|TftYP-AtG|1|21. Lizards' Lair}).",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/003-atg02.webp"
-							},
-							"title": "Map 6.2: Hill Giant Stronghold - Dungeon Level",
-							"width": 2269,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/003-atg02.webp"
+									},
+									"title": "Map 6.2: Hill Giant Stronghold - Dungeon Level",
+									"width": 2269,
+									"height": 3000,
+									"imageType": "map",
+									"id": "21f"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/005-atg02-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "21f",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						{
 							"type": "entries",
@@ -2063,15 +2101,34 @@
 					"entries": [
 						"Map 6.3 shows the layout of the upper level of the glacial rift. The passage from the northeast at the top of the map indicates the beaten path that the giants follow to enter the glacial rift. The path forks inside the entrance, each side leading to one of the icy ledges along either face of the rift. The caves and caverns herein are basically formed from ice, with a few areas of rock outcropping here and there.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/007-atg03.webp"
-							},
-							"title": "Map 6.3: Frost Giant Stronghold - Upper Level",
-							"width": 2284,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/007-atg03.webp"
+									},
+									"title": "Map 6.3: Frost Giant Stronghold - Upper Level",
+									"width": 2284,
+									"height": 3000,
+									"imageType": "map",
+									"id": "220"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/010-atg03-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "220",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						"Both ledges slope gradually downward, as indicated by the elevation markers on the map, from a height of 250 feet above the bottom of the rift at their northern beginnings to about 150 feet above the rift at the ledges' far ends to the south. The central area is the rift itself, and the openings along it are the entrances to the caves and tunnels in its face.",
 						{
@@ -2664,15 +2721,34 @@
 					"entries": [
 						"Map 6.4 shows the layout of the lower level of the glacial rift. This area has basically natural formations, with some rough-hewn connecting passages and enlargements made here and there.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/010-atg04.webp"
-							},
-							"title": "Map 6.4: Frost Giant Stronghold - Lower Level",
-							"width": 2284,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/010-atg04.webp"
+									},
+									"title": "Map 6.4: Frost Giant Stronghold - Lower Level",
+									"width": 2284,
+									"height": 3000,
+									"imageType": "map",
+									"id": "221"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/014-atg04-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "221",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						{
 							"type": "entries",
@@ -3340,15 +3416,34 @@
 					"entries": [
 						"Map 6.5 shows the layout of the uppermost level of the fire giant stronghold. The floors, walls, and ceilings throughout the place are of black, reddish-black, dark gray, and dull brown rock. In some places the stone has been hewn, but in others it appears to have been fused by heat.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/012-atg05.webp"
-							},
-							"title": "Map 6.5: Hall of the Fire Giant King - Entrance Level",
-							"width": 2269,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/012-atg05.webp"
+									},
+									"title": "Map 6.5: Hall of the Fire Giant King - Entrance Level",
+									"width": 2269,
+									"height": 3000,
+									"imageType": "map",
+									"id": "222"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/017-atg05-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "222",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						{
 							"type": "entries",
@@ -4048,15 +4143,34 @@
 					"entries": [
 						"Map 6.6 shows the layout of the second level of the fire giant stronghold. The floors, walls, and ceilings throughout the area are of black, reddish-black, dark gray, and dull brown rock. In some places the stone has been hewn, but in others it appears to have been fused by heat.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/015-atg06.webp"
-							},
-							"title": "Map 6.6: Hall of the Fire Giant King - Second Level",
-							"width": 2269,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/015-atg06.webp"
+									},
+									"title": "Map 6.6: Hall of the Fire Giant King - Second Level",
+									"width": 2269,
+									"height": 3000,
+									"imageType": "map",
+									"id": "223"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/021-atg06-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "223",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						{
 							"type": "entries",
@@ -4750,15 +4864,34 @@
 					"entries": [
 						"Map 6.7 shows the layout of the lowest level of the fire giant stronghold. This place is entirely natural, the tunnels and caverns showing no marks of being hollowed out, except for the entranceway to the level from above and around the exit beyond the River of Lava.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-AtG/018-atg07.webp"
-							},
-							"title": "Map 6.7: Hall of the Fire Giant King - Third Level",
-							"width": 2269,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/018-atg07.webp"
+									},
+									"title": "Map 6.7: Hall of the Fire Giant King - Third Level",
+									"width": 2269,
+									"height": 3000,
+									"imageType": "map",
+									"id": "224"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-AtG/025-atg07-player.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "224",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						"As is usual with natural areas, do not worry overmuch about describing direction of passages and walls of caves and caverns, let alone size and shape. Primitive mapping techniques under stress conditions would develop just about the same sort of chart as your players will when their characters explore this level... wretched, but sufficient to get from place to place. If they have made it this far, they do not need any help from the DM!",
 						{

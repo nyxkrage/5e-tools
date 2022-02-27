@@ -42,7 +42,8 @@
 												"Land passage through Benalia to the east coast of Aerona is virtually impossible thanks to the peaks of the Ironclaws, but the Benalish are the preeminent naval power in the region. By informal but frequently reiterated agreement, Benalish ships stay out of the Voda Sea, and the merfolk of {@b Vodalia} allow shipping to pass along Aerona's coastlines largely unhindered. This command of Aerona's southern coasts allows the Benalish to maintain a permanent presence in Sursi on the east coast of the continent.",
 												"To the northeast of Benalia are the Red Iron Mountains, which divide the more sparsely populated northern half of Aerona from the lands to the south. The mountains' native Crookshank kobolds fared poorly during the chaos of the Rift Years, and the mountains are now dotted with Benalish mining settlements.",
 												"To the east, the Red Iron Mountains divide as the continent does, with the Ironcrowns veering off to the south. The northern branch becomes the formidable peaks of the Hurloon Mountains, home of a peaceful but reclusive nation of minotaurs. The occasional Benalish trading mission ventures into Hurloon, but permanent settlements and Serran missionaries are met with open hostility."
-											]
+											],
+											"id": "004"
 										},
 										{
 											"type": "entries",
@@ -50,7 +51,8 @@
 											"page": 4,
 											"entries": [
 												"The forbidding subcontinent north of Aerona is Icehaven, home to the warrior nation of {@b Keld}. Keldon raiders and Benalish colonists now clash regularly along the west coast of northern Aerona, both seeking to control the relatively narrow stretch of land between the Sea of Avenant and the Whispering Woods to the east."
-											]
+											],
+											"id": "005"
 										},
 										{
 											"type": "entries",
@@ -58,13 +60,17 @@
 											"page": 4,
 											"entries": [
 												"West of Benalia spreads a vast ocean dotted with islands. The most prominent of the {@b Tolarian Academies}, Tolaria West, is situated in the northwestern Spice Isles. (A second Tolarian Academy is situated on Walassa to the east of Aerona, part of the mercantile empire of Orvada.)"
-											]
+											],
+											"id": "006"
 										}
-									]
+									],
+									"id": "003"
 								}
-							]
+							],
+							"id": "002"
 						}
-					]
+					],
+					"id": "001"
 				},
 				{
 					"type": "image",
@@ -73,7 +79,8 @@
 						"path": "book/PSD/002.webp"
 					}
 				}
-			]
+			],
+			"id": "000"
 		},
 		{
 			"type": "section",
@@ -120,7 +127,8 @@
 									"page": 5,
 									"entries": [
 										"The priests who march with the armies of Benalia are consecrated by the Serran church\u2014and are technically part of its ecclesiastical hierarchy. In practice, though, they serve more as military officers than as clergy. Benalish clerics inspire their charges to great feats of glory and heroism, bolstering them with the blessings of Serra."
-									]
+									],
+									"id": "00a"
 								},
 								{
 									"type": "entries",
@@ -128,7 +136,8 @@
 									"page": 5,
 									"entries": [
 										"Benalish fighters drawn from the noble houses are often elite knights. They are responsible for security for Benalish lords and their manors, and make up the core of military forces in the field. Noble fighters also serve as officers for the soldiery, but many people from the common classes also rise to officer ranks. Each of the noble houses maintains its own standing army, but several legions of professional soldiers tithed from the different houses make up the backbone of the Benalish fighting force."
-									]
+									],
+									"id": "00b"
 								},
 								{
 									"type": "entries",
@@ -136,7 +145,8 @@
 									"page": 5,
 									"entries": [
 										"Warriors who combine loyalty to Benalia with devotion to Serra might join the ranks of Benalia's knights if they come from noble blood. This is particularly true of the members of House Capashen, who have a long heritage of worshiping Serra."
-									]
+									],
+									"id": "00c"
 								},
 								{
 									"type": "entries",
@@ -144,9 +154,11 @@
 									"page": 5,
 									"entries": [
 										"The leather-clad Benalish warriors known colloquially as \"heroes\" make up a special, renowned class of defender. They are trained from a young age to survive in any environment while operating independently, and they owe their loyalty directly to Benalia City and the Council of Seven."
-									]
+									],
+									"id": "00d"
 								}
-							]
+							],
+							"id": "009"
 						},
 						{
 							"type": "table",
@@ -224,7 +236,8 @@
 								]
 							]
 						}
-					]
+					],
+					"id": "008"
 				},
 				{
 					"type": "entries",
@@ -232,7 +245,8 @@
 					"page": 6,
 					"entries": [
 						"See the {@race Aven|PSD} entry."
-					]
+					],
+					"id": "00e"
 				},
 				{
 					"type": "image",
@@ -291,7 +305,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "010"
 						},
 						{
 							"type": "entries",
@@ -353,7 +368,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "011"
 						},
 						{
 							"type": "entries",
@@ -407,11 +423,14 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "012"
 						}
-					]
+					],
+					"id": "00f"
 				}
-			]
+			],
+			"id": "007"
 		},
 		{
 			"type": "section",
@@ -458,7 +477,8 @@
 									"page": 8,
 									"entries": [
 										"Many different ranks of priests fill the church hierarchy, but they all serve the same essential functions of ministering to the populace and interpreting the teachings of Serra. Priests who go out into the world and spread Serra's word are known as missionaries. As a cleric of Serra, you can choose from the Knowledge, Life, Light, and War domains."
-									]
+									],
+									"id": "016"
 								},
 								{
 									"type": "entries",
@@ -466,7 +486,8 @@
 									"page": 8,
 									"entries": [
 										"Monks are true believers who devote their lives to understanding Serra's word rather than preaching it. Some focus on contemplation, study, and the healing arts, but others find their deep wisdom by way of martial practice."
-									]
+									],
+									"id": "017"
 								},
 								{
 									"type": "entries",
@@ -474,9 +495,11 @@
 									"page": 8,
 									"entries": [
 										"Even within the peaceful Church of Serra, some are called to fight. Soldiers (called acolytes and guardians) serve a largely ceremonial function, protecting the cathedrals of Serra. But paladins are more worldly, venturing out across the land in search of evil to defeat. Serran paladins typically swear the Oath of Devotion. Those who are devoted to the Four Virtues of art, discourse, freedom, and peace are more apt to swear the Oath of the Ancients."
-									]
+									],
+									"id": "018"
 								}
-							]
+							],
+							"id": "015"
 						},
 						{
 							"type": "table",
@@ -561,9 +584,11 @@
 							"entries": [
 								"The most visible and recognized symbols of the Church of Serra are her angels\u2014both those that were personally created by Serra and those that appeared spontaneously in the Cathedral at Sursi. Some angels live contemplative lives within the cathedrals, but most are active defenders of the faith, protecting Serra's people across the world. Powerful angels often take responsibility for large regions of the world. Lyra, for example, stands as the protector of Benalia, and Shalai plays a similar role in Llanowar. Serra's angels are believed to hear prayers addressed to Serra, and they have an uncanny tendency to arrive exactly when they are needed.",
 								"Any of the angels in the Monster Manual can serve as Serra angels. The deva represents the most common angels, while the planetar and solar are appropriate for powerful angels such as Lyra and Shalai."
-							]
+							],
+							"id": "019"
 						}
-					]
+					],
+					"id": "014"
 				},
 				{
 					"type": "entries",
@@ -622,7 +647,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "01b"
 						},
 						{
 							"type": "entries",
@@ -684,7 +710,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "01c"
 						},
 						{
 							"type": "entries",
@@ -738,11 +765,14 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "01d"
 						}
-					]
+					],
+					"id": "01a"
 				}
-			]
+			],
+			"id": "013"
 		},
 		{
 			"type": "section",
@@ -783,7 +813,8 @@
 							"page": 10,
 							"entries": [
 								"Tolaria is a {@class wizard} school, and virtually everyone at the Academy\u2014students, teachers, scholars, and administrators alike\u2014is a wizard skilled in or learning the practice of magic. Professors within each academy can trace their educational history back to different members of the original Tolarian Academy, including Urza, Barrin, and Rayne. Members of different lineages typically focus on different subjects, employ different teaching styles, adhere to different ethical standards, use different jargon, and even adopt distinct accents when addressing students. At least in theory, members of other classes can study at the Tolarian Academies, though some amount of magical talent is a requirement for entry. An eldritch knight or arcane trickster might learn magic there while honing other skills, or a sorcerer might try to elevate the mastery of their innate abilities through rigorous arcane study."
-							]
+							],
+							"id": "020"
 						},
 						{
 							"type": "table",
@@ -857,7 +888,8 @@
 								]
 							]
 						}
-					]
+					],
+					"id": "01f"
 				},
 				{
 					"type": "entries",
@@ -916,7 +948,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "022"
 						},
 						{
 							"type": "entries",
@@ -978,7 +1011,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "023"
 						},
 						{
 							"type": "entries",
@@ -1032,11 +1066,14 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "024"
 						}
-					]
+					],
+					"id": "021"
 				}
-			]
+			],
+			"id": "01e"
 		},
 		{
 			"type": "section",
@@ -1095,7 +1132,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "027"
 						},
 						{
 							"type": "image",
@@ -1164,7 +1202,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "028"
 						},
 						{
 							"type": "entries",
@@ -1218,9 +1257,11 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "029"
 						}
-					]
+					],
+					"id": "026"
 				},
 				{
 					"type": "entries",
@@ -1228,9 +1269,11 @@
 					"page": 15,
 					"entries": [
 						"The merfolk of Vodalia have waged bitter war for generations against the cryptic, cold-loving crustacean race of {@creature Homarid|PSD|homarids}. The surface ocean waters have become too warm for the homarids in recent times, but in the years following the Brothers' War, as a global ice age settled over Dominaria, the homarids swarmed to the surface and nearly unraveled the fabric of the first Vodalian Empire. Even now, these creatures teem in the deep, frigid trenches to the west of the Voda Sea."
-					]
+					],
+					"id": "02a"
 				}
-			]
+			],
+			"id": "025"
 		},
 		{
 			"type": "section",
@@ -1306,7 +1349,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "02d"
 						},
 						{
 							"type": "image",
@@ -1367,7 +1411,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "02e"
 						},
 						{
 							"type": "entries",
@@ -1375,7 +1420,8 @@
 							"page": 17,
 							"entries": [
 								"Cabalists are uniformly fanatical, tormented into zealotry by pain, greed, and the distinctive power of their dementia magic. From the Cabal's beginning, spellcasters known as dementists have manipulated the very stuff of nightmares, reshaping reality and creating items and creatures from the parallel realm of \"dementia space.\" Though it has been greatly changed by centuries of hardship, dementia magic remains a powerful asset of the Cabal, and cabalists value prowess with such magic above everything except the favor of Belzenlok."
-							]
+							],
+							"id": "02f"
 						},
 						{
 							"type": "entries",
@@ -1384,7 +1430,8 @@
 							"entries": [
 								"Most members of the Cabal serve it in a religious capacity. Cells of Cabal cultists are found throughout the world, worshiping Belzenlok in secret. Once inducted into the Cabal more formally, cultists shave their heads and become initiates, assisting priests in their dark rites. As Cabal priests rise through the ranks, they dress more ornately, often wearing headgear or high collars that set them apart from initiates. Most Cabal clerics are dementists, and carry with them implements of sacrifice and veneration. But a few are more martial in nature, wielding heavy blades and viewing combat as the most active form of sacrifice to Belzenlok.",
 								"These figures might be represented by acolytes, cultists, cult fanatics, mages, or priests, starting off with the statistics in the Monster Manual. You can then modify those statistics using the guidelines found under \"Cabalist Characteristics,\" below."
-							]
+							],
+							"id": "030"
 						},
 						{
 							"type": "entries",
@@ -1394,7 +1441,8 @@
 								"Cabal knights are all members of an order called the Grimnant. The armor they wear has been melted down from scavenged or stolen pieces and forged anew, painted in a black lacquer and with its edges honed. Often, the armor is molded to mirror aspects of the demon Belzenlok, a form of idol worship that Grimnant knights believe gains them power and favor.",
 								"Grimnants are brutal combatants who arrive after the Cabal's infiltration has weakened a target. Most have some minor knowledge of dementia magic or carry trinkets that give them the ability to wield dark magic in battle, but they're not generally known as spellcasters. Appearing stoic from afar, most Grimnant knights experience a bloodlust in battle and enjoy going in close for the kill.",
 								"Grimnant knights can use the statistics of gladiators, guards, knights, or veterans, as modified by the information under \"Cabalist Characteristics.\" Some Grimnants are actually wights riding undead horses with the statistics of zombies (except that their size is Large)."
-							]
+							],
+							"id": "031"
 						},
 						{
 							"type": "entries",
@@ -1402,7 +1450,8 @@
 							"page": 17,
 							"entries": [
 								"In its cells throughout the world, the Cabal has need for more than prayer. Whether striking from the shadows or venturing out in full regalia to spread open terror, Belzenlok's infiltrators and assassins emphasize what many fear: that the Cabal is already everywhere. You can use the statistics for assassins, bandits, bandit captains, spies, or thugs for these characters, modifying them as desired using the information below."
-							]
+							],
+							"id": "032"
 						},
 						{
 							"type": "entries",
@@ -1428,7 +1477,8 @@
 									"page": 17,
 									"entries": [
 										"As a bonus action, or as a reaction when this creature would drop to 0 hit points, it regains 1 hit point and gains temporary hit points equal to its Constitution modifier plus its maximum number of Hit Dice."
-									]
+									],
+									"id": "034"
 								},
 								{
 									"type": "entries",
@@ -1436,13 +1486,17 @@
 									"page": 17,
 									"entries": [
 										"As a reaction when an ally of this creature within 30 feet of it dies, this creature regains hit points equal to twice the dead creature's Constitution modifier."
-									]
+									],
+									"id": "035"
 								}
-							]
+							],
+							"id": "033"
 						}
-					]
+					],
+					"id": "02c"
 				}
-			]
+			],
+			"id": "02b"
 		},
 		{
 			"type": "section",
@@ -1489,7 +1543,8 @@
 									"page": 18,
 									"entries": [
 										"The individual members of a Keldon warhost, sometimes referred to as fists, are all formidable fighters in their own right. Some embrace a modicum of coordinated strategy, while others give themselves over to berserker rage."
-									]
+									],
+									"id": "039"
 								},
 								{
 									"type": "entries",
@@ -1573,11 +1628,14 @@
 												]
 											]
 										}
-									]
+									],
+									"id": "03a"
 								}
-							]
+							],
+							"id": "038"
 						}
-					]
+					],
+					"id": "037"
 				},
 				{
 					"type": "image",
@@ -1594,7 +1652,8 @@
 						"The people of Keld are human, but they are like no other humans anywhere. Nearly all adults stand over six feet tall, and heights above seven feet are not uncommon. They are massively muscled and have gray skin, ranging from an ashy gray-white to a deeper bluegray. The typical {@race Human (Keldon)|PSD}'s hairline points sharply down in the middle of the forehead and at either temple, but recedes elsewhere\u2014sometimes dramatically. {@race Human (Keldon)|PSD|Keldons} are remarkably resistant to the cold of their homeland, baring skin even in near-freezing temperatures without discomfort.",
 						"Keldons value self-reliance, strength, and courage above all else. Anything that is the product of their own labor is a fine thing. Anything else is treated with a healthy dose of skepticism. At best, they are a proud, pragmatic, passionate people, and their loyalty is fierce once earned. At worst, they can be reckless, hot-tempered, and violent\u2014and no small number of Keldons still consider these qualities virtues rather than vices.",
 						"Because of their many exploits as both conquerors and mercenaries, Keldons appear in the legends and histories of other peoples across the world. Sometimes these tales are exaggerated\u2014but many that sound exaggerated are not."
-					]
+					],
+					"id": "03b"
 				},
 				{
 					"type": "entries",
@@ -1646,7 +1705,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "03d"
 						},
 						{
 							"type": "entries",
@@ -1708,7 +1768,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "03e"
 						},
 						{
 							"type": "entries",
@@ -1762,11 +1823,14 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "03f"
 						}
-					]
+					],
+					"id": "03c"
 				}
-			]
+			],
+			"id": "036"
 		},
 		{
 			"type": "section",
@@ -1813,7 +1877,8 @@
 									"page": 21,
 									"entries": [
 										"Since the death of the elf Planeswalker Freyalise, the elves of Llanowar have turned to the worship of Gaea, the goddess of life and nature. Most believe that Freyalise was an avatar or aspect of Gaea in life\u2014and some still pray to her, believing that she continues to take that role in death. But even the faithful of Freyalise are likely to pray directly to Gaea most days. That said, the druids of Llanowar are not just a religious order. They are a professional philosophical class, with different orders filling different social and religious roles among the elves. Some orders consist of poets, bards, and historians who collect and preserve the lore of Llanowar and its peoples for future generations. Others are made up of astronomers, mathematicians, and navigators, who use their esoteric knowledge to predict weather and astronomical events. Most importantly, the druids serve as the judicial system, both investigating complaints and judging the accused."
-									]
+									],
+									"id": "043"
 								},
 								{
 									"type": "image",
@@ -1920,11 +1985,14 @@
 												]
 											]
 										}
-									]
+									],
+									"id": "044"
 								}
-							]
+							],
+							"id": "042"
 						}
-					]
+					],
+					"id": "041"
 				},
 				{
 					"type": "entries",
@@ -1976,7 +2044,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "046"
 						},
 						{
 							"type": "entries",
@@ -2038,7 +2107,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "047"
 						},
 						{
 							"type": "entries",
@@ -2092,7 +2162,8 @@
 										]
 									]
 								}
-							]
+							],
+							"id": "048"
 						},
 						{
 							"type": "entries",
@@ -2108,7 +2179,8 @@
 										"{@creature Steel Leaf Kavu|PSD}"
 									]
 								}
-							]
+							],
+							"id": "049"
 						},
 						{
 							"type": "image",
@@ -2117,9 +2189,11 @@
 								"path": "book/PSD/010.webp"
 							}
 						}
-					]
+					],
+					"id": "045"
 				}
-			]
+			],
+			"id": "040"
 		}
 	]
 }

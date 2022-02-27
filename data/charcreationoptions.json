@@ -136,8 +136,7 @@
 			],
 			"entries": [
 				"I'm a shapechanger. I have none of the traits of the race I'm imitating, but I retain my class features, background, and alignment. I have {@sense darkvision} out to a range of 60 feet. I can use an action to do either of the following at will:",
-				"I can innately cast {@spell detect thoughts}, requiring no components. My spellcasting ability is Intelligence. The spell's Wisdom save DC is 8 + my proficiency bonus + my Intelligence modifier. I can polymorph into any humanoid I have seen or back into my true form. My statistics, other than my size, don't change. Any equipment I'm wearing or carrying isn't transformed. I revert to my true form when I die. Drizzt Fan",
-				"I once met the famous drow ranger Drizzt Do'Urden! In fact, I have a tattered piece of his famous green cloak and would never think to part with it."
+				"I can innately cast {@spell detect thoughts}, requiring no components. My spellcasting ability is Intelligence. The spell's Wisdom save DC is 8 + my proficiency bonus + my Intelligence modifier. I can polymorph into any humanoid I have seen or back into my true form. My statistics, other than my size, don't change. Any equipment I'm wearing or carrying isn't transformed. I revert to my true form when I die."
 			]
 		},
 		{
@@ -149,6 +148,17 @@
 			],
 			"entries": [
 				"You have studied dragons and their lore for many years. You can automatically identify locations built or used by dragons and can identify dragon eggs and scales by sight. If you fail an Intelligence check to recall lore relating to dragons, you know someone or some book you can consult for the answer unless the DM rules that the lore is unknown."
+			]
+		},
+		{
+			"name": "Drizzt Fan",
+			"source": "IDRotF",
+			"page": 264,
+			"optionType": [
+				"CS"
+			],
+			"entries": [
+				"I once met the famous drow ranger Drizzt Do'Urden! In fact, I have a tattered piece of his famous green cloak and would never think to part with it."
 			]
 		},
 		{

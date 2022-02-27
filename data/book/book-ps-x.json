@@ -18,7 +18,8 @@
 						"path": "book/PSX/001.webp"
 					}
 				}
-			]
+			],
+			"id": "000"
 		},
 		{
 			"type": "section",
@@ -61,7 +62,8 @@
 									"page": 5,
 									"entries": [
 										"Certain warriors devoted to Tilonalli (the destructive aspect of the Threefold Sun\u2014the deity worshiped by the folk of the empire) enter a berserk rage in combat. The Path of the Berserker is appropriate for these characters, or the Path of the Totem Warrior (replacing bear, eagle, and wolf totem spirits with ceratops, aerosaur, and raptor spirits, respectively)."
-									]
+									],
+									"id": "004"
 								},
 								{
 									"type": "entries",
@@ -69,7 +71,8 @@
 									"page": 5,
 									"entries": [
 										"Poetry is a respected art among the warriors of the Sun Empire, so bards of the College of Valor might be found within their ranks."
-									]
+									],
+									"id": "005"
 								},
 								{
 									"type": "entries",
@@ -77,7 +80,8 @@
 									"page": 5,
 									"entries": [
 										"Sun Empire clerics are typically devoted to one particular aspect of the Threefold Sun. Kinjalli, the Wakening Sun, represents the deity's creative aspects and grants access to the Life and Light domains. Ixalli, the Verdant Sun, represents its sustaining and nourishing aspects, granting access to the Life and {@skill Nature} domains. Tilonalli, the Burning Sun, represents its destructive aspects and grants access to the Tempest and War domains."
-									]
+									],
+									"id": "006"
 								},
 								{
 									"type": "entries",
@@ -85,7 +89,8 @@
 									"page": 5,
 									"entries": [
 										"Certain shamans of the Sun Empire are closely attuned to the forces of nature, and use wild shape to take on dinosaur forms. These druids typically follow the Circle of the Moon."
-									]
+									],
+									"id": "007"
 								},
 								{
 									"type": "entries",
@@ -93,7 +98,8 @@
 									"page": 5,
 									"entries": [
 										"Highly trained soldiers and warriors are the backbone of the Sun Empire. They are typically Battle Masters or Champions."
-									]
+									],
+									"id": "008"
 								},
 								{
 									"type": "entries",
@@ -101,7 +107,8 @@
 									"page": 5,
 									"entries": [
 										"Knights of the Sun Empire are drawn to the Oath of the Ancients and (increasingly, as vampires and pirates mount incursions into their lands) the Oath of Vengeance. These paladins often use the {@spell find steed} spell to acquire dinosaur mounts (typically a hadrosaurus, described in Volo's Guide to Monsters)."
-									]
+									],
+									"id": "009"
 								},
 								{
 									"type": "entries",
@@ -109,11 +116,14 @@
 									"page": 5,
 									"entries": [
 										"Scouts of the Sun Empire are often rangers, including both Beast Masters and Hunters. The pteranodon, dimetrodon, and velociraptor are all appropriate ranger's companions."
-									]
+									],
+									"id": "00a"
 								}
-							]
+							],
+							"id": "003"
 						}
-					]
+					],
+					"id": "002"
 				},
 				{
 					"type": "inset",
@@ -176,7 +186,8 @@
 								]
 							]
 						}
-					]
+					],
+					"id": "00b"
 				},
 				{
 					"type": "table",
@@ -261,7 +272,8 @@
 						"Generally, in a D&D campaign, it's a good idea to ensure that all the player characters can understand each other. That's why the game maintains the convenient fiction of a Common tongue. But Ixalan is about the clash of four cultures, so you might want to emphasize the differences among those cultures by making the folk of each speak entirely different languages.",
 						"If you go this route, Merfolk is the language of the River Heralds and Vampire is the language of the Legion of Dusk. The humans of the Sun Empire speak their own language, Itzocan, and the humans of the Brazen Coalition speak a different language\u2014a pidgin of Orc, Siren, and a native human language that is similar to Vampire (about as closely related as Italian is to Spanish). Orcs, sirens, and goblins also speak this Brazen Coalition pidgin.",
 						"You might still wish to admit the existence of a sort of Common\u2014a trade pidgin used in circumstances where members of different peoples do interact with each other. But such a language is almost impossible to use for discussions of matters of any depth."
-					]
+					],
+					"id": "00c"
 				},
 				{
 					"type": "image",
@@ -311,7 +323,8 @@
 											"page": 7,
 											"entries": [
 												"Many River Herald shamans are druids of the Circle of the Land."
-											]
+											],
+											"id": "010"
 										},
 										{
 											"type": "entries",
@@ -319,7 +332,8 @@
 											"page": 7,
 											"entries": [
 												"The warriors among the River Heralds include cunning strategists (often Battle Masters), bold Champions, and Eldritch Knights who fuse arcane magic with their use of weapons."
-											]
+											],
+											"id": "011"
 										},
 										{
 											"type": "entries",
@@ -327,7 +341,8 @@
 											"page": 7,
 											"entries": [
 												"Other River Herald warriors wield the druidic magic of the forest in the defense of their lands. Wizard. The magic of wind, mist, illusion, and misdirection is the province of River Herald wizards."
-											]
+											],
+											"id": "012"
 										},
 										{
 											"type": "entries",
@@ -335,11 +350,14 @@
 											"page": 7,
 											"entries": [
 												"The magic of wind, mist, illusion, and misdirection is the province of River Herald wizards."
-											]
+											],
+											"id": "013"
 										}
-									]
+									],
+									"id": "00f"
 								}
-							]
+							],
+							"id": "00e"
 						},
 						{
 							"type": "table",
@@ -417,7 +435,8 @@
 								]
 							]
 						}
-					]
+					],
+					"id": "00d"
 				},
 				{
 					"type": "image",
@@ -467,7 +486,8 @@
 											"page": 8,
 											"entries": [
 												"Clerics of the Church of Dusk typically choose the Death, Life, or War domains."
-											]
+											],
+											"id": "017"
 										},
 										{
 											"type": "entries",
@@ -475,7 +495,8 @@
 											"page": 8,
 											"entries": [
 												"The bulk of the Legion of Dusk is made up of soldiers and knights, who might be Battle Masters or Champions."
-											]
+											],
+											"id": "018"
 										},
 										{
 											"type": "entries",
@@ -483,7 +504,8 @@
 											"page": 8,
 											"entries": [
 												"Certain vampire clerics live under strict rules of fasting, prayer, and martial discipline, and might be considered monks of the Way of the Open Hand or the Way of Shadow. The latter often act as agents for Queen Miralda, who rules the Legion of Dusk with an iron hand."
-											]
+											],
+											"id": "019"
 										},
 										{
 											"type": "entries",
@@ -579,7 +601,8 @@
 															"page": 8,
 															"entries": [
 																"Don't demean yourself with lying and cheating. Don't make promises you can't keep."
-															]
+															],
+															"id": "01c"
 														},
 														{
 															"type": "entries",
@@ -587,7 +610,8 @@
 															"page": 8,
 															"entries": [
 																"Never let a foe see your fear."
-															]
+															],
+															"id": "01d"
 														},
 														{
 															"type": "entries",
@@ -595,7 +619,8 @@
 															"page": 8,
 															"entries": [
 																"Treat your peers with fairness and your lessers with exactly what they deserve. Those who recognize your position deserve at least a modicum of respect."
-															]
+															],
+															"id": "01e"
 														},
 														{
 															"type": "entries",
@@ -603,17 +628,23 @@
 															"page": 8,
 															"entries": [
 																"Your actions should serve the aims of the queen and the church, and not bring dishonor to either. Take responsibility for your actions and their consequences, and obey your superiors."
-															]
+															],
+															"id": "01f"
 														}
-													]
+													],
+													"id": "01b"
 												}
-											]
+											],
+											"id": "01a"
 										}
-									]
+									],
+									"id": "016"
 								}
-							]
+							],
+							"id": "015"
 						}
-					]
+					],
+					"id": "014"
 				},
 				{
 					"type": "image",
@@ -663,7 +694,8 @@
 											"page": 9,
 											"entries": [
 												"Sirens are frequently bards, and other pirates (especially in Captain Parrish's Deadeye fleet) collect knowledge as members of the College of Lore."
-											]
+											],
+											"id": "023"
 										},
 										{
 											"type": "entries",
@@ -671,7 +703,8 @@
 											"page": 9,
 											"entries": [
 												"A great many pirates are fighters, including not just Champions and Battlemasters, but also Eldritch Knights who combine martial skill with the magical talents common in the Coalition."
-											]
+											],
+											"id": "024"
 										},
 										{
 											"type": "entries",
@@ -679,7 +712,8 @@
 											"page": 9,
 											"entries": [
 												"Scoundrels, swashbucklers, thieves, and killers make up the majority of the Brazen Coalition."
-											]
+											],
+											"id": "025"
 										},
 										{
 											"type": "entries",
@@ -687,7 +721,8 @@
 											"page": 9,
 											"entries": [
 												"Of all the peoples of Ixalan, the pirates of the Dire Fleet are most likely to traffic with demons. Many of its sailors become warlocks as a result of striking bargains with the Fiend."
-											]
+											],
+											"id": "026"
 										},
 										{
 											"type": "entries",
@@ -771,13 +806,17 @@
 														]
 													]
 												}
-											]
+											],
+											"id": "027"
 										}
-									]
+									],
+									"id": "022"
 								}
-							]
+							],
+							"id": "021"
 						}
-					]
+					],
+					"id": "020"
 				},
 				{
 					"type": "image",
@@ -786,7 +825,8 @@
 						"path": "book/PSX/005.webp"
 					}
 				}
-			]
+			],
+			"id": "001"
 		},
 		{
 			"type": "section",
@@ -804,7 +844,8 @@
 						"{@race Siren|PSX}"
 					]
 				}
-			]
+			],
+			"id": "028"
 		},
 		{
 			"type": "section",
@@ -832,7 +873,8 @@
 						"A few lone shrines and temples dot the jungle as well, the last remnants of cities whose wooden buildings have long since rotted away. These include Tonalixco, the temple of the eastern sun, which marked the western edge of the empire in the fortress-city of Tanaztac. Icalaquiampa, the temple of sunset, was the focus of a religious sect that tried to replace the emperor with a high priest and establish theocratic rule.",
 						"Aclazotz was a temple dedicated to a bat god of the night, opposed to the Threefold Sun and the empire devoted to the sun. The temple makes an appearance in \"X Marks the Spot,\" a special D&D Ixalan adventure created for Extra Life 2017, but there's much more to this legendary site. Aclazotz was partially inspired by the classic D&D adventure The Hidden Shrine of Tamoachan, which appears in updated form in Tales from the Yawning Portal. If you want to more fully explore the ruins, you might use that adventure as a starting point. Perhaps this is where Elenda, the knight who brought the rites of vampirism to the Legion of Dusk, underwent her own transformation.",
 						"Of course, the grandest ruin of the ancient Sun Empire is Orazca, the glorious golden city where the Immortal Sun still lies hidden. It was the empire's capital for many centuries, and tribute from across the breadth of Ixalan was brought to adorn its palaces and temples. Gold covers nearly every building in the city, and jade inlays reflect the influence of the ancient merfolk who shared Orazca with the humans of the empire. But the world has since closed up over the golden city, hiding its secrets and its treasures from all who seek it. Three golden spires are now the only visible signs of Orazca where they rise above the forest floor."
-					]
+					],
+					"id": "02a"
 				},
 				{
 					"type": "image",
@@ -866,9 +908,11 @@
 							}
 						},
 						"When adventurers discover magic items as treasure, you can use {@table Who Created It or Was Intended to Use It?|PSX|this table} in place of the one in chapter 7 of the Dungeon Master's Guide to determine the character of any particular magic item."
-					]
+					],
+					"id": "02b"
 				}
-			]
+			],
+			"id": "029"
 		},
 		{
 			"type": "section",
@@ -955,7 +999,8 @@
 											"entries": [
 												"Many mages, especially Planeswalkers, routinely draw on two or more colors of mana. In some worlds, color pairs or triads have such a strong identity that they are manifested in the world. The guilds of Ravnica, for example, are each aligned to a specific pair of mana colors, and each of the clans of Tarkir used three colors. And some lands produce mana of more than one color, so that a highland lake might produce both red and blue mana. Mana pairs similarly suggest certain principles, create certain magical effects, and favor certain personality traits.",
 												"Based on the color wheel, it's possible to speak of two colors of mana as either \"allied\" (adjacent to each other on the wheel) or \"enemy\" (separated by another color). White's allied colors are green and blue; its enemy colors are red and black. That doesn't mean that creatures associated with allied colors are necessarily on the same side of any conflict, or that creatures associated with enemy colors are actually enemies. But if conflict does arise\u2014for example, in a party of adventurers\u2014it's more likely to arise between a whitealigned and a red-aligned character than between a white-aligned and a blue-aligned one. That's the natural result of the different personalities and principles associated with each color. A white character might put a lot of stress on the value of law and order, and of working together toward a common goal. A red-aligned character values freedom and individuality."
-											]
+											],
+											"id": "030"
 										},
 										{
 											"type": "image",
@@ -971,9 +1016,11 @@
 											"entries": [
 												"In the language of the D&D game, the colors of mana are a means of categorizing the types of magic that suffuse all existence. When a spellcaster draws upon or manipulates the Weave (see chapter 10 in the Player's Handbook), part of that process involves tugging on a strand that connects to a land that produces mana of the desired color. Whether consciously or unconsciously, a druid casting barkskin tugs on a strand of the Weave connected to a forest in the world, drawing out the green mana needed to cast the spell.",
 												"There's no rules weight to this material; it's simply about roleplaying your character. If you're playing a cleric, you might find it helpful to imagine your character drawing on white mana, and you'll find that a lot of your spells could indeed be white spells in Magic. You might also find inspiration in the personality traits and ideals described in the white mana entry. But there's no rule preventing your character from using spells like divination (a blue spell), stone shape (a red spell), create undead (a black spell), or insect plague (a green spell). On the other hand, you might find that thinking about your cleric as a white-aligned caster shapes your choice of spells as well as your personality."
-											]
+											],
+											"id": "031"
 										}
-									]
+									],
+									"id": "02f"
 								},
 								{
 									"type": "entries",
@@ -1107,7 +1154,8 @@
 														]
 													]
 												}
-											]
+											],
+											"id": "033"
 										},
 										{
 											"type": "entries",
@@ -1118,9 +1166,11 @@
 												"Adding black to white steers it toward lawful evil, exemplified by oppressive clerics and fallen paladins.",
 												"Adding red to white makes it zealously lawful good, as in the case of a fervent paladin.",
 												"Adding green to white steers it toward neutral good and gentler notions of community, embodied in characters such as healing druids, bards, or kindly rangers."
-											]
+											],
+											"id": "034"
 										}
-									]
+									],
+									"id": "032"
 								},
 								{
 									"type": "entries",
@@ -1255,7 +1305,8 @@
 														]
 													]
 												}
-											]
+											],
+											"id": "036"
 										},
 										{
 											"type": "entries",
@@ -1266,9 +1317,11 @@
 												"Adding black to blue steers it toward neutral evil and the behavior of stealthy spies, scoundrels, and infiltrators.",
 												"Adding red to blue steers it toward chaotic neutral, exemplified by madcap mages\u2014elementalist wizards or sorcerers.",
 												"Adding green to blue solidifies its neutrality, embodied in archetypes such as the sagacious druid or the scholar of nature."
-											]
+											],
+											"id": "037"
 										}
-									]
+									],
+									"id": "035"
 								},
 								{
 									"type": "entries",
@@ -1403,9 +1456,11 @@
 												"Adding white to black steers it toward lawful evil, exemplified by oppressive clerics and fallen paladins. ",
 												"Adding blue to black steers it toward neutral evil and the behavior of stealthy spies, scoundrels, and infiltrators. Adding red to black creates the chaotic evil icons of bloodthirsty barbarians and battle priests.",
 												"Adding green to black steers it toward neutral evil, in the form of sinister druids and stalking rangers."
-											]
+											],
+											"id": "039"
 										}
-									]
+									],
+									"id": "038"
 								},
 								{
 									"type": "entries",
@@ -1544,9 +1599,11 @@
 												"Adding white to red makes it more zealously lawful good, as in the case of a fervent paladin.",
 												"Adding blue to red steers it toward chaotic neutral, exemplified by madcap mages\u2014elementalist wizards or sorcerers.",
 												"Adding black to red creates the chaotic evil icons of bloodthirsty barbarians and battle priests. Adding green to red leads to an intense neutral or chaotic neutral, embodied in a totemic barbarian or fierce ranger."
-											]
+											],
+											"id": "03b"
 										}
-									]
+									],
+									"id": "03a"
 								},
 								{
 									"type": "entries",
@@ -1685,15 +1742,20 @@
 												"Adding white to green steers it toward neutral good and gentler notions of community, embodied in characters such as healing druids, bards, or kindly rangers.",
 												"Adding blue to green solidifies its neutrality, embodied in archetypes such as the sagacious druid or scholar of nature.",
 												"Adding black to green steers it toward neutral evil in the form of sinister druids and stalking rangers. Adding red to green leads to an intense neutral or chaotic neutral, embodied in a totemic barbarian or fierce ranger."
-											]
+											],
+											"id": "03d"
 										}
-									]
+									],
+									"id": "03c"
 								}
-							]
+							],
+							"id": "02e"
 						}
-					]
+					],
+					"id": "02d"
 				}
-			]
+			],
+			"id": "02c"
 		}
 	]
 }

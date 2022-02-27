@@ -643,15 +643,34 @@
 					"entries": [
 						"The following locations are identified on map 7.1.",
 						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/TftYP-ToH/001-toh01.webp"
-							},
-							"title": "Map 7.1: Tomb of Horrors",
-							"width": 2288,
-							"height": 3000,
-							"imageType": "map"
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-ToH/001-toh01.webp"
+									},
+									"title": "Map 7.1: Tomb of Horrors",
+									"width": 2288,
+									"height": 3000,
+									"imageType": "map",
+									"id": "0d3"
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/TftYP-ToH/002-toh01_players.webp"
+									},
+									"title": "Player Version",
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "0d3",
+										"autoScale": true
+									}
+								}
+							]
 						},
 						{
 							"type": "entries",
