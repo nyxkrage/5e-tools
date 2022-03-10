@@ -668,7 +668,9 @@
 									"mapParent": {
 										"id": "0d3",
 										"autoScale": true
-									}
+									},
+									"width": 3375,
+									"height": 4425
 								}
 							]
 						},

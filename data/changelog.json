@@ -1948,5 +1948,12 @@
 		"ver": "1.150.1",
 		"date": "2022-02-27",
 		"txt": "- Added missing TftYP player maps\n- (The site is now available as a Docker image <https://github.com/5etools-mirror-1/5etools-mirror-1.github.io/pkgs/container/5etools>, thanks @ drangon)\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.151.0",
+		"date": "2022-03-10",
+		"title": "To the Moon",
+		"titleAlt": "The Landings were Faked",
+		"txt": "- Added UA: Heroes of Krynn\n- Added `dmin`/`dmax` functions to dice roller, which minimize/maximize dice expressions, respectively\n- (Brew) Spell Homebrew Builder now allows class-less spells to be created\n- (Brew) Fixed Text Converter failing to properly parse `PAGE=<...>` lines\n- (Brew) Fixed Spells page crash on \"missing\" class data\n- (Fixed typos/added tags)"
 	}
 ]

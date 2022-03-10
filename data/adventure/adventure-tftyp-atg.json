@@ -738,7 +738,9 @@
 									"mapParent": {
 										"id": "21e",
 										"autoScale": true
-									}
+									},
+									"width": 2625,
+									"height": 3500
 								}
 							]
 						},
@@ -1378,7 +1380,9 @@
 									"mapParent": {
 										"id": "21f",
 										"autoScale": true
-									}
+									},
+									"width": 2252,
+									"height": 3000
 								}
 							]
 						},
@@ -2126,7 +2130,9 @@
 									"mapParent": {
 										"id": "220",
 										"autoScale": true
-									}
+									},
+									"width": 2254,
+									"height": 3000
 								}
 							]
 						},
@@ -2746,7 +2752,9 @@
 									"mapParent": {
 										"id": "221",
 										"autoScale": true
-									}
+									},
+									"width": 2253,
+									"height": 3000
 								}
 							]
 						},
@@ -3441,7 +3449,9 @@
 									"mapParent": {
 										"id": "222",
 										"autoScale": true
-									}
+									},
+									"width": 2252,
+									"height": 3000
 								}
 							]
 						},
@@ -4168,7 +4178,9 @@
 									"mapParent": {
 										"id": "223",
 										"autoScale": true
-									}
+									},
+									"width": 2254,
+									"height": 3000
 								}
 							]
 						},
@@ -4889,7 +4901,9 @@
 									"mapParent": {
 										"id": "224",
 										"autoScale": true
-									}
+									},
+									"width": 2253,
+									"height": 3000
 								}
 							]
 						},

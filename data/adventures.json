@@ -9717,6 +9717,12 @@
 					"headers": [
 						"The Expedition Begins",
 						"Locations in Chult",
+						"Aldani Basin",
+						"Ataaz Kahakla",
+						"Ataaz Muhahah",
+						"Ataaz Yklwazi",
+						"Bay of Chult",
+						"Camp Righteous",
 						{
 							"depth": 1,
 							"header": "1. Command Tents"
@@ -9761,6 +9767,7 @@
 							"depth": 1,
 							"header": "6E. Treasury"
 						},
+						"Camp Vengeance",
 						{
 							"depth": 1,
 							"header": "1. Boats"
@@ -9793,6 +9800,8 @@
 							"depth": 1,
 							"header": "8. Latrines"
 						},
+						"The Cauldron",
+						"Dungrunglung",
 						{
 							"depth": 1,
 							"header": "1. Thorn Maze"
@@ -9821,6 +9830,8 @@
 							"depth": 1,
 							"header": "7. Prison Pit"
 						},
+						"Firefinger",
+						"Fort Beluarian",
 						{
 							"depth": 1,
 							"header": "1. West Gate"
@@ -9901,6 +9912,7 @@
 							"depth": 1,
 							"header": "10J. Guest Quarters"
 						},
+						"Heart of Ubtao",
 						{
 							"depth": 1,
 							"header": "1. Petrified Tree"
@@ -9925,6 +9937,8 @@
 							"depth": 1,
 							"header": "6. Teleportation Circle"
 						},
+						"Hisari",
+						"Hrakhamar",
 						{
 							"depth": 1,
 							"header": "1. Magma Rift"
@@ -9965,6 +9979,9 @@
 							"depth": 1,
 							"header": "10. Mine Cart Bay"
 						},
+						"Hvalspyd",
+						"Ishau",
+						"Jahaka Anchorage",
 						{
 							"depth": 1,
 							"header": "1. Jungle Gate"
@@ -10001,33 +10018,11 @@
 							"depth": 1,
 							"header": "6C. Bosco's Bunk"
 						},
+						"Jahaka Bay",
+						"Kir Sabal",
 						{
 							"depth": 1,
 							"header": "1. Monastery"
-						},
-						{
-							"depth": 1,
-							"header": "1A. Refectory"
-						},
-						{
-							"depth": 1,
-							"header": "1B. Prayer Hall"
-						},
-						{
-							"depth": 1,
-							"header": "1C. Masters' Quarters"
-						},
-						{
-							"depth": 1,
-							"header": "1D. Antechamber"
-						},
-						{
-							"depth": 1,
-							"header": "1E. Shrine"
-						},
-						{
-							"depth": 1,
-							"header": "1F. Training Hall"
 						},
 						{
 							"depth": 1,
@@ -10035,23 +10030,7 @@
 						},
 						{
 							"depth": 1,
-							"header": "2A. Washroom"
-						},
-						{
-							"depth": 1,
-							"header": "2B. Shrine"
-						},
-						{
-							"depth": 1,
 							"header": "3. Elder's House"
-						},
-						{
-							"depth": 1,
-							"header": "3A. Shrine"
-						},
-						{
-							"depth": 1,
-							"header": "3B. Asharra's Quarters"
 						},
 						{
 							"depth": 1,
@@ -10061,6 +10040,13 @@
 							"depth": 1,
 							"header": "5. Royal House"
 						},
+						"Kitcher's Inlet",
+						"Lake Luo",
+						"Land of Ash and Smoke",
+						"Mbala",
+						"Mezro",
+						"Mistcliff",
+						"Nangalore",
 						{
 							"depth": 1,
 							"header": "1. Entrance"
@@ -10083,22 +10069,6 @@
 						},
 						{
 							"depth": 1,
-							"header": "5A. Southwest Garden"
-						},
-						{
-							"depth": 1,
-							"header": "5B. Southeast Garden"
-						},
-						{
-							"depth": 1,
-							"header": "5C. Northwest Garden"
-						},
-						{
-							"depth": 1,
-							"header": "5D. Northeast Garden"
-						},
-						{
-							"depth": 1,
 							"header": "6. Pagoda"
 						},
 						{
@@ -10109,6 +10079,27 @@
 							"depth": 1,
 							"header": "8. Zalkoré's Lair"
 						},
+						"Needle's Bones",
+						"Nsi Wastes",
+						"Omu",
+						"Orolunga",
+						"Port Castigliar",
+						"Refuge Bay",
+						"River Olung",
+						"River Soshenstar",
+						"River Tath",
+						"River Tiryki",
+						"Shilku",
+						"Shilku Bay",
+						"Snapping Turtle Bay",
+						"Snout of Omgar",
+						"Valley of Dread",
+						"Valley of Embers",
+						"Valley of Lost Honor",
+						"Vorn",
+						"Wreck of the Narwhal",
+						"Wreck of the Star Goddess",
+						"Wyrmheart Mine",
 						{
 							"depth": 1,
 							"header": "1. Office"
@@ -10173,6 +10164,7 @@
 							"depth": 1,
 							"header": "14. Tinder's Lair"
 						},
+						"Yellyark",
 						{
 							"depth": 1,
 							"header": "1. Canoes"

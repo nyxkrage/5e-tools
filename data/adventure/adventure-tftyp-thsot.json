@@ -723,7 +723,9 @@
 											"mapParent": {
 												"id": "171",
 												"autoScale": true
-											}
+											},
+											"width": 11873,
+											"height": 8370
 										}
 									]
 								}

@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.11.9",
+	"version": "1.11.10",
 
 	"definitions" : {
 		"metaBlock": {
@@ -1002,6 +1002,12 @@
 								}
 							},
 							"additionalProperties": false
+						}
+					},
+					"alignment": {
+						"type": "array",
+						"items": {
+							"$ref": "util.json#/definitions/alignment"
 						}
 					},
 					"note": {

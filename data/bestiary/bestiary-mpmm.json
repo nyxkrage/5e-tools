@@ -25530,7 +25530,7 @@
 				{
 					"name": "Pseudopod",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 (1 {@dice d4 + 3}) bludgeoning damage plus 2 (1 {@dice d4}) psychic damage."
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) bludgeoning damage plus 2 (1 {@dice d4}) psychic damage."
 					]
 				}
 			],
@@ -37132,13 +37132,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 (1 {@dice d4 + 3}) piercing damage plus 7 ({@damage 2d6}) poison damage."
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage plus 7 ({@damage 2d6}) poison damage."
 					]
 				},
 				{
 					"name": "Scimitar (Yuan-ti Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 (ld6 + 3) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{

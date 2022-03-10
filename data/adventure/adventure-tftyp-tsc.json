@@ -948,7 +948,9 @@
 									"mapParent": {
 										"id": "146",
 										"autoScale": true
-									}
+									},
+									"width": 2008,
+									"height": 4160
 								}
 							]
 						},
@@ -2659,7 +2661,9 @@
 									"mapParent": {
 										"id": "147",
 										"autoScale": true
-									}
+									},
+									"width": 3300,
+									"height": 4350
 								}
 							]
 						},

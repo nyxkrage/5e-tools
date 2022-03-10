@@ -746,6 +746,8 @@ Renderer.dice = {
 					<li>Rounding; <span class="out-roll-item-code">floor(1.5)</span>, <span class="out-roll-item-code">ceil(1.5)</span>, <span class="out-roll-item-code">round(1.5)</span></li>
 
 					<li>Average; <span class="out-roll-item-code">avg(8d6)</span></li>
+					<li>Maximize dice; <span class="out-roll-item-code">dmax(8d6)</span></li>
+					<li>Minimize dice; <span class="out-roll-item-code">dmin(8d6)</span></li>
 
 					<li>Other functions; <span class="out-roll-item-code">sign(1d6-3)</span>, <span class="out-roll-item-code">abs(1d6-3)</span>, ...etc.</li>
 				</ul>
@@ -1016,6 +1018,8 @@ Renderer.dice.lang = {
 			case "ceil": self.tokenStack.push(Renderer.dice.tk.CEIL); break;
 			case "round": self.tokenStack.push(Renderer.dice.tk.ROUND); break;
 			case "avg": self.tokenStack.push(Renderer.dice.tk.AVERAGE); break;
+			case "dmax": self.tokenStack.push(Renderer.dice.tk.DMAX); break;
+			case "dmin": self.tokenStack.push(Renderer.dice.tk.DMIN); break;
 			case "sign": self.tokenStack.push(Renderer.dice.tk.SIGN); break;
 			case "abs": self.tokenStack.push(Renderer.dice.tk.ABS); break;
 			case "cbrt": self.tokenStack.push(Renderer.dice.tk.CBRT); break;
@@ -1137,6 +1141,8 @@ Renderer.dice.lang = {
 			|| this._parse3_match(self, Renderer.dice.tk.CEIL)
 			|| this._parse3_match(self, Renderer.dice.tk.ROUND)
 			|| this._parse3_match(self, Renderer.dice.tk.AVERAGE)
+			|| this._parse3_match(self, Renderer.dice.tk.DMAX)
+			|| this._parse3_match(self, Renderer.dice.tk.DMIN)
 			|| this._parse3_match(self, Renderer.dice.tk.SIGN)
 			|| this._parse3_match(self, Renderer.dice.tk.ABS)
 			|| this._parse3_match(self, Renderer.dice.tk.CBRT)
@@ -1384,6 +1390,8 @@ Renderer.dice.tk.FLOOR = Renderer.dice.tk._new("FLOOR", "floor");
 Renderer.dice.tk.CEIL = Renderer.dice.tk._new("CEIL", "ceil");
 Renderer.dice.tk.ROUND = Renderer.dice.tk._new("ROUND", "round");
 Renderer.dice.tk.AVERAGE = Renderer.dice.tk._new("AVERAGE", "avg");
+Renderer.dice.tk.DMAX = Renderer.dice.tk._new("DMAX", "avg");
+Renderer.dice.tk.DMIN = Renderer.dice.tk._new("DMIN", "avg");
 Renderer.dice.tk.SIGN = Renderer.dice.tk._new("SIGN", "sign");
 Renderer.dice.tk.ABS = Renderer.dice.tk._new("ABS", "abs");
 Renderer.dice.tk.CBRT = Renderer.dice.tk._new("CBRT", "cbrt");
@@ -1677,6 +1685,14 @@ Renderer.dice.parsed = {
 					const [, symExp] = this._nodes;
 					return symExp.avg(meta);
 				}
+				case Renderer.dice.tk.DMAX.type: {
+					const [, symExp] = this._nodes;
+					return symExp.max(meta);
+				}
+				case Renderer.dice.tk.DMIN.type: {
+					const [, symExp] = this._nodes;
+					return symExp.min(meta);
+				}
 				default: throw new Error(`Unimplemented!`);
 			}
 		}
@@ -1689,6 +1705,8 @@ Renderer.dice.parsed = {
 				case Renderer.dice.tk.CEIL.type:
 				case Renderer.dice.tk.ROUND.type:
 				case Renderer.dice.tk.AVERAGE.type:
+				case Renderer.dice.tk.DMAX.type:
+				case Renderer.dice.tk.DMIN.type:
 				case Renderer.dice.tk.SIGN.type:
 				case Renderer.dice.tk.ABS.type:
 				case Renderer.dice.tk.CBRT.type:

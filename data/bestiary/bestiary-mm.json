@@ -18777,7 +18777,7 @@
 							"{@spell wind walk}"
 						],
 						"1e": [
-							"{@spell conjure elemental} (air elemental only)",
+							"{@spell conjure elemental} ({@creature air elemental} only)",
 							"{@spell creation}",
 							"{@spell gaseous form}",
 							"{@spell invisibility}",

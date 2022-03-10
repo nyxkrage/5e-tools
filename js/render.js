@@ -3012,6 +3012,14 @@ Renderer.utils = {
 						case "spellcasting": return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
 						case "spellcasting2020": return isListMode ? "Spellcasting" : "Spellcasting or Pact Magic feature";
 						case "psionics": return isListMode ? "Psionics" : (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))("Psionic Talent feature or {@feat Wild Talent|UA2020PsionicOptionsRevisited} feat");
+						case "alignment": {
+							return isListMode
+								? Parser.alignmentListToFull(v)
+									.replace(/\bany\b/gi, "").trim()
+									.replace(/\balignment\b/gi, "align").trim()
+									.toTitleCase()
+								: Parser.alignmentListToFull(v);
+						}
 						default: throw new Error(`Unhandled key: ${k}`);
 					}
 				})
@@ -3976,7 +3984,7 @@ Renderer.spell = {
 
 			if (!isExcludedDivSoul) {
 				if (isClericSpell) {
-					const isExistingDivSoul = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DIV_SOUL && it.subclass.source === SRC_XGE);
+					const isExistingDivSoul = spell.classes?.fromSubclass && spell.classes?.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DIV_SOUL && it.subclass.source === SRC_XGE);
 					if (!isExistingDivSoul) {
 						Renderer.spell._initClasses_addSubclassSpell({
 							spell,
@@ -4145,7 +4153,7 @@ Renderer.spell = {
 			const isDeathDomain = ExcludeUtil.isExcluded(hashClericDeath, "subclass", SRC_DMG, {isNoCount: true});
 
 			if (!isDeathDomain) {
-				const isExisting = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_CLERIC && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DEATH && it.subclass.source === SRC_DMG);
+				const isExisting = spell.classes?.fromSubclass && spell.classes?.fromSubclass.some(it => it.class.name === Renderer.spell.STR_CLERIC && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DEATH && it.subclass.source === SRC_DMG);
 				if (!isExisting) {
 					Renderer.spell._initClasses_addSubclassSpell({
 						spell,
@@ -4168,7 +4176,7 @@ Renderer.spell = {
 				const isExcludedAberrantMind = ExcludeUtil.isExcluded(hashSorcererAberrantMind, "subclass", SRC_TCE, {isNoCount: true});
 
 				if (!isExcludedAberrantMind) {
-					const isExisting = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_ABERRANT_MIND && it.subclass.source === SRC_TCE);
+					const isExisting = spell.classes?.fromSubclass && spell.classes?.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_ABERRANT_MIND && it.subclass.source === SRC_TCE);
 
 					if (!isExisting) {
 						if (isWizardSpell || isWarlockSpell || isSorcererSpell) {
@@ -4218,7 +4226,7 @@ Renderer.spell = {
 				const isExcludedClockworkSoul = ExcludeUtil.isExcluded(hashSorcererClockworkSoul, "subclass", SRC_TCE, {isNoCount: true});
 
 				if (!isExcludedClockworkSoul) {
-					const isExisting = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_CLOCKWORK_SOUL && it.subclass.source === SRC_TCE);
+					const isExisting = spell.classes?.fromSubclass && spell.classes?.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_CLOCKWORK_SOUL && it.subclass.source === SRC_TCE);
 
 					if (!isExisting) {
 						if (isWizardSpell || isWarlockSpell || isSorcererSpell) {
@@ -4291,7 +4299,7 @@ Renderer.spell = {
 					const searchForClasses = Renderer.spell.brewSpellClasses.class[srcLower];
 
 					for (const clsLowName in searchForClasses) {
-						const spellHasClass = spell.classes.fromClassList.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
+						const spellHasClass = spell.classes && spell.classes.fromClassList.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
 						if (!spellHasClass) continue;
 
 						const fromDetails = searchForClasses[clsLowName];
@@ -4770,6 +4778,7 @@ Renderer.race = {
 		delete cpy.subraces;
 		delete cpy.srd;
 		delete cpy.basicRules;
+		delete cpy._versions;
 
 		// merge names, abilities, entries, tags
 		if (s.name) {

@@ -9345,10 +9345,14 @@
 									},
 									"title": "Player Version",
 									"mapParent": {
-										"id": "fef"
+										"id": "fef",
+										"offsetX": 38,
+										"offsetY": 49,
+										"scaleX": 0.822,
+										"scaleY": 0.815
 									},
-									"width": 2750,
-									"height": 1900,
+									"width": 3200,
+									"height": 2150,
 									"imageType": "mapPlayer"
 								}
 							]
@@ -10147,8 +10151,8 @@
 									"mapParent": {
 										"id": "fee"
 									},
-									"width": 2750,
-									"height": 1900,
+									"width": 2700,
+									"height": 1800,
 									"imageType": "mapPlayer"
 								}
 							]
@@ -11808,8 +11812,8 @@
 									"mapParent": {
 										"id": "fec"
 									},
-									"width": 2750,
-									"height": 1900,
+									"width": 3050,
+									"height": 2050,
 									"imageType": "mapPlayer"
 								}
 							]
@@ -12895,8 +12899,8 @@
 									"mapParent": {
 										"id": "feb"
 									},
-									"width": 2750,
-									"height": 1900,
+									"width": 3050,
+									"height": 2050,
 									"imageType": "mapPlayer"
 								}
 							]
@@ -13759,8 +13763,8 @@
 									"mapParent": {
 										"id": "fea"
 									},
-									"width": 2750,
-									"height": 1900,
+									"width": 2700,
+									"height": 1800,
 									"imageType": "mapPlayer"
 								}
 							]

@@ -2276,7 +2276,7 @@
 			],
 			"speed": {
 				"walk": 35,
-				"climb": 35
+				"climb": true
 			},
 			"darkvision": 60,
 			"traitTags": [
@@ -2343,7 +2343,7 @@
 			],
 			"speed": {
 				"walk": 35,
-				"climb": 35
+				"climb": true
 			},
 			"darkvision": 60,
 			"traitTags": [
@@ -4157,7 +4157,7 @@
 			],
 			"speed": {
 				"walk": 30,
-				"fly": 30
+				"fly": true
 			},
 			"additionalSpells": [
 				{
@@ -4232,7 +4232,7 @@
 			],
 			"speed": {
 				"walk": 30,
-				"fly": 30
+				"fly": true
 			},
 			"additionalSpells": [
 				{
@@ -4601,7 +4601,7 @@
 			],
 			"speed": {
 				"walk": 30,
-				"swim": 30
+				"swim": true
 			},
 			"traitTags": [
 				"Powerful Build"
@@ -5898,7 +5898,7 @@
 			],
 			"speed": {
 				"walk": 30,
-				"climb": 30
+				"climb": true
 			},
 			"entries": [
 				{
@@ -6081,13 +6081,6 @@
 					"type": "entries",
 					"entries": [
 						"Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years."
-					]
-				},
-				{
-					"name": "Alignment",
-					"type": "entries",
-					"entries": [
-						"Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil."
 					]
 				},
 				{
@@ -7522,6 +7515,87 @@
 					"type": "entries"
 				}
 			]
+		},
+		{
+			"name": "Kender",
+			"source": "UA2022HeroesOfKrynn",
+			"page": 1,
+			"lineage": "VRGR",
+			"size": [
+				"S"
+			],
+			"speed": 30,
+			"traitTags": [
+				"Powerful Build"
+			],
+			"skillProficiencies": [
+				{
+					"stealth": true
+				}
+			],
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Brave",
+					"entries": [
+						"You have advantage on saving throws you make to avoid or end the {@condition frightened} condition on yourself."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Kender Ace",
+					"entries": [
+						"Starting at 3rd level, you possess a magical ability to pull an item out of a bag or another container; as a bonus action, you can reach into a container you're carrying and roll on the Kender Aces table to determine what item you pull out. The object glimmers softly and disappears after 1 hour. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+						{
+							"type": "table",
+							"caption": "Kender Aces",
+							"colLabels": [
+								"d6",
+								"Item"
+							],
+							"colStyles": [
+								"col-1 text-center",
+								"col-11"
+							],
+							"rows": [
+								[
+									"1",
+									"{@dice 5d6} gold pieces"
+								],
+								[
+									"2",
+									"1 {@filter simple weapon|items|source=phb|category=basic|type=simple weapon|property=light} of your choice that has the light property"
+								],
+								[
+									"3",
+									"1 item of your choice from the {@table Adventuring Gear|PHB} table in the Player's Handbook. The item must cost no more than 1 gp and weigh no more than 1 lb."
+								],
+								[
+									"4",
+									"1 random item from the {@item Trinket|PHB|Trinkets} table in the Player's Handbook."
+								],
+								[
+									"5",
+									"Your choice of a {@item crowbar|PHB} or a {@item grappling hook|PHB}"
+								],
+								[
+									"6",
+									"1 item of your choice from the {@table Tools|PHB} table in the Player's Handbook. The item must cost no more than 10 gp."
+								]
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Taunt",
+					"entries": [
+						"You have a supernatural ability to home in on a creature's emotional raw nerves and craft a taunt that flusters that creature. As a bonus action, you can unleash a barrage of insults at a creature within 60 feet of you that can hear and understand you. The target must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier), or it has disadvantage on attack rolls until the start of your next turn.",
+						"You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+					]
+				}
+			],
+			"hasFluff": true
 		},
 		{
 			"name": "Kenku",
@@ -10330,7 +10404,7 @@
 			],
 			"speed": {
 				"walk": 30,
-				"fly": 30
+				"fly": true
 			},
 			"darkvision": 120,
 			"skillProficiencies": [
@@ -12173,13 +12247,6 @@
 					"type": "entries",
 					"entries": [
 						"Tieflings mature at the same rate as humans but live a few years longer."
-					]
-				},
-				{
-					"name": "Alignment",
-					"type": "entries",
-					"entries": [
-						"Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment."
 					]
 				},
 				{

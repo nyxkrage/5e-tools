@@ -18793,7 +18793,7 @@
 									"rows": [
 										[
 											"1",
-											"Daask [monster]harpy;harpies[/m,onster] raid a Skyway mansion and tear the place apart looking for a Boromar Clan member."
+											"Daask {@creature harpy||harpies} raid a Skyway mansion and tear the place apart looking for a Boromar Clan member."
 										],
 										[
 											"2",
