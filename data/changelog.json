@@ -1953,7 +1953,12 @@
 		"ver": "1.151.0",
 		"date": "2022-03-10",
 		"title": "To the Moon",
-		"titleAlt": "The Landings were Faked",
+		"titleAlt": "Faked Landings",
 		"txt": "- Added UA: Heroes of Krynn\n- Added `dmin`/`dmax` functions to dice roller, which minimize/maximize dice expressions, respectively\n- (Brew) Spell Homebrew Builder now allows class-less spells to be created\n- (Brew) Fixed Text Converter failing to properly parse `PAGE=<...>` lines\n- (Brew) Fixed Spells page crash on \"missing\" class data\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.151.1",
+		"date": "2022-03-10",
+		"txt": "- (Brew) Fixed Maps page being unable to display multiple adventures/books with the same source\n- (Fixed typos/added tags)"
 	}
 ]

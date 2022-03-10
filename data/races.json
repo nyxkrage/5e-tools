@@ -14288,7 +14288,6 @@
 			"raceName": "Dragonborn",
 			"raceSource": "PHB",
 			"page": 168,
-			"srd": true,
 			"ability": [
 				{
 					"int": 2,
@@ -14516,7 +14515,6 @@
 			"raceName": "Dragonborn",
 			"raceSource": "PHB",
 			"page": 168,
-			"srd": true,
 			"ability": [
 				{
 					"str": 2,
@@ -14744,7 +14742,6 @@
 			"raceName": "Dwarf",
 			"raceSource": "PHB",
 			"page": 81,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "SCAG",
@@ -14879,7 +14876,6 @@
 			"raceName": "Dwarf",
 			"raceSource": "PHB",
 			"page": 51,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -14990,7 +14986,6 @@
 			"raceName": "Dwarf",
 			"raceSource": "PHB",
 			"page": 20,
-			"srd": true,
 			"basicRules": true,
 			"ability": [
 				{
@@ -15027,7 +15022,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"speed": {
 				"walk": 30,
 				"fly": 30
@@ -15063,7 +15057,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 24,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 1
@@ -15153,7 +15146,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 286,
-			"srd": true,
 			"ability": [
 				{
 					"int": 1
@@ -15204,7 +15196,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 61,
-			"srd": true,
 			"reprintedAs": [
 				"Eladrin|MPMM"
 			],
@@ -15265,7 +15256,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"ability": [
 				{
 					"choose": {
@@ -15343,7 +15333,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"ability": [
 				{
 					"str": 1
@@ -15548,7 +15537,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 73,
-			"srd": true,
 			"speed": 30,
 			"ability": [
 				{
@@ -15607,7 +15595,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 49,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -15726,7 +15713,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 21,
-			"srd": true,
 			"ability": [
 				{
 					"wis": 1
@@ -15789,7 +15775,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 62,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "EGW",
@@ -15870,7 +15855,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"speed": {
 				"walk": 30,
 				"swim": 30
@@ -15935,7 +15919,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 62,
-			"srd": true,
 			"reprintedAs": [
 				"Shadar-Kai|MPMM"
 			],
@@ -15978,7 +15961,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 2,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 1
@@ -16053,7 +16035,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 24,
-			"srd": true,
 			"basicRules": true,
 			"speed": 35,
 			"ability": [
@@ -16143,7 +16124,6 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 73,
-			"srd": true,
 			"speed": 35,
 			"ability": [
 				{
@@ -17230,7 +17210,6 @@
 			"raceName": "Gnome",
 			"raceSource": "PHB",
 			"page": 113,
-			"srd": true,
 			"reprintedAs": [
 				"Deep Gnome|MPMM"
 			],
@@ -17320,7 +17299,6 @@
 			"raceName": "Gnome",
 			"raceSource": "PHB",
 			"page": 115,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "EEPC",
@@ -17414,7 +17392,6 @@
 			"raceName": "Gnome",
 			"raceSource": "PHB",
 			"page": 37,
-			"srd": true,
 			"ability": [
 				{
 					"dex": 1
@@ -17455,7 +17432,6 @@
 			"raceName": "Gnome",
 			"raceSource": "PHB",
 			"page": 47,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -17702,7 +17678,6 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 116,
-			"srd": true,
 			"speed": {
 				"walk": 30,
 				"swim": 30
@@ -17785,7 +17760,6 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 116,
-			"srd": true,
 			"skillProficiencies": [
 				{
 					"any": 2
@@ -17890,7 +17864,6 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 40,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -18024,7 +17997,6 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 50,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -18151,7 +18123,6 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 116,
-			"srd": true,
 			"skillProficiencies": [
 				{
 					"any": 2
@@ -18280,7 +18251,6 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 116,
-			"srd": true,
 			"speed": 35,
 			"skillProficiencies": [
 				{
@@ -18423,7 +18393,6 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 110,
-			"srd": true,
 			"ability": [
 				{
 					"wis": 1
@@ -18472,7 +18441,6 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 164,
-			"srd": true,
 			"ability": [
 				{
 					"wis": 1
@@ -18529,7 +18497,6 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 43,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -18646,7 +18613,6 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 44,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -18758,7 +18724,6 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 28,
-			"srd": true,
 			"basicRules": true,
 			"ability": [
 				{
@@ -18785,7 +18750,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 29,
-			"srd": true,
 			"basicRules": true,
 			"ability": [
 				{
@@ -18806,7 +18770,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 19,
-			"srd": true,
 			"ability": [
 				{
 					"str": 2,
@@ -18901,7 +18864,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 41,
-			"srd": true,
 			"ability": [
 				{
 					"con": 1,
@@ -19041,7 +19003,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 42,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -19173,7 +19134,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 45,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -19306,7 +19266,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 46,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -19434,7 +19393,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 48,
-			"srd": true,
 			"otherSources": [
 				{
 					"source": "UAWGE",
@@ -19552,7 +19510,6 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 31,
-			"srd": true,
 			"basicRules": true,
 			"ability": [
 				{
@@ -20432,7 +20389,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -20589,7 +20545,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 21,
-			"srd": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20607,7 +20562,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 21,
-			"srd": true,
 			"additionalSpells": [
 				{
 					"innate": {
@@ -20655,7 +20609,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"additionalSpells": [
 				{
 					"innate": {
@@ -20701,7 +20654,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 21,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -20758,7 +20710,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -20813,7 +20764,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 21,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -20870,7 +20820,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 1,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -20925,7 +20874,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 22,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -20982,7 +20930,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 2,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -21037,7 +20984,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 22,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -21094,7 +21040,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 2,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -21149,7 +21094,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 22,
-			"srd": true,
 			"additionalSpells": [
 				{
 					"innate": {
@@ -21197,7 +21141,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 2,
-			"srd": true,
 			"additionalSpells": [
 				{
 					"innate": {
@@ -21243,7 +21186,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 23,
-			"srd": true,
 			"additionalSpells": [
 				{
 					"innate": {
@@ -21291,7 +21233,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 2,
-			"srd": true,
 			"additionalSpells": [
 				{
 					"innate": {
@@ -21337,7 +21278,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 118,
-			"srd": true,
 			"ability": [
 				{
 					"int": 1,
@@ -21406,7 +21346,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 118,
-			"srd": true,
 			"ability": [
 				{
 					"int": 1,
@@ -21475,7 +21414,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 118,
-			"srd": true,
 			"ability": [
 				{
 					"int": 1,
@@ -21534,7 +21472,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 118,
-			"srd": true,
 			"speed": {
 				"walk": 30,
 				"fly": 30
@@ -21586,7 +21523,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 23,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,
@@ -21643,7 +21579,6 @@
 			"raceName": "Tiefling",
 			"raceSource": "PHB",
 			"page": 2,
-			"srd": true,
 			"ability": [
 				{
 					"cha": 2,

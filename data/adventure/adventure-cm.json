@@ -2293,7 +2293,7 @@
 							"id": "0c8",
 							"entries": [
 								"During daylight hours, skittish ravens perch atop the chalet and alight on the tombstones in its graveyard. They nervously stare and squawk at visitors but pose no threat to the characters; when night falls, the ravens fly off, and an eerie silence settles over the house until sunrise, when they return.",
-								"As the characters will discover, these birds are actually {@creature Wereraven|CoS|wereravens} (see {@area the end of the adventure|117|x} for their stat block). Wereravens live and travel in groups called kindnesses, and this particular kindness is called the Scarlet Sash.",
+								"As the characters will discover, these birds are actually {@creature Wereraven|VRGR|wereravens} (see {@area the end of the adventure|117|x} for their stat block). Wereravens live and travel in groups called kindnesses, and this particular kindness is called the Scarlet Sash.",
 								"Characters who observe the chalet at night can see lights moving within as members of the Scarlet Sash creep about the old house in humanoid form, using oil lanterns to light their way. These lights occasionally cluster in the upper stories of the tower ({@area area C14|102|x}), where the wereravens spend the most time together."
 							]
 						},
@@ -3104,7 +3104,7 @@
 					"name": "Wereraven",
 					"id": "117",
 					"entries": [
-						"{@creature Wereraven|CoS|Wereravens} are secretive and wary of strangers. They keep mostly to themselves, respect local laws, and strive to do good whenever possible. They are reluctant to attack with their beaks in raven or hybrid form for fear of spreading their curse to those who don't deserve it or would abuse it.",
+						"{@creature Wereraven|VRGR|Wereravens} are secretive and wary of strangers. They keep mostly to themselves, respect local laws, and strive to do good whenever possible. They are reluctant to attack with their beaks in raven or hybrid form for fear of spreading their curse to those who don't deserve it or would abuse it.",
 						{
 							"type": "entries",
 							"id": "118",

@@ -19793,7 +19793,7 @@
 												"The ballroom lies in ruins, rimed with ice, its furniture jumbled and shattered. Above the floor where nobles danced, three glass cylinders with iron fittings slowly move through the air. Housed in each cylinder is a swollen human brain floating in a bath of slimy, translucent goo."
 											]
 										},
-										"Three Netherese wizards chose to continue their revels into undeath, each one becoming a {@creature brain in a jar|IDRotF} (see {@adventure appendix C|IDRotF|21}). The three wizards have been driven mad by their undead existence. Dispelling the illusion drives them into a furious rage. Visitors who ruin the ball in any way are attacked.",
+										"Three Netherese wizards chose to continue their revels into undeath, each one becoming a {@creature brain in a jar|VRGR} (see {@adventure appendix C|IDRotF|21}). The three wizards have been driven mad by their undead existence. Dispelling the illusion drives them into a furious rage. Visitors who ruin the ball in any way are attacked.",
 										{
 											"type": "entries",
 											"name": "Joining the Ball",
@@ -19843,7 +19843,7 @@
 											"width": 581,
 											"height": 1000
 										},
-										"This ritual room is designed to serve a grisly purpose: the transformation of a living creature into a brain in a jar. Veneranda, a neutral evil Netherese wizard, extracted her own brain to become a {@creature brain in a jar|IDRotF} (see {@adventure appendix C|IDRotF|21}) that is affixed to the body of a headless {@creature helmed horror}. If the characters threaten or attack her, Veneranda turns the helmed horror against the group and attacks. Even though they are conjoined, the brain in a jar and the helmed horror roll initiative separately and attack as separate creatures. The brain can detach from the helmed horror as a bonus action.",
+										"This ritual room is designed to serve a grisly purpose: the transformation of a living creature into a brain in a jar. Veneranda, a neutral evil Netherese wizard, extracted her own brain to become a {@creature brain in a jar|VRGR} (see {@adventure appendix C|IDRotF|21}) that is affixed to the body of a headless {@creature helmed horror}. If the characters threaten or attack her, Veneranda turns the helmed horror against the group and attacks. Even though they are conjoined, the brain in a jar and the helmed horror roll initiative separately and attack as separate creatures. The brain can detach from the helmed horror as a bonus action.",
 										"Unlike her companions in the ballroom ({@area area Y19b|680|x}), Veneranda is coldly calculating and fully aware of Ythryn's fate. If the characters communicate with her, she greets them warily in Loross (see the \"{@area Loross: The Netherese Tongue|5ca|x}\" sidebar) and tries to find out what has happened in the world in the centuries since Ythryn's fall. Her singular goal is to restore Ythryn to its past glory. She doesn't know why the city crashed, but she believes that the broken obelisk (see {@area area Y21|6b3|x}) can turn back time to repair the damage. To activate its magic, Veneranda says she needs Iriolarthas's {@item staff of power}, which he keeps in his study. She proposes that the characters break into Iriolarthas's study, steal his staff, and bring it to her. She declines to accompany them, on account of the likely danger. If they complete this mission and return with the staff, she escorts them to the obelisk and tries to activate it. If the characters are unwilling to help Veneranda achieve her goal, they quickly outlive their usefulness, and she tries to destroy them.",
 										{
 											"type": "entries",
@@ -21147,7 +21147,7 @@
 						"{@creature Auril (First Form)|IDRotF}",
 						"{@creature Auril (Second Form)|IDRotF}",
 						"{@creature Auril (Third Form)|IDRotF}",
-						"{@creature Brain in a Jar|IDRotF}",
+						"{@creature Brain in a Jar|VRGR}",
 						"{@creature Chardalyn Berserker|IDRotF}",
 						"{@creature Chardalyn Dragon|IDRotF}",
 						"{@creature Chwinga|IDRotF}",

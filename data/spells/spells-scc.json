@@ -160,6 +160,9 @@
 			"miscTags": [
 				"SGT"
 			],
+			"areaTags": [
+				"ST"
+			],
 			"classes": {
 				"fromClassList": [
 					{

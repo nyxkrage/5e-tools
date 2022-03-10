@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "races.json",
-	"version": "1.10.2",
+	"version": "1.10.3",
 	"type": "object",
 
 	"definitions": {
@@ -587,12 +587,14 @@
 	"properties": {
 		"race": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"$ref": "#/definitions/race"
 			}
 		},
 		"subrace": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"$ref": "#/definitions/subrace"
 			}

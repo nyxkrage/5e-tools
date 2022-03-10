@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.11.10",
+	"version": "1.11.11",
 
 	"definitions" : {
 		"metaBlock": {
@@ -1515,6 +1515,7 @@
 
 		"genericFluffArray": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"anyOf": [
 					{
@@ -2326,6 +2327,7 @@
 
 		"foundrySideDataGenericArray": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"type": "object",
 				"properties": {
@@ -2346,6 +2348,7 @@
 
 		"foundrySideDataGenericFeatureArray": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"type": "object",
 				"properties": {
