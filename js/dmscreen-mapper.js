@@ -15,7 +15,7 @@ class DmMapper {
 			// TODO(5EB-1) expand this filter as more maps are added
 			fnFilterResults: doc => {
 				if (Parser.SOURCE_JSON_TO_FULL[doc.s]) {
-					return doc.s === SRC_WDMM || doc.s === SRC_CoS || doc.s === SRC_TTP;
+					return doc.s === SRC_WDH || doc.s === SRC_WDMM || doc.s === SRC_CoS || doc.s === SRC_TTP;
 				}
 				return true; // Allow all homebrew through
 			},
@@ -54,7 +54,7 @@ class DmMapper {
 						mapDatas.push(out);
 
 						if (obj.title) {
-							out.name = obj.title;
+							out.name = Renderer.stripTags(obj.title);
 						} else {
 							out.name = `${(adventurePack.adventure.contents[ixChap] || {}).name || "(Unknown)"}, Map ${cntChapImages + 1}`;
 						}

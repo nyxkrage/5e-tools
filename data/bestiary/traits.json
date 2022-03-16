@@ -2382,7 +2382,6 @@
 					],
 					"languages": {
 						"mode": "appendIfNotExistsArr",
-						"replace": "understands all languages it spoke in life but can't speak",
 						"items": "understands all languages it spoke in life but can't speak"
 					}
 				}

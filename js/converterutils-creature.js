@@ -112,6 +112,7 @@ class AcConvert {
 							break;
 
 						case "scale armor": froms.push("{@item scale mail|phb}"); break;
+						case "splint armor": froms.push("{@item splint mail|phb}"); break;
 						case "chain shirt": froms.push("{@item chain shirt|phb}"); break;
 						case "shields": froms.push("{@item shield|phb|shields}"); break;
 

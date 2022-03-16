@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.151.1"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.152.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -364,6 +364,16 @@ CleanUtil._TAG_DASH_EXPAND_REGEX = /({@[a-zA-Z])([\u2014\u2013])/g;
 
 // SOURCES =============================================================================================================
 SourceUtil = {
+	ADV_BOOK_GROUPS: [
+		{group: "core", displayName: "Core"},
+		{group: "supplement", displayName: "Supplements"},
+		{group: "setting", displayName: "Settings"},
+		{group: "supplement-alt", displayName: "Extras"},
+		{group: "homebrew", displayName: "Homebrew"},
+		{group: "screen", displayName: "Screens"},
+		{group: "other", displayName: "Miscellaneous"},
+	],
+
 	_subclassReprintLookup: {},
 	async pInitSubclassReprintLookup () {
 		SourceUtil._subclassReprintLookup = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-subclass-lookup.json`);
@@ -2523,6 +2533,14 @@ SortUtil = {
 					},
 				});
 			});
+	},
+
+	ascSortSourceGroup (a, b) {
+		const grpA = a.group || "other";
+		const grpB = b.group || "other";
+		const ixA = SourceUtil.ADV_BOOK_GROUPS.findIndex(it => it.group === grpA);
+		const ixB = SourceUtil.ADV_BOOK_GROUPS.findIndex(it => it.group === grpB);
+		return SortUtil.ascSort(ixA, ixB);
 	},
 
 	ascSortAdventure (a, b) {

@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "2.10.2",
+	"version": "2.10.3",
 	"$id": "class.json",
 
 	"type": "object",
@@ -119,6 +119,9 @@
 					"foundryData": {
 						"$ref": "../util.json#/definitions/foundryDataObject"
 					},
+					"foundryFlags": {
+						"$ref": "../util.json#/definitions/foundryFlagsObject"
+					},
 					"foundryImg": {
 						"$ref": "../util.json#/definitions/foundryImg"
 					},
@@ -204,6 +207,9 @@
 				"$$ifBrew": {
 					"foundryData": {
 						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryFlags": {
+						"$ref": "../util.json#/definitions/foundryFlagsObject"
 					},
 					"foundryImg": {
 						"$ref": "../util.json#/definitions/foundryImg"
@@ -468,6 +474,9 @@
 					},
 					"foundryData": {
 						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryFlags": {
+						"$ref": "../util.json#/definitions/foundryFlagsObject"
 					},
 					"foundryImg": {
 						"$ref": "../util.json#/definitions/foundryImg"
@@ -845,6 +854,9 @@
 					},
 					"foundryData": {
 						"$ref": "../util.json#/definitions/foundryDataObject"
+					},
+					"foundryFlags": {
+						"$ref": "../util.json#/definitions/foundryFlagsObject"
 					},
 					"foundryImg": {
 						"$ref": "../util.json#/definitions/foundryImg"

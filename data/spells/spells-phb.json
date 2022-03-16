@@ -7415,7 +7415,7 @@
 				"An affected target can't take reactions and must roll a {@dice d10} at the start of each of its turns to determine its behavior for that turn.",
 				{
 					"type": "table",
-					"caption": "Confusion Behaviour",
+					"caption": "Confusion Behavior",
 					"colLabels": [
 						"{@dice d10}",
 						"Behavior"

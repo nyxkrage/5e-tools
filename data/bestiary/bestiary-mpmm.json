@@ -11825,7 +11825,7 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 (1 {@dice d6 + 4}) piercing damage, or 11 ({@damage 2d6 + 4}) piercing damage while under the effect of Enlarge."
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage, or 11 ({@damage 2d6 + 4}) piercing damage while under the effect of Enlarge."
 					]
 				},
 				{
@@ -23559,7 +23559,7 @@
 							"name": "Summon Demon (1/Day)",
 							"type": "entries",
 							"entries": [
-								"As an action, the molydeus has a {@chance 50|50 percent} chance of summoning its choice of 1 {@dice d6} {@creature babau|MPMM|babaus}, 1 {@dice d4} {@creature chasme||chasmes}, or one {@creature marilith}. A summoned demon appears in an unoccupied space within 60 feet of the molydeus, acts as an ally of the molydeus, and can't summon other demons. It remains for 1 minute, until it or the molydeus dies, or until the molydeus dismisses it as an action."
+								"As an action, the molydeus has a {@chance 50|50 percent} chance of summoning its choice of {@dice 1d6} {@creature babau|MPMM|babaus}, {@dice 1d4} {@creature chasme||chasmes}, or one {@creature marilith}. A summoned demon appears in an unoccupied space within 60 feet of the molydeus, acts as an ally of the molydeus, and can't summon other demons. It remains for 1 minute, until it or the molydeus dies, or until the molydeus dismisses it as an action."
 							]
 						}
 					],
@@ -25530,7 +25530,7 @@
 				{
 					"name": "Pseudopod",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) bludgeoning damage plus 2 (1 {@dice d4}) psychic damage."
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) bludgeoning damage plus 2 ({@damage 1d4}) psychic damage."
 					]
 				}
 			],
@@ -30521,7 +30521,7 @@
 				{
 					"name": "Ambusher",
 					"entries": [
-						"The mangier has advantage on initiative rolls."
+						"The mangler has advantage on initiative rolls."
 					]
 				}
 			],
@@ -30529,7 +30529,7 @@
 				{
 					"name": "Multiattack",
 					"entries": [
-						"The mangier makes two Claw attacks."
+						"The mangler makes two Claw attacks."
 					]
 				},
 				{
@@ -30541,7 +30541,7 @@
 				{
 					"name": "Flurry of Claws {@recharge 5}",
 					"entries": [
-						"The mangier makes six Claw attacks. Either before or after these attacks, it can move up to its speed without provoking {@action opportunity attack||opportunity attacks}."
+						"The mangler makes six Claw attacks. Either before or after these attacks, it can move up to its speed without provoking {@action opportunity attack||opportunity attacks}."
 					]
 				}
 			],
@@ -30549,7 +30549,7 @@
 				{
 					"name": "Shadow Stealth",
 					"entries": [
-						"While in dim light or darkness, the mangier takes the {@action Hide} action."
+						"While in dim light or darkness, the mangler takes the {@action Hide} action."
 					]
 				}
 			],
@@ -35851,7 +35851,7 @@
 				{
 					"name": "Sling",
 					"entries": [
-						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}4 (1 {@dice d4 + 2}) bludgeoning damage."
+						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}4 ({@damage 1d4 + 2}) bludgeoning damage."
 					]
 				}
 			],
@@ -37320,7 +37320,7 @@
 				{
 					"name": "Scimitar (Yuan-ti Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 (1 {@dice d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{
@@ -38145,7 +38145,7 @@
 				{
 					"name": "Pseudopod",
 					"entries": [
-						"{@atk mw} 4{@hit -13} to hit, reach 10 ft., one target. {@h}15 ({@dice 2d8} 4- 6) force damage plus 9 ({@damage 2d8}) poison damage."
+						"{@atk mw} {@hit +13} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d8 + 6}) force damage plus 9 ({@damage 2d8}) poison damage."
 					]
 				}
 			],

@@ -19,6 +19,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -476,6 +479,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -4489,6 +4495,11 @@
 			"source": "MM",
 			"page": 104,
 			"srd": true,
+			"otherSources": [
+				{
+					"source": "CRCotN"
+				}
+			],
 			"size": "G",
 			"type": "dragon",
 			"alignment": [
@@ -7313,6 +7324,9 @@
 			"otherSources": [
 				{
 					"source": "ToA"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "H",
@@ -8064,6 +8078,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -8744,6 +8761,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "H",
@@ -8968,6 +8988,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -9116,6 +9139,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -9596,6 +9622,9 @@
 				},
 				{
 					"source": "IMR"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -10751,6 +10780,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -12940,6 +12972,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -13054,6 +13089,9 @@
 			"otherSources": [
 				{
 					"source": "TftYP"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -14366,6 +14404,9 @@
 				},
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -14654,6 +14695,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -14945,6 +14989,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -15433,6 +15480,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -16347,6 +16397,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -18330,6 +18383,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -19448,6 +19504,9 @@
 			"otherSources": [
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -19705,6 +19764,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -19914,6 +19976,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -20652,6 +20717,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -20805,6 +20873,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -21465,6 +21536,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -21688,7 +21762,7 @@
 				{
 					"name": "Elemental Demise",
 					"entries": [
-						"If the efreeti dies, its body disintegrates in a flash of fire and puff of smoke, leaving behind only equipment the djinni was wearing or carrying."
+						"If the efreeti dies, its body disintegrates in a flash of fire and puff of smoke, leaving behind only equipment the efreeti was wearing or carrying."
 					]
 				}
 			],
@@ -24257,6 +24331,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "T",
@@ -26004,6 +26081,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -27808,6 +27888,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -28466,6 +28549,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "H",
@@ -28603,6 +28689,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -28847,6 +28936,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -29240,6 +29332,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -29813,6 +29908,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -30024,6 +30122,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -30687,6 +30788,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "S",
@@ -33157,6 +33261,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -34398,6 +34505,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -36461,6 +36571,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -36778,6 +36891,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -37564,6 +37680,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -40056,6 +40175,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -40509,6 +40631,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "H",
@@ -40601,6 +40726,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "S",
@@ -42520,6 +42648,9 @@
 				},
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -44554,6 +44685,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -44710,6 +44844,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -45173,6 +45310,9 @@
 				},
 				{
 					"source": "RMBRE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -45438,6 +45578,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -45855,6 +45998,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -46146,6 +46292,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -46692,6 +46841,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -47814,6 +47966,9 @@
 			"otherSources": [
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -48533,6 +48688,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -49523,6 +49681,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "T",
@@ -49690,6 +49851,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "T",
@@ -50459,6 +50623,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -50685,6 +50852,9 @@
 				},
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -50946,6 +51116,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -51152,6 +51325,9 @@
 				},
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -52639,6 +52815,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -53287,6 +53466,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -53595,6 +53777,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -54060,6 +54245,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -54407,6 +54595,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -55571,6 +55762,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -56144,6 +56338,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -56486,6 +56683,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -57223,6 +57423,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -58289,6 +58492,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -61103,6 +61309,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",
@@ -61446,6 +61655,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -61724,6 +61936,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "L",
@@ -63656,6 +63871,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "T",
@@ -64848,6 +65066,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "CRCotN"
 				}
 			],
 			"size": "M",

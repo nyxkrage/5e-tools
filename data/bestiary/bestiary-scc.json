@@ -433,7 +433,7 @@
 				{
 					"name": "Teeming with Life (Costs 3 Actions)",
 					"entries": [
-						"Beledros magically summons {@dice 1d4} pest mascots in unoccupied spaces she can see within 60 feet of herself. The pests obey her commands and take their turns immediately after hers. Any creature, other than a pest, takes 9 ({@damage 2d8}) poison damage if it starts its turn within 5 feet of one or more of these pests. When one of these pests drops to 0 hit points, Beledros regains 9 hit points. These pests disappear after 10 minutes, when Beledros dies, or when she uses this action again."
+						"Beledros magically summons {@dice 1d4} {@creature pest mascot|SCC|pest mascots} in unoccupied spaces she can see within 60 feet of herself. The pests obey her commands and take their turns immediately after hers. Any creature, other than a pest, takes 9 ({@damage 2d8}) poison damage if it starts its turn within 5 feet of one or more of these pests. When one of these pests drops to 0 hit points, Beledros regains 9 hit points. These pests disappear after 10 minutes, when Beledros dies, or when she uses this action again."
 					]
 				}
 			],
@@ -1237,7 +1237,7 @@
 				{
 					"name": "Flowing Creation (Costs 3 Actions)",
 					"entries": [
-						"Galazeth magically summons {@dice 1d4} art elemental mascots in unoccupied spaces he can see within 60 feet of himself. The art elementals obey his commands and take their turns immediately after his. Any creature, other than an art elemental, takes 5 ({@damage 1d10}) cold, fire, or lightning damage (Galazeth's choice) if it ends its turn within 5 feet of one or more of these elementals. When one of these elementals drops to 0 hit points, Galazeth can fly up to 20 feet without provoking opportunity attacks. These elementals disappear after 10 minutes, when Galazeth dies, or when he uses this action again."
+						"Galazeth magically summons {@dice 1d4} {@creature art elemental mascot|SCC|elemental mascots} in unoccupied spaces he can see within 60 feet of himself. The art elementals obey his commands and take their turns immediately after his. Any creature, other than an art elemental, takes 5 ({@damage 1d10}) cold, fire, or lightning damage (Galazeth's choice) if it ends its turn within 5 feet of one or more of these elementals. When one of these elementals drops to 0 hit points, Galazeth can fly up to 20 feet without provoking opportunity attacks. These elementals disappear after 10 minutes, when Galazeth dies, or when he uses this action again."
 					]
 				}
 			],
@@ -3990,7 +3990,7 @@
 				{
 					"name": "Flash of Inspiration (Costs 3 Actions)",
 					"entries": [
-						"Shadrix magically summons {@dice 1d4} inkling mascots in unoccupied spaces he can see within 60 feet of himself. The inklings obey his commands and take their turns immediately after his. While any of these inklings live, Shadrix has advantage on attack rolls and saving throws. These inklings disappear after 10 minutes, when Shadrix dies, or when he uses this action again."
+						"Shadrix magically summons {@dice 1d4} {@creature inkling mascot|SCC|inkling mascots} in unoccupied spaces he can see within 60 feet of himself. The inklings obey his commands and take their turns immediately after his. While any of these inklings live, Shadrix has advantage on attack rolls and saving throws. These inklings disappear after 10 minutes, when Shadrix dies, or when he uses this action again."
 					]
 				}
 			],
@@ -4830,7 +4830,7 @@
 				{
 					"name": "Fractal Refraction (Costs 3 Actions)",
 					"entries": [
-						"Tanazir magically summons {@dice 1d4} fractal mascots in unoccupied spaces she can see within 120 feet of herself. The fractals obey her commands and take their turns immediately after hers. While any of these fractals remain, attack rolls made against Tanazir have disadvantage. A summoned fractal disappears after 1 minute, when it or Tanazir dies, or when she uses this action again."
+						"Tanazir magically summons {@dice 1d4} {@creature fractal mascot|SCC|fractal mascots} in unoccupied spaces she can see within 120 feet of herself. The fractals obey her commands and take their turns immediately after hers. While any of these fractals remain, attack rolls made against Tanazir have disadvantage. A summoned fractal disappears after 1 minute, when it or Tanazir dies, or when she uses this action again."
 					]
 				}
 			],
@@ -4995,7 +4995,7 @@
 				{
 					"name": "Repeating History (Costs 3 Actions)",
 					"entries": [
-						"Velomachus magically summons {@dice 1d4} spirit statue mascots in unoccupied spaces she can see within 60 feet of herself. The spirit statues obey her commands and take their turns immediately after hers. Any creature, other than a spirit statue or Velomachus, is {@condition restrained} if it starts its turn within 5 feet of one or more of these spirit statues. This {@condition restrained} condition lasts until the end of the creature's turn. These spirit statues disappear after 10 minutes, when Velomachus dies, or when she uses this action again."
+						"Velomachus magically summons {@dice 1d4} {@creature spirit statue mascot|SCC|statue mascots} in unoccupied spaces she can see within 60 feet of herself. The spirit statues obey her commands and take their turns immediately after hers. Any creature, other than a spirit statue or Velomachus, is {@condition restrained} if it starts its turn within 5 feet of one or more of these spirit statues. This {@condition restrained} condition lasts until the end of the creature's turn. These spirit statues disappear after 10 minutes, when Velomachus dies, or when she uses this action again."
 					]
 				}
 			],

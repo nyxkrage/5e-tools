@@ -822,6 +822,12 @@
 			"name": "Bristled Moorbounder",
 			"source": "EGW",
 			"page": 295,
+			"otherSources": [
+				{
+					"source": "CRCotN",
+					"page": 295
+				}
+			],
 			"size": "L",
 			"type": "beast",
 			"alignment": [
@@ -1819,6 +1825,12 @@
 			"name": "Gloomstalker",
 			"source": "EGW",
 			"page": 291,
+			"otherSources": [
+				{
+					"source": "CRCotN",
+					"page": 291
+				}
+			],
 			"size": "L",
 			"type": "monstrosity",
 			"alignment": [
@@ -2044,6 +2056,12 @@
 			"name": "Horizonback Tortoise",
 			"source": "EGW",
 			"page": 292,
+			"otherSources": [
+				{
+					"source": "CRCotN",
+					"page": 292
+				}
+			],
 			"size": "G",
 			"type": "monstrosity",
 			"alignment": [
@@ -2573,6 +2591,12 @@
 			"name": "Moorbounder",
 			"source": "EGW",
 			"page": 295,
+			"otherSources": [
+				{
+					"source": "CRCotN",
+					"page": 295
+				}
+			],
 			"size": "L",
 			"type": "beast",
 			"alignment": [

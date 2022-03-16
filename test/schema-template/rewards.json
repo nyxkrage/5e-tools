@@ -24,7 +24,7 @@
 						"$$ifSiteElse_key": {
 							"keySite": "enum",
 							"keyBrew": "examples",
-							"value": ["Blessing", "Boon", "Charm", "Draconic Gift", "Inhabitation", "Other"]
+							"value": ["Blessing", "Boon", "Charm", "Draconic Gift", "Inhabitation", "Fragment of Suffering", "Other"]
 						}
 					},
 					"ability": {

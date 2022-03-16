@@ -1623,7 +1623,7 @@ class MarkdownConverter {
 			tbl.rows.forEach(r => {
 				const r0Clean = Renderer.stripTags((r[0] || "").trim());
 				// u2012 = figure dash; u2013 = en-dash
-				if (!/^[-+*/×÷x^.,0-9\u2012\u2013]+$/i.exec(r0Clean)) return isDiceCol0 = false;
+				if (!/^[-+*/×÷x^.,0-9\u2012\u2013]+(?:st|nd|rd|th)?$/i.exec(r0Clean)) return isDiceCol0 = false;
 			});
 		})();
 

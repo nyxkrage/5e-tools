@@ -5570,6 +5570,10 @@
 				"M"
 			],
 			"speed": 30,
+
+			"traitTags": [
+				"Powerful Build"
+			],
 			"skillProficiencies": [
 				{
 					"athletics": true
@@ -7525,9 +7529,6 @@
 				"S"
 			],
 			"speed": 30,
-			"traitTags": [
-				"Powerful Build"
-			],
 			"skillProficiencies": [
 				{
 					"stealth": true
@@ -17304,6 +17305,9 @@
 					"source": "EEPC",
 					"page": 5
 				}
+			],
+			"reprintedAs": [
+				"Deep Gnome|MPMM"
 			],
 			"ability": [
 				{

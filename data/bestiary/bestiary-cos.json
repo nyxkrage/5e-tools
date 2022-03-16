@@ -701,6 +701,44 @@
 			"hasToken": true
 		},
 		{
+			"name": "Bray Martikov",
+			"isNpc": true,
+			"source": "CoS",
+			"page": 98,
+			"_copy": {
+				"name": "Young Wereraven",
+				"source": "CoS",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the wereraven",
+						"with": "Bray",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Brom Martikov",
+			"isNpc": true,
+			"source": "CoS",
+			"page": 98,
+			"_copy": {
+				"name": "Young Wereraven",
+				"source": "CoS",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the wereraven",
+						"with": "Brom",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Broom of Animated Attack",
 			"source": "CoS",
 			"page": 226,
@@ -883,6 +921,29 @@
 			"hasToken": true
 		},
 		{
+			"name": "Danika Dorakova",
+			"isNpc": true,
+			"source": "CoS",
+			"page": 98,
+			"_copy": {
+				"name": "Wereraven",
+				"source": "VRGR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the wereraven",
+						"with": "Danika",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
 			"name": "Davian Martikov",
 			"isNpc": true,
 			"source": "CoS",
@@ -899,6 +960,10 @@
 					}
 				}
 			},
+			"alignment": [
+				"L",
+				"G"
+			],
 			"hasToken": true
 		},
 		{
@@ -4194,6 +4259,29 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Urwin Martikov",
+			"isNpc": true,
+			"source": "CoS",
+			"page": 98,
+			"_copy": {
+				"name": "Wereraven",
+				"source": "VRGR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the wereraven",
+						"with": "Urwin",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
 			"name": "Vasilka",
 			"isNpc": true,
 			"source": "CoS",
@@ -4589,6 +4677,24 @@
 				"N"
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Young Wereraven",
+			"source": "CoS",
+			"page": 98,
+			"_copy": {
+				"name": "Wereraven",
+				"source": "VRGR"
+			},
+			"size": "S",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d6"
+			}
 		},
 		{
 			"name": "Zuleika Toranescu",

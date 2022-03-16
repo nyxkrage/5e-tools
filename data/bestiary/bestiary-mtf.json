@@ -18536,7 +18536,7 @@
 			"cr": "5",
 			"trait": [
 				{
-					"name": "Ambush",
+					"name": "Ambusher",
 					"entries": [
 						"On the first round of each combat, the mangler has advantage on attack rolls against a creature that hasn't taken a turn yet."
 					]

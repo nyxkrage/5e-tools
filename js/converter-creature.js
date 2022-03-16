@@ -7,6 +7,7 @@ if (typeof module !== "undefined") {
 	Object.assign(global, cvCreature);
 	global.PropOrder = require("./utils-proporder.js");
 	Object.assign(global, require("./converterutils-markdown.js"));
+	Object.assign(global, require("./converterutils-entries.js"));
 }
 
 // TODO easy improvements to be made:
@@ -94,7 +95,7 @@ class CreatureParser extends BaseParser {
 				"Reactions?",
 				"Actions?",
 			]
-				.map(it => ({re: new RegExp(`\\n\\s*${it.split("").join("\\s*")}\\s*\\n`, "g"), original: it}))
+				.map(it => ({re: new RegExp(`\\n\\s*${it.split("").join("\\s*")}\\s*\\n`, "g"), original: it.replace(/[^a-zA-Z ]/g, "")}))
 				.forEach(({re, original}) => clean = clean.replace(re, `\n${original}\n`));
 			// endregion
 
@@ -952,8 +953,9 @@ class CreatureParser extends BaseParser {
 	static _doStatblockPostProcess (stats, isMarkdown, options) {
 		this._doFilterAddSpellcasting(stats, "trait", isMarkdown, options);
 		this._doFilterAddSpellcasting(stats, "action", isMarkdown, options);
-		if (stats.trait) stats.trait.forEach(trait => RechargeConvert.tryConvertRecharge(trait, () => {}, () => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual recharge tagging required for trait "${trait.name}"`)));
-		if (stats.action) stats.action.forEach(action => RechargeConvert.tryConvertRecharge(action, () => {}, () => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual recharge tagging required for action "${action.name}"`)));
+		if (stats.trait) stats.trait.forEach(it => RechargeConvert.tryConvertRecharge(it, () => {}, () => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual recharge tagging required for trait "${it.name}"`)));
+		if (stats.action) stats.action.forEach(it => RechargeConvert.tryConvertRecharge(it, () => {}, () => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual recharge tagging required for action "${it.name}"`)));
+		if (stats.bonus) stats.bonus.forEach(it => RechargeConvert.tryConvertRecharge(it, () => {}, () => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual recharge tagging required for bonus action "${it.name}"`)));
 		CreatureParser._PROPS_ENTRIES.filter(prop => stats[prop]).forEach(prop => SpellTag.tryRun(stats[prop]));
 		AcConvert.tryPostProcessAc(
 			stats,

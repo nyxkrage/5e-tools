@@ -1857,13 +1857,16 @@
 							"items": {
 								"name": "Camouflage",
 								"entries": [
-									"The octopus has advantage on Dexterity (Stealth) checks."
+									"The octopus has advantage on Dexterity ({@skill Stealth}) checks."
 								]
 							}
 						},
 						{
 							"mode": "removeArr",
-							"names": "Hold Breath"
+							"names": [
+								"Hold Breath",
+								"Water Breathing"
+							]
 						}
 					]
 				}

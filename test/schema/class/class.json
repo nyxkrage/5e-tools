@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "2.10.2",
+	"version": "2.10.3",
 	"$id": "class.json",
 	"type": "object",
 	"definitions": {
