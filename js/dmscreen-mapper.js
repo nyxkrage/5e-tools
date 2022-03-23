@@ -11,7 +11,7 @@ class DmMapper {
 	}
 
 	static async pHandleMenuButtonClick (menu) {
-		const chosenDoc = await SearchWidget.pGetUserAdventureSearch({
+		const chosenDoc = await SearchWidget.pGetUserAdventureBookSearch({
 			// TODO(5EB-1) expand this filter as more maps are added
 			fnFilterResults: doc => {
 				if (Parser.SOURCE_JSON_TO_FULL[doc.s]) {
@@ -35,11 +35,15 @@ class DmMapper {
 		$modalInner.append(`<div class="ve-flex-vh-center w-100 h-100"><i class="dnd-font ve-muted">Loading...</i></div>`);
 
 		const {page, source, hash} = SearchWidget.docToPageSourceHash(chosenDoc);
-		const adventurePack = await Renderer.hover.pCacheAndGet(page, source, hash);
+		const adventureBookPack = await Renderer.hover.pCacheAndGet(page, source, hash);
 
 		const mapDatas = [];
 		const walker = MiscUtil.getWalker();
-		adventurePack.adventureData.data.forEach((chap, ixChap) => {
+
+		const prop = chosenDoc.c === Parser.CAT_ID_ADVENTURE ? "adventure" : "book";
+		const propData = `${prop}Data`;
+
+		adventureBookPack[propData].data.forEach((chap, ixChap) => {
 			let cntChapImages = 0;
 
 			const handlers = {
@@ -47,16 +51,16 @@ class DmMapper {
 					if (obj.mapRegions) {
 						const out = {
 							...Renderer.get().getMapRegionData(obj),
-							page: UrlUtil.PG_ADVENTURE,
-							source: adventurePack.adventure.source,
-							hash: UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURE](adventurePack.adventure),
+							page: chosenDoc.p,
+							source: adventureBookPack[prop].source,
+							hash: UrlUtil.URL_TO_HASH_BUILDER[chosenDoc.p](adventureBookPack[prop]),
 						};
 						mapDatas.push(out);
 
 						if (obj.title) {
 							out.name = Renderer.stripTags(obj.title);
 						} else {
-							out.name = `${(adventurePack.adventure.contents[ixChap] || {}).name || "(Unknown)"}, Map ${cntChapImages + 1}`;
+							out.name = `${(adventureBookPack[prop].contents[ixChap] || {}).name || "(Unknown)"}, Map ${cntChapImages + 1}`;
 						}
 
 						cntChapImages++;
@@ -91,7 +95,7 @@ class DmMapper {
 						</div>`)
 				.click(() => {
 					doClose();
-					menu.pnl.doPopulate_AdventureDynamicMap({state: mapData});
+					menu.pnl.doPopulate_AdventureBookDynamicMap({state: mapData});
 				})
 				.appendTo($modalInner);
 		});

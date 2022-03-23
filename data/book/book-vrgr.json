@@ -15237,12 +15237,9 @@
 											"entry": "Kas the Bloody Handed"
 										},
 										{
-											"type": "entries",
+											"type": "item",
 											"name": "Hallmarks:",
-											"entries": [
-												"Undead military dictatorship"
-											],
-											"id": "031"
+											"entry": "Undead military dictatorship"
 										}
 									]
 								},
@@ -15265,12 +15262,9 @@
 											"entry": "Flimira Vhage"
 										},
 										{
-											"type": "entries",
+											"type": "item",
 											"name": "Hallmarks:",
-											"entries": [
-												"Detective work, memory loss"
-											],
-											"id": "037"
+											"entry": "Detective work, memory loss"
 										}
 									]
 								},
@@ -15293,12 +15287,9 @@
 											"entry": "Sodo"
 										},
 										{
-											"type": "entries",
+											"type": "item",
 											"name": "Hallmarks:",
-											"entries": [
-												"Serial murderers, urban decay"
-											],
-											"id": "038"
+											"entry": "Serial murderers, urban decay"
 										}
 									]
 								},

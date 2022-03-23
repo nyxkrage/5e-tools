@@ -25609,7 +25609,8 @@
 			],
 			"lootTables": [
 				"Magic Item Table B"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Potter's Tools",
@@ -27295,7 +27296,7 @@
 					"type": "entries",
 					"name": "If Ruidium Is Destroyed",
 					"entries": [
-						"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and the ring of red fury becomes a ring of free action."
+						"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and the ring of red fury becomes a {@item ring of free action}."
 					]
 				}
 			],
@@ -28383,7 +28384,7 @@
 					"type": "entries",
 					"name": "If Ruidium Is Destroyed",
 					"entries": [
-						"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium shield becomes a +2 shield."
+						"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium shield becomes a {@item +2 shield}."
 					]
 				}
 			],

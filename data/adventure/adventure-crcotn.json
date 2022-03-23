@@ -844,7 +844,7 @@
 							],
 							"rows": [
 								[
-									"Aloysia Telfan",
+									"{@creature Aloysia Telfan|CRCotN}",
 									"ah-LOY-see-uh TELL-fin",
 									"Elf agent of the Consortium of the Vermilion Dream"
 								],
@@ -864,7 +864,7 @@
 									"Alyxian's title, denoting his godlike powers"
 								],
 								[
-									"Aradrine the Owl",
+									"{@creature Aradrine the Owl|CRCotN}",
 									"AWR-uh-dreen",
 									"Goliath coleader of the Consortium of the Vermilion Dream"
 								],
@@ -944,7 +944,7 @@
 									"Human scoundrel and a member of the rival party"
 								],
 								[
-									"Jamil A'alithiya",
+									"{@creature Jamil A'alithiya|CRCotN}",
 									"juh-MEEL AYE-uh-lee-thee-uh",
 									"Human High Curator of the Archive of the Cobalt Soul in Ank'Harel"
 								],
@@ -994,7 +994,7 @@
 									"Half-orc security captain of the Luck's Run casino"
 								],
 								[
-									"Perigee",
+									"{@creature Perigee|CRCotN}",
 									"PAIR-uh-jee",
 									"Deva agent of Sehanine corrupted by ruidium"
 								],
@@ -1004,7 +1004,7 @@
 									"Human bandit living in the wastes of Xhorhas"
 								],
 								[
-									"Prolix Yusaf",
+									"{@creature Prolix Yusaf|CRCotN}",
 									"PRO-licks",
 									"Tiefling agent of the Allegiance of Allsight"
 								],
@@ -1059,7 +1059,7 @@
 									"Eastern realm of Wildemount, mostly marshes and grasslands"
 								],
 								[
-									"Xot",
+									"{@creature Xot|CRCotN}",
 									"ZJOT",
 									"Goliath archaeologist of the Allegiance of Allsight"
 								]
@@ -1243,7 +1243,7 @@
 												"People are already gathered on stage, including a scrawny young human with a mop of brown hair and a scruffy beard. As you approach, the orc calls out in a melodic baritone, \"Come to sample the best meat pies this side of the Wastes, yes? I sell 'em for meals up there, but I'm running pie-eating contests down here all day, if you've got an orc-sized stomach.\""
 											]
 										},
-										"Agathe Silverspoon is a chaotic good {@creature orc} who moves from counter to counter, deftly slicing a variety of cooked and spiced meats, then folding them into piecrusts that she places into the oven behind her.",
+										"{@creature Agathe Silverspoon|CRCotN} is a chaotic good {@creature orc} who moves from counter to counter, deftly slicing a variety of cooked and spiced meats, then folding them into piecrusts that she places into the oven behind her.",
 										"Agathe gestures toward the raised platform next to her cooking station, where three people are already seated: a cocky male {@creature drow} flexing his muscles, pointing at people in the gathering crowd and winking; a female halfling (use the {@creature thug} stat block), sitting very still with a smirk on her face; and a young male human, scanning the crowd as if looking for someone. This individual is {@creature Irvan Wastewalker (tier 1)|CRCotN}, whose stat block appears in {@adventure appendix A|CRCotN|8}. These contestants have the following modifiers to their Constitution checks and saving throws, which come into play during the pie-eating contest:",
 										{
 											"type": "list",
@@ -1305,7 +1305,7 @@
 														"type": "internal",
 														"path": "adventure/CRCotN/011-01-002.agathe-silverspoon.webp"
 													},
-													"title": "Agathe Silverspoon makes the best meat pies in Jigow",
+													"title": "{@creature Agathe Silverspoon|CRCotN} makes the best meat pies in Jigow",
 													"width": 1700,
 													"height": 1102
 												}
@@ -3067,7 +3067,7 @@
 														{
 															"type": "item",
 															"name": "L2f:",
-															"entry": "Command Post. The command post holds Drazagorr and Kelbadurn's bed and their belongings, which include a set of goblin-sized {@item chain mail|CRCotN}, a {@item spear|PHB}, a {@item shield|PHB}, two {@item Shortbow|PHB|shortbows}, two {@item Quiver|PHB|quivers} containing 20 {@item Arrows (20)|PHB|arrows} apiece, and a wooden chest that holds 100 gp (the family's savings) and a collection of sentimental keepsakes."
+															"entry": "Command Post. The command post holds Drazagorr and Kelbadurn's bed and their belongings, which include a set of goblin-sized {@item chain mail|PHB}, a {@item spear|PHB}, a {@item shield|PHB}, two {@item Shortbow|PHB|shortbows}, two {@item Quiver|PHB|quivers} containing 20 {@item Arrows (20)|PHB|arrows} apiece, and a wooden chest that holds 100 gp (the family's savings) and a collection of sentimental keepsakes."
 														}
 													]
 												}
@@ -3548,7 +3548,7 @@
 														"\"Wait! Stop!\" a voice shouts from down the street. A bookish tiefling jogs into view. A variety of archaeology tools hang at his waist along with a satchel holding his notebooks. \"You can't burn that yet. I need to study it!\" Reaching into the satchel, he pulls out a badge and holds it up, as if the badge alone explained his reason for being here."
 													]
 												},
-												"The tiefling is Prolix Yusaf, a lawful neutral {@creature scholarly agent|CRCotN} (see {@adventure appendix A|CRCotN|8}) from the Allegiance of Allsight. His badge displays the symbol of his faction: a scroll bearing a single, watchful eye.",
+												"The tiefling is {@creature Prolix Yusaf|CRCotN}, a lawful neutral {@creature scholarly agent|CRCotN} (see {@adventure appendix A|CRCotN|8}) from the Allegiance of Allsight. His badge displays the symbol of his faction: a scroll bearing a single, watchful eye.",
 												"Prolix introduces himself as an archaeologist from Ank'Harel, a city on the distant continent of Marquet. He nervously explains that because vrocks often swallow jewelry and other ornamental objects, he has reason to believe that the vrock might have a few valuable items from the Betrayers' Rise in its stomach\u2014and he'd like to try to cut them out before the Allertons burn the corpse.",
 												"Lacking experience with dead bodies, Prolix turns to the characters for assistance. A character who wants to extract the contents of the vrock's stomach must first cleave through the vrock's hide. To do so, the character must succeed on a DC 15 Wisdom ({@skill Survival}) check. A failed check triggers an eruption of spores from the vrock's corpse that fill a 10-foot-radius sphere centered on the corpse. All creatures in that area must succeed on a DC 14 Constitution saving throw or become {@condition poisoned}. A creature {@condition poisoned} in this way takes 5 ({@dice 1d10}) poison damage at the start of each of its turns. It can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 											]
@@ -3566,7 +3566,7 @@
 														"type": "internal",
 														"path": "adventure/CRCotN/031-03-004.aloysia-prolix.webp"
 													},
-													"title": "Aloysia Telfan and Prolix Yusaf",
+													"title": "{@creature Aloysia Telfan|CRCotN} and {@creature Prolix Yusaf|CRCotN}",
 													"width": 850,
 													"height": 2183
 												}
@@ -3633,7 +3633,7 @@
 										"Inside, the characters find a lawful neutral, drow {@creature priest} chatting with a young female drow, whose Aurora Watch armor and satchel are stacked nearby. Other wounded patients\u2014most of them asleep\u2014fill the infirmary beds.",
 										"When she sees the characters, the priest leaves her patient's side to greet them, introducing herself as Bautha Dyrr. She then asks them about their health. A character who succeeds on a DC 15 Intelligence ({@skill Religion}) check identifies a pin in the shape of a black wing attached to Bautha's cloak as the holy symbol of Xalicas, a legendary solar who served as the right hand of Corellon the Arch Heart before falling in the Calamity. As a follower of Xalicas, Bautha disapproves of the reclamation efforts in Bazzoxan; though she supports the effort to hold back the forces of the Abyss, she believes the Kryn Dynasty's military presence here is creating needless casualties with little to show for it. Nevertheless, Bautha strives to heal and protect those in Bazzoxan, and she casts {@spell cure wounds} or {@spell lesser restoration} on victims for free, as long as she has spell slots to spare.",
 										"Bautha also has a {@item spell scroll} of {@spell greater restoration}. She must succeed on a DC 15 Wisdom check to cast the spell from the scroll; otherwise, the scroll is destroyed with no effect. She will sell it to the characters for 500 gp.",
-										"Bautha is familiar with Prolix Yusaf and Aloysia Telfan, since both individuals have visited the infirmary for care in the past week. She sees them as reckless and naive, and she thinks that their obsession with researching the Betrayers' Rise can lead to no good end. A character who succeeds on a DC 13 Charisma ({@skill Persuasion}) check gets her to reveal that Aloysia was injured when she tried to delve into the Betrayers' Rise alone\u2014and now she's looking for mercenaries to explore it on her behalf.",
+										"Bautha is familiar with {@creature Prolix Yusaf|CRCotN} and {@creature Aloysia Telfan|CRCotN}, since both individuals have visited the infirmary for care in the past week. She sees them as reckless and naive, and she thinks that their obsession with researching the Betrayers' Rise can lead to no good end. A character who succeeds on a DC 13 Charisma ({@skill Persuasion}) check gets her to reveal that Aloysia was injured when she tried to delve into the Betrayers' Rise alone\u2014and now she's looking for mercenaries to explore it on her behalf.",
 										{
 											"type": "entries",
 											"name": "Bautha and the Jewel",
@@ -3971,7 +3971,7 @@
 											"name": "Aloysia Telfan",
 											"id": "11e",
 											"entries": [
-												"During their conversation with Question, characters who have a passive Wisdom ({@skill Perception}) score of 12 or higher notice a gaunt figure in scarlet robes nearby, eavesdropping. This figure, Aloysia Telfan, is a lawful evil, elf {@creature occult initiate|CRCotN} (see {@adventure appendix A|CRCotN|8}) who thirsts for knowledge and power. She approaches the characters, if they don't accost her first, and greets them politely.",
+												"During their conversation with Question, characters who have a passive Wisdom ({@skill Perception}) score of 12 or higher notice a gaunt figure in scarlet robes nearby, eavesdropping. This figure, {@creature Aloysia Telfan|CRCotN}, is a lawful evil, elf {@creature occult initiate|CRCotN} (see {@adventure appendix A|CRCotN|8}) who thirsts for knowledge and power. She approaches the characters, if they don't accost her first, and greets them politely.",
 												"Aloysia gets right to the point: she wants to find an ancient prayer site deep inside the Betrayers' Rise\u2014and based on what she has learned of the characters from their conversation with Question, she surmises that such a mission would be beneficial to them as well. She offers to pay the characters 50 gp each to accompany her, though they can get her up to 100 gp each with a successful DC 13 Charisma ({@skill Persuasion}) check if they haggle. If pressed to reveal what she's after, Aloysia explains that she's looking for a crimson mineral called ruidium that is said to be infused with the power of Ruidus. She says nothing about her organization, the Consortium of the Vermilion Dream, unless someone asks about it by name. In that case, she says that the Consortium is a group of folklore aficionados."
 											]
 										},
@@ -4960,12 +4960,12 @@
 							"name": "Confrontation for the Jewel",
 							"id": "16c",
 							"entries": [
-								"The following boxed text assumes that Aloysia Telfan is still alive; if that's not the case, replace Aloysia with another {@creature occult initiate|CRCotN} (see {@adventure appendix A|CRCotN|8}) from the Consortium of the Vermilion Dream:",
+								"The following boxed text assumes that {@creature Aloysia Telfan|CRCotN} is still alive; if that's not the case, replace Aloysia with another {@creature occult initiate|CRCotN} (see {@adventure appendix A|CRCotN|8}) from the Consortium of the Vermilion Dream:",
 								{
 									"type": "insetReadaloud",
 									"id": "16d",
 									"entries": [
-										"Just as the vision of Alyxian fades, you become aware of the presence of intruders. Your rivals appear at the edge of the crater, along with a red-robed figure. \"Well done, heroes!\" says Aloysia Telfan. \"Now, if you would simply hand over the jewel, we can all get out of here without spilling any more blood.\""
+										"Just as the vision of Alyxian fades, you become aware of the presence of intruders. Your rivals appear at the edge of the crater, along with a red-robed figure. \"Well done, heroes!\" says {@creature Aloysia Telfan|CRCotN}. \"Now, if you would simply hand over the jewel, we can all get out of here without spilling any more blood.\""
 									]
 								},
 								"Aloysia and the rivals did not use the same route as the characters to reach area R16. They were transported to the crater's edge by a magical force they encountered in their version of the Betrayers' Rise.",
@@ -5042,7 +5042,7 @@
 								{
 									"type": "item",
 									"name": "Question.",
-									"entry": "If the characters tell Question what happened in the prayer site of Avandra, she is happy to learn what they discovered but sad to hear that her Cobalt Soul colleagues were lost. That news makes her determined to ensure that her colleagues' deaths were not in vain. She tells the characters that her organization could use people of their skills and invites them to Ank'Harel to report their findings to the monks of the Cobalt Soul. She says she has made plans with Prolix Yusaf to return to Ank'Harel together if the Library of the Cobalt Soul's expedition was lost."
+									"entry": "If the characters tell Question what happened in the prayer site of Avandra, she is happy to learn what they discovered but sad to hear that her Cobalt Soul colleagues were lost. That news makes her determined to ensure that her colleagues' deaths were not in vain. She tells the characters that her organization could use people of their skills and invites them to Ank'Harel to report their findings to the monks of the Cobalt Soul. She says she has made plans with {@creature Prolix Yusaf|CRCotN} to return to Ank'Harel together if the Library of the Cobalt Soul's expedition was lost."
 								},
 								{
 									"type": "item",
@@ -5238,7 +5238,7 @@
 							"name": "Following Aloysia",
 							"id": "184",
 							"entries": [
-								"Characters who use one of Aloysia Telfan's {@item Teleportation Tablet|CRCotN|teleportation tablets} to travel to Ank'Harel arrive on a rooftop overlooking the Suncut Bazaar (see area T8 on the {@adventure Streets of the Suncut Bazaar map|CRCotN|4|Streets of the Suncut Bazaar}). Read:",
+								"Characters who use one of {@creature Aloysia Telfan|CRCotN}'s {@item Teleportation Tablet|CRCotN|teleportation tablets} to travel to Ank'Harel arrive on a rooftop overlooking the Suncut Bazaar (see area T8 on the {@adventure Streets of the Suncut Bazaar map|CRCotN|4|Streets of the Suncut Bazaar}). Read:",
 								{
 									"type": "insetReadaloud",
 									"id": "185",
@@ -5493,7 +5493,7 @@
 												{
 													"type": "item",
 													"name": "Leader.",
-													"entry": "The Allegiance is led by two headmasters: the dour James Cryon, a lawful neutral elf, who is also the head of the Crystal Chateau's program for the arcane arts; and the kindly Gryz Alakritos, a neutral good goblin, whose infectious enthusiasm makes him the more popular of the pair. Both use the {@creature scholarly mastermind|CRCotN} stat block (see {@adventure appendix A|CRCotN|8})."
+													"entry": "The Allegiance is led by two headmasters: the dour {@creature James Cryon|CRCotN}, a lawful neutral elf, who is also the head of the Crystal Chateau's program for the arcane arts; and the kindly {@creature Gryz Alakritos|CRCotN}, a neutral good {@creature goblin}, whose infectious enthusiasm makes him the more popular of the pair. Both use the {@creature scholarly mastermind|CRCotN} stat block (see {@adventure appendix A|CRCotN|8})."
 												},
 												{
 													"type": "item",
@@ -5508,7 +5508,7 @@
 												"type": "internal",
 												"path": "adventure/CRCotN/042-04-002.headmasters-allsight.webp"
 											},
-											"title": "Headmasters James Cryon and Gryz Alakritos of the Allegiance of Allsight",
+											"title": "Headmasters {@creature James Cryon|CRCotN} and {@creature Gryz Alakritos|CRCotN} of the Allegiance of Allsight",
 											"width": 417,
 											"height": 850
 										},
@@ -5562,7 +5562,7 @@
 												{
 													"type": "item",
 													"name": "Leader.",
-													"entry": "The Consortium is led by a council of five masters who all use the {@creature occult silvertongue|CRCotN} stat block (see {@adventure appendix A|CRCotN|8}). They are Aradrine the Owl, a lawful neutral goliath (see the \"{@area Goliaths of Exandria|1a4|x}\" sidebar later in the chapter); Dendarron the Sun Bear, a chaotic neutral halfling; Larthul the Wolf, a chaotic evil human; Khelkur the Gull, a neutral evil dwarf; and Vrill the Moth, a lawful evil elf."
+													"entry": "The Consortium is led by a council of five masters who all use the {@creature occult silvertongue|CRCotN} stat block (see {@adventure appendix A|CRCotN|8}). They are {@creature Aradrine the Owl|CRCotN}, a lawful neutral goliath (see the \"{@area Goliaths of Exandria|1a4|x}\" sidebar later in the chapter); Dendarron the Sun Bear, a chaotic neutral halfling; Larthul the Wolf, a chaotic evil human; Khelkur the Gull, a neutral evil dwarf; and Vrill the Moth, a lawful evil elf."
 												},
 												{
 													"type": "item",
@@ -5620,7 +5620,7 @@
 												"type": "internal",
 												"path": "adventure/CRCotN/043-04-003.high-curator-jamil.webp"
 											},
-											"title": "High Curator Jamil A'alithiya of the Library of the Cobalt Soul",
+											"title": "High Curator {@creature Jamil A'alithiya|CRCotN} of the Library of the Cobalt Soul",
 											"width": 297,
 											"height": 850
 										},
@@ -5631,7 +5631,7 @@
 												{
 													"type": "item",
 													"name": "Leader.",
-													"entry": "At 29 years old, Jamil A'alithiya, a chaotic good human, is the youngest {@creature monastic high curator|CRCotN} (see {@adventure appendix A|CRCotN|8}) in the history of the Cobalt Soul. He is often underestimated by his contemporaries and uses that fact to his advantage."
+													"entry": "At 29 years old, {@creature Jamil A'alithiya|CRCotN}, a chaotic good human, is the youngest {@creature monastic high curator|CRCotN} (see {@adventure appendix A|CRCotN|8}) in the history of the Cobalt Soul. He is often underestimated by his contemporaries and uses that fact to his advantage."
 												},
 												{
 													"type": "item",
@@ -6483,7 +6483,7 @@
 													"name": "Mission 3: The Proxies of Prolix",
 													"id": "1cf",
 													"entries": [
-														"The characters must help Prolix Yusaf clear his name by finding a spy in the Allegiance of Allsight."
+														"The characters must help {@creature Prolix Yusaf|CRCotN} clear his name by finding a spy in the Allegiance of Allsight."
 													]
 												},
 												{
@@ -6589,7 +6589,7 @@
 									"name": "Getting the Mission",
 									"id": "1db",
 									"entries": [
-										"Early one morning, Prolix Yusaf meets with the characters:",
+										"Early one morning, {@creature Prolix Yusaf|CRCotN} meets with the characters:",
 										{
 											"type": "insetReadaloud",
 											"id": "1dc",
@@ -6684,7 +6684,7 @@
 									"name": "Joining the Allegiance",
 									"id": "1e5",
 									"entries": [
-										"If this mission is successful, Prolix recommends the characters to Headmaster Gryz Alakritos as potential new members. Within a week, Alakritos presents each character with a formal invitation to join the faction's ranks. Membership comes with the following benefits:",
+										"If this mission is successful, Prolix recommends the characters to Headmaster {@creature Gryz Alakritos|CRCotN} as potential new members. Within a week, Alakritos presents each character with a formal invitation to join the faction's ranks. Membership comes with the following benefits:",
 										{
 											"type": "list",
 											"items": [
@@ -6704,13 +6704,13 @@
 							"id": "1e6",
 							"entries": [
 								"Months ago, Watcher Lymmle Wist of the Sentinels of Memory infiltrated the Allegiance of Allsight. She has since advanced through the ranks and become one of the individuals responsible for assigning missions to Allegiance agents. During this time, she has also been feeding information about Allegiance operations to the Sentinels of Memory and the Consortium of the Vermilion Dream.",
-								"Lymmle previously owned a {@item ring of red fury|CRCotN} (see {@adventure appendix B|CRCotN|9|{@item Ring of Red Fury|CRCotN}}), which was given to her by the Consortium as a reward for her services. She has decided to use the ring as part of a grander scheme. Recently, with the Allegiance of Allsight on high alert after the attack at the Life Dome, Lymmle planted the ring on Prolix Yusaf and plans to falsely accuse the tiefling of being a traitor. Her contact with the ruidium in the ring has left its mark on her skin.",
+								"Lymmle previously owned a {@item ring of red fury|CRCotN} (see {@adventure appendix B|CRCotN|9|{@item Ring of Red Fury|CRCotN}}), which was given to her by the Consortium as a reward for her services. She has decided to use the ring as part of a grander scheme. Recently, with the Allegiance of Allsight on high alert after the attack at the Life Dome, Lymmle planted the ring on {@creature Prolix Yusaf|CRCotN} and plans to falsely accuse the tiefling of being a traitor. Her contact with the ruidium in the ring has left its mark on her skin.",
 								{
 									"type": "entries",
 									"name": "Getting the Mission",
 									"id": "1e7",
 									"entries": [
-										"The characters notice a dark figure clumsily following them as they stroll through Ank'Harel one night. Confronting the figure reveals it to be a harried and distressed Prolix Yusaf, who immediately asks if they can talk in private.",
+										"The characters notice a dark figure clumsily following them as they stroll through Ank'Harel one night. Confronting the figure reveals it to be a harried and distressed {@creature Prolix Yusaf|CRCotN}, who immediately asks if they can talk in private.",
 										"Prolix wears nondescript dark clothes instead of his usual Allegiance of Allsight attire. When he and the characters are away from prying ears, he explains his plight:",
 										{
 											"type": "insetReadaloud",
@@ -6781,7 +6781,7 @@
 									"name": "Infiltrator Exposed",
 									"id": "1eb",
 									"entries": [
-										"The characters can present their findings to Headmaster Gryz Alakritos (see \"{@area City Factions|192|x}\" earlier in the chapter) and make a DC 18 Charisma ({@skill Persuasion}) check. The DC drops to 13 if Anbara and Idris are with the characters and at least one of them has had their memory restored. On a successful check, the headmaster immediately dispatches agents to apprehend Lymmle.",
+										"The characters can present their findings to Headmaster {@creature Gryz Alakritos|CRCotN} (see \"{@area City Factions|192|x}\" earlier in the chapter) and make a DC 18 Charisma ({@skill Persuasion}) check. The DC drops to 13 if Anbara and Idris are with the characters and at least one of them has had their memory restored. On a successful check, the headmaster immediately dispatches agents to apprehend Lymmle.",
 										"The characters can confront Lymmle directly by going to her office in the Crystal Chateau. Lymmle initially denies the accusation, then tries to turn the tables on the characters by accusing them of having ulterior motives. When it becomes clear to her that the characters are insistent, she casts {@spell fly} on herself and tries to escape by smashing through the window behind her desk. If she's unable to escape, Lymmle fights to the death."
 									]
 								},
@@ -6801,7 +6801,7 @@
 							"name": "Allegiance Mission 4: The Double Agent",
 							"id": "1ed",
 							"entries": [
-								"Seven days after their previous mission for the Allegiance of Allsight, the characters are summoned to meet with Headmasters James Cryon and Gryz Alakritos in Cryon's office at the Crystal Chateau. The headmasters want the characters to find a double agent who is undermining the Allegiance's activities in the ruins of Cael Morrow.",
+								"Seven days after their previous mission for the Allegiance of Allsight, the characters are summoned to meet with Headmasters {@creature James Cryon|CRCotN} and {@creature Gryz Alakritos|CRCotN} in Cryon's office at the Crystal Chateau. The headmasters want the characters to find a double agent who is undermining the Allegiance's activities in the ruins of Cael Morrow.",
 								{
 									"type": "entries",
 									"name": "Getting the Mission",
@@ -6817,7 +6817,7 @@
 												"\"And a good thing, too!\" Headmaster Alakritos follows up hastily. \"There is trouble in Cael Morrow.\""
 											]
 										},
-										"James Cryon is a condescending elitist, while Gryz Alakritos is less abrasive and more down-to-earth. Each, in his own way, has the best interests of the Allegiance of Allsight at heart. They brief the characters on the following details that Allegiance spies have uncovered:",
+										"{@creature James Cryon|CRCotN} is a condescending elitist, while {@creature Gryz Alakritos|CRCotN} is less abrasive and more down-to-earth. Each, in his own way, has the best interests of the Allegiance of Allsight at heart. They brief the characters on the following details that Allegiance spies have uncovered:",
 										{
 											"type": "list",
 											"items": [
@@ -6843,7 +6843,7 @@
 									"name": "Finding the Double Agent",
 									"id": "1f0",
 									"entries": [
-										"The number of workers in the Cael Morrow archaeological expedition has dwindled recently. Currently, only Professor {@creature Insight Acuere|CRCotN}, a kenku named Scribble, and a goliath named Xot are there. None of them is the double agent.",
+										"The number of workers in the Cael Morrow archaeological expedition has dwindled recently. Currently, only Professor {@creature Insight Acuere|CRCotN}, a kenku named {@creature Scribble|CRCotN}, and a goliath named {@creature Xot|CRCotN} are there. None of them is the double agent.",
 										"If the characters ask Professor Acuere about other members of the expedition, she mentions that many excavators have been lost. She seems most interested in learning the fate of her friend {@creature Galeokaerda|CRCotN}, an adjunct professor of ancient literature at the Crystal Chateau. Unknown to Professor Acuere, {@creature Galeokaerda|CRCotN} is the Consortium spy."
 									]
 								},
@@ -7078,7 +7078,7 @@
 													"name": "Mission 3: Elephant in the Room",
 													"id": "205",
 													"entries": [
-														"The characters must steal a {@item Figurine of Wondrous Power, Marble Elephant||figurine of wondrous power} from the Allegiance of Allsight and deliver it to Aradrine the Owl."
+														"The characters must steal a {@item Figurine of Wondrous Power, Marble Elephant||figurine of wondrous power} from the Allegiance of Allsight and deliver it to {@creature Aradrine the Owl|CRCotN}."
 													]
 												},
 												{
@@ -7186,7 +7186,7 @@
 									"id": "211",
 									"entries": [
 										"The characters receive an urgently worded missive summoning them to First Eclipse, where Satzrak orders them a round of ale on the house and slides a note beneath one of the drinks that reads, \"She's waiting in the back for you.\" If pressed for more information, Satzrak doesn't elaborate.",
-										"Inside the Consortium's hidden storeroom in the back of the tavern, the characters find Aloysia Telfan. If Aloysia died earlier in the adventure, replace her with another {@creature occult initiate|CRCotN} (see {@adventure appendix A|CRCotN|8}), and modify the following text accordingly:",
+										"Inside the Consortium's hidden storeroom in the back of the tavern, the characters find {@creature Aloysia Telfan|CRCotN}. If Aloysia died earlier in the adventure, replace her with another {@creature occult initiate|CRCotN} (see {@adventure appendix A|CRCotN|8}), and modify the following text accordingly:",
 										{
 											"type": "insetReadaloud",
 											"id": "212",
@@ -7252,7 +7252,7 @@
 											"items": [
 												"Ena (neutral, human {@creature berserker}) masquerades as a casino patron.",
 												"Duskwood (chaotic neutral, half-elf {@creature spy}), like Ena, masquerades as a casino patron and wears a {@item hat of disguise}.",
-												"Koris (lawful neutral, tiefling {@creature assassin}), the crew's leader, works at one of the casino's card tables\u2014a job she has held for about a month. She carries a {@item potion of gaseous form}, a tiny packet containing {@item dust of disappearance}, and a {@item bag of holding}."
+												"{@creature Koris|CRCotN} (lawful neutral, tiefling {@creature assassin}), the crew's leader, works at one of the casino's card tables\u2014a job she has held for about a month. She carries a {@item potion of gaseous form}, a tiny packet containing {@item dust of disappearance}, and a {@item bag of holding}."
 											]
 										},
 										"If any of the thieves are confronted before they can pull off the heist, they try to flee the casino and foil any pursuers by running through the streets. Resolve such a chase using the {@book chase rules|DMG|8|Chases} and the {@table Urban Chase Complications} table in the {@book Dungeon Master's Guide|DMG}.",
@@ -7264,17 +7264,17 @@
 												{
 													"type": "item",
 													"name": "Stage 1:",
-													"entry": "Lead-Up. Ena, Duskwood, and Koris begin on the ground floor of the casino. A character who scans the crowd and succeeds on a DC 11 Wisdom ({@skill Insight}) check notices Ena's disinterest in the dice game she's standing at. Shortly thereafter, Duskwood begins chatting with one of the guards near Nedosi, and a character who succeeds on a DC 15 Wisdom ({@skill Insight}) check notices the half-elf watching someone over the shoulder of the guard."
+													"entry": "Lead-Up. Ena, Duskwood, and {@creature Koris|CRCotN} begin on the ground floor of the casino. A character who scans the crowd and succeeds on a DC 11 Wisdom ({@skill Insight}) check notices Ena's disinterest in the dice game she's standing at. Shortly thereafter, Duskwood begins chatting with one of the guards near Nedosi, and a character who succeeds on a DC 15 Wisdom ({@skill Insight}) check notices the half-elf watching someone over the shoulder of the guard."
 												},
 												{
 													"type": "item",
 													"name": "Stage 2:",
-													"entry": "Infiltration. Characters on floor duty who know thieves' cant or have a passive Wisdom ({@skill Perception}) score of 15 or higher notice the three thieves flashing quick hand signals to each other. Koris abruptly excuses herself from the game she's running and heads toward the employee area; a character who succeeds on a DC 13 Dexterity ({@skill Stealth}) check can follow her without being noticed. If she is detained, Koris explains that she's on the way to collect winnings for one of her patrons, but a character who succeeds on a DC 13 Wisdom ({@skill Insight}) check sees through the lie. If she is not prevented from doing so, Koris imbibes a {@item potion of gaseous form} and enters one of the coin chutes that connect with the vault."
+													"entry": "Infiltration. Characters on floor duty who know thieves' cant or have a passive Wisdom ({@skill Perception}) score of 15 or higher notice the three thieves flashing quick hand signals to each other. {@creature Koris|CRCotN} abruptly excuses herself from the game she's running and heads toward the employee area; a character who succeeds on a DC 13 Dexterity ({@skill Stealth}) check can follow her without being noticed. If she is detained, {@creature Koris|CRCotN} explains that she's on the way to collect winnings for one of her patrons, but a character who succeeds on a DC 13 Wisdom ({@skill Insight}) check sees through the lie. If she is not prevented from doing so, {@creature Koris|CRCotN} imbibes a {@item potion of gaseous form} and enters one of the coin chutes that connect with the vault."
 												},
 												{
 													"type": "item",
 													"name": "Stage 3:",
-													"entry": "Coin with Two Heads. When Koris has entered the coin chute, Ena stands up from her seat and starts berating the guard whom Duskwood is chatting with. As Nedosi tries to break up the fight, Duskwood lifts the casino master key from her pocket, an act that a character on floor duty can spot with a successful DC 14 Wisdom ({@skill Perception}) check. Duskwood then ascends the spiral staircase and uses their {@item hat of disguise} to assume Nedosi's visage before arriving on the third floor. A character who succeeds on a DC 13 Intelligence ({@skill Investigation}) check sees through Duskwood's trick as the thief approaches the vault."
+													"entry": "Coin with Two Heads. When {@creature Koris|CRCotN} has entered the coin chute, Ena stands up from her seat and starts berating the guard whom Duskwood is chatting with. As Nedosi tries to break up the fight, Duskwood lifts the casino master key from her pocket, an act that a character on floor duty can spot with a successful DC 14 Wisdom ({@skill Perception}) check. Duskwood then ascends the spiral staircase and uses their {@item hat of disguise} to assume Nedosi's visage before arriving on the third floor. A character who succeeds on a DC 13 Intelligence ({@skill Investigation}) check sees through Duskwood's trick as the thief approaches the vault."
 												}
 											]
 										},
@@ -7283,14 +7283,14 @@
 											"name": "Stage 4",
 											"id": "218",
 											"entries": [
-												"{@b Getaway}. Inside the vault, Koris dismisses her gaseous form, dumps a total of 10,000 gp into her {@item bag of holding}, and then uses {@item dust of disappearance} to become {@condition invisible}. Duskwood, disguised as Nedosi, unlocks the vault from the outside, pretends to inspect the interior as the {@condition invisible} Koris escapes, and shuts it again. Characters standing guard outside the vault hear Koris slip past them with a successful DC 24 Wisdom ({@skill Perception}) check. Duskwood and Koris both leave the third floor while Ena faints in the arms of a guard downstairs to create a minor distraction. Ena then heads outside to \"get some air.\" If the other two thieves are not stopped, the pair reunites with Ena outside the casino, and all three escape into the night with their spoils.",
+												"{@b Getaway}. Inside the vault, {@creature Koris|CRCotN} dismisses her gaseous form, dumps a total of 10,000 gp into her {@item bag of holding}, and then uses {@item dust of disappearance} to become {@condition invisible}. Duskwood, disguised as Nedosi, unlocks the vault from the outside, pretends to inspect the interior as the {@condition invisible} {@creature Koris|CRCotN} escapes, and shuts it again. Characters standing guard outside the vault hear {@creature Koris|CRCotN} slip past them with a successful DC 24 Wisdom ({@skill Perception}) check. Duskwood and {@creature Koris|CRCotN} both leave the third floor while Ena faints in the arms of a guard downstairs to create a minor distraction. Ena then heads outside to \"get some air.\" If the other two thieves are not stopped, the pair reunites with Ena outside the casino, and all three escape into the night with their spoils.",
 												{
 													"type": "image",
 													"href": {
 														"type": "internal",
 														"path": "adventure/CRCotN/056-04-012.koris-flees.webp"
 													},
-													"title": "Koris flees the scene with adventurers in pursuit",
+													"title": "{@creature Koris|CRCotN} flees the scene with adventurers in pursuit",
 													"width": 1700,
 													"height": 1120
 												}
@@ -7302,7 +7302,7 @@
 											"id": "219",
 											"entries": [
 												"If any of the thieves are approached privately about their intent, they offer the characters a cut of the stolen money, amounting to 800 gp, if they let the thieves perpetrate the heist. A character who makes a successful DC 11 Wisdom ({@skill Insight}) check involving any of the three thieves discerns they are earnest about this offer.",
-												"If the characters aid the thieves without getting caught, Koris gives them their cut and thanks them, promising to return the favor in the future. After the heist, finding Koris in Ank'Harel requires 8 hours of searching and a successful DC 18 Intelligence ({@skill Investigation}) check, since she's keeping a low profile. A failed check can be repeated, but only after another search."
+												"If the characters aid the thieves without getting caught, {@creature Koris|CRCotN} gives them their cut and thanks them, promising to return the favor in the future. After the heist, finding {@creature Koris|CRCotN} in Ank'Harel requires 8 hours of searching and a successful DC 18 Intelligence ({@skill Investigation}) check, since she's keeping a low profile. A failed check can be repeated, but only after another search."
 											]
 										}
 									]
@@ -7363,7 +7363,7 @@
 									"name": "Getting the Mission",
 									"id": "21f",
 									"entries": [
-										"The characters are summoned to First Eclipse, where Satzrak quietly informs them that one of the masters of the Consortium wants to speak with them, though he doesn't know why. Following Satzrak's directions, the characters enter the tavern's secret storeroom to find Master Aradrine the Owl, a lawful neutral, goliath {@creature occult silvertongue|CRCotN} (see {@adventure appendix A|CRCotN|8}), waiting for them. For more information on goliaths, see the \"{@area Goliaths of Exandria|1a4|x}\" sidebar earlier in the chapter.",
+										"The characters are summoned to First Eclipse, where Satzrak quietly informs them that one of the masters of the Consortium wants to speak with them, though he doesn't know why. Following Satzrak's directions, the characters enter the tavern's secret storeroom to find Master {@creature Aradrine the Owl|CRCotN}, a lawful neutral, goliath {@creature occult silvertongue|CRCotN} (see {@adventure appendix A|CRCotN|8}), waiting for them. For more information on goliaths, see the \"{@area Goliaths of Exandria|1a4|x}\" sidebar earlier in the chapter.",
 										"Aradrine expresses appreciation for the characters' decision to join their ranks before asking if they are now ready to learn the truth about the Consortium's studies in Ank'Harel:",
 										{
 											"type": "insetReadaloud",
@@ -7459,7 +7459,7 @@
 									"name": "Hasty Getaway",
 									"id": "229",
 									"entries": [
-										"If the characters aroused Kareema's suspicions or activated the trap in the basement vault, they are intercepted as they exit the hall by Headmaster James Cryon, a lawful neutral, elf {@creature scholarly mastermind|CRCotN}, and two lawful neutral {@creature Scholarly Excavator|CRCotN|scholarly excavators} serving as bodyguards (see {@adventure appendix A|CRCotN|8} for their stat blocks). Headmaster Cryon is willing to talk as long as the characters seem willing to relinquish the figurine, but if any character tries to escape with it, Headmaster Cryon and his bodyguards attack.",
+										"If the characters aroused Kareema's suspicions or activated the trap in the basement vault, they are intercepted as they exit the hall by Headmaster {@creature James Cryon|CRCotN}, a lawful neutral, elf {@creature scholarly mastermind|CRCotN}, and two lawful neutral {@creature Scholarly Excavator|CRCotN|scholarly excavators} serving as bodyguards (see {@adventure appendix A|CRCotN|8} for their stat blocks). Headmaster Cryon is willing to talk as long as the characters seem willing to relinquish the figurine, but if any character tries to escape with it, Headmaster Cryon and his bodyguards attack.",
 										"The three Allegiance members try to incapacitate the characters and reclaim any items that were removed from the vault. If Headmaster Cryon is reduced to fewer than 25 hit points, he curses and calls for a retreat, allowing the characters to get away.",
 										{
 											"type": "image",
@@ -7467,7 +7467,7 @@
 												"type": "internal",
 												"path": "adventure/CRCotN/057-04-013.master-aradrine-the-owl.webp"
 											},
-											"title": "Master Aradrine the Owl",
+											"title": "Master {@creature Aradrine the Owl|CRCotN}",
 											"width": 500,
 											"height": 850
 										}
@@ -7496,14 +7496,14 @@
 									"id": "22c",
 									"entries": [
 										"If the characters return to Aradrine without the figurine, the goliath beholds them coolly and snarls, \"I have precious little sympathy for failures. Get out of my sight.\" Characters who beg for Aradrine's forgiveness only anger her further. If they refuse to leave, she calls in six {@creature Occult Initiate|CRCotN|occult initiates} (see {@adventure appendix A|CRCotN|8}) to remove them.",
-										"After a week of silence, the characters receive a letter from Aloysia Telfan. If Aloysia died earlier in the adventure, the letter is sent by another Consortium agent (modify the following text accordingly):",
+										"After a week of silence, the characters receive a letter from {@creature Aloysia Telfan|CRCotN}. If Aloysia died earlier in the adventure, the letter is sent by another Consortium agent (modify the following text accordingly):",
 										{
 											"type": "insetReadaloud",
 											"id": "22d",
 											"entries": [
 												"Fellow initiates,",
 												"Master Aradrine has decided to overlook your failure. Your connection to the Apotheon is too strong to allow a single misstep to disqualify you from further service. She requests your presence for a significant assignment\u2014one that will require utmost stealth. Another failure will not be tolerated.",
-												"\u2014Aloysia Telfan"
+												"\u2014{@creature Aloysia Telfan|CRCotN}"
 											]
 										}
 									]
@@ -7989,25 +7989,25 @@
 									"name": "A Deal Goes Down",
 									"id": "256",
 									"entries": [
-										"Kruuk plans to meet one hour after sunset with Ashann, a chaotic neutral, gnome {@creature occult extollant|CRCotN} (see {@adventure appendix A|CRCotN|8}) working for the Consortium of the Vermilion Dream. Ashann carries a pouch containing five peridots (500 gp each).",
+										"Kruuk plans to meet one hour after sunset with {@creature Ashann|CRCotN}, a chaotic neutral, gnome {@creature occult extollant|CRCotN} (see {@adventure appendix A|CRCotN|8}) working for the Consortium of the Vermilion Dream. {@creature Ashann|CRCotN} carries a pouch containing five peridots (500 gp each).",
 										{
 											"type": "image",
 											"href": {
 												"type": "internal",
 												"path": "adventure/CRCotN/060-04-014.ashann.webp"
 											},
-											"title": "Ashann",
+											"title": "{@creature Ashann|CRCotN}",
 											"width": 425,
 											"height": 850
 										},
-										"At the appointed time, Ashann arrives at Kruuk's bakery. If the characters haven't neutralized him, Kruuk leads Ashann to the back room (area Q1e) so she can examine the {@item ruidium shortsword|CRCotN}. If he has more than one potential buyer, Kruuk holds an impromptu auction in the back room and starts the bidding at 1,000 gp. Ashann can't afford to pay more than 2,500 gp for the shortsword, and she attacks anyone who bids over that amount. Ashann surrenders if she is reduced to 10 hit points or fewer.",
-										"If Ashann has been taken out of the equation, a character can convince Kruuk to sell the shortsword for 500 gp by succeeding on a DC 14 Charisma ({@skill Intimidation} or {@skill Persuasion}) check, either by threatening his life or by convincing him that the characters are interested in being repeat customers.",
+										"At the appointed time, {@creature Ashann|CRCotN} arrives at Kruuk's bakery. If the characters haven't neutralized him, Kruuk leads {@creature Ashann|CRCotN} to the back room (area Q1e) so she can examine the {@item ruidium shortsword|CRCotN}. If he has more than one potential buyer, Kruuk holds an impromptu auction in the back room and starts the bidding at 1,000 gp. {@creature Ashann|CRCotN} can't afford to pay more than 2,500 gp for the shortsword, and she attacks anyone who bids over that amount. {@creature Ashann|CRCotN} surrenders if she is reduced to 10 hit points or fewer.",
+										"If {@creature Ashann|CRCotN} has been taken out of the equation, a character can convince Kruuk to sell the shortsword for 500 gp by succeeding on a DC 14 Charisma ({@skill Intimidation} or {@skill Persuasion}) check, either by threatening his life or by convincing him that the characters are interested in being repeat customers.",
 										{
 											"type": "entries",
 											"name": "Urban Chase",
 											"id": "257",
 											"entries": [
-												"The characters can wait to snatch the {@item ruidium shortsword|CRCotN} from Ashann after her deal with Kruuk is done, in which case Ashann tries to flee with the sword rather than fight, resulting in a chase (use the {@book chase rules|DMG|8|Chases} and the {@table Urban Chase Complications} table in the {@book Dungeon Master's Guide|DMG}). If Ashann is caught, she fights to keep the {@item ruidium shortsword|CRCotN} but surrenders it if she is reduced to 10 hit points or fewer."
+												"The characters can wait to snatch the {@item ruidium shortsword|CRCotN} from {@creature Ashann|CRCotN} after her deal with Kruuk is done, in which case {@creature Ashann|CRCotN} tries to flee with the sword rather than fight, resulting in a chase (use the {@book chase rules|DMG|8|Chases} and the {@table Urban Chase Complications} table in the {@book Dungeon Master's Guide|DMG}). If {@creature Ashann|CRCotN} is caught, she fights to keep the {@item ruidium shortsword|CRCotN} but surrenders it if she is reduced to 10 hit points or fewer."
 											]
 										}
 									]
@@ -8018,7 +8018,7 @@
 									"id": "258",
 									"entries": [
 										"Iwo is happy to receive the {@item ruidium shortsword|CRCotN} and hands over the agreed-upon reward in exchange for it. Iwo is careful not to touch the weapon bare-handed. (After examining the sword carefully for a few days, the monks of the Cobalt Soul destroy it to ensure that it doesn't corrupt anyone.) If the characters seem reluctant to part with the sword, Iwo warns them that the weapon might be dangerous to its wielder. If necessary, Iwo increases the reward to 1,000 gp, hoping the extra coin will convince the characters to part with the weapon.",
-										"If the characters have Kruuk, Ashann, or both in their custody, Iwo has the criminals detained until the Hands of Ord can be summoned to take them away."
+										"If the characters have Kruuk, {@creature Ashann|CRCotN}, or both in their custody, Iwo has the criminals detained until the Hands of Ord can be summoned to take them away."
 									]
 								},
 								{
@@ -8045,7 +8045,7 @@
 							"name": "Cobalt Soul Mission 3: Elephant Uproar",
 							"id": "25a",
 							"entries": [
-								"After the Cobalt Soul receives reports of strange happenings in the Suncut Bazaar, High Curator Jamil A'alithiya surmises that the Consortium of the Vermilion Dream must be making progress researching the crimson substance known as ruidium. Concerned about the potentially destructive repercussions if the Consortium learns how to use it, Jamil sends the characters to infiltrate the Consortium's headquarters.",
+								"After the Cobalt Soul receives reports of strange happenings in the Suncut Bazaar, High Curator {@creature Jamil A'alithiya|CRCotN} surmises that the Consortium of the Vermilion Dream must be making progress researching the crimson substance known as ruidium. Concerned about the potentially destructive repercussions if the Consortium learns how to use it, Jamil sends the characters to infiltrate the Consortium's headquarters.",
 								{
 									"type": "entries",
 									"name": "Getting the Mission",
@@ -8057,12 +8057,12 @@
 											"id": "25c",
 											"entries": [
 												"Seated at the wide table is a young man no older than thirty, with brown skin and hazel eyes. His white robes are adorned with blue designs.",
-												"He smiles warmly as you enter. \"Please, shut the door behind you,\" he says, closing the book in front of him. \"I am High Curator Jamil A'alithiya, and I've heard much about you.",
+												"He smiles warmly as you enter. \"Please, shut the door behind you,\" he says, closing the book in front of him. \"I am High Curator {@creature Jamil A'alithiya|CRCotN}, and I've heard much about you.",
 												"\"We know that the Consortium of the Vermilion Dream is experimenting with a red substance its leaders call ruidium. Rumor has it the substance comes from the ruins of Cael Morrow, the underwater city beneath Ank'Harel.",
 												"\"I'm worried that the Consortium is tampering with powers beyond its control. That is why I would like you to infiltrate the Consortium's headquarters\u2014a tavern called First Eclipse\u2014and find out anything you can about its research on ruidium. If you happen to come across any magic items in the Consortium's possession, please confiscate them and bring them to our temple for examination and safekeeping.\""
 											]
 										},
-										"Jamil A'alithiya, a neutral good, human {@creature monastic high curator|CRCotN} (see {@adventure appendix A|CRCotN|8}), offers a reward of 1,000 gp for completing the mission.",
+										"{@creature Jamil A'alithiya|CRCotN}, a neutral good, human {@creature monastic high curator|CRCotN} (see {@adventure appendix A|CRCotN|8}), offers a reward of 1,000 gp for completing the mission.",
 										"Although he suspects that the Consortium of the Vermilion Dream has begun crafting ruidium weapons and armor, Jamil keeps this information to himself for the time being. He is hoping the characters will either confirm or dispel his suspicions."
 									]
 								},
@@ -8132,7 +8132,7 @@
 							"name": "Cobalt Soul Mission 4: Allegiance Alliance",
 							"id": "263",
 							"entries": [
-								"Seven days after they complete the previous mission, the characters are invited to the Temple of the Mentor to meet with High Curator Jamil A'alithiya, who plans to send them on a mission in the Drowned City.",
+								"Seven days after they complete the previous mission, the characters are invited to the Temple of the Mentor to meet with High Curator {@creature Jamil A'alithiya|CRCotN}, who plans to send them on a mission in the Drowned City.",
 								{
 									"type": "entries",
 									"name": "Getting the Mission",
@@ -8736,9 +8736,9 @@
 												"Three individuals wearing Allegiance of Allsight garb and badges\u2014a tiefling, a goliath, and a kenku\u2014bustle about the space, engrossed in their work."
 											]
 										},
-										"The Allegiance's base of operations in the ruins is maintained by an adjunct professor of archaeology named {@skill Insight} Acuere, a lawful good tiefling. Most of her team has been recalled to the Crystal Chateau, but she still has two research technicians helping her: the laconic Scribble, a chaotic neutral kenku, and the rambunctious Xot, a neutral good goliath (see the \"{@area Goliaths of Exandria|1a4|x}\" sidebar in {@adventure chapter 4|CRCotN|4}). See below for their statistics and roleplaying information.",
-										"Nearly inseparable, Scribble and Xot have been working together at the camp for months. They complement each other as friends and scholars. Xot tends to talk ceaselessly about her latest discoveries, and Scribble patiently listens, absorbing many of Xot's excited ramblings into his own speech.",
-										"If {@skill Insight}, Scribble, and Xot become hostile toward intruders, they fight to kill. On the first turn of combat, {@skill Insight} uses a {@item sending stone|AI} to contact Headmaster Cryon in the Crystal Chateau and request aid. Twenty minutes later, ten {@creature Scholarly Agent|CRCotN|scholarly agents} and five {@creature Scholarly Excavator|CRCotN|scholarly excavators} (see {@adventure appendix A|CRCotN|8} for both stat blocks) arrive by way of area M1 to secure the base camp.",
+										"The Allegiance's base of operations in the ruins is maintained by an adjunct professor of archaeology named {@skill Insight} Acuere, a lawful good tiefling. Most of her team has been recalled to the Crystal Chateau, but she still has two research technicians helping her: the laconic {@creature Scribble|CRCotN}, a chaotic neutral kenku, and the rambunctious {@creature Xot|CRCotN}, a neutral good goliath (see the \"{@area Goliaths of Exandria|1a4|x}\" sidebar in {@adventure chapter 4|CRCotN|4}). See below for their statistics and roleplaying information.",
+										"Nearly inseparable, {@creature Scribble|CRCotN} and {@creature Xot|CRCotN} have been working together at the camp for months. They complement each other as friends and scholars. {@creature Xot|CRCotN} tends to talk ceaselessly about her latest discoveries, and {@creature Scribble|CRCotN} patiently listens, absorbing many of {@creature Xot|CRCotN}'s excited ramblings into his own speech.",
+										"If {@skill Insight}, {@creature Scribble|CRCotN}, and {@creature Xot|CRCotN} become hostile toward intruders, they fight to kill. On the first turn of combat, {@skill Insight} uses a {@item sending stone|AI} to contact Headmaster Cryon in the Crystal Chateau and request aid. Twenty minutes later, ten {@creature Scholarly Agent|CRCotN|scholarly agents} and five {@creature Scholarly Excavator|CRCotN|scholarly excavators} (see {@adventure appendix A|CRCotN|8} for both stat blocks) arrive by way of area M1 to secure the base camp.",
 										{
 											"type": "image",
 											"href": {
@@ -8779,14 +8779,14 @@
 											"name": "Scribble",
 											"id": "28e",
 											"entries": [
-												"Scribble uses the {@creature scholarly agent|CRCotN} stat block (see {@adventure appendix A|CRCotN|8}), with this change:",
+												"{@creature Scribble|CRCotN} uses the {@creature scholarly agent|CRCotN} stat block (see {@adventure appendix A|CRCotN|8}), with this change:",
 												{
 													"type": "list",
 													"items": [
-														"Scribble understands Auran and Common but speaks only through mimicry. He can imitate any sounds he has heard, including voices."
+														"{@creature Scribble|CRCotN} understands Auran and Common but speaks only through mimicry. He can imitate any sounds he has heard, including voices."
 													]
 												},
-												"Scribble seems pleasant enough, but a character who spends more than 10 minutes with him can tell that the kenku is haunted. While scouring Cael Morrow for relics, he received telepathic threats from the Alyxian Aboleth but lacks the vocabulary to convey the horror of that experience; however, he can repeat any of the phrases listed on the Poisoned Emotions table."
+												"{@creature Scribble|CRCotN} seems pleasant enough, but a character who spends more than 10 minutes with him can tell that the kenku is haunted. While scouring Cael Morrow for relics, he received telepathic threats from the Alyxian Aboleth but lacks the vocabulary to convey the horror of that experience; however, he can repeat any of the phrases listed on the Poisoned Emotions table."
 											]
 										},
 										{
@@ -8798,12 +8798,12 @@
 												{
 													"type": "list",
 													"items": [
-														"Xot speaks Common and Giant.",
+														"{@creature Xot|CRCotN} speaks Common and Giant.",
 														"She has resistance to cold damage and counts as one size larger when determining her carrying capacity and the weight she can push, drag, or lift."
 													]
 												},
-												"If the characters are members of the Allegiance of Allsight or if they succeed on a DC 14 Charisma ({@skill Deception} or {@skill Persuasion}) check, Xot shows them the items she and Scribble have stored on the second floor of the building. She explains that these objects were deemed too damaged or insignificant to warrant their transport topside, but she found them too charming to discard entirely.",
-												"Xot's collection consists of ancient baubles, rusted spear heads, and worthless bits of jewelry\u2014but a character who makes a successful DC 12 Intelligence ({@skill Investigation}) check finds a {@item ring of the ram} and a sludgy but still potent {@item Potion of Superior Healing||potion of healing (superior)}. Xot can be convinced to give up these two items from her collection by a character who makes a successful DC 18 Charisma ({@skill Persuasion}) check."
+												"If the characters are members of the Allegiance of Allsight or if they succeed on a DC 14 Charisma ({@skill Deception} or {@skill Persuasion}) check, {@creature Xot|CRCotN} shows them the items she and {@creature Scribble|CRCotN} have stored on the second floor of the building. She explains that these objects were deemed too damaged or insignificant to warrant their transport topside, but she found them too charming to discard entirely.",
+												"{@creature Xot|CRCotN}'s collection consists of ancient baubles, rusted spear heads, and worthless bits of jewelry\u2014but a character who makes a successful DC 12 Intelligence ({@skill Investigation}) check finds a {@item ring of the ram} and a sludgy but still potent {@item Potion of Superior Healing||potion of healing (superior)}. {@creature Xot|CRCotN} can be convinced to give up these two items from her collection by a character who makes a successful DC 18 Charisma ({@skill Persuasion}) check."
 											]
 										},
 										{
@@ -8811,7 +8811,7 @@
 											"name": "Double Agent",
 											"id": "290",
 											"entries": [
-												"Characters who are following the {@area Allegiance Story Track|1cc|x} might come to Cael Morrow hoping to expose a double agent in the expedition. A character who speaks with {@skill Insight} Acuere, Scribble, or Xot can make a DC 15 Wisdom ({@skill Insight}) check to get a sense of that person's loyalty. On a successful check, it's apparent to the character that the individual is fully dedicated to the expedition and doesn't have any intention of betraying their faction."
+												"Characters who are following the {@area Allegiance Story Track|1cc|x} might come to Cael Morrow hoping to expose a double agent in the expedition. A character who speaks with {@skill Insight} Acuere, {@creature Scribble|CRCotN}, or {@creature Xot|CRCotN} can make a DC 15 Wisdom ({@skill Insight}) check to get a sense of that person's loyalty. On a successful check, it's apparent to the character that the individual is fully dedicated to the expedition and doesn't have any intention of betraying their faction."
 											]
 										},
 										{
@@ -8827,7 +8827,7 @@
 														{
 															"type": "item",
 															"name": "First and Second Floors.",
-															"entry": "These floors have shelves holding organic and mineral specimens taken from Cael Morrow. Characters interested in Exandrian history might find several clay tablets, sound-storing magic crystals, and water-damaged vellum manuscripts containing accounts and images of daily life in the city before the events of the Calamity that brought it to ruin. Tucked among the specimens is a selection of baubles that Xot has hoarded."
+															"entry": "These floors have shelves holding organic and mineral specimens taken from Cael Morrow. Characters interested in Exandrian history might find several clay tablets, sound-storing magic crystals, and water-damaged vellum manuscripts containing accounts and images of daily life in the city before the events of the Calamity that brought it to ruin. Tucked among the specimens is a selection of baubles that {@creature Xot|CRCotN} has hoarded."
 														},
 														{
 															"type": "item",
@@ -8843,7 +8843,7 @@
 											"name": "Keystone",
 											"id": "292",
 											"entries": [
-												"The keystone that keeps the water out of this building and the L-shaped corridor linking it to area M4 (see \"{@area Features of Cael Morrow|27b|x}\" earlier in the chapter) is hidden in a wall on the building's third floor behind a loose stone. {@skill Insight}, Scribble, and Xot know where the keystone is, but they won't divulge its location to others if doing so might endanger them or any other Allegiance members.",
+												"The keystone that keeps the water out of this building and the L-shaped corridor linking it to area M4 (see \"{@area Features of Cael Morrow|27b|x}\" earlier in the chapter) is hidden in a wall on the building's third floor behind a loose stone. {@skill Insight}, {@creature Scribble|CRCotN}, and {@creature Xot|CRCotN} know where the keystone is, but they won't divulge its location to others if doing so might endanger them or any other Allegiance members.",
 												"It takes 10 minutes for a character to thoroughly search the third floor. At the end of that time, the character can make a DC 15 Wisdom ({@skill Perception}) check, finding the keystone on a successful check. If the keystone is destroyed or removed from this area, water comes gushing in through the rooftop. In addition, the barriers that form the corridor to M4 disappear, engulfing the corridor's occupants in water."
 											]
 										}
@@ -9344,7 +9344,7 @@
 												"A crumbling staircase follows the inside wall as it climbs to a fifteen-foot-high balcony. The stairs continue upward until they disappear a few feet short of the open top of the tower. Armed, wraith-like forms move about inside the tower, like a battle-ready garrison that doesn't know the war is long over. Floating a few feet above the balcony is a pale, spectral orc."
 											]
 										},
-										"The tower is haunted by eight {@creature Sword Wraith Warrior (Variant)|CRCotN|sword wraith warriors} under the command of Beltreath, a lawful neutral {@creature Sword Wraith Commander (Variant)|CRCotN|sword wraith commander}. See {@adventure appendix A|CRCotN|8} for these creatures' stat blocks.",
+										"The tower is haunted by eight {@creature Sword Wraith Warrior|MPMM|sword wraith warriors} under the command of Beltreath, a lawful neutral {@creature Sword Wraith Commander|MPMM|sword wraith commander}. See {@adventure appendix A|CRCotN|8} for these creatures' stat blocks.",
 										"The sword wraiths are former defenders of Cael Morrow who fell during the battle against Gruumsh. They are protecting the {@creature ghost} of Hadarai, a neutral good, orc priest of Corellon. Hadarai is soft-spoken and kindhearted. He swore a vow of pacifism centuries ago that he has never broken; even after being stripped of his mortal form, he won't fight or use Possession.",
 										{
 											"type": "entries",
@@ -10184,9 +10184,9 @@
 											"name": "Raiders",
 											"id": "302",
 											"entries": [
-												"A group of soldiers\u2014allies of Alyxian in the battle against Torog\u2014have decided that since they saved this village, it is theirs to pillage. Four {@creature Sword Wraith Warrior (Variant)|CRCotN|sword wraith warriors} led by a {@creature Sword Wraith Commander (Variant)|CRCotN|sword wraith commander} (see {@adventure appendix A|CRCotN|8} for their stat blocks) take the shadowy shape of Alyxian's crass allies. They are bullying a group of ten {@creature Commoner||commoners} in the middle of the village. As the characters approach, the commander, a neutral evil human in his mid-twenties named Kalagothe, looks to them as if they were Alyxian and roars, \"Commander Alyxian, these people refuse to pay us tribute!\"",
+												"A group of soldiers\u2014allies of Alyxian in the battle against Torog\u2014have decided that since they saved this village, it is theirs to pillage. Four {@creature Sword Wraith Warrior|MPMM|sword wraith warriors} led by a {@creature Sword Wraith Commander|MPMM|sword wraith commander} (see {@adventure appendix A|CRCotN|8} for their stat blocks) take the shadowy shape of Alyxian's crass allies. They are bullying a group of ten {@creature Commoner||commoners} in the middle of the village. As the characters approach, the commander, a neutral evil human in his mid-twenties named Kalagothe, looks to them as if they were Alyxian and roars, \"Commander Alyxian, these people refuse to pay us tribute!\"",
 												"Have the players roll initiative for their characters, then make one initiative roll for Kalagothe; the remaining sword wraiths act immediately after him in the initiative order. Roll initiative once for all the commoners, but don't waste time devising tactics for them; they cower or retreat from the soldiers on their turn.",
-												"A character can use an action to try to convince the soldiers to stand down, doing so with a successful DC 27 Charisma ({@skill Intimidation} or {@skill Persuasion}) check. The DC drops to 17 if Kalagothe is dead and only the {@creature Sword Wraith Warrior (Variant)|CRCotN|sword wraith warriors} need to be dealt with. Only three such attempts can be made, after which the sword wraiths are immune to such coercion.",
+												"A character can use an action to try to convince the soldiers to stand down, doing so with a successful DC 27 Charisma ({@skill Intimidation} or {@skill Persuasion}) check. The DC drops to 17 if Kalagothe is dead and only the {@creature Sword Wraith Warrior|MPMM|sword wraith warriors} need to be dealt with. Only three such attempts can be made, after which the sword wraiths are immune to such coercion.",
 												"Unless the soldiers are slain or forced to stand down, they capture and murder the commoners."
 											]
 										},
@@ -10331,7 +10331,7 @@
 											"name": "Forgotten Names",
 											"id": "312",
 											"entries": [
-												"To satisfy Alyxian, the characters must learn the names of the three women: Marisa, Celeste, and Meri. Marisa was the eldest, Celeste was her wife, and Meri was their teenage daughter. Their family name is Zenthas. Marisa's name can be discovered in the kitchen, Celeste's in the living room, and Mari's in the bedroom, as described below:",
+												"To satisfy Alyxian, the characters must learn the names of the three women: {@creature Marisa|CRCotN}, {@creature Celeste|CRCotN}, and {@creature Meri|CRCotN}. {@creature Marisa|CRCotN} was the eldest, {@creature Celeste|CRCotN} was her wife, and {@creature Meri|CRCotN} was their teenage daughter. Their family name is Zenthas. {@creature Marisa|CRCotN}'s name can be discovered in the kitchen, {@creature Celeste|CRCotN}'s in the living room, and Mari's in the bedroom, as described below:",
 												{
 													"type": "list",
 													"style": "list-hang-notitle",
@@ -10339,7 +10339,7 @@
 														{
 															"type": "item",
 															"name": "Kitchen.",
-															"entry": "Marisa was making a {@item loaf of bread|PHB} when the attack came. A character who spends at least 1 minute searching the kitchen can make a DC 12 Intelligence ({@skill Investigation}) check. On a successful check, the character finds a folded note next to a torn bag of cinnamon spattered with blood and tied shut with a green ribbon. The note reads: \"Marisa\u2014for that little cake you like so much.\""
+															"entry": "{@creature Marisa|CRCotN} was making a {@item loaf of bread|PHB} when the attack came. A character who spends at least 1 minute searching the kitchen can make a DC 12 Intelligence ({@skill Investigation}) check. On a successful check, the character finds a folded note next to a torn bag of cinnamon spattered with blood and tied shut with a green ribbon. The note reads: \"{@creature Marisa|CRCotN}\u2014for that little cake you like so much.\""
 														}
 													]
 												}
@@ -10350,7 +10350,7 @@
 											"name": "Living Room",
 											"id": "313",
 											"entries": [
-												"Celeste used the living room as a space to indulge her hobby: incense-making. Herbs, bottles, and incense sticks lie scattered across a worktable and on the floor in one corner of the room. Any character who spends at least 1 minute searching the living room can make a DC 12 Intelligence ({@skill Investigation}) check. On a successful check, the character finds a book titled Scents for the Seasons lying under a chair. Written on the book's inside cover is the name \"Celeste Zenthas.\"",
+												"{@creature Celeste|CRCotN} used the living room as a space to indulge her hobby: incense-making. Herbs, bottles, and incense sticks lie scattered across a worktable and on the floor in one corner of the room. Any character who spends at least 1 minute searching the living room can make a DC 12 Intelligence ({@skill Investigation}) check. On a successful check, the character finds a book titled Scents for the Seasons lying under a chair. Written on the book's inside cover is the name \"{@creature Celeste|CRCotN} Zenthas.\"",
 												{
 													"type": "list",
 													"style": "list-hang-notitle",
@@ -10358,7 +10358,7 @@
 														{
 															"type": "item",
 															"name": "Bedroom.",
-															"entry": "Meri, on the cusp of adulthood, was training to be a soldier. Any character who spends at least 1 minute searching the bedroom can make a DC 12 Intelligence ({@skill Investigation}) check. On a successful check, the character finds the name \"Meri\" carved into the empty sheath of a shortsword."
+															"entry": "{@creature Meri|CRCotN}, on the cusp of adulthood, was training to be a soldier. Any character who spends at least 1 minute searching the bedroom can make a DC 12 Intelligence ({@skill Investigation}) check. On a successful check, the character finds the name \"{@creature Meri|CRCotN}\" carved into the empty sheath of a shortsword."
 														}
 													]
 												}
@@ -10379,7 +10379,7 @@
 														{
 															"type": "item",
 															"name": "Marisa.",
-															"entry": "Marisa's ghost smells faintly of sugar and cinnamon. On her first turn in combat, she wails, \"Our home, defiled!\" If a character addresses Marisa's ghost by name and apologizes to her on Alyxian's behalf, the ghost says, \"Alyxian! When they came for us, I feared they would kill you, too. It is good to hear your voice. Be well, and do not mourn. No one can harm us anymore.\" After speaking these words, the ghost fades away."
+															"entry": "{@creature Marisa|CRCotN}'s ghost smells faintly of sugar and cinnamon. On her first turn in combat, she wails, \"Our home, defiled!\" If a character addresses {@creature Marisa|CRCotN}'s ghost by name and apologizes to her on Alyxian's behalf, the ghost says, \"Alyxian! When they came for us, I feared they would kill you, too. It is good to hear your voice. Be well, and do not mourn. No one can harm us anymore.\" After speaking these words, the ghost fades away."
 														}
 													]
 												}
@@ -10390,7 +10390,7 @@
 											"name": "Celeste",
 											"id": "315",
 											"entries": [
-												"Celeste's ghost smells faintly of incense. On her first turn in combat, she snarls, \"We sheltered him! We died for him!\" If a character addresses Celeste's ghost by name and apologizes to her on Alyxian's behalf, the ghost's visage softens, and she says, \"I would die for you, moon-cursed and moon-blessed. A thousand times, if need be.\" After speaking these words, the ghost fades away.",
+												"{@creature Celeste|CRCotN}'s ghost smells faintly of incense. On her first turn in combat, she snarls, \"We sheltered him! We died for him!\" If a character addresses {@creature Celeste|CRCotN}'s ghost by name and apologizes to her on Alyxian's behalf, the ghost's visage softens, and she says, \"I would die for you, moon-cursed and moon-blessed. A thousand times, if need be.\" After speaking these words, the ghost fades away.",
 												{
 													"type": "list",
 													"style": "list-hang-notitle",
@@ -10398,7 +10398,7 @@
 														{
 															"type": "item",
 															"name": "Meri.",
-															"entry": "Meri has wavy, shoulder-length hair, strong arms, and sharp eyes. The resemblance to Marisa is unmistakable. She doesn't speak unless she is addressed by name. If a character does so and then apologizes to Meri on behalf of Alyxian, she says, \"I died a soldier, like my mother. What happened was neither our fault nor yours. Be well, Alyxian.\" After speaking these words, the ghost fades away."
+															"entry": "{@creature Meri|CRCotN} has wavy, shoulder-length hair, strong arms, and sharp eyes. The resemblance to {@creature Marisa|CRCotN} is unmistakable. She doesn't speak unless she is addressed by name. If a character does so and then apologizes to {@creature Meri|CRCotN} on behalf of Alyxian, she says, \"I died a soldier, like my mother. What happened was neither our fault nor yours. Be well, Alyxian.\" After speaking these words, the ghost fades away."
 														}
 													]
 												},
@@ -10586,7 +10586,7 @@
 											"name": "First Wave",
 											"id": "327",
 											"entries": [
-												"This wave consists of one {@creature Sword Wraith Warrior (Variant)|CRCotN| sword wraith warrior} (see {@adventure appendix A|CRCotN|8}) per character, up to a maximum of five. These grim knights represent the evil soldiers of the Crawling King. As the battle is joined, Alyxian chimes in:",
+												"This wave consists of one {@creature Sword Wraith Warrior|MPMM|sword wraith warrior} (see {@adventure appendix A|CRCotN|8}) per character, up to a maximum of five. These grim knights represent the evil soldiers of the Crawling King. As the battle is joined, Alyxian chimes in:",
 												{
 													"type": "insetReadaloud",
 													"id": "328",
@@ -10602,7 +10602,7 @@
 											"name": "Second Wave",
 											"id": "329",
 											"entries": [
-												"After the first wave is defeated, the characters have 2 rounds to heal and prepare for the second wave: two {@creature Moorbounder|EGW|moorbounders} (see {@adventure appendix A|CRCotN|8}) accompanied by five {@creature Sword Wraith Warrior (Variant)|CRCotN|sword wraith warriors}. Before the characters can do anything to prevent it, the sword wraiths merge into one creature\u2014a {@creature slithering bloodfin|CRCotN} (see {@adventure appendix A|CRCotN|8}) that swims through the air as easily as it normally swims through water. The howling faces of the warriors are visible on the bloodfin's flesh. The bloodfin is not what the Apotheon sought to conjure in this moment; rather, it represents Alyxian's inability to keep the Netherdeep from intruding upon his memories.",
+												"After the first wave is defeated, the characters have 2 rounds to heal and prepare for the second wave: two {@creature Moorbounder|EGW|moorbounders} (see {@adventure appendix A|CRCotN|8}) accompanied by five {@creature Sword Wraith Warrior|MPMM|sword wraith warriors}. Before the characters can do anything to prevent it, the sword wraiths merge into one creature\u2014a {@creature slithering bloodfin|CRCotN} (see {@adventure appendix A|CRCotN|8}) that swims through the air as easily as it normally swims through water. The howling faces of the warriors are visible on the bloodfin's flesh. The bloodfin is not what the Apotheon sought to conjure in this moment; rather, it represents Alyxian's inability to keep the Netherdeep from intruding upon his memories.",
 												"When the second wave is defeated, Alyxian's allies roar in unison, and Alyxian chimes in:",
 												{
 													"type": "insetReadaloud",
@@ -10618,7 +10618,7 @@
 											"name": "Third Wave",
 											"id": "32b",
 											"entries": [
-												"After the second wave is defeated, the characters have 1 round to heal and prepare for the final wave: a {@creature Sword Wraith Commander (Variant)|CRCotN|sword wraith commander} and four {@creature Sword Wraith Warrior (Variant)|CRCotN|sword wraith warriors} on the back of a {@creature horizonback tortoise|EGW} (see {@adventure appendix A|CRCotN|8} for these creatures' stat blocks). Alyxian shares his thoughts as the tortoise lumbers toward the party:",
+												"After the second wave is defeated, the characters have 1 round to heal and prepare for the final wave: a {@creature Sword Wraith Commander|MPMM|sword wraith commander} and four {@creature Sword Wraith Warrior|MPMM|sword wraith warriors} on the back of a {@creature horizonback tortoise|EGW} (see {@adventure appendix A|CRCotN|8} for these creatures' stat blocks). Alyxian shares his thoughts as the tortoise lumbers toward the party:",
 												{
 													"type": "insetReadaloud",
 													"id": "32c",
@@ -11052,7 +11052,7 @@
 												"The ruidium growing on the walls seems to have engulfed dozens of people, trapping them in red crystal sarcophagi as if they were bugs in amber. Every figure bears an expression of anguish."
 											]
 										},
-										"The figures attached to the walls and entombed in ruidium sarcophagi are illusions. Most of them are images of unfamiliar people from Alyxian's past, but characters who examine the figures closely can see individuals they met while exploring the Grottoes of Regret, such as Alyxian's parents ({@area area N2|2ec|x}), Saqiri the drow hunter ({@area area N3|2f7|x}), the soldiers Kalagothe ({@area area N4|2ff|x}) and Talmyth ({@area area N9|33a|x}), and young Meri ({@area area N5|30d|x}). Any character who tries to chip away at the ruidium sarcophagus to free an illusory figure must succeed on a DC 15 Charisma saving throw or take 11 ({@dice 2d10}) psychic damage. As the attempt is made, the illusory figure trapped inside pleads for release, although its voice is indistinct through its coating of ruidium.",
+										"The figures attached to the walls and entombed in ruidium sarcophagi are illusions. Most of them are images of unfamiliar people from Alyxian's past, but characters who examine the figures closely can see individuals they met while exploring the Grottoes of Regret, such as Alyxian's parents ({@area area N2|2ec|x}), Saqiri the drow hunter ({@area area N3|2f7|x}), the soldiers Kalagothe ({@area area N4|2ff|x}) and Talmyth ({@area area N9|33a|x}), and young {@creature Meri|CRCotN} ({@area area N5|30d|x}). Any character who tries to chip away at the ruidium sarcophagus to free an illusory figure must succeed on a DC 15 Charisma saving throw or take 11 ({@dice 2d10}) psychic damage. As the attempt is made, the illusory figure trapped inside pleads for release, although its voice is indistinct through its coating of ruidium.",
 										"Each ruidium sarcophagus is a Large object that has AC 13, 27 hit points, and immunity to poison and psychic damage. Reducing a sarcophagus to 0 hit points destroys it and causes the illusory figure inside the sarcophagus to vanish.",
 										"One of the sarcophagi is empty\u2014a hint that it is actually a secret door (see \"Secret Door\" below).",
 										{
@@ -11826,24 +11826,24 @@
 												"At the east end of the cavern, opposite you, is a floor-to-ceiling opening with a waterfall pouring down in front of it. Standing in front of this waterfall is a blue-skinned figure with glowing red eyes and veins of ruidium on her face and arms. Folded behind her back is a pair of feathery white wings."
 											]
 										},
-										"The blue-skinned angel is a {@creature deva} named Perigee. She is a servant of the Moon Weaver who fought with Alyxian in his final battle. Perigee was destroyed but later re-formed at the Moon Weaver's side. For centuries thereafter, she searched for Alyxian and eventually found her way to the Netherdeep, where she became mired in despair and corrupted by ruidium. In the Celestial tongue, she accuses the characters of disturbing the Apotheon's dreams and attacks them.",
+										"The blue-skinned angel is a {@creature deva} named {@creature Perigee|CRCotN}. She is a servant of the Moon Weaver who fought with Alyxian in his final battle. {@creature Perigee|CRCotN} was destroyed but later re-formed at the Moon Weaver's side. For centuries thereafter, she searched for Alyxian and eventually found her way to the Netherdeep, where she became mired in despair and corrupted by ruidium. In the Celestial tongue, she accuses the characters of disturbing the Apotheon's dreams and attacks them.",
 										{
 											"type": "image",
 											"href": {
 												"type": "internal",
 												"path": "adventure/CRCotN/083-06-012.perigree-the-deva.webp"
 											},
-											"title": "Perigee the Deva",
+											"title": "{@creature Perigee|CRCotN} the Deva",
 											"width": 1700,
 											"height": 1206
 										},
-										"A character can use an action to try to convince Perigee that the party wants to save Alyxian. Allow the player to roleplay this interaction, then have the character make a DC 16 Charisma ({@skill Persuasion}) check, with advantage if you think the player roleplayed the interaction well. On a failed check, Perigee isn't swayed. On a successful check, Perigee does nothing on her next turn as she considers the character's words (as long as she's not attacked or threatened in the meantime). At the end of that turn, she coolly remarks that anyone who can't defeat her has little hope of besting Alyxian in the Heart of Despair. On her next turn, she resumes her attack. Each character can attempt the check only once.",
+										"A character can use an action to try to convince {@creature Perigee|CRCotN} that the party wants to save Alyxian. Allow the player to roleplay this interaction, then have the character make a DC 16 Charisma ({@skill Persuasion}) check, with advantage if you think the player roleplayed the interaction well. On a failed check, {@creature Perigee|CRCotN} isn't swayed. On a successful check, {@creature Perigee|CRCotN} does nothing on her next turn as she considers the character's words (as long as she's not attacked or threatened in the meantime). At the end of that turn, she coolly remarks that anyone who can't defeat her has little hope of besting Alyxian in the Heart of Despair. On her next turn, she resumes her attack. Each character can attempt the check only once.",
 										{
 											"type": "entries",
 											"name": "Perigee's Defeat",
 											"id": "397",
 											"entries": [
-												"If Perigee is defeated, she disappears with a sigh. No longer bound to the Netherdeep, the deva returns to the Moon Weaver's side with all traces of ruidium gone. When Perigee disappears, a secret door in the north wall swings open (see \"Secret Door\" below)."
+												"If {@creature Perigee|CRCotN} is defeated, she disappears with a sigh. No longer bound to the Netherdeep, the deva returns to the Moon Weaver's side with all traces of ruidium gone. When {@creature Perigee|CRCotN} disappears, a secret door in the north wall swings open (see \"Secret Door\" below)."
 											]
 										},
 										{
@@ -11851,7 +11851,7 @@
 											"name": "Placating the Apotheon",
 											"id": "398",
 											"entries": [
-												"If one or more characters tried to convince Perigee of the party's good intentions, their attempt to sway Perigee has a positive effect on the final battle against Alyxian (see \"{@area Emotional Healing|3be|x}\" in {@adventure chapter 7|CRCotN|7}), regardless of the success of the attempt."
+												"If one or more characters tried to convince {@creature Perigee|CRCotN} of the party's good intentions, their attempt to sway {@creature Perigee|CRCotN} has a positive effect on the final battle against Alyxian (see \"{@area Emotional Healing|3be|x}\" in {@adventure chapter 7|CRCotN|7}), regardless of the success of the attempt."
 											]
 										},
 										{
@@ -12954,7 +12954,7 @@
 										{
 											"type": "item",
 											"name": "Sehanine the Moon Weaver.",
-											"entry": "Sehanine might reach out to bards, rogues, druids, clerics, and the mischievous. Her childlike form appears to such individuals in dreams. If the characters need her aid, she might send the {@creature deva} Perigee to offer them support or a place of refuge."
+											"entry": "Sehanine might reach out to bards, rogues, druids, clerics, and the mischievous. Her childlike form appears to such individuals in dreams. If the characters need her aid, she might send the {@creature deva} {@creature Perigee|CRCotN} to offer them support or a place of refuge."
 										}
 									]
 								},
@@ -13244,9 +13244,7 @@
 								"{@creature Scuttling Serpentmaw|CRCotN}",
 								"{@creature Slithering Bloodfin|CRCotN}",
 								"{@creature Sorrowfish|CRCotN}",
-								"{@creature Swarm of Sorrowfish|CRCotN}",
-								"{@creature Sword Wraith Commander (Variant)|CRCotN}",
-								"{@creature Sword Wraith Warrior (Variant)|CRCotN}"
+								"{@creature Swarm of Sorrowfish|CRCotN}"
 							]
 						}
 					]

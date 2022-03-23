@@ -2460,6 +2460,7 @@
 				"name": "Hide Armor"
 			},
 			"inherits": {
+				"namePrefix": "Ruidium ",
 				"source": "CRCotN",
 				"page": 215,
 				"resist": [
@@ -2494,7 +2495,7 @@
 						"type": "entries",
 						"name": "If Ruidium Is Destroyed",
 						"entries": [
-							"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and ruidium armor becomes +1 armor."
+							"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and ruidium armor becomes {@item +1 armor}."
 						]
 					}
 				]
@@ -2547,7 +2548,7 @@
 						"type": "entries",
 						"name": "If Ruidium Is Destroyed",
 						"entries": [
-							"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium weapon becomes a {=bonusWeapon} weapon."
+							"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium weapon becomes a {@item +2 weapon}."
 						]
 					}
 				]

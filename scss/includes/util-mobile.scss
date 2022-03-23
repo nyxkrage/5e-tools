@@ -40,6 +40,12 @@
 			text-align: center !important;
 		}
 
+		&text-clip-ellipsis {
+			white-space: nowrap !important;
+			text-overflow: ellipsis !important;
+			overflow: hidden !important;
+		}
+
 		&ve-flex-col {
 			display: flex !important;
 			flex-direction: column !important;

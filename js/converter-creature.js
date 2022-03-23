@@ -319,6 +319,21 @@ class CreatureParser extends BaseParser {
 			let isMythicActions = false;
 			let isMythicDescription = false;
 
+			// Join together lines which are probably split over multiple lines of text
+			for (let j = i; j < toConvert.length; ++j) {
+				let line = toConvert[j];
+				let lineNxt = toConvert[j + 1];
+
+				if (!lineNxt) continue;
+				if (startNextPhase(line) || startNextPhase(lineNxt)) continue;
+				if (/[.?!]$/.test(line.trim()) || !/^[A-Z]/.test(lineNxt.trim())) continue;
+				if (ConvertUtil.isNameLine(lineNxt, {exceptions: new Set(["cantrips"]), splitterPunc: /(\.)/g})) continue;
+
+				toConvert[j] = `${line.trim()} ${lineNxt.trim()}`;
+				toConvert.splice(j + 1, 1);
+				--j;
+			}
+
 			// keep going through traits til we hit actions
 			while (i < toConvert.length) {
 				if (startNextPhase(curLine)) {
@@ -1196,11 +1211,23 @@ class CreatureParser extends BaseParser {
 			stats.type = mSidekick[2].split(" ").splice(1).join(" ");
 		} else {
 			// regular creatures
-			stats.size = line[0].toUpperCase();
+			stats.size = [line[0].toUpperCase()];
 
 			const spl = line.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX);
 
-			stats.type = spl[0].split(" ").splice(1).join(" ");
+			const ptsOtherSizeOrType = spl[0].split(" ").map(it => it.trim()).filter(Boolean).splice(1); // Remove the initial "size" token
+
+			// region Add more sizes, if they exist
+			if (
+				/^or$/i.test(ptsOtherSizeOrType[0] || "")
+				&& Object.values(Parser.SIZE_ABV_TO_FULL).some(it => it.toLowerCase() === (ptsOtherSizeOrType[1] || "").toLowerCase())) {
+				const [, szAlt] = ptsOtherSizeOrType.splice(0, 2);
+				stats.size.push(szAlt[0].toUpperCase());
+			}
+			stats.size.sort(SortUtil.ascSortSize);
+			// endregion
+
+			stats.type = ptsOtherSizeOrType.join(" ");
 
 			stats.alignment = (spl[1] || "").toLowerCase();
 			AlignmentConvert.tryConvertAlignment(stats, (ali) => options.cbWarning(`Alignment "${ali}" requires manual conversion`));

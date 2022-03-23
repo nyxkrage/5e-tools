@@ -1223,6 +1223,15 @@
 					]
 				]
 			}
+		},
+		{
+			"name": "Wither and Bloom",
+			"source": "SCC",
+			"data": {
+				"target.value": 10,
+				"target.units": "ft",
+				"target.type": "radius"
+			}
 		}
 	]
 }

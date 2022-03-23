@@ -3073,6 +3073,19 @@
 			]
 		},
 		{
+			"name": "Potion of Water Breathing",
+			"source": "DMG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/DMG/Potion of Water Breathing.webp"
+					}
+				}
+			]
+		},
+		{
 			"name": "Prosthetic Limb",
 			"source": "TCE",
 			"images": [

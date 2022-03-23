@@ -77,6 +77,14 @@ class PageFilter {
 			},
 		});
 	}
+
+	static _isReprinted ({reprintedAs, tag, page, prop}) {
+		return reprintedAs?.length && reprintedAs.some(it => {
+			const {name, source} = DataUtil.generic.unpackUid(it, tag);
+			const hash = UrlUtil.URL_TO_HASH_BUILDER[page]({name, source});
+			return !ExcludeUtil.isExcluded(hash, prop, source, {isNoCount: true});
+		});
+	}
 	// endregion
 }
 

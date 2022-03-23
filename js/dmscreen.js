@@ -931,7 +931,7 @@ class Panel {
 					handleTabRenamed(p);
 					return p;
 				case PANEL_TYP_ADVENTURE_DYNAMIC_MAP:
-					p.doPopulate_AdventureDynamicMap(saved.s, saved.r);
+					p.doPopulate_AdventureBookDynamicMap(saved.s, saved.r);
 					handleTabRenamed(p);
 					return p;
 				case PANEL_TYP_BLANK:
@@ -1340,7 +1340,7 @@ class Panel {
 				PANEL_TYP_ADVENTURES,
 				meta,
 				$(`<div class="panel-content-wrapper-inner"></div>`).append(view.$getEle()),
-				title || data.name || "",
+				title || data?.chapter?.name || "",
 				true,
 				!!title,
 			);
@@ -1361,7 +1361,7 @@ class Panel {
 				PANEL_TYP_BOOKS,
 				meta,
 				$(`<div class="panel-content-wrapper-inner"></div>`).append(view.$getEle()),
-				title || data.name || "",
+				title || data?.chapter?.name || "",
 				true,
 				!!title,
 			);
@@ -1522,12 +1522,12 @@ class Panel {
 		});
 	}
 
-	doPopulate_AdventureDynamicMap (state, title = "Map Viewer") {
+	doPopulate_AdventureBookDynamicMap (state, title = "Map Viewer") {
 		this.set$ContentTab(
 			PANEL_TYP_ADVENTURE_DYNAMIC_MAP,
 			state,
 			$(`<div class="panel-content-wrapper-inner"/>`).append(DmMapper.$getMapper(this.board, state)),
-			title || "Time Tracker",
+			title || "Map Viewer",
 			true,
 		);
 	}
@@ -2922,7 +2922,7 @@ class AddMenuImageTab extends AddMenuTab {
 				.click(() => DmMapper.pHandleMenuButtonClick(this.menu));
 
 			$$`<div class="ui-modal__row">
-				<div>Adventure Map Dynamic Viewer</div>
+				<div>Adventure/Book Map Dynamic Viewer</div>
 				${$btnSelectAdventure}
 			</div>`.appendTo($tab);
 			// endregion
@@ -3287,12 +3287,14 @@ class AdventureOrBookLoader {
 		this._cache = {};
 		this._pLoadings = {};
 		this._availableOfficial = new Set();
+
+		this._indexOfficial = null;
 	}
 
 	async pInit () {
 		const indexPath = this._getIndexPath();
-		const indexJson = await DataUtil.loadJSON(indexPath);
-		indexJson[this._type].forEach(meta => this._availableOfficial.add(meta.id.toLowerCase()));
+		this._indexOfficial = await DataUtil.loadJSON(indexPath);
+		this._indexOfficial[this._type].forEach(meta => this._availableOfficial.add(meta.id.toLowerCase()));
 	}
 
 	_getIndexPath () {
@@ -3311,40 +3313,45 @@ class AdventureOrBookLoader {
 		}
 	}
 
-	_getBrewData (bookOrAdventure) {
-		const searchFor = bookOrAdventure.toLowerCase();
+	_getBrew ({advBookId, prop}) {
+		const searchFor = advBookId.toLowerCase();
 		switch (this._type) {
-			case "adventure": {
-				return (BrewUtil.homebrew.adventureData || []).find(it => it.id.toLowerCase() === searchFor);
-			}
+			case "adventure":
 			case "book": {
-				return (BrewUtil.homebrew.bookData || []).find(it => it.id.toLowerCase() === searchFor);
+				return (BrewUtil.homebrew[prop] || []).find(it => it.id.toLowerCase() === searchFor);
 			}
 			default: throw new Error(`Unknown loader type "${this._type}"`);
 		}
 	}
 
-	async pFill (bookOrAdventure) {
-		if (!this._pLoadings[bookOrAdventure]) {
-			this._pLoadings[bookOrAdventure] = (async () => {
-				this._cache[bookOrAdventure] = {};
-				let data;
-				if (this._availableOfficial.has(bookOrAdventure.toLowerCase())) {
-					data = await DataUtil.loadJSON(this._getJsonPath(bookOrAdventure));
+	async pFill (advBookId) {
+		if (!this._pLoadings[advBookId]) {
+			this._pLoadings[advBookId] = (async () => {
+				this._cache[advBookId] = {};
+
+				let head, body;
+				if (this._availableOfficial.has(advBookId.toLowerCase())) {
+					head = this._indexOfficial[this._type].find(it => it.id.toLowerCase() === advBookId.toLowerCase());
+					body = await DataUtil.loadJSON(this._getJsonPath(advBookId));
 				} else {
-					data = this._getBrewData(bookOrAdventure);
+					head = this._getBrew({advBookId, prop: this._type});
+					body = this._getBrew({advBookId, prop: `${this._type}Data`});
 				}
-				if (data) data.data.forEach((chap, i) => this._cache[bookOrAdventure][i] = chap);
+				if (!head || !body) return;
+
+				this._cache[advBookId] = {head, chapters: {}};
+				body.data.forEach((chap, i) => this._cache[advBookId].chapters[i] = chap);
 			})();
 		}
-		await this._pLoadings[bookOrAdventure];
+		await this._pLoadings[advBookId];
 	}
 
 	getFromCache (adventure, chapter, {isAllowMissing = false} = {}) {
-		const out = this._cache?.[adventure]?.[chapter];
-		if (out) return out;
+		const outHead = this._cache?.[adventure]?.head;
+		const outBody = this._cache?.[adventure]?.chapters?.[chapter];
+		if (outHead && outBody) return {chapter: outBody, head: outHead};
 		if (isAllowMissing) return null;
-		return MiscUtil.copy(AdventureOrBookLoader._NOT_FOUND);
+		return {chapter: MiscUtil.copy(AdventureOrBookLoader._NOT_FOUND), head: {source: VeCt.STR_GENERIC, id: VeCt.STR_GENERIC}};
 	}
 }
 AdventureOrBookLoader._NOT_FOUND = {
@@ -3619,14 +3626,33 @@ class AdventureOrBookView {
 		return this._loader.getFromCache(this._contentMeta[this._prop], chapter, {isAllowMissing});
 	}
 
+	static _PROP_TO_URL = {
+		"a": UrlUtil.PG_ADVENTURE,
+		"b": UrlUtil.PG_BOOK,
+	};
+
 	_render ({isSkipMissingData = false} = {}) {
 		const hasData = !!this._getData(this._contentMeta.c, {isAllowMissing: true});
 		if (!hasData && isSkipMissingData) return false;
 
-		const data = this._getData(this._contentMeta.c);
+		const {head, chapter} = this._getData(this._contentMeta.c);
 
-		this._panel.setTabTitle(this._tabIx, data.name);
-		this._$wrpContent.empty().append(Renderer.get().setFirstSection(true).render(data));
+		this._panel.setTabTitle(this._tabIx, chapter.name);
+		const stack = [];
+		const page = this.constructor._PROP_TO_URL[this._prop];
+		Renderer
+			.get()
+			.setFirstSection(true)
+			.recursiveRender(
+				chapter,
+				stack,
+				{
+					adventureBookPage: page,
+					adventureBookSource: head.source,
+					adventureBookHash: UrlUtil.URL_TO_HASH_BUILDER[page]({id: this._contentMeta[this._prop]}),
+				},
+			);
+		this._$wrpContent.empty().fastSetHtml(stack[0]);
 
 		const dataPrev = this._getData(this._contentMeta.c - 1, {isAllowMissing: true});
 		const dataNext = this._getData(this._contentMeta.c + 1, {isAllowMissing: true});

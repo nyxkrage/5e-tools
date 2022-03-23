@@ -1966,5 +1966,10 @@
 		"date": "2022-03-16",
 		"title": "Unfortunate Son",
 		"txt": "- Added Critical Role: Call of the Netherdeep content\n- Added page numbers to all remaining page-number-less adventures/books\n- Added sortable \"Type\" columns to Adventures/Books pages (thanks @ benru)\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.152.1",
+		"date": "2022-03-23",
+		"txt": "- Improved interaction between Blacklist and \"Reprinted\" filters; entities should no longer be marked as \"Reprinted\" if their reprint has been blacklisted\n- Added SHIFT-click to Dynamic Map Viewer buttons to popout to new window\n- Added CRCotN creature tokens\n- Fixed stacking of content in multiple popout windows with the same name; the most recent popout now takes precedence and fills the window with its content\n- Fixed dynamic maps opened from DM Screen failing to open a region when clicked\n- (Brew) Added support for book maps to DM Screen Map Dynamic Viewer\n- (Brew) Improved Creature Text Converter detection of split lines inside traits/actions/etc.\n- (Brew) Converted `monster[].size` to an array\n- (Brew) Fixed `@loader` tags crashing when run on various non-brew-ready pages\n- (Fixed typos/added tags)"
 	}
 ]

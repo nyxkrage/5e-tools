@@ -20,11 +20,11 @@ class AdventuresList extends AdventuresBooksList {
 			rootPage: "adventure.html",
 			rowBuilderFn: (adv) => {
 				return `
-					<span class="col-1-3 text-center">${AdventuresBooksList._getGroupStr(adv)}</span>
-					<span class="col-5-5 bold">${adv.name}</span>
-					<span class="col-2-5">${adv.storyline || "\u2014"}</span>
-					<span class="col-1 text-center">${AdventuresList._getLevelsStr(adv)}</span>
-					<span class="col-1-7 text-center">${AdventuresBooksList._getDateStr(adv)}</span>
+					<span class="col-1-3 text-center mobile__text-clip-ellipsis">${AdventuresBooksList._getGroupStr(adv)}</span>
+					<span class="col-5-5 bold mobile__text-clip-ellipsis">${adv.name}</span>
+					<span class="col-2-5 mobile__text-clip-ellipsis">${adv.storyline || "\u2014"}</span>
+					<span class="col-1 text-center mobile__text-clip-ellipsis">${AdventuresList._getLevelsStr(adv)}</span>
+					<span class="col-1-7 text-center mobile__text-clip-ellipsis">${AdventuresBooksList._getDateStr(adv)}</span>
 				`;
 			},
 		});

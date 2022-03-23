@@ -11,7 +11,9 @@
 			"name": "Bodytaker Plant",
 			"source": "VRGR",
 			"page": 226,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "plant",
 			"ac": [
 				{
@@ -129,7 +131,9 @@
 			"name": "Boneless",
 			"source": "VRGR",
 			"page": 228,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				12
@@ -235,7 +239,9 @@
 					"page": 278
 				}
 			],
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "undead",
 			"alignment": [
 				"A"
@@ -386,7 +392,9 @@
 			"name": "Carrion Stalker",
 			"source": "VRGR",
 			"page": 230,
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": "monstrosity",
 			"ac": [
 				{
@@ -469,7 +477,9 @@
 			"name": "Carrionette",
 			"source": "VRGR",
 			"page": 231,
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "construct",
 			"ac": [
 				{
@@ -553,7 +563,9 @@
 			"name": "Death's Head",
 			"source": "VRGR",
 			"page": 232,
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": "undead",
 			"ac": [
 				{
@@ -639,7 +651,9 @@
 			"name": "Dullahan",
 			"source": "VRGR",
 			"page": 233,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				{
@@ -800,7 +814,9 @@
 			"isNamedCreature": true,
 			"source": "VRGR",
 			"page": 143,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "construct",
 			"alignment": [
 				"N"
@@ -920,7 +936,9 @@
 			"name": "Gallows Speaker",
 			"source": "VRGR",
 			"page": 234,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				12
@@ -1038,7 +1056,9 @@
 			"name": "Greater Star Spawn Emissary",
 			"source": "VRGR",
 			"page": 245,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "aberration",
 			"ac": [
 				{
@@ -1186,7 +1206,9 @@
 			"name": "Gremishka",
 			"source": "VRGR",
 			"page": 235,
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": "monstrosity",
 			"ac": [
 				12
@@ -1266,7 +1288,9 @@
 			"name": "Inquisitor of the Mind Fire",
 			"source": "VRGR",
 			"page": 248,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -1400,7 +1424,9 @@
 			"name": "Inquisitor of the Sword",
 			"source": "VRGR",
 			"page": 249,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -1532,7 +1558,9 @@
 			"name": "Inquisitor of the Tome",
 			"source": "VRGR",
 			"page": 249,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				11
@@ -1669,7 +1697,9 @@
 			"isNamedCreature": true,
 			"source": "VRGR",
 			"page": 86,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "fey",
 				"tags": [
@@ -1837,7 +1867,9 @@
 			"name": "Jiangshi",
 			"source": "VRGR",
 			"page": 236,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				{
@@ -1949,7 +1981,9 @@
 			"name": "Lesser Star Spawn Emissary",
 			"source": "VRGR",
 			"page": 245,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "aberration",
 			"ac": [
 				{
@@ -2108,7 +2142,9 @@
 			],
 			"source": "VRGR",
 			"page": 237,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "monstrosity",
 				"tags": [
@@ -2267,7 +2303,9 @@
 			"name": "Necrichor",
 			"source": "VRGR",
 			"page": 238,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				12
@@ -2405,7 +2443,9 @@
 			"name": "Nosferatu",
 			"source": "VRGR",
 			"page": 239,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				{
@@ -2537,7 +2577,9 @@
 			"name": "Podling",
 			"source": "VRGR",
 			"page": 227,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "plant",
 			"ac": [
 				10
@@ -2610,7 +2652,9 @@
 			"name": "Priest of Osybus",
 			"source": "VRGR",
 			"page": 241,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -2932,7 +2976,9 @@
 			"name": "Relentless Juggernaut",
 			"source": "VRGR",
 			"page": 243,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "fiend",
 			"ac": [
 				{
@@ -3084,7 +3130,9 @@
 			"name": "Relentless Slasher",
 			"source": "VRGR",
 			"page": 242,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "fiend",
 			"ac": [
 				{
@@ -3200,7 +3248,9 @@
 			"name": "Strigoi",
 			"source": "VRGR",
 			"page": 246,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "monstrosity",
 			"ac": [
 				{
@@ -3308,7 +3358,9 @@
 			"name": "Swarm of Gremishkas",
 			"source": "VRGR",
 			"page": 235,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "monstrosity",
 				"swarmSize": "T"
@@ -3407,7 +3459,9 @@
 			"name": "Swarm of Maggots",
 			"source": "VRGR",
 			"page": 247,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "beast",
 				"swarmSize": "T"
@@ -3514,7 +3568,9 @@
 			"name": "Swarm of Scarabs",
 			"source": "VRGR",
 			"page": 247,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "beast",
 				"swarmSize": "T"
@@ -3609,7 +3665,9 @@
 			"name": "Swarm of Zombie Limbs",
 			"source": "VRGR",
 			"page": 254,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "undead",
 				"swarmSize": "T"
@@ -3763,7 +3821,9 @@
 			"name": "Unspeakable Horror",
 			"source": "VRGR",
 			"page": 250,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "monstrosity",
 			"ac": [
 				{
@@ -4063,7 +4123,9 @@
 			"name": "Vampiric Mind Flayer",
 			"source": "VRGR",
 			"page": 252,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				{
@@ -4217,7 +4279,9 @@
 					"page": 242
 				}
 			],
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4333,7 +4397,9 @@
 			"name": "Zombie Clot",
 			"source": "VRGR",
 			"page": 255,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "undead",
 			"ac": [
 				{
@@ -4452,7 +4518,9 @@
 			"name": "Zombie Plague Spreader",
 			"source": "VRGR",
 			"page": 255,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"ac": [
 				10

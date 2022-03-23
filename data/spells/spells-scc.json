@@ -224,7 +224,8 @@
 				"constitution"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"TP"
 			],
 			"classes": {
 				"fromClassList": [

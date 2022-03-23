@@ -5570,7 +5570,6 @@
 				"M"
 			],
 			"speed": 30,
-
 			"traitTags": [
 				"Powerful Build"
 			],
@@ -11003,7 +11002,7 @@
 			"age": {
 				"max": 750
 			},
-			"darkvision": 120,
+			"darkvision": 60,
 			"traitTags": [
 				"Amphibious"
 			],

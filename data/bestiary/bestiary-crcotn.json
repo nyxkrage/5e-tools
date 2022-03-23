@@ -1,18 +1,28 @@
 {
 	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM"
+			]
+		},
 		"otherSources": {
 			"monster": {
 				"MM": "CRCotN",
 				"EGW": "CRCotN"
 			}
-		}
+		},
+		"internalCopies": [
+			"monster"
+		]
 	},
 	"monster": [
 		{
 			"name": "Aboleth Spawn",
 			"source": "CRCotN",
 			"page": 135,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "aberration",
 			"alignment": [
 				"L",
@@ -136,13 +146,72 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Agathe Silverspoon",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Orc",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the orc",
+						"with": "Agathe",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Aloysia Telfan",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Occult Initiate",
+				"source": "CRCotN",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the initiate",
+						"with": "Aloysia",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"elf",
+					"sorcerer"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Alyxian Aboleth",
 			"source": "CRCotN",
 			"page": 195,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "aberration",
 			"alignment": [
 				"L",
@@ -277,6 +346,7 @@
 				"charmed",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -285,7 +355,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 182,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -453,6 +525,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -461,7 +534,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 179,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "celestial",
 			"alignment": [
 				"L",
@@ -471,7 +546,7 @@
 				{
 					"ac": 17,
 					"from": [
-						"{@item half plate armor|CRCotN|half plate}"
+						"{@item half plate armor|PHB|half plate}"
 					]
 				}
 			],
@@ -622,6 +697,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -630,7 +706,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 180,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -803,6 +881,7 @@
 				"exhaustion",
 				"petrified"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -810,7 +889,9 @@
 			"name": "Alyxian the Hunter",
 			"source": "CRCotN",
 			"page": 160,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "construct",
 			"alignment": [
 				"U"
@@ -936,6 +1017,7 @@
 			"conditionInflict": [
 				"exhaustion"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -944,7 +1026,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 178,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "aberration",
 			"alignment": [
 				"L",
@@ -1089,6 +1173,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1096,7 +1181,9 @@
 			"name": "Animated Glass Statue",
 			"source": "CRCotN",
 			"page": 109,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "construct",
 			"alignment": [
 				"N",
@@ -1192,14 +1279,84 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Aradrine the Owl",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Occult Initiate",
+				"source": "CRCotN",
+				"_trait": {
+					"name": "Goliath",
+					"source": "VGM"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the initiate",
+						"with": "Aradrine",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"goliath",
+					"sorcerer"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Ashann",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Occult Initiate",
+				"source": "CRCotN",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the initiate",
+						"with": "Ashann",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gnome",
+					"sorcerer"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Ayo Jabe (Tier 1)",
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 188,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1318,6 +1475,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1326,7 +1484,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 190,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1454,6 +1614,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1461,7 +1622,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 192,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1604,14 +1767,36 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Celeste",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Ghost",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the ghost",
+						"with": "Celeste",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Corrupted Giant Shark",
 			"source": "CRCotN",
 			"page": 196,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "aberration",
 			"alignment": [
 				"U"
@@ -1691,6 +1876,7 @@
 			"conditionInflict": [
 				"exhaustion"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1698,7 +1884,9 @@
 			"name": "Dancing Flame",
 			"source": "CRCotN",
 			"page": 68,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "fiend",
 			"alignment": [
 				"N",
@@ -1813,13 +2001,16 @@
 			],
 			"conditionInflict": [
 				"charmed"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Death Embrace",
 			"source": "CRCotN",
 			"page": 197,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "aberration",
 			"alignment": [
 				"C",
@@ -1927,6 +2118,7 @@
 				"grappled",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1935,7 +2127,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 188,
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1952,7 +2146,7 @@
 				{
 					"ac": 17,
 					"from": [
-						"{@item breastplate|CRCotN}",
+						"{@item breastplate|PHB}",
 						"{@item shield|PHB}"
 					]
 				}
@@ -2051,6 +2245,7 @@
 			"conditionInflict": [
 				"blinded"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2059,7 +2254,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 191,
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -2178,6 +2375,7 @@
 			"conditionInflict": [
 				"blinded"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2185,7 +2383,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 193,
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -2202,7 +2402,7 @@
 				{
 					"ac": 20,
 					"from": [
-						"{@item plate armor|CRCotN|plate}",
+						"{@item plate armor|PHB|plate}",
 						"{@item shield|PHB}"
 					]
 				}
@@ -2318,6 +2518,7 @@
 				"blinded",
 				"exhaustion"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2325,50 +2526,16 @@
 			"name": "Fiendish Orc",
 			"source": "CRCotN",
 			"page": 71,
-			"size": "M",
+			"_copy": {
+				"name": "Orc",
+				"source": "MM"
+			},
 			"type": {
 				"type": "fiend",
 				"tags": [
 					"orc"
 				]
 			},
-			"alignment": [
-				"C",
-				"E"
-			],
-			"ac": [
-				{
-					"ac": 16,
-					"from": [
-						"{@item chain mail|CRCotN}"
-					]
-				}
-			],
-			"hp": {
-				"average": 93,
-				"formula": "11d8 + 44"
-			},
-			"speed": {
-				"walk": 30
-			},
-			"str": 18,
-			"dex": 12,
-			"con": 18,
-			"int": 11,
-			"wis": 11,
-			"cha": 16,
-			"save": {
-				"str": "+6",
-				"con": "+6",
-				"wis": "+2"
-			},
-			"skill": {
-				"intimidation": "+5"
-			},
-			"senses": [
-				"darkvision 60 ft."
-			],
-			"passive": 10,
 			"immune": [
 				"fire",
 				"poison"
@@ -2377,69 +2544,32 @@
 				"Abyssal",
 				"Common",
 				"Orc"
-			],
-			"cr": "4",
-			"trait": [
-				{
-					"name": "Aggressive",
-					"entries": [
-						"As a bonus action, the orc can move up to its speed toward a hostile creature that it can see."
-					]
+			]
+		},
+		{
+			"name": "Foghomer",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Priest",
+				"source": "MM",
+				"_trait": {
+					"name": "Firbolg",
+					"source": "VGM"
 				},
-				{
-					"name": "Gruumsh's Fury",
-					"entries": [
-						"The orc deals an extra 4 ({@damage 1d8}) damage when it hits with a weapon attack (included in the attacks)."
-					]
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the priest",
+						"with": "Foghomer",
+						"flags": "i"
+					}
 				}
-			],
-			"action": [
-				{
-					"name": "Multiattack",
-					"entries": [
-						"The orc makes two attacks with its greataxe or its spear."
-					]
-				},
-				{
-					"name": "Greataxe",
-					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}15 ({@dice 1d12 + 4} plus {@dice 1d8}) slashing damage."
-					]
-				},
-				{
-					"name": "Spear",
-					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}12 ({@dice 1d6 + 4} plus {@dice 1d8}) piercing damage, or 13 ({@damage 2d8 + 4}) piercing damage if used with two hands to make a melee attack."
-					]
-				},
-				{
-					"name": "Battle Cry (1/Day)",
-					"entries": [
-						"Each creature of the fiendish orc's choice that is within 30 feet of it, can hear it, and not already affected by Battle Cry gain advantage on attack rolls until the start of the fiendish orc's next turn. The fiendish orc can then make one attack as a bonus action."
-					]
-				}
-			],
-			"traitTags": [
-				"Aggressive"
-			],
-			"senseTags": [
-				"D"
-			],
-			"actionTags": [
-				"Multiattack"
-			],
-			"languageTags": [
-				"AB",
-				"C",
-				"O"
-			],
-			"damageTags": [
-				"P"
-			],
-			"miscTags": [
-				"MW",
-				"RW",
-				"THW"
+			},
+			"alignment": [
+				"N",
+				"G"
 			]
 		},
 		{
@@ -2447,8 +2577,10 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 130,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -2567,6 +2699,7 @@
 			"damageTags": [
 				"Y"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2575,7 +2708,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 188,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -2689,6 +2824,7 @@
 			"miscTags": [
 				"AOE"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2697,7 +2833,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 190,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -2821,6 +2959,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2828,7 +2967,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 193,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -2998,15 +3139,52 @@
 			"conditionInflictSpell": [
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Gryz Alakritos",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Scholarly Mastermind",
+				"source": "CRCotN",
+				"_trait": {
+					"name": "Goblin",
+					"source": "DMG"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mastermind",
+						"with": "Gryz",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"goblin",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Insight Acuere",
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 126,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -3124,6 +3302,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3132,7 +3311,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 189,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -3218,6 +3399,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3226,7 +3408,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 191,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -3312,6 +3496,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3319,7 +3504,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 194,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -3428,15 +3615,115 @@
 			"conditionInflict": [
 				"exhaustion"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "James Cryon",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Scholarly Mastermind",
+				"source": "CRCotN",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mastermind",
+						"with": "James",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"elf",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Jamil A'alithiya",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Monastic High Curator",
+				"source": "CRCotN",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the high curator",
+						"with": "Jamil",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human",
+					"monk",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Koris",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_trait": {
+					"name": "Tiefling",
+					"source": "PHB"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the assassin",
+						"with": "Koris",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Laurin Ophidas",
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 112,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -3566,13 +3853,16 @@
 				"paralyzed",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Light Devourer",
 			"source": "CRCotN",
 			"page": 200,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "aberration",
 			"alignment": [
 				"U"
@@ -3660,6 +3950,7 @@
 				"AOE",
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3668,7 +3959,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 189,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": {
 				"type": "giant",
 				"tags": [
@@ -3759,6 +4052,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3767,7 +4061,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 191,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": {
 				"type": "giant",
 				"tags": [
@@ -3885,6 +4181,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3892,7 +4189,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 194,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": {
 				"type": "giant",
 				"tags": [
@@ -3907,7 +4206,7 @@
 				{
 					"ac": 18,
 					"from": [
-						"{@item plate armor|CRCotN|plate}"
+						"{@item plate armor|PHB|plate}"
 					]
 				}
 			],
@@ -4030,15 +4329,56 @@
 				"exhaustion",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Marisa",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Ghost",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the ghost",
+						"with": "Marisa",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Meri",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Ghost",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the ghost",
+						"with": "Meri",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Monastic High Curator",
 			"source": "CRCotN",
 			"page": 201,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4155,6 +4495,7 @@
 				"O",
 				"Y"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4162,8 +4503,10 @@
 			"name": "Monastic Infiltrator",
 			"source": "CRCotN",
 			"page": 202,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4297,14 +4640,17 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Monastic Operative",
 			"source": "CRCotN",
 			"page": 202,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4403,6 +4749,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4410,61 +4757,21 @@
 			"name": "Moonshark",
 			"source": "CRCotN",
 			"page": 33,
-			"size": "H",
-			"type": "beast",
-			"alignment": [
-				"U"
-			],
-			"ac": [
-				{
-					"ac": 13,
-					"from": [
-						"natural armor"
-					]
+			"_copy": {
+				"name": "Giant Shark",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Silver Spear",
+							"entries": [
+								"A character within 5 feet of the shark can use an action to try to dislodge the spear, doing so with a successful {@dc 13} Strength (Athletics) check. While the spear is lodged in the shark, the shark glows with silvery illumination, shedding bright light in a 10-foot radius and dim light for an additional 10 feet."
+							]
+						}
+					}
 				}
-			],
-			"hp": {
-				"average": 126,
-				"formula": "11d12 + 55"
 			},
-			"speed": {
-				"walk": 0,
-				"swim": 50
-			},
-			"str": 23,
-			"dex": 11,
-			"con": 21,
-			"int": 1,
-			"wis": 10,
-			"cha": 5,
-			"skill": {
-				"perception": "+3"
-			},
-			"senses": [
-				"blindsight 60 ft."
-			],
-			"passive": 13,
-			"cr": "5",
-			"trait": [
-				{
-					"name": "Blood Frenzy",
-					"entries": [
-						"The shark has advantage on melee attack rolls against any creature that doesn't have all its hit points."
-					]
-				},
-				{
-					"name": "Water Breathing",
-					"entries": [
-						"The shark can breathe only underwater."
-					]
-				},
-				{
-					"name": "Silver Spear",
-					"entries": [
-						"A character within 5 feet of the shark can use an action to try to dislodge the spear, doing so with a successful {@dc 13} Strength (Athletics) check. While the spear is lodged in the shark, the shark glows with silvery illumination, shedding bright light in a 10-foot radius and dim light for an additional 10 feet."
-					]
-				}
-			],
 			"action": [
 				{
 					"name": "Bite",
@@ -4473,27 +4780,16 @@
 					]
 				}
 			],
-			"traitTags": [
-				"Water Breathing"
-			],
-			"senseTags": [
-				"B"
-			],
-			"damageTags": [
-				"P"
-			],
-			"miscTags": [
-				"AOE",
-				"MW"
-			],
 			"hasFluff": true
 		},
 		{
 			"name": "Occult Extollant",
 			"source": "CRCotN",
 			"page": 204,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4596,6 +4892,7 @@
 			"damageTags": [
 				"Y"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4603,8 +4900,10 @@
 			"name": "Occult Initiate",
 			"source": "CRCotN",
 			"page": 205,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4688,6 +4987,7 @@
 				"AOE",
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4695,8 +4995,10 @@
 			"name": "Occult Silvertongue",
 			"source": "CRCotN",
 			"page": 205,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -4815,6 +5117,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4822,7 +5125,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 129,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"alignment": [
 				"N",
@@ -4929,13 +5234,72 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
+		},
+		{
+			"name": "Perigee",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Deva",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the deva",
+						"with": "Perigee",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Prolix Yusaf",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Scholarly Agent",
+				"source": "CRCotN",
+				"_trait": {
+					"name": "Tiefling",
+					"source": "PHB"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the agent",
+						"with": "Prolix",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"tiefling",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Ruidium Elephant",
 			"source": "CRCotN",
 			"page": 95,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "construct",
 			"alignment": [
 				"U"
@@ -5001,6 +5365,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5008,8 +5373,10 @@
 			"name": "Scholarly Agent",
 			"source": "CRCotN",
 			"page": 206,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -5092,6 +5459,7 @@
 			"damageTags": [
 				"L"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5099,8 +5467,10 @@
 			"name": "Scholarly Excavator",
 			"source": "CRCotN",
 			"page": 206,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": "humanoid",
 			"alignment": [
 				"A"
@@ -5109,7 +5479,7 @@
 				{
 					"ac": 16,
 					"from": [
-						"{@item breastplate|CRCotN}"
+						"{@item breastplate|PHB}"
 					]
 				}
 			],
@@ -5183,6 +5553,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5190,8 +5561,10 @@
 			"name": "Scholarly Mastermind",
 			"source": "CRCotN",
 			"page": 207,
-			"size": "M",
-			"sizeNote": "or small",
+			"size": [
+				"S",
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -5293,14 +5666,50 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Scribble",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Scholarly Agent",
+				"source": "CRCotN",
+				"_trait": {
+					"name": "Kenku",
+					"source": "VGM"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the agent",
+						"with": "Scribble",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"kenku",
+					"wizard"
+				]
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Scuttling Serpentmaw",
 			"source": "CRCotN",
 			"page": 208,
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "aberration",
 			"alignment": [
 				"U"
@@ -5386,6 +5795,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5394,7 +5804,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 105,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -5467,46 +5879,30 @@
 				"deafened",
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Skeletal Bloodfin",
 			"source": "CRCotN",
 			"page": 159,
-			"size": "L",
-			"type": "undead",
-			"alignment": [
-				"U"
-			],
-			"ac": [
-				{
-					"ac": 16,
-					"from": [
-						"natural armor"
-					]
+			"_copy": {
+				"name": "Slithering Bloodfin",
+				"source": "CRCotN",
+				"_mod": {
+					"trait": {
+						"mode": "replaceArr",
+						"replace": "Water Breathing",
+						"items": {
+							"name": "Unusual Nature",
+							"entries": [
+								"The skeletal bloodfin requires no food, drink, air, or sleep."
+							]
+						}
+					}
 				}
-			],
-			"hp": {
-				"average": 93,
-				"formula": "11d10 + 33"
 			},
-			"speed": {
-				"walk": 5,
-				"swim": 50
-			},
-			"str": 20,
-			"dex": 14,
-			"con": 16,
-			"int": 2,
-			"wis": 10,
-			"cha": 3,
-			"skill": {
-				"perception": "+4"
-			},
-			"senses": [
-				"blindsight 100 ft. (blind beyond this radius)"
-			],
-			"passive": 14,
+			"type": "undead",
 			"resist": [
 				"piercing",
 				"slashing"
@@ -5521,88 +5917,15 @@
 				"paralyzed",
 				"poisoned"
 			],
-			"cr": "9",
-			"trait": [
-				{
-					"name": "Death Burst",
-					"entries": [
-						"When the bloodfin dies, it explodes in a cloud of toxic blood. Each creature in a 10-foot-radius sphere centered on the exploding bloodfin, including any creature swallowed by the bloodfin, must succeed on a {@dc 15} Constitution saving throw or take 10 ({@damage 3d6}) poison damage. A creature inside the bloodfin when it explodes falls {@condition prone} in the space formerly occupied by the bloodfin and is no longer {@condition blinded} or {@condition restrained} by it."
-					]
-				},
-				{
-					"name": "Unusual Nature",
-					"entries": [
-						"The skeletal bloodfin requires no food, drink, air, or sleep."
-					]
-				},
-				{
-					"name": "Water Breathing",
-					"entries": [
-						"The bloodfin can breathe only underwater."
-					]
-				}
-			],
-			"action": [
-				{
-					"name": "Multiattack",
-					"entries": [
-						"The bloodfin makes one Bite attack and one Tail attack."
-					]
-				},
-				{
-					"name": "Bite",
-					"entries": [
-						"{@atk mw} {@hit 9} to hit (with advantage if the target is a creature missing any hit points), reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage, and if the target is a creature, it is {@condition grappled} (escape {@dc 15}). Until this grapple ends, the target is {@condition restrained}, and the bloodfin can't bite another target."
-					]
-				},
-				{
-					"name": "Tail",
-					"entries": [
-						"{@atk mw} {@hit 9} to hit (with advantage if the target is a creature missing any hit points), reach 10 ft., one target. {@h}19 ({@damage 4d6 + 5}) bludgeoning damage."
-					]
-				}
-			],
-			"bonus": [
-				{
-					"name": "Swallow",
-					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one Medium or smaller creature the bloodfin is grappling. {@h}The bloodfin swallows the target. The swallowed creature is no longer {@condition grappled} but is {@condition blinded} and {@condition restrained}. It has total cover against attacks and other effects outside the bloodfin, it takes 14 ({@damage 4d6}) necrotic damage at the start of each of its turns, and the bloodfin regains hit points equal to the necrotic damage dealt. A bloodfin can have only one creature swallowed at a time.",
-						"If the bloodfin takes 30 damage or more on a single turn from the swallowed creature, the bloodfin must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate the creature, which falls {@condition prone} in a space within 5 feet of the bloodfin and is no longer {@condition blinded} or {@condition restrained} by it."
-					]
-				}
-			],
-			"traitTags": [
-				"Death Burst",
-				"Water Breathing"
-			],
-			"senseTags": [
-				"B"
-			],
-			"actionTags": [
-				"Multiattack"
-			],
-			"damageTags": [
-				"B",
-				"I",
-				"N",
-				"P"
-			],
-			"miscTags": [
-				"AOE",
-				"MW",
-				"RCH"
-			],
-			"conditionInflict": [
-				"grappled",
-				"restrained"
-			],
 			"hasFluff": true
 		},
 		{
 			"name": "Slithering Bloodfin",
 			"source": "CRCotN",
 			"page": 209,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "aberration",
 			"alignment": [
 				"U"
@@ -5711,6 +6034,7 @@
 				"grappled",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5718,7 +6042,9 @@
 			"name": "Sorrowfish",
 			"source": "CRCotN",
 			"page": 210,
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": "aberration",
 			"alignment": [
 				"U"
@@ -5782,13 +6108,16 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Swarm of Sorrowfish",
 			"source": "CRCotN",
 			"page": 210,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "aberration",
 				"swarmSize": "T"
@@ -5886,253 +6215,7 @@
 			"conditionInflict": [
 				"stunned"
 			],
-			"hasFluff": true,
-			"hasFluffImages": true
-		},
-		{
-			"name": "Sword Wraith Commander (Variant)",
-			"source": "CRCotN",
-			"page": 211,
-			"size": "M",
-			"type": "undead",
-			"alignment": [
-				"L",
-				"E"
-			],
-			"alignmentPrefix": "typically ",
-			"ac": [
-				{
-					"ac": 18,
-					"from": [
-						"{@item breastplate|CRCotN}",
-						"{@item shield|PHB}"
-					]
-				}
-			],
-			"hp": {
-				"average": 127,
-				"formula": "15d8 + 60"
-			},
-			"speed": {
-				"walk": 30
-			},
-			"str": 18,
-			"dex": 14,
-			"con": 18,
-			"int": 11,
-			"wis": 12,
-			"cha": 14,
-			"skill": {
-				"perception": "+4"
-			},
-			"senses": [
-				"darkvision 60 ft."
-			],
-			"passive": 14,
-			"resist": [
-				"necrotic",
-				{
-					"resist": [
-						"bludgeoning",
-						"piercing",
-						"slashing"
-					],
-					"note": "from nonmagical attacks",
-					"cond": true
-				}
-			],
-			"immune": [
-				"poison"
-			],
-			"conditionImmune": [
-				"exhaustion",
-				"frightened",
-				"poisoned",
-				"unconscious"
-			],
-			"languages": [
-				"the languages it knew in life"
-			],
-			"cr": "8",
-			"trait": [
-				{
-					"name": "Turning Defiance",
-					"entries": [
-						"The commander and any other sword wraiths within 30 feet of it have advantage on saving throws against effects that turn Undead."
-					]
-				},
-				{
-					"name": "Unusual Nature",
-					"entries": [
-						"The commander doesn't require air, food, drink, or sleep."
-					]
-				}
-			],
-			"action": [
-				{
-					"name": "Multiattack",
-					"entries": [
-						"The commander makes two Longsword or Longbow attacks."
-					]
-				},
-				{
-					"name": "Longsword",
-					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
-					]
-				},
-				{
-					"name": "Longbow",
-					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 150/600 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
-					]
-				},
-				{
-					"name": "Call to Honor (1/Day)",
-					"entries": [
-						"If the commander has taken damage during this combat, it gives itself advantage on attack rolls until the end of its next turn, and {@dice 1d4 + 1} sword wraith warriors appear in unoccupied spaces within 30 feet of it. The warriors last until they drop to 0 hit points, and they take their turns immediately after the commander's turn on the same initiative count."
-					]
-				}
-			],
-			"bonus": [
-				{
-					"name": "Martial Fury",
-					"entries": [
-						"The commander makes one Longsword or Longbow attack, which deals an extra 9 ({@damage 2d8}) necrotic damage on a hit, and attack rolls against it have advantage until the start of its next turn."
-					]
-				}
-			],
-			"traitTags": [
-				"Turn Resistance"
-			],
-			"senseTags": [
-				"D"
-			],
-			"actionTags": [
-				"Multiattack"
-			],
-			"languageTags": [
-				"LF"
-			],
-			"damageTags": [
-				"N",
-				"P",
-				"S"
-			],
-			"miscTags": [
-				"MW",
-				"RNG",
-				"RW"
-			],
-			"hasFluff": true
-		},
-		{
-			"name": "Sword Wraith Warrior (Variant)",
-			"source": "CRCotN",
-			"page": 211,
-			"size": "M",
-			"type": "undead",
-			"alignment": [
-				"L",
-				"E"
-			],
-			"alignmentPrefix": "typically ",
-			"ac": [
-				{
-					"ac": 16,
-					"from": [
-						"{@item chain shirt|phb}",
-						"{@item shield|PHB}"
-					]
-				}
-			],
-			"hp": {
-				"average": 45,
-				"formula": "6d8 + 18"
-			},
-			"speed": {
-				"walk": 30
-			},
-			"str": 18,
-			"dex": 12,
-			"con": 17,
-			"int": 6,
-			"wis": 9,
-			"cha": 10,
-			"senses": [
-				"darkvision 60 ft."
-			],
-			"passive": 9,
-			"resist": [
-				"necrotic",
-				{
-					"resist": [
-						"bludgeoning",
-						"piercing",
-						"slashing"
-					],
-					"note": "from nonmagical attacks",
-					"cond": true
-				}
-			],
-			"immune": [
-				"poison"
-			],
-			"conditionImmune": [
-				"exhaustion",
-				"frightened",
-				"poisoned",
-				"unconscious"
-			],
-			"languages": [
-				"the languages it knew in life"
-			],
-			"cr": "3",
-			"trait": [
-				{
-					"name": "Unusual Nature",
-					"entries": [
-						"The warrior doesn't require air, food, drink, or sleep."
-					]
-				}
-			],
-			"action": [
-				{
-					"name": "Battleaxe",
-					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
-					]
-				},
-				{
-					"name": "Longbow",
-					"entries": [
-						"{@atk rw} {@hit 3} to hit, range 150/600 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
-					]
-				}
-			],
-			"bonus": [
-				{
-					"name": "Martial Fury",
-					"entries": [
-						"The warrior makes one Battleaxe or Longbow attack, and attack rolls against it have advantage until the start of its next turn."
-					]
-				}
-			],
-			"senseTags": [
-				"D"
-			],
-			"languageTags": [
-				"LF"
-			],
-			"damageTags": [
-				"P",
-				"S"
-			],
-			"miscTags": [
-				"MW",
-				"RNG",
-				"RW"
-			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6141,7 +6224,9 @@
 			"isNamedCreature": true,
 			"source": "CRCotN",
 			"page": 51,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -6157,7 +6242,7 @@
 				{
 					"ac": 17,
 					"from": [
-						"{@item half plate armor|CRCotN|half plate}"
+						"{@item half plate armor|PHB|half plate}"
 					]
 				}
 			],
@@ -6297,14 +6382,43 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Xot",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "CRCotN",
+			"_copy": {
+				"name": "Scholarly Excavator",
+				"source": "CRCotN",
+				"_trait": {
+					"name": "Goliath",
+					"source": "VGM"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the excavator",
+						"with": "Scribble",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"M"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Young Horizonback Tortoise",
 			"source": "CRCotN",
 			"page": 26,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "beast",
 			"alignment": [
 				"U"
@@ -6367,7 +6481,8 @@
 			],
 			"conditionInflict": [
 				"prone"
-			]
+			],
+			"hasToken": true
 		}
 	]
 }

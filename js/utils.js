@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.152.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.152.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -3414,10 +3414,17 @@ DataUtil = {
 			}
 
 			function doMod_maxSize (modInfo) {
-				const ixCur = Parser.SIZE_ABVS.indexOf(copyTo.size);
+				const sizes = [...copyTo.size].sort(SortUtil.ascSortSize);
+
+				const ixsCur = sizes.map(it => Parser.SIZE_ABVS.indexOf(it));
 				const ixMax = Parser.SIZE_ABVS.indexOf(modInfo.max);
-				if (ixCur < 0 || ixMax < 0) throw new Error(`${msgPtFailed} Unhandled size!`);
-				copyTo.size = Parser.SIZE_ABVS[Math.min(ixCur, ixMax)];
+
+				if (!~ixMax || ixsCur.some(ix => !~ix)) throw new Error(`${msgPtFailed} Unhandled size!`);
+
+				const ixsNxt = ixsCur.filter(ix => ix <= ixMax);
+				if (!ixsNxt.length) ixsNxt.push(ixMax);
+
+				copyTo.size = ixsNxt.map(ix => Parser.SIZE_ABVS[ix]);
 			}
 
 			function doMod_scalarMultXp (modInfo) {
@@ -4896,6 +4903,15 @@ BrewUtil = {
 		}
 		// endregion
 
+		// region Creature (monster)
+		// 2022-03-22
+		if (homebrew.monster) {
+			homebrew.monster.forEach(mon => {
+				if (typeof mon.size === "string") mon.size = [mon.size];
+			});
+		}
+		// endregion
+
 		return isMigration;
 	},
 
@@ -5828,7 +5844,7 @@ BrewUtil = {
 	},
 
 	_DIRS: ["action", "adventure", "background", "book", "boon", "charoption", "class", "condition", "creature", "cult", "deity", "disease", "feat", "hazard", "item", "language", "magicvariant", "makebrew", "object", "optionalfeature", "psionic", "race", "recipe", "reward", "spell", /* "status", */ "subclass", "subrace", "table", "trap", "variantrule", "vehicle", "classFeature", "subclassFeature"],
-	_STORABLE: ["class", "subclass", "classFeature", "subclassFeature", "spell", "spellFluff", "monster", "legendaryGroup", "monsterFluff", "background", "feat", "optionalfeature", "race", "raceFluff", "subrace", "deity", "item", "baseitem", "variant", "itemProperty", "itemType", "itemFluff", "itemGroup", "itemEntry", "psionic", "reward", "object", "trap", "hazard", "variantrule", "condition", "disease", "status", "adventure", "adventureData", "book", "bookData", "table", "tableGroup", "vehicle", "vehicleUpgrade", "action", "cult", "boon", "language", "languageScript", "makebrewCreatureTrait", "charoption", "charoptionFluff", "recipe"],
+	_STORABLE: ["class", "subclass", "classFeature", "subclassFeature", "spell", "spellFluff", "monster", "legendaryGroup", "monsterFluff", "background", "backgroundFeature", "feat", "optionalfeature", "race", "raceFeature", "raceFluff", "subrace", "deity", "item", "baseitem", "variant", "itemProperty", "itemType", "itemFluff", "itemGroup", "itemEntry", "psionic", "reward", "object", "trap", "hazard", "variantrule", "condition", "disease", "status", "adventure", "adventureData", "book", "bookData", "table", "tableGroup", "vehicle", "vehicleUpgrade", "vehicleWeapon", "action", "cult", "boon", "language", "languageScript", "makebrewCreatureTrait", "charoption", "charoptionFluff", "recipe", "psionicDisciplineFocus", "psionicDisciplineActive"],
 	async pDoHandleBrewJson (json, page, pFuncRefresh) {
 		page = BrewUtil._PAGE || page;
 		await BrewUtil._lockHandleBrewJson.pLock();
@@ -5998,14 +6014,6 @@ BrewUtil = {
 				case UrlUtil.PG_MAKE_BREW:
 					if (BrewUtil._pHandleBrew) await BrewUtil._pHandleBrew(MiscUtil.copy(toAdd));
 					break;
-				case UrlUtil.PG_MANAGE_BREW:
-				case UrlUtil.PG_DEMO_RENDER:
-				case UrlUtil.PG_MAPS:
-				case VeCt.PG_NONE:
-					// No-op
-					break;
-				default:
-					throw new Error(`No homebrew add function defined for category ${page}`);
 			}
 
 			if (pFuncRefresh) await pFuncRefresh();
@@ -7032,8 +7040,8 @@ ExcludeUtil = {
 		if (!source) throw new Error(`Entity had no source!`);
 		opts = opts || {};
 
-		source = source.source || source;
-		const out = !!ExcludeUtil._excludes.find(row => (row.source === "*" || (row.source || "").toLowerCase() === (source || "").toLowerCase()) && (row.category === "*" || row.category === category) && (row.hash === "*" || row.hash === hash));
+		source = (source.source || source || "").toLowerCase();
+		const out = !!ExcludeUtil._excludes.find(row => (row.source === "*" || (row.source || "").toLowerCase() === source) && (row.category === "*" || row.category === category) && (row.hash === "*" || row.hash === hash));
 		if (out && !opts.isNoCount) ++ExcludeUtil._excludeCount;
 		return out;
 	},
