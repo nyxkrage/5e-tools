@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "rewards.json",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"type": "object",
 	"properties": {
 		"reward": {
@@ -16,9 +16,7 @@
 					"source": {
 						"type": "string"
 					},
-					"page": {
-						"type": "integer"
-					},
+					"page": {"$ref": "util.json#/definitions/page"},
 					"type": {
 						"type": "string",
 						"$$ifSiteElse_key": {

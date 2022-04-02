@@ -618,9 +618,7 @@
 					"type": "array",
 					"items": {"$ref": "#/definitions/entryVariantBestiary"}
 				},
-				"page": {
-					"type": "integer"
-				},
+				"page": {"$ref": "../util.json#/definitions/page"},
 				"familiar": {
 					"type": "boolean"
 				},
@@ -646,9 +644,7 @@
 									"source": {
 										"type": "string"
 									},
-									"page": {
-										"type": "integer"
-									}
+									"page": {"$ref": "../util.json#/definitions/page"}
 								},
 								"required": ["name", "source"]
 							},
@@ -1011,7 +1007,7 @@
 					"properties": {
 						"name": {"type": "string"},
 						"source": {"type": "string"},
-						"page": {"type": "integer"}
+						"page": {"$ref": "../util.json#/definitions/page"}
 					},
 					"required": ["name", "source"]
 				}

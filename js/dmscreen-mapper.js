@@ -10,14 +10,35 @@ class DmMapper {
 		return $wrpPanel;
 	}
 
+	static _getProps ({catId}) {
+		const prop = catId === Parser.CAT_ID_ADVENTURE ? "adventure" : "book";
+		return {prop, propData: `${prop}Data`};
+	}
+
 	static async pHandleMenuButtonClick (menu) {
 		const chosenDoc = await SearchWidget.pGetUserAdventureBookSearch({
-			// TODO(5EB-1) expand this filter as more maps are added
-			fnFilterResults: doc => {
-				if (Parser.SOURCE_JSON_TO_FULL[doc.s]) {
-					return doc.s === SRC_WDH || doc.s === SRC_WDMM || doc.s === SRC_CoS || doc.s === SRC_TTP;
-				}
-				return true; // Allow all homebrew through
+			fnFilterResults: doc => doc.hasMaps,
+			contentIndexName: "entity_AdventuresBooks_maps",
+			pFnGetDocExtras: async ({doc}) => {
+				// Load the adventure/book, and scan it for maps
+				const {propData} = this._getProps({catId: doc.c});
+				const {page, source, hash} = SearchWidget.docToPageSourceHash(doc);
+				const adventureBookPack = await Renderer.hover.pCacheAndGet(page, source, hash);
+				let hasMaps = false;
+				const walker = MiscUtil.getWalker({
+					isBreakOnReturn: true,
+					keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST,
+					isNoModification: true,
+				});
+				walker.walk(
+					adventureBookPack[propData],
+					{
+						object: (obj) => {
+							if (obj.type === "image" && obj.mapRegions?.length) return hasMaps = true;
+						},
+					},
+				);
+				return {hasMaps};
 			},
 		});
 
@@ -40,8 +61,7 @@ class DmMapper {
 		const mapDatas = [];
 		const walker = MiscUtil.getWalker();
 
-		const prop = chosenDoc.c === Parser.CAT_ID_ADVENTURE ? "adventure" : "book";
-		const propData = `${prop}Data`;
+		const {prop, propData} = this._getProps({catId: chosenDoc.c});
 
 		adventureBookPack[propData].data.forEach((chap, ixChap) => {
 			let cntChapImages = 0;
@@ -51,9 +71,9 @@ class DmMapper {
 					if (obj.mapRegions) {
 						const out = {
 							...Renderer.get().getMapRegionData(obj),
-							page: chosenDoc.p,
+							page: chosenDoc.q,
 							source: adventureBookPack[prop].source,
-							hash: UrlUtil.URL_TO_HASH_BUILDER[chosenDoc.p](adventureBookPack[prop]),
+							hash: UrlUtil.URL_TO_HASH_BUILDER[chosenDoc.q](adventureBookPack[prop]),
 						};
 						mapDatas.push(out);
 

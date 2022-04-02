@@ -1493,7 +1493,8 @@ function Renderer () {
 
 			// DCs /////////////////////////////////////////////////////////////////////////////////////////////
 			case "@dc": {
-				textStack[0] += `DC <span class="rd__dc">${text}</span>`;
+				const [dcText, displayText] = Renderer.splitTagByPipe(text);
+				textStack[0] += `DC <span class="rd__dc">${displayText || dcText}</span>`;
 				break;
 			}
 
@@ -2421,6 +2422,14 @@ Renderer.getFilterSubhashes = function (filters, namespace = null) {
 					max ? `max=${max}` : "",
 				].filter(Boolean).join(HASH_SUB_LIST_SEP);
 			}
+		} else if (fVals.startsWith("::") && fVals.endsWith("::")) { // options
+			value = fVals.substring(2, fVals.length - 2).split(";")
+				.map(it => it.trim())
+				.map(it => {
+					if (it.startsWith("!")) return `${UrlUtil.encodeForHash(it.slice(1))}=${UrlUtil.mini.compress(false)}`;
+					return `${UrlUtil.encodeForHash(it)}=${UrlUtil.mini.compress(true)}`;
+				})
+				.join(HASH_SUB_LIST_SEP);
 		} else {
 			value = fVals.split(";")
 				.map(s => s.trim())
@@ -9516,9 +9525,7 @@ Renderer.hover = {
 	},
 
 	async _pCacheAndGet_pLoadClasses_addSubclassToIndex (sc, {isRaw = false} = {}) {
-		const clsHash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES]({name: sc.className, source: sc.classSource});
-
-		const scHash = `${clsHash}${HASH_PART_SEP}${UrlUtil.getClassesPageStatePart({subclass: sc})}`;
+		const scHash = UrlUtil.URL_TO_HASH_BUILDER["subclass"](sc);
 
 		if (isRaw) {
 			Renderer.hover._addToCache("raw_subclass", sc.source || SRC_PHB, scHash, sc);
@@ -9987,14 +9994,15 @@ Renderer.hover = {
 	 * @param [opts]
 	 * @param [opts.isBookContent]
 	 * @param [opts.isStatic] If this content is to be "static," i.e. display only, containing minimal interactive UI.
+	 * @param [opts.fnRender]
 	 * @param [renderFnOpts]
 	 */
 	$getHoverContent_stats (page, toRender, opts, renderFnOpts) {
 		opts = opts || {};
 		if (page === UrlUtil.PG_RECIPES) opts = {...MiscUtil.copy(opts), isBookContent: true};
 
-		const renderFn = Renderer.hover.getFnRenderCompact(page, {isStatic: opts.isStatic});
-		return $$`<table class="stats ${opts.isBookContent ? `stats--book` : ""}">${renderFn(toRender, renderFnOpts)}</table>`;
+		const fnRender = opts.fnRender || Renderer.hover.getFnRenderCompact(page, {isStatic: opts.isStatic});
+		return $$`<table class="stats ${opts.isBookContent ? `stats--book` : ""}">${fnRender(toRender, renderFnOpts)}</table>`;
 	},
 
 	/**
@@ -10170,7 +10178,10 @@ Renderer._stripTagLayer = function (str) {
 
 					case "@h": return "Hit: ";
 
-					case "@dc": return `DC ${text}`;
+					case "@dc": {
+						const [dcText, displayText] = Renderer.splitTagByPipe(text);
+						return `DC ${displayText || dcText}`;
+					}
 
 					case "@atk": return Renderer.attackTagToFull(text);
 

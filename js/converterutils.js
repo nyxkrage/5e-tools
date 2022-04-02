@@ -38,7 +38,7 @@ class BaseParser {
 			.replace(/[−–‒]/g, "-") // convert minus signs to hyphens
 		;
 
-		iptClean = CleanUtil.getCleanString(iptClean)
+		iptClean = CleanUtil.getCleanString(iptClean, {isFast: false})
 			// Ensure CR always has a space before the dash
 			.replace(/(Challenge)([-\u2012-\u2014])/, "$1 $2");
 

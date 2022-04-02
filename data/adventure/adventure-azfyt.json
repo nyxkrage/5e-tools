@@ -98,37 +98,31 @@
 										{
 											"type": "item",
 											"name": "Azorius",
-											"page": 3,
 											"entry": "An impeccably dressed male human lawmage."
 										},
 										{
 											"type": "item",
 											"name": "Dimir",
-											"page": 3,
 											"entry": "A humanoid roughly the size of a human, elf, or vedalken."
 										},
 										{
 											"type": "item",
 											"name": "Izzet",
-											"page": 3,
 											"entry": "An eager, excitable female goblin."
 										},
 										{
 											"type": "item",
 											"name": "Orzhov",
-											"page": 3,
 											"entry": "A winged thrull delivered payment and the message from the client."
 										},
 										{
 											"type": "item",
 											"name": "Rakdos",
-											"page": 3,
 											"entry": "A flamboyantly dressed female human blood witch."
 										},
 										{
 											"type": "item",
 											"name": "Simic",
-											"page": 3,
 											"entry": "A Simic hybrid\u2013an elf with greenish-blue scales and nictitating membranes on their eyes."
 										}
 									]
@@ -200,7 +194,6 @@
 										{
 											"type": "item",
 											"name": "Treasure",
-											"page": 4,
 											"entry": "If a character has Vezska as a contact, or if there is a member of the Golgari in the group, Vezska gives that character a rust-covered pendant with the Golgari symbol on it, a {@reward Golgari charm|GGR}. When activated, the charm can cast either {@spell dispel magic}, {@spell false life} (3rd-level version), or {@spell stinking cloud} once before vanishing. More information on guild charms can be found in {@book Guildmaster's Guide to Ravnica|ggr|5|guild charms}. She only has one charm to give and she favors a Golgari member over all others."
 										}
 									]
@@ -241,19 +234,16 @@
 										{
 											"type": "item",
 											"name": "Argona",
-											"page": 5,
 											"entry": "A red-haired, roan, female centaur and horncaller (a type of beastmaster) in the Selesnya Conclave. The characters must learn the name of the gardening book that she recently returned to the Ismeri Library."
 										},
 										{
 											"type": "item",
 											"name": "Delrim Munn",
-											"page": 5,
 											"entry": "A male vedalken student at Prism University. The characters must obtain the location of a secret passage at the Ismeri Library that Delrim accidently discovered."
 										},
 										{
 											"type": "item",
 											"name": "Herringbone",
-											"page": 5,
 											"entry": "A male Silhana (wood elf) fence with a propensity to dress in well-tailored clothes. The characters must learn the location of a Mizzium-augmented scorchbringer (a flamethrower-like device) that's he's seen but hasn't been able to obtain."
 										}
 									]

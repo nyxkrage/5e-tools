@@ -3282,13 +3282,11 @@
 														{
 															"type": "item",
 															"name": "Krr'ook's Plan.",
-															"page": 51,
 															"entry": "A while ago, Krr'ook found a box of {@item Nolzur's marvelous pigments}, which she hid from the king. She plans to paint an image of Nangnang of such quality that Groak will be fooled into thinking it's the real goddess. Krr'ook hopes that one of the adventurers will have the skill to illustrate Nangnang convincingly. She's willing to give the magical pigments as a reward to the adventurers if all goes well. As a further reward, Krr'ook offers a {@item ring of jumping}."
 														},
 														{
 															"type": "item",
 															"name": "Moment of Truth.",
-															"page": 51,
 															"entry": "The ritual happens at night. Fires are lit throughout the village, whereupon scores of common grungs enter the lake and watch the shrine. King Groak dons ceremonial garb made from reeds and wild orchids, and awaits his love on the steps of the shrine, wringing his rubbery hands with anticipation."
 														}
 													]
@@ -3302,7 +3300,6 @@
 														{
 															"type": "item",
 															"name": "Making Nangnang.",
-															"page": 51,
 															"entry": "To fool Groak, the party must succeed at three or more of the following tasks. Have the characters make the requisite ability checks in the following order:"
 														}
 													]
@@ -3323,7 +3320,6 @@
 														{
 															"type": "item",
 															"name": "End Result.",
-															"page": 51,
 															"entry": "If the characters succeed at three or more checks, King Groak is thoroughly duped and very happy for the foreseeable future. Characters who request his help will receive it, no questions asked. If the party's trickery is discovered, King Groak orders his subjects to attack them. The attacking force consists of sixteen grung elite warriors (including Roark) and forty grungs. Groak retreats to his elevated pool in the shrine and makes his final stand there."
 														}
 													]
@@ -3609,19 +3605,16 @@
 														{
 															"type": "item",
 															"name": "Ghoul Hunters.",
-															"page": 56,
 															"entry": "Portyr asks the characters to help rid the jungle of ghouls. If the characters are up to the task, Portyr gives the party a free charter of exploration. For every severed ghoul head the characters bring her, she'll pay them 20 gp. (She has enough money to cover the reward for up to eleven severed ghoul heads.)"
 														},
 														{
 															"type": "item",
 															"name": "Shilku Reconnaissance.",
-															"page": 56,
 															"entry": "Portyr asks the characters to set sail for Shilku Bay, conduct a one-week reconnaissance of the destroyed village of Shilku, and return to Fort Beluarian to report what they've seen. If the characters accept the mission, Portyr pays for their food and passage and gives the party a free charter of exploration. If they complete the mission, the characters are given free meals and guest rooms (see area 10J) whenever they visit Fort Beluarian, and each character receives one potion or scroll chosen from the ones available in the stores (see area 10G)."
 														},
 														{
 															"type": "item",
 															"name": "Strangers in a Strange Land.",
-															"page": 56,
 															"entry": "Flaming Fist scouts have spotted giant footprints south of Fort Beluarian. If the characters find out who or what is making the tracks, and discover where they're coming from and what threat (if any) they pose to Fort Beluarian, Portyr will reward them with five magic arrows (see area 10G). If the characters accept the mission, Portyr gives the party a free charter of exploration. To complete the mission, the characters must locate at least one group of frost giants as well as their longship (see \"{@area Hvalspyd|12b|x}\"). To complicate matters, Portyr doesn't believe any report that claims frost giants have landed in Chult and won't pay up unless the characters back up their claims with compelling evidence (such as a frost giant's severed head or a giant-sized weapon)."
 														}
 													]
@@ -12529,7 +12522,7 @@
 											"type": "insetReadaloud",
 											"id": "418",
 											"entries": [
-												"The vault door grinds upward, revealing a domed, candlelit room fifty feet high. The polished marble floor is so perfectly reflective that it creates the illusion of standing at the entrance to a sphere. Nine alcoves filled with glit tering treasure open up along the walls. In the middle of the chamber, a large spherical object hovers under a black silk drape twenty feet above the floor."
+												"The vault door grinds upward, revealing a domed, candlelit room fifty feet high. The polished marble floor is so perfectly reflective that it creates the illusion of standing at the entrance to a sphere. Nine alcoves filled with glittering treasure open up along the walls. In the middle of the chamber, a large spherical object hovers under a black silk drape twenty feet above the floor."
 											]
 										},
 										"The {@creature beholder}, Belchorzh (pronounced BEL-korj), floats at the top of the room. {@creature Acererak|ToA} cast a {@spell wish} spell to render Belchorzh {@condition invisible}. A successful {@spell dispel magic} (DC 19) cast on the beholder or contact with an {@spell antimagic field} ends its invisibility. Belchorzh reacts to intruders as described in the \"Beholder Tactics\" section below.",

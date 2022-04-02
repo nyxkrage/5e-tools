@@ -14532,7 +14532,8 @@
 						"piercing",
 						"slashing"
 					],
-					"note": "that is nonmagical"
+					"note": "that is nonmagical",
+					"cond": true
 				}
 			],
 			"conditionImmune": [
@@ -23406,7 +23407,7 @@
 								{
 									"name": "3: Psychic Ray",
 									"entries": [
-										"The target must succeed on a {@dc 13} Intelligence saving throw or take T1 ({@damage 6d8}) psychic damage."
+										"The target must succeed on a {@dc 13} Intelligence saving throw or take 27 ({@damage 6d8}) psychic damage."
 									],
 									"type": "item"
 								},

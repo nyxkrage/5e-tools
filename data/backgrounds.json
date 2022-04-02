@@ -22030,6 +22030,34 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Variant Noble (Retainers)",
+			"source": "PHB",
+			"page": 136,
+			"_copy": {
+				"name": "Noble",
+				"source": "PHB",
+				"_mod": {
+					"entries": [
+						{
+							"mode": "replaceArr",
+							"replace": "Feature: Position of Privilege",
+							"items": {
+								"name": "Feature: Retainers",
+								"type": "entries",
+								"entries": [
+									"You have the service of three retainers loyal to your family. These retainers can be attendants or messengers, and one might be a majordomo. Your retainers are commoners who can perform mundane tasks for you, but they do not fight for you, will not follow you into obviously dangerous areas (such as dungeons), and will leave if they are frequently endangered or abused"
+								],
+								"data": {
+									"isFeature": true
+								}
+							}
+						}
+					]
+				}
+			},
+			"hasFluff": true
+		},
+		{
 			"name": "Variant Sailor (Pirate)",
 			"source": "PHB",
 			"page": 139,

@@ -1581,19 +1581,16 @@
 										{
 											"type": "item",
 											"name": "Humanoid",
-											"page": 21,
 											"entry": "Bryn Shander, Easthaven, and Targos hold lotteries the afternoon before the new moon. The unlucky person whose name is drawn is sacrificed at nightfall. The ill-fated soul is stripped bare and either tied to a post or sent into the tundra to die. Accusations of rigged lotteries are common but usually not acted upon."
 										},
 										{
 											"type": "item",
 											"name": "Food",
-											"page": 21,
 											"entry": "Smaller towns that can't afford to give up people give up their food instead. A day's catch of knucklehead trout is strung up on wooden racks a mile outside town, to be claimed by yeti and other creatures that embody Auril's wrath."
 										},
 										{
 											"type": "item",
 											"name": "Warmth",
-											"page": 21,
 											"entry": "Towns that can't bring themselves to give up their people or their food forsake warmth for a night. No fires are lit between dusk and dawn, forcing locals to share body heat for warmth. Anyone who dares to light a fire is savagely beaten."
 										}
 									]
@@ -1652,7 +1649,6 @@
 														{
 															"type": "item",
 															"name": "Reghed Nomads",
-															"page": 22,
 															"entry": "Any characters raised among the Reghed nomads recognize members of their own tribe, as well as the names and reputations of prominent members of other tribes (see appendix C)."
 														}
 													]
@@ -1673,7 +1669,6 @@
 														{
 															"type": "item",
 															"name": "Valley Dwarves",
-															"page": 22,
 															"entry": "Shield dwarves and other characters who hail from the Dwarven Valley at the foot of Kelvin's Cairn would know that this valley contains sprawling iron mines and cave complexes inhabited by shield dwarves of the Battlehammer clan and their allies."
 														}
 													]
@@ -5268,7 +5263,6 @@
 												{
 													"type": "item",
 													"name": "Moaning Wind",
-													"page": 64,
 													"entry": "The howling wind that blows through the caves sounds like a moaning crone, which is bone-chilling enough to deter most would-be explorers. The wind blows out candles and other small flames but is otherwise harmless."
 												}
 											]
@@ -5287,13 +5281,11 @@
 														{
 															"type": "item",
 															"name": "High Ceilings",
-															"page": 64,
 															"entry": "The caves have 50-foot-high ceilings. The tunnels connecting the caves are 30 feet high."
 														},
 														{
 															"type": "item",
 															"name": "Moonlight",
-															"page": 64,
 															"entry": "Infrequent, naturally occurring breaks in the ceiling allow moonlight into the caves, causing areas of the complex to be dimly lit on clear nights."
 														}
 													]
@@ -9846,7 +9838,6 @@
 																{
 																	"type": "item",
 																	"name": "Fending Off Hunters",
-																	"page": 115,
 																	"entry": "If the characters are having trouble finding another way to earn Angajuk's trust, use the \"Whale Hunt\" encounter below. Defending the whale against these hunters earns its trust."
 																}
 															]
@@ -11078,7 +11069,6 @@
 																{
 																	"type": "item",
 																	"name": "First Layer",
-																	"page": 129,
 																	"entry": "Under the first layer of ice are 72 gp, 181 sp, 352 cp, and two pearls (100 gp each)."
 																}
 															]
@@ -12495,7 +12485,6 @@
 												{
 													"type": "item",
 													"name": "Everything Is Upside Down",
-													"page": 146,
 													"entry": "Every traversable location shown on map 2.10 is upside down. To get around, the characters have to walk on ceilings and climb over the tops of doorways. Furnishings that weren't securely bolted to the walls or floor lie in disarray, or in shards, on the ceiling."
 												}
 											]
@@ -12518,13 +12507,11 @@
 																{
 																	"type": "item",
 																	"name": "Room and Door Heights",
-																	"page": 146,
 																	"entry": "All rooms and passageways are 12 feet high, with flat ceilings and floors unless the text says otherwise. All doorways are 8 feet high and arched; being upside down turns them into concave, 4-foot-high barriers that must be surmounted to get from one room to another)."
 																},
 																{
 																	"type": "item",
 																	"name": "Tunnels",
-																	"page": 146,
 																	"entry": "The shield guardian punched holes through the floor and gouged out tunnels in some places during its escape from the spire. Characters can use these openings to move between levels, but they'll need ropes or magic to ascend or descend safely."
 																}
 															]
@@ -13291,7 +13278,6 @@
 																{
 																	"type": "item",
 																	"name": "Heating",
-																	"page": 155,
 																	"entry": "Interior spaces are magically heated. The temperature in these areas is a constant 68 degrees Fahrenheit (20 degrees Celsius)."
 																}
 															]

@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "feats.json",
-	"version": "1.5.1",
+	"version": "1.5.2",
 	"type": "object",
 	"properties": {
 		"feat": {
@@ -22,9 +22,7 @@
 					"additionalSources": {
 						"$ref": "util.json#/definitions/additionalSources"
 					},
-					"page": {
-						"type": "integer"
-					},
+					"page": {"$ref": "util.json#/definitions/page"},
 					"entries": {
 						"type": "array",
 						"items": {

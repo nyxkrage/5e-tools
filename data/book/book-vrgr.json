@@ -4722,7 +4722,7 @@
 									"id": "107",
 									"entries": [
 										"Each domain is its own demiplane, isolated from all other planes including the Material Plane. No spell\u2014not even {@spell wish}\u2014allows escape from the Domains of Dread. Spells such as {@spell astral projection}, {@spell plane shift}, {@spell teleport}, and similar magic cast for the purpose of escaping a domain simply fail, as do effects that banish a creature to another plane. These restrictions apply to all other effects, including magic items and artifacts that transport or banish creatures to other planes. Magic that allows transit to the Border Ethereal, such as the {@spell etherealness} spell and the Etherealness feature of ghosts, is the exception to this rule. A creature that enters the Border Ethereal from a domain is pulled back into the domain it left upon leaving the Ethereal.",
-										"For the purpose of spells whose effects change across or are blocked by planar boundaries (such as {@spell sending}), each domain is considered its own plane. Magic that summons creatures or objects from other planes functions normally, as does magic that involves an extradimensional space. Spells cast within an extradimensional space (such as that created by {@spell Mordenkainen's magnificent mansion} are subject to the same restrictions as magic cast within a domain.",
+										"For the purpose of spells whose effects change across or are blocked by planar boundaries (such as {@spell sending}), each domain is considered its own plane. Magic that summons creatures or objects from other planes functions normally, as does magic that involves an extradimensional space. Spells cast within an extradimensional space (such as that created by {@spell Mordenkainen's magnificent mansion}) are subject to the same restrictions as magic cast within a domain.",
 										"While in the Domains of Dread, characters who receive spells from deities or otherworldly patrons continue to do so. In addition, spells that allow contact with beings from other planes function normally, with one proviso: the domain's Darklord senses when someone in their domain casts such a spell and can choose to make themself the spell's target, so that they become the one who is contacted."
 									]
 								}
@@ -4980,7 +4980,8 @@
 											"imageType": "map",
 											"title": "Map 3.1: barovia",
 											"width": 3000,
-											"height": 1926
+											"height": 1926,
+											"id": "031"
 										},
 										{
 											"type": "image",
@@ -4991,7 +4992,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 1926
+											"height": 1926,
+											"mapParent": {
+												"id": "031"
+											}
 										}
 									]
 								},
@@ -5984,7 +5988,8 @@
 											"imageType": "map",
 											"title": "Map 3.2: borca",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"id": "037"
 										},
 										{
 											"type": "image",
@@ -5995,7 +6000,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"mapParent": {
+												"id": "037"
+											}
 										}
 									]
 								},
@@ -7166,7 +7174,8 @@
 											"imageType": "map",
 											"title": "Map 3.3: darkon",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "038"
 										},
 										{
 											"type": "image",
@@ -7177,7 +7186,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "038"
+											}
 										}
 									]
 								},
@@ -7804,7 +7816,8 @@
 									"imageType": "map",
 									"title": "Map 3.4: dementlieu",
 									"width": 1498,
-									"height": 3000
+									"height": 3000,
+									"id": "039"
 								},
 								{
 									"type": "image",
@@ -7815,7 +7828,10 @@
 									"imageType": "mapPlayer",
 									"title": "Player Version",
 									"width": 1498,
-									"height": 3000
+									"height": 3000,
+									"mapParent": {
+										"id": "039"
+									}
 								}
 							]
 						},
@@ -8357,7 +8373,8 @@
 											"imageType": "map",
 											"title": "Map 3.5: falkovnia",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"id": "03a"
 										},
 										{
 											"type": "image",
@@ -8368,7 +8385,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"mapParent": {
+												"id": "03a"
+											}
 										}
 									]
 								},
@@ -8901,7 +8921,8 @@
 											"imageType": "map",
 											"title": "Map 3.6: har akir",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "03b"
 										},
 										{
 											"type": "image",
@@ -8912,7 +8933,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "03b"
+											}
 										}
 									]
 								},
@@ -9479,7 +9503,8 @@
 											"imageType": "map",
 											"title": "Map 3.7: hazlan",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "03c"
 										},
 										{
 											"type": "image",
@@ -9490,7 +9515,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "03c"
+											}
 										}
 									]
 								},
@@ -10488,7 +10516,8 @@
 											"imageType": "map",
 											"title": "Map 3.8: kalakeri",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "03d"
 										},
 										{
 											"type": "image",
@@ -10499,7 +10528,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "03d"
+											}
 										}
 									]
 								},
@@ -11285,7 +11317,8 @@
 											"imageType": "map",
 											"title": "Map 3.9: kartakass",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "03e"
 										},
 										{
 											"type": "image",
@@ -11296,7 +11329,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "03e"
+											}
 										}
 									]
 								},
@@ -11740,7 +11776,8 @@
 											"imageType": "map",
 											"title": "Map 3.10: lamordia",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"id": "03f"
 										},
 										{
 											"type": "image",
@@ -11751,7 +11788,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"mapParent": {
+												"id": "03f"
+											}
 										}
 									]
 								},
@@ -12248,7 +12288,8 @@
 											"imageType": "map",
 											"title": "Map 3.11: mordent",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "040"
 										},
 										{
 											"type": "image",
@@ -12259,7 +12300,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "040"
+											}
 										}
 									]
 								},
@@ -12773,7 +12817,8 @@
 									"imageType": "map",
 									"title": "Map 3.12: richemulot",
 									"width": 1773,
-									"height": 3600
+									"height": 3600,
+									"id": "042"
 								},
 								{
 									"type": "image",
@@ -12784,7 +12829,10 @@
 									"imageType": "mapPlayer",
 									"title": "Player Version",
 									"width": 1773,
-									"height": 3600
+									"height": 3600,
+									"mapParent": {
+										"id": "042"
+									}
 								}
 							]
 						},
@@ -13442,7 +13490,8 @@
 											"imageType": "map",
 											"title": "Map 3.13: tepest",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"id": "043"
 										},
 										{
 											"type": "image",
@@ -13453,7 +13502,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2073
+											"height": 2073,
+											"mapParent": {
+												"id": "043"
+											}
 										}
 									]
 								},
@@ -14028,7 +14080,8 @@
 											"imageType": "map",
 											"title": "Map 3.14: valachan",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"id": "049"
 										},
 										{
 											"type": "image",
@@ -14039,7 +14092,10 @@
 											"imageType": "mapPlayer",
 											"title": "Player Version",
 											"width": 3000,
-											"height": 2072
+											"height": 2072,
+											"mapParent": {
+												"id": "049"
+											}
 										}
 									]
 								},

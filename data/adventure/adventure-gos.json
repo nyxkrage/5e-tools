@@ -754,7 +754,10 @@
 												"path": "adventure/GoS/002-01-dm.png"
 											},
 											"width": 2550,
-											"height": 3338
+											"height": 3338,
+											"title": "Map 1.1: Village of Saltmarsh",
+											"imageType": "map",
+											"id": "54e"
 										},
 										{
 											"type": "image",
@@ -765,7 +768,10 @@
 											"title": "(Player Version)",
 											"width": 2550,
 											"height": 3338,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "54e"
+											}
 										}
 									]
 								},
@@ -1397,7 +1403,10 @@
 										"path": "adventure/GoS/005-02-dm.png"
 									},
 									"width": 4200,
-									"height": 5700
+									"height": 5700,
+									"title": "Map 1.2: The Saltmarsh Environs",
+									"imageType": "map",
+									"id": "54f"
 								},
 								{
 									"type": "image",
@@ -1408,7 +1417,10 @@
 									"title": "(Player Version)",
 									"width": 4200,
 									"height": 5700,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "54f"
+									}
 								}
 							]
 						},
@@ -3185,7 +3197,10 @@
 												"path": "adventure/GoS/011-06-dm.png"
 											},
 											"width": 4200,
-											"height": 5700
+											"height": 5700,
+											"title": "Map 2.1: Haunted House",
+											"imageType": "map",
+											"id": "550"
 										},
 										{
 											"type": "image",
@@ -3196,7 +3211,10 @@
 											"title": "(Player Version)",
 											"width": 4200,
 											"height": 5700,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "550"
+											}
 										}
 									]
 								},
@@ -3689,7 +3707,10 @@
 												"path": "adventure/GoS/013-04-dm.png"
 											},
 											"width": 4200,
-											"height": 5700
+											"height": 5700,
+											"title": "Map 2.2: Haunted House Cellar and Caverns",
+											"imageType": "map",
+											"id": "551"
 										},
 										{
 											"type": "image",
@@ -3700,7 +3721,10 @@
 											"title": "(Player Version)",
 											"width": 4200,
 											"height": 5700,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "551"
+											}
 										}
 									]
 								},
@@ -4361,7 +4385,10 @@
 												"path": "adventure/GoS/018-03-dm.png"
 											},
 											"width": 4200,
-											"height": 5700
+											"height": 5700,
+											"title": "Map 2.3: Sea Ghost",
+											"imageType": "map",
+											"id": "552"
 										},
 										{
 											"type": "image",
@@ -4372,7 +4399,10 @@
 											"title": "(Player Version)",
 											"width": 4200,
 											"height": 5700,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "552"
+											}
 										}
 									]
 								},
@@ -5806,7 +5836,10 @@
 												"path": "adventure/GoS/023-05-dm.png"
 											},
 											"width": 8192,
-											"height": 5399
+											"height": 5399,
+											"title": "Map 3.1: Lizardfolk Lair",
+											"imageType": "map",
+											"id": "553"
 										},
 										{
 											"type": "image",
@@ -5817,7 +5850,10 @@
 											"title": "(Player Version)",
 											"width": 8192,
 											"height": 5399,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "553"
+											}
 										}
 									]
 								},
@@ -7661,7 +7697,10 @@
 										"path": "adventure/GoS/032-27-dm.png"
 									},
 									"width": 2063,
-									"height": 1425
+									"height": 1425,
+									"title": "Map 4.1: Emperor of the Waves",
+									"imageType": "map",
+									"id": "554"
 								},
 								{
 									"type": "image",
@@ -7672,7 +7711,10 @@
 									"title": "(Player Version)",
 									"width": 2063,
 									"height": 1425,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "554"
+									}
 								}
 							]
 						},
@@ -8473,7 +8515,10 @@
 										"path": "adventure/GoS/038-26-dm.png"
 									},
 									"width": 2100,
-									"height": 2850
+									"height": 2850,
+									"title": "Map 5.1: Abbey Isle",
+									"imageType": "map",
+									"id": "555"
 								},
 								{
 									"type": "image",
@@ -8484,7 +8529,10 @@
 									"title": "(Player Version)",
 									"width": 2100,
 									"height": 2850,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "555"
+									}
 								}
 							]
 						},
@@ -8518,7 +8566,10 @@
 												"path": "adventure/GoS/040-25-dm.png"
 											},
 											"width": 4126,
-											"height": 2850
+											"height": 2850,
+											"title": "Map 5.2: Skull Dunes",
+											"imageType": "map",
+											"id": "556"
 										},
 										{
 											"type": "image",
@@ -8529,7 +8580,10 @@
 											"title": "(Player Version)",
 											"width": 4126,
 											"height": 2850,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "556"
+											}
 										}
 									]
 								},
@@ -8824,6 +8878,7 @@
 									"width": 4200,
 									"height": 5700,
 									"imageType": "map",
+									"title": "Map 5.3: Abbey Ruins",
 									"id": "fff",
 									"mapRegions": [
 										{
@@ -10653,7 +10708,10 @@
 												"path": "adventure/GoS/049-23-dm.png"
 											},
 											"width": 4200,
-											"height": 5700
+											"height": 5700,
+											"title": "Map 6.1: Sahuagin Lair Level 1",
+											"imageType": "map",
+											"id": "557"
 										},
 										{
 											"type": "image",
@@ -10664,7 +10722,10 @@
 											"title": "(Player Version)",
 											"width": 4200,
 											"height": 5700,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "557"
+											}
 										}
 									]
 								},
@@ -11245,7 +11306,10 @@
 												"path": "adventure/GoS/052-22-dm.png"
 											},
 											"width": 4186,
-											"height": 5672
+											"height": 5672,
+											"title": "Map 6.2: Sahuagin Lair Level 2",
+											"imageType": "map",
+											"id": "558"
 										},
 										{
 											"type": "image",
@@ -11256,7 +11320,10 @@
 											"title": "(Player Version)",
 											"width": 4186,
 											"height": 5672,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "558"
+											}
 										}
 									]
 								},
@@ -12189,7 +12256,10 @@
 												"path": "adventure/GoS/057-21-dm.png"
 											},
 											"width": 4200,
-											"height": 5700
+											"height": 5700,
+											"title": "Map 6.3: Sahuagin Lair Level 3",
+											"imageType": "map",
+											"id": "559"
 										},
 										{
 											"type": "image",
@@ -12200,7 +12270,10 @@
 											"title": "(Player Version)",
 											"width": 4200,
 											"height": 5700,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "559"
+											}
 										}
 									]
 								},
@@ -13363,7 +13436,10 @@
 												"path": "adventure/GoS/064-20-dm.png"
 											},
 											"width": 2063,
-											"height": 1425
+											"height": 1425,
+											"title": "Map 7.1: Firewatch Island",
+											"imageType": "map",
+											"id": "55a"
 										},
 										{
 											"type": "image",
@@ -13374,7 +13450,10 @@
 											"title": "(Player Version)",
 											"width": 2063,
 											"height": 1425,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "55a"
+											}
 										}
 									]
 								},
@@ -13445,7 +13524,10 @@
 												"path": "adventure/GoS/066-19-dm.png"
 											},
 											"width": 2100,
-											"height": 2850
+											"height": 2850,
+											"title": "Map 7.2: Hermitage First Floor",
+											"imageType": "map",
+											"id": "55b"
 										},
 										{
 											"type": "image",
@@ -13456,7 +13538,10 @@
 											"title": "(Player Version)",
 											"width": 2100,
 											"height": 2850,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "55b"
+											}
 										}
 									]
 								},
@@ -13993,7 +14078,10 @@
 												"path": "adventure/GoS/068-18-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 7.3: Hermitage Second Floor",
+											"imageType": "map",
+											"id": "55c"
 										},
 										{
 											"type": "image",
@@ -14004,7 +14092,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "55c"
+											}
 										}
 									]
 								},
@@ -14155,7 +14246,10 @@
 												"path": "adventure/GoS/070-17-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 7.4: Hermitage Upper Floors and Cellar",
+											"imageType": "map",
+											"id": "55d"
 										},
 										{
 											"type": "image",
@@ -14166,7 +14260,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "55d"
+											}
 										}
 									]
 								},
@@ -14668,7 +14765,10 @@
 												"path": "adventure/GoS/072-16-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 7.5: The Pit of Hatred",
+											"imageType": "map",
+											"id": "55e"
 										},
 										{
 											"type": "image",
@@ -14679,7 +14779,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "55e"
+											}
 										}
 									]
 								},
@@ -15133,7 +15236,10 @@
 												"path": "adventure/GoS/076-15-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 8.1: The Styes",
+											"imageType": "map",
+											"id": "55f"
 										},
 										{
 											"type": "image",
@@ -15144,7 +15250,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "55f"
+											}
 										}
 									]
 								},
@@ -15508,7 +15617,10 @@
 												"path": "adventure/GoS/080-14-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 8.2: Mr Dory's Warehouse",
+											"imageType": "map",
+											"id": "560"
 										},
 										{
 											"type": "image",
@@ -15519,7 +15631,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "560"
+											}
 										}
 									]
 								},
@@ -15859,7 +15974,10 @@
 												"path": "adventure/GoS/085-13-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 8.3: Temple of Tharizdun",
+											"imageType": "map",
+											"id": "561"
 										},
 										{
 											"type": "image",
@@ -15870,7 +15988,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "561"
+											}
 										}
 									]
 								},
@@ -16078,7 +16199,10 @@
 												"path": "adventure/GoS/088-12-dm.png"
 											},
 											"width": 2138,
-											"height": 1500
+											"height": 1500,
+											"title": "Map 8.4: Landgrave's Folly",
+											"imageType": "map",
+											"id": "562"
 										},
 										{
 											"type": "image",
@@ -16089,7 +16213,10 @@
 											"title": "(Player Version)",
 											"width": 2138,
 											"height": 1500,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "562"
+											}
 										}
 									]
 								},

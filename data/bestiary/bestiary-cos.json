@@ -1068,7 +1068,8 @@
 				"average": 72,
 				"formula": "9d8 + 18"
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Escher",
@@ -4201,8 +4202,8 @@
 				}
 			],
 			"hp": {
-				"average": 149,
-				"formula": "13d12 + 65"
+				"average": 92,
+				"formula": "8d12 + 40"
 			},
 			"speed": {
 				"walk": 30

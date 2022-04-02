@@ -2,9 +2,9 @@ class RenderMap {
 	static async pShowViewer (evt, ele) {
 		const mapData = JSON.parse(ele.dataset.rdPackedMap);
 
-		mapData.page = ele.dataset.rdAdventureBookMapPage;
-		mapData.source = ele.dataset.rdAdventureBookMapSource;
-		mapData.hash = ele.dataset.rdAdventureBookMapHash;
+		if (!mapData.page) mapData.page = ele.dataset.rdAdventureBookMapPage;
+		if (!mapData.source) mapData.source = ele.dataset.rdAdventureBookMapSource;
+		if (!mapData.hash) mapData.hash = ele.dataset.rdAdventureBookMapHash;
 
 		await RenderMap._pMutMapData(mapData);
 

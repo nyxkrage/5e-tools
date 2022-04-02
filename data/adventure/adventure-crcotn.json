@@ -3594,7 +3594,7 @@
 											"name": "Who is your rival",
 											"id": "0fb",
 											"entries": [
-												"\"Aloysia. That's her name. She's looking for something in the Betrayers' Rise. She's not hard to spot. Tall, pale, dressed in red. Cold-blooded. Seems like she'd do anything to get what she wants. And what she wants is... well, that's what I'd like to know!\" Prolix goes on to say that both he and Aloysia are staying at the {@action Ready} Room ({@area area R7|142|x})."
+												"\"Aloysia. That's her name. She's looking for something in the Betrayers' Rise. She's not hard to spot. Tall, pale, dressed in red. Cold-blooded. Seems like she'd do anything to get what she wants. And what she wants is... well, that's what I'd like to know!\" Prolix goes on to say that both he and Aloysia are staying at the Ready Room ({@area area R7|142|x})."
 											]
 										},
 										{
@@ -3612,7 +3612,7 @@
 											"id": "0fd",
 											"entries": [
 												"If the characters have the {@item Jewel of Three Prayers|CRCotN} and show it to Prolix, he says he doesn't know what the jewel represents, although he recognizes it as something both powerful and ancient. If the characters give him the opportunity, he draws a quick sketch of the item, jots down some notes, and invites the characters to return with him to the Crystal Chateau, his university in Ank'Harel, once their respective missions in Bazzoxan are complete. He suggests the university's libraries might have more information about the jewel's purpose.",
-												"If the characters seem eager to learn more about the jewel, Prolix mentions meeting a \"real smartie\" who is also staying at the {@action Ready} Room ({@area area B7|116|x}). This other scholar is a tiefling named Question, who Prolix believes is visiting Bazzoxan for research as well. Prolix relates having an animated discussion with Question the other night about key historical figures of the Calamity."
+												"If the characters seem eager to learn more about the jewel, Prolix mentions meeting a \"real smartie\" who is also staying at the Ready Room ({@area area B7|116|x}). This other scholar is a tiefling named Question, who Prolix believes is visiting Bazzoxan for research as well. Prolix relates having an animated discussion with Question the other night about key historical figures of the Calamity."
 											]
 										}
 									]
@@ -3720,7 +3720,7 @@
 												{
 													"type": "list",
 													"items": [
-														"One member of the Cobalt Soul expedition, a tiefling named Question, went with his group up to the gate of the Betrayers' Rise but elected not to enter the place. He's holed up at the {@action Ready} Room ({@area area B7|116|x}), ready to talk about his research with anyone who will listen.",
+														"One member of the Cobalt Soul expedition, a tiefling named Question, went with his group up to the gate of the Betrayers' Rise but elected not to enter the place. He's holed up at the Ready Room ({@area area B7|116|x}), ready to talk about his research with anyone who will listen.",
 														"An elf named Aloysia tried to bribe some soldiers into escorting her into the Betrayers' Rise. Some people believe that she wants only to ransack the temple, but others think her concern is religious and she is searching for long-lost lore about the Prime Deities."
 													]
 												}
@@ -3845,7 +3845,7 @@
 													"type": "insetReadaloud",
 													"id": "112",
 													"entries": [
-														"You see a young human, curls plastered to his brow by sweat, sinking to his knees in the garden. His eyes betray a lack of sleep, and despite the softness of his features, he looks like he has experienced more pain than any one person should bear. \"They're counting on me,\" he whispers. \"They need me, but I'm exhausted and {@condition frightened}. What do I do? Please. Someone tell me\u2014what do I do?\"",
+														"You see a young human, curls plastered to his brow by sweat, sinking to his knees in the garden. His eyes betray a lack of sleep, and despite the softness of his features, he looks like he has experienced more pain than any one person should bear. \"They're counting on me,\" he whispers. \"They need me, but I'm exhausted and frightened. What do I do? Please. Someone tell me\u2014what do I do?\"",
 														"The moons race across the sky, soon replaced by the angry red sun that rises before a fateful battle. Five silhouettes approach the temple, and one claps the kneeling figure on the back. Their voices are muffled, as if coming at you through water, but you see them embrace, standing strong, before marching off to war."
 													]
 												},
@@ -3896,17 +3896,17 @@
 									"name": "B7: The Ready Room",
 									"id": "116",
 									"entries": [
-										"The {@action Ready} Room is Bazzoxan's only inn and one of the only structures in town that doesn't look like a military barracks:",
+										"The Ready Room is Bazzoxan's only inn and one of the only structures in town that doesn't look like a military barracks:",
 										{
 											"type": "insetReadaloud",
 											"id": "117",
 											"entries": [
-												"A large barn with a steeply pointed roof looms over the battered structures near the center of town. Over the double door hangs a sign that bears the tavern's name, The {@action Ready} Room, in Undercommon, Orc, Goblin, and Common."
+												"A large barn with a steeply pointed roof looms over the battered structures near the center of town. Over the double door hangs a sign that bears the tavern's name, The Ready Room, in Undercommon, Orc, Goblin, and Common."
 											]
 										},
-										"The {@action Ready} Room is run by Delez and Prima Demona, a brother-and-sister team who are both lawful neutral {@creature drow}. Delez runs the bar and the kitchen and handles most interactions with customers, while Prima manages the finances and inventory.",
+										"The Ready Room is run by Delez and Prima Demona, a brother-and-sister team who are both lawful neutral {@creature drow}. Delez runs the bar and the kitchen and handles most interactions with customers, while Prima manages the finances and inventory.",
 										"The ground floor contains piles of tools (lanterns, shovels, ladders, and the like) and a dozen wooden stalls that have been turned into curtained sleeping quarters, each one holding five wooden cots. A rope-and-pulley hoist functions like an elevator, allowing access to a spacious loft where the proprietors have equipped a bar and surrounded it with two dozen stools that are mostly occupied by patrons whenever the place is open for business. Behind the bar is a cooking space with a stove, where Derez prepares food for guests. A curtain behind the bar conceals a small office and storage room, where Prima spends much of her time.",
-										"A tankard of beer costs 1 cp, while a bowl of mushy rice and overcooked fish costs 2 cp. The use of a cot costs 2 sp per night. Characters can purchase any common adventuring equipment at the {@action Ready} Room, but all such items sell for double their normal price. Although Prima doesn't appreciate her prices being questioned, a character who makes a successful DC 17 Charisma ({@skill Persuasion}) check can get her to lower the prices to only a 50 percent markup.",
+										"A tankard of beer costs 1 cp, while a bowl of mushy rice and overcooked fish costs 2 cp. The use of a cot costs 2 sp per night. Characters can purchase any common adventuring equipment at the Ready Room, but all such items sell for double their normal price. Although Prima doesn't appreciate her prices being questioned, a character who makes a successful DC 17 Charisma ({@skill Persuasion}) check can get her to lower the prices to only a 50 percent markup.",
 										{
 											"type": "entries",
 											"name": "Rivals",
@@ -3920,7 +3920,7 @@
 											"name": "Question and Answers",
 											"id": "119",
 											"entries": [
-												"Question, a chaotic neutral, tiefling {@creature monastic operative|CRCotN} (see {@adventure appendix A|CRCotN|8}), can be found lounging around the {@action Ready} Room at all hours. Unlike most others in Bazzoxan, Question almost always has a smile on her face.",
+												"Question, a chaotic neutral, tiefling {@creature monastic operative|CRCotN} (see {@adventure appendix A|CRCotN|8}), can be found lounging around the Ready Room at all hours. Unlike most others in Bazzoxan, Question almost always has a smile on her face.",
 												"The tiefling doesn't take notice of the characters unless they make contact first, at which point she performs an awkward little bow. After introducing herself, Question launches into an excited spiel:",
 												{
 													"type": "insetReadaloud",
@@ -13543,7 +13543,9 @@
 							},
 							"imageType": "map",
 							"width": 3993,
-							"height": 2805
+							"height": 2805,
+							"title": "Poster Map",
+							"id": "450"
 						},
 						{
 							"type": "image",
@@ -13554,7 +13556,10 @@
 							"imageType": "mapPlayer",
 							"title": "Player Version",
 							"width": 3993,
-							"height": 2805
+							"height": 2805,
+							"mapParent": {
+								"id": "450"
+							}
 						}
 					]
 				},

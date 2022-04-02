@@ -1255,6 +1255,7 @@ class TagImmResVulnConditional {
 				|| note.startsWith("against ")
 				|| note.startsWith("except ")
 				|| note.startsWith("with ")
+				|| note.startsWith("that is ")
 			) {
 				obj.cond = true;
 			}

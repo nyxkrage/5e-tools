@@ -693,7 +693,11 @@ ___
 			case "@h": textStack[0] += `*Hit:* `; break;
 
 			// DCs /////////////////////////////////////////////////////////////////////////////////////////////
-			case "@dc": textStack[0] += `DC ${text}`; break;
+			case "@dc": {
+				const [dcText, displayText] = Renderer.splitTagByPipe(text);
+				textStack[0] += `DC ${displayText || dcText}`;
+				break;
+			}
 
 			// DICE ////////////////////////////////////////////////////////////////////////////////////////////
 			case "@dice":

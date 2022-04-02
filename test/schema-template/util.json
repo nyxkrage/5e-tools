@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.11.13",
+	"version": "1.11.14",
 
 	"definitions" : {
 		"metaBlock": {
@@ -31,6 +31,11 @@
 			}
 		},
 
+		"page": {
+			"$$ifSite": {"type": "integer"},
+			"$$ifBrew": {"type": ["integer", "string"]}
+		},
+
 		"otherSources": {
 			"type": "array",
 			"items": {
@@ -40,7 +45,7 @@
 						"type": "string"
 					},
 					"page": {
-						"type": "integer"
+						"$ref": "#/definitions/page"
 					}
 				},
 				"required": [
@@ -59,7 +64,7 @@
 						"type": "string"
 					},
 					"page": {
-						"type": "integer"
+						"$ref": "#/definitions/page"
 					}
 				},
 				"required": [
@@ -2359,6 +2364,11 @@
 					"psionics": {"type": "boolean"}
 				}
 			}
+		},
+
+		"adventureBookData": {
+			"type": "array",
+			"items": {"$ref": "entry.json"}
 		},
 
 		"foundryDataObject": {

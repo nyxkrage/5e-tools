@@ -1,4 +1,9 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"backgroundFluff"
+		]
+	},
 	"backgroundFluff": [
 		{
 			"name": "Acolyte",
@@ -2062,6 +2067,14 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Variant Noble (Retainers)",
+			"source": "PHB",
+			"_copy": {
+				"name": "Noble",
+				"source": "PHB"
+			}
 		},
 		{
 			"name": "Variant Sailor (Pirate)",

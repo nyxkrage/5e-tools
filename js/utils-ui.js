@@ -765,17 +765,17 @@ class ListUiUtil {
 		});
 	}
 
-	static bindPreviewButton (page, allData, item, btnShowHidePreview) {
+	static bindPreviewButton (page, allData, item, btnShowHidePreview, {$fnGetPreviewStats} = {}) {
 		btnShowHidePreview.addEventListener("click", evt => {
 			const entity = allData[item.ix];
 
 			const elePreviewWrp = this.getOrAddListItemPreviewLazy(item);
 
-			this.handleClickBtnShowHideListPreview(evt, page, entity, btnShowHidePreview, elePreviewWrp);
+			this.handleClickBtnShowHideListPreview(evt, page, entity, btnShowHidePreview, elePreviewWrp, {$fnGetPreviewStats});
 		});
 	}
 
-	static handleClickBtnShowHideListPreview (evt, page, entity, btnShowHidePreview, elePreviewWrp, nxtText = null) {
+	static handleClickBtnShowHideListPreview (evt, page, entity, btnShowHidePreview, elePreviewWrp, {nxtText = null, $fnGetPreviewStats} = {}) {
 		evt.stopPropagation();
 		evt.preventDefault();
 
@@ -797,8 +797,10 @@ class ListUiUtil {
 
 		elePreviewWrp.dataset.dataType = isFluff ? "fluff" : "stats";
 
-		if (!evt.shiftKey) {
-			Renderer.hover.$getHoverContent_stats(page, entity, {isStatic: true}).appendTo(elePreviewWrpInner);
+		const doAppendStatView = () => ($fnGetPreviewStats || Renderer.hover.$getHoverContent_stats)(page, entity, {isStatic: true}).appendTo(elePreviewWrpInner);
+
+		if (!evt.shiftKey || !UrlUtil.URL_TO_HASH_BUILDER[page]) {
+			doAppendStatView();
 			return;
 		}
 
@@ -808,7 +810,7 @@ class ListUiUtil {
 				//  loading the fluff.
 				if (elePreviewWrpInner.innerHTML) return;
 
-				if (!fluffEntity) return Renderer.hover.$getHoverContent_stats(page, entity).appendTo(elePreviewWrpInner);
+				if (!fluffEntity) return doAppendStatView();
 				Renderer.hover.$getHoverContent_fluff(page, fluffEntity).appendTo(elePreviewWrpInner);
 			});
 	}
@@ -1830,8 +1832,9 @@ class SearchWidget {
 	}
 
 	static async pGetUserAdventureBookSearch (opts) {
+		const contentIndexName = opts.contentIndexName || "entity_AdventuresBooks";
 		await SearchWidget.pLoadCustomIndex({
-			contentIndexName: "entity_AdventuresBooks",
+			contentIndexName,
 			errorName: "adventures/books",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
@@ -1839,16 +1842,18 @@ class SearchWidget {
 					prop: "adventure",
 					catId: Parser.CAT_ID_ADVENTURE,
 					page: UrlUtil.PG_ADVENTURE,
+					pFnGetDocExtras: opts.pFnGetDocExtras,
 				}),
 				new SearchWidget.CustomIndexSubSpec({
 					dataSource: `${Renderer.get().baseUrl}data/books.json`,
 					prop: "book",
 					catId: Parser.CAT_ID_BOOK,
 					page: UrlUtil.PG_BOOK,
+					pFnGetDocExtras: opts.pFnGetDocExtras,
 				}),
 			],
 		});
-		return SearchWidget.pGetUserEntitySearch("Select Adventure or Book", "entity_AdventuresBooks", opts);
+		return SearchWidget.pGetUserEntitySearch("Select Adventure or Book", contentIndexName, opts);
 	}
 
 	static async pGetUserCreatureSearch () {
@@ -1968,11 +1973,12 @@ class SearchWidget {
 
 	// region custom search indexes
 	static CustomIndexSubSpec = class {
-		constructor ({dataSource, prop, catId, page}) {
+		constructor ({dataSource, prop, catId, page, pFnGetDocExtras}) {
 			this.dataSource = dataSource;
 			this.prop = prop;
 			this.catId = catId;
 			this.page = page;
+			this.pFnGetDocExtras = pFnGetDocExtras;
 		}
 	};
 
@@ -2009,16 +2015,21 @@ class SearchWidget {
 				BrewUtil.pAddBrewData(),
 			]);
 
-			json[subSpec.prop].concat(homebrew[subSpec.prop] || []).forEach(it => index.addDoc({
-				id: id++,
-				c: subSpec.catId,
-				cf: Parser.pageCategoryToFull(subSpec.catId),
-				h: 1,
-				n: it.name,
-				p: subSpec.page,
-				s: it.source,
-				u: UrlUtil.URL_TO_HASH_BUILDER[subSpec.page](it),
-			}));
+			await [...json[subSpec.prop], ...(homebrew[subSpec.prop] || [])]
+				.pSerialAwaitMap(async ent => {
+					const doc = {
+						id: id++,
+						c: subSpec.catId,
+						cf: Parser.pageCategoryToFull(subSpec.catId),
+						h: 1,
+						n: ent.name,
+						q: subSpec.page,
+						s: ent.source,
+						u: UrlUtil.URL_TO_HASH_BUILDER[subSpec.page](ent),
+					};
+					if (subSpec.pFnGetDocExtras) Object.assign(doc, await subSpec.pFnGetDocExtras({ent, doc, subSpec}));
+					index.addDoc(doc);
+				});
 		}
 
 		return index;

@@ -8011,7 +8011,7 @@
 								{
 									"type": "item",
 									"name": "Draconic Sorcery",
-									"entry": "You know one {@filter cantrip of your choice from the sorcerer spell list|spells|level=0|class=Sorcerer}. Intelligence, Wisdom, or Charisma is your spellcasting for that cantrip (choose when you select this race)."
+									"entry": "You know one {@filter cantrip of your choice from the sorcerer spell list|spells|level=0|class=Sorcerer}. Intelligence, Wisdom, or Charisma is your spellcasting ability for that cantrip (choose when you select this race)."
 								}
 							],
 							"style": "list-hang-notitle"
@@ -8069,7 +8069,7 @@
 								"name": "Kobold Legacy (Draconic Sorcery)",
 								"type": "entries",
 								"entries": [
-									"You know one {@filter cantrip of your choice from the sorcerer spell list|spells|level=0|class=Sorcerer}. Intelligence, Wisdom, or Charisma is your spellcasting for that cantrip (choose when you select this race)."
+									"You know one {@filter cantrip of your choice from the sorcerer spell list|spells|level=0|class=Sorcerer}. Intelligence, Wisdom, or Charisma is your spellcasting ability for that cantrip (choose when you select this race)."
 								]
 							}
 						}
