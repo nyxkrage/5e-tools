@@ -692,7 +692,11 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 		this._addHookBase("isShowFluff", hkDisplayFluff);
 		MiscUtil.pDefer(hkDisplayFluff);
 
+		const hkletDoToggleNoneSubclassMessages = (cntDisplayedSubclasses) => $(`[data-subclass-none-message]`).toggleVe(!cntDisplayedSubclasses && !this._state.isHideFeatures);
+
 		const hkDisplayFeatures = () => {
+			const cntDisplayedSubclasses = this.activeClass.subclasses.map(sc => Number(this._state[UrlUtil.getStateKeySubclass(sc)] || false)).sum();
+
 			const $dispClassFeatures = $(`[data-feature-type="class"]`);
 			const $dispFeaturesSubclassHeader = $(`[data-feature-type="gain-subclass"]`);
 
@@ -714,6 +718,8 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 				$dispClassFeatures.toggleVe(true);
 				$dispFeaturesSubclassHeader.toggleVe(true);
 			}
+
+			hkletDoToggleNoneSubclassMessages(cntDisplayedSubclasses);
 		};
 		this._addHookBase("isHideFeatures", hkDisplayFeatures);
 		MiscUtil.pDefer(hkDisplayFeatures);
@@ -725,7 +731,7 @@ class ClassesPage extends MixinComponentGlobalState(BaseComponent) {
 			const cntDisplayedSubclasses = cls.subclasses.map(sc => Number(this._state[UrlUtil.getStateKeySubclass(sc)] || false)).sum();
 			$(`[data-subclass-name-prefix]`).toggleVe(cntDisplayedSubclasses > 1);
 
-			$(`[data-subclass-none-message]`).toggleVe(!cntDisplayedSubclasses);
+			hkletDoToggleNoneSubclassMessages(cntDisplayedSubclasses);
 		};
 		const hkIsShowNamePrefixesThrottled = MiscUtil.throttle(hkIsShowNamePrefixes, 50);
 		MiscUtil.pDefer(() => hkIsShowNamePrefixesThrottled);
