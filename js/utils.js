@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.152.2"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.152.3"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -5753,6 +5753,11 @@ BrewUtil = {
 			case "book": return BrewUtil._pDeleteGenericBookBrew.bind(BrewUtil, category);
 			case "adventureData":
 			case "bookData": return () => {}; // Do nothing, handled by deleting the associated book/adventure
+			case "backgroundFeature":
+			case "raceFeature":
+			case "vehicleWeapon":
+			case "psionicDisciplineFocus":
+			case "psionicDisciplineActive": return () => {}; // no-ops
 			default: throw new Error(`No homebrew delete function defined for category ${category}`);
 		}
 	},

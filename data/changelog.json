@@ -1974,7 +1974,12 @@
 	},
 	{
 		"ver": "1.152.2",
-		"date": "2022-04-02",
+		"date": "2022-04-02",s
 		"txt": "- Added inline \"No Subclass Selected\" displays to Classes page text when a class feature would grant a subclass feature, but no subclasses are selected\n- Added specific button for exiting \"move\" mode to DM Screen panels, preventing awkward misclicks when trying to exit move mode on small panels\n- Fixed DM Screen In-Game Clock/Calendar \"Settings\" tab text inputs de-selecting on every keystroke\n- Fixed Cults & Supernatural Boons page failing to load\n- Fixed single-pixel deadzone in which the mobile-only \"Menu\" button was hidden, which happens to exactly match the pixel width of some iPads!\n- (Brew) \"Options\" filters (i.e., the \"Other/Text Options\" filter from the Classes page) now supports getting/setting via URL and `@filter` tags; grabbing a `@filter` tag from the Classes page will now include the options part, where appropriate\n- (Brew) Added \"AND/OR/XOR\" metadata to copied `@filter` tag parts, where appropriate\n- (Brew) Added support for display text in `@dc` tags\n- (Brew) The DM Screen \"Adventure/Book Map Dynamic Viewer\" now shows only homebrew adventures/books which contain usable maps\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.152.3",
+		"date": "2022-04-03",
+		"txt": "- (Brew) Fixed crash when attempting to delete a homebrew source"
 	}
 ]
