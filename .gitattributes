@@ -1,3 +1,11 @@
+*.js              text eol=lf
+*.json            text eol=lf
+*.html            text eol=lf
+*.scss            text eol=lf
+*.md              text eol=lf
+*.yml             text eol=lf
+*.sh              text eol=lf
+*.css             text eol=lf
 *.ttf filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.otf filter=lfs diff=lfs merge=lfs -text

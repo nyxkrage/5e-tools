@@ -227,36 +227,62 @@ const ListUtil = {
 
 	getPrimaryLists () { return this._primaryLists; },
 
-	__mouseMoveId: 1,
 	async _pBindSublistResizeHandlers ($ele) {
 		const STORAGE_KEY = "SUBLIST_RESIZE";
 		const BORDER_SIZE = 3;
-		const MOUSE_MOVE_ID = ListUtil.__mouseMoveId++;
-		const $doc = $(document);
+		const _OPTS_TOUCH = {capture: true, passive: false};
 
 		let mousePos;
 		function resize (evt) {
-			const dx = evt.clientY - mousePos;
-			mousePos = evt.clientY;
+			if (evt.cancellable) evt.preventDefault();
+			evt.stopPropagation();
+			const dx = EventUtil.getClientY(evt) - mousePos;
+			mousePos = EventUtil.getClientY(evt);
 			$ele.css("height", parseInt($ele.css("height")) + dx);
 		}
 
-		$ele.on("mousedown", (evt) => {
-			if (evt.which === 1 && evt.target === $ele[0]) {
+		// region Mouse
+		$ele
+			.on("mousedown", (evt) => {
+				if (evt.which !== 1 || evt.target !== $ele[0]) return;
+
 				evt.preventDefault();
 				if (evt.offsetY > $ele.height() - BORDER_SIZE) {
 					mousePos = evt.clientY;
-					$doc.on(`mousemove.sublist_resize-${MOUSE_MOVE_ID}`, resize);
+					document.removeEventListener("mousemove", resize);
+					document.addEventListener("mousemove", resize);
 				}
-			}
-		});
+			});
 
-		$doc.on("mouseup", (evt) => {
-			if (evt.which === 1) {
-				$(document).off(`mousemove.sublist_resize-${MOUSE_MOVE_ID}`);
-				StorageUtil.pSetForPage(STORAGE_KEY, $ele.css("height"));
-			}
+		document.addEventListener("mouseup", evt => {
+			if (evt.which !== 1) return;
+
+			document.removeEventListener("mousemove", resize);
+			StorageUtil.pSetForPage(STORAGE_KEY, $ele.css("height"));
 		});
+		// endregion
+
+		// region Touch
+		// FIXME(Future) Note that this doesn't *really* work, as we can't cancel `touchmove` events, so dragging will
+		//   always cause the screen to scroll/refresh.
+		$ele[0].addEventListener(
+			"touchstart",
+			(evt) => {
+				if (evt.cancellable) evt.preventDefault();
+				evt.stopPropagation();
+
+				mousePos = EventUtil.getClientY(evt);
+				document.removeEventListener("touchmove", resize, _OPTS_TOUCH);
+				document.addEventListener("touchmove", resize, _OPTS_TOUCH);
+			},
+			_OPTS_TOUCH,
+		);
+
+		document.addEventListener("touchend", () => {
+			document.removeEventListener("touchmove", resize, _OPTS_TOUCH);
+			StorageUtil.pSetForPage(STORAGE_KEY, $ele.css("height"));
+		});
+		// endregion
 
 		const storedHeight = await StorageUtil.pGetForPage(STORAGE_KEY);
 		if (storedHeight) $ele.css("height", storedHeight);
