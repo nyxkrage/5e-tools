@@ -227,65 +227,42 @@ const ListUtil = {
 
 	getPrimaryLists () { return this._primaryLists; },
 
-	async _pBindSublistResizeHandlers ($ele) {
+	async _pBindSublistResizeHandlers ($wrpList) {
 		const STORAGE_KEY = "SUBLIST_RESIZE";
-		const BORDER_SIZE = 3;
-		const _OPTS_TOUCH = {capture: true, passive: false};
+
+		const $handle = $(`<div class="sublist__ele-resize mobile__hidden">...</div>`).appendTo($wrpList);
 
 		let mousePos;
 		function resize (evt) {
-			if (evt.cancellable) evt.preventDefault();
+			evt.preventDefault();
 			evt.stopPropagation();
 			const dx = EventUtil.getClientY(evt) - mousePos;
 			mousePos = EventUtil.getClientY(evt);
-			$ele.css("height", parseInt($ele.css("height")) + dx);
+			$wrpList.css("height", parseInt($wrpList.css("height")) + dx);
 		}
 
-		// region Mouse
-		$ele
+		$handle
 			.on("mousedown", (evt) => {
-				if (evt.which !== 1 || evt.target !== $ele[0]) return;
+				if (evt.which !== 1) return;
 
 				evt.preventDefault();
-				if (evt.offsetY > $ele.height() - BORDER_SIZE) {
-					mousePos = evt.clientY;
-					document.removeEventListener("mousemove", resize);
-					document.addEventListener("mousemove", resize);
-				}
+				mousePos = evt.clientY;
+				document.removeEventListener("mousemove", resize);
+				document.addEventListener("mousemove", resize);
 			});
 
 		document.addEventListener("mouseup", evt => {
 			if (evt.which !== 1) return;
 
 			document.removeEventListener("mousemove", resize);
-			StorageUtil.pSetForPage(STORAGE_KEY, $ele.css("height"));
+			StorageUtil.pSetForPage(STORAGE_KEY, $wrpList.css("height"));
 		});
-		// endregion
 
-		// region Touch
-		// FIXME(Future) Note that this doesn't *really* work, as we can't cancel `touchmove` events, so dragging will
-		//   always cause the screen to scroll/refresh.
-		$ele[0].addEventListener(
-			"touchstart",
-			(evt) => {
-				if (evt.cancellable) evt.preventDefault();
-				evt.stopPropagation();
-
-				mousePos = EventUtil.getClientY(evt);
-				document.removeEventListener("touchmove", resize, _OPTS_TOUCH);
-				document.addEventListener("touchmove", resize, _OPTS_TOUCH);
-			},
-			_OPTS_TOUCH,
-		);
-
-		document.addEventListener("touchend", () => {
-			document.removeEventListener("touchmove", resize, _OPTS_TOUCH);
-			StorageUtil.pSetForPage(STORAGE_KEY, $ele.css("height"));
-		});
-		// endregion
+		// Avoid setting the height on mobile, as we force the sublist to a static size
+		if (JqueryUtil.isMobile()) return;
 
 		const storedHeight = await StorageUtil.pGetForPage(STORAGE_KEY);
-		if (storedHeight) $ele.css("height", storedHeight);
+		if (storedHeight) $wrpList.css("height", storedHeight);
 	},
 
 	getOrTabRightButton: (id, icon) => {

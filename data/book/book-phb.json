@@ -7832,9 +7832,9 @@
 							"page": 190,
 							"entries": [
 								"Combat rarely takes place in bare rooms or on featureless plains.",
-								"Boulder-strewn caverns, briar-choked forests, treacherous staircases\u2014the setting of a typical fight contains {@quickref difficult terrain||3}.",
-								"Every foot of movement in {@quickref difficult terrain||3} costs 1 extra foot. This rule is true even if multiple things in a space count as {@quickref difficult terrain||3}.",
-								"Low furniture, rubble, undergrowth, steep stairs, snow, and shallow bogs are examples of {@quickref difficult terrain||3}. The space of another creature, whether hostile or not, also counts as {@quickref difficult terrain||3}."
+								"Boulder-strewn caverns, briar-choked forests, treacherous staircases\u2014the setting of a typical fight contains difficult terrain.",
+								"Every foot of movement in difficult terrain costs 1 extra foot. This rule is true even if multiple things in a space count as difficult terrain.",
+								"Low furniture, rubble, undergrowth, steep stairs, snow, and shallow bogs are examples of difficult terrain. The space of another creature, whether hostile or not, also counts as difficult terrain."
 							],
 							"data": {
 								"quickrefIndex": true
