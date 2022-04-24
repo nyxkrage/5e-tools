@@ -10,10 +10,11 @@
 
 importScripts("./js/sw-files.js");
 
-const cacheName = /* 5ETOOLS_VERSION__OPEN */"1.153.2"/* 5ETOOLS_VERSION__CLOSE */;
+const cacheName = /* 5ETOOLS_VERSION__OPEN */"1.153.3"/* 5ETOOLS_VERSION__CLOSE */;
 const cacheableFilenames = new Set(filesToCache);
 
 let isCacheRunning;
+let _port;
 
 function getPath (urlOrPath) {
 	// Add a fake domain name to allow proper URL conversion
@@ -73,7 +74,7 @@ async function pGetOrCache (url) {
 		try {
 			const controller = new AbortController();
 			setTimeout(() => controller.abort(), getCacheTimeout(url));
-			response = await fetch(url, {signal: controller.signal});
+			response = await fetch(url, {signal: controller.signal, cache: "reload"});
 		} catch (e) {
 			if (--retryCount) continue;
 			console.error(e, url);
@@ -104,9 +105,47 @@ self.addEventListener("fetch", e => {
 	e.respondWith(pGetOrCache(url));
 });
 
-self.addEventListener("message", async evt => {
-	const send = (msgOut) => evt.ports[0].postMessage(msgOut);
+async function _doSendMessage (content) { _port.postMessage(content); }
 
+/**
+ * We chunk the preloading to allow for a continual back-and-forth of (relatively) low-delay events with the client.
+ * This allows us to avoid timeouts/silent failures (see: https://bugzilla.mozilla.org/show_bug.cgi?id=1610772).
+ * This is especially notable on Firefox, but Chrome seems to have a similar "problem," albeit with a longer delay
+ * before dying.
+ */
+const _CACHE_CHUNK_SIZE = 250;
+
+async function _doCache ({evt, index}) {
+	let i = index;
+	for (; i < Math.min(filesToCache.length, index + _CACHE_CHUNK_SIZE); ++i) {
+		if (!isCacheRunning) return _doSendMessage({type: "download-cancelled"});
+		try {
+			// Wrap this in a second timeout, because the internal abort controller doesn't work(?)
+			const raceResult = await Promise.race([
+				pGetOrCache(filesToCache[i]),
+				pDelay(getCacheTimeout(filesToCache[i])),
+			]);
+			if (raceResult == null) return _doSendMessage({type: "download-error", message: `Failed to cache "${filesToCache[i]}"`});
+		} catch (e) {
+			console.error(e, filesToCache[i]);
+			debugger
+			return _doSendMessage({evt, content: {type: "download-error", message: ((e.stack || "").trim()) || e.name}});
+		}
+		if (!isCacheRunning) return _doSendMessage({type: "download-cancelled"});
+		if (i % 17 === 0) _doSendMessage({type: "download-progress", data: {pct: `${((i / filesToCache.length) * 100).toFixed(2)}%`}});
+	}
+
+	if (i >= filesToCache.length) {
+		console.debug(`All files downloaded!`);
+		return _doSendMessage({type: "download-progress", data: {pct: `100%`}});
+	}
+
+	console.debug(`${i} files downloaded...`);
+	_doSendMessage({type: "download-continue", data: {index: i}});
+}
+
+self.addEventListener("message", async evt => {
+	_port = evt.ports?.[0] || _port;
 	const msg = evt.data;
 	switch (msg.type) {
 		case "cache-cancel":
@@ -114,24 +153,11 @@ self.addEventListener("message", async evt => {
 			break;
 		case "cache-start": {
 			isCacheRunning = true;
-			for (let i = 0; i < filesToCache.length; ++i) {
-				if (!isCacheRunning) return send({type: "download-cancelled"});
-				try {
-					// Wrap this in a second timeout, because the internal abort controller doesn't work(?)
-					const raceResult = await Promise.race([
-						pGetOrCache(filesToCache[i]),
-						pDelay(getCacheTimeout(filesToCache[i])),
-					]);
-					if (raceResult == null) return send({type: "download-error", message: `Failed to cache "${filesToCache[i]}"`});
-				} catch (e) {
-					console.error(e, filesToCache[i]);
-					debugger
-					return send({type: "download-error", message: ((e.stack || "").trim()) || e.name});
-				}
-				if (!isCacheRunning) return send({type: "download-cancelled"});
-				if (i % 50) send({type: "download-progress", data: {pct: `${((i / filesToCache.length) * 100).toFixed(2)}%`}});
-			}
-			send({type: "download-progress", data: {pct: `100%`}});
+			await _doCache({evt, index: 0});
+			break;
+		}
+		case "cache-continue": {
+			await _doCache({evt, index: msg.data.index});
 			break;
 		}
 	}

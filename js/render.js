@@ -9424,7 +9424,7 @@ Renderer.hover = {
 				const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/bookref-quick.json`);
 
 				json.data["bookref-quick"].forEach((chapter, ixChapter) => {
-					const metas = IndexableFileQuickReference.getChapterNameMetas(chapter);
+					const metas = IndexableFileQuickReference.getChapterNameMetas(chapter, {isRequireQuickrefFlag: false});
 
 					metas.forEach(nameMeta => {
 						const hashParts = [
