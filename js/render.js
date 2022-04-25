@@ -2907,17 +2907,18 @@ Renderer.utils = {
 								else return `${Parser.getOrdinalForm(v.level)} level`;
 							}
 
+							const isLevelVisible = v.level !== 1; // Hide the "implicit" 1st level.
 							const isSubclassVisible = v.subclass && v.subclass.visible;
 							const isClassVisible = v.class && (v.class.visible || isSubclassVisible); // force the class name to be displayed if there's a subclass being displayed
 							if (isListMode) {
 								const shortNameRaw = isClassVisible ? Renderer.utils._getPrerequisiteHtml_getShortClassName(v.class.name) : null;
-								return `${isClassVisible ? `${shortNameRaw.slice(0, 4)}${isSubclassVisible ? "*" : "."} ` : ""} Lvl ${v.level}`;
+								return `${isClassVisible ? `${shortNameRaw.slice(0, 4)}${isSubclassVisible ? "*" : "."}` : ""}${isLevelVisible ? ` Lvl ${v.level}` : ""}`;
 							} else {
 								let classPart = "";
 								if (isClassVisible && isSubclassVisible) classPart = ` ${v.class.name} (${v.subclass.name})`;
 								else if (isClassVisible) classPart = ` ${v.class.name}`;
 								else if (isSubclassVisible) classPart = ` &lt;remember to insert class name here&gt; (${v.subclass.name})`; // :^)
-								return `${Parser.getOrdinalForm(v.level)} level${isClassVisible ? ` ${classPart}` : ""}`;
+								return `${isLevelVisible ? `${Parser.getOrdinalForm(v.level)} level` : ""}${isClassVisible ? ` ${classPart}` : ""}`;
 							}
 						}
 						case "pact": return Parser.prereqPactToFull(v);
@@ -2946,6 +2947,16 @@ Renderer.utils = {
 								} else {
 									const raceName = it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : i === 0 ? it.name.toTitleCase() : it.name;
 									return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+								}
+							});
+							return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+						}
+						case "background": {
+							const parts = v.map((it, i) => {
+								if (isListMode) {
+									return `${it.name.toTitleCase()}`;
+								} else {
+									return it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : i === 0 ? it.name.toTitleCase() : it.name;
 								}
 							});
 							return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");

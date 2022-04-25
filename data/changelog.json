@@ -2007,5 +2007,11 @@
 		"ver": "1.153.3",
 		"date": "2022-04-24",
 		"txt": "- Fixed \"Preload Offline Data\" hang on Firefox, and _hopefully_ Chrome, too.\n- Fixed classification of Monster Compendium sources\n- Fixed DM Screen crash when reloading state with \"blank\" panels within tabs\n- (Brew) Fixed loading of `@quickref` tags\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.154.0",
+		"date": "2022-04-25",
+		"title": "To the Moon (Remix)",
+		"txt": "- Added UA: Heroes of Krynn Revisited\n- Fixed \"Preload Offline Data\" hang on Firefox, in more cases than before!\n- (Fixed typos/added tags)"
 	}
 ]
