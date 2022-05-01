@@ -93,12 +93,7 @@
 				"$$ifBrew": {
 					"foundryData": {"$ref": "util.json#/definitions/foundryDataObject"},
 					"foundryFlags": {"$ref": "util.json#/definitions/foundryFlagsObject"},
-					"foundryEffects": {
-						"type": "array",
-						"items": {
-							"$ref": "util.json#/definitions/foundryEffectObject"
-						}
-					},
+					"foundryEffects": {"$ref": "util.json#/definitions/foundryEffectsArray"},
 					"foundryImg": {
 						"$ref": "util.json#/definitions/foundryImg"
 					}

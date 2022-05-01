@@ -160,8 +160,11 @@ class InitiativeTracker {
 		const $wrpAdd = $(`<div class="btn-group ve-flex"/>`).appendTo($wrpAddNext);
 		const $btnAdd = $(`<button class="btn btn-primary btn-xs dm-init-lockable" title="Add Player"><span class="glyphicon glyphicon-plus"/></button>`).appendTo($wrpAdd);
 		const $btnAddMonster = $(`<button class="btn btn-success btn-xs dm-init-lockable mr-2" title="Add Monster"><span class="glyphicon glyphicon-print"/></button>`).appendTo($wrpAdd);
-		$(`<button class="btn btn-default btn-xs mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"/></button>`).appendTo($wrpAddNext)
+		const $btnSetPrevActive = $(`<button class="btn btn-default btn-xs" title="Previous Turn"><span class="glyphicon glyphicon-step-backward"/></button>`)
+			.click(() => setPrevActive());
+		const $btnSetNextActive = $(`<button class="btn btn-default btn-xs mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"/></button>`)
 			.click(() => setNextActive());
+		$$`<div class="btn-group">${$btnSetPrevActive}${$btnSetNextActive}</div>`.appendTo($wrpAddNext);
 		const $iptRound = $(`<input class="form-control ipt-sm dm_init__rounds" type="number" min="1" title="Round">`)
 			.val(state.n || 1)
 			.change(() => doUpdateExternalStates())
@@ -679,22 +682,28 @@ class InitiativeTracker {
 			return `${nameList.length} creature${nameList.length === 1 ? "" : "s"} ${nameListFilt.length ? `(${nameListFilt.slice(0, 3).join(", ")}${nameListFilt.length > 3 ? "..." : ""})` : ""}`;
 		});
 
-		function setNextActive () {
+		function shiftActiveRow (direction) {
 			const $rows = $wrpEntries.find(`.dm-init-row`);
 
-			const $rowsActive = $rows.filter(`.dm-init-row-active`).each((i, e) => {
-				const $e = $(e);
+			const $rowsActive = $rows.filter(`.dm-init-row-active`);
 
-				// tick down any conditions
-				const $conds = $e.find(`.init__cond`);
-				if ($conds.length) $conds.each((i, e) => $(e).data("doTickDown")());
+			(~direction ? $rowsActive.get() : $rowsActive.get().reverse())
+				.forEach(e => {
+					const $e = $(e);
 
-				$e.removeClass(`dm-init-row-active`);
-			});
+					if (~direction) {
+						// tick down any conditions
+						const $conds = $e.find(`.init__cond`);
+						if ($conds.length) $conds.each((i, e) => $(e).data("doTickDown")());
+					}
 
-			let ix = $rows.index($rowsActive.get($rowsActive.length - 1)) + 1;
+					$e.removeClass(`dm-init-row-active`);
+				});
 
-			const nxt = $rows.get(ix++);
+			let ix = $rows.index($rowsActive.get(~direction ? $rowsActive.length - 1 : 0)) + direction;
+
+			const nxt = $rows.get(ix);
+			ix += direction;
 			if (nxt) {
 				const $nxt = $(nxt);
 				let $curr = $nxt;
@@ -703,7 +712,8 @@ class InitiativeTracker {
 					if ($curr.find(`input.name`).val() === $nxt.find(`input.name`).val()
 						&& $curr.find(`input.score`).val() === $nxt.find(`input.score`).val()) {
 						handleTurnStart($curr);
-						const curr = $rows.get(ix++);
+						const curr = $rows.get(ix);
+						ix += direction;
 						if (curr) $curr = $(curr);
 						else $curr = null;
 					} else break;
@@ -711,6 +721,9 @@ class InitiativeTracker {
 			} else checkSetFirstActive();
 			doUpdateExternalStates();
 		}
+
+		function setNextActive () { shiftActiveRow(1); }
+		function setPrevActive () { shiftActiveRow(-1); }
 
 		function handleTurnStart ($row) {
 			$row.addClass(`dm-init-row-active`);
@@ -770,6 +783,7 @@ class InitiativeTracker {
 
 			const $wrpLhs = $(`<div class="dm-init-row-lhs"/>`).appendTo($wrpRow);
 			const $iptName = $(`<input class="form-control input-sm name dm-init-name dm-init-lockable dm-init-row-input ${isMon ? "hidden" : ""}" placeholder="Name">`)
+				.disableSpellcheck()
 				.val(name)
 				.appendTo($wrpLhs);
 			$iptName.on("change", () => {

@@ -3143,9 +3143,12 @@ Renderer.utils = {
 						return fauxEntry;
 					}
 					case "@chance": {
-						// format: {@chance 25|display text|rollbox rollee name}
+						// format: {@chance 25|display text|rollbox rollee name|success text|failure text}
+						const [textSuccess, textFailure] = others;
 						fauxEntry.toRoll = `1d100`;
 						fauxEntry.successThresh = Number(rollText);
+						fauxEntry.chanceSuccessText = textSuccess;
+						fauxEntry.chanceFailureText = textFailure;
 						return fauxEntry;
 					}
 					case "@recharge": {
@@ -3156,6 +3159,8 @@ Renderer.utils = {
 						fauxEntry.successThresh = 7 - asNum;
 						fauxEntry.successMax = 6;
 						fauxEntry.displayText = `${asNum}${asNum < 6 ? `\u20136` : ""}`;
+						fauxEntry.chanceSuccessText = "Recharged!";
+						fauxEntry.chanceFailureText = "Did not recharge";
 						return fauxEntry;
 					}
 				}
@@ -6189,7 +6194,7 @@ Renderer.monster = {
 
 Renderer.item = {
 	_sortProperties (a, b) {
-		return SortUtil.ascSort(Renderer.item.propertyMap[a].name, Renderer.item.propertyMap[b].name);
+		return SortUtil.ascSort(Renderer.item.propertyMap[a]?.name || "", Renderer.item.propertyMap[b]?.name || "");
 	},
 
 	_getPropertiesText (item) {
@@ -10181,8 +10186,9 @@ Renderer.getNumberedNames = function (entry) {
 };
 
 // dig down until we find a name, as feature names can be nested
-Renderer.findName = function (entry) { return CollectionUtil.dfs(entry, "name"); };
-Renderer.findSource = function (entry) { return CollectionUtil.dfs(entry, "source"); };
+Renderer.findName = function (entry) { return CollectionUtil.dfs(entry, {prop: "name"}); };
+Renderer.findSource = function (entry) { return CollectionUtil.dfs(entry, {prop: "source"}); };
+Renderer.findEntry = function (entry) { return CollectionUtil.dfs(entry, {fnMatch: obj => obj.name && obj?.entries?.length}); };
 
 Renderer.stripTags = function (str) {
 	if (!str) return str;

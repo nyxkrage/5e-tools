@@ -4384,6 +4384,18 @@
 					]
 				}
 			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						],
+						"amount": 1
+					}
+				}
+			],
 			"savingThrowProficiencies": [
 				{
 					"choose": {

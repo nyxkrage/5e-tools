@@ -2013,5 +2013,10 @@
 		"date": "2022-04-25",
 		"title": "To the Moon (Remix)",
 		"txt": "- Added UA: Heroes of Krynn Revisited\n- Fixed \"Preload Offline Data\" hang on Firefox, in more cases than before!\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.154.1",
+		"date": "2022-05-01",
+		"txt": "- Added \"Skill Bonus Dice\"/\"Tool Bonus Dice\" options to Races page \"Traits\" filter\n- Added various missing diseases to the Conditions & Diseases page\n- Improved output of various chance-based rollers (e.g. \"33 percent chance\" in the Wish spell)\n- Added \"Previous Turn\" button to the DM Screen Initiative Tracker\n- Fixed Bestiary Encounter Builder crash when adjusting encounter difficulty\n- (Fixed typos/added tags)"
 	}
 ]
