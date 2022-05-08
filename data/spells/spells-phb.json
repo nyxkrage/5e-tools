@@ -37136,6 +37136,9 @@
 				"SGT",
 				"TP"
 			],
+			"areaTags": [
+				"MT"
+			],
 			"classes": {
 				"fromClassList": [
 					{

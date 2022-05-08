@@ -425,7 +425,7 @@ class InitiativeTracker {
 			if (cfg.isLocked) return;
 			await pMakeRow({isVisible: true});
 			doSort(cfg.sort);
-			checkSetFirstActive();
+			checkSetFirstActive({isSkipUpdateRound: true});
 		});
 
 		$btnAddMonster.on("click", () => {
@@ -518,7 +518,7 @@ class InitiativeTracker {
 							}
 						}
 						doSort(cfg.sort);
-						checkSetFirstActive();
+						checkSetFirstActive({isSkipUpdateRound: true});
 						doUpdateExternalStates();
 						doClose();
 					};
@@ -1152,7 +1152,7 @@ class InitiativeTracker {
 			cfg.statsCols.forEach(c => c.po = null);
 		};
 
-		function checkSetFirstActive () {
+		function checkSetFirstActive ({isSkipUpdateRound = false} = {}) {
 			if ($wrpEntries.find(`.dm-init-row`).length && !$wrpEntries.find(`.dm-init-row-active`).length) {
 				const $rows = $wrpEntries.find(`.dm-init-row`);
 				const $first = $($rows.get(0));
@@ -1167,7 +1167,7 @@ class InitiativeTracker {
 					}
 				}
 
-				$iptRound.val(Number($iptRound.val() || 0) + 1);
+				if (!isSkipUpdateRound) $iptRound.val(Number($iptRound.val() || 0) + 1);
 
 				doUpdateExternalStates();
 			}
@@ -1244,7 +1244,7 @@ class InitiativeTracker {
 			}
 
 			doSort(cfg.sort);
-			checkSetFirstActive();
+			checkSetFirstActive({isSkipUpdateRound: true});
 			handleStatColsChange();
 			doUpdateExternalStates();
 			if (!firstLoad && !noReset) $(`.dm_init__rounds`).val(1);

@@ -2018,5 +2018,10 @@
 		"ver": "1.154.1",
 		"date": "2022-05-01",
 		"txt": "- Added \"Skill Bonus Dice\"/\"Tool Bonus Dice\" options to Races page \"Traits\" filter\n- Added various missing diseases to the Conditions & Diseases page\n- Improved output of various chance-based rollers (e.g. \"33 percent chance\" in the Wish spell)\n- Added \"Previous Turn\" button to the DM Screen Initiative Tracker\n- Fixed Bestiary Encounter Builder crash when adjusting encounter difficulty\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.154.2",
+		"date": "2022-05-08",
+		"txt": "- Improved item formatting and added more spell tags in RPG Cards JSON Builder (thanks @ bravejade)\n- Fixed various bugs related to searching/jumping to headers in books which contain links\n- Fixed DM Screen Initiative Tracker advancing the round when adding a creature\n- (Fixed typos/added tags)"
 	}
 ]
