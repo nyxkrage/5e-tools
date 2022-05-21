@@ -19,10 +19,7 @@ class InitTrackerPlayerViews extends BaseComponent {
 	constructor () {
 		super();
 
-		TabUiUtil.decorate(this);
-
-		this.__meta = {};
-		this._meta = this._getProxy("meta", this.__meta);
+		TabUiUtil.decorate(this, {isInitMeta: true});
 	}
 
 	init ({hash}) {

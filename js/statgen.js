@@ -117,7 +117,7 @@ class StatGenPage {
 	async _pLoadFeats () {
 		const data = await DataUtil.loadJSON("data/feats.json");
 
-		const brew = await BrewUtil.pAddBrewData();
+		const brew = await BrewUtil2.pGetBrewProcessed();
 
 		let feats = data.feat;
 		if (brew.feat) feats = [...feats, ...brew.feat];

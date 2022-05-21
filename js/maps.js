@@ -56,7 +56,7 @@ class MapsPage extends BaseComponent {
 	}
 
 	async _pGetBrewMaps () {
-		const brew = await BrewUtil.pAddBrewData();
+		const brew = await BrewUtil2.pGetBrewProcessed();
 
 		const tuples = [
 			{prop: "adventure", propData: "adventureData"},

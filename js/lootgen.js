@@ -31,7 +31,7 @@ class LootGenPage {
 	async _pLoadSpells () {
 		const [stockSpells, brew] = await Promise.all([
 			DataUtil.spell.pLoadAll(),
-			BrewUtil.pAddBrewData(),
+			BrewUtil2.pGetBrewProcessed(),
 		]);
 		return stockSpells.concat(brew?.spell || [])
 			.filter(sp => {
@@ -46,7 +46,7 @@ class LootGenPage {
 
 	async _pLoadItems () {
 		const stockItems = await Renderer.item.pBuildList();
-		const homebrew = await BrewUtil.pAddBrewData();
+		const homebrew = await BrewUtil2.pGetBrewProcessed();
 		const brewItems = await Renderer.item.pGetItemsFromHomebrew(homebrew);
 		return stockItems.concat(brewItems)
 			.filter(it => {

@@ -6,7 +6,7 @@ const STORAGE_LOCATION = "demoInput";
 window.addEventListener("load", async () => {
 	const rendererType = await StorageUtil.pGetForPage("renderer");
 	ExcludeUtil.pInitialise(); // don't await, as this is only used for search
-	BrewUtil.pAddBrewData(); // don't await, as this is only used for tags
+	BrewUtil2.pGetBrewProcessed(); // don't await, as this is only used for tags
 	const data = await DataUtil.loadJSON(JSON_URL);
 	return initDemo(data, rendererType);
 });

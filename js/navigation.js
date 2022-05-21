@@ -197,7 +197,7 @@ class NavBar {
 			DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-nav-adventure-book-index.json`),
 			ExcludeUtil.pInitialise(),
 		]);
-		const brew = await BrewUtil.pAddBrewData();
+		const brew = await BrewUtil2.pGetBrewProcessed();
 
 		[
 			{
@@ -406,7 +406,7 @@ class NavBar {
 	}
 
 	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-muted ve-small mr-2 page__nav-date inline-block text-right inline-block">${date || ""}</div>` : ""}`; }
-	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToColor(source)}" ${BrewUtil.sourceJsonToStyle(source)}></div>` : ""}`; }
+	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToColor(source)}" ${BrewUtil2.sourceJsonToStyle(source)}></div>` : ""}`; }
 
 	static _addElement_divider (parentCategory) {
 		const parentNode = this._getNode(parentCategory);

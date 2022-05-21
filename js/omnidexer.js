@@ -442,7 +442,7 @@ class IndexableFileMagicVariants extends IndexableFile {
 						else {
 							const baseItemJson = await DataUtil.loadJSON(`data/items-base.json`);
 							const rawBaseItems = {...baseItemJson, baseitem: [...baseItemJson.baseitem]};
-							const brew = await BrewUtil.pAddBrewData();
+							const brew = await BrewUtil2.pGetBrewProcessed();
 							if (brew.baseitem) rawBaseItems.baseitem.push(...brew.baseitem);
 							return Renderer.item.getAllIndexableItems(rawVariants, rawBaseItems);
 						}
