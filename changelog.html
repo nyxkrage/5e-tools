@@ -98,13 +98,16 @@
 <script type="text/javascript" src="lib/jquery.js"></script>
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 <script>
-	ExcludeUtil.pInitialise(); // don't await, as this is only used for search
+	(async () => {
+		await BrewUtil2.pInit();
+		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 
-	DataUtil.loadJSON(`${Renderer.get().baseUrl}data/changelog.json`)
-		.then(changelog => {
-			const $wrp = $(`#pagecontent`).empty();
-			UtilsChangelog.renderChangelog(changelog, $wrp);
-		});
+		DataUtil.loadJSON(`${Renderer.get().baseUrl}data/changelog.json`)
+			.then(changelog => {
+				const $wrp = $(`#pagecontent`).empty();
+				UtilsChangelog.renderChangelog(changelog, $wrp);
+			});
+	})();
 </script>
 </body>
 </html>

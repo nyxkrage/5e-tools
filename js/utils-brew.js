@@ -225,6 +225,13 @@ class BrewUtil2 {
 
 	static _storage = StorageUtil;
 
+	static async pInit () {
+		// region Ensure the local homebrew cache is hot, to allow us to fetch from it later in a sync manner.
+		//   This is necessary to replicate the "meta" caching done for non-local brew.
+		await this._pGetBrew_pGetLocalBrew();
+		// endregion
+	}
+
 	static async pGetCustomUrl () { return this._storage.pGet(this._STORAGE_KEY_CUSTOM_URL); }
 
 	static async pSetCustomUrl (val) {
@@ -235,7 +242,13 @@ class BrewUtil2 {
 
 	static isReloadRequired () { return this._isDirty; }
 
-	static _getBrewMetas () { return this._storage.syncGet(this._STORAGE_KEY_META); }
+	static _getBrewMetas () {
+		return [
+			...(this._storage.syncGet(this._STORAGE_KEY_META) || []),
+			...(this._cache_brewsLocal || []).map(brew => this._getBrewDocReduced(brew)),
+		];
+	}
+
 	static _setBrewMetas (val) {
 		this._cache_metas = null;
 		return this._storage.syncSet(this._STORAGE_KEY_META, val);
@@ -371,6 +384,8 @@ class BrewUtil2 {
 	}
 
 	static async _pGetBrew_pGetLocalBrew () {
+		if (this._cache_brewsLocal) return this._cache_brewsLocal;
+
 		if (IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
 
 		// auto-load from `homebrew/`, for custom versions of the site
@@ -480,13 +495,17 @@ class BrewUtil2 {
 
 	static _getBrewId (brew) {
 		if (brew.head.url) return brew.head.url;
-		if (brew.head._meta?.sources?.length) return brew.head._meta.sources.map(src => (src.json || "").toLowerCase()).sort(SortUtil.ascSortLower).join(" :: ");
+		if (brew.body._meta?.sources?.length) return brew.body._meta.sources.map(src => (src.json || "").toLowerCase()).sort(SortUtil.ascSortLower).join(" :: ");
 		return null;
 	}
 
 	static _getNextBrews (brews, brewsToAdd) {
-		const idsToAdd = new Set(brewsToAdd.map(brews => this._getBrewId(brews)));
-		brews = brews.filter(brew => !idsToAdd.has(this._getBrewId(brew)));
+		const idsToAdd = new Set(brewsToAdd.map(brews => this._getBrewId(brews)).filter(Boolean));
+		brews = brews.filter(brew => {
+			const id = this._getBrewId(brew);
+			if (id == null) return true;
+			return !idsToAdd.has(id);
+		});
 		return [...brews, ...brewsToAdd];
 	}
 
@@ -1353,7 +1372,6 @@ class ManageBrewUi {
 			$iptSearch,
 			$wrpList,
 			isUseJquery: true,
-			isFuzzy: true,
 			sortByInitial: rdState.list ? rdState.list.sortBy : undefined,
 			sortDirInitial: rdState.list ? rdState.list.sortDir : undefined,
 		});
@@ -2296,14 +2314,12 @@ class GetBrewUi {
 			brewInfo._brewName,
 			{
 				author: brewInfo._brewAuthor,
-				category: brewInfo._brewPropDisplayName,
+				// category: brewInfo._brewPropDisplayName, // Unwanted in search
 				internalSources: brewInfo._brewInternalSources, // Used for search
 			},
 			{
 				btnAdd,
 				cbSel,
-				added: timestampAdded,
-				modified: timestampAdded,
 				pFnDoDownload: ({isLazy = false} = {}) => this._pHandleClick_btnGetRemote({btn: btnAdd, url: brewInfo.download_url, isLazy}),
 			},
 		);

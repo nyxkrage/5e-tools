@@ -110,7 +110,7 @@ class NavBar {
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "plutonium.html", "Plutonium (Foundry Module) Features");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help");
+		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help", {isExternal: true});
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "changelog.html", "Changelog");
 		this._addElement_li(NavBar._CAT_UTILITIES, `https://wiki.tercept.net/en/5eTools/HelpPages/${NavBar._getCurrentPage().replace(/.html$/i, "")}`, "Help", {isExternal: true});
@@ -193,6 +193,7 @@ class NavBar {
 	 * - The user's Blacklist.
 	 */
 	static async _initAdventureBookElements () {
+		await BrewUtil2.pInit();
 		const [adventureBookIndex] = await Promise.all([
 			DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-nav-adventure-book-index.json`),
 			ExcludeUtil.pInitialise(),

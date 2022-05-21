@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.155.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.155.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -4858,7 +4858,7 @@ function StorageUtilBase () {
 
 	this.syncGetDump = function () {
 		const out = {};
-		this._syncGetPresentKeys().forEach(([key]) => out[key] = this.syncGet(key));
+		this._syncGetPresentKeys().forEach(key => out[key] = this.syncGet(key));
 		return out;
 	};
 
@@ -4915,7 +4915,7 @@ function StorageUtilBase () {
 	this.pGetDump = async function () {
 		const out = {};
 		await Promise.all(
-			(await this._pGetPresentKeys()).map(async ([key]) => out[key] = await this.pGet(key)),
+			(await this._pGetPresentKeys()).map(async (key) => out[key] = await this.pGet(key)),
 		);
 		return out;
 	};

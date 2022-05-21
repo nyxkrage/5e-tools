@@ -102,7 +102,10 @@
 <script type="text/javascript" src="lib/jquery.js"></script>
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 <script>
-	ExcludeUtil.pInitialise(); // don't await, as this is only used for search
+	(async () => {
+		await BrewUtil2.pInit();
+		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
+	})();
 </script>
 </body>
 </html>

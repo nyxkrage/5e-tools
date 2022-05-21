@@ -2029,5 +2029,10 @@
 		"date": "2022-05-21",
 		"title": "A Heady Brew",
 		"txt": "- Reworked Homebrew system and management UI\n  - Homebrews are now stored as distinct \"documents\" (roughly analogous to a file), which allows them to be added, removed, and modified without affecting other loaded homebrew. This greatly simplifies the internals of the homebrew system, and should better enable future development.\n  - Homebrew documents can now be updated (including an \"Update All\" button)\n  - Homebrew documents can now be exported, returning the original file\n  - Added multi-select and en-masse \"update/export/make editable/delete\" options to homebrew list\n  - Added multi-select, mass-adding, and filtering to the Get Homebrew dialogue\n  - Replaced the per-source \"View/Manage\" interface and the \"Metadata\" management interface with a single per-document interface which allows filtering by source and category\n  - Broken homebrew will now merely crash a page, rather than deleting itself!\n- Added Monsters of the Multiverse images to Races page and Bestiary \n- (Fixed typos/added tags)\n"
+	},
+	{
+		"ver": "1.155.1",
+		"date": "2022-05-21",
+		"txt": "- Fixed manually adding a homebrew from file/URL wiping any existing editable homebrew\n- Fixed the \"Save State to File\" option returning garbage\n- Fixed local homebrew metadata failing to load, resulting in mis-named/un-colored sources"
 	}
 ]
