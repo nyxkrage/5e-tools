@@ -2034,5 +2034,10 @@
 		"ver": "1.155.1",
 		"date": "2022-05-21",
 		"txt": "- Fixed manually adding a homebrew from file/URL wiping any existing editable homebrew\n- Fixed the \"Save State to File\" option returning garbage\n- Fixed local homebrew metadata failing to load, resulting in mis-named/un-colored sources"
+	},
+	{
+		"ver": "1.155.2",
+		"date": "2022-05-21",
+		"txt": "- Fixed homebrew entities failing to show up in Omnisearch"
 	}
 ]

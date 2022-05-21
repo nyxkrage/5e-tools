@@ -1298,10 +1298,7 @@ class SearchUiUtil {
 		Object.values(additionalData).forEach(arr => arr.forEach(d => handleDataItem(d)));
 		Object.values(alternateData).forEach(arr => arr.forEach(d => handleDataItem(d, true)));
 
-		// Add homebrew
-		Omnisearch.highestId = Math.max(ixMax, Omnisearch.highestId);
-
-		const brewIndex = await BrewUtil2.pGetSearchIndex();
+		const brewIndex = await BrewUtil2.pGetSearchIndex({id: availContent.ALL.documentStore.length});
 
 		brewIndex.forEach(d => {
 			if (SearchUiUtil._isNoHoverCat(d.c) || fromDeepIndex(d)) return;

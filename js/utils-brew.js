@@ -1087,8 +1087,8 @@ class BrewUtil2 {
 	/**
 	 * Get data in a format similar to the main search index
 	 */
-	static async pGetSearchIndex () {
-		const indexer = new Omnidexer(Omnisearch.highestId + 1);
+	static async pGetSearchIndex ({id = 0} = {}) {
+		const indexer = new Omnidexer(id);
 
 		const brew = await BrewUtil2.pGetBrewProcessed();
 
