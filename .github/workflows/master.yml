@@ -29,6 +29,9 @@ jobs:
 
          -  name: Build Service Worker
             run: |
+               node --version
+               npm --version
+               npm i
                npm run build:sw:prod
 
          -  name: Build SEO Pages
