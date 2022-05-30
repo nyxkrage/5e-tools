@@ -6037,6 +6037,11 @@
 					}
 				}
 			],
+			"expertise": [
+				{
+					"anyProficientSkill": 2
+				}
+			],
 			"entries": [
 				"You have honed your proficiency with particular skills, granting you the following benefits:",
 				{

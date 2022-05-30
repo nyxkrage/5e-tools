@@ -2418,6 +2418,7 @@ SRC_NRH_CoI = "NRH-CoI";
 SRC_NRH_TLT = "NRH-TLT";
 SRC_NRH_AWoL = "NRH-AWoL";
 SRC_NRH_AT = "NRH-AT";
+SRC_MGELFT = "MGELFT";
 
 SRC_AL_PREFIX = "AL";
 
@@ -2623,6 +2624,7 @@ Parser.SOURCE_JSON_TO_FULL[SRC_NRH_CoI] = `${NRH_NAME}: Circus of Illusions`;
 Parser.SOURCE_JSON_TO_FULL[SRC_NRH_TLT] = `${NRH_NAME}: The Lost Tomb`;
 Parser.SOURCE_JSON_TO_FULL[SRC_NRH_AWoL] = `${NRH_NAME}: A Web of Lies`;
 Parser.SOURCE_JSON_TO_FULL[SRC_NRH_AT] = `${NRH_NAME}: Adventure Together`;
+Parser.SOURCE_JSON_TO_FULL[SRC_MGELFT] = "Muk's Guide To Everything He Learned From Tasha";
 Parser.SOURCE_JSON_TO_FULL[SRC_ALCoS] = `${AL_PREFIX}Curse of Strahd`;
 Parser.SOURCE_JSON_TO_FULL[SRC_ALEE] = `${AL_PREFIX}Elemental Evil`;
 Parser.SOURCE_JSON_TO_FULL[SRC_ALRoD] = `${AL_PREFIX}Rage of Demons`;
@@ -2806,6 +2808,7 @@ Parser.SOURCE_JSON_TO_ABV[SRC_NRH_CoI] = "NRH-CoI";
 Parser.SOURCE_JSON_TO_ABV[SRC_NRH_TLT] = "NRH-TLT";
 Parser.SOURCE_JSON_TO_ABV[SRC_NRH_AWoL] = "NRH-AWoL";
 Parser.SOURCE_JSON_TO_ABV[SRC_NRH_AT] = "NRH-AT";
+Parser.SOURCE_JSON_TO_ABV[SRC_MGELFT] = "MGELFT";
 Parser.SOURCE_JSON_TO_ABV[SRC_ALCoS] = "ALCoS";
 Parser.SOURCE_JSON_TO_ABV[SRC_ALEE] = "ALEE";
 Parser.SOURCE_JSON_TO_ABV[SRC_ALRoD] = "ALRoD";
@@ -2988,6 +2991,7 @@ Parser.SOURCE_JSON_TO_DATE[SRC_NRH_CoI] = "2021-09-01";
 Parser.SOURCE_JSON_TO_DATE[SRC_NRH_TLT] = "2021-09-01";
 Parser.SOURCE_JSON_TO_DATE[SRC_NRH_AWoL] = "2021-09-01";
 Parser.SOURCE_JSON_TO_DATE[SRC_NRH_AT] = "2021-09-01";
+Parser.SOURCE_JSON_TO_DATE[SRC_MGELFT] = "2020-12-01";
 Parser.SOURCE_JSON_TO_DATE[SRC_ALCoS] = "2016-03-15";
 Parser.SOURCE_JSON_TO_DATE[SRC_ALEE] = "2015-04-07";
 Parser.SOURCE_JSON_TO_DATE[SRC_ALRoD] = "2015-09-15";
@@ -3172,6 +3176,7 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	SRC_NRH_TLT,
 	SRC_NRH_AWoL,
 	SRC_NRH_AT,
+	SRC_MGELFT,
 ]);
 // region Source categories
 
@@ -3203,6 +3208,8 @@ Parser.SOURCES_COMEDY = new Set([
 	SRC_RMR,
 	SRC_RMBRE,
 	SRC_HftT,
+	SRC_AWM,
+	SRC_MGELFT,
 ]);
 
 // Any opinionated set of sources that are "other settings"
@@ -3255,6 +3262,17 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;
+});
+[
+	{src: SRC_PSA, id: "PS-A"},
+	{src: SRC_PSI, id: "PS-I"},
+	{src: SRC_PSK, id: "PS-K"},
+	{src: SRC_PSZ, id: "PS-Z"},
+	{src: SRC_PSX, id: "PS-X"},
+	{src: SRC_PSD, id: "PS-D"},
+].forEach(({src, id}) => {
+	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = id;
+	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = id;
 });
 Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 [
@@ -3319,12 +3337,6 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	SRC_SCC_HfMT,
 	SRC_SCC_TMM,
 	SRC_SCC_ARiR,
-	SRC_PSA,
-	SRC_PSI,
-	SRC_PSK,
-	SRC_PSZ,
-	SRC_PSX,
-	SRC_PSD,
 	SRC_CRCotN,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;

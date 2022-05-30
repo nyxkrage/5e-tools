@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.155.2"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.156.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -448,12 +448,19 @@ SourceUtil = {
 		source = source.toLowerCase();
 
 		// TODO this could be made to work with homebrew
-		let docPage;
-		if (Parser.SOURCES_AVAILABLE_DOCS_BOOK[source]) docPage = UrlUtil.PG_BOOK;
-		else if (Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[source]) docPage = UrlUtil.PG_ADVENTURE;
+		let docPage, mappedSource;
+		if (Parser.SOURCES_AVAILABLE_DOCS_BOOK[source]) {
+			docPage = UrlUtil.PG_BOOK;
+			mappedSource = Parser.SOURCES_AVAILABLE_DOCS_BOOK[source];
+		} else if (Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[source]) {
+			docPage = UrlUtil.PG_ADVENTURE;
+			mappedSource = Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[source];
+		}
 		if (!docPage) return null;
 
-		return `${docPage}#${[source, page ? `page:${page}` : null].filter(Boolean).join(HASH_PART_SEP)}`;
+		mappedSource = mappedSource.toLowerCase();
+
+		return `${docPage}#${[mappedSource, page ? `page:${page}` : null].filter(Boolean).join(HASH_PART_SEP)}`;
 	},
 
 	getEntitySource (it) { return it.source || it.inherits?.source; },
@@ -743,9 +750,12 @@ JqueryUtil = {
 
 	_ACTIVE_TOAST: [],
 	/**
-	 * @param {Object|string} options
+	 * @param {{content: jQuery|string, type?: string, autoHideTime?: number} | string} options The options for the toast.
 	 * @param {(jQuery|string)} options.content Toast contents. Supports jQuery objects.
 	 * @param {string} options.type Toast type. Can be any Bootstrap alert type ("success", "info", "warning", or "danger").
+	 * @param {number} options.autoHideTime The time in ms before the toast will be automatically hidden.
+	 * Defaults to 5000 ms.
+	 * @param {boolean} options.isAutoHide
 	 */
 	doToast (options) {
 		if (typeof window === "undefined") return;
@@ -757,6 +767,9 @@ JqueryUtil = {
 			};
 		}
 		options.type = options.type || "info";
+
+		options.isAutoHide = options.isAutoHide ?? true;
+		options.autoHideTime = options.autoHideTime ?? 5000;
 
 		const doCleanup = ($toast) => {
 			$toast.removeClass("toast--animate");
@@ -782,7 +795,11 @@ JqueryUtil = {
 			});
 
 		setTimeout(() => $toast.addClass(`toast--animate`), 5);
-		setTimeout(() => doCleanup($toast), 5000);
+		if (options.isAutoHide) {
+			setTimeout(() => {
+				doCleanup($toast);
+			}, options.autoHideTime);
+		}
 
 		if (JqueryUtil._ACTIVE_TOAST.length) {
 			JqueryUtil._ACTIVE_TOAST.forEach($oldToast => {
@@ -4138,7 +4155,7 @@ DataUtil = {
 		async loadJSON () {
 			if (DataUtil.class._loadedJson) return DataUtil.class._loadedJson;
 
-			DataUtil.class._pLoadingJson = (async () => {
+			DataUtil.class._pLoadingJson = DataUtil.class._pLoadingJson || (async () => {
 				const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/class/index.json`);
 
 				const allData = (
@@ -4161,7 +4178,7 @@ DataUtil = {
 		async loadRawJSON () {
 			if (DataUtil.class._loadedRawJson) return DataUtil.class._loadedRawJson;
 
-			DataUtil.class._pLoadingRawJson = (async () => {
+			DataUtil.class._pLoadingRawJson = DataUtil.class._pLoadingRawJson || (async () => {
 				const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/class/index.json`);
 				const allData = await Promise.all(Object.values(index).map(it => DataUtil.loadJSON(`${Renderer.get().baseUrl}data/class/${it}`)));
 

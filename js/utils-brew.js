@@ -1569,11 +1569,12 @@ class ManageBrewUi {
 		// region These are mutually exclusive
 		const btnPull = this._pRender_getBtnPull({rdState, brew});
 		const btnEdit = this._pRender_getBtnEdit({rdState, brew});
+		const btnPullEditPlaceholder = (btnPull || btnEdit) ? null : this.constructor._pRender_getBtnPlaceholder();
 		// endregion
 
 		const btnDownload = e_({
 			tag: "button",
-			clazz: `btn btn-default btn-xs mobile__hidden`,
+			clazz: `btn btn-default btn-xs mobile__hidden w-24p`,
 			title: this.constructor._LBL_LIST_EXPORT,
 			children: [
 				e_({
@@ -1586,7 +1587,7 @@ class ManageBrewUi {
 
 		const btnViewJson = e_({
 			tag: "button",
-			clazz: `btn btn-default btn-xs mobile-ish__hidden`,
+			clazz: `btn btn-default btn-xs mobile-ish__hidden w-24p`,
 			title: `${this.constructor._LBL_LIST_VIEW_JSON}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
 			children: [
 				e_({
@@ -1600,7 +1601,7 @@ class ManageBrewUi {
 
 		const btnOpenMenu = e_({
 			tag: "button",
-			clazz: `btn btn-default btn-xs`,
+			clazz: `btn btn-default btn-xs w-24p`,
 			title: "Menu",
 			children: [
 				e_({
@@ -1613,7 +1614,7 @@ class ManageBrewUi {
 
 		const btnDelete = this.constructor._isBrewOperationPermitted_delete(brew) ? e_({
 			tag: "button",
-			clazz: `btn btn-danger btn-xs mobile__hidden`,
+			clazz: `btn btn-danger btn-xs mobile__hidden w-24p`,
 			title: this.constructor._LBL_LIST_DELETE,
 			children: [
 				e_({
@@ -1622,7 +1623,7 @@ class ManageBrewUi {
 				}),
 			],
 			click: () => this._pRender_pDoDelete({rdState, brews: [brew]}),
-		}) : null;
+		}) : this.constructor._pRender_getBtnPlaceholder();
 
 		// Weave in HRs
 		const elesSub = rowsSubMetas.map(it => it.eleRow);
@@ -1666,6 +1667,7 @@ class ManageBrewUi {
 					children: [
 						btnPull,
 						btnEdit,
+						btnPullEditPlaceholder,
 						btnDownload,
 						btnViewJson,
 						btnOpenMenu,
@@ -1697,12 +1699,21 @@ class ManageBrewUi {
 		return rowMeta;
 	}
 
+	static _pRender_getBtnPlaceholder () {
+		return e_({
+			tag: "button",
+			clazz: `btn btn-default btn-xs mobile__hidden w-24p`,
+			html: "&nbsp;",
+		})
+			.attr("disabled", true);
+	}
+
 	_pRender_getBtnPull ({rdState, brew}) {
 		if (!this.constructor._isBrewOperationPermitted_update(brew)) return null;
 
 		const btnPull = e_({
 			tag: "button",
-			clazz: `btn btn-default btn-xs mobile__hidden`,
+			clazz: `btn btn-default btn-xs mobile__hidden w-24p`,
 			title: this.constructor._LBL_LIST_UPDATE,
 			children: [
 				e_({
@@ -1721,7 +1732,7 @@ class ManageBrewUi {
 
 		return e_({
 			tag: "button",
-			clazz: `btn btn-default btn-xs mobile__hidden`,
+			clazz: `btn btn-default btn-xs mobile__hidden w-24p`,
 			title: this.constructor._LBL_LIST_MANAGE_CONTENTS,
 			children: [
 				e_({
