@@ -40,6 +40,8 @@ class PageUi {
 
 	get creatureBuilder () { return this._builders.creatureBuilder; }
 
+	get builders () { return this._builders; }
+
 	get activeBuilder () { return this._settings.activeBuilder || PageUi._DEFAULT_ACTIVE_BUILDER; }
 
 	get $wrpInput () { return this._$wrpInput; }
@@ -358,6 +360,8 @@ class Builder extends ProxyBase {
 	}
 
 	set ui (ui) { this._ui = ui; }
+
+	get prop () { return this._prop; }
 
 	getSaveableState () {
 		return {
@@ -1250,6 +1254,7 @@ class Makebrew {
 		// generic init
 		await BrewUtil2.pInit();
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
+		await this._pPrepareExistingEditableBrew();
 		await BrewUtil2.pGetBrewProcessed();
 		await SearchUiUtil.pDoGlobalInit();
 		// Do this asynchronously, to avoid blocking the load
@@ -1266,6 +1271,30 @@ class Makebrew {
 		window.addEventListener("hashchange", Makebrew.pHashChange.bind(Makebrew));
 
 		window.dispatchEvent(new Event("toolsLoaded"));
+	}
+
+	/**
+	 * The editor requires that each entity has a `uniqueId`, as e.g. hashing the entity does not produce a
+	 * stable ID (since there may be duplicates, or the name may change).
+	 */
+	static async _pPrepareExistingEditableBrew () {
+		const brew = MiscUtil.copy(await BrewUtil2.pGetOrCreateEditableBrewDoc());
+
+		let isAnyMod = false;
+		Object.values(ui.builders)
+			.forEach(builder => {
+				if (!brew.body[builder.prop]?.length) return;
+
+				brew.body[builder.prop].forEach(ent => {
+					if (ent.uniqueId) return;
+					ent.uniqueId = CryptUtil.uid();
+					isAnyMod = true;
+				});
+			});
+
+		if (!isAnyMod) return;
+
+		await BrewUtil2.pSetEditableBrewDoc(brew);
 	}
 
 	static async pHashChange () {

@@ -118,6 +118,7 @@ PropOrder._MONSTER = [
 	"reprintedAs",
 
 	"summonedBySpell",
+	"summonedBySpellLevel",
 	"summonedByClass",
 
 	"_isCopy",

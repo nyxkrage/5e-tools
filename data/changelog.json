@@ -2062,5 +2062,10 @@
 		"date": "2022-05-28",
 		"title": "Map Happy",
 		"txt": "- Added Dynamic Map Viewer support to 400+ more maps, across all adventures/books\n- Added page numbers to PotA, OotA, and BGDIA _[these were missed in the last page-numbering pass]_\n- Fixed homebrew `legendaryGroup`s failing to show in the Bestiary\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.158.1",
+		"date": "2022-05-30",
+		"txt": "- Fixed Dynamic Map Viewer \"Help\" window appearing on original tab instead of popped-out window when clicking from popped-out window\n- Fixed (hopefully) Dynamic Map Viewer CTRL+scroll on Firefox\n- Fixed images in hover windows spawned by clicking on Dynamic Map Viewer areas failing to load\n- (Brew) Fixed entities for a given source failing to show in Homebrew Builder sidebar\n- (Brew) Fixed case where dereferencing a spell could result in infinite loading\n- (Fixed typos/added tags)"
 	}
 ]

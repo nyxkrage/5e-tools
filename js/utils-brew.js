@@ -139,10 +139,13 @@ class BrewDoc {
 		// endregion
 
 		// region Creature (monster)
-		// 2022-03-22
 		if (json.monster) {
 			json.monster.forEach(mon => {
+				// 2022-03-22
 				if (typeof mon.size === "string") mon.size = [mon.size];
+
+				// 2022=05-29
+				if (mon.summonedBySpell && !mon.summonedBySpellLevel) mon.summonedBySpellLevel = 1;
 			});
 		}
 		// endregion
@@ -1772,7 +1775,9 @@ class ManageBrewUi {
 
 		if (!isChooseSources) {
 			const outFilename = filename || brewName || this.constructor._getBrewName(brew);
-			return DataUtil.userDownload(outFilename, brew.body, {isSkipAdditionalMetadata: true});
+			const json = brew.head.isEditable ? MiscUtil.copy(brew.body) : brew.body;
+			this.constructor._mutExportableEditableData({json: json});
+			return DataUtil.userDownload(outFilename, json, {isSkipAdditionalMetadata: true});
 		}
 
 		// region Get chosen sources
@@ -1810,7 +1815,21 @@ class ManageBrewUi {
 
 		const reducedFilename = filename || this.constructor._getBrewName({body: cpyBrew});
 
+		this.constructor._mutExportableEditableData({json: cpyBrew});
+
 		return DataUtil.userDownload(reducedFilename, cpyBrew, {isSkipAdditionalMetadata: true});
+	}
+
+	/**
+	 * The editable brew may contain `uniqueId` references from the builder, which should be stripped before export.
+	 */
+	static _mutExportableEditableData ({json}) {
+		Object.values(json)
+			.forEach(arr => {
+				if (arr == null || !(arr instanceof Array)) return;
+				arr.forEach(ent => delete ent.uniqueId);
+			});
+		return json;
 	}
 
 	static _getBrewJsonTitle ({brew, brewName}) {

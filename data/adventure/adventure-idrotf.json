@@ -87,7 +87,7 @@
 							"page": 6,
 							"id": "007",
 							"entries": [
-								"Auril's decision to live among mortals is explained in {@book appendix C|idrotf|21}. What the characters discover in the course of the adventure is that she's unhappy and craves isolation. Her nightly quest to hold the sun at bay stems from a need to preserve the beauty of things by freezing them. There is no way to reason with a being so bereft of compassion as Auril, but in her weakened state, she can be defeated or forced to reckon with her cruel indifference toward life.",
+								"Auril's decision to live among mortals is explained in  {@adventure appendix C|IDRotF|21}. What the characters discover in the course of the adventure is that she's unhappy and craves isolation. Her nightly quest to hold the sun at bay stems from a need to preserve the beauty of things by freezing them. There is no way to reason with a being so bereft of compassion as Auril, but in her weakened state, she can be defeated or forced to reckon with her cruel indifference toward life.",
 								"Anyone who hopes to reach the Netherese city buried in the ice must first visit Auril's island and obtain {@item The Codicil of White|IDRotF}, a book compiled by the Frostmaiden's most ardent followers. The tome contains a magical incantation written as a poem. This poem has the power to crack the Reghed Glacier, opening a path from the surface to the buried Netherese city of Ythryn."
 							]
 						},
@@ -42969,7 +42969,7 @@
 					"page": 197,
 					"id": "52a",
 					"entries": [
-						"Be sure to review the \"{@book Auril the Frostmaiden|idrotf|21}\" section in appendix C before running this chapter, since Auril is no ordinary villain.",
+						"Be sure to review the \" {@adventure Auril the Frostmaiden|IDRotF|21}\" section in appendix C before running this chapter, since Auril is no ordinary villain.",
 						"The characters can locate and obtain both {@item The Codicil of White|IDRotF} and {@creature Vellynne Harpell|IDRotF}'s stolen {@item professor orb|WDMM} without confronting the Frostmaiden. But if the characters want to end the Everlasting Rime right here, right now, they can do so by slaying Iskra, the Frostmaiden's roc (without which Auril can't cast her nightly spell that keeps the sun at bay), or by facing Auril in battle and defeating all three of the Frostmaiden's forms sequentially.",
 						{
 							"type": "entries",
@@ -46599,7 +46599,7 @@
 									"page": 204,
 									"id": "55e",
 									"entries": [
-										"Auril uses this space as her personal sanctuary. Depending on how this encounter plays out, you might need to reference one or more of Auril's stat blocks in {@book appendix C|idrotf|21}.",
+										"Auril uses this space as her personal sanctuary. Depending on how this encounter plays out, you might need to reference one or more of Auril's stat blocks in  {@adventure appendix C|IDRotF|21}.",
 										{
 											"type": "insetReadaloud",
 											"id": "55f",
@@ -47096,7 +47096,7 @@
 												"The passage leads to an anvil-shaped room with a door set into the far wall. Flanking the door are bas-reliefs of two male frost giants that have been defaced, their features chipped away. Newer carvings above the door depict the glowering heads of an owl, a wolf, and a goat."
 											]
 										},
-										"The heads carved above the door represent Auril's first form (see {@book appendix C|idrotf|21}). If anyone enters the room, add:",
+										"The heads carved above the door represent Auril's first form (see  {@adventure appendix C|IDRotF|21}). If anyone enters the room, add:",
 										{
 											"type": "insetReadaloud",
 											"id": "58c",
@@ -47174,7 +47174,7 @@
 												"This chamber has a domed ceiling engraved with a giant snowflake. Two caryatids depicting a towering woman stand on either side of a door in the south wall. In the middle of the room is a five-foot-tall, claw-shaped lectern with a white-covered book resting on it."
 											]
 										},
-										"The caryatids flanking the south doorway depict Auril in her second form (see {@book appendix C|idrotf|21}). Both are harmless carvings but noticeably cold to the touch.",
+										"The caryatids flanking the south doorway depict Auril in her second form (see  {@adventure appendix C|IDRotF|21}). Both are harmless carvings but noticeably cold to the touch.",
 										{
 											"type": "entries",
 											"name": "Treasure",
@@ -57144,7 +57144,7 @@
 					"id": "6df",
 					"entries": [
 						"The Frostmaiden likes to preserve beauty by freezing it. If the characters failed to defeat Auril in {@adventure chapter 5|IDRotF|15}, she takes umbrage with anyone who unseals and plunders the necropolis of Ythryn. After the party has spent one day inside the city, Auril pays Ythryn a visit.",
-						"Please review the information about the Frostmaiden in {@book appendix C|idrotf|21} before running encounters with her.",
+						"Please review the information about the Frostmaiden in  {@adventure appendix C|IDRotF|21} before running encounters with her.",
 						{
 							"type": "entries",
 							"name": "The Frostmaiden's Forces",

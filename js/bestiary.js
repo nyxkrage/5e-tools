@@ -427,7 +427,7 @@ class BestiaryPage extends ListPageMultiSource {
 			}
 		} else if (scaledSpellSummonHash) {
 			const scaleTo = Number(UrlUtil.unpackSubHash(scaledSpellSummonHash)[VeCt.HASH_SCALED_SPELL_SUMMON][0]);
-			if (mon._summonedBySpell_levelBase != null && scaleTo >= mon._summonedBySpell_levelBase && scaleTo !== this._lastRendered.mon._summonedBySpell_level) {
+			if (mon.summonedBySpellLevel != null && scaleTo >= mon.summonedBySpellLevel && scaleTo !== this._lastRendered.mon._summonedBySpell_level) {
 				ScaleSpellSummonedCreature.scale(mon, scaleTo)
 					.then(monScaled => this._renderStatblock(monScaled, {isScaledSpellSummon: true}));
 			}

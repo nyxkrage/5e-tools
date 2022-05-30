@@ -16,16 +16,20 @@ jobs:
          -  uses: actions/checkout@master
 
          # See: https://stackoverflow.com/a/58178121
-         -  name: Set env
+         -  name: Set Env
             run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
          -  name: Archive Release
             run: |
                zip -r 5etools-${{ env.RELEASE_VERSION }}.zip . -x '*.git*' '*node_modules*' '*.github*' '*img*'
 
-         -  name: Add Cache-Busting Strings
+         -  name: Set Deployed Flag
             run: |
-               bash ./.github/add-query-strings.sh ${{ env.RELEASE_VERSION }}
+               bash ./.github/set-deployed-flag.sh ${{ env.RELEASE_VERSION }}
+
+         -  name: Build Service Worker
+            run: |
+               npm run build:sw:prod
 
          -  name: Build SEO Pages
             env:
@@ -54,14 +58,14 @@ jobs:
                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
          # region See: https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
-         -  name: Build image
+         -  name: Build Image
             run: |
                docker build -t $IMAGE_NAME .
 
-         -  name: Log in to registry
+         -  name: Log In to Registry
             run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-         -  name: Push image
+         -  name: Push Image
             run: |
                IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 

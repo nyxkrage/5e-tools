@@ -26987,13 +26987,7 @@
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 16} to hit, reach 10 ft., one target."
-					]
-				},
-				{
-					"name": "Hit",
-					"entries": [
-						"21 ({@damage 3d8 + 8}) force damage plus 9 ({@damage 2d8}) poison damage."
+						"{@atk mw} {@hit 16} to hit, reach 10 ft., one target. {@h}21 ({@damage 3d8 + 8}) force damage plus 9 ({@damage 2d8}) poison damage."
 					]
 				},
 				{
