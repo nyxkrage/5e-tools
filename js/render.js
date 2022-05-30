@@ -7759,6 +7759,10 @@ Renderer.adventureBook = {
 
 		return out;
 	},
+
+	getCoverUrl (contents) {
+		return contents.coverUrl || `${Renderer.get().baseMediaUrls["img"] || Renderer.get().baseUrl}img/covers/blank.png`;
+	},
 };
 
 Renderer.charoption = {
