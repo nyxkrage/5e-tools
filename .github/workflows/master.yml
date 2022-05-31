@@ -27,12 +27,15 @@ jobs:
             run: |
                bash ./.github/set-deployed-flag.sh ${{ env.RELEASE_VERSION }}
 
+         # Remove entries from the `.gitignore` so the gh-pages action can correctly add+commit them to the pages branch
          -  name: Build Service Worker
             run: |
                node --version
                npm --version
                npm i
                npm run build:sw:prod
+               sed -i 's/sw.js//g' .gitignore
+               sed -i 's/sw-injector.js//g' .gitignore
 
          -  name: Build SEO Pages
             env:
