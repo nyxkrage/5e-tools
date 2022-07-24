@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.165.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.165.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -3489,7 +3489,6 @@ DataUtil = {
 			}
 
 			function doMod_addAllSaves (modInfo) {
-				// debugger
 				return doMod_addSaves({
 					mode: "addSaves",
 					saves: Object.keys(Parser.ATB_ABV_TO_FULL).mergeMap(it => ({[it]: modInfo.saves})),
@@ -3497,7 +3496,6 @@ DataUtil = {
 			}
 
 			function doMod_addAllSkills (modInfo) {
-				// debugger
 				return doMod_addSkills({
 					mode: "addSkills",
 					skills: Object.keys(Parser.SKILL_TO_ATB_ABV).mergeMap(it => ({[it]: modInfo.skills})),
@@ -3599,6 +3597,46 @@ DataUtil = {
 				}
 			}
 
+			function doMod_removeSpells (modInfo) {
+				if (!copyTo.spellcasting) throw new Error(`${msgPtFailed} Creature did not have a spellcasting property!`);
+
+				// TODO could accept a "position" or "name" parameter should spells need to be added to other spellcasting traits
+				const spellcasting = copyTo.spellcasting[0];
+
+				if (modInfo.spells) {
+					const spells = spellcasting.spells;
+
+					Object.keys(modInfo.spells).forEach(k => {
+						if (!spells[k]?.spells) return;
+
+						spells[k].spells = spells[k].spells.filter(it => !modInfo.spells[k].includes(it));
+					});
+				}
+
+				["constant", "will", "ritual"].forEach(prop => {
+					if (!modInfo[prop]) return;
+					spellcasting[prop].filter(it => !modInfo[prop].includes(it));
+				});
+
+				["rest", "daily", "weekly", "yearly"].forEach(prop => {
+					if (!modInfo[prop]) return;
+
+					for (let i = 1; i <= 9; ++i) {
+						const e = `${i}e`;
+
+						spellcasting[prop] = spellcasting[prop] || {};
+
+						if (modInfo[prop][i]) {
+							spellcasting[prop][i] = spellcasting[prop][i].filter(it => !modInfo[prop][i].includes(it));
+						}
+
+						if (modInfo[prop][e]) {
+							spellcasting[prop][e] = spellcasting[prop][e].filter(it => !modInfo[prop][e].includes(it));
+						}
+					}
+				});
+			}
+
 			function doMod_scalarAddHit (modInfo, prop) {
 				if (!copyTo[prop]) return;
 				copyTo[prop] = JSON.parse(JSON.stringify(copyTo[prop]).replace(/{@hit ([-+]?\d+)}/g, (m0, m1) => `{@hit ${Number(m1) + modInfo.scalar}}`));
@@ -3669,6 +3707,7 @@ DataUtil = {
 								case "addAllSkills": return doMod_addAllSkills(modInfo);
 								case "addSpells": return doMod_addSpells(modInfo);
 								case "replaceSpells": return doMod_replaceSpells(modInfo);
+								case "removeSpells": return doMod_removeSpells(modInfo);
 								case "scalarAddHit": return doMod_scalarAddHit(modInfo, prop);
 								case "scalarAddDc": return doMod_scalarAddDc(modInfo, prop);
 								case "maxSize": return doMod_maxSize(modInfo);
