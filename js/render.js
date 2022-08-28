@@ -2655,7 +2655,8 @@ Renderer.utils = {
 			if (!ExcludeUtil.isInitialised) return "";
 			if (page && !UrlUtil.URL_TO_HASH_BUILDER[page]) return "";
 			const hash = page ? UrlUtil.URL_TO_HASH_BUILDER[page](entity) : UrlUtil.autoEncodeHash(entity);
-			isExcluded = isExcluded || ExcludeUtil.isExcluded(hash, dataProp, entity.source);
+			isExcluded = isExcluded
+				|| dataProp === "item" ? Renderer.item.isExcluded(entity, {hash}) : ExcludeUtil.isExcluded(hash, dataProp, entity.source);
 		}
 		return isExcluded ? `<div class="text-center text-danger"><b><i>Warning: This content has been <a href="blacklist.html">blacklisted</a>.</i></b></div>` : "";
 	},
@@ -7740,10 +7741,10 @@ Renderer.item = {
 		if (item._variantName) {
 			if (ExcludeUtil.isExcluded(hash, "_specificVariant", item.source)) return true;
 
-			const baseHash = UrlUtil.autoEncodeHash({name: item._baseName, source: item._baseSource || item.source});
+			const baseHash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name: item._baseName, source: item._baseSource || item.source});
 			if (ExcludeUtil.isExcluded(baseHash, "baseitem", item._baseSource || item.source)) return true;
 
-			const variantHash = UrlUtil.autoEncodeHash({name: item._variantName, source: item.source});
+			const variantHash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name: item._variantName, source: item.source});
 			return ExcludeUtil.isExcluded(variantHash, "magicvariant", item.source);
 		}
 		if (item.type === "GV") return ExcludeUtil.isExcluded(hash, "magicvariant", item.source);
