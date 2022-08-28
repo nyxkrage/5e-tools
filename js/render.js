@@ -1469,18 +1469,18 @@ function Renderer () {
 			case "@m": textStack[0] += `<i>Miss:</i> `; break;
 			case "@color": {
 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
-				const scrubbedColor = BrewUtil2.getValidColor(color);
+				const ptColor = this._renderString_renderTag_getBrewColorPart(color);
 
-				textStack[0] += `<span class="rd__color" style="color: #${scrubbedColor}">`;
+				textStack[0] += `<span class="rd__color" style="color: ${ptColor}">`;
 				this._recursiveRender(toDisplay, textStack, meta);
 				textStack[0] += `</span>`;
 				break;
 			}
 			case "@highlight": {
 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
-				const scrubbedColor = color ? BrewUtil2.getValidColor(color) : null;
+				const ptColor = this._renderString_renderTag_getBrewColorPart(color);
 
-				textStack[0] += scrubbedColor ? `<span style="background-color: #${scrubbedColor}">` : `<span class="rd__highlight">`;
+				textStack[0] += scrubbedColor ? `<span style="background-color: ${ptColor}">` : `<span class="rd__highlight">`;
 				textStack[0] += toDisplay;
 				textStack[0] += `</span>`;
 				break;
@@ -1753,6 +1753,11 @@ function Renderer () {
 				break;
 			}
 		}
+	};
+
+	this._renderString_renderTag_getBrewColorPart = function (color) {
+		const scrubbedColor = BrewUtil2.getValidColor(color, {isExtended: true});
+		return scrubbedColor.startsWith("--") ? `var(${scrubbedColor})` : `#${scrubbedColor}`;
 	};
 
 	this._renderString_renderTag_hitYourSpellAttack = function (textStack, meta, options, tag, text) {
@@ -2881,18 +2886,18 @@ Renderer.utils = {
 		return fluff;
 	},
 
-	async pGetFluff ({entity, pFnPostProcess, fluffUrl, fluffBaseUrl, fluffProp} = {}) {
+	async pGetFluff ({entity, pFnPostProcess, fnGetFluffData, fluffUrl, fluffBaseUrl, fluffProp} = {}) {
 		let predefinedFluff = Renderer.utils.getPredefinedFluff(entity, fluffProp);
 		if (predefinedFluff) {
 			if (pFnPostProcess) predefinedFluff = await pFnPostProcess(predefinedFluff);
 			return predefinedFluff;
 		}
-		if (!fluffBaseUrl && !fluffUrl) return null;
+		if (!fnGetFluffData && !fluffBaseUrl && !fluffUrl) return null;
 
 		const fluffIndex = fluffBaseUrl ? await DataUtil.loadJSON(`${Renderer.get().baseUrl}${fluffBaseUrl}fluff-index.json`) : null;
 		if (fluffIndex && !fluffIndex[entity.source]) return null;
 
-		const data = fluffIndex && fluffIndex[entity.source]
+		const data = fnGetFluffData ? await fnGetFluffData() : fluffIndex && fluffIndex[entity.source]
 			? await DataUtil.loadJSON(`${Renderer.get().baseUrl}${fluffBaseUrl}${fluffIndex[entity.source]}`)
 			: await DataUtil.loadJSON(`${Renderer.get().baseUrl}${fluffUrl}`);
 		if (!data) return null;
@@ -3817,7 +3822,7 @@ Renderer.feat = {
 		const targetList = feat._fullEntries.find(e => e.type === "list");
 
 		// FTD+ style
-		if (targetList.items.every(it => it.type === "item")) {
+		if (targetList && targetList.items.every(it => it.type === "item")) {
 			abilsToDisplay.forEach(abilObj => targetList.items.unshift(Renderer.feat._mergeAbilityIncrease_getListItemItem(abilObj)));
 			return;
 		}
@@ -4798,7 +4803,7 @@ Renderer.condition = {
 	pGetFluff (it) {
 		return Renderer.utils.pGetFluff({
 			entity: it,
-			fluffUrl: `data/fluff-conditionsdiseases.json`,
+			fnGetFluffData: it.__prop === "condition" ? DataUtil.conditionFluff.loadJSON.bind(DataUtil.conditionFluff) : null,
 			fluffProp: it.__prop === "condition" ? "conditionFluff" : "diseaseFluff",
 		});
 	},
@@ -4864,7 +4869,7 @@ Renderer.background = {
 	pGetFluff (bg) {
 		return Renderer.utils.pGetFluff({
 			entity: bg,
-			fluffUrl: "data/fluff-backgrounds.json",
+			fnGetFluffData: DataUtil.backgroundFluff.loadJSON.bind(DataUtil.backgroundFluff),
 			fluffProp: "backgroundFluff",
 		});
 	},
@@ -5190,6 +5195,8 @@ Renderer.race = {
 		delete cpy.srd;
 		delete cpy.basicRules;
 		delete cpy._versions;
+		delete cpy.hasFluff;
+		delete cpy.hasFluffImages;
 
 		// merge names, abilities, entries, tags
 		if (s.name) {
@@ -5417,32 +5424,11 @@ Renderer.race = {
 		Renderer.race.bindListenersHeightAndWeight(race, ele);
 	},
 
-	async pPostProcessFluff (race, raceFluff) {
-		if (!(raceFluff.uncommon || raceFluff.monstrous)) return raceFluff;
-
-		raceFluff = MiscUtil.copy(raceFluff);
-
-		const data = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/fluff-races.json`);
-
-		if (raceFluff.uncommon) {
-			raceFluff.entries = raceFluff.entries || [];
-			raceFluff.entries.push(MiscUtil.copy(data.raceFluffMeta.uncommon));
-		}
-
-		if (raceFluff.monstrous) {
-			raceFluff.entries = raceFluff.entries || [];
-			raceFluff.entries.push(MiscUtil.copy(data.raceFluffMeta.monstrous));
-		}
-
-		return raceFluff;
-	},
-
 	pGetFluff (race) {
 		return Renderer.utils.pGetFluff({
 			entity: race,
+			fnGetFluffData: DataUtil.raceFluff.loadJSON.bind(DataUtil.raceFluff),
 			fluffProp: "raceFluff",
-			fluffUrl: `data/fluff-races.json`,
-			pFnPostProcess: Renderer.race.pPostProcessFluff.bind(null, race),
 		});
 	},
 };
@@ -7277,6 +7263,10 @@ Renderer.item = {
 		delete specificVariant.basicRules;
 		delete specificVariant.page;
 
+		// Remove fluff specifiers
+		delete specificVariant.hasFluff;
+		delete specificVariant.hasFluffImages;
+
 		specificVariant._category = "Specific Variant";
 		Object.entries(inherits)
 			.forEach(([inheritedProperty, val]) => {
@@ -7764,8 +7754,8 @@ Renderer.item = {
 	pGetFluff (item) {
 		return Renderer.utils.pGetFluff({
 			entity: item,
+			fnGetFluffData: DataUtil.itemFluff.loadJSON.bind(DataUtil.itemFluff),
 			fluffProp: "itemFluff",
-			fluffUrl: `data/fluff-items.json`,
 		});
 	},
 };
@@ -8282,8 +8272,8 @@ Renderer.vehicle = {
 	pGetFluff (veh) {
 		return Renderer.utils.pGetFluff({
 			entity: veh,
+			fnGetFluffData: DataUtil.vehicleFluff.loadJSON.bind(DataUtil.vehicleFluff),
 			fluffProp: "vehicleFluff",
-			fluffUrl: `data/fluff-vehicles.json`,
 		});
 	},
 
@@ -8336,8 +8326,8 @@ Renderer.language = {
 	pGetFluff (it) {
 		return Renderer.utils.pGetFluff({
 			entity: it,
+			fnGetFluffData: DataUtil.languageFluff.loadJSON.bind(DataUtil.languageFluff),
 			fluffProp: "languageFluff",
-			fluffUrl: `data/fluff-languages.json`,
 		});
 	},
 };
@@ -8438,7 +8428,7 @@ Renderer.charoption = {
 	pGetFluff (it) {
 		return Renderer.utils.pGetFluff({
 			entity: it,
-			fluffUrl: "data/fluff-charcreationoptions.json",
+			fnGetFluffData: DataUtil.charoptionFluff.loadJSON.bind(DataUtil.charoptionFluff),
 			fluffProp: "charoptionFluff",
 		});
 	},
@@ -8491,7 +8481,7 @@ Renderer.recipe = {
 	pGetFluff (it) {
 		return Renderer.utils.pGetFluff({
 			entity: it,
-			fluffUrl: "data/fluff-recipes.json",
+			fnGetFluffData: DataUtil.recipeFluff.loadJSON.bind(DataUtil.recipeFluff),
 			fluffProp: "recipeFluff",
 		});
 	},
