@@ -3137,7 +3137,7 @@ class CreatureBuilder extends Builder {
 
 		const tabs = this._renderTabs(
 			[
-				new TabUiUtil.TabMeta({name: "Statblock"}),
+				new TabUiUtil.TabMeta({name: "Stat Block"}),
 				new TabUiUtil.TabMeta({name: "Info"}),
 				new TabUiUtil.TabMeta({name: "Images"}),
 				new TabUiUtil.TabMeta({name: "Data"}),

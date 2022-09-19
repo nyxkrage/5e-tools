@@ -956,6 +956,7 @@ class FilterBox extends ProxyBase {
 
 	setFromValues (values) {
 		this._filters.forEach(it => it.setFromValues(values));
+		this.fireChangeEvent();
 	}
 
 	toDisplay (boxState, ...entryVals) {

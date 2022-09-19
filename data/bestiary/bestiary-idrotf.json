@@ -7249,7 +7249,8 @@
 				"MW"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Spellix Romwod",

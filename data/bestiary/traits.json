@@ -2190,7 +2190,7 @@
 				"_root": {
 					"legendaryGroup": {
 						"name": "Shadow Dragon",
-						"source": "FTB"
+						"source": "FTD"
 					}
 				},
 				"_mod": {
@@ -2433,14 +2433,6 @@
 							"mode": "scalarMultXp",
 							"scalar": 0.5,
 							"floor": true
-						},
-						{
-							"mode": "addAllSaves",
-							"saves": 0
-						},
-						{
-							"mode": "addAllSkills",
-							"skills": 0
 						}
 					],
 					"hp": {
@@ -2477,6 +2469,15 @@
 						{
 							"mode": "scalarAddDc",
 							"scalar": -2
+						},
+						{
+							"mode": "prependArr",
+							"items": {
+								"name": "Reduced Threat",
+								"entries": [
+									"A reduced-threat monster takes a \u22122 penalty on attack rolls (included in the stat block), ability checks (included in the stat block for skill proficiencies), saving throws (included in the stat block for saving throw proficiencies), and saving throw DCs (included in the stat block)."
+								]
+							}
 						}
 					],
 					"action": [

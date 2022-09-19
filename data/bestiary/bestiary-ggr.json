@@ -1518,7 +1518,8 @@
 				"stunned"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Cackler",
@@ -6189,7 +6190,8 @@
 				"incapacitated"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Master of Cruelties",

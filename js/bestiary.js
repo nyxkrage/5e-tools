@@ -66,7 +66,7 @@ class BestiarySublistManager extends SublistManager {
 		const hashBase = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
 		const isLocked = !!initialData?.isLocked; // If e.g. reloading from a save
 
-		const $hovStatblock = $(`<span class="col-1-4 help help--hover ecgen__visible">Statblock</span>`)
+		const $hovStatblock = $(`<span class="col-1-4 help help--hover ecgen__visible">Stat Block</span>`)
 			.mouseover(evt => this._encounterBuilder.doStatblockMouseOver({
 				evt,
 				ele: $hovStatblock[0],
@@ -570,7 +570,7 @@ class BestiaryPage extends ListPageMultiSource {
 		// reset tabs
 		const tabMetas = [
 			new Renderer.utils.TabButton({
-				label: "Statblock",
+				label: "Stat Block",
 				fnChange: () => {
 					$wrpBtnProf.append(this._$btnProf);
 					this._$dispToken.showVe();

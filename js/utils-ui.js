@@ -3116,7 +3116,7 @@ class SourceUiUtil {
 				${$iptName}
 			</div></div>
 			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">
-				<span class="mr-2 ui-source__name help" title="An abbreviated form of the title. This will be shown in lists on the site, and in the top-right corner of statblocks or data entries; for example, 'MM'">Abbreviation</span>
+				<span class="mr-2 ui-source__name help" title="An abbreviated form of the title. This will be shown in lists on the site, and in the top-right corner of stat blocks or data entries; for example, 'MM'">Abbreviation</span>
 				${$iptAbv}
 			</div></div>
 			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">

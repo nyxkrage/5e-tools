@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.167.7"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.167.9"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -4009,7 +4009,7 @@ DataUtil = {
 		}
 
 		static _getAdditionalVersionsData (mon) {
-			if (!mon.variant) return [];
+			if (!mon.variant?.length) return [];
 
 			return mon.variant
 				.filter(it => it._version)
@@ -4803,7 +4803,7 @@ DataUtil = {
 		static _PAGE = UrlUtil.PG_VARIANTRULES;
 		static _FILENAME = "variantrules.json";
 
-		async loadJSON () {
+		static async loadJSON () {
 			const rawData = await super.loadJSON();
 			const rawDataGenerated = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-variantrules.json`);
 
@@ -6321,6 +6321,30 @@ DatetimeUtil._SECS_PER_YEAR = 31536000;
 DatetimeUtil._SECS_PER_DAY = 86400;
 DatetimeUtil._SECS_PER_HOUR = 3600;
 DatetimeUtil._SECS_PER_MINUTE = 60;
+
+EditorUtil = {
+	getTheme () {
+		const {isNight} = styleSwitcher.getSummary();
+		return isNight ? "ace/theme/tomorrow_night" : "ace/theme/textmate";
+	},
+
+	initEditor (id, additionalOpts = null) {
+		additionalOpts = additionalOpts || {};
+
+		const editor = ace.edit(id);
+		editor.setOptions({
+			theme: EditorUtil.getTheme(),
+			wrap: true,
+			showPrintMargin: false,
+			tabSize: 2,
+			...additionalOpts,
+		});
+
+		styleSwitcher.addFnOnChange(() => editor.setOptions({theme: EditorUtil.getTheme()}));
+
+		return editor;
+	},
+};
 
 // MISC WEBPAGE ONLOADS ================================================================================================
 if (!IS_VTT && typeof window !== "undefined") {

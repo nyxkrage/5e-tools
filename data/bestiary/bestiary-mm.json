@@ -8415,7 +8415,8 @@
 				"RW"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Awakened Shrub",
@@ -8966,7 +8967,8 @@
 			"miscTags": [
 				"MW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Balor",
@@ -10233,7 +10235,8 @@
 			"miscTags": [
 				"MW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Bearded Devil",
@@ -19119,7 +19122,8 @@
 			"conditionInflict": [
 				"prone"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Displacer Beast",
@@ -22061,7 +22065,8 @@
 			"miscTags": [
 				"MW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Earth Elemental",
@@ -23463,7 +23468,7 @@
 			],
 			"legendaryGroup": {
 				"name": "Faerie Dragon",
-				"source": "FTB"
+				"source": "FTD"
 			},
 			"environment": [
 				"forest"
@@ -23623,7 +23628,7 @@
 			],
 			"legendaryGroup": {
 				"name": "Faerie Dragon",
-				"source": "FTB"
+				"source": "FTD"
 			},
 			"environment": [
 				"forest"
@@ -23780,7 +23785,7 @@
 			],
 			"legendaryGroup": {
 				"name": "Faerie Dragon",
-				"source": "FTB"
+				"source": "FTD"
 			},
 			"environment": [
 				"forest"
@@ -24254,7 +24259,7 @@
 			],
 			"legendaryGroup": {
 				"name": "Faerie Dragon",
-				"source": "FTB"
+				"source": "FTD"
 			},
 			"environment": [
 				"forest"
@@ -27206,7 +27211,8 @@
 			"miscTags": [
 				"MW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Giant Bat",
@@ -28237,7 +28243,8 @@
 				"grappled",
 				"restrained"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Giant Goat",
@@ -29032,6 +29039,7 @@
 				"MW"
 			],
 			"hasToken": true,
+			"hasFluffImages": true,
 			"_versions": [
 				{
 					"name": "Giant Rat (Diseased)",
@@ -46661,7 +46669,8 @@
 			"conditionInflict": [
 				"grappled"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ogre",
@@ -51538,7 +51547,8 @@
 			"miscTags": [
 				"MW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Red Dragon Wyrmling",
@@ -56643,7 +56653,8 @@
 			"miscTags": [
 				"MW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Spined Devil",
@@ -59108,7 +59119,8 @@
 				"MW"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Swarm of Ravens",
@@ -66061,7 +66073,8 @@
 			"conditionInflict": [
 				"prone"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Worg",

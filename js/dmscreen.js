@@ -34,6 +34,7 @@ const PANEL_TYP_COUNTER = 16;
 const PANEL_TYP_IMAGE = 20;
 const PANEL_TYP_ADVENTURE_DYNAMIC_MAP = 21;
 const PANEL_TYP_GENERIC_EMBED = 90;
+const PANEL_TYP_ERROR = 98;
 const PANEL_TYP_BLANK = 99;
 
 const TIME_TRACKER_MOON_SPRITE = new Image();
@@ -997,6 +998,10 @@ class Panel {
 					p.doPopulate_AdventureBookDynamicMap(saved.s, saved.r);
 					handleTabRenamed(p);
 					return p;
+				case PANEL_TYP_ERROR:
+					p.doPopulate_Error(saved.s, saved.r);
+					handleTabRenamed(p);
+					return p;
 				case PANEL_TYP_BLANK:
 					p.doPopulate_Blank(saved.r);
 					handleTabRenamed(p);
@@ -1098,6 +1103,11 @@ class Panel {
 			source,
 			hash,
 		).then(it => {
+			if (!it) {
+				setTimeout(() => { throw new Error(`Failed to load entity: "${hash}" (${source}) from ${page}`); });
+				return this.doPopulate_Error({message: `Failed to load <code>${hash}</code> from page <code>${page}</code>! (Content does not exist.)`}, title);
+			}
+
 			const fn = Renderer.hover.getFnRenderCompact(page);
 
 			const $contentInner = $(`<div class="panel-content-wrapper-inner"/>`);
@@ -1610,6 +1620,16 @@ class Panel {
 			state,
 			$(`<div class="panel-content-wrapper-inner"/>`).append(DmMapper.$getMapper(this.board, state)),
 			title || "Map Viewer",
+			true,
+		);
+	}
+
+	doPopulate_Error (state, title = "") {
+		this.set$ContentTab(
+			PANEL_TYP_ERROR,
+			state,
+			$(`<div class="panel-content-wrapper-inner"/>`).append(`<div class="w-100 h-100 ve-flex-vh-center text-danger"><div>${state.message}</div></div>`),
+			title,
 			true,
 		);
 	}
@@ -2479,6 +2499,8 @@ class Panel {
 							u: contentMeta.u,
 						},
 					};
+				case PANEL_TYP_ERROR:
+					return {r: toSaveTitle, s: contentMeta};
 				case PANEL_TYP_BLANK:
 					return {r: toSaveTitle};
 				default:

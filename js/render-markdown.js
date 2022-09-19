@@ -165,7 +165,7 @@ class RendererMarkdown {
 			labels = labels.concat([...new Array(entry.colStyles.length - labels.length)].map(() => ""));
 		}
 
-		for (const label of labels) textStack[0] += `| ${label} `;
+		for (const label of labels) textStack[0] += `| ${Renderer.stripTags(label)} `;
 		textStack[0] += "|\n";
 
 		if (entry.colStyles) {
@@ -1106,7 +1106,7 @@ class MarkdownConverter {
 			if (line.mdType === "creature") {
 				buf[i] = {
 					type: "inset",
-					name: "(To convert creature statblocks, please use the Text Converter utility)",
+					name: "(To convert creature stat blocks, please use the Text Converter utility)",
 					entries: line.lines.slice(1).map(it => it.slice(1).trim()),
 				};
 			}
@@ -1659,7 +1659,6 @@ class MarkdownConverter {
 	/**
 	 * @param tbl The table to process.
 	 * @param [opts] Options object. Defaults assume statblock parsing.
-	 * @param [opts.isSkipDiceTag] If dice tagging should be skipped. Default false.
 	 * @param [opts.tableWidth] The table width, in characters. 80 is good for statblocks, 150 is good for books.
 	 * @param [opts.diceColWidth] The width (in 12ths) of any leading rollable dice column. 1 for statblocks, 2 for books.
 	 */
@@ -1766,12 +1765,6 @@ class MarkdownConverter {
 		})();
 
 		if (isDiceCol0 && !tbl.colStyles.includes("text-center")) tbl.colStyles[0] += " text-center";
-
-		if (opts.isSkipDiceTag !== true) {
-			(function tagRowDice () {
-				tbl.rows = tbl.rows.map(r => r.map(c => c.replace(RollerUtil.DICE_REGEX, `{@dice $&}`)));
-			})();
-		}
 
 		(function doCheckNumericCols () {
 			if (isDiceCol0 && tbl.colStyles.length === 2) return; // don't apply this step for generic rollable tables

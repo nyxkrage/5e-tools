@@ -91,8 +91,15 @@ class SpellsPage extends ListPageMultiSource {
 					_classes: {
 						name: "Classes",
 						transform: (sp) => {
-							const fromClassList = Renderer.spell.getCombinedClasses(sp, "fromClassList");
-							return Parser.spMainClassesToFull(fromClassList);
+							const [current] = Parser.spClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassList"));
+							return Parser.spMainClassesToFull(current);
+						},
+					},
+					_classesVariant: {
+						name: "Optional/Variant Classes",
+						transform: (sp) => {
+							const [current] = Parser.spVariantClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassListVariant"));
+							return Parser.spMainClassesToFull(current);
 						},
 					},
 					entries: {name: "Text", transform: (it) => Renderer.get().render({type: "entries", entries: it}, 1), flex: 3},

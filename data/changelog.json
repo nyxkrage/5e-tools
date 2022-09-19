@@ -2197,5 +2197,10 @@
 		"ver": "1.167.7",
 		"date": "2022-09-08",
 		"txt": "- Added \"Summoned by Class\" and \"Summoned by Spell\" filters to Bestiary\n- Loot Generator now defaults to rolling generic variants instead of specific variants, although this can still be adjusted in item filters\n- Added Statgen support for choosing between ability score increase \"sets\" (i.e., \"+2 to one score /or/ +1 to two different scores\")\n- Fixed Statgen \"preview race\" failing to appear when selecting a race\n- Fixed Statgen checkboxes failing to retain their state between reloads\n- (Brew) Added schema support for `\"otherSources\"` in `condition`s, `disease`s, and `variantrule`s\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.167.8",
+		"date": "2022-09-19",
+		"txt": "- Added \"Optional/Variant Classes\" column to Spells Page Table View (and matching CSV export)\n- \"Name generator\" tables once again function as expected\n- Fixed crash when rendering highlighted text, which prevented the \"Dungeons & Dragons vs. Rick and Morty: Basic Rules\" book from rendering\n- Fixed crash when attempting to load missing data in the DM Screen\n- Fixed Optional, Variant, and Expanded Rules Page failing list all available content\n- (Brew) Added syntax highlighting to editor inputs (Text Converter input/output; Renderer Demo input), with day/night mode support and JSON/Markdown/HTML support where appropriate\n- (Brew) Fixed crash when CTRL-clicking Races Page \"magnet\" button to copy a `@filter` tag\n- (Brew) Fixed rendering of Markdown table headers\n- (Fixed typos/added tags)"
 	}
 ]

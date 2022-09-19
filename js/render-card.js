@@ -356,7 +356,7 @@ class RendererCard {
 
 	// region embedded entities
 	_renderStatblock (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline statblock rendering within cards is not supported.)\n`;
+		textStack[0] += `text | (Inline stat block rendering within cards is not supported.)\n`;
 	}
 	// endregion
 

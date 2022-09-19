@@ -500,7 +500,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							displayName: ent._displayNamePrefix ? `${ent._displayNamePrefix}${entity.name}` : null,
 							...ancestorMeta,
 							foundryData: {
-								requirements: `${entityRoot.className} ${entityRoot.level}${entityRoot.subclassShortName ? ` (${entityRoot.subclassShortName})` : ""}`,
+								requirements: entityRoot.className ? `${entityRoot.className} ${entityRoot.level}${entityRoot.subclassShortName ? ` (${entityRoot.subclassShortName})` : ""}` : null,
 							},
 						});
 

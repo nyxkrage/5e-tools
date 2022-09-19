@@ -1148,7 +1148,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Atropal",

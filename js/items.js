@@ -400,13 +400,11 @@ class ItemsPage extends ListPage {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Mundane");
 			this._pageFilter.filterBox.setFromValues({Miscellaneous: {Mundane: curValue === 1 ? 0 : 1}});
-			this.handleFilterChange();
 		});
 		$(`.side-label--magic`).click(() => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Magic");
 			this._pageFilter.filterBox.setFromValues({Miscellaneous: {Magic: curValue === 1 ? 0 : 1}});
-			this.handleFilterChange();
 		});
 		const $outVisibleResults = $(`.lst__wrp-search-visible`);
 		const $wrpListMundane = $(`.itm__wrp-list--mundane`);

@@ -1481,7 +1481,7 @@ function Renderer () {
 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
 				const ptColor = this._renderString_renderTag_getBrewColorPart(color);
 
-				textStack[0] += scrubbedColor ? `<span style="background-color: ${ptColor}">` : `<span class="rd__highlight">`;
+				textStack[0] += ptColor ? `<span style="background-color: ${ptColor}">` : `<span class="rd__highlight">`;
 				textStack[0] += toDisplay;
 				textStack[0] += `</span>`;
 				break;
@@ -1757,6 +1757,7 @@ function Renderer () {
 	};
 
 	this._renderString_renderTag_getBrewColorPart = function (color) {
+		if (!color) return "";
 		const scrubbedColor = BrewUtil2.getValidColor(color, {isExtended: true});
 		return scrubbedColor.startsWith("--") ? `var(${scrubbedColor})` : `#${scrubbedColor}`;
 	};

@@ -220,7 +220,7 @@ class BonusTag {
 
 		// FIXME(Future) false positives:
 		//   - Black Dragon Scale Mail
-		strEntries = strEntries.replace(/\+\s*(\d)([^.]+(?:bonus )?(?:to|on) [^.]*saving throws)/g, (...m) => {
+		strEntries = strEntries.replace(/\+\s*(\d)([^.\d]+(?:bonus )?(?:to|on) [^.]*saving throws)/g, (...m) => {
 			obj.bonusSavingThrow = `+${m[1]}`;
 			return opts.isVariant ? `{=bonusSavingThrow}${m[2]}` : m[0];
 		});

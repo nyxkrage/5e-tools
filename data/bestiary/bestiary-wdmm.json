@@ -5014,7 +5014,8 @@
 				"S"
 			],
 			"damageTagsLegendary": [],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Undead Bulette",

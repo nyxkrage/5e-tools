@@ -358,6 +358,7 @@ Renderer.dice = {
 		if ($parent.is("th") && $parent.attr("data-rd-isroller") === "true") {
 			if ($parent.attr("data-rd-namegeneratorrolls")) {
 				return Renderer.dice._pRollerClick_pRollGeneratorTable({
+					$parent,
 					$ele,
 					rolledBy,
 					modRollMeta,
@@ -472,7 +473,7 @@ Renderer.dice = {
 		return Renderer.dice._pRollerClick_getMsgBug(total);
 	},
 
-	async _pRollerClick_pRollGeneratorTable ({$ele, rolledBy, modRollMeta, rollOpts}) {
+	async _pRollerClick_pRollGeneratorTable ({$parent, $ele, rolledBy, modRollMeta, rollOpts}) {
 		Renderer.dice.addElement({rolledBy, html: `<i>${rolledBy.label}:</i>`, isMessage: true});
 
 		// Track a total of all rolls--this is a bit meaningless, but this method is expected to return a result value

@@ -30193,25 +30193,34 @@
 				{
 					"name": "Fallible Invisibility",
 					"entries": [
-						"The skulk is {@condition invisible}. This invisibility can be circumvented by three things:"
-					]
-				},
-				{
-					"name": "Charnel Candles",
-					"entries": [
-						"The skulk appears as a dim, translucent form in the light of a candle made of fat rendered from a corpse whose identity is unknown."
-					]
-				},
-				{
-					"name": "Children",
-					"entries": [
-						"Humanoid children, aged 10 and under, can see through this invisibility."
-					]
-				},
-				{
-					"name": "Reflective Surfaces",
-					"entries": [
-						"The skulk appears as a drab, smoothskinned biped if its reflection can be seen in a mirror or on another surface."
+						"The skulk is {@condition invisible}. This invisibility can be circumvented by three things:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Charnel Candles",
+									"entries": [
+										"The skulk appears as a dim, translucent form in the light of a candle made of fat rendered from a corpse whose identity is unknown."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Children",
+									"entries": [
+										"Humanoid children, aged 10 and under, can see through this invisibility."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Reflective Surfaces",
+									"entries": [
+										"The skulk appears as a drab, smoothskinned biped if its reflection can be seen in a mirror or on another surface."
+									]
+								}
+							]
+						}
 					]
 				},
 				{

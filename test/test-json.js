@@ -90,7 +90,7 @@ async function main () {
 	const PRELOAD_COMMON_SINGLE_FILE_SCHEMAS = [
 		"entry.json",
 		"util.json",
-		"shared-items.json",
+		"items-shared.json",
 	];
 
 	ajv.addSchema(ut.readJson("spells/spells.json", "utf8"), "spells/spells.json");

@@ -1400,7 +1400,8 @@
 				"THW"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Emberhorn Minotaur",
@@ -2494,7 +2495,8 @@
 			"senseTags": [
 				"D"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Hellenrae",
@@ -3694,7 +3696,8 @@
 				"S"
 			],
 			"damageTagsLegendary": [],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ogrémoch",
@@ -4780,7 +4783,8 @@
 				"MW"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Shoalar Quanderil",
@@ -6184,7 +6188,8 @@
 				"formula": "9d10 + 27"
 			},
 			"int": 11,
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		}
 	]
 }

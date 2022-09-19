@@ -3866,7 +3866,8 @@
 				"prone"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Catoblepas",
@@ -10610,7 +10611,8 @@
 				"invisible"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ki-rin",
@@ -12123,7 +12125,8 @@
 				"RW"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Maw Demon",

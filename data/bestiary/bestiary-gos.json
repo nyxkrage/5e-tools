@@ -2155,7 +2155,8 @@
 				"prone"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Lizardfolk Scaleshield",
@@ -2654,7 +2655,8 @@
 				"L",
 				"G"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Maw of Sekolah",
@@ -5101,7 +5103,8 @@
 				"C",
 				"DR"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Shell Shark",

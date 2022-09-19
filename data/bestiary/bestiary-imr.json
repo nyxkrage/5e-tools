@@ -1580,7 +1580,8 @@
 				"MW",
 				"RW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Thessalheart Construct",
