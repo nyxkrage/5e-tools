@@ -328,33 +328,11 @@ class RendererCard {
 	}
 	// endregion
 
-	// region data
-	_renderDataCreature (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline creature rendering within cards is not supported.)\n`;
-	}
-
-	_renderDataSpell (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline spell rendering within cards is not supported.)\n`;
-	}
-
-	_renderDataTrapHazard (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline trap/hazard rendering within cards is not supported.)\n`;
-	}
-
-	_renderDataObject (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline object rendering within cards is not supported.)\n`;
-	}
-
-	_renderDataItem (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline item rendering within cards is not supported.)\n`;
-	}
-
-	_renderDataLegendaryGroup (entry, textStack, meta, options) {
-		textStack[0] += `text | (Inline legendary group rendering within cards is not supported.)\n`;
-	}
-	// endregion
-
 	// region embedded entities
+	_renderStatblockInline (entry, textStack, meta, options) {
+		textStack[0] += `text | (Inline stat block rendering within cards is not supported.)\n`;
+	}
+
 	_renderStatblock (entry, textStack, meta, options) {
 		textStack[0] += `text | (Inline stat block rendering within cards is not supported.)\n`;
 	}

@@ -599,6 +599,7 @@ Renderer.dice = {
 		wrpTree.tree.successMax = entry.successMax;
 		wrpTree.tree.chanceSuccessText = entry.chanceSuccessText;
 		wrpTree.tree.chanceFailureText = entry.chanceFailureText;
+		wrpTree.tree.isColorSuccessFail = entry.isColorSuccessFail;
 
 		// arbitrarily return the result of the highest roll if we roll multiple times
 		const results = [];
@@ -704,8 +705,11 @@ Renderer.dice = {
 				? result >= opts.target ? ` <b>&geq;${opts.target}</b>` : ` <span class="ve-muted">&lt;${opts.target}</span>`
 				: "";
 
-			const totalPart = tree.successThresh
-				? `<span class="roll">${result > (tree.successMax || 100) - tree.successThresh ? (tree.chanceSuccessText || "Success!") : (tree.chanceFailureText || "Failure")}</span>`
+			const isThreshSuccess = tree.successThresh != null && result > (tree.successMax || 100) - tree.successThresh;
+			const isColorSuccess = tree.isColorSuccessFail || !tree.chanceSuccessText;
+			const isColorFail = tree.isColorSuccessFail || !tree.chanceFailureText;
+			const totalPart = tree.successThresh != null
+				? `<span class="roll ${isThreshSuccess && isColorSuccess ? "roll-max" : !isThreshSuccess && isColorFail ? "roll-min" : ""}">${isThreshSuccess ? (tree.chanceSuccessText || "Success!") : (tree.chanceFailureText || "Failure")}</span>`
 				: `<span class="roll ${allMax ? "roll-max" : allMin ? "roll-min" : ""}">${result}</span>`;
 
 			const title = `${rolledBy.name ? `${rolledBy.name} \u2014 ` : ""}${lbl ? `${lbl}: ` : ""}${tree}`;

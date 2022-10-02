@@ -3651,7 +3651,7 @@
 				{
 					"name": "Ambusher",
 					"entries": [
-						"In the first round of a combat, the doppelganger has advantage on attack rolls against any creature it has surprised."
+						"In the first round of a combat, the doppelganger has advantage on attack rolls against any creature it has {@quickref Surprise|PHB|3|0|surprised}."
 					]
 				},
 				{

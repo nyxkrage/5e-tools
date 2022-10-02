@@ -1,6 +1,6 @@
 "use strict";
 
-const LAST_KEY_WHITELIST = new Set([
+const LAST_KEY_ALLOWLIST = new Set([
 	"entries",
 	"entry",
 	"items",
@@ -29,7 +29,7 @@ class TagJsons {
 					{_: json[k]},
 					{
 						object: (obj, lastKey) => {
-							if (lastKey != null && !LAST_KEY_WHITELIST.has(lastKey)) return obj;
+							if (lastKey != null && !LAST_KEY_ALLOWLIST.has(lastKey)) return obj;
 
 							obj = TagCondition.tryRunBasic(obj);
 							obj = SkillTag.tryRun(obj);
@@ -56,16 +56,14 @@ class TagJsons {
 
 TagJsons.OPTIMISTIC = true;
 
-TagJsons._BLACKLIST_FILE_PREFIXES = null;
+TagJsons._BLOCKLIST_FILE_PREFIXES = null;
 
-TagJsons.WALKER_KEY_BLACKLIST = new Set([
-	...MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST,
-	"dataCreature",
-	"dataObject",
+TagJsons.WALKER_KEY_BLOCKLIST = new Set([
+	...MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
 ]);
 
 TagJsons.WALKER = MiscUtil.getWalker({
-	keyBlacklist: TagJsons.WALKER_KEY_BLACKLIST,
+	keyBlocklist: TagJsons.WALKER_KEY_BLOCKLIST,
 });
 
 class SpellTag {
@@ -223,8 +221,8 @@ ItemTag._ITEM_NAMES = {};
 ItemTag._ITEM_NAMES_REGEX_TOOLS = null;
 
 ItemTag._WALKER = MiscUtil.getWalker({
-	keyBlacklist: new Set([
-		...TagJsons.WALKER_KEY_BLACKLIST,
+	keyBlocklist: new Set([
+		...TagJsons.WALKER_KEY_BLOCKLIST,
 		"packContents", // Avoid tagging item pack contents
 		"items", // Avoid tagging item group item lists
 	]),

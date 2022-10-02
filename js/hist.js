@@ -154,7 +154,12 @@ Hist.util = class {
 
 	static getHashParts (location) {
 		if (location[0] === "#") location = location.slice(1);
-		return location.toLowerCase().replace(/%27/g, "'").split(HASH_PART_SEP);
+		// region Normalize encoding
+		return UrlUtil.decodeHash(location)
+			.map(it => UrlUtil.encodeForHash(it))
+			.join(HASH_LIST_SEP)
+		// endregion
+			.split(HASH_PART_SEP);
 	}
 
 	static getSubHash (location, key) {
@@ -180,6 +185,4 @@ Hist.util = class {
 	}
 };
 
-if (typeof module !== "undefined") {
-	module.exports = {Hist};
-}
+globalThis.Hist = Hist;

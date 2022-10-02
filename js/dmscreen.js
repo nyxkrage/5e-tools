@@ -1150,7 +1150,7 @@ class Panel {
 					const originalCr = Parser.crToNumber(mon.cr) === targetCr;
 
 					const doRender = (toRender) => {
-						$contentStats.empty().append(Renderer.monster.getCompactRenderedString(toRender, null, {isShowScalers: true, isScaledCr: !originalCr}));
+						$contentStats.empty().append(Renderer.monster.getCompactRenderedString(toRender, {isShowScalers: true, isScaledCr: !originalCr}));
 
 						const nxtMeta = {
 							...meta,
@@ -1178,7 +1178,7 @@ class Panel {
 		});
 
 		$contentStats.off("click", ".mon__btn-reset-cr").on("click", ".mon__btn-reset-cr", function () {
-			$contentStats.empty().append(Renderer.monster.getCompactRenderedString(mon, null, {isShowScalers: true, isScaledCr: false}));
+			$contentStats.empty().append(Renderer.monster.getCompactRenderedString(mon, {isShowScalers: true, isScaledCr: false}));
 			self.set$Tab(
 				self.tabIndex,
 				PANEL_TYP_STATS,
@@ -1207,7 +1207,7 @@ class Panel {
 
 					ScaleSpellSummonedCreature.scale(mon, spellLevel)
 						.then(toRender => {
-							$contentStats.empty().append(Renderer.monster.getCompactRenderedString(toRender, null, {isShowScalers: true, isScaledSpellSummon: true}));
+							$contentStats.empty().append(Renderer.monster.getCompactRenderedString(toRender, {isShowScalers: true, isScaledSpellSummon: true}));
 
 							self._stats_doUpdateSummonScaleDropdowns(toRender, $contentStats);
 
@@ -1221,7 +1221,7 @@ class Panel {
 							);
 						});
 				} else {
-					$contentStats.empty().append(Renderer.monster.getCompactRenderedString(mon, null, {isShowScalers: true, isScaledCr: false, isScaledSpellSummon: false}));
+					$contentStats.empty().append(Renderer.monster.getCompactRenderedString(mon, {isShowScalers: true, isScaledCr: false, isScaledSpellSummon: false}));
 
 					self._stats_doUpdateSummonScaleDropdowns(mon, $contentStats);
 
@@ -1250,7 +1250,7 @@ class Panel {
 
 					ScaleClassSummonedCreature.scale(mon, classLevel)
 						.then(toRender => {
-							$contentStats.empty().append(Renderer.monster.getCompactRenderedString(toRender, null, {isShowScalers: true, isScaledClassSummon: true}));
+							$contentStats.empty().append(Renderer.monster.getCompactRenderedString(toRender, {isShowScalers: true, isScaledClassSummon: true}));
 
 							self._stats_doUpdateSummonScaleDropdowns(toRender, $contentStats);
 
@@ -1264,7 +1264,7 @@ class Panel {
 							);
 						});
 				} else {
-					$contentStats.empty().append(Renderer.monster.getCompactRenderedString(mon, null, {isShowScalers: true, isScaledCr: false, isScaledClassSummon: false}));
+					$contentStats.empty().append(Renderer.monster.getCompactRenderedString(mon, {isShowScalers: true, isScaledCr: false, isScaledClassSummon: false}));
 
 					self._stats_doUpdateSummonScaleDropdowns(mon, $contentStats);
 
@@ -1304,7 +1304,7 @@ class Panel {
 			ScaleCreature.scale(it, targetCr).then(initialRender => {
 				const $contentInner = $(`<div class="panel-content-wrapper-inner"/>`);
 				const $contentStats = $(`<table class="w-100 stats"/>`).appendTo($contentInner);
-				$contentStats.append(Renderer.monster.getCompactRenderedString(initialRender, null, {isShowScalers: true, isScaledCr: true}));
+				$contentStats.append(Renderer.monster.getCompactRenderedString(initialRender, {isShowScalers: true, isScaledCr: true}));
 
 				this._stats_bindCrScaleClickHandler(it, meta, $contentInner, $contentStats);
 
@@ -1335,7 +1335,7 @@ class Panel {
 			ScaleSpellSummonedCreature.scale(it, summonSpellLevel).then(scaledMon => {
 				const $contentInner = $(`<div class="panel-content-wrapper-inner"/>`);
 				const $contentStats = $(`<table class="w-100 stats"/>`).appendTo($contentInner);
-				$contentStats.append(Renderer.monster.getCompactRenderedString(scaledMon, null, {isShowScalers: true, isScaledSpellSummon: true}));
+				$contentStats.append(Renderer.monster.getCompactRenderedString(scaledMon, {isShowScalers: true, isScaledSpellSummon: true}));
 
 				this._stats_doUpdateSummonScaleDropdowns(scaledMon, $contentStats);
 
@@ -1368,7 +1368,7 @@ class Panel {
 			ScaleClassSummonedCreature.scale(it, summonClassLevel).then(scaledMon => {
 				const $contentInner = $(`<div class="panel-content-wrapper-inner"/>`);
 				const $contentStats = $(`<table class="w-100 stats"/>`).appendTo($contentInner);
-				$contentStats.append(Renderer.monster.getCompactRenderedString(scaledMon, null, {isShowScalers: true, isScaledClassSummon: true}));
+				$contentStats.append(Renderer.monster.getCompactRenderedString(scaledMon, {isShowScalers: true, isScaledClassSummon: true}));
 
 				this._stats_doUpdateSummonScaleDropdowns(scaledMon, $contentStats);
 

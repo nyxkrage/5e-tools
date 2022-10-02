@@ -3390,7 +3390,7 @@
 				{
 					"name": "Uncanny Senses",
 					"entries": [
-						"The canoloth can't be surprised while it isn't {@condition incapacitated}."
+						"The canoloth can't be {@quickref Surprise|PHB|3|0|surprised} while it isn't {@condition incapacitated}."
 					]
 				}
 			],

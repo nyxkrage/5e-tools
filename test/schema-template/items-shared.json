@@ -86,6 +86,10 @@
 			"enum": ["round", "restShort", "restLong", "dawn", "dusk", "midnight", "special"]
 		},
 
+		"itemRechargeAmount": {
+			"type": ["integer", "string"]
+		},
+
 		"itemType": {
 			"type": "string",
 			"$comment": "Dumped from `Object(Parser.ITEM_TYPE_JSON_TO_ABV)`",
