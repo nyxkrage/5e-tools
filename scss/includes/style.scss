@@ -2952,24 +2952,40 @@ th.border {
 		color: white;
 		background-color: transparentize($rgb-alert-info-blue--night, 0.5);
 		border-color: $rgb-alert-info-border-blue--night;
+
+		.alert-link {
+			color: $rgb-alert-info-border-blue--night;
+		}
 	}
 
-	.alert-success {
+	.alert-danger {
 		color: white;
 		background-color: transparentize($rgb-alert-danger-red--night, 0.5);
 		border-color: $rgb-alert-danger-border-red--night;
+
+		.alert-link {
+			color: $rgb-alert-danger-border-red--night;
+		}
 	}
 
 	.alert-warning {
 		color: white;
 		background-color: transparentize($rgb-alert-warning-orange--night, 0.5);
 		border-color: $rgb-alert-warning-border-orange--night;
+
+		.alert-link {
+			color: $rgb-alert-warning-border-orange--night;
+		}
 	}
 
-	.alert-danger {
+	.alert-success {
 		color: white;
 		background-color: transparentize($rgb-alert-success-green--night, 0.5);
 		border-color: $rgb-alert-success-border-green--night;
+
+		.alert-link {
+			color: $rgb-alert-success-border-green--night;
+		}
 	}
 
 	.don__bar {
