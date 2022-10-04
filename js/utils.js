@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.167.11"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.168.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -2117,6 +2117,8 @@ UrlUtil = {
 
 	categoryToPage (category) { return UrlUtil.CAT_TO_PAGE[category]; },
 	categoryToHoverPage (category) { return UrlUtil.CAT_TO_HOVER_PAGE[category] || UrlUtil.categoryToPage(category); },
+
+	pageToDisplayPage (page) { return UrlUtil.PG_TO_NAME[page] || page; },
 
 	getFilename (url) { return url.slice(url.lastIndexOf("/") + 1); },
 
@@ -4809,7 +4811,7 @@ DataUtil = {
 			return combined;
 		}
 
-		static _getConvertedEncounterTableName (group, tableRaw) { return `${group.name} Encounters (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})`; }
+		static _getConvertedEncounterTableName (group, tableRaw) { return `${group.name} Encounters${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`; }
 		static _getConvertedNameTableName (group, tableRaw) { return `${group.name} Names - ${tableRaw.option}`; }
 
 		static _getConvertedEncounterOrNamesTable ({group, tableRaw, fnGetNameCaption, colLabel1}) {
@@ -4823,15 +4825,18 @@ DataUtil = {
 				colLabels: [
 					`d${tableRaw.diceType}`,
 					colLabel1,
-				],
+					tableRaw.rollAttitude ? `Attitude` : null,
+				].filter(Boolean),
 				colStyles: [
 					"col-2 text-center",
-					"col-10",
-				],
+					tableRaw.rollAttitude ? "col-8" : "col-10",
+					tableRaw.rollAttitude ? `col-2 text-center` : null,
+				].filter(Boolean),
 				rows: tableRaw.table.map(it => [
 					`${it.min}${it.max && it.max !== it.min ? `-${it.max}` : ""}`,
 					it.result,
-				]),
+					tableRaw.rollAttitude ? it.resultAttitude || "\u2014" : null,
+				].filter(Boolean)),
 			};
 		}
 	},

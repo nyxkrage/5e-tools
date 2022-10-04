@@ -2217,5 +2217,11 @@
 		"ver": "1.167.11",
 		"date": "2022-10-02",
 		"txt": "- Fixed Classes Page resetting state when attempting to display a subclass"
+	},
+	{
+		"ver": "1.168.0",
+		"date": "2022-10-04",
+		"title": "Over-Started",
+		"txt": "- Added Dragons of Stormwreck Isle\n- (Fixed typos/added tags)"
 	}
 ]

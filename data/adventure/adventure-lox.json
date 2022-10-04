@@ -532,7 +532,8 @@
 													"hrefThumbnail": {
 														"type": "internal",
 														"path": "adventure/LoX/thumbnail/008-map-2.webp"
-													}
+													},
+													"id": "16f"
 												},
 												{
 													"type": "image",
@@ -543,7 +544,10 @@
 													"imageType": "map",
 													"title": "Unlabeled Version",
 													"width": 1700,
-													"height": 2200
+													"height": 2200,
+													"mapParent": {
+														"id": "16f"
+													}
 												}
 											]
 										},
@@ -1390,7 +1394,8 @@
 													"hrefThumbnail": {
 														"type": "internal",
 														"path": "adventure/LoX/thumbnail/012-map-2.webp"
-													}
+													},
+													"id": "170"
 												},
 												{
 													"type": "image",
@@ -1401,7 +1406,10 @@
 													"imageType": "map",
 													"title": "Unlabeled Version",
 													"width": 1700,
-													"height": 2200
+													"height": 2200,
+													"mapParent": {
+														"id": "170"
+													}
 												}
 											]
 										},
@@ -1812,7 +1820,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/LoX/thumbnail/017-map-2.webp"
-											}
+											},
+											"id": "171"
 										},
 										{
 											"type": "image",
@@ -1823,7 +1832,10 @@
 											"imageType": "map",
 											"title": "Unlabeled Version",
 											"width": 1700,
-											"height": 2200
+											"height": 2200,
+											"mapParent": {
+												"id": "171"
+											}
 										}
 									]
 								},
@@ -2806,7 +2818,8 @@
 													"hrefThumbnail": {
 														"type": "internal",
 														"path": "adventure/LoX/thumbnail/027-map-2.webp"
-													}
+													},
+													"id": "172"
 												},
 												{
 													"type": "image",
@@ -2817,7 +2830,10 @@
 													"imageType": "map",
 													"title": "Unlabeled Version",
 													"width": 1700,
-													"height": 2200
+													"height": 2200,
+													"mapParent": {
+														"id": "172"
+													}
 												}
 											]
 										}
@@ -3487,7 +3503,8 @@
 													"hrefThumbnail": {
 														"type": "internal",
 														"path": "adventure/LoX/thumbnail/031-map-11.webp"
-													}
+													},
+													"id": "173"
 												},
 												{
 													"type": "image",
@@ -3498,7 +3515,10 @@
 													"imageType": "mapPlayer",
 													"title": "DoomspaceView Player Version",
 													"width": 2550,
-													"height": 1650
+													"height": 1650,
+													"mapParent": {
+														"id": "173"
+													}
 												}
 											]
 										}
@@ -5179,7 +5199,8 @@
 													"hrefThumbnail": {
 														"type": "internal",
 														"path": "adventure/LoX/thumbnail/040-map-12.webp"
-													}
+													},
+													"id": "174"
 												},
 												{
 													"type": "image",
@@ -5190,7 +5211,10 @@
 													"imageType": "mapPlayer",
 													"title": "XaryxispaceView Player Version",
 													"width": 1200,
-													"height": 1500
+													"height": 1500,
+													"mapParent": {
+														"id": "174"
+													}
 												}
 											]
 										}

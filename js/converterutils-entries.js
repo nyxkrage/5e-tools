@@ -67,16 +67,25 @@ TagJsons.WALKER = MiscUtil.getWalker({
 });
 
 class SpellTag {
+	static _NON_STANDARD = new Set([
+		// Skip "Divination" to avoid tagging occurrences of the school
+		"Divination",
+		// Skip spells we specifically handle
+		"Antimagic Field",
+		"Dispel Magic",
+	].map(it => it.toLowerCase()));
+
 	static init (spells) {
 		spells
-			// Skip "Divination" to avoid tagging occurrences of the school
-			.filter(it => !(it.name === "Divination" && it.source === SRC_PHB))
 			.forEach(sp => SpellTag._SPELL_NAMES[sp.name.toLowerCase()] = {name: sp.name, source: sp.source});
 
-		SpellTag._SPELL_NAME_REGEX = new RegExp(`\\b(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
-		SpellTag._SPELL_NAME_REGEX_SPELL = new RegExp(`\\b(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")}) (spell|cantrip)`, "gi");
-		SpellTag._SPELL_NAME_REGEX_AND = new RegExp(`\\b(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")}) (and {@spell)`, "gi");
-		SpellTag._SPELL_NAME_REGEX_CAST = new RegExp(`(?<prefix>casts? (?:the )?)(?<spell>${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
+		const spellnamesFiltered = Object.keys(SpellTag._SPELL_NAMES)
+			.filter(n => !SpellTag._NON_STANDARD.has(n));
+
+		SpellTag._SPELL_NAME_REGEX = new RegExp(`\\b(${spellnamesFiltered.map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
+		SpellTag._SPELL_NAME_REGEX_SPELL = new RegExp(`\\b(${spellnamesFiltered.map(it => it.escapeRegexp()).join("|")}) (spell|cantrip)`, "gi");
+		SpellTag._SPELL_NAME_REGEX_AND = new RegExp(`\\b(${spellnamesFiltered.map(it => it.escapeRegexp()).join("|")}) (and {@spell)`, "gi");
+		SpellTag._SPELL_NAME_REGEX_CAST = new RegExp(`(?<prefix>casts? (?:the )?)(?<spell>${spellnamesFiltered.map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
 	}
 
 	static tryRun (it) {

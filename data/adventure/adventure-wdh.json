@@ -32710,7 +32710,7 @@
 						},
 						{
 							"type": "image",
-							"imageType": "map",
+							"imageType": "mapPlayer",
 							"href": {
 								"type": "internal",
 								"path": "adventure/WDH/poster-map-player.jpg"

@@ -505,7 +505,7 @@ class FilterCheck {
 				return m0;
 			}
 
-			if (!UrlUtil.PG_TO_NAME[`${spl[1]}.html`]) {
+			if (!UrlUtil.pageToDisplayPage(`${spl[1]}.html`)) {
 				MSG.FilterCheck += `Unknown page in filter tag "${str}"\n`;
 			}
 

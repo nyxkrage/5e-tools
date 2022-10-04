@@ -1709,6 +1709,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -11651,7 +11654,7 @@
 				"perception": "+3",
 				"stealth": "+5"
 			},
-			"passive": 10,
+			"passive": 13,
 			"languages": [
 				"Blink Dog",
 				"understands Sylvan but can't speak it"
@@ -11817,6 +11820,9 @@
 			"otherSources": [
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -11974,6 +11980,12 @@
 				"type": "internal",
 				"path": "bestiary/blue-dragon-wyrmling.mp3"
 			},
+			"altArt": [
+				{
+					"name": "Blue Dragon Wyrmling",
+					"source": "DoSI"
+				}
+			],
 			"senseTags": [
 				"B",
 				"D"
@@ -12923,6 +12935,11 @@
 			"source": "MM",
 			"page": 109,
 			"srd": true,
+			"otherSources": [
+				{
+					"source": "DoSI"
+				}
+			],
 			"size": [
 				"M"
 			],
@@ -13104,6 +13121,12 @@
 				"type": "internal",
 				"path": "bestiary/bronze-dragon-wyrmling.mp3"
 			},
+			"altArt": [
+				{
+					"name": "Bronze Dragon Wyrmling",
+					"source": "DoSI"
+				}
+			],
 			"traitTags": [
 				"Amphibious"
 			],
@@ -24788,6 +24811,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -26945,6 +26971,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -34866,6 +34895,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -38770,6 +38802,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -44762,6 +44797,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -45075,6 +45113,9 @@
 			"otherSources": [
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -48025,6 +48066,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -53608,6 +53652,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -57492,6 +57539,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -63184,6 +63234,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -65716,6 +65769,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [
@@ -70662,6 +70718,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "DoSI"
 				}
 			],
 			"size": [

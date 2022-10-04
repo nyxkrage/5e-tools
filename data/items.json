@@ -278,6 +278,9 @@
 			"weight": 3,
 			"bonusSpellAttack": "+2",
 			"bonusSpellSaveDc": "+2",
+			"focus": [
+				"Wizard"
+			],
 			"entries": [
 				"While you are holding this leather-bound book, you can use it as a spellcasting focus for your wizard spells, and you gain a +2 bonus to spell attack rolls and to the saving throw DCs of your wizard spells.",
 				"You can use this book as a spellbook. In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1."
@@ -297,6 +300,9 @@
 			"wondrous": true,
 			"bonusSpellAttack": "+2",
 			"bonusSpellSaveDc": "+2",
+			"focus": [
+				"Sorcerer"
+			],
 			"entries": [
 				"To attune to this vial, you must place a few drops of your blood into it. The vial can't be opened while your attunement to it lasts. If your attunement to the vial ends, the contained blood turns to ash. You can use the vial as a spellcasting focus for your spells while wearing or holding it, and you gain a +2 bonus to spell attack rolls and to the saving throw DCs of your sorcerer spells.",
 				"In addition, when you roll any Hit Dice to recover hit points while you are carrying the vial, you can regain 5 sorcery points. This property of the vial can't be used again until the next dawn."
@@ -484,6 +490,9 @@
 			"weight": 3,
 			"bonusSpellAttack": "+3",
 			"bonusSpellSaveDc": "+3",
+			"focus": [
+				"Wizard"
+			],
 			"entries": [
 				"While you are holding this leather-bound book, you can use it as a spellcasting focus for your wizard spells, and you gain a +3 bonus to spell attack rolls and to the saving throw DCs of your wizard spells.",
 				"You can use this book as a spellbook. In addition, when you use your Arcane Recovery feature, you can increase the number of spell slot levels you regain by 1."
@@ -503,6 +512,9 @@
 			"wondrous": true,
 			"bonusSpellAttack": "+3",
 			"bonusSpellSaveDc": "+3",
+			"focus": [
+				"Sorcerer"
+			],
 			"entries": [
 				"To attune to this vial, you must place a few drops of your blood into it. The vial can't be opened while your attunement to it lasts. If your attunement to the vial ends, the contained blood turns to ash. You can use the vial as a spellcasting focus for your spells while wearing or holding it, and you gain a +3 bonus to spell attack rolls and to the saving throw DCs of your sorcerer spells.",
 				"In addition, when you roll any Hit Dice to recover hit points while you are carrying the vial, you can regain 5 sorcery points. This property of the vial can't be used again until the next dawn."
@@ -33450,7 +33462,7 @@
 			"bonusSavingThrow": "-2",
 			"bonusAbilityCheck": "-2",
 			"entries": [
-				"This polished agate appears to be a {@item stone of good luck} to anyone who tries to {@spell identify} it, and it confers that item's property while on your person.",
+				"This polished agate appears to be a {@item stone of good luck} to anyone who tries to identify it, and it confers that item's property while on your person.",
 				{
 					"type": "entries",
 					"name": "Curse",
@@ -35057,7 +35069,7 @@
 			"entries": [
 				"The Codicil of White is a tall, thin volume bound in white ermine fur over seasoned boards of white pine and sealed with a clasp and lock of tarnished silver. The book is cold to the touch, and the fur is worn about the edges from use. The twenty-seven pages within are of vellum painted with silver gilt on the outer edges. The whole is sewn to a leather binding with strips of sinews, making it quite durable.",
 				"A creature with the codicil in its possession has resistance to cold damage.",
-				"The codicil was written by followers of Auril as a primer on her worship. The first page is a title page with the snowflake symbol of Auril on it. The remaining pages describe various priestly rituals and ceremonies in chilling detail. Nestled among these descriptions is a spell that wizards can learn ({@spell frost fingers|IDRotF}, and a poem called \"Rime of the Frostmaiden\" (see appendix E)). The poem is an incantation, the power of which can be used to split a glacier (see chapter 6). The poem might have other capabilities, at your discretion"
+				"The codicil was written by followers of Auril as a primer on her worship. The first page is a title page with the snowflake symbol of Auril on it. The remaining pages describe various priestly rituals and ceremonies in chilling detail. Nestled among these descriptions is a spell that wizards can learn ({@spell frost fingers|IDRotF}), and a poem called \"Rime of the Frostmaiden\" (see appendix E). The poem is an incantation, the power of which can be used to split a glacier (see chapter 6). The poem might have other capabilities, at your discretion"
 			],
 			"hasFluffImages": true
 		},
@@ -40500,7 +40512,7 @@
 				"Built by dwarven gods and entrusted to the rulers of Shanatar, an ancient dwarven empire. The Wyrmskull Throne was a symbol of dwarven power and pride for ages untold. The throne hovers a foot off the ground and is a massive thing made of polished obsidian with oversized feet\u2014the impaled skulls of four ancient blue dragons. Runes glisten in the carved obsidian winking to life with blue energy when the throne's powers are activated.",
 				"After the fall of Shanatar, the Wyrmskull Throne fell into the clutches of less honorable creatures. A band of adventurers wrested the throne from the aquatic elf tyrant Gantar Kraok and sold it to the {@creature storm giant} Neri for a considerable fortune. Neri had the throne magically enlarged and gave it to her husband, King Hekaton, as a gift, along with one of the Ruling Scepters of Shanatar, which she had found in a wreck at the bottom of the Trackless Sea. Only a creature attuned to a Ruling Scepter and in possession of it can harness the powers of the Wyrmskull Throne, which has become the centerpiece of King Hekaton's throne room in the undersea citadel of Maelstrom. Fear of the throne's power has helped prevent evil giants from challenging or threatening Hekaton's leadership.",
 				"Any creature not attuned to a Ruling Scepter who sits on the throne is {@condition paralyzed} and encased in a magical force field. While encased, the creature can't be touched or moved from the throne. Touching a Ruling Scepter to the force field dispels the field, though the creature remains {@condition paralyzed} until it is separated from the throne.",
-				"Any creature seated on the throne can hear faint Whispers in Draconic\u2014the whisperings of four blue dragons whose skulls adorn the throne. Although powerless, these spirits try to influence the decisions of the throne's master",
+				"Any creature seated on the throne can hear faint Whispers in Draconic\u2014the whisperings of four blue dragons whose skulls adorn the throne. Although powerless, these spirits try to influence the decisions of the throne's master.",
 				{
 					"name": "Properties of the Throne",
 					"type": "entries",

@@ -4008,10 +4008,10 @@
 				"cha": "+7"
 			},
 			"skill": {
-				"arcana": "+5",
-				"perception": "+3",
-				"stealth": "+7",
-				"survival": "+3"
+				"arcana": "+4",
+				"perception": "+2",
+				"stealth": "+6",
+				"survival": "+2"
 			},
 			"senses": [
 				"darkvision 60 ft."

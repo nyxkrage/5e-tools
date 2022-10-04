@@ -214,6 +214,7 @@ class AttachedSpellTag {
 			/can be used to cast [^.]*/gi,
 			/you can([^.]*expend[^.]*)? cast [^.]* (and|or) [^.]*/gi,
 			/you can([^.]*)? cast [^.]* (and|or) [^.]* from the weapon/gi,
+			/Spells are cast at their lowest level[^.]*: [^.]*/gi,
 		];
 
 		const addTaggedSpells = str => str.replace(/{@spell ([^}]*)}/gi, (...m) => outSet.add(m[1].toSpellCase()));

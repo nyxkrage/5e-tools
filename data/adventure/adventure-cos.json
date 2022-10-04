@@ -2833,7 +2833,7 @@
 												"You spot a wolf trap, its steel jaws caked with rust. Someone has carefully hidden the trap under a thin layer of pine needles and detritus."
 											]
 										},
-										"Barovian hunters and trappers set these traps hoping to thin out the wolf population, but Strahd's wolves are too clever to be caught in them. If none of the characters in the front rank spots the hidden trap, one random party member steps on it. Rules for the {@item hunting trap|PHB} are presented in chapter 5, \"{@book Equipment|PHB|4},\" of the {@book Player's Handbook|PHB}."
+										"Barovian hunters and trappers set these traps hoping to thin out the wolf population, but Strahd's wolves are too clever to be caught in them. If none of the characters in the front rank spots the hidden trap, one random party member steps on it. Rules for the {@item hunting trap|PHB} are presented in chapter 5, \"{@book Equipment|PHB|5},\" of the {@book Player's Handbook|PHB}."
 									]
 								},
 								{
@@ -38509,8 +38509,8 @@
 														"path": "adventure/CoS/144-636379873620950408.png"
 													},
 													"title": "{@creature Baba Lysaga|CoS}",
-													"width": 299,
-													"height": 402
+													"width": 745,
+													"height": 1000
 												}
 											]
 										}

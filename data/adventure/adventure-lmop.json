@@ -77,7 +77,8 @@
 												}
 											]
 										}
-									]
+									],
+									"id": "19d"
 								}
 							]
 						},
@@ -886,7 +887,8 @@
 										"A compass rose comes in handy when you're describing locations. For instance, you might need to tell players about \"barrels along the north wall\" or \"the staircase descending to the west.\""
 									]
 								}
-							]
+							],
+							"id": "19e"
 						},
 						{
 							"type": "entries",
@@ -954,11 +956,14 @@
 														"The stream that flows through the complex is only 2 feet deep, cold, and slow moving, allowing creatures to easily wade through it."
 													]
 												}
-											]
+											],
+											"id": "1a1"
 										}
-									]
+									],
+									"id": "1a0"
 								}
-							]
+							],
+							"id": "19f"
 						},
 						{
 							"type": "inset",
@@ -974,7 +979,8 @@
 										"The dwarf and his map were delivered to King Grol, as instructed. The dwarf's human companion is being held in the \"eating cave\" ({@area 6|02f})."
 									]
 								}
-							]
+							],
+							"id": "1a2"
 						},
 						{
 							"type": "entries",

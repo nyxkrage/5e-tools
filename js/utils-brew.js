@@ -2119,7 +2119,7 @@ class GetBrewUi {
 		_getHeaderControls_addExtraStateBtns (opts, wrpStateBtnsOuter) {
 			const menu = ContextUtil.getMenu(
 				BrewUtil2.getPropPages()
-					.map(page => ({page, displayPage: UrlUtil.PG_TO_NAME[page] || page}))
+					.map(page => ({page, displayPage: UrlUtil.pageToDisplayPage(page)}))
 					.sort(SortUtil.ascSortProp.bind(SortUtil, "displayPage"))
 					.map(({page, displayPage}) => {
 						return new ContextUtil.Action(

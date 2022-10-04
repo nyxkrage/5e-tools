@@ -3304,10 +3304,6 @@
 			"int": 1,
 			"wis": 10,
 			"cha": 2,
-			"skill": {
-				"perception": "+4",
-				"stealth": "+6"
-			},
 			"senses": [
 				"tremorsense 30 ft."
 			],

@@ -1655,8 +1655,8 @@ class Panel {
 		const page = await InputUiUtil.pGetUserEnum({
 			title: "Select Page",
 			values: Object.keys(UrlUtil.SUBLIST_PAGES)
-				.sort((a, b) => SortUtil.ascSortLower(UrlUtil.PG_TO_NAME[a], UrlUtil.PG_TO_NAME[b])),
-			fnDisplay: page => UrlUtil.PG_TO_NAME[page],
+				.sort((a, b) => SortUtil.ascSortLower(UrlUtil.pageToDisplayPage(a), UrlUtil.pageToDisplayPage(b))),
+			fnDisplay: page => UrlUtil.pageToDisplayPage(page),
 			isResolveItem: true,
 		});
 		if (!page) return;
