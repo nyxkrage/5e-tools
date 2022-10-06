@@ -1,4 +1,11 @@
 {
+	"_meta": {
+		"dependencies": {
+			"monsterFluff": [
+				"MM"
+			]
+		}
+	},
 	"monsterFluff": [
 		{
 			"name": "Fume Drake",
@@ -115,6 +122,14 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Violet Fungus",
+			"source": "DoSI",
+			"_copy": {
+				"name": "Violet Fungus",
+				"source": "MM"
+			}
 		}
 	]
 }

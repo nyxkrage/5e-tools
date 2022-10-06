@@ -250,9 +250,28 @@
 						"replace": "the dragon",
 						"with": "Runara",
 						"flags": "i"
-					}
+					},
+					"action": [
+						{
+							"mode": "removeArr",
+							"names": "Tail"
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Change Shape",
+							"items": {
+								"name": "Change Shape",
+								"type": "entries",
+								"entries": [
+									"Runara magically transforms into a Humanoid or Beast that is Medium or Small, while retaining her game statistics (other than her size). This transformation ends if Runara is reduced to 0 hit points or uses a bonus action to end it."
+								]
+							}
+						}
+					]
 				}
 			},
+			"cr": "13",
+			"legendary": null,
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -272,7 +291,38 @@
 						"replace": "the myconid",
 						"with": "Sinensa",
 						"flags": "i"
-					}
+					},
+					"action": [
+						{
+							"mode": "removeArr",
+							"names": [
+								"Animating Spores (3/Day)",
+								"Pacifying Spores"
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"type": "entries",
+								"entries": [
+									"The myconid makes one Fist attack and uses its Hallucination Spores."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Fist",
+							"items": {
+								"name": "Fist",
+								"type": "entries",
+								"entries": [
+									"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}8 ({@damage 3d4 + 1}) bludgeoning damage plus 7 ({@damage 2d4}) poison damage."
+								]
+							}
+						}
+					]
 				}
 			},
 			"hasToken": true,
@@ -523,6 +573,32 @@
 			],
 			"hasToken": true,
 			"hasFluff": true
+		},
+		{
+			"name": "Violet Fungus",
+			"source": "DoSI",
+			"_copy": {
+				"name": "Violet Fungus",
+				"source": "MM",
+				"_mod": {
+					"trait": [
+						{
+							"mode": "replaceArr",
+							"replace": "False Appearance",
+							"items": {
+								"name": "False Appearance",
+								"type": "entries",
+								"entries": [
+									"If the violet fungus is motionless at the start of combat, it has advantage on its initiative roll. Moreover, if a creature hasn't observed the fungus move or act, that creature must succeed on a DC 18 Intelligence ({@skill Investigation}) check to discern that the violet fungus isn't ordinary fungus."
+								]
+							}
+						}
+					]
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	]
 }
