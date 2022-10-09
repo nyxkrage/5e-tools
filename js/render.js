@@ -3254,7 +3254,10 @@ Renderer.utils = {
 				const namePart = parts.shift();
 				const bonusPart = parts.join(" ");
 				const skill = namePart.replace(/_/g, " ");
-				const mod = isNaN(bonusPart) ? bonusPart : UiUtil.intToBonus(Number(bonusPart) || 0);
+
+				let mod = bonusPart;
+				if (!isNaN(bonusPart)) mod = UiUtil.intToBonus(Number(bonusPart) || 0);
+				else if (bonusPart.startsWith("#$")) mod = `+${bonusPart}`;
 
 				fauxEntry.context.skill = skill;
 				fauxEntry.displayText = displayText || mod;

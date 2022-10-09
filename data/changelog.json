@@ -2228,5 +2228,10 @@
 		"ver": "1.168.1",
 		"date": "2022-10-07",
 		"txt": "- Added Dynamic Map Viewer support to Dragons of Stormwreck Isle maps\n- Added/improved tokens for all Dragons of Stormwreck Isle creatures\n- The DM Screen Initiative tracker now sensibly handles an \"advanced mode\" Bestiary encounter HP column of the form `current/max` (thanks @ Formulaic)\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.168.2",
+		"date": "2022-10-09",
+		"txt": "- (Brew) Fixed handling of prompts in `@skillCheck` tags\n- (Fixed typos/added tags)"
 	}
 ]
