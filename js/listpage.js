@@ -1147,7 +1147,7 @@ class ListPage {
 				},
 			},
 			info: {
-				help: `"info:<text>" to search within stat blocks plus info.`,
+				help: `"info:<text>" to search within info.`,
 				fn: async (listItem, searchTerm) => {
 					if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
 					return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);

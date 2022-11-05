@@ -1208,7 +1208,8 @@
 							},
 							"title": "The Rock of Bral: Topside",
 							"width": 4096,
-							"height": 2887
+							"height": 2887,
+							"imageType": "map"
 						},
 						{
 							"type": "image",
@@ -1218,7 +1219,8 @@
 							},
 							"title": "(Player Version)",
 							"width": 4096,
-							"height": 2887
+							"height": 2887,
+							"imageType": "mapPlayer"
 						}
 					]
 				},
@@ -1233,7 +1235,8 @@
 							},
 							"title": "The Rock of Bral: Underside",
 							"width": 4096,
-							"height": 2887
+							"height": 2887,
+							"imageType": "map"
 						},
 						{
 							"type": "image",
@@ -1243,7 +1246,8 @@
 							},
 							"title": "(Player Version)",
 							"width": 4096,
-							"height": 2887
+							"height": 2887,
+							"imageType": "mapPlayer"
 						}
 					]
 				}

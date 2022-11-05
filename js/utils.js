@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -289,7 +289,7 @@ StrUtil = {
 	// Certain minor words should be left lowercase unless they are the first or last words in the string
 	TITLE_LOWER_WORDS: ["a", "an", "the", "and", "but", "or", "for", "nor", "as", "at", "by", "for", "from", "in", "into", "near", "of", "on", "onto", "to", "with", "over", "von"],
 	// Certain words such as initialisms or acronyms should be left uppercase
-	TITLE_UPPER_WORDS: ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk"],
+	TITLE_UPPER_WORDS: ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip"],
 
 	padNumber: (n, len, padder) => {
 		return String(n).padStart(len, padder);
@@ -2372,11 +2372,18 @@ UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeForHash([it.
 UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeForHash([it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER["skill"] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER["sense"] = UrlUtil.URL_TO_HASH_GENERIC;
+
+// Add lowercase aliases
 Object.keys(UrlUtil.URL_TO_HASH_BUILDER)
 	.filter(k => !k.endsWith(".html") && k.toLowerCase() !== k)
 	.forEach(k => UrlUtil.URL_TO_HASH_BUILDER[k.toLowerCase()] = UrlUtil.URL_TO_HASH_BUILDER[k]);
-UrlUtil.URL_TO_HASH_BUILDER["skill"] = UrlUtil.URL_TO_HASH_GENERIC;
-UrlUtil.URL_TO_HASH_BUILDER["sense"] = UrlUtil.URL_TO_HASH_GENERIC;
+
+// Add fluff aliases
+Object.keys(UrlUtil.URL_TO_HASH_BUILDER)
+	.filter(k => !k.endsWith(".html"))
+	.forEach(k => UrlUtil.URL_TO_HASH_BUILDER[`${k}Fluff`] = UrlUtil.URL_TO_HASH_BUILDER[k]);
 // endregion
 
 UrlUtil.PG_TO_NAME = {};
@@ -4766,9 +4773,7 @@ DataUtil = {
 
 	table: class extends _DataUtilPropConfigCustom {
 		static async loadJSON () {
-			const [dataEncounters, dataNames, ...datas] = await Promise.all([
-				`${Renderer.get().baseUrl}data/encounters.json`,
-				`${Renderer.get().baseUrl}data/names.json`,
+			const datas = await Promise.all([
 				`${Renderer.get().baseUrl}data/generated/gendata-tables.json`,
 				`${Renderer.get().baseUrl}data/tables.json`,
 			].map(url => DataUtil.loadJSON(url)));
@@ -4781,58 +4786,7 @@ DataUtil = {
 				});
 			});
 
-			dataEncounters.encounter.forEach(group => {
-				group.tables.forEach(tableRaw => {
-					combined.table.push(this._getConvertedEncounterOrNamesTable({
-						group,
-						tableRaw,
-						fnGetNameCaption: this._getConvertedEncounterTableName.bind(this),
-						colLabel1: "Encounter",
-					}));
-				});
-			});
-
-			dataNames.name.forEach(group => {
-				group.tables.forEach(tableRaw => {
-					combined.table.push(this._getConvertedEncounterOrNamesTable({
-						group,
-						tableRaw,
-						fnGetNameCaption: this._getConvertedNameTableName.bind(this),
-						colLabel1: "Name",
-					}));
-				});
-			});
-
 			return combined;
-		}
-
-		static _getConvertedEncounterTableName (group, tableRaw) { return `${group.name} Encounters${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`; }
-		static _getConvertedNameTableName (group, tableRaw) { return `${group.name} Names - ${tableRaw.option}`; }
-
-		static _getConvertedEncounterOrNamesTable ({group, tableRaw, fnGetNameCaption, colLabel1}) {
-			const nameCaption = fnGetNameCaption(group, tableRaw);
-			return {
-				name: nameCaption,
-				source: group.source,
-				__prop: "table",
-				page: group.page,
-				caption: nameCaption,
-				colLabels: [
-					`d${tableRaw.diceType}`,
-					colLabel1,
-					tableRaw.rollAttitude ? `Attitude` : null,
-				].filter(Boolean),
-				colStyles: [
-					"col-2 text-center",
-					tableRaw.rollAttitude ? "col-8" : "col-10",
-					tableRaw.rollAttitude ? `col-2 text-center` : null,
-				].filter(Boolean),
-				rows: tableRaw.table.map(it => [
-					`${it.min}${it.max && it.max !== it.min ? `-${it.max}` : ""}`,
-					it.result,
-					tableRaw.rollAttitude ? it.resultAttitude || "\u2014" : null,
-				].filter(Boolean)),
-			};
 		}
 	},
 
@@ -4907,6 +4861,11 @@ DataUtil = {
 		async pLoadAbbreviationIndex (urlRoot) {
 			urlRoot = DataUtil.brew._getCleanUrlRoot(urlRoot);
 			return DataUtil.loadJSON(`${urlRoot}_generated/index-abbreviations.json`);
+		},
+
+		async pLoadMetaIndex (urlRoot) {
+			urlRoot = DataUtil.brew._getCleanUrlRoot(urlRoot);
+			return DataUtil.loadJSON(`${urlRoot}_generated/index-meta.json`);
 		},
 
 		async pLoadSourceIndex (urlRoot) {
@@ -6395,6 +6354,7 @@ EditorUtil = {
 			wrap: true,
 			showPrintMargin: false,
 			tabSize: 2,
+			useWorker: false,
 			...additionalOpts,
 		});
 

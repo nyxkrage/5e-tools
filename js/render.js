@@ -1223,7 +1223,7 @@ function Renderer () {
 
 		if (!strategy?.pFnPreProcess) {
 			this._renderPrefix(entry, textStack, meta, options);
-			this._renderDataHeader(textStack, headerName, headerStyle);
+			this._renderDataHeader(textStack, headerName, headerStyle, {isCollapsed: entry.collapsed});
 			textStack[0] += fnGetRenderCompact(entry.data, {isEmbeddedEntity: true});
 			this._renderDataFooter(textStack);
 			this._renderSuffix(entry, textStack, meta, options);
@@ -1231,7 +1231,7 @@ function Renderer () {
 		}
 
 		this._renderPrefix(entry, textStack, meta, options);
-		this._renderDataHeader(textStack, headerName, headerStyle);
+		this._renderDataHeader(textStack, headerName, headerStyle, {isCollapsed: entry.collapsed});
 
 		const id = CryptUtil.uid();
 		Renderer._cache.inlineStatblock[id] = {
@@ -1240,7 +1240,7 @@ function Renderer () {
 
 				const tbl = ele.closest("table");
 				const nxt = e_({
-					outer: Renderer.utils.getEmbeddedDataHeader(headerName, headerStyle)
+					outer: Renderer.utils.getEmbeddedDataHeader(headerName, headerStyle, {isCollapsed: entry.collapsed})
 						+ fnGetRenderCompact(ent, {isEmbeddedEntity: true})
 						+ Renderer.utils.getEmbeddedDataFooter(),
 				});
@@ -1256,8 +1256,8 @@ function Renderer () {
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 
-	this._renderDataHeader = function (textStack, name, style) {
-		textStack[0] += Renderer.utils.getEmbeddedDataHeader(name, style);
+	this._renderDataHeader = function (textStack, name, style, {isCollapsed = false} = {}) {
+		textStack[0] += Renderer.utils.getEmbeddedDataHeader(name, style, {isCollapsed});
 	};
 
 	this._renderDataFooter = function (textStack) {
@@ -1286,7 +1286,7 @@ function Renderer () {
 			return;
 		}
 
-		this._renderDataHeader(textStack, entry.name, entry.style);
+		this._renderDataHeader(textStack, entry.name, entry.style, {isCollapsed: entry.collapsed});
 		textStack[0] += `<tr>
 			<td colspan="6" data-rd-tag="${(entry.tag || "").qq()}" data-rd-page="${(page || "").qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${(hash || "").qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-display-name="${(entry.displayName || "").qq()}" data-rd-style="${(entry.style || "").qq()}">
 				<i>Loading ${entry.tag ? `${Renderer.get().render(asTag)}` : entry.displayName || entry.name}...</i>
@@ -2651,9 +2651,9 @@ Renderer.utils = {
 		return Renderer.get().render(`{@ability ${ability} ${statblock[ability]}}`);
 	},
 
-	getEmbeddedDataHeader (name, style) {
+	getEmbeddedDataHeader (name, style, {isCollapsed = false} = {}) {
 		return `<table class="rd__b-special rd__b-data ${style ? `rd__b-data--${style}` : ""}">
-		<thead><tr><th class="rd__data-embed-header" colspan="6" data-rd-data-embed-header="true"><span style="display: none;" class="rd__data-embed-name">${name}</span><span class="rd__data-embed-toggle">[\u2013]</span></th></tr></thead><tbody>`;
+		<thead><tr><th class="rd__data-embed-header" colspan="6" data-rd-data-embed-header="true"><span class="rd__data-embed-name ${isCollapsed ? "" : `ve-hidden`}">${name}</span><span class="rd__data-embed-toggle">[${isCollapsed ? "+" : "\u2013"}]</span></th></tr></thead><tbody class="${isCollapsed ? `ve-hidden` : ""}">`;
 	},
 
 	getEmbeddedDataFooter () {
@@ -3764,9 +3764,9 @@ Renderer.events = {
 		evt.preventDefault();
 
 		const $ele = $(ele);
-		$ele.find(".rd__data-embed-name").toggle();
+		$ele.find(".rd__data-embed-name").toggleVe();
 		$ele.find(".rd__data-embed-toggle").text($ele.text().includes("+") ? "[\u2013]" : "[+]");
-		$ele.closest("table").find("tbody").toggle();
+		$ele.closest("table").find("tbody").toggleVe();
 	},
 
 	handleClick_headerToggleButton (evt, ele, {isSpecial = false} = {}) {
@@ -11176,9 +11176,6 @@ Renderer._stripTagLayer = function (str) {
 							case "@chance": {
 								return displayText || `${rollText} percent`;
 							}
-							case "@coin": {
-								return displayText || `flip a coin`;
-							}
 							case "@ability": {
 								const [abil, rawScore] = rollText.split(" ").map(it => it.trim().toLowerCase()).filter(Boolean);
 								const score = Number(rawScore) || 0;
@@ -11308,7 +11305,7 @@ Renderer._stripTagLayer = function (str) {
 };
 
 // Generatedd by running `[...Renderer._stripTagLayer.toString().matchAll(/case "@(\w+?)"/g)].map(item => item[1])`
-Renderer.TAGS = ["b", "bold", "i", "italic", "s", "strike", "u", "underline", "code", "style", "unit", "h", "m", "dc", "atk", "chance", "d20", "damage", "dice", "autodice", "hit", "recharge", "ability", "savingThrow", "skillCheck", "damage", "dice", "autodice", "d20", "hit", "recharge", "chance", "ability", "savingThrow", "skillCheck", "scaledice", "scaledamage", "hitYourSpellAttack", "comic", "comicH1", "comicH2", "comicH3", "comicH4", "comicNote", "note", "5etools", "adventure", "book", "filter", "footnote", "link", "loader", "color", "highlight", "help", "quickref", "area", "action", "background", "boon", "charoption", "class", "condition", "creature", "cult", "disease", "feat", "hazard", "item", "language", "object", "optfeature", "psionic", "race", "recipe", "reward", "vehicle", "vehupgrade", "sense", "skill", "spell", "status", "table", "trap", "variantrule", "deity", "classFeature", "subclassFeature", "homebrew"];
+Renderer.TAGS = ["b", "bold", "i", "italic", "s", "strike", "u", "underline", "code", "style", "unit", "h", "m", "dc", "atk", "chance", "d20", "damage", "dice", "autodice", "hit", "recharge", "ability", "savingThrow", "skillCheck", "damage", "dice", "autodice", "d20", "hit", "recharge", "chance", "ability", "savingThrow", "skillCheck", "scaledice", "scaledamage", "hitYourSpellAttack", "coinflip", "comic", "comicH1", "comicH2", "comicH3", "comicH4", "comicNote", "note", "5etools", "adventure", "book", "filter", "footnote", "link", "loader", "color", "highlight", "help", "quickref", "area", "action", "background", "boon", "charoption", "class", "condition", "creature", "cult", "disease", "feat", "hazard", "item", "language", "object", "optfeature", "psionic", "race", "recipe", "reward", "vehicle", "vehupgrade", "sense", "skill", "spell", "status", "table", "trap", "variantrule", "deity", "classFeature", "subclassFeature", "homebrew"];
 
 Renderer.getAutoConvertedTableRollMode = function (table) {
 	if (!table.colLabels || table.colLabels.length < 2) return RollerUtil.ROLL_COL_NONE;

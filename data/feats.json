@@ -6246,6 +6246,20 @@
 					}
 				}
 			],
+			"savingThrowProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
 			"entries": [
 				"Choose one ability score. You gain the following benefits:",
 				{

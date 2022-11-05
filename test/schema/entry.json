@@ -3,7 +3,7 @@
 	"$id": "entry.json",
 	"title": "Entry",
 	"description": "A recursively renderable object.",
-	"version": "1.8.2",
+	"version": "1.8.3",
 	"definitions": {
 		"_arrayOfSpell": {
 			"type": "array",
@@ -2062,6 +2062,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2085,6 +2088,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2108,6 +2114,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2131,6 +2140,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2154,6 +2166,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2177,6 +2192,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2200,6 +2218,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2223,6 +2244,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2246,6 +2270,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2269,6 +2296,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2292,6 +2322,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2315,6 +2348,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2338,6 +2374,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2361,6 +2400,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2384,6 +2426,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2407,6 +2452,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2430,6 +2478,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2453,6 +2504,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2476,6 +2530,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2499,6 +2556,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2522,6 +2582,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2545,6 +2608,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2568,6 +2634,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2591,6 +2660,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2614,6 +2686,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2637,6 +2712,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2660,6 +2738,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2683,6 +2764,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2706,6 +2790,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2759,6 +2846,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [
@@ -2808,6 +2898,9 @@
 						},
 						"style": {
 							"$ref": "#/definitions/_entryDataStyle"
+						},
+						"collapsed": {
+							"const": true
 						}
 					},
 					"required": [

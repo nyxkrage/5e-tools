@@ -221,11 +221,16 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false} = {}) =
 	if (typeof ent.speed === "object") {
 		const stack = [];
 		let joiner = ", ";
-		Parser.SPEED_MODES.forEach(mode => Parser._getSpeedString_addSpeedMode({ent, prop: mode, stack, isMetric, isSkipZeroWalk, unit}));
-		if (ent.speed.choose) {
+
+		Parser.SPEED_MODES
+			.filter(mode => !ent.speed.hidden?.includes(mode))
+			.forEach(mode => Parser._getSpeedString_addSpeedMode({ent, prop: mode, stack, isMetric, isSkipZeroWalk, unit}));
+
+		if (ent.speed.choose && !ent.speed.hidden?.includes("choose")) {
 			joiner = "; ";
 			stack.push(`${ent.speed.choose.from.sort().joinConjunct(", ", " or ")} ${ent.speed.choose.amount} ${unit}${ent.speed.choose.note ? ` ${ent.speed.choose.note}` : ""}`);
 		}
+
 		return stack.join(joiner) + (ent.speed.note ? ` ${ent.speed.note}` : "");
 	}
 
