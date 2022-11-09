@@ -190,6 +190,14 @@ class ItemsPage extends ListPage {
 		this._magicList = null;
 	}
 
+	get _bindOtherButtonsOptions () {
+		return {
+			other: [
+				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "items", fnGetHash: () => Hist.getHashParts()[0]}),
+			].filter(Boolean),
+		};
+	}
+
 	get primaryLists () { return [this._mundaneList, this._magicList]; }
 
 	getListItem (item, itI, isExcluded) {

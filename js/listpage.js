@@ -746,7 +746,6 @@ class ListPage {
 	 * @param [opts.tableViewOptions] Table view options.
 	 * @param [opts.hasAudio] True if the entities have pronunciation audio.
 	 * @param [opts.isPreviewable] True if the entities can be previewed in-line as part of the list.
-	 * @param [opts.bindOtherButtonsOptions]
 	 * @param [opts.isLoadDataAfterFilterInit] If the order of data loading and filter-state loading should be flipped.
 	 * @param [opts.isBindHashHandlerUnknown] If the "unknown hash" handler function should be bound.
 	 * @param [opts.isMarkdownPopout] If the sublist Popout button supports Markdown on CTRL.
@@ -768,7 +767,6 @@ class ListPage {
 		this._hasAudio = opts.hasAudio;
 		this._isPreviewable = opts.isPreviewable;
 		this._isMarkdownPopout = !!opts.isMarkdownPopout;
-		this._bindOtherButtonsOptions = opts.bindOtherButtonsOptions;
 		this._isLoadDataAfterFilterInit = !!opts.isLoadDataAfterFilterInit;
 		this._isBindHashHandlerUnknown = !!opts.isBindHashHandlerUnknown;
 		this._propEntryData = opts.propEntryData;
@@ -1067,6 +1065,18 @@ class ListPage {
 		this._bindOtherButtons({
 			...(this._bindOtherButtonsOptions || {}),
 		});
+	}
+
+	/* Implement as required */
+	get _bindOtherButtonsOptions () { return null; }
+
+	_bindOtherButtonsOptions_openAsSinglePage ({slugPage, fnGetHash}) {
+		if (!IS_DEPLOYED) return null;
+		return {
+			name: "Open Page",
+			type: "link",
+			fn: () => `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(fnGetHash())}`,
+		};
 	}
 
 	_addListItem (listItem) {
@@ -1661,10 +1671,15 @@ class ListPage {
 			if (contextOptions.length) contextOptions.push(null); // Add a spacer after the previous group
 
 			opts.other.forEach(oth => {
-				const action = new ContextUtil.Action(
-					oth.name,
-					oth.pFn,
-				);
+				const action = oth.type === "link"
+					? new ContextUtil.ActionLink(
+						oth.name,
+						oth.fn,
+					)
+					: new ContextUtil.Action(
+						oth.name,
+						oth.pFn,
+					);
 				contextOptions.push(action);
 			});
 		}

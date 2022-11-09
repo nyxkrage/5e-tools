@@ -44,16 +44,18 @@ class TablesPage extends ListPage {
 			},
 
 			dataProps: ["table", "tableGroup"],
-
-			bindOtherButtonsOptions: {
-				other: [
-					{
-						name: "Copy as CSV",
-						pFn: () => this._pCopyRenderedAsCsv(),
-					},
-				],
-			},
 		});
+	}
+
+	get _bindOtherButtonsOptions () {
+		return {
+			other: [
+				{
+					name: "Copy as CSV",
+					pFn: () => this._pCopyRenderedAsCsv(),
+				},
+			],
+		};
 	}
 
 	async _pCopyRenderedAsCsv () {

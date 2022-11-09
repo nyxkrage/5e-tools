@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.1"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.2"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -1899,7 +1899,7 @@ ContextUtil = {
 		this._userData = null;
 
 		this._$ele = null;
-		this._$btnsActions = [];
+		this._metasActions = [];
 
 		this.remove = function () { if (this._$ele) this._$ele.remove(); };
 
@@ -1935,53 +1935,24 @@ ContextUtil = {
 					pointerEvents: "",
 				});
 
-			this._$btnsActions[0].focus();
+			this._metasActions[0].$eleRow.focus();
 
 			return this._pResult;
 		};
 		this.close = function () { if (this._$ele) this._$ele.hideVe(); };
 
 		this._initLazy = function () {
-			if (this._$ele) return;
+			if (this._$ele) {
+				this._metasActions.forEach(meta => meta.action.update());
+				return;
+			}
 
 			const $elesAction = this._actions.map(it => {
 				if (it == null) return $(`<div class="my-1 w-100 ui-ctx__divider"></div>`);
 
-				const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${it.fnActionAlt ? "" : "pr-5"}" ${it.isDisabled ? "disabled" : ""} tabindex="0">${it.text}</div>`)
-					.click(async evt => {
-						if (it.isDisabled) return;
-
-						evt.preventDefault();
-						evt.stopPropagation();
-
-						this.close();
-
-						const result = await it.fnAction(evt, this._userData);
-						if (this._resolveResult) this._resolveResult(result);
-					})
-					.keydown(evt => {
-						if (evt.key !== "Enter") return;
-						$btnAction.click();
-					});
-				if (it.title) $btnAction.title(it.title);
-
-				this._$btnsActions.push($btnAction);
-
-				const $btnActionAlt = it.fnActionAlt ? $(`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${it.isDisabled ? "disabled" : ""}>${it.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`)
-					.click(async evt => {
-						if (it.isDisabled) return;
-
-						evt.preventDefault();
-						evt.stopPropagation();
-
-						this.close();
-
-						const result = await it.fnActionAlt(evt, this._userData);
-						if (this._resolveResult) this._resolveResult(result);
-					}) : null;
-				if (it.titleAlt && $btnActionAlt) $btnActionAlt.title(it.titleAlt);
-
-				return $$`<div class="ui-ctx__row ve-flex-v-center ${it.style || ""}">${$btnAction}${$btnActionAlt}</div>`;
+				const rdMeta = it.render();
+				this._metasActions.push(rdMeta);
+				return rdMeta.$eleRow;
 			});
 
 			this._$ele = $$`<div class="ve-flex-col ui-ctx__wrp py-2 absolute">${$elesAction}</div>`
@@ -2029,6 +2000,79 @@ ContextUtil = {
 		this.fnActionAlt = opts.fnActionAlt;
 		this.textAlt = opts.textAlt;
 		this.titleAlt = opts.titleAlt;
+
+		this.render = function () {
+			const $btnAction = this._render_$btnAction();
+			const $btnActionAlt = this._render_$btnActionAlt();
+
+			return {
+				action: this,
+				$eleRow: $$`<div class="ui-ctx__row ve-flex-v-center ${this.style || ""}">${$btnAction}${$btnActionAlt}</div>`,
+				$eleBtn: $btnAction,
+			};
+		};
+
+		this._render_$btnAction = function () {
+			const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`)
+				.click(async evt => {
+					if (this.isDisabled) return;
+
+					evt.preventDefault();
+					evt.stopPropagation();
+
+					this.close();
+
+					const result = await this.fnAction(evt, this._userData);
+					if (this._resolveResult) this._resolveResult(result);
+				})
+				.keydown(evt => {
+					if (evt.key !== "Enter") return;
+					$btnAction.click();
+				});
+			if (this.title) $btnAction.title(this.title);
+
+			return $btnAction;
+		};
+
+		this._render_$btnActionAlt = function () {
+			if (!this.fnActionAlt) return null;
+
+			const $btnActionAlt = $(`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`)
+				.click(async evt => {
+					if (this.isDisabled) return;
+
+					evt.preventDefault();
+					evt.stopPropagation();
+
+					this.close();
+
+					const result = await this.fnActionAlt(evt, this._userData);
+					if (this._resolveResult) this._resolveResult(result);
+				});
+			if (this.titleAlt) $btnActionAlt.title(this.titleAlt);
+
+			return $btnActionAlt;
+		};
+
+		this.update = function () { /* Implement as required */ };
+	},
+
+	ActionLink: function (text, fnHref, opts) {
+		ContextUtil.Action.call(this, text, null, opts);
+
+		this.fnHref = fnHref;
+		this._$btnAction = null;
+
+		this._render_$btnAction = function () {
+			this._$btnAction = $(`<a href="${this.fnHref()}" class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`);
+			if (this.title) this._$btnAction.title(this.title);
+
+			return this._$btnAction;
+		};
+
+		this.update = function () {
+			this._$btnAction.attr("href", this.fnHref());
+		};
 	},
 };
 
@@ -2056,6 +2100,10 @@ UrlUtil = {
 
 	decodeHash (hash) {
 		return hash.split(HASH_LIST_SEP).map(it => decodeURIComponent(it));
+	},
+
+	getSluggedHash (hash) {
+		return Parser.stringToSlug(decodeURIComponent(hash)).replace(/_/g, "-");
 	},
 
 	getCurrentPage () {

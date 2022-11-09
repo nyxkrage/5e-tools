@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.11.31",
+	"version": "1.12.0",
 
 	"definitions" : {
 		"metaBlock": {
@@ -2608,7 +2608,7 @@
 			}
 		},
 
-		"foundryDataObject": {
+		"foundrySystemObject": {
 			"type": "object"
 		},
 
@@ -2647,12 +2647,15 @@
 						"properties": {
 							"key": {"type": "string"},
 							"mode": {"type": ["string", "integer"]},
-							"value": true
+							"value": true,
+							"priority": {"type": ["string", "integer"]}
 						},
 						"required": ["key", "mode", "value"],
 						"additionalProperties": false
 					}
 				},
+				"flags": {"type": "object"},
+				"duration": {"type": "object"},
 				"disabled": {"const": true},
 				"transfer": {"const": true}
 			},
@@ -2677,7 +2680,7 @@
 					"name": {"type": "string"},
 					"source": {"type": "string"},
 
-					"data": {"$ref": "#/definitions/foundryDataObject"},
+					"system": {"$ref": "#/definitions/foundrySystemObject"},
 
 					"effects": {"type": "array", "items": {"$ref": "#/definitions/foundryEffectObject"}}
 				},
@@ -2702,7 +2705,7 @@
 					"entries": {"type": "array", "items": {"$ref": "entry.json"}},
 					"isIgnored": {"const": true},
 
-					"data": {"$ref": "#/definitions/foundryDataObject"},
+					"system": {"$ref": "#/definitions/foundrySystemObject"},
 					"actorDataMod": {"type": "object"},
 					"effects": {"type": "array", "items": {"$ref": "#/definitions/foundryEffectObject"}}
 				},

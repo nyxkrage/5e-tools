@@ -2244,5 +2244,10 @@
 		"ver": "1.169.1",
 		"date": "2022-11-05",
 		"txt": "- Fixed Names/Encounters Page tables not being visible in Omnisearch/DM Screen search\n- Fixed Names/Encounters Page tables failing to display `x-00` results correctly\n- Fixed Classes page list race condition resulting in UA Artificer being displayed on initial load\n- (Brew) Added \"Status\" filter to Get Homebrew dialogue, allowing self-reported WIP/invalid brews to be filtered out\n- (Brew) Added \"circular reference\" check/errors, (hopefully) avoiding infinite loads caused by malformed brew\n- (Brew) Added support for initially-collapsed `statblock` and `statblockInline` entries\n- (Brew) Added support for `\"hidden\"` speeds, allowing e.g. `0 ft.` walk speeds to be hidden\n- Added automatic changelog generation to GitHub releases (thanks @ cum pope)\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.169.2",
+		"date": "2022-11-09",
+		"txt": "- Added \"Open Page\" menu option to pages which have SEO page versions available (Bestiary, Spells, Items)\n- Fixed SEO pages failing to load\n- (Fixed typos/added tags)"
 	}
 ]

@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"$id": "items.json",
-	"version": "1.11.8",
+	"version": "1.12.0",
 	"type": "object",
 	"definitions": {
 		"itemData": {
@@ -481,7 +481,7 @@
 						"type": "string",
 						"enum": ["weapon", "equipment", "consumable", "tool", "loot", "class", "spell", "feat", "backpack"]
 					},
-					"foundryData": {"$ref": "util.json#/definitions/foundryDataObject"},
+					"foundrySystem": {"$ref": "util.json#/definitions/foundrySystemObject"},
 					"foundryFlags": {"$ref": "util.json#/definitions/foundryFlagsObject"},
 					"foundryEffects": {"$ref": "util.json#/definitions/foundryEffectsArray"},
 					"foundryImg": {"$ref": "util.json#/definitions/foundryImg"},
