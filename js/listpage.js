@@ -1667,7 +1667,7 @@ class ListPage {
 			contextOptions.push(action);
 		}
 
-		if (opts.other) {
+		if (opts.other?.length) {
 			if (contextOptions.length) contextOptions.push(null); // Add a spacer after the previous group
 
 			opts.other.forEach(oth => {

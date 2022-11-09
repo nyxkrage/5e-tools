@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.2"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.3"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -1950,7 +1950,7 @@ ContextUtil = {
 			const $elesAction = this._actions.map(it => {
 				if (it == null) return $(`<div class="my-1 w-100 ui-ctx__divider"></div>`);
 
-				const rdMeta = it.render();
+				const rdMeta = it.render({menu: this});
 				this._metasActions.push(rdMeta);
 				return rdMeta.$eleRow;
 			});
@@ -2001,9 +2001,9 @@ ContextUtil = {
 		this.textAlt = opts.textAlt;
 		this.titleAlt = opts.titleAlt;
 
-		this.render = function () {
-			const $btnAction = this._render_$btnAction();
-			const $btnActionAlt = this._render_$btnActionAlt();
+		this.render = function ({menu}) {
+			const $btnAction = this._render_$btnAction({menu});
+			const $btnActionAlt = this._render_$btnActionAlt({menu});
 
 			return {
 				action: this,
@@ -2012,7 +2012,7 @@ ContextUtil = {
 			};
 		};
 
-		this._render_$btnAction = function () {
+		this._render_$btnAction = function ({menu}) {
 			const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`)
 				.click(async evt => {
 					if (this.isDisabled) return;
@@ -2020,7 +2020,7 @@ ContextUtil = {
 					evt.preventDefault();
 					evt.stopPropagation();
 
-					this.close();
+					menu.close();
 
 					const result = await this.fnAction(evt, this._userData);
 					if (this._resolveResult) this._resolveResult(result);
@@ -2034,7 +2034,7 @@ ContextUtil = {
 			return $btnAction;
 		};
 
-		this._render_$btnActionAlt = function () {
+		this._render_$btnActionAlt = function ({menu}) {
 			if (!this.fnActionAlt) return null;
 
 			const $btnActionAlt = $(`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`)
@@ -2044,7 +2044,7 @@ ContextUtil = {
 					evt.preventDefault();
 					evt.stopPropagation();
 
-					this.close();
+					menu.close();
 
 					const result = await this.fnActionAlt(evt, this._userData);
 					if (this._resolveResult) this._resolveResult(result);

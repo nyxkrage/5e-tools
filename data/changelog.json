@@ -2249,5 +2249,10 @@
 		"ver": "1.169.2",
 		"date": "2022-11-09",
 		"txt": "- Added \"Open Page\" menu option to pages which have SEO page versions available (Bestiary, Spells, Items)\n- Fixed SEO pages failing to load\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.169.3",
+		"date": "2022-11-09",
+		"txt": "- Fixed crash on clicking option in context menu"
 	}
 ]
