@@ -74,5 +74,5 @@ jobs:
             id: deployment
             uses: actions/deploy-pages@v1
             with:
-               # Timeout in millis (20 minutes)
-               timeout: 1200000
+               # Timeout in millis (1 hour)
+               timeout: 3600000
