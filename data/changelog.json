@@ -2254,5 +2254,10 @@
 		"ver": "1.169.3",
 		"date": "2022-11-09",
 		"txt": "- Fixed crash on clicking option in context menu"
+	},
+	{
+		"ver": "1.169.4",
+		"date": "2022-11-10",
+		"txt": "- (Literally nothing)"
 	}
 ]

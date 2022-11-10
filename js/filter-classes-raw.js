@@ -525,7 +525,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							ancestorType,
 							displayName: ent._displayNamePrefix ? `${ent._displayNamePrefix}${entity.name}` : null,
 							...ancestorMeta,
-							foundryData: {
+							foundrySystem: {
 								requirements: entityRoot.className ? `${entityRoot.className} ${entityRoot.level}${entityRoot.subclassShortName ? ` (${entityRoot.subclassShortName})` : ""}` : null,
 							},
 						});
@@ -569,13 +569,13 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			entity,
 			ancestorType,
 			displayName,
-			foundryData,
+			foundrySystem,
 			...others
 		},
 	) {
 		if (ancestorType) entity._ancestorType = ancestorType;
 		if (displayName) entity._displayName = displayName;
-		if (foundryData) entity._foundryData = foundryData;
+		if (foundrySystem) entity._foundrySystem = foundrySystem;
 		Object.assign(entity, {...others});
 	}
 
