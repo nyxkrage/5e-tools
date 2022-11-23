@@ -4,11 +4,14 @@ class PageFilterObjects extends PageFilter {
 	constructor () {
 		super();
 
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD"], isMiscFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Has Images", "Has Info", "Has Token"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (obj) {
 		obj._fMisc = obj.srd ? ["SRD"] : [];
+		if (obj.tokenUrl || obj.hasToken) obj._fMisc.push("Has Token");
+		if (obj.hasFluff) obj._fMisc.push("Has Info");
+		if (obj.hasFluffImages) obj._fMisc.push("Has Images");
 	}
 
 	addToFilters (obj, isExcluded) {

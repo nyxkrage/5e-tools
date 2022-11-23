@@ -2259,5 +2259,11 @@
 		"ver": "1.169.4",
 		"date": "2022-11-10",
 		"txt": "- (Literally nothing)"
+	},
+	{
+		"ver": "1.170.0",
+		"date": "2022-11-23",
+		"title": "Let Them Eat War",
+		"txt": "- Added Dragonlance: Shadow of the Dragon Queen content\n- Added \"Uses Bonus Action\" filter to Spells page, for spells which require any action to cast, but require a bonus action to use on later turns\n- Applied latest Spelljammer: Adventures in Space errata\n- Fixed Items Page failing to render Markdown in Printer View\n- Fixed crash when clicking \"Remove\" in pinned lists\n- Improved Bestiary filter detection of \"unarmored defense\"\n- (Brew) The local `homebrew/` directory is now cleaned by the `clean-jsons` script\n- (Brew) Fixed crash when loading `classFeature`/`subclassFeature` dependencies\n- (Brew) Updated schemas to draft 2022-12 spec; made `entry` schema more restrictive to compensate for associated drop in performance  \n- (Brew) Added fluff support for `feat`s and `object`s\n- (Fixed typos/added tags)"
 	}
 ]

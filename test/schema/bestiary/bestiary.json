@@ -1,14 +1,14 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.21.8",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"version": "1.21.9",
 	"title": "Bestiary Schema",
 	"$id": "bestiary.json",
 	"type": "object",
-	"definitions": {
+	"$defs": {
 		"align": {
 			"oneOf": [
 				{
-					"$ref": "../util.json#/definitions/alignment"
+					"$ref": "../util.json#/$defs/alignment"
 				},
 				{
 					"type": "object",
@@ -16,7 +16,7 @@
 						"alignment": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/alignment"
+								"$ref": "../util.json#/$defs/alignment"
 							}
 						},
 						"chance": {
@@ -102,7 +102,7 @@
 					]
 				},
 				"alias": {
-					"$ref": "../util.json#/definitions/alias"
+					"$ref": "../util.json#/$defs/alias"
 				},
 				"group": {
 					"description": "A group name, indexed by search. E.g. searching \"Lycanthrope\" would otherwise fail to find anything.\nOnly works on the bestiary page, not in the full site search.",
@@ -121,7 +121,7 @@
 				"size": {
 					"type": "array",
 					"items": {
-						"$ref": "../util.json#/definitions/size"
+						"$ref": "../util.json#/$defs/size"
 					},
 					"uniqueItems": true
 				},
@@ -134,13 +134,48 @@
 							"type": "object",
 							"properties": {
 								"type": {
-									"$ref": "../util.json#/definitions/creatureType"
+									"$ref": "../util.json#/$defs/creatureType"
 								},
 								"swarmSize": {
-									"$ref": "../util.json#/definitions/size",
+									"$ref": "../util.json#/$defs/size",
 									"description": "Size of the individual creatures that make up the swarm."
 								},
 								"tags": {
+									"type": "array",
+									"uniqueItems": true,
+									"items": {
+										"oneOf": [
+											{
+												"type": "string"
+											},
+											{
+												"type": "object",
+												"properties": {
+													"tag": {
+														"type": "string"
+													},
+													"prefix": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"tag",
+													"prefix"
+												],
+												"additionalProperties": false
+											}
+										]
+									}
+								},
+								"sidekickType": {
+									"type": "string",
+									"enum": [
+										"expert",
+										"spellcaster",
+										"warrior"
+									]
+								},
+								"sidekickTags": {
 									"type": "array",
 									"uniqueItems": true,
 									"items": {
@@ -174,7 +209,7 @@
 							"additionalProperties": false
 						},
 						{
-							"$ref": "../util.json#/definitions/creatureType"
+							"$ref": "../util.json#/$defs/creatureType"
 						}
 					]
 				},
@@ -186,15 +221,15 @@
 					"description": "Sub-source text that is shown when hovered."
 				},
 				"otherSources": {
-					"$ref": "../util.json#/definitions/otherSources"
+					"$ref": "../util.json#/$defs/otherSources"
 				},
 				"reprintedAs": {
-					"$ref": "../util.json#/definitions/reprintedAs"
+					"$ref": "../util.json#/$defs/reprintedAs"
 				},
 				"alignment": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/align"
+						"$ref": "#/$defs/align"
 					}
 				},
 				"alignmentPrefix": {
@@ -203,7 +238,7 @@
 				"ac": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/acItem"
+						"$ref": "#/$defs/acItem"
 					}
 				},
 				"hp": {
@@ -236,7 +271,7 @@
 					]
 				},
 				"speed": {
-					"$ref": "../util.json#/definitions/speed"
+					"$ref": "../util.json#/$defs/speed"
 				},
 				"str": {
 					"type": [
@@ -491,23 +526,23 @@
 					]
 				},
 				"vulnerable": {
-					"$ref": "../util.json#/definitions/damageVulnerabilityArray"
+					"$ref": "../util.json#/$defs/damageVulnerabilityArray"
 				},
 				"resist": {
-					"$ref": "../util.json#/definitions/damageResistArray"
+					"$ref": "../util.json#/$defs/damageResistArray"
 				},
 				"immune": {
-					"$ref": "../util.json#/definitions/damageImmunityArray"
+					"$ref": "../util.json#/$defs/damageImmunityArray"
 				},
 				"conditionImmune": {
-					"$ref": "../util.json#/definitions/conditionImmunityArray"
+					"$ref": "../util.json#/$defs/conditionImmunityArray"
 				},
 				"spellcasting": {
 					"oneOf": [
 						{
 							"type": "array",
 							"items": {
-								"$ref": "../entry.json#/definitions/entrySpellcasting"
+								"$ref": "../entry.json#/$defs/entrySpellcasting"
 							}
 						},
 						{
@@ -744,17 +779,17 @@
 				"variant": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/entryVariantBestiary"
+						"$ref": "#/$defs/entryVariantBestiary"
 					}
 				},
 				"page": {
-					"$ref": "../util.json#/definitions/page"
+					"$ref": "../util.json#/$defs/page"
 				},
 				"familiar": {
 					"type": "boolean"
 				},
 				"additionalSources": {
-					"$ref": "../util.json#/definitions/additionalSources"
+					"$ref": "../util.json#/$defs/additionalSources"
 				},
 				"hasToken": {
 					"type": "boolean"
@@ -776,7 +811,7 @@
 										"type": "string"
 									},
 									"page": {
-										"$ref": "../util.json#/definitions/page"
+										"$ref": "../util.json#/$defs/page"
 									}
 								},
 								"required": [
@@ -815,7 +850,7 @@
 					}
 				},
 				"soundClip": {
-					"$ref": "../entry.json#/definitions/mediaHref"
+					"$ref": "../entry.json#/$defs/mediaHref"
 				},
 				"dragonCastingColor": {
 					"type": "string",
@@ -988,19 +1023,19 @@
 				"damageTags": {
 					"type": "array",
 					"items": {
-						"$ref": "../util.json#/definitions/dataDamageTags"
+						"$ref": "../util.json#/$defs/dataDamageTags"
 					}
 				},
 				"damageTagsSpell": {
 					"type": "array",
 					"items": {
-						"$ref": "../util.json#/definitions/dataDamageTags"
+						"$ref": "../util.json#/$defs/dataDamageTags"
 					}
 				},
 				"damageTagsLegendary": {
 					"type": "array",
 					"items": {
-						"$ref": "../util.json#/definitions/dataDamageTags"
+						"$ref": "../util.json#/$defs/dataDamageTags"
 					}
 				},
 				"miscTags": {
@@ -1019,13 +1054,13 @@
 					}
 				},
 				"conditionInflict": {
-					"$ref": "../util.json#/definitions/tagsConditions"
+					"$ref": "../util.json#/$defs/tagsConditions"
 				},
 				"conditionInflictLegendary": {
-					"$ref": "../util.json#/definitions/tagsConditions"
+					"$ref": "../util.json#/$defs/tagsConditions"
 				},
 				"conditionInflictSpell": {
-					"$ref": "../util.json#/definitions/tagsConditions"
+					"$ref": "../util.json#/$defs/tagsConditions"
 				},
 				"footer": {
 					"description": "Intended for homebrew use only.",
@@ -1035,10 +1070,10 @@
 					}
 				},
 				"srd": {
-					"$ref": "../util.json#/definitions/srd"
+					"$ref": "../util.json#/$defs/srd"
 				},
 				"basicRules": {
-					"$ref": "../util.json#/definitions/basicRules"
+					"$ref": "../util.json#/$defs/basicRules"
 				},
 				"summonedBySpell": {
 					"description": "The spell used to summon this creature; specifically for TCE-esque summon spells.",
@@ -1059,7 +1094,7 @@
 				"_versions": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/creatureVersion"
+						"$ref": "#/$defs/creatureVersion"
 					}
 				},
 				"hasFluff": {
@@ -1087,7 +1122,7 @@
 							]
 						},
 						"alias": {
-							"$ref": "../util.json#/definitions/alias"
+							"$ref": "../util.json#/$defs/alias"
 						},
 						"group": {
 							"description": "A group name, indexed by search. E.g. searching \"Lycanthrope\" would otherwise fail to find anything.\nOnly works on the bestiary page, not in the full site search.",
@@ -1106,7 +1141,7 @@
 						"size": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/size"
+								"$ref": "../util.json#/$defs/size"
 							},
 							"uniqueItems": true
 						},
@@ -1119,13 +1154,48 @@
 									"type": "object",
 									"properties": {
 										"type": {
-											"$ref": "../util.json#/definitions/creatureType"
+											"$ref": "../util.json#/$defs/creatureType"
 										},
 										"swarmSize": {
-											"$ref": "../util.json#/definitions/size",
+											"$ref": "../util.json#/$defs/size",
 											"description": "Size of the individual creatures that make up the swarm."
 										},
 										"tags": {
+											"type": "array",
+											"uniqueItems": true,
+											"items": {
+												"oneOf": [
+													{
+														"type": "string"
+													},
+													{
+														"type": "object",
+														"properties": {
+															"tag": {
+																"type": "string"
+															},
+															"prefix": {
+																"type": "string"
+															}
+														},
+														"required": [
+															"tag",
+															"prefix"
+														],
+														"additionalProperties": false
+													}
+												]
+											}
+										},
+										"sidekickType": {
+											"type": "string",
+											"enum": [
+												"expert",
+												"spellcaster",
+												"warrior"
+											]
+										},
+										"sidekickTags": {
 											"type": "array",
 											"uniqueItems": true,
 											"items": {
@@ -1159,7 +1229,7 @@
 									"additionalProperties": false
 								},
 								{
-									"$ref": "../util.json#/definitions/creatureType"
+									"$ref": "../util.json#/$defs/creatureType"
 								}
 							]
 						},
@@ -1171,15 +1241,15 @@
 							"description": "Sub-source text that is shown when hovered."
 						},
 						"otherSources": {
-							"$ref": "../util.json#/definitions/otherSources"
+							"$ref": "../util.json#/$defs/otherSources"
 						},
 						"reprintedAs": {
-							"$ref": "../util.json#/definitions/reprintedAs"
+							"$ref": "../util.json#/$defs/reprintedAs"
 						},
 						"alignment": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/align"
+								"$ref": "#/$defs/align"
 							}
 						},
 						"alignmentPrefix": {
@@ -1188,7 +1258,7 @@
 						"ac": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/acItem"
+								"$ref": "#/$defs/acItem"
 							}
 						},
 						"hp": {
@@ -1221,7 +1291,7 @@
 							]
 						},
 						"speed": {
-							"$ref": "../util.json#/definitions/speed"
+							"$ref": "../util.json#/$defs/speed"
 						},
 						"str": {
 							"type": [
@@ -1476,23 +1546,23 @@
 							]
 						},
 						"vulnerable": {
-							"$ref": "../util.json#/definitions/damageVulnerabilityArray"
+							"$ref": "../util.json#/$defs/damageVulnerabilityArray"
 						},
 						"resist": {
-							"$ref": "../util.json#/definitions/damageResistArray"
+							"$ref": "../util.json#/$defs/damageResistArray"
 						},
 						"immune": {
-							"$ref": "../util.json#/definitions/damageImmunityArray"
+							"$ref": "../util.json#/$defs/damageImmunityArray"
 						},
 						"conditionImmune": {
-							"$ref": "../util.json#/definitions/conditionImmunityArray"
+							"$ref": "../util.json#/$defs/conditionImmunityArray"
 						},
 						"spellcasting": {
 							"oneOf": [
 								{
 									"type": "array",
 									"items": {
-										"$ref": "../entry.json#/definitions/entrySpellcasting"
+										"$ref": "../entry.json#/$defs/entrySpellcasting"
 									}
 								},
 								{
@@ -1729,17 +1799,17 @@
 						"variant": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/entryVariantBestiary"
+								"$ref": "#/$defs/entryVariantBestiary"
 							}
 						},
 						"page": {
-							"$ref": "../util.json#/definitions/page"
+							"$ref": "../util.json#/$defs/page"
 						},
 						"familiar": {
 							"type": "boolean"
 						},
 						"additionalSources": {
-							"$ref": "../util.json#/definitions/additionalSources"
+							"$ref": "../util.json#/$defs/additionalSources"
 						},
 						"hasToken": {
 							"type": "boolean"
@@ -1761,7 +1831,7 @@
 												"type": "string"
 											},
 											"page": {
-												"$ref": "../util.json#/definitions/page"
+												"$ref": "../util.json#/$defs/page"
 											}
 										},
 										"required": [
@@ -1800,7 +1870,7 @@
 							}
 						},
 						"soundClip": {
-							"$ref": "../entry.json#/definitions/mediaHref"
+							"$ref": "../entry.json#/$defs/mediaHref"
 						},
 						"dragonCastingColor": {
 							"type": "string",
@@ -1973,19 +2043,19 @@
 						"damageTags": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/dataDamageTags"
+								"$ref": "../util.json#/$defs/dataDamageTags"
 							}
 						},
 						"damageTagsSpell": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/dataDamageTags"
+								"$ref": "../util.json#/$defs/dataDamageTags"
 							}
 						},
 						"damageTagsLegendary": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/dataDamageTags"
+								"$ref": "../util.json#/$defs/dataDamageTags"
 							}
 						},
 						"miscTags": {
@@ -2004,13 +2074,13 @@
 							}
 						},
 						"conditionInflict": {
-							"$ref": "../util.json#/definitions/tagsConditions"
+							"$ref": "../util.json#/$defs/tagsConditions"
 						},
 						"conditionInflictLegendary": {
-							"$ref": "../util.json#/definitions/tagsConditions"
+							"$ref": "../util.json#/$defs/tagsConditions"
 						},
 						"conditionInflictSpell": {
-							"$ref": "../util.json#/definitions/tagsConditions"
+							"$ref": "../util.json#/$defs/tagsConditions"
 						},
 						"footer": {
 							"description": "Intended for homebrew use only.",
@@ -2020,10 +2090,10 @@
 							}
 						},
 						"srd": {
-							"$ref": "../util.json#/definitions/srd"
+							"$ref": "../util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "../util.json#/definitions/basicRules"
+							"$ref": "../util.json#/$defs/basicRules"
 						},
 						"summonedBySpell": {
 							"description": "The spell used to summon this creature; specifically for TCE-esque summon spells.",
@@ -2044,7 +2114,7 @@
 						"_versions": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/creatureVersion"
+								"$ref": "#/$defs/creatureVersion"
 							}
 						},
 						"hasFluff": {
@@ -2087,7 +2157,7 @@
 							]
 						},
 						"alias": {
-							"$ref": "../util.json#/definitions/alias"
+							"$ref": "../util.json#/$defs/alias"
 						},
 						"group": {
 							"description": "A group name, indexed by search. E.g. searching \"Lycanthrope\" would otherwise fail to find anything.\nOnly works on the bestiary page, not in the full site search.",
@@ -2106,7 +2176,7 @@
 						"size": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/size"
+								"$ref": "../util.json#/$defs/size"
 							},
 							"uniqueItems": true
 						},
@@ -2119,13 +2189,48 @@
 									"type": "object",
 									"properties": {
 										"type": {
-											"$ref": "../util.json#/definitions/creatureType"
+											"$ref": "../util.json#/$defs/creatureType"
 										},
 										"swarmSize": {
-											"$ref": "../util.json#/definitions/size",
+											"$ref": "../util.json#/$defs/size",
 											"description": "Size of the individual creatures that make up the swarm."
 										},
 										"tags": {
+											"type": "array",
+											"uniqueItems": true,
+											"items": {
+												"oneOf": [
+													{
+														"type": "string"
+													},
+													{
+														"type": "object",
+														"properties": {
+															"tag": {
+																"type": "string"
+															},
+															"prefix": {
+																"type": "string"
+															}
+														},
+														"required": [
+															"tag",
+															"prefix"
+														],
+														"additionalProperties": false
+													}
+												]
+											}
+										},
+										"sidekickType": {
+											"type": "string",
+											"enum": [
+												"expert",
+												"spellcaster",
+												"warrior"
+											]
+										},
+										"sidekickTags": {
 											"type": "array",
 											"uniqueItems": true,
 											"items": {
@@ -2159,7 +2264,7 @@
 									"additionalProperties": false
 								},
 								{
-									"$ref": "../util.json#/definitions/creatureType"
+									"$ref": "../util.json#/$defs/creatureType"
 								}
 							]
 						},
@@ -2171,15 +2276,15 @@
 							"description": "Sub-source text that is shown when hovered."
 						},
 						"otherSources": {
-							"$ref": "../util.json#/definitions/otherSources"
+							"$ref": "../util.json#/$defs/otherSources"
 						},
 						"reprintedAs": {
-							"$ref": "../util.json#/definitions/reprintedAs"
+							"$ref": "../util.json#/$defs/reprintedAs"
 						},
 						"alignment": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/align"
+								"$ref": "#/$defs/align"
 							}
 						},
 						"alignmentPrefix": {
@@ -2188,7 +2293,7 @@
 						"ac": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/acItem"
+								"$ref": "#/$defs/acItem"
 							}
 						},
 						"hp": {
@@ -2221,7 +2326,7 @@
 							]
 						},
 						"speed": {
-							"$ref": "../util.json#/definitions/speed"
+							"$ref": "../util.json#/$defs/speed"
 						},
 						"str": {
 							"type": [
@@ -2476,23 +2581,23 @@
 							]
 						},
 						"vulnerable": {
-							"$ref": "../util.json#/definitions/damageVulnerabilityArray"
+							"$ref": "../util.json#/$defs/damageVulnerabilityArray"
 						},
 						"resist": {
-							"$ref": "../util.json#/definitions/damageResistArray"
+							"$ref": "../util.json#/$defs/damageResistArray"
 						},
 						"immune": {
-							"$ref": "../util.json#/definitions/damageImmunityArray"
+							"$ref": "../util.json#/$defs/damageImmunityArray"
 						},
 						"conditionImmune": {
-							"$ref": "../util.json#/definitions/conditionImmunityArray"
+							"$ref": "../util.json#/$defs/conditionImmunityArray"
 						},
 						"spellcasting": {
 							"oneOf": [
 								{
 									"type": "array",
 									"items": {
-										"$ref": "../entry.json#/definitions/entrySpellcasting"
+										"$ref": "../entry.json#/$defs/entrySpellcasting"
 									}
 								},
 								{
@@ -2729,17 +2834,17 @@
 						"variant": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/entryVariantBestiary"
+								"$ref": "#/$defs/entryVariantBestiary"
 							}
 						},
 						"page": {
-							"$ref": "../util.json#/definitions/page"
+							"$ref": "../util.json#/$defs/page"
 						},
 						"familiar": {
 							"type": "boolean"
 						},
 						"additionalSources": {
-							"$ref": "../util.json#/definitions/additionalSources"
+							"$ref": "../util.json#/$defs/additionalSources"
 						},
 						"hasToken": {
 							"type": "boolean"
@@ -2761,7 +2866,7 @@
 												"type": "string"
 											},
 											"page": {
-												"$ref": "../util.json#/definitions/page"
+												"$ref": "../util.json#/$defs/page"
 											}
 										},
 										"required": [
@@ -2800,7 +2905,7 @@
 							}
 						},
 						"soundClip": {
-							"$ref": "../entry.json#/definitions/mediaHref"
+							"$ref": "../entry.json#/$defs/mediaHref"
 						},
 						"dragonCastingColor": {
 							"type": "string",
@@ -2973,19 +3078,19 @@
 						"damageTags": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/dataDamageTags"
+								"$ref": "../util.json#/$defs/dataDamageTags"
 							}
 						},
 						"damageTagsSpell": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/dataDamageTags"
+								"$ref": "../util.json#/$defs/dataDamageTags"
 							}
 						},
 						"damageTagsLegendary": {
 							"type": "array",
 							"items": {
-								"$ref": "../util.json#/definitions/dataDamageTags"
+								"$ref": "../util.json#/$defs/dataDamageTags"
 							}
 						},
 						"miscTags": {
@@ -3004,13 +3109,13 @@
 							}
 						},
 						"conditionInflict": {
-							"$ref": "../util.json#/definitions/tagsConditions"
+							"$ref": "../util.json#/$defs/tagsConditions"
 						},
 						"conditionInflictLegendary": {
-							"$ref": "../util.json#/definitions/tagsConditions"
+							"$ref": "../util.json#/$defs/tagsConditions"
 						},
 						"conditionInflictSpell": {
-							"$ref": "../util.json#/definitions/tagsConditions"
+							"$ref": "../util.json#/$defs/tagsConditions"
 						},
 						"footer": {
 							"description": "Intended for homebrew use only.",
@@ -3020,10 +3125,10 @@
 							}
 						},
 						"srd": {
-							"$ref": "../util.json#/definitions/srd"
+							"$ref": "../util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "../util.json#/definitions/basicRules"
+							"$ref": "../util.json#/$defs/basicRules"
 						},
 						"summonedBySpell": {
 							"description": "The spell used to summon this creature; specifically for TCE-esque summon spells.",
@@ -3044,7 +3149,7 @@
 						"_versions": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/creatureVersion"
+								"$ref": "#/$defs/creatureVersion"
 							}
 						},
 						"hasFluff": {
@@ -3079,7 +3184,7 @@
 									"type": "string"
 								},
 								"_mod": {
-									"$ref": "../util.json#/definitions/_modObject"
+									"$ref": "../util.json#/$defs/_modObject"
 								},
 								"_trait": {
 									"type": "object",
@@ -3100,7 +3205,7 @@
 									"type": "object",
 									"patternProperties": {
 										".*": {
-											"type": "boolean"
+											"const": true
 										}
 									}
 								}
@@ -3177,7 +3282,7 @@
 							"type": "string"
 						},
 						"page": {
-							"$ref": "../util.json#/definitions/page"
+							"$ref": "../util.json#/$defs/page"
 						}
 					},
 					"required": [
@@ -3203,13 +3308,13 @@
 							"type": "string"
 						},
 						"page": {
-							"$ref": "../util.json#/definitions/page"
+							"$ref": "../util.json#/$defs/page"
 						},
 						"srd": {
-							"$ref": "../util.json#/definitions/srd"
+							"$ref": "../util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "../util.json#/definitions/basicRules"
+							"$ref": "../util.json#/$defs/basicRules"
 						},
 						"data": {
 							"description": "A generic object for storing special data for external use-cases. Keys prefixed with \"rd-\" should be added as \"data-\" HTML attributes when rendering to HTML.",
@@ -3234,7 +3339,7 @@
 									"type": "string"
 								},
 								"page": {
-									"$ref": "../util.json#/definitions/page"
+									"$ref": "../util.json#/$defs/page"
 								}
 							},
 							"required": [
@@ -3304,13 +3409,13 @@
 							"type": "string"
 						},
 						"page": {
-							"$ref": "../util.json#/definitions/page"
+							"$ref": "../util.json#/$defs/page"
 						},
 						"srd": {
-							"$ref": "../util.json#/definitions/srd"
+							"$ref": "../util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "../util.json#/definitions/basicRules"
+							"$ref": "../util.json#/$defs/basicRules"
 						},
 						"data": {
 							"description": "A generic object for storing special data for external use-cases. Keys prefixed with \"rd-\" should be added as \"data-\" HTML attributes when rendering to HTML.",
@@ -3338,7 +3443,7 @@
 									"type": "string"
 								},
 								"page": {
-									"$ref": "../util.json#/definitions/page"
+									"$ref": "../util.json#/$defs/page"
 								}
 							},
 							"required": [
@@ -3398,10 +3503,10 @@
 		"creatureVersion": {
 			"anyOf": [
 				{
-					"$ref": "../util.json#/definitions/version"
+					"$ref": "../util.json#/$defs/version"
 				},
 				{
-					"$ref": "#/definitions/creatureData"
+					"$ref": "#/$defs/creatureData"
 				}
 			]
 		}
@@ -3410,13 +3515,13 @@
 		"monster": {
 			"type": "array",
 			"items": {
-				"$ref": "#/definitions/creature"
+				"$ref": "#/$defs/creature"
 			},
 			"$comment": "This is necessary as some site bestiary files assert only otherSources and do not contain any true data.",
 			"uniqueItems": true
 		},
 		"_meta": {
-			"$ref": "../util.json#/definitions/metaBlock"
+			"$ref": "../util.json#/$defs/metaBlock"
 		}
 	},
 	"additionalProperties": false

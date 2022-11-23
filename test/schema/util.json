@@ -1,10 +1,10 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "util.json",
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.12.0",
-	"definitions": {
+	"version": "1.13.2",
+	"$defs": {
 		"metaBlock": {
 			"type": "object",
 			"properties": {
@@ -48,7 +48,7 @@
 						"type": "string"
 					},
 					"page": {
-						"$ref": "#/definitions/page"
+						"$ref": "#/$defs/page"
 					}
 				},
 				"required": [
@@ -68,7 +68,7 @@
 						"type": "string"
 					},
 					"page": {
-						"$ref": "#/definitions/page"
+						"$ref": "#/$defs/page"
 					}
 				},
 				"required": [
@@ -198,40 +198,40 @@
 						"type": "integer"
 					},
 					"abyssal": {
-						"type": "boolean"
+						"const": true
 					},
 					"celestial": {
-						"type": "boolean"
+						"const": true
 					},
 					"deep speech": {
-						"type": "boolean"
+						"const": true
 					},
 					"draconic": {
-						"type": "boolean"
+						"const": true
 					},
 					"infernal": {
-						"type": "boolean"
+						"const": true
 					},
 					"primordial": {
-						"type": "boolean"
+						"const": true
 					},
 					"sylvan": {
-						"type": "boolean"
+						"const": true
 					},
 					"undercommon": {
-						"type": "boolean"
+						"const": true
 					},
 					"dwarvish": {
-						"type": "boolean"
+						"const": true
 					},
 					"elvish": {
-						"type": "boolean"
+						"const": true
 					},
 					"giant": {
-						"type": "boolean"
+						"const": true
 					},
 					"other": {
-						"type": "boolean"
+						"const": true
 					},
 					"choose": {
 						"type": "object",
@@ -239,7 +239,7 @@
 							"from": {
 								"type": "array",
 								"items": {
-									"$ref": "#/definitions/languageNameLower"
+									"$ref": "#/$defs/languageNameLower"
 								},
 								"uniqueItems": true
 							},
@@ -300,91 +300,91 @@
 						"type": "integer"
 					},
 					"artisan's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"alchemist's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"brewer's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"calligrapher's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"carpenter's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cartographer's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cobbler's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cook's utensils": {
-						"type": "boolean"
+						"const": true
 					},
 					"glassblower's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"jeweler's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"leatherworker's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"mason's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"painter's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"potter's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"smith's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"tinker's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"weaver's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"woodcarver's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"disguise kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"forgery kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"gaming set": {
-						"type": "boolean"
+						"const": true
 					},
 					"herbalism kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"musical instrument": {
-						"type": "boolean"
+						"const": true
 					},
 					"navigator's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"thieves' tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"poisoner's kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (land)": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (water)": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (space)": {
-						"type": "boolean"
+						"const": true
 					},
 					"choose": {
 						"type": "object",
@@ -394,7 +394,7 @@
 								"items": {
 									"anyOf": [
 										{
-											"$ref": "#/definitions/toolNameLower"
+											"$ref": "#/$defs/toolNameLower"
 										},
 										{
 											"type": "string",
@@ -450,58 +450,58 @@
 						"type": "integer"
 					},
 					"athletics": {
-						"type": "boolean"
+						"const": true
 					},
 					"acrobatics": {
-						"type": "boolean"
+						"const": true
 					},
 					"sleight of hand": {
-						"type": "boolean"
+						"const": true
 					},
 					"stealth": {
-						"type": "boolean"
+						"const": true
 					},
 					"arcana": {
-						"type": "boolean"
+						"const": true
 					},
 					"history": {
-						"type": "boolean"
+						"const": true
 					},
 					"investigation": {
-						"type": "boolean"
+						"const": true
 					},
 					"nature": {
-						"type": "boolean"
+						"const": true
 					},
 					"religion": {
-						"type": "boolean"
+						"const": true
 					},
 					"animal handling": {
-						"type": "boolean"
+						"const": true
 					},
 					"insight": {
-						"type": "boolean"
+						"const": true
 					},
 					"medicine": {
-						"type": "boolean"
+						"const": true
 					},
 					"perception": {
-						"type": "boolean"
+						"const": true
 					},
 					"survival": {
-						"type": "boolean"
+						"const": true
 					},
 					"deception": {
-						"type": "boolean"
+						"const": true
 					},
 					"intimidation": {
-						"type": "boolean"
+						"const": true
 					},
 					"performance": {
-						"type": "boolean"
+						"const": true
 					},
 					"persuasion": {
-						"type": "boolean"
+						"const": true
 					},
 					"choose": {
 						"type": "object",
@@ -509,7 +509,7 @@
 							"from": {
 								"type": "array",
 								"items": {
-									"$ref": "#/definitions/skillNameLower"
+									"$ref": "#/$defs/skillNameLower"
 								},
 								"uniqueItems": true,
 								"minItems": 2
@@ -536,40 +536,40 @@
 						"type": "integer"
 					},
 					"abyssal": {
-						"type": "boolean"
+						"const": true
 					},
 					"celestial": {
-						"type": "boolean"
+						"const": true
 					},
 					"deep speech": {
-						"type": "boolean"
+						"const": true
 					},
 					"draconic": {
-						"type": "boolean"
+						"const": true
 					},
 					"infernal": {
-						"type": "boolean"
+						"const": true
 					},
 					"primordial": {
-						"type": "boolean"
+						"const": true
 					},
 					"sylvan": {
-						"type": "boolean"
+						"const": true
 					},
 					"undercommon": {
-						"type": "boolean"
+						"const": true
 					},
 					"dwarvish": {
-						"type": "boolean"
+						"const": true
 					},
 					"elvish": {
-						"type": "boolean"
+						"const": true
 					},
 					"giant": {
-						"type": "boolean"
+						"const": true
 					},
 					"otherLanguage": {
-						"type": "boolean"
+						"const": true
 					},
 					"anyTool": {
 						"type": "integer"
@@ -578,148 +578,148 @@
 						"type": "integer"
 					},
 					"artisan's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"alchemist's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"brewer's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"calligrapher's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"carpenter's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cartographer's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cobbler's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cook's utensils": {
-						"type": "boolean"
+						"const": true
 					},
 					"glassblower's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"jeweler's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"leatherworker's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"mason's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"painter's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"potter's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"smith's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"tinker's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"weaver's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"woodcarver's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"disguise kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"forgery kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"gaming set": {
-						"type": "boolean"
+						"const": true
 					},
 					"herbalism kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"musical instrument": {
-						"type": "boolean"
+						"const": true
 					},
 					"navigator's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"thieves' tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"poisoner's kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (land)": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (water)": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (space)": {
-						"type": "boolean"
+						"const": true
 					},
 					"anySkill": {
 						"type": "integer"
 					},
 					"athletics": {
-						"type": "boolean"
+						"const": true
 					},
 					"acrobatics": {
-						"type": "boolean"
+						"const": true
 					},
 					"sleight of hand": {
-						"type": "boolean"
+						"const": true
 					},
 					"stealth": {
-						"type": "boolean"
+						"const": true
 					},
 					"arcana": {
-						"type": "boolean"
+						"const": true
 					},
 					"history": {
-						"type": "boolean"
+						"const": true
 					},
 					"investigation": {
-						"type": "boolean"
+						"const": true
 					},
 					"nature": {
-						"type": "boolean"
+						"const": true
 					},
 					"religion": {
-						"type": "boolean"
+						"const": true
 					},
 					"animal handling": {
-						"type": "boolean"
+						"const": true
 					},
 					"insight": {
-						"type": "boolean"
+						"const": true
 					},
 					"medicine": {
-						"type": "boolean"
+						"const": true
 					},
 					"perception": {
-						"type": "boolean"
+						"const": true
 					},
 					"survival": {
-						"type": "boolean"
+						"const": true
 					},
 					"deception": {
-						"type": "boolean"
+						"const": true
 					},
 					"intimidation": {
-						"type": "boolean"
+						"const": true
 					},
 					"performance": {
-						"type": "boolean"
+						"const": true
 					},
 					"persuasion": {
-						"type": "boolean"
+						"const": true
 					},
 					"choose": {
 						"type": "array",
@@ -733,13 +733,13 @@
 											"items": {
 												"anyOf": [
 													{
-														"$ref": "#/definitions/languageNameLower"
+														"$ref": "#/$defs/languageNameLower"
 													},
 													{
-														"$ref": "#/definitions/toolNameLower"
+														"$ref": "#/$defs/toolNameLower"
 													},
 													{
-														"$ref": "#/definitions/skillNameLower"
+														"$ref": "#/$defs/skillNameLower"
 													},
 													{
 														"type": "string",
@@ -808,130 +808,130 @@
 				"type": "object",
 				"properties": {
 					"simple": {
-						"type": "boolean"
+						"const": true
 					},
 					"martial": {
-						"type": "boolean"
+						"const": true
 					},
 					"firearms": {
-						"type": "boolean"
+						"const": true
 					},
 					"battleaxe|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"club|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"dagger|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"flail|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"glaive|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"greataxe|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"greatclub|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"greatsword|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"halberd|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"handaxe|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"javelin|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"lance|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"light hammer|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"longsword|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"mace|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"maul|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"morningstar|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"pike|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"quarterstaff|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"rapier|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"scimitar|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"shortsword|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"sickle|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"spear|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"staff|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"trident|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"war pick|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"warhammer|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"whip|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"blowgun|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"dart|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"hand crossbow|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"heavy crossbow|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"light crossbow|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"longbow|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"net|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"shortbow|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"sling|phb": {
-						"type": "boolean"
+						"const": true
 					},
 					"double-bladed scimitar|erlw": {
-						"type": "boolean"
+						"const": true
 					},
 					"choose": {
 						"type": "object",
@@ -961,16 +961,16 @@
 				"type": "object",
 				"properties": {
 					"light": {
-						"type": "boolean"
+						"const": true
 					},
 					"medium": {
-						"type": "boolean"
+						"const": true
 					},
 					"heavy": {
-						"type": "boolean"
+						"const": true
 					},
 					"shield|phb": {
-						"type": "boolean"
+						"const": true
 					}
 				},
 				"additionalProperties": false
@@ -984,22 +984,22 @@
 				"type": "object",
 				"properties": {
 					"str": {
-						"type": "boolean"
+						"const": true
 					},
 					"dex": {
-						"type": "boolean"
+						"const": true
 					},
 					"con": {
-						"type": "boolean"
+						"const": true
 					},
 					"int": {
-						"type": "boolean"
+						"const": true
 					},
 					"wis": {
-						"type": "boolean"
+						"const": true
 					},
 					"cha": {
-						"type": "boolean"
+						"const": true
 					},
 					"choose": {
 						"type": "object",
@@ -1043,148 +1043,148 @@
 						"type": "number"
 					},
 					"athletics": {
-						"type": "boolean"
+						"const": true
 					},
 					"acrobatics": {
-						"type": "boolean"
+						"const": true
 					},
 					"sleight of hand": {
-						"type": "boolean"
+						"const": true
 					},
 					"stealth": {
-						"type": "boolean"
+						"const": true
 					},
 					"arcana": {
-						"type": "boolean"
+						"const": true
 					},
 					"history": {
-						"type": "boolean"
+						"const": true
 					},
 					"investigation": {
-						"type": "boolean"
+						"const": true
 					},
 					"nature": {
-						"type": "boolean"
+						"const": true
 					},
 					"religion": {
-						"type": "boolean"
+						"const": true
 					},
 					"animal handling": {
-						"type": "boolean"
+						"const": true
 					},
 					"insight": {
-						"type": "boolean"
+						"const": true
 					},
 					"medicine": {
-						"type": "boolean"
+						"const": true
 					},
 					"perception": {
-						"type": "boolean"
+						"const": true
 					},
 					"survival": {
-						"type": "boolean"
+						"const": true
 					},
 					"deception": {
-						"type": "boolean"
+						"const": true
 					},
 					"intimidation": {
-						"type": "boolean"
+						"const": true
 					},
 					"performance": {
-						"type": "boolean"
+						"const": true
 					},
 					"persuasion": {
-						"type": "boolean"
+						"const": true
 					},
 					"anyProficientTool": {
 						"type": "number"
 					},
 					"artisan's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"alchemist's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"brewer's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"calligrapher's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"carpenter's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cartographer's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cobbler's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"cook's utensils": {
-						"type": "boolean"
+						"const": true
 					},
 					"glassblower's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"jeweler's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"leatherworker's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"mason's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"painter's supplies": {
-						"type": "boolean"
+						"const": true
 					},
 					"potter's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"smith's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"tinker's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"weaver's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"woodcarver's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"disguise kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"forgery kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"gaming set": {
-						"type": "boolean"
+						"const": true
 					},
 					"herbalism kit": {
-						"type": "boolean"
+						"const": true
 					},
 					"musical instrument": {
-						"type": "boolean"
+						"const": true
 					},
 					"navigator's tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"thieves' tools": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (land)": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (water)": {
-						"type": "boolean"
+						"const": true
 					},
 					"vehicles (space)": {
-						"type": "boolean"
+						"const": true
 					},
 					"poisoner's kit": {
-						"type": "boolean"
+						"const": true
 					}
 				}
 			},
@@ -1200,9 +1200,7 @@
 						"type": "integer"
 					}
 				},
-				"additionalProperties": {
-					"type": "boolean"
-				}
+				"additionalProperties": true
 			},
 			"uniqueItems": true,
 			"minItems": 1
@@ -1259,22 +1257,22 @@
 					"type": "object",
 					"properties": {
 						"walk": {
-							"$ref": "#/definitions/_speedVal"
+							"$ref": "#/$defs/_speedVal"
 						},
 						"burrow": {
-							"$ref": "#/definitions/_speedVal"
+							"$ref": "#/$defs/_speedVal"
 						},
 						"climb": {
-							"$ref": "#/definitions/_speedVal"
+							"$ref": "#/$defs/_speedVal"
 						},
 						"fly": {
-							"$ref": "#/definitions/_speedVal"
+							"$ref": "#/$defs/_speedVal"
 						},
 						"canHover": {
-							"type": "boolean"
+							"const": true
 						},
 						"swim": {
-							"$ref": "#/definitions/_speedVal"
+							"$ref": "#/$defs/_speedVal"
 						},
 						"choose": {
 							"type": "object",
@@ -1282,7 +1280,7 @@
 								"from": {
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/_speedMode"
+										"$ref": "#/$defs/_speedMode"
 									},
 									"uniqueItems": true,
 									"minItems": 2
@@ -1306,35 +1304,35 @@
 								"walk": {
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/_speedVal"
+										"$ref": "#/$defs/_speedVal"
 									},
 									"uniqueItems": true
 								},
 								"burrow": {
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/_speedVal"
+										"$ref": "#/$defs/_speedVal"
 									},
 									"uniqueItems": true
 								},
 								"climb": {
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/_speedVal"
+										"$ref": "#/$defs/_speedVal"
 									},
 									"uniqueItems": true
 								},
 								"fly": {
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/_speedVal"
+										"$ref": "#/$defs/_speedVal"
 									},
 									"uniqueItems": true
 								},
 								"swim": {
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/_speedVal"
+										"$ref": "#/$defs/_speedVal"
 									},
 									"uniqueItems": true
 								}
@@ -1343,7 +1341,7 @@
 						"hidden": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/_speedMode"
+								"$ref": "#/$defs/_speedMode"
 							},
 							"uniqueItems": true,
 							"minItems": 1
@@ -1395,7 +1393,7 @@
 											},
 											"visible": {
 												"description": "Governs whether or not the class name is visible in the list display/prerequisite line. *Not* recommended for features which implicitly carry a class restriction, such as Eldritch Invocations.",
-												"type": "boolean"
+												"const": true
 											}
 										},
 										"required": [
@@ -1414,7 +1412,7 @@
 											},
 											"visible": {
 												"description": "Governs whether or not the class name is visible in the list display/prerequisite line. *Not* recommended for features which implicitly carry a class restriction, such as Eldritch Invocations.",
-												"type": "boolean"
+												"const": true
 											}
 										},
 										"required": [
@@ -1568,14 +1566,14 @@
 						}
 					},
 					"spellcasting": {
-						"type": "boolean"
+						"const": true
 					},
 					"spellcasting2020": {
 						"description": "Renders with the updated text found in UA2020: Feats",
-						"type": "boolean"
+						"const": true
 					},
 					"psionics": {
-						"type": "boolean"
+						"const": true
 					},
 					"proficiency": {
 						"type": "array",
@@ -1604,7 +1602,16 @@
 					"alignment": {
 						"type": "array",
 						"items": {
-							"$ref": "util.json#/definitions/alignment"
+							"$ref": "util.json#/$defs/alignment"
+						}
+					},
+					"campaign": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"enum": [
+								"Dragonlance"
+							]
 						}
 					},
 					"note": {
@@ -1744,7 +1751,7 @@
 					"items": {
 						"oneOf": [
 							{
-								"$ref": "#/definitions/dataDamageType"
+								"$ref": "#/$defs/dataDamageType"
 							},
 							{
 								"type": "object",
@@ -1765,13 +1772,13 @@
 										"type": "string"
 									},
 									"immune": {
-										"$ref": "#/definitions/damageImmunityArray"
+										"$ref": "#/$defs/damageImmunityArray"
 									},
 									"note": {
 										"type": "string"
 									},
 									"cond": {
-										"type": "boolean"
+										"const": true
 									}
 								},
 								"additionalProperties": false,
@@ -1794,7 +1801,7 @@
 			"items": {
 				"oneOf": [
 					{
-						"$ref": "#/definitions/dataDamageType"
+						"$ref": "#/$defs/dataDamageType"
 					},
 					{
 						"type": "object",
@@ -1803,7 +1810,7 @@
 								"type": "object",
 								"properties": {
 									"from": {
-										"$ref": "#/definitions/damageImmunityArrayPlayer"
+										"$ref": "#/$defs/damageImmunityArrayPlayer"
 									}
 								},
 								"additionalProperties": false,
@@ -1824,7 +1831,7 @@
 					"items": {
 						"oneOf": [
 							{
-								"$ref": "#/definitions/dataDamageType"
+								"$ref": "#/$defs/dataDamageType"
 							},
 							{
 								"type": "object",
@@ -1845,13 +1852,13 @@
 										"type": "string"
 									},
 									"resist": {
-										"$ref": "#/definitions/damageResistArray"
+										"$ref": "#/$defs/damageResistArray"
 									},
 									"note": {
 										"type": "string"
 									},
 									"cond": {
-										"type": "boolean"
+										"const": true
 									}
 								},
 								"additionalProperties": false,
@@ -1874,7 +1881,7 @@
 			"items": {
 				"oneOf": [
 					{
-						"$ref": "#/definitions/dataDamageType"
+						"$ref": "#/$defs/dataDamageType"
 					},
 					{
 						"type": "object",
@@ -1883,7 +1890,7 @@
 								"type": "object",
 								"properties": {
 									"from": {
-										"$ref": "#/definitions/damageResistArrayPlayer"
+										"$ref": "#/$defs/damageResistArrayPlayer"
 									}
 								},
 								"additionalProperties": false,
@@ -1905,7 +1912,7 @@
 					"items": {
 						"oneOf": [
 							{
-								"$ref": "#/definitions/dataDamageType"
+								"$ref": "#/$defs/dataDamageType"
 							},
 							{
 								"type": "object",
@@ -1926,13 +1933,13 @@
 										"type": "string"
 									},
 									"vulnerable": {
-										"$ref": "#/definitions/damageVulnerabilityArray"
+										"$ref": "#/$defs/damageVulnerabilityArray"
 									},
 									"note": {
 										"type": "string"
 									},
 									"cond": {
-										"type": "boolean"
+										"const": true
 									}
 								},
 								"additionalProperties": false,
@@ -1954,7 +1961,7 @@
 			"items": {
 				"oneOf": [
 					{
-						"$ref": "#/definitions/dataDamageType"
+						"$ref": "#/$defs/dataDamageType"
 					},
 					{
 						"type": "object",
@@ -1963,7 +1970,7 @@
 								"type": "object",
 								"properties": {
 									"from": {
-										"$ref": "#/definitions/damageVulnerabilityArrayPlayer"
+										"$ref": "#/$defs/damageVulnerabilityArrayPlayer"
 									}
 								},
 								"additionalProperties": false,
@@ -1985,7 +1992,7 @@
 					"items": {
 						"oneOf": [
 							{
-								"$ref": "#/definitions/dataCondition"
+								"$ref": "#/$defs/dataCondition"
 							},
 							{
 								"type": "object",
@@ -2006,7 +2013,7 @@
 										"type": "string"
 									},
 									"conditionImmune": {
-										"$ref": "#/definitions/conditionImmunityArray"
+										"$ref": "#/$defs/conditionImmunityArray"
 									},
 									"note": {
 										"type": "string"
@@ -2032,7 +2039,7 @@
 			"items": {
 				"oneOf": [
 					{
-						"$ref": "#/definitions/dataCondition"
+						"$ref": "#/$defs/dataCondition"
 					},
 					{
 						"type": "object",
@@ -2041,7 +2048,7 @@
 								"type": "object",
 								"properties": {
 									"from": {
-										"$ref": "#/definitions/conditionImmunityArrayPlayer"
+										"$ref": "#/$defs/conditionImmunityArrayPlayer"
 									}
 								},
 								"additionalProperties": false,
@@ -2172,7 +2179,7 @@
 						{
 							"type": "array",
 							"items": {
-								"$ref": "entry.json#/definitions/entryImage"
+								"$ref": "entry.json#/$defs/entryImage"
 							}
 						},
 						{
@@ -2209,7 +2216,7 @@
 									{
 										"type": "array",
 										"items": {
-											"$ref": "entry.json#/definitions/entryImage"
+											"$ref": "entry.json#/$defs/entryImage"
 										}
 									},
 									{
@@ -2245,7 +2252,7 @@
 									{
 										"type": "array",
 										"items": {
-											"$ref": "entry.json#/definitions/entryImage"
+											"$ref": "entry.json#/$defs/entryImage"
 										}
 									},
 									{
@@ -2285,7 +2292,7 @@
 										"type": "string"
 									},
 									"_mod": {
-										"$ref": "#/definitions/_modObject"
+										"$ref": "#/$defs/_modObject"
 									},
 									"_trait": {
 										"type": "object",
@@ -2306,7 +2313,7 @@
 										"type": "object",
 										"patternProperties": {
 											".*": {
-												"type": "boolean"
+												"const": true
 											}
 										}
 									}
@@ -2669,7 +2676,7 @@
 							]
 						},
 						"force": {
-							"type": "boolean"
+							"const": true
 						}
 					},
 					"additionalProperties": false
@@ -2876,7 +2883,7 @@
 							"type": "number"
 						},
 						"floor": {
-							"type": "boolean"
+							"const": true
 						}
 					},
 					"required": [
@@ -2944,7 +2951,7 @@
 							"type": "number"
 						},
 						"floor": {
-							"type": "boolean"
+							"const": true
 						}
 					},
 					"required": [
@@ -2984,7 +2991,7 @@
 							"type": "string"
 						},
 						"_mod": {
-							"$ref": "#/definitions/_modObject"
+							"$ref": "#/$defs/_modObject"
 						},
 						"_trait": {
 							"type": "object",
@@ -3005,7 +3012,7 @@
 							"type": "object",
 							"patternProperties": {
 								".*": {
-									"type": "boolean"
+									"const": true
 								}
 							}
 						}
@@ -3033,7 +3040,7 @@
 							"type": "string"
 						},
 						"_mod": {
-							"$ref": "#/definitions/_modObject"
+							"$ref": "#/$defs/_modObject"
 						}
 					},
 					"required": [
@@ -3054,7 +3061,7 @@
 									"type": "string"
 								},
 								"_mod": {
-									"$ref": "#/definitions/_modObject"
+									"$ref": "#/$defs/_modObject"
 								}
 							},
 							"required": [
@@ -3089,7 +3096,7 @@
 			"type": "array",
 			"minItems": 1,
 			"items": {
-				"$ref": "#/definitions/version"
+				"$ref": "#/$defs/version"
 			}
 		},
 		"_modObject": {
@@ -3101,12 +3108,12 @@
 							"type": "string"
 						},
 						{
-							"$ref": "#/definitions/copyModifier"
+							"$ref": "#/$defs/copyModifier"
 						},
 						{
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/copyModifier"
+								"$ref": "#/$defs/copyModifier"
 							}
 						}
 					]
@@ -3120,7 +3127,7 @@
 			]
 		},
 		"basicRules": {
-			"type": "boolean"
+			"const": true
 		},
 		"fluffObject": {
 			"type": "object",
@@ -3134,7 +3141,7 @@
 				"images": {
 					"type": "array",
 					"items": {
-						"$ref": "entry.json#/definitions/entryImage"
+						"$ref": "entry.json#/$defs/entryImage"
 					}
 				}
 			}
@@ -3146,10 +3153,10 @@
 					"description": "Spells keyed by character/class level.",
 					"oneOf": [
 						{
-							"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+							"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 						},
 						{
-							"$ref": "#/definitions/_additionalSpellLevelObject"
+							"$ref": "#/$defs/_additionalSpellLevelObject"
 						}
 					]
 				},
@@ -3157,10 +3164,10 @@
 					"description": "Spells keyed by spell level, access to which is gated behind the character advancing to a point where they could cast those spells with e.g. a Spellcasting class feature (Mark spells from ERLW races)",
 					"oneOf": [
 						{
-							"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+							"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 						},
 						{
-							"$ref": "#/definitions/_additionalSpellLevelObject"
+							"$ref": "#/$defs/_additionalSpellLevelObject"
 						}
 					]
 				}
@@ -3170,10 +3177,10 @@
 					"description": "Spells gained when gaining a particular feature, regardless of level or caster level",
 					"oneOf": [
 						{
-							"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+							"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 						},
 						{
-							"$ref": "#/definitions/_additionalSpellLevelObject"
+							"$ref": "#/$defs/_additionalSpellLevelObject"
 						}
 					]
 				}
@@ -3184,27 +3191,27 @@
 			"properties": {
 				"rest": {
 					"description": "Spells which recharge on short or long rest",
-					"$ref": "#/definitions/_additionalSpellRechargeObject"
+					"$ref": "#/$defs/_additionalSpellRechargeObject"
 				},
 				"daily": {
 					"description": "Spells which recharge on long rest",
-					"$ref": "#/definitions/_additionalSpellRechargeObject"
+					"$ref": "#/$defs/_additionalSpellRechargeObject"
 				},
 				"will": {
 					"description": "At-will spells",
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"ritual": {
 					"description": "Ritual-only spells",
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"resource": {
 					"description": "Spells which cost a specific resource to use (such as Ki), but otherwise have no restrictions",
-					"$ref": "#/definitions/_additionalSpellRechargeObject"
+					"$ref": "#/$defs/_additionalSpellRechargeObject"
 				},
 				"_": {
 					"description": "Spells which do not fall into the above categories (i.e. have no specific recharge, and are simply known)",
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				}
 			},
 			"additionalProperties": false
@@ -3213,58 +3220,58 @@
 			"type": "object",
 			"properties": {
 				"1": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"2": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"3": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"4": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"5": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"6": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"7": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"8": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"9": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"9e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"8e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"7e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"6e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"5e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"4e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"3e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"2e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				},
 				"1e": {
-					"$ref": "#/definitions/_additionalSpellArrayOfStringOrChoiceObject"
+					"$ref": "#/$defs/_additionalSpellArrayOfStringOrChoiceObject"
 				}
 			},
 			"additionalProperties": false
@@ -3381,19 +3388,19 @@
 					},
 					"innate": {
 						"description": "Spells which can be innately cast, without expending normal spell resources",
-						"$ref": "#/definitions/_additionalSpellObject"
+						"$ref": "#/$defs/_additionalSpellObject"
 					},
 					"known": {
 						"description": "Spells which are always known",
-						"$ref": "#/definitions/_additionalSpellObject"
+						"$ref": "#/$defs/_additionalSpellObject"
 					},
 					"prepared": {
 						"description": "Spells which are always prepared",
-						"$ref": "#/definitions/_additionalSpellObject"
+						"$ref": "#/$defs/_additionalSpellObject"
 					},
 					"expanded": {
 						"description": "Expansions to a class' default spell list, from which spells can be chosen (e.g. Warlock Patron spells)",
-						"$ref": "#/definitions/_additionalSpellObject"
+						"$ref": "#/$defs/_additionalSpellObject"
 					}
 				},
 				"additionalProperties": false,
@@ -3525,24 +3532,24 @@
 						"type": "string"
 					},
 					"creatureType": {
-						"$ref": "#/definitions/creatureType"
+						"$ref": "#/$defs/creatureType"
 					},
 					"size": {
-						"$ref": "#/definitions/size"
+						"$ref": "#/$defs/size"
 					},
 					"class": {
 						"type": "string"
 					},
 					"languageProficiency": {
-						"$ref": "#/definitions/languageNameLower"
+						"$ref": "#/$defs/languageNameLower"
 					},
 					"skillProficiency": {
-						"$ref": "#/definitions/skillNameLower"
+						"$ref": "#/$defs/skillNameLower"
 					},
 					"alignment": {
 						"type": "array",
 						"items": {
-							"$ref": "#/definitions/alignment"
+							"$ref": "#/$defs/alignment"
 						}
 					},
 					"str": {
@@ -3564,10 +3571,10 @@
 						"type": "integer"
 					},
 					"spellcasting": {
-						"type": "boolean"
+						"const": true
 					},
 					"psionics": {
-						"type": "boolean"
+						"const": true
 					}
 				}
 			}
@@ -3591,7 +3598,7 @@
 					"featureType": {
 						"type": "array",
 						"items": {
-							"$ref": "#/definitions/dataOptionalfeatureType"
+							"$ref": "#/$defs/dataOptionalfeatureType"
 						},
 						"uniqueItems": true
 					},
@@ -3676,7 +3683,7 @@
 			"type": "array",
 			"minItems": 1,
 			"items": {
-				"$ref": "#/definitions/foundryAdvancementObject"
+				"$ref": "#/$defs/foundryAdvancementObject"
 			},
 			"uniqueItems": true
 		},
@@ -3744,7 +3751,7 @@
 		"foundryEffectsArray": {
 			"type": "array",
 			"items": {
-				"$ref": "#/definitions/foundryEffectObject"
+				"$ref": "#/$defs/foundryEffectObject"
 			},
 			"minItems": 1,
 			"uniqueItems": true
@@ -3763,12 +3770,12 @@
 						"type": "string"
 					},
 					"system": {
-						"$ref": "#/definitions/foundrySystemObject"
+						"$ref": "#/$defs/foundrySystemObject"
 					},
 					"effects": {
 						"type": "array",
 						"items": {
-							"$ref": "#/definitions/foundryEffectObject"
+							"$ref": "#/$defs/foundryEffectObject"
 						}
 					}
 				},
@@ -3802,7 +3809,7 @@
 						"const": true
 					},
 					"system": {
-						"$ref": "#/definitions/foundrySystemObject"
+						"$ref": "#/$defs/foundrySystemObject"
 					},
 					"actorDataMod": {
 						"type": "object"
@@ -3810,7 +3817,7 @@
 					"effects": {
 						"type": "array",
 						"items": {
-							"$ref": "#/definitions/foundryEffectObject"
+							"$ref": "#/$defs/foundryEffectObject"
 						}
 					}
 				},

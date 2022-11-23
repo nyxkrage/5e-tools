@@ -1,9 +1,9 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "races.json",
 	"version": "1.12.0",
 	"type": "object",
-	"definitions": {
+	"$defs": {
 		"sharedData": {
 			"type": "object",
 			"properties": {
@@ -11,34 +11,34 @@
 					"type": "string"
 				},
 				"alias": {
-					"$ref": "util.json#/definitions/alias"
+					"$ref": "util.json#/$defs/alias"
 				},
 				"source": {
 					"type": "string"
 				},
 				"page": {
-					"$ref": "util.json#/definitions/page"
+					"$ref": "util.json#/$defs/page"
 				},
 				"otherSources": {
-					"$ref": "util.json#/definitions/otherSources"
+					"$ref": "util.json#/$defs/otherSources"
 				},
 				"additionalSources": {
-					"$ref": "util.json#/definitions/additionalSources"
+					"$ref": "util.json#/$defs/additionalSources"
 				},
 				"reprintedAs": {
-					"$ref": "util.json#/definitions/reprintedAs"
+					"$ref": "util.json#/$defs/reprintedAs"
 				},
 				"ability": {
-					"$ref": "#/definitions/abilityScores"
+					"$ref": "#/$defs/abilityScores"
 				},
 				"size": {
 					"type": "array",
 					"items": {
-						"$ref": "util.json#/definitions/size"
+						"$ref": "util.json#/$defs/size"
 					}
 				},
 				"speed": {
-					"$ref": "util.json#/definitions/speed"
+					"$ref": "util.json#/$defs/speed"
 				},
 				"entries": {
 					"type": "array",
@@ -53,14 +53,14 @@
 					"type": "integer"
 				},
 				"feats": {
-					"$ref": "util.json#/definitions/additionalFeatsArray"
+					"$ref": "util.json#/$defs/additionalFeatsArray"
 				},
 				"traitTags": {
 					"oneOf": [
 						{
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/traitTag"
+								"$ref": "#/$defs/traitTag"
 							}
 						},
 						{
@@ -69,39 +69,39 @@
 					]
 				},
 				"soundClip": {
-					"$ref": "entry.json#/definitions/mediaHref"
+					"$ref": "entry.json#/$defs/mediaHref"
 				},
 				"languageProficiencies": {
-					"$ref": "util.json#/definitions/languageProficiencies"
+					"$ref": "util.json#/$defs/languageProficiencies"
 				},
 				"skillProficiencies": {
-					"$ref": "util.json#/definitions/skillProficiencies"
+					"$ref": "util.json#/$defs/skillProficiencies"
 				},
 				"toolProficiencies": {
-					"$ref": "util.json#/definitions/toolProficiencies"
+					"$ref": "util.json#/$defs/toolProficiencies"
 				},
 				"skillToolLanguageProficiencies": {
-					"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+					"$ref": "util.json#/$defs/skillToolLanguageProficiencies"
 				},
 				"expertise": {
-					"$ref": "util.json#/definitions/expertise"
+					"$ref": "util.json#/$defs/expertise"
 				},
 				"weaponProficiencies": {
-					"$ref": "util.json#/definitions/weaponProficiencies"
+					"$ref": "util.json#/$defs/weaponProficiencies"
 				},
 				"armorProficiencies": {
-					"$ref": "util.json#/definitions/armorProficiencies"
+					"$ref": "util.json#/$defs/armorProficiencies"
 				},
 				"srd": {
-					"$ref": "util.json#/definitions/srd"
+					"$ref": "util.json#/$defs/srd"
 				},
 				"basicRules": {
-					"$ref": "util.json#/definitions/basicRules"
+					"$ref": "util.json#/$defs/basicRules"
 				},
 				"lineage": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/lineage"
+							"$ref": "#/$defs/lineage"
 						},
 						{
 							"type": "null"
@@ -111,7 +111,7 @@
 				"heightAndWeight": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/heightAndWeight"
+							"$ref": "#/$defs/heightAndWeight"
 						},
 						{
 							"type": "null"
@@ -124,14 +124,14 @@
 							"type": "null"
 						},
 						{
-							"$ref": "util.json#/definitions/additionalSpellsArray"
+							"$ref": "util.json#/$defs/additionalSpellsArray"
 						}
 					]
 				},
 				"resist": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/damageResistArrayPlayer"
+							"$ref": "util.json#/$defs/damageResistArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -141,7 +141,7 @@
 				"immune": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/damageImmunityArrayPlayer"
+							"$ref": "util.json#/$defs/damageImmunityArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -151,7 +151,7 @@
 				"vulnerable": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/damageVulnerabilityArrayPlayer"
+							"$ref": "util.json#/$defs/damageVulnerabilityArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -161,7 +161,7 @@
 				"conditionImmune": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/conditionImmunityArrayPlayer"
+							"$ref": "util.json#/$defs/conditionImmunityArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -178,7 +178,7 @@
 									"choose": {
 										"type": "array",
 										"items": {
-											"$ref": "util.json#/definitions/creatureType"
+											"$ref": "util.json#/$defs/creatureType"
 										}
 									}
 								},
@@ -188,7 +188,7 @@
 								"additionalProperties": false
 							},
 							{
-								"$ref": "util.json#/definitions/creatureType"
+								"$ref": "util.json#/$defs/creatureType"
 							}
 						]
 					}
@@ -202,7 +202,7 @@
 					}
 				},
 				"age": {
-					"$ref": "#/definitions/age"
+					"$ref": "#/$defs/age"
 				},
 				"hasFluff": {
 					"type": "boolean"
@@ -211,7 +211,7 @@
 					"type": "boolean"
 				},
 				"_versions": {
-					"$ref": "util.json#/definitions/versionsArray"
+					"$ref": "util.json#/$defs/versionsArray"
 				}
 			},
 			"additionalProperties": false
@@ -223,34 +223,34 @@
 					"type": "string"
 				},
 				"alias": {
-					"$ref": "util.json#/definitions/alias"
+					"$ref": "util.json#/$defs/alias"
 				},
 				"source": {
 					"type": "string"
 				},
 				"page": {
-					"$ref": "util.json#/definitions/page"
+					"$ref": "util.json#/$defs/page"
 				},
 				"otherSources": {
-					"$ref": "util.json#/definitions/otherSources"
+					"$ref": "util.json#/$defs/otherSources"
 				},
 				"additionalSources": {
-					"$ref": "util.json#/definitions/additionalSources"
+					"$ref": "util.json#/$defs/additionalSources"
 				},
 				"reprintedAs": {
-					"$ref": "util.json#/definitions/reprintedAs"
+					"$ref": "util.json#/$defs/reprintedAs"
 				},
 				"ability": {
-					"$ref": "#/definitions/abilityScores"
+					"$ref": "#/$defs/abilityScores"
 				},
 				"size": {
 					"type": "array",
 					"items": {
-						"$ref": "util.json#/definitions/size"
+						"$ref": "util.json#/$defs/size"
 					}
 				},
 				"speed": {
-					"$ref": "util.json#/definitions/speed"
+					"$ref": "util.json#/$defs/speed"
 				},
 				"entries": {
 					"type": "array",
@@ -265,14 +265,14 @@
 					"type": "integer"
 				},
 				"feats": {
-					"$ref": "util.json#/definitions/additionalFeatsArray"
+					"$ref": "util.json#/$defs/additionalFeatsArray"
 				},
 				"traitTags": {
 					"oneOf": [
 						{
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/traitTag"
+								"$ref": "#/$defs/traitTag"
 							}
 						},
 						{
@@ -281,39 +281,39 @@
 					]
 				},
 				"soundClip": {
-					"$ref": "entry.json#/definitions/mediaHref"
+					"$ref": "entry.json#/$defs/mediaHref"
 				},
 				"languageProficiencies": {
-					"$ref": "util.json#/definitions/languageProficiencies"
+					"$ref": "util.json#/$defs/languageProficiencies"
 				},
 				"skillProficiencies": {
-					"$ref": "util.json#/definitions/skillProficiencies"
+					"$ref": "util.json#/$defs/skillProficiencies"
 				},
 				"toolProficiencies": {
-					"$ref": "util.json#/definitions/toolProficiencies"
+					"$ref": "util.json#/$defs/toolProficiencies"
 				},
 				"skillToolLanguageProficiencies": {
-					"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+					"$ref": "util.json#/$defs/skillToolLanguageProficiencies"
 				},
 				"expertise": {
-					"$ref": "util.json#/definitions/expertise"
+					"$ref": "util.json#/$defs/expertise"
 				},
 				"weaponProficiencies": {
-					"$ref": "util.json#/definitions/weaponProficiencies"
+					"$ref": "util.json#/$defs/weaponProficiencies"
 				},
 				"armorProficiencies": {
-					"$ref": "util.json#/definitions/armorProficiencies"
+					"$ref": "util.json#/$defs/armorProficiencies"
 				},
 				"srd": {
-					"$ref": "util.json#/definitions/srd"
+					"$ref": "util.json#/$defs/srd"
 				},
 				"basicRules": {
-					"$ref": "util.json#/definitions/basicRules"
+					"$ref": "util.json#/$defs/basicRules"
 				},
 				"lineage": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/lineage"
+							"$ref": "#/$defs/lineage"
 						},
 						{
 							"type": "null"
@@ -323,7 +323,7 @@
 				"heightAndWeight": {
 					"oneOf": [
 						{
-							"$ref": "#/definitions/heightAndWeight"
+							"$ref": "#/$defs/heightAndWeight"
 						},
 						{
 							"type": "null"
@@ -336,14 +336,14 @@
 							"type": "null"
 						},
 						{
-							"$ref": "util.json#/definitions/additionalSpellsArray"
+							"$ref": "util.json#/$defs/additionalSpellsArray"
 						}
 					]
 				},
 				"resist": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/damageResistArrayPlayer"
+							"$ref": "util.json#/$defs/damageResistArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -353,7 +353,7 @@
 				"immune": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/damageImmunityArrayPlayer"
+							"$ref": "util.json#/$defs/damageImmunityArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -363,7 +363,7 @@
 				"vulnerable": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/damageVulnerabilityArrayPlayer"
+							"$ref": "util.json#/$defs/damageVulnerabilityArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -373,7 +373,7 @@
 				"conditionImmune": {
 					"oneOf": [
 						{
-							"$ref": "util.json#/definitions/conditionImmunityArrayPlayer"
+							"$ref": "util.json#/$defs/conditionImmunityArrayPlayer"
 						},
 						{
 							"type": "null"
@@ -390,7 +390,7 @@
 									"choose": {
 										"type": "array",
 										"items": {
-											"$ref": "util.json#/definitions/creatureType"
+											"$ref": "util.json#/$defs/creatureType"
 										}
 									}
 								},
@@ -400,7 +400,7 @@
 								"additionalProperties": false
 							},
 							{
-								"$ref": "util.json#/definitions/creatureType"
+								"$ref": "util.json#/$defs/creatureType"
 							}
 						]
 					}
@@ -414,7 +414,7 @@
 					}
 				},
 				"age": {
-					"$ref": "#/definitions/age"
+					"$ref": "#/$defs/age"
 				},
 				"hasFluff": {
 					"type": "boolean"
@@ -423,7 +423,7 @@
 					"type": "boolean"
 				},
 				"_versions": {
-					"$ref": "util.json#/definitions/versionsArray"
+					"$ref": "util.json#/$defs/versionsArray"
 				},
 				"raceName": {
 					"type": "string"
@@ -439,12 +439,12 @@
 			"additionalProperties": false
 		},
 		"raceData": {
-			"$ref": "#/definitions/sharedData"
+			"$ref": "#/$defs/sharedData"
 		},
 		"traitTag": {
 			"oneOf": [
 				{
-					"$ref": "util.json#/definitions/proficiencyTag"
+					"$ref": "util.json#/$defs/proficiencyTag"
 				},
 				{
 					"type": "string",
@@ -602,34 +602,34 @@
 							"type": "string"
 						},
 						"alias": {
-							"$ref": "util.json#/definitions/alias"
+							"$ref": "util.json#/$defs/alias"
 						},
 						"source": {
 							"type": "string"
 						},
 						"page": {
-							"$ref": "util.json#/definitions/page"
+							"$ref": "util.json#/$defs/page"
 						},
 						"otherSources": {
-							"$ref": "util.json#/definitions/otherSources"
+							"$ref": "util.json#/$defs/otherSources"
 						},
 						"additionalSources": {
-							"$ref": "util.json#/definitions/additionalSources"
+							"$ref": "util.json#/$defs/additionalSources"
 						},
 						"reprintedAs": {
-							"$ref": "util.json#/definitions/reprintedAs"
+							"$ref": "util.json#/$defs/reprintedAs"
 						},
 						"ability": {
-							"$ref": "#/definitions/abilityScores"
+							"$ref": "#/$defs/abilityScores"
 						},
 						"size": {
 							"type": "array",
 							"items": {
-								"$ref": "util.json#/definitions/size"
+								"$ref": "util.json#/$defs/size"
 							}
 						},
 						"speed": {
-							"$ref": "util.json#/definitions/speed"
+							"$ref": "util.json#/$defs/speed"
 						},
 						"entries": {
 							"type": "array",
@@ -644,14 +644,14 @@
 							"type": "integer"
 						},
 						"feats": {
-							"$ref": "util.json#/definitions/additionalFeatsArray"
+							"$ref": "util.json#/$defs/additionalFeatsArray"
 						},
 						"traitTags": {
 							"oneOf": [
 								{
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/traitTag"
+										"$ref": "#/$defs/traitTag"
 									}
 								},
 								{
@@ -660,39 +660,39 @@
 							]
 						},
 						"soundClip": {
-							"$ref": "entry.json#/definitions/mediaHref"
+							"$ref": "entry.json#/$defs/mediaHref"
 						},
 						"languageProficiencies": {
-							"$ref": "util.json#/definitions/languageProficiencies"
+							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/definitions/skillProficiencies"
+							"$ref": "util.json#/$defs/skillProficiencies"
 						},
 						"toolProficiencies": {
-							"$ref": "util.json#/definitions/toolProficiencies"
+							"$ref": "util.json#/$defs/toolProficiencies"
 						},
 						"skillToolLanguageProficiencies": {
-							"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+							"$ref": "util.json#/$defs/skillToolLanguageProficiencies"
 						},
 						"expertise": {
-							"$ref": "util.json#/definitions/expertise"
+							"$ref": "util.json#/$defs/expertise"
 						},
 						"weaponProficiencies": {
-							"$ref": "util.json#/definitions/weaponProficiencies"
+							"$ref": "util.json#/$defs/weaponProficiencies"
 						},
 						"armorProficiencies": {
-							"$ref": "util.json#/definitions/armorProficiencies"
+							"$ref": "util.json#/$defs/armorProficiencies"
 						},
 						"srd": {
-							"$ref": "util.json#/definitions/srd"
+							"$ref": "util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "util.json#/definitions/basicRules"
+							"$ref": "util.json#/$defs/basicRules"
 						},
 						"lineage": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/lineage"
+									"$ref": "#/$defs/lineage"
 								},
 								{
 									"type": "null"
@@ -702,7 +702,7 @@
 						"heightAndWeight": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/heightAndWeight"
+									"$ref": "#/$defs/heightAndWeight"
 								},
 								{
 									"type": "null"
@@ -715,14 +715,14 @@
 									"type": "null"
 								},
 								{
-									"$ref": "util.json#/definitions/additionalSpellsArray"
+									"$ref": "util.json#/$defs/additionalSpellsArray"
 								}
 							]
 						},
 						"resist": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageResistArrayPlayer"
+									"$ref": "util.json#/$defs/damageResistArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -732,7 +732,7 @@
 						"immune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/damageImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -742,7 +742,7 @@
 						"vulnerable": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageVulnerabilityArrayPlayer"
+									"$ref": "util.json#/$defs/damageVulnerabilityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -752,7 +752,7 @@
 						"conditionImmune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/conditionImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/conditionImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -769,7 +769,7 @@
 											"choose": {
 												"type": "array",
 												"items": {
-													"$ref": "util.json#/definitions/creatureType"
+													"$ref": "util.json#/$defs/creatureType"
 												}
 											}
 										},
@@ -779,7 +779,7 @@
 										"additionalProperties": false
 									},
 									{
-										"$ref": "util.json#/definitions/creatureType"
+										"$ref": "util.json#/$defs/creatureType"
 									}
 								]
 							}
@@ -793,7 +793,7 @@
 							}
 						},
 						"age": {
-							"$ref": "#/definitions/age"
+							"$ref": "#/$defs/age"
 						},
 						"hasFluff": {
 							"type": "boolean"
@@ -802,7 +802,7 @@
 							"type": "boolean"
 						},
 						"_versions": {
-							"$ref": "util.json#/definitions/versionsArray"
+							"$ref": "util.json#/$defs/versionsArray"
 						}
 					},
 					"additionalProperties": false,
@@ -818,34 +818,34 @@
 							"type": "string"
 						},
 						"alias": {
-							"$ref": "util.json#/definitions/alias"
+							"$ref": "util.json#/$defs/alias"
 						},
 						"source": {
 							"type": "string"
 						},
 						"page": {
-							"$ref": "util.json#/definitions/page"
+							"$ref": "util.json#/$defs/page"
 						},
 						"otherSources": {
-							"$ref": "util.json#/definitions/otherSources"
+							"$ref": "util.json#/$defs/otherSources"
 						},
 						"additionalSources": {
-							"$ref": "util.json#/definitions/additionalSources"
+							"$ref": "util.json#/$defs/additionalSources"
 						},
 						"reprintedAs": {
-							"$ref": "util.json#/definitions/reprintedAs"
+							"$ref": "util.json#/$defs/reprintedAs"
 						},
 						"ability": {
-							"$ref": "#/definitions/abilityScores"
+							"$ref": "#/$defs/abilityScores"
 						},
 						"size": {
 							"type": "array",
 							"items": {
-								"$ref": "util.json#/definitions/size"
+								"$ref": "util.json#/$defs/size"
 							}
 						},
 						"speed": {
-							"$ref": "util.json#/definitions/speed"
+							"$ref": "util.json#/$defs/speed"
 						},
 						"entries": {
 							"type": "array",
@@ -860,14 +860,14 @@
 							"type": "integer"
 						},
 						"feats": {
-							"$ref": "util.json#/definitions/additionalFeatsArray"
+							"$ref": "util.json#/$defs/additionalFeatsArray"
 						},
 						"traitTags": {
 							"oneOf": [
 								{
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/traitTag"
+										"$ref": "#/$defs/traitTag"
 									}
 								},
 								{
@@ -876,39 +876,39 @@
 							]
 						},
 						"soundClip": {
-							"$ref": "entry.json#/definitions/mediaHref"
+							"$ref": "entry.json#/$defs/mediaHref"
 						},
 						"languageProficiencies": {
-							"$ref": "util.json#/definitions/languageProficiencies"
+							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/definitions/skillProficiencies"
+							"$ref": "util.json#/$defs/skillProficiencies"
 						},
 						"toolProficiencies": {
-							"$ref": "util.json#/definitions/toolProficiencies"
+							"$ref": "util.json#/$defs/toolProficiencies"
 						},
 						"skillToolLanguageProficiencies": {
-							"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+							"$ref": "util.json#/$defs/skillToolLanguageProficiencies"
 						},
 						"expertise": {
-							"$ref": "util.json#/definitions/expertise"
+							"$ref": "util.json#/$defs/expertise"
 						},
 						"weaponProficiencies": {
-							"$ref": "util.json#/definitions/weaponProficiencies"
+							"$ref": "util.json#/$defs/weaponProficiencies"
 						},
 						"armorProficiencies": {
-							"$ref": "util.json#/definitions/armorProficiencies"
+							"$ref": "util.json#/$defs/armorProficiencies"
 						},
 						"srd": {
-							"$ref": "util.json#/definitions/srd"
+							"$ref": "util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "util.json#/definitions/basicRules"
+							"$ref": "util.json#/$defs/basicRules"
 						},
 						"lineage": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/lineage"
+									"$ref": "#/$defs/lineage"
 								},
 								{
 									"type": "null"
@@ -918,7 +918,7 @@
 						"heightAndWeight": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/heightAndWeight"
+									"$ref": "#/$defs/heightAndWeight"
 								},
 								{
 									"type": "null"
@@ -931,14 +931,14 @@
 									"type": "null"
 								},
 								{
-									"$ref": "util.json#/definitions/additionalSpellsArray"
+									"$ref": "util.json#/$defs/additionalSpellsArray"
 								}
 							]
 						},
 						"resist": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageResistArrayPlayer"
+									"$ref": "util.json#/$defs/damageResistArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -948,7 +948,7 @@
 						"immune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/damageImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -958,7 +958,7 @@
 						"vulnerable": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageVulnerabilityArrayPlayer"
+									"$ref": "util.json#/$defs/damageVulnerabilityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -968,7 +968,7 @@
 						"conditionImmune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/conditionImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/conditionImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -985,7 +985,7 @@
 											"choose": {
 												"type": "array",
 												"items": {
-													"$ref": "util.json#/definitions/creatureType"
+													"$ref": "util.json#/$defs/creatureType"
 												}
 											}
 										},
@@ -995,7 +995,7 @@
 										"additionalProperties": false
 									},
 									{
-										"$ref": "util.json#/definitions/creatureType"
+										"$ref": "util.json#/$defs/creatureType"
 									}
 								]
 							}
@@ -1009,7 +1009,7 @@
 							}
 						},
 						"age": {
-							"$ref": "#/definitions/age"
+							"$ref": "#/$defs/age"
 						},
 						"hasFluff": {
 							"type": "boolean"
@@ -1018,7 +1018,7 @@
 							"type": "boolean"
 						},
 						"_versions": {
-							"$ref": "util.json#/definitions/versionsArray"
+							"$ref": "util.json#/$defs/versionsArray"
 						},
 						"_copy": {
 							"type": "object",
@@ -1046,7 +1046,7 @@
 									"type": "string"
 								},
 								"_mod": {
-									"$ref": "util.json#/definitions/_modObject"
+									"$ref": "util.json#/$defs/_modObject"
 								},
 								"_trait": {
 									"type": "object",
@@ -1067,7 +1067,7 @@
 									"type": "object",
 									"patternProperties": {
 										".*": {
-											"type": "boolean"
+											"const": true
 										}
 									}
 								}
@@ -1095,34 +1095,34 @@
 							"type": "string"
 						},
 						"alias": {
-							"$ref": "util.json#/definitions/alias"
+							"$ref": "util.json#/$defs/alias"
 						},
 						"source": {
 							"type": "string"
 						},
 						"page": {
-							"$ref": "util.json#/definitions/page"
+							"$ref": "util.json#/$defs/page"
 						},
 						"otherSources": {
-							"$ref": "util.json#/definitions/otherSources"
+							"$ref": "util.json#/$defs/otherSources"
 						},
 						"additionalSources": {
-							"$ref": "util.json#/definitions/additionalSources"
+							"$ref": "util.json#/$defs/additionalSources"
 						},
 						"reprintedAs": {
-							"$ref": "util.json#/definitions/reprintedAs"
+							"$ref": "util.json#/$defs/reprintedAs"
 						},
 						"ability": {
-							"$ref": "#/definitions/abilityScores"
+							"$ref": "#/$defs/abilityScores"
 						},
 						"size": {
 							"type": "array",
 							"items": {
-								"$ref": "util.json#/definitions/size"
+								"$ref": "util.json#/$defs/size"
 							}
 						},
 						"speed": {
-							"$ref": "util.json#/definitions/speed"
+							"$ref": "util.json#/$defs/speed"
 						},
 						"entries": {
 							"type": "array",
@@ -1137,14 +1137,14 @@
 							"type": "integer"
 						},
 						"feats": {
-							"$ref": "util.json#/definitions/additionalFeatsArray"
+							"$ref": "util.json#/$defs/additionalFeatsArray"
 						},
 						"traitTags": {
 							"oneOf": [
 								{
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/traitTag"
+										"$ref": "#/$defs/traitTag"
 									}
 								},
 								{
@@ -1153,39 +1153,39 @@
 							]
 						},
 						"soundClip": {
-							"$ref": "entry.json#/definitions/mediaHref"
+							"$ref": "entry.json#/$defs/mediaHref"
 						},
 						"languageProficiencies": {
-							"$ref": "util.json#/definitions/languageProficiencies"
+							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/definitions/skillProficiencies"
+							"$ref": "util.json#/$defs/skillProficiencies"
 						},
 						"toolProficiencies": {
-							"$ref": "util.json#/definitions/toolProficiencies"
+							"$ref": "util.json#/$defs/toolProficiencies"
 						},
 						"skillToolLanguageProficiencies": {
-							"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+							"$ref": "util.json#/$defs/skillToolLanguageProficiencies"
 						},
 						"expertise": {
-							"$ref": "util.json#/definitions/expertise"
+							"$ref": "util.json#/$defs/expertise"
 						},
 						"weaponProficiencies": {
-							"$ref": "util.json#/definitions/weaponProficiencies"
+							"$ref": "util.json#/$defs/weaponProficiencies"
 						},
 						"armorProficiencies": {
-							"$ref": "util.json#/definitions/armorProficiencies"
+							"$ref": "util.json#/$defs/armorProficiencies"
 						},
 						"srd": {
-							"$ref": "util.json#/definitions/srd"
+							"$ref": "util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "util.json#/definitions/basicRules"
+							"$ref": "util.json#/$defs/basicRules"
 						},
 						"lineage": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/lineage"
+									"$ref": "#/$defs/lineage"
 								},
 								{
 									"type": "null"
@@ -1195,7 +1195,7 @@
 						"heightAndWeight": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/heightAndWeight"
+									"$ref": "#/$defs/heightAndWeight"
 								},
 								{
 									"type": "null"
@@ -1208,14 +1208,14 @@
 									"type": "null"
 								},
 								{
-									"$ref": "util.json#/definitions/additionalSpellsArray"
+									"$ref": "util.json#/$defs/additionalSpellsArray"
 								}
 							]
 						},
 						"resist": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageResistArrayPlayer"
+									"$ref": "util.json#/$defs/damageResistArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1225,7 +1225,7 @@
 						"immune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/damageImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1235,7 +1235,7 @@
 						"vulnerable": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageVulnerabilityArrayPlayer"
+									"$ref": "util.json#/$defs/damageVulnerabilityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1245,7 +1245,7 @@
 						"conditionImmune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/conditionImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/conditionImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1262,7 +1262,7 @@
 											"choose": {
 												"type": "array",
 												"items": {
-													"$ref": "util.json#/definitions/creatureType"
+													"$ref": "util.json#/$defs/creatureType"
 												}
 											}
 										},
@@ -1272,7 +1272,7 @@
 										"additionalProperties": false
 									},
 									{
-										"$ref": "util.json#/definitions/creatureType"
+										"$ref": "util.json#/$defs/creatureType"
 									}
 								]
 							}
@@ -1286,7 +1286,7 @@
 							}
 						},
 						"age": {
-							"$ref": "#/definitions/age"
+							"$ref": "#/$defs/age"
 						},
 						"hasFluff": {
 							"type": "boolean"
@@ -1295,7 +1295,7 @@
 							"type": "boolean"
 						},
 						"_versions": {
-							"$ref": "util.json#/definitions/versionsArray"
+							"$ref": "util.json#/$defs/versionsArray"
 						},
 						"raceName": {
 							"type": "string"
@@ -1322,34 +1322,34 @@
 							"type": "string"
 						},
 						"alias": {
-							"$ref": "util.json#/definitions/alias"
+							"$ref": "util.json#/$defs/alias"
 						},
 						"source": {
 							"type": "string"
 						},
 						"page": {
-							"$ref": "util.json#/definitions/page"
+							"$ref": "util.json#/$defs/page"
 						},
 						"otherSources": {
-							"$ref": "util.json#/definitions/otherSources"
+							"$ref": "util.json#/$defs/otherSources"
 						},
 						"additionalSources": {
-							"$ref": "util.json#/definitions/additionalSources"
+							"$ref": "util.json#/$defs/additionalSources"
 						},
 						"reprintedAs": {
-							"$ref": "util.json#/definitions/reprintedAs"
+							"$ref": "util.json#/$defs/reprintedAs"
 						},
 						"ability": {
-							"$ref": "#/definitions/abilityScores"
+							"$ref": "#/$defs/abilityScores"
 						},
 						"size": {
 							"type": "array",
 							"items": {
-								"$ref": "util.json#/definitions/size"
+								"$ref": "util.json#/$defs/size"
 							}
 						},
 						"speed": {
-							"$ref": "util.json#/definitions/speed"
+							"$ref": "util.json#/$defs/speed"
 						},
 						"entries": {
 							"type": "array",
@@ -1364,14 +1364,14 @@
 							"type": "integer"
 						},
 						"feats": {
-							"$ref": "util.json#/definitions/additionalFeatsArray"
+							"$ref": "util.json#/$defs/additionalFeatsArray"
 						},
 						"traitTags": {
 							"oneOf": [
 								{
 									"type": "array",
 									"items": {
-										"$ref": "#/definitions/traitTag"
+										"$ref": "#/$defs/traitTag"
 									}
 								},
 								{
@@ -1380,39 +1380,39 @@
 							]
 						},
 						"soundClip": {
-							"$ref": "entry.json#/definitions/mediaHref"
+							"$ref": "entry.json#/$defs/mediaHref"
 						},
 						"languageProficiencies": {
-							"$ref": "util.json#/definitions/languageProficiencies"
+							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/definitions/skillProficiencies"
+							"$ref": "util.json#/$defs/skillProficiencies"
 						},
 						"toolProficiencies": {
-							"$ref": "util.json#/definitions/toolProficiencies"
+							"$ref": "util.json#/$defs/toolProficiencies"
 						},
 						"skillToolLanguageProficiencies": {
-							"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+							"$ref": "util.json#/$defs/skillToolLanguageProficiencies"
 						},
 						"expertise": {
-							"$ref": "util.json#/definitions/expertise"
+							"$ref": "util.json#/$defs/expertise"
 						},
 						"weaponProficiencies": {
-							"$ref": "util.json#/definitions/weaponProficiencies"
+							"$ref": "util.json#/$defs/weaponProficiencies"
 						},
 						"armorProficiencies": {
-							"$ref": "util.json#/definitions/armorProficiencies"
+							"$ref": "util.json#/$defs/armorProficiencies"
 						},
 						"srd": {
-							"$ref": "util.json#/definitions/srd"
+							"$ref": "util.json#/$defs/srd"
 						},
 						"basicRules": {
-							"$ref": "util.json#/definitions/basicRules"
+							"$ref": "util.json#/$defs/basicRules"
 						},
 						"lineage": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/lineage"
+									"$ref": "#/$defs/lineage"
 								},
 								{
 									"type": "null"
@@ -1422,7 +1422,7 @@
 						"heightAndWeight": {
 							"oneOf": [
 								{
-									"$ref": "#/definitions/heightAndWeight"
+									"$ref": "#/$defs/heightAndWeight"
 								},
 								{
 									"type": "null"
@@ -1435,14 +1435,14 @@
 									"type": "null"
 								},
 								{
-									"$ref": "util.json#/definitions/additionalSpellsArray"
+									"$ref": "util.json#/$defs/additionalSpellsArray"
 								}
 							]
 						},
 						"resist": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageResistArrayPlayer"
+									"$ref": "util.json#/$defs/damageResistArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1452,7 +1452,7 @@
 						"immune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/damageImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1462,7 +1462,7 @@
 						"vulnerable": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/damageVulnerabilityArrayPlayer"
+									"$ref": "util.json#/$defs/damageVulnerabilityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1472,7 +1472,7 @@
 						"conditionImmune": {
 							"oneOf": [
 								{
-									"$ref": "util.json#/definitions/conditionImmunityArrayPlayer"
+									"$ref": "util.json#/$defs/conditionImmunityArrayPlayer"
 								},
 								{
 									"type": "null"
@@ -1489,7 +1489,7 @@
 											"choose": {
 												"type": "array",
 												"items": {
-													"$ref": "util.json#/definitions/creatureType"
+													"$ref": "util.json#/$defs/creatureType"
 												}
 											}
 										},
@@ -1499,7 +1499,7 @@
 										"additionalProperties": false
 									},
 									{
-										"$ref": "util.json#/definitions/creatureType"
+										"$ref": "util.json#/$defs/creatureType"
 									}
 								]
 							}
@@ -1513,7 +1513,7 @@
 							}
 						},
 						"age": {
-							"$ref": "#/definitions/age"
+							"$ref": "#/$defs/age"
 						},
 						"hasFluff": {
 							"type": "boolean"
@@ -1522,7 +1522,7 @@
 							"type": "boolean"
 						},
 						"_versions": {
-							"$ref": "util.json#/definitions/versionsArray"
+							"$ref": "util.json#/$defs/versionsArray"
 						},
 						"raceName": {
 							"type": "string"
@@ -1560,7 +1560,7 @@
 									"type": "string"
 								},
 								"_mod": {
-									"$ref": "util.json#/definitions/_modObject"
+									"$ref": "util.json#/$defs/_modObject"
 								},
 								"_trait": {
 									"type": "object",
@@ -1581,7 +1581,7 @@
 									"type": "object",
 									"patternProperties": {
 										".*": {
-											"type": "boolean"
+											"const": true
 										}
 									}
 								}
@@ -1604,7 +1604,7 @@
 			"description": "This is intended to be used for Homebrew only - site data should include a fluff file per source.",
 			"anyOf": [
 				{
-					"$ref": "util.json#/definitions/fluffObject"
+					"$ref": "util.json#/$defs/fluffObject"
 				},
 				{
 					"description": "References \"raceFluff\" array items",
@@ -1643,7 +1643,7 @@
 			"uniqueItems": true,
 			"minItems": 1,
 			"items": {
-				"$ref": "#/definitions/race"
+				"$ref": "#/$defs/race"
 			}
 		},
 		"subrace": {
@@ -1651,11 +1651,11 @@
 			"uniqueItems": true,
 			"minItems": 1,
 			"items": {
-				"$ref": "#/definitions/subrace"
+				"$ref": "#/$defs/subrace"
 			}
 		},
 		"_meta": {
-			"$ref": "util.json#/definitions/metaBlock"
+			"$ref": "util.json#/$defs/metaBlock"
 		}
 	},
 	"required": [

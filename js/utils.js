@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.169.5"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.170.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -1896,7 +1896,7 @@ ContextUtil = {
 		this._pResult = null;
 		this._resolveResult = null;
 
-		this._userData = null;
+		this.userData = null;
 
 		this._$ele = null;
 		this._metasActions = [];
@@ -1916,7 +1916,7 @@ ContextUtil = {
 			this._pResult = new Promise(resolve => {
 				this._resolveResult = resolve;
 			});
-			this._userData = userData;
+			this.userData = userData;
 
 			this._$ele
 				// Show as transparent/non-clickable first, so we can get an accurate width/height
@@ -2022,7 +2022,7 @@ ContextUtil = {
 
 					menu.close();
 
-					const result = await this.fnAction(evt, this._userData);
+					const result = await this.fnAction(evt, menu.userData);
 					if (this._resolveResult) this._resolveResult(result);
 				})
 				.keydown(evt => {
@@ -2046,7 +2046,7 @@ ContextUtil = {
 
 					menu.close();
 
-					const result = await this.fnActionAlt(evt, this._userData);
+					const result = await this.fnActionAlt(evt, menu.userData);
 					if (this._resolveResult) this._resolveResult(result);
 				});
 			if (this.titleAlt) $btnActionAlt.title(this.titleAlt);
@@ -3188,6 +3188,8 @@ DataUtil = {
 		"spellFluff": "spells",
 		"class": "class",
 		"subclass": "class",
+		"classFeature": "class",
+		"subclassFeature": "class",
 	},
 	_MULTI_SOURCE_PROP_TO_INDEX_NAME: {
 		"monster": "index.json",
@@ -3196,6 +3198,8 @@ DataUtil = {
 		"spellFluff": "fluff-index.json",
 		"class": "index.json",
 		"subclass": "index.json",
+		"classFeature": "index.json",
+		"subclassFeature": "index.json",
 	},
 	async pLoadByMeta (prop, source) {
 		// TODO(future) expand support
@@ -3207,7 +3211,9 @@ DataUtil = {
 			case "monsterFluff":
 			case "spellFluff":
 			case "class":
-			case "subclass": {
+			case "subclass":
+			case "classFeature":
+			case "subclassFeature": {
 				const baseUrlPart = `${Renderer.get().baseUrl}data/${DataUtil._MULTI_SOURCE_PROP_TO_DIR[prop]}`;
 				const index = await DataUtil.loadJSON(`${baseUrlPart}/${DataUtil._MULTI_SOURCE_PROP_TO_INDEX_NAME[prop]}`);
 				if (index[source]) return DataUtil.loadJSON(`${baseUrlPart}/${index[source]}`);
@@ -3261,7 +3267,7 @@ DataUtil = {
 	},
 
 	async _pLoadAddBrewBySource_pGetUrl ({source, isSilent = true}) {
-		const brewIndex = await DataUtil.brew.pLoadSourceIndex(await BrewUtil2.pGetCustomUrl());
+		const brewIndex = await DataUtil.brew.pLoadSourceIndex(typeof BrewUtil2 !== "undefined" ? await BrewUtil2.pGetCustomUrl() : null);
 		if (!brewIndex[source]) {
 			if (isSilent) return null;
 			throw new Error(`Neither base nor brew index contained source "${source}"`);
@@ -4201,6 +4207,16 @@ DataUtil = {
 		static _FILENAME = "conditionsdiseases.json";
 	},
 
+	feat: class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_FEATS;
+		static _FILENAME = "feats.json";
+	},
+
+	featFluff: class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_FEATS;
+		static _FILENAME = "fluff-feats.json";
+	},
+
 	item: class extends _DataUtilPropConfigCustom {
 		static _MERGE_REQUIRES_PRESERVE = {
 			lootTables: true,
@@ -4289,6 +4305,16 @@ DataUtil = {
 	languageFluff: class extends _DataUtilPropConfigSingleSource {
 		static _PAGE = UrlUtil.PG_LANGUAGES;
 		static _FILENAME = "fluff-languages.json";
+	},
+
+	object: class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_OBJECTS;
+		static _FILENAME = "objects.json";
+	},
+
+	objectFluff: class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_OBJECTS;
+		static _FILENAME = "fluff-objects.json";
 	},
 
 	race: class extends _DataUtilPropConfigSingleSource {
@@ -4460,7 +4486,7 @@ DataUtil = {
 	},
 
 	optionalfeature: class extends _DataUtilPropConfigSingleSource {
-		static _PAGE = UrlUtil.PG_BACKGROUNDS;
+		static _PAGE = UrlUtil.PG_OPT_FEATURES;
 		static _FILENAME = "optionalfeatures.json";
 	},
 
@@ -5531,6 +5557,50 @@ CollectionUtil = {
 
 	setDiff (set1, set2) {
 		return new Set([...set1].filter(it => !set2.has(it)));
+	},
+
+	objectDiff (obj1, obj2) {
+		const out = {};
+
+		[...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
+			.forEach(k => {
+				const diff = CollectionUtil._objectDiff_recurse(obj1[k], obj2[k]);
+				if (diff !== undefined) out[k] = diff;
+			});
+
+		return out;
+	},
+
+	_objectDiff_recurse (a, b) {
+		if (CollectionUtil.deepEquals(a, b)) return undefined;
+
+		if (a && b && typeof a === "object" && typeof b === "object") {
+			return CollectionUtil.objectDiff(a, b);
+		}
+
+		return b;
+	},
+
+	objectIntersect (obj1, obj2) {
+		const out = {};
+
+		[...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]
+			.forEach(k => {
+				const diff = CollectionUtil._objectIntersect_recurse(obj1[k], obj2[k]);
+				if (diff !== undefined) out[k] = diff;
+			});
+
+		return out;
+	},
+
+	_objectIntersect_recurse (a, b) {
+		if (CollectionUtil.deepEquals(a, b)) return a;
+
+		if (a && b && typeof a === "object" && typeof b === "object") {
+			return CollectionUtil.objectIntersect(a, b);
+		}
+
+		return undefined;
 	},
 
 	deepEquals (a, b) {

@@ -466,7 +466,7 @@ function Renderer () {
 			: null;
 		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? `data-title-index="${this._headerIndex++}"` : ""}>
 			<a href="${href}" target="_blank" rel="noopener noreferrer" ${entry.title ? `title="${Renderer.stripTags(entry.title)}"` : ""}>
-				<img class="${this._renderImage_getImageClasses(entry, meta)}" src="${svg || href}" ${entry.altText || entry.title ? `alt="${(entry.altText || entry.title).qq()}"` : ""} ${svg ? `data-src="${href}"` : `loading="lazy"`} ${this._renderImage_getStylePart(entry)}>
+				<img class="${this._renderImage_getImageClasses(entry, meta)}" src="${svg || href}" ${entry.altText || entry.title ? `alt="${Renderer.stripTags((entry.altText || entry.title)).qq()}"` : ""} ${svg ? `data-src="${href}"` : `loading="lazy"`} ${this._renderImage_getStylePart(entry)}>
 			</a>
 		</div>`;
 
@@ -2296,21 +2296,35 @@ Renderer.getAbilityData._doRenderOuter = function (abObj) {
 				const w = ch.weighted;
 				const froms = w.from.map(it => it.uppercaseFirst());
 				const isAny = froms.length === 6;
+				const isAllEqual = w.weights.unique().length === 1;
 				let cntProcessed = 0;
 
+				const weightsIncrease = w.weights.filter(it => it >= 0).sort(SortUtil.ascSort).reverse();
+				const weightsReduce = w.weights.filter(it => it < 0).map(it => -it).sort(SortUtil.ascSort);
+
 				const areIncreaseShort = [];
-				const areIncrease = w.weights.filter(it => it >= 0).sort(SortUtil.ascSort).reverse().map(it => {
-					areIncreaseShort.push(`+${it}`);
-					if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}+${it}`;
-					return `one ${cntProcessed++ ? `other ` : ""}ability to increase by ${it}`;
-				});
+				const areIncrease = isAny && isAllEqual && w.weights.length > 1 && w.weights[0] >= 0
+					? (() => {
+						weightsIncrease.forEach(it => areIncreaseShort.push(`+${it}`));
+						return [`${cntProcessed ? "choose " : ""}${Parser.numberToText(w.weights.length)} different +${weightsIncrease[0]}`];
+					})()
+					: weightsIncrease.map(it => {
+						areIncreaseShort.push(`+${it}`);
+						if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}+${it}`;
+						return `one ${cntProcessed++ ? `other ` : ""}ability to increase by ${it}`;
+					});
 
 				const areReduceShort = [];
-				const areReduce = w.weights.filter(it => it < 0).map(it => -it).sort(SortUtil.ascSort).map(it => {
-					areReduceShort.push(`-${it}`);
-					if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}-${it}`;
-					return `one ${cntProcessed++ ? `other ` : ""}ability to decrease by ${it}`;
-				});
+				const areReduce = isAny && isAllEqual && w.weights.length > 1 && w.weights[0] < 0
+					? (() => {
+						weightsReduce.forEach(it => areReduceShort.push(`-${it}`));
+						return [`${cntProcessed ? "choose " : ""}${Parser.numberToText(w.weights.length)} different -${weightsReduce[0]}`];
+					})()
+					: weightsReduce.map(it => {
+						areReduceShort.push(`-${it}`);
+						if (isAny) return `${cntProcessed ? "choose " : ""}any ${cntProcessed++ ? `other ` : ""}-${it}`;
+						return `one ${cntProcessed++ ? `other ` : ""}ability to decrease by ${it}`;
+					});
 
 				const startText = isAny
 					? `Choose `
@@ -2903,13 +2917,35 @@ Renderer.utils = {
 		end = end.replace(/[aeiou]/g, "");
 		return `${start}${end}`.toTitleCase();
 	},
+	// TODO refactor to builder class; meta-state
 	getPrerequisiteHtml: (prerequisites, {isListMode = false, blocklistKeys = new Set(), isTextOnly = false, isSkipPrefix = false} = {}) => {
-		if (!prerequisites) return isListMode ? "\u2014" : "";
+		if (!prerequisites?.length) return isListMode ? "\u2014" : "";
+
+		const prereqsShared = prerequisites.length === 1
+			? {}
+			: Object.entries(
+				prerequisites
+					.slice(1)
+					.reduce((a, b) => CollectionUtil.objectIntersect(a, b), prerequisites[0]),
+			)
+				.filter(([k, v]) => prerequisites.every(pre => CollectionUtil.deepEquals(pre[k], v)))
+				.mergeMap(([k, v]) => ({[k]: v}));
+
+		const shared = Object.keys(prereqsShared).length
+			? Renderer.utils.getPrerequisiteHtml([prereqsShared], {isListMode, blocklistKeys, isTextOnly, isSkipPrefix})
+			: null;
 
 		let cntPrerequisites = 0;
 		let hasNote = false;
 		const listOfChoices = prerequisites.map(pr => {
+			// Never include notes in list mode
+			const ptNote = !isListMode && pr.note ? Renderer.get().render(pr.note) : null;
+			if (ptNote) {
+				hasNote = true;
+			}
+
 			const prereqsToJoin = Object.entries(pr)
+				.filter(([k]) => !prereqsShared[k])
 				.sort(([kA], [kB]) => Renderer.utils._prereqWeights[kA] - Renderer.utils._prereqWeights[kB])
 				.map(([k, v]) => {
 					if (k === "note" || blocklistKeys.has(k)) return false;
@@ -2950,7 +2986,7 @@ Renderer.utils = {
 						case "feat":
 							return isListMode
 								? v.map(x => x.split("|")[0].toTitleCase()).join("/")
-								: v.map(it => Renderer.get().render(`{@feat ${it}} feat`)).joinConjunct(", ", " or ");
+								: v.map(it => (isTextOnly ? Renderer.stripTags.bind(Renderer) : Renderer.get().render.bind(Renderer.get()))(`{@feat ${it}} feat`)).joinConjunct(", ", " or ");
 						case "feature":
 							return isListMode
 								? v.map(x => Renderer.stripTags(x).toTitleCase()).join("/")
@@ -3070,6 +3106,11 @@ Renderer.utils = {
 									.toTitleCase()
 								: Parser.alignmentListToFull(v);
 						}
+						case "campaign": {
+							return isListMode
+								? v.join("/")
+								: `${v.joinConjunct(", ", " or ")} Campaign`;
+						}
 						default: throw new Error(`Unhandled key: ${k}`);
 					}
 				})
@@ -3078,20 +3119,14 @@ Renderer.utils = {
 			const ptPrereqs = prereqsToJoin
 				.join(prereqsToJoin.some(it => / or /.test(it)) ? "; " : ", ");
 
-			// Never include notes in list mode
-			const ptNote = !isListMode && pr.note ? Renderer.get().render(pr.note) : null;
-			if (ptNote) {
-				hasNote = true;
-			}
-
 			return [ptPrereqs, ptNote].filter(Boolean).join(". ");
 		}).filter(Boolean);
 
-		if (!listOfChoices.length) return isListMode ? "\u2014" : "";
-		if (isListMode) return listOfChoices.join("/");
+		if (!listOfChoices.length && !shared) return isListMode ? "\u2014" : "";
+		if (isListMode) return [shared, listOfChoices.join("/")].filter(Boolean).join("+");
 
-		const joinedChoices = hasNote ? listOfChoices.join(" Or, ") : listOfChoices.joinConjunct("; ", " or ");
-		return `${isSkipPrefix ? "" : `Prerequisite${cntPrerequisites === 1 ? "" : "s"}: `}${joinedChoices}`;
+		const joinedChoices = hasNote ? listOfChoices.join(" Or, ") : listOfChoices.joinConjunct(listOfChoices.some(it => / or /.test(it)) ? "; " : ", ", " or ");
+		return `${isSkipPrefix ? "" : `Prerequisite${cntPrerequisites === 1 ? "" : "s"}: `}${[shared, joinedChoices].filter(Boolean).join(", plus ")}`;
 	},
 
 	getRenderedSize (size) {
@@ -3944,6 +3979,14 @@ Renderer.feat = {
 		renderStack.push(`</td></tr>`);
 
 		return renderStack.join("");
+	},
+
+	pGetFluff (feat) {
+		return Renderer.utils.pGetFluff({
+			entity: feat,
+			fnGetFluffData: DataUtil.featFluff.loadJSON.bind(DataUtil.featFluff),
+			fluffProp: "featFluff",
+		});
 	},
 };
 
@@ -4887,10 +4930,13 @@ Renderer.condition = {
 
 Renderer.background = {
 	getCompactRenderedString (bg) {
+		const prerequisite = Renderer.utils.getPrerequisiteHtml(bg.prerequisite);
+
 		return `
 		${Renderer.utils.getExcludedTr({entity: bg, dataProp: "background", page: UrlUtil.PG_BACKGROUNDS})}
 		${Renderer.utils.getNameTr(bg, {page: UrlUtil.PG_BACKGROUNDS})}
 		<tr class="text"><td colspan="6">
+		${prerequisite ? `<p><i>${prerequisite}</i></p>` : ""}
 		${Renderer.get().render({type: "entries", entries: bg.entries})}
 		</td></tr>
 		`;
@@ -5520,7 +5566,7 @@ Renderer.deity = {
 	_basePartTranslators: {
 		"Alignment": {
 			prop: "alignment",
-			displayFn: (it) => it.map(a => Parser.alignmentAbvToFull(a)).join(" "),
+			displayFn: (it) => it.map(a => Parser.alignmentAbvToFull(a)).join(" ").toTitleCase(),
 		},
 		"Pantheon": {
 			prop: "pantheon",
@@ -5611,6 +5657,14 @@ Renderer.object = {
 
 	getTokenUrl (obj) {
 		return obj.tokenUrl || UrlUtil.link(`${Renderer.get().baseMediaUrls["img"] || Renderer.get().baseUrl}img/objects/tokens/${Parser.sourceJsonToAbv(obj.source)}/${Parser.nameToTokenName(obj.name)}.png`);
+	},
+
+	pGetFluff (obj) {
+		return Renderer.utils.pGetFluff({
+			entity: obj,
+			fnGetFluffData: DataUtil.objectFluff.loadJSON.bind(DataUtil.objectFluff),
+			fluffProp: "objectFluff",
+		});
 	},
 };
 
@@ -6173,7 +6227,11 @@ Renderer.monster = {
 		</td></tr>`;
 	},
 
-	getTypeAlignmentPart (mon) { return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${Parser.monTypeToFullObj(mon.type).asText.toTitleCase()}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`; },
+	getTypeAlignmentPart (mon) {
+		const typeObj = Parser.monTypeToFullObj(mon.type);
+
+		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick.toTitleCase()}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText.toTitleCase()}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
+	},
 	getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; },
 	getSensesPart (mon) { return `${mon.senses ? `${Renderer.monster.getRenderedSenses(mon.senses)}, ` : ""}passive Perception ${mon.passive || "\u2014"}`; },
 
@@ -10056,11 +10114,13 @@ Renderer.hover = {
 			case `fluff__${UrlUtil.PG_BESTIARY}`: return Renderer.hover._pCacheAndGet_pLoadMultiSourceFluff(page, source, hash, opts, `data/bestiary/`, "monsterFluff");
 			case `fluff__${UrlUtil.PG_SPELLS}`: return Renderer.hover._pCacheAndGet_pLoadMultiSourceFluff(page, source, hash, opts, `data/spells/`, "spellFluff");
 			case `fluff__${UrlUtil.PG_BACKGROUNDS}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-backgrounds.json", "backgroundFluff");
+			case `fluff__${UrlUtil.PG_FEATS}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-feats.json", "featFluff");
 			case `fluff__${UrlUtil.PG_ITEMS}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-items.json", "itemFluff");
 			case `fluff__${UrlUtil.PG_CONDITIONS_DISEASES}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-conditionsdiseases.json", ["conditionFluff", "diseaseFluff"]);
 			case `fluff__${UrlUtil.PG_RACES}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-races.json", "raceFluff");
 			case `fluff__${UrlUtil.PG_LANGUAGES}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-languages.json", "languageFluff");
 			case `fluff__${UrlUtil.PG_VEHICLES}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-vehicles.json", "vehicleFluff");
+			case `fluff__${UrlUtil.PG_OBJECTS}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-objects.json", "objectFluff");
 			case `fluff__${UrlUtil.PG_CHAR_CREATION_OPTIONS}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-charcreationoptions.json", "charoptionFluff");
 			case `fluff__${UrlUtil.PG_RECIPES}`: return Renderer.hover._pCacheAndGet_pLoadSimpleFluff(page, source, hash, opts, "fluff-recipes.json", "recipeFluff");
 			// endregion
@@ -10919,6 +10979,7 @@ Renderer.hover = {
 			case UrlUtil.PG_SPELLS: return Renderer.spell.pGetFluff;
 			case UrlUtil.PG_RACES: return Renderer.race.pGetFluff;
 			case UrlUtil.PG_BACKGROUNDS: return Renderer.background.pGetFluff;
+			case UrlUtil.PG_FEATS: return Renderer.feat.pGetFluff;
 			case UrlUtil.PG_LANGUAGES: return Renderer.language.pGetFluff;
 			case UrlUtil.PG_VEHICLES: return Renderer.vehicle.pGetFluff;
 			case UrlUtil.PG_CHAR_CREATION_OPTIONS: return Renderer.charoption.pGetFluff;

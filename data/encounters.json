@@ -8807,7 +8807,7 @@
 						{
 							"min": 1,
 							"max": 2,
-							"result": "1 {@creature aartuk priest|BAM}* and {@dice 2d4} {@creature Aartuk Warrior|BAM|aartuk warriors}*",
+							"result": "1 {@creature aartuk starhorror|BAM}* and {@dice 2d4} {@creature Aartuk Weedling|BAM|aartuk weedlings}*",
 							"resultAttitude": "{@dice 1d12}"
 						},
 						{
@@ -8997,7 +8997,7 @@
 						{
 							"min": 37,
 							"max": 39,
-							"result": "{@vehicle Living ship|AAG} Eldervine, captained by Queth ({@creature aartuk elder|BAM}*) and crewed by 2 {@creature Aartuk Priest|BAM|aartuk priests},* 8 {@creature Aartuk Warrior|BAM|aartuk warriors},* and Eldervine ({@creature treant})",
+							"result": "{@vehicle Living ship|AAG} Eldervine, captained by Queth ({@creature aartuk elder|BAM}*) and crewed by 2 {@creature Aartuk Starhorror|BAM|aartuk starhorrors},* 8 {@creature Aartuk Weedling|BAM|aartuk weedlings},* and Eldervine ({@creature treant})",
 							"resultAttitude": "{@dice 1d10}"
 						},
 						{

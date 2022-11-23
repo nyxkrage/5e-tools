@@ -2683,7 +2683,8 @@
 									"hrefThumbnail": {
 										"type": "internal",
 										"path": "book/SCAG/thumbnail/Baldurs Gate Map.webp"
-									}
+									},
+									"id": "1e1"
 								},
 								"In both the Upper and Lower Cities, the underworld is controlled by a shadowy group known merely as the Guild. The dukes don't acknowledge the power of this group in any meaningful way\u2014at least not publicly\u2014but try (at least nominally) to curb its influence where and how they can. I lost count of how many gangs claim territory in the Lower and Outer City, and all of them seem to owe allegiance to the Guild. Efforts to destroy the Guild have thus far failed, due in part to the inability of outsiders to identify a clear leader of the group, but in no small measure to the shameful lack of effort on the part of the rulers of the city to protect its people.",
 								{
@@ -4624,7 +4625,8 @@
 									"hrefThumbnail": {
 										"type": "internal",
 										"path": "book/SCAG/thumbnail/Luskan Map.webp"
-									}
+									},
+									"id": "1e2"
 								},
 								"Luskan, the City of Sails, spans the icy River Mirar, which tumbles from the Spine of the World, races past Mirabar, and then plunges toward the sea. The swift river has cut deep here, and Luskan rests atop two escarpments on either side, with sheer, forty-foot bluffs of gray stone rising above the water. Around the city's perimeter, thick stone walls with squat towers provide defense. The southern gate, called the Twin Teeth, boasts the most impressive towers, standing twice as tall as the city walls, and bedecked with crenellations and arrow slits enough for numerous defenders, in a show of strength toward the southern approach.",
 								{
