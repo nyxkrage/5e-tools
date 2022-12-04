@@ -2932,7 +2932,7 @@ Renderer.utils = {
 				.mergeMap(([k, v]) => ({[k]: v}));
 
 		const shared = Object.keys(prereqsShared).length
-			? Renderer.utils.getPrerequisiteHtml([prereqsShared], {isListMode, blocklistKeys, isTextOnly, isSkipPrefix})
+			? Renderer.utils.getPrerequisiteHtml([prereqsShared], {isListMode, blocklistKeys, isTextOnly, isSkipPrefix: true})
 			: null;
 
 		let cntPrerequisites = 0;
@@ -3111,6 +3111,11 @@ Renderer.utils = {
 								? v.join("/")
 								: `${v.joinConjunct(", ", " or ")} Campaign`;
 						}
+						case "group": {
+							return isListMode
+								? v.map(it => it.toTitleCase()).join("/")
+								: `${v.map(it => it.toTitleCase()).joinConjunct(", ", " or ")} Group`;
+						}
 						default: throw new Error(`Unhandled key: ${k}`);
 					}
 				})
@@ -3123,7 +3128,7 @@ Renderer.utils = {
 		}).filter(Boolean);
 
 		if (!listOfChoices.length && !shared) return isListMode ? "\u2014" : "";
-		if (isListMode) return [shared, listOfChoices.join("/")].filter(Boolean).join("+");
+		if (isListMode) return [shared, listOfChoices.join("/")].filter(Boolean).join(" + ");
 
 		const joinedChoices = hasNote ? listOfChoices.join(" Or, ") : listOfChoices.joinConjunct(listOfChoices.some(it => / or /.test(it)) ? "; " : ", ", " or ");
 		return `${isSkipPrefix ? "" : `Prerequisite${cntPrerequisites === 1 ? "" : "s"}: `}${[shared, joinedChoices].filter(Boolean).join(", plus ")}`;

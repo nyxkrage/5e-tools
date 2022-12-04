@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.170.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.170.1"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -1894,7 +1894,7 @@ ContextUtil = {
 	Menu: function (actions) {
 		this._actions = actions;
 		this._pResult = null;
-		this._resolveResult = null;
+		this.resolveResult_ = null;
 
 		this.userData = null;
 
@@ -1912,9 +1912,9 @@ ContextUtil = {
 
 			this._initLazy();
 
-			if (this._resolveResult) this._resolveResult(null);
+			if (this.resolveResult_) this.resolveResult_(null);
 			this._pResult = new Promise(resolve => {
-				this._resolveResult = resolve;
+				this.resolveResult_ = resolve;
 			});
 			this.userData = userData;
 
@@ -2023,7 +2023,7 @@ ContextUtil = {
 					menu.close();
 
 					const result = await this.fnAction(evt, menu.userData);
-					if (this._resolveResult) this._resolveResult(result);
+					if (menu.resolveResult_) menu.resolveResult_(result);
 				})
 				.keydown(evt => {
 					if (evt.key !== "Enter") return;
@@ -2047,7 +2047,7 @@ ContextUtil = {
 					menu.close();
 
 					const result = await this.fnActionAlt(evt, menu.userData);
-					if (this._resolveResult) this._resolveResult(result);
+					if (menu.resolveResult_) menu.resolveResult_(result);
 				});
 			if (this.titleAlt) $btnActionAlt.title(this.titleAlt);
 

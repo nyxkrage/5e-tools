@@ -35,3 +35,13 @@ class PageFilterObjects extends PageFilter {
 		);
 	}
 }
+
+class ListSyntaxObjects extends ListUiUtil.ListSyntax {
+	_getSearchCacheStats (entity) {
+		if (!entity.entries && !entity.actionEntries) return "";
+		const ptrOut = {_: ""};
+		this._getSearchCache_handleEntryProp(entity, "entries", ptrOut);
+		this._getSearchCache_handleEntryProp(entity, "actionEntries", ptrOut);
+		return ptrOut._;
+	}
+}

@@ -97,11 +97,18 @@ class PageFilterBestiary extends PageFilter {
 		this._averageHpFilter = new RangeFilter({header: "Average Hit Points"});
 		this._typeFilter = new Filter({
 			header: "Type",
-			items: Parser.MON_TYPES,
+			items: [...Parser.MON_TYPES],
 			displayFn: StrUtil.toTitleCase,
 			itemSortFn: SortUtil.ascSortLower,
 		});
 		this._tagFilter = new Filter({header: "Tag", displayFn: StrUtil.toTitleCase});
+		this._sidekickTypeFilter = new Filter({
+			header: "Sidekick Type",
+			items: ["expert", "spellcaster", "warrior"],
+			displayFn: StrUtil.toTitleCase,
+			itemSortFn: SortUtil.ascSortLower,
+		});
+		this._sidekickTagFilter = new Filter({header: "Sidekick Tag", displayFn: StrUtil.toTitleCase});
 		this._alignmentFilter = new Filter({
 			header: "Alignment",
 			items: ["L", "NX", "C", "G", "NY", "E", "N", "U", "A", "No Alignment"],
@@ -373,6 +380,8 @@ class PageFilterBestiary extends PageFilter {
 		mon.ac.forEach(it => this._acFilter.addItem(it.ac || it));
 		if (mon.hp.average) this._averageHpFilter.addItem(mon.hp.average);
 		this._tagFilter.addItem(mon._pTypes.tags);
+		this._sidekickTypeFilter.addItem(mon._pTypes.typeSidekick);
+		this._sidekickTagFilter.addItem(mon._pTypes.tagsSidekick);
 		this._traitFilter.addItem(mon.traitTags);
 		this._actionReactionFilter.addItem(mon.actionTags);
 		this._environmentFilter.addItem(mon._fEnvironment);
@@ -405,6 +414,8 @@ class PageFilterBestiary extends PageFilter {
 			this._crFilter,
 			this._typeFilter,
 			this._tagFilter,
+			this._sidekickTypeFilter,
+			this._sidekickTagFilter,
 			this._environmentFilter,
 			this._defenceFilter,
 			this._conditionImmuneFilter,
@@ -440,6 +451,8 @@ class PageFilterBestiary extends PageFilter {
 			m._fCr,
 			m._pTypes.type,
 			m._pTypes.tags,
+			m._pTypes.typeSidekick,
+			m._pTypes.tagsSidekick,
 			m._fEnvironment,
 			[
 				m._fVuln,
@@ -582,5 +595,32 @@ class ModalFilterBestiary extends ModalFilter {
 		ListUiUtil.bindPreviewButton(UrlUtil.PG_BESTIARY, this._allData, listItem, btnShowHidePreview);
 
 		return listItem;
+	}
+}
+
+class ListSyntaxBestiary extends ListUiUtil.ListSyntax {
+	static _INDEXABLE_PROPS = [
+		"trait",
+		"spellcasting",
+		"action",
+		"bonus",
+		"reaction",
+		"legendary",
+		"mythic",
+		"variant",
+	];
+	static _INDEXABLE_PROPS_LEG_GROUP = [
+		"lairActions",
+		"regionalEffects",
+		"mythicEncounter",
+	];
+
+	_getSearchCacheStats (entity) {
+		const legGroup = DataUtil.monster.getMetaGroup(entity);
+		if (!legGroup && this.constructor._INDEXABLE_PROPS.every(it => !entity[it])) return "";
+		const ptrOut = {_: ""};
+		this.constructor._INDEXABLE_PROPS.forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
+		if (legGroup) this.constructor._INDEXABLE_PROPS_LEG_GROUP.forEach(it => this._getSearchCache_handleEntryProp(legGroup, it, ptrOut));
+		return ptrOut._;
 	}
 }

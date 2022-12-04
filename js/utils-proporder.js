@@ -1014,6 +1014,7 @@ PropOrder._ITEM = [
 	"atomicPackContents",
 	"containerCapacity",
 
+	"optionalfeatures",
 	"attachedSpells",
 	"spellScrollLevel",
 	"lootTables",

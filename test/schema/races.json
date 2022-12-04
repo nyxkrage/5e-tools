@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "races.json",
-	"version": "1.12.0",
+	"version": "1.12.1",
 	"type": "object",
 	"$defs": {
 		"sharedData": {
@@ -75,7 +75,14 @@
 					"$ref": "util.json#/$defs/languageProficiencies"
 				},
 				"skillProficiencies": {
-					"$ref": "util.json#/$defs/skillProficiencies"
+					"oneOf": [
+						{
+							"$ref": "util.json#/$defs/skillProficiencies"
+						},
+						{
+							"type": "null"
+						}
+					]
 				},
 				"toolProficiencies": {
 					"$ref": "util.json#/$defs/toolProficiencies"
@@ -287,7 +294,14 @@
 					"$ref": "util.json#/$defs/languageProficiencies"
 				},
 				"skillProficiencies": {
-					"$ref": "util.json#/$defs/skillProficiencies"
+					"oneOf": [
+						{
+							"$ref": "util.json#/$defs/skillProficiencies"
+						},
+						{
+							"type": "null"
+						}
+					]
 				},
 				"toolProficiencies": {
 					"$ref": "util.json#/$defs/toolProficiencies"
@@ -666,7 +680,14 @@
 							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/$defs/skillProficiencies"
+							"oneOf": [
+								{
+									"$ref": "util.json#/$defs/skillProficiencies"
+								},
+								{
+									"type": "null"
+								}
+							]
 						},
 						"toolProficiencies": {
 							"$ref": "util.json#/$defs/toolProficiencies"
@@ -882,7 +903,14 @@
 							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/$defs/skillProficiencies"
+							"oneOf": [
+								{
+									"$ref": "util.json#/$defs/skillProficiencies"
+								},
+								{
+									"type": "null"
+								}
+							]
 						},
 						"toolProficiencies": {
 							"$ref": "util.json#/$defs/toolProficiencies"
@@ -1159,7 +1187,14 @@
 							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/$defs/skillProficiencies"
+							"oneOf": [
+								{
+									"$ref": "util.json#/$defs/skillProficiencies"
+								},
+								{
+									"type": "null"
+								}
+							]
 						},
 						"toolProficiencies": {
 							"$ref": "util.json#/$defs/toolProficiencies"
@@ -1386,7 +1421,14 @@
 							"$ref": "util.json#/$defs/languageProficiencies"
 						},
 						"skillProficiencies": {
-							"$ref": "util.json#/$defs/skillProficiencies"
+							"oneOf": [
+								{
+									"$ref": "util.json#/$defs/skillProficiencies"
+								},
+								{
+									"type": "null"
+								}
+							]
 						},
 						"toolProficiencies": {
 							"$ref": "util.json#/$defs/toolProficiencies"

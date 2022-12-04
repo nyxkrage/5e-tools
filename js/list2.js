@@ -86,6 +86,7 @@ class List {
 	 * @param [opts.syntax] A dictionary of search syntax prefixes, each with an item "to display" checker function.
 	 * @param [opts.isFuzzy]
 	 * @param [opts.isSkipSearchKeybindingEnter]
+	 * @param {array} [opts.helpText]
 	 */
 	constructor (opts) {
 		if (opts.fnSearch && opts.isFuzzy) throw new Error(`The options "fnSearch" and "isFuzzy" are mutually incompatible!`);
@@ -97,6 +98,7 @@ class List {
 		this._syntax = opts.syntax;
 		this._isFuzzy = !!opts.isFuzzy;
 		this._isSkipSearchKeybindingEnter = !!opts.isSkipSearchKeybindingEnter;
+		this._helpText = opts.helpText;
 
 		this._items = [];
 		this._eventHandlers = {};
@@ -145,7 +147,19 @@ class List {
 			UiUtil.bindTypingEnd({$ipt: this._$iptSearch, fnKeyup: () => this.search(this._$iptSearch.val())});
 			this._searchTerm = List.getCleanSearchTerm(this._$iptSearch.val());
 			this._init_bindKeydowns();
+
+			// region Help text
+			const helpText = [
+				...(this._helpText || []),
+				...Object.values(this._syntax || {})
+					.filter(({help}) => help)
+					.map(({help}) => help),
+			];
+
+			if (helpText.length) this._$iptSearch.title(helpText.join(" "));
+			// endregion
 		}
+
 		this._doSearch();
 		this._isInit = true;
 	}

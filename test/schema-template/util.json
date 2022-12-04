@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.13.2",
+	"version": "1.13.3",
 
 	"$defs" : {
 		"metaBlock": {
@@ -1152,6 +1152,19 @@
 								"keyBrew": "examples",
 								"value": [
 									"Dragonlance"
+								]
+							}
+						}
+					},
+					"group": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"$$ifSiteElse_key": {
+								"keySite": "enum",
+								"keyBrew": "examples",
+								"value": [
+									"expert", "mage", "priest", "warrior"
 								]
 							}
 						}

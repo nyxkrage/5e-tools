@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "races.json",
-	"version": "1.12.0",
+	"version": "1.12.1",
 	"type": "object",
 
 	"$defs": {
@@ -41,7 +41,12 @@
 				},
 				"soundClip": {"$ref": "entry.json#/$defs/mediaHref"},
 				"languageProficiencies": {"$ref": "util.json#/$defs/languageProficiencies"},
-				"skillProficiencies": {"$ref": "util.json#/$defs/skillProficiencies"},
+				"skillProficiencies": {
+					"oneOf": [
+						{"$ref": "util.json#/$defs/skillProficiencies"},
+						{"type": "null"}
+					]
+				},
 				"toolProficiencies": {"$ref": "util.json#/$defs/toolProficiencies"},
 				"skillToolLanguageProficiencies": {"$ref": "util.json#/$defs/skillToolLanguageProficiencies"},
 				"expertise": {"$ref": "util.json#/$defs/expertise"},

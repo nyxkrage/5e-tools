@@ -38,17 +38,21 @@ class ObjectsSublistManager extends SublistManager {
 class ObjectsPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterObjects();
+		const pFnGetFluff = Renderer.object.pGetFluff.bind(Renderer.object);
+
 		super({
 			dataSource: DataUtil.object.loadJSON.bind(DataUtil.object),
 			dataSourceFluff: DataUtil.objectFluff.loadJSON.bind(DataUtil.objectFluff),
 
-			pFnGetFluff: Renderer.object.pGetFluff.bind(Renderer.object),
+			pFnGetFluff,
 
 			pageFilter,
 
 			listClass: "objects",
 
 			dataProps: ["object"],
+
+			listSyntax: new ListSyntaxObjects({fnGetDataList: () => this._dataList, pFnGetFluff}),
 		});
 
 		this._$dispToken = null;
@@ -158,14 +162,6 @@ class ObjectsPage extends ListPage {
 			entity: obj,
 			pFnGetFluff: this._pFnGetFluff,
 		});
-	}
-
-	_getSearchCacheStats (entity) {
-		if (!entity.entries && !entity.actionEntries) return "";
-		const ptrOut = {_: ""};
-		this._getSearchCache_handleEntryProp(entity, "entries", ptrOut);
-		this._getSearchCache_handleEntryProp(entity, "actionEntries", ptrOut);
-		return ptrOut._;
 	}
 }
 

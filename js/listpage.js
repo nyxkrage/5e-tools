@@ -750,6 +750,7 @@ class ListPage {
 	 * @param [opts.isBindHashHandlerUnknown] If the "unknown hash" handler function should be bound.
 	 * @param [opts.isMarkdownPopout] If the sublist Popout button supports Markdown on CTRL.
 	 * @param [opts.propEntryData]
+	 * @param [opts.listSyntax]
 	 */
 	constructor (opts) {
 		this._dataSource = opts.dataSource;
@@ -770,6 +771,7 @@ class ListPage {
 		this._isLoadDataAfterFilterInit = !!opts.isLoadDataAfterFilterInit;
 		this._isBindHashHandlerUnknown = !!opts.isBindHashHandlerUnknown;
 		this._propEntryData = opts.propEntryData;
+		this._listSyntax = opts.listSyntax || new ListUiUtil.ListSyntax({fnGetDataList: () => this._dataList, pFnGetFluff: opts.pFnGetFluff});
 
 		this._renderer = Renderer.get();
 		this._list = null;
@@ -877,7 +879,7 @@ class ListPage {
 			$btnClear: $(`#lst__search-glass`),
 			dispPageTagline: document.getElementById(`page__subtitle`),
 			isPreviewable: this._isPreviewable,
-			syntax: this._listSyntax,
+			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
 			optsList: this._listOptions,
 		});
@@ -1147,85 +1149,6 @@ class ListPage {
 
 	// ==================
 
-	get _listSyntax () {
-		return {
-			stats: {
-				help: `"stats:<text>" to search within stat blocks.`,
-				fn: (listItem, searchTerm) => {
-					if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
-					return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
-				},
-			},
-			info: {
-				help: `"info:<text>" to search within info.`,
-				fn: async (listItem, searchTerm) => {
-					if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
-					return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
-				},
-				isAsync: true,
-			},
-			text: {
-				help: `"text:<text>" to search within stat blocks plus info.`,
-				fn: async (listItem, searchTerm) => {
-					if (listItem.data._textCacheAll == null) {
-						const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
-						listItem.data._textCacheStats = listItem.data._textCacheStats || textCacheStats;
-						listItem.data._textCacheFluff = listItem.data._textCacheFluff || textCacheFluff;
-						listItem.data._textCacheAll = textCacheAll;
-					}
-					return this._listSyntax_isTextMatch(listItem.data._textCacheAll, searchTerm);
-				},
-				isAsync: true,
-			},
-		};
-	}
-
-	_listSyntax_isTextMatch (str, searchTerm) { return str && str.includes(searchTerm); }
-
-	// TODO(Future) the ideal solution to this is to render every entity to plain text (or failing that, Markdown) and
-	//   indexing that text with e.g. elasticlunr.
-	_getSearchCacheStats (entity) {
-		return this._getSearchCache_entries(entity);
-	}
-
-	_getSearchCache_entries (entity) {
-		if (!entity.entries) return "";
-		const ptrOut = {_: ""};
-		this._getSearchCache_handleEntryProp(entity, "entries", ptrOut);
-		return ptrOut._;
-	}
-
-	_getSearchCache_handleEntryProp (entity, prop, ptrOut) {
-		if (!entity[prop]) return;
-		ListPage._READONLY_WALKER.walk(
-			entity[prop],
-			{
-				string: (str) => this._getSearchCache_handleString(ptrOut, str),
-			},
-		);
-	}
-
-	_getSearchCache_handleString (ptrOut, str) {
-		ptrOut._ += `${Renderer.stripTags(str).toLowerCase()} -- `;
-	}
-
-	async _pGetSearchCacheFluff (entity) {
-		const fluff = this._pFnGetFluff ? await this._pFnGetFluff(entity) : null;
-		return fluff ? this._getSearchCache_entries(fluff) : "";
-	}
-
-	async _pGetSearchCacheAll (entity, {textCacheStats = null, textCacheFluff = null}) {
-		textCacheStats = textCacheStats || this._getSearchCacheStats(entity);
-		textCacheFluff = textCacheFluff || await this._pGetSearchCacheFluff(entity);
-		return {
-			textCacheStats,
-			textCacheFluff,
-			textCacheAll: [textCacheStats, textCacheFluff].filter(Boolean).join(" -- "),
-		};
-	}
-
-	// ==================
-
 	static _checkShowAllExcluded (list, $pagecontent) {
 		if (!ExcludeUtil.isAllContentExcluded(list)) return;
 
@@ -1365,13 +1288,12 @@ class ListPage {
 			optsList,
 		},
 	) {
-		const list = new List({$iptSearch, $wrpList, syntax, ...optsList});
-
 		const helpText = [];
+		if (isBindFindHotkey) helpText.push(`Hotkey: f.`);
+
+		const list = new List({$iptSearch, $wrpList, syntax, helpText, ...optsList});
 
 		if (isBindFindHotkey) {
-			helpText.push(`Hotkey: f.`);
-
 			$(document.body).on("keypress", (evt) => {
 				if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
 				if (EventUtil.getKeyIgnoreCapsLock(evt) === "f") {
@@ -1380,16 +1302,6 @@ class ListPage {
 				}
 			});
 		}
-
-		if (syntax) {
-			Object.values(syntax)
-				.filter(({help}) => help)
-				.forEach(({help}) => {
-					helpText.push(help);
-				});
-		}
-
-		if (helpText.length) $iptSearch.title(helpText.join(" "));
 
 		$btnReset.click(() => {
 			$iptSearch.val("");
@@ -1713,7 +1625,3 @@ class ListPage {
 		return sub;
 	}
 }
-ListPage._READONLY_WALKER = MiscUtil.getWalker({
-	keyBlocklist: new Set(["type", "colStyles", "style"]),
-	isNoModification: true,
-});

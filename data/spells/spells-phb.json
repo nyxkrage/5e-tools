@@ -1989,6 +1989,9 @@
 			"conditionInflict": [
 				"unconscious"
 			],
+			"miscTags": [
+				"PS"
+			],
 			"areaTags": [
 				"MT"
 			],
@@ -14089,7 +14092,8 @@
 				"force"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"PS"
 			],
 			"classes": {
 				"fromClassList": [
@@ -17716,7 +17720,8 @@
 				"When you cast this spell, you can speak the name of a specific creature (a pseudonym, title, or nickname doesn't work). If that creature is on a plane other than the one you are on, the portal opens in the named creature's immediate vicinity and draws the creature through it to the nearest unoccupied space on your side of the portal. You gain no special power over the creature, and it is free to act as the DM deems appropriate. It might leave, attack you, or help you."
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"PS"
 			],
 			"classes": {
 				"fromClassList": [
@@ -28741,6 +28746,9 @@
 			"savingThrow": [
 				"charisma"
 			],
+			"miscTags": [
+				"PS"
+			],
 			"areaTags": [
 				"ST",
 				"MT"
@@ -34536,8 +34544,7 @@
 				"wisdom"
 			],
 			"miscTags": [
-				"MAC",
-				"UBA"
+				"MAC"
 			],
 			"areaTags": [
 				"MT",
@@ -40314,7 +40321,8 @@
 				"You must designate a sanctuary by casting this spell within a location, such as a temple, dedicated to or strongly linked to your deity. If you attempt to cast the spell in this manner in an area that isn't dedicated to your deity, the spell has no effect."
 			],
 			"miscTags": [
-				"TP"
+				"TP",
+				"PS"
 			],
 			"classes": {
 				"fromClassList": [

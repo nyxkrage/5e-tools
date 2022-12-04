@@ -53,6 +53,8 @@ class SpellsSublistManager extends SublistManager {
 
 class SpellsPage extends ListPageMultiSource {
 	constructor () {
+		const pFnGetFluff = Renderer.spell.pGetFluff.bind(Renderer.spell);
+
 		super({
 			pageFilter: new PageFilterSpells(),
 
@@ -63,7 +65,7 @@ class SpellsPage extends ListPageMultiSource {
 
 			dataProps: ["spell"],
 
-			pFnGetFluff: Renderer.spell.pGetFluff.bind(Renderer.spell),
+			pFnGetFluff,
 
 			bookViewOptions: {
 				$btnOpen: $(`#btn-spellbook`),
@@ -112,6 +114,8 @@ class SpellsPage extends ListPageMultiSource {
 			isMarkdownPopout: true,
 
 			jsonDir: "data/spells/",
+
+			listSyntax: new ListSyntaxSpells({fnGetDataList: () => this._dataList, pFnGetFluff}),
 		});
 
 		this._lastFilterValues = null;
@@ -353,13 +357,6 @@ class SpellsPage extends ListPageMultiSource {
 		Renderer.spell.populateHomebrewLookup(homebrew);
 	}
 
-	_getSearchCacheStats (entity) {
-		if (this.constructor._INDEXABLE_PROPS.every(it => !entity[it])) return "";
-		const ptrOut = {_: ""};
-		this.constructor._INDEXABLE_PROPS.forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
-		return ptrOut._;
-	}
-
 	async pPreloadSublistSources (json) {
 		const loaded = Object.keys(this._loadedSources)
 			.filter(it => this._loadedSources[it].loaded);
@@ -383,10 +380,6 @@ class SpellsPage extends ListPageMultiSource {
 	}
 }
 SpellsPage._BOOK_VIEW_MODE_K = "bookViewMode";
-SpellsPage._INDEXABLE_PROPS = [
-	"entries",
-	"entriesHigherLevel",
-];
 
 const spellsPage = new SpellsPage();
 spellsPage.sublistManager = new SpellsSublistManager();

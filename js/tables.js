@@ -44,6 +44,8 @@ class TablesPage extends ListPage {
 			},
 
 			dataProps: ["table", "tableGroup"],
+
+			listSyntax: new ListSyntaxTables({fnGetDataList: () => this._dataList}),
 		});
 	}
 
@@ -123,14 +125,6 @@ class TablesPage extends ListPage {
 		this._$pgContent.empty().append(RenderTables.$getRenderedTable(it));
 
 		this._updateSelected();
-	}
-
-	_getSearchCacheStats (entity) {
-		if (!entity.rows && !entity.tables) return "";
-		const ptrOut = {_: ""};
-		this._getSearchCache_handleEntryProp(entity, "rows", ptrOut);
-		this._getSearchCache_handleEntryProp(entity, "tables", ptrOut);
-		return ptrOut._;
 	}
 }
 

@@ -232,6 +232,9 @@
 			"conditionInflict": [
 				"unconscious"
 			],
+			"miscTags": [
+				"PS"
+			],
 			"classes": {
 				"fromClassListVariant": [
 					{
@@ -1619,8 +1622,7 @@
 				"intelligence"
 			],
 			"miscTags": [
-				"SGT",
-				"UBA"
+				"SGT"
 			],
 			"areaTags": [
 				"ST"

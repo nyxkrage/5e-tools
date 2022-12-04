@@ -185,6 +185,9 @@
 											}
 										]
 									}
+								},
+								"sidekickHidden": {
+									"const": true
 								}
 							},
 							"required": [

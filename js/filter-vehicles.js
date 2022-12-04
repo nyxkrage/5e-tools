@@ -106,3 +106,26 @@ class PageFilterVehicles extends PageFilter {
 		);
 	}
 }
+
+class ListSyntaxVehicles extends ListUiUtil.ListSyntax {
+	static _INDEXABLE_PROPS = [
+		"control",
+		"movement",
+		"weapon",
+		"other",
+		"entries",
+
+		"actionStation",
+
+		"action",
+		"trait",
+		"reaction",
+	];
+
+	_getSearchCacheStats (entity) {
+		if (this.constructor._INDEXABLE_PROPS.every(it => !entity[it])) return "";
+		const ptrOut = {_: ""};
+		this.constructor._INDEXABLE_PROPS.forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
+		return ptrOut._;
+	}
+}

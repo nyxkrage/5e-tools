@@ -545,6 +545,11 @@ Parser._buildSourceCache = function (dict) {
 	Object.entries(dict).forEach(([k, v]) => out[k.toLowerCase()] = v);
 	return out;
 };
+Parser._sourceJsonCache = null;
+Parser.hasSourceJson = function (source) {
+	Parser._sourceJsonCache = Parser._sourceJsonCache || Parser._buildSourceCache(Object.keys(Parser.SOURCE_JSON_TO_FULL).mergeMap(k => ({[k]: k})));
+	return !!Parser._sourceJsonCache[source.toLowerCase()];
+};
 Parser._sourceFullCache = null;
 Parser.hasSourceFull = function (source) {
 	Parser._sourceFullCache = Parser._sourceFullCache || Parser._buildSourceCache(Parser.SOURCE_JSON_TO_FULL);
@@ -559,6 +564,12 @@ Parser._sourceDateCache = null;
 Parser.hasSourceDate = function (source) {
 	Parser._sourceDateCache = Parser._sourceDateCache || Parser._buildSourceCache(Parser.SOURCE_JSON_TO_DATE);
 	return !!Parser._sourceDateCache[source.toLowerCase()];
+};
+Parser.sourceJsonToJson = function (source) {
+	source = Parser._getSourceStringFromSource(source);
+	if (Parser.hasSourceJson(source)) return Parser._sourceJsonCache[source.toLowerCase()];
+	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToSource(source).json;
+	return source;
 };
 Parser.sourceJsonToFull = function (source) {
 	source = Parser._getSourceStringFromSource(source);
@@ -1299,6 +1310,7 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	LGTS: "Creates Sunlight",
 	LGT: "Creates Light",
 	UBA: "Uses Bonus Action",
+	PS: "Plane Shifting",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -1351,12 +1363,12 @@ Parser.monTypeToFullObj = function (type) {
 	// region Sidekick
 	if (type.sidekickType) {
 		out.typeSidekick = type.sidekickType;
-		out.asTextSidekick = `${type.sidekickType}`;
+		if (!type.sidekickHidden) out.asTextSidekick = `${type.sidekickType}`;
 
 		const tagMetas = Parser.monTypeToFullObj._getTagMetas(type.sidekickTags);
 		if (tagMetas.length) {
 			out.tagsSidekick.push(...tagMetas.map(({filterTag}) => filterTag));
-			out.asTextSidekick += ` (${tagMetas.map(({displayTag}) => displayTag).join(", ")})`;
+			if (!type.sidekickHidden) out.asTextSidekick += ` (${tagMetas.map(({displayTag}) => displayTag).join(", ")})`;
 		}
 	}
 	// endregion
@@ -3502,7 +3514,7 @@ Parser.getPropTag = function (prop) {
 
 Parser.PROP_TO_DISPLAY_NAME = {
 	"variantrule": "Variant Rule",
-	"optionalfeature": "Optional Feature",
+	"optionalfeature": "Option/Feature",
 	"magicvariant": "Magic Item Variant",
 	"baseitem": "Item (Base)",
 	"item": "Item",
