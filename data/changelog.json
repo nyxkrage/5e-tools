@@ -2270,5 +2270,11 @@
 		"ver": "1.170.1",
 		"date": "2022-12-04",
 		"txt": "- Added Dynamic Map Viewer support to Dragonlance: Shadow of the Dragon Queen maps\n- Added \"Sidekick Type\"/\"Sidekick Tag\" filters to Bestiary\n- Added \"Plane Shifting\" Miscellaneous filter to Spells page, which filters for spells which allow changing plane\n- Added \"Bundle\" Miscellaneous filter to Items page, which filters for items which are comprised of multiple other items\n- Added \"Feature\" filter to Items page, which filters for items granted by a specific feature (currently only the Artificer's \"Replicate Magic Item\")\n- Fixed DM Screen failing to show/hide panel movement controls when swapping the position of two panels\n- Fixed clicking a button in a scaling dice context menu having no effect\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.171.0",
+		"date": "2022-12-05",
+		"title": "Seasoned Veterans",
+		"txt": "- Added Monstrous Compendium Volume 2: Dragonlance Creatures content\n- Fixed missing thumbnail images for various adventures/books, including DSotDQ\n- (Fixed typos/added tags)"
 	}
 ]

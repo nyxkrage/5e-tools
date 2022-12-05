@@ -23081,6 +23081,56 @@
 			]
 		},
 		{
+			"name": "Nightbringer",
+			"source": "MCV2DC",
+			"baseItem": "mace|PHB",
+			"type": "M",
+			"immune": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"poison"
+			],
+			"rarity": "legendary",
+			"reqAttune": true,
+			"weight": 4,
+			"weaponCategory": "simple",
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"bonusWeapon": "+3",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"weapon": true,
+			"entries": [
+				"This heavy mace has a dark oaken handle and a head of blackened steel trimmed with gold. In combat, the mace's head is wreathed in inky black energy.",
+				"You gain a +3 bonus to attack and damage rolls made with this weapon. When you hit with an attack roll using it, the target takes an additional {@damage 4d4} radiant damage.",
+				"If you have an evil alignment, you also gain the following benefits when attuned to Nightbringer:",
+				{
+					"type": "entries",
+					"name": "Blessing of the Dragon Queen",
+					"entries": [
+						"You are immune to the {@condition charmed} and {@condition frightened} conditions, and you gain immunity to one of the following damage types (choose when you attune to the weapon): acid, cold, fire, lightning, or poison."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Eyes of Midnight",
+					"entries": [
+						"You have {@sense darkvision} with a range of 60 feet. If you already have {@sense darkvision}, its range increases by 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Midnight Shroud",
+					"entries": [
+						"The weapon has 6 charges. When you hit a creature with an attack using this weapon, you can expend one charge to force the creature to make a DC 20 Constitution saving throw. On a failed save, the creature is {@condition blinded} until the start of your next turn. The weapon regains {@dice 1d6} expended charges daily at dawn."
+					]
+				}
+			]
+		},
+		{
 			"name": "Nightfall Pearl",
 			"source": "EGW",
 			"page": 268,
