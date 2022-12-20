@@ -2287,5 +2287,10 @@
 		"ver": "1.172.1",
 		"date": "2022-12-20",
 		"txt": "- Converted Spells page \"Classes\"/\"Subclasses\"/etc. sources to hoverable links\n- SHIFT-clicking a toast message will now dismiss all toast messages\n- Reworked searchable filter keybinds to better match existing filter click keybinds (SHIFT to select one; CTRL to select as red)\n- Fixed spell source generation failing to take class into account, resulting in spells having far more sources than intended\n- Fixed DM Screen Adventure/Book Map Dynamic Viewer failing to load\n- Fixed crash when loading a Classes page URL which contains filter state\n- (Brew) Reworked \"failed to load references\" messages to reduce repetitive spam\n- (Brew) Fixed loading of `\"refOptionalfeature\"`s in class/subclass content\n- (Brew) Fixed Classes page crash on missing features\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.172.2",
+		"date": "2022-12-20",
+		"txt": "- (Brew) Fixed crash when changing chapter in adventures/books"
 	}
 ]

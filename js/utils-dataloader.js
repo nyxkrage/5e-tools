@@ -1591,6 +1591,8 @@ class DataLoader {
 	static _pCache_addToCache ({allDataMerged, propAllowlist = null}) {
 		if (!allDataMerged) return;
 
+		allDataMerged = {...allDataMerged};
+
 		this._DATA_TYPE_LOADER_LIST
 			.filter(loader => loader.hasCustomCacheStrategy({obj: allDataMerged}))
 			.forEach(loader => {
