@@ -1123,12 +1123,10 @@ BookUtil.Search = class {
 };
 BookUtil.Search._EXTRA_WORDS = 2;
 
+globalThis.BookUtil = BookUtil;
+
 if (typeof window !== "undefined") {
 	window.addEventListener("load", () => $("body").on("click", "a", (evt) => {
 		BookUtil._handleCheckReNav(evt);
 	}));
-}
-
-if (typeof module !== "undefined") {
-	module.exports = BookUtil;
 }

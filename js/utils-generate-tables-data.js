@@ -1,10 +1,5 @@
 "use strict";
 
-if (typeof module !== "undefined") {
-	require("../js/utils");
-	require("../js/render");
-}
-
 class UtilGenTables {
 	static _getTableSectionIndex (sectionOrders, chapterName, sectionName) {
 		((sectionOrders[chapterName] =
@@ -210,7 +205,7 @@ class UtilGenTables {
 			const tmpMeta = {
 				metaType: "class",
 				className: cls.name,
-				classSource: cls.source || SRC_PHB,
+				classSource: cls.source || Parser.SRC_PHB,
 				level: lvlI + 1,
 			};
 
@@ -251,11 +246,11 @@ class UtilGenTables {
 			const tmpMeta = {
 				metaType: "subclass",
 				className: sc.className,
-				classSource: sc.classSource || SRC_PHB,
+				classSource: sc.classSource || Parser.SRC_PHB,
 				level,
 				subclassName: sc.name,
 				subclassShortName: sc.shortName,
-				subclassSource: sc.source || sc.classSource || SRC_PHB,
+				subclassSource: sc.source || sc.classSource || Parser.SRC_PHB,
 
 				// Used to deduplicate headers
 				name: sc.name,
@@ -325,4 +320,4 @@ class UtilGenTables {
 	}
 }
 
-if (typeof module !== "undefined") module.exports = UtilGenTables;
+globalThis.UtilGenTables = UtilGenTables;

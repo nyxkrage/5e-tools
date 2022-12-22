@@ -1,7 +1,8 @@
-const ut = require("../node/util");
-const rl = require("readline-sync");
-const fs = require("fs");
-require("../js/utils");
+import * as ut from "../node/util.js";
+import * as rl from "readline-sync";
+import * as fs from "fs";
+import "../js/parser.js";
+import "../js/utils.js";
 
 const BLOCKLIST_FILE_PREFIXES = [
 	...ut.FILE_PREFIX_BLOCKLIST,
@@ -42,7 +43,7 @@ const BLOCKLIST_SOURCES = new Set([
 
 const SUB_KEYS = {};
 
-function run (isModificationMode) {
+function run ({isModificationMode = false} = {}) {
 	console.log(`##### Checking for Missing Page Numbers #####`);
 	const FILE_MAP = {};
 	const files = ut.listFiles({dir: `./data`, blocklistFilePrefixes: BLOCKLIST_FILE_PREFIXES});
@@ -125,5 +126,4 @@ function run (isModificationMode) {
 	} else console.log(`Page numbers are as expected.`);
 }
 
-if (require.main === module) run(true);
-else run(false);
+run();

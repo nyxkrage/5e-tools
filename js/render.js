@@ -1,6 +1,4 @@
-// ************************************************************************* //
-// Strict mode should not be used, as the roll20 script depends on this file //
-// ************************************************************************* //
+"use strict";
 
 // ENTRY RENDERING =====================================================================================================
 /*
@@ -18,7 +16,7 @@
  * // render the final product by joining together all the collected strings
  * $("#myElement").html(toDisplay.join(""));
  */
-function Renderer () {
+globalThis.Renderer = function () {
 	this.wrapperTag = "div";
 	this.baseUrl = "";
 	this.baseMediaUrls = {};
@@ -1892,7 +1890,7 @@ function Renderer () {
 		this.recursiveRender(entry, tempStack, {depth});
 		return tempStack.join("");
 	};
-}
+};
 
 // Unless otherwise specified, these use `"name"` as their name title prop
 Renderer.ENTRIES_WITH_ENUMERATED_TITLES = [
@@ -3523,7 +3521,7 @@ Renderer.utils = {
 							source: subclassSource
 								// Subclass state uses the abbreviated form of the source for URL shortness
 								? Parser.sourceJsonToAbv(subclassSource.trim())
-								: SRC_PHB,
+								: Parser.SRC_PHB,
 						},
 					};
 
@@ -4223,7 +4221,7 @@ Renderer.spell = {
 		//   with a `name` and a `source`), and "class" format (object with a `class` and a `source`).
 		if (homebrew.class) {
 			homebrew.class.forEach(c => {
-				c.source = c.source || SRC_PHB;
+				c.source = c.source || Parser.SRC_PHB;
 
 				if (c.classSpells) c.classSpells.forEach(it => Renderer.spell._populateHomebrewLookup_handleSpellListItem(it, c.name, c.source));
 			});
@@ -4231,7 +4229,7 @@ Renderer.spell = {
 
 		if (homebrew.subclass) {
 			homebrew.subclass.forEach(sc => {
-				sc.classSource = sc.classSource || SRC_PHB;
+				sc.classSource = sc.classSource || Parser.SRC_PHB;
 				sc.shortName = sc.shortName || sc.name;
 				sc.source = sc.source || sc.classSource;
 
@@ -4266,7 +4264,7 @@ Renderer.spell = {
 			Renderer.spell._brewSourcesCache.classes.class = Renderer.spell._brewSourcesCache.classes.class || {};
 
 			const cls = it.className.toLowerCase();
-			const source = (it.classSource || SRC_PHB).toLowerCase();
+			const source = (it.classSource || Parser.SRC_PHB).toLowerCase();
 
 			Renderer.spell._brewSourcesCache.classes.class[source] = Renderer.spell._brewSourcesCache.classes.class[source] || {};
 			Renderer.spell._brewSourcesCache.classes.class[source][cls] = Renderer.spell._brewSourcesCache.classes.class[source][cls] || {};
@@ -4279,7 +4277,7 @@ Renderer.spell = {
 		Renderer.spell._brewSourcesCache.classes.spell = Renderer.spell._brewSourcesCache.classes.spell || {};
 
 		let [name, source] = `${it}`.toLowerCase().split("|");
-		source = source || SRC_PHB.toLowerCase();
+		source = source || Parser.SRC_PHB.toLowerCase();
 
 		Renderer.spell._brewSourcesCache.classes.spell[source] = Renderer.spell._brewSourcesCache.classes.spell[source] || {};
 		Renderer.spell._brewSourcesCache.classes.spell[source][name] = Renderer.spell._brewSourcesCache.classes.spell[source][name] || {fromClassList: [], fromSubclass: []};
@@ -4650,7 +4648,7 @@ Renderer.race = {
 					</tr>
 					<tr>
 						<td class="text-center">${ability.asText}</td>
-						<td class="text-center">${(race.size || [SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/")}</td>
+						<td class="text-center">${(race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/")}</td>
 						<td class="text-center">${Parser.getSpeedString(race)}</td>
 					</tr>
 				</table>
@@ -5643,7 +5641,7 @@ Renderer.monster = {
 			const vFtd = exampleSpellsFtd?.length ? {
 				type: "variant",
 				name: "Dragons as Innate Spellcasters",
-				source: SRC_FTD,
+				source: Parser.SRC_FTD,
 				entries: [
 					`${Renderer.monster.dragonCasterVariant.getSpellcasterDetailsPart(meta)}`,
 					`A suggested spell list is shown below, but you can also choose spells to reflect the dragon's character. A dragon who innately casts {@filter druid|spells|class=druid} spells feels different from one who casts {@filter warlock|spells|class=warlock} spells. You can also give a dragon spells of a higher level than this rule allows, but such a tweak might increase the dragon's challenge rating\u2014especially if those spells deal damage or impose conditions on targets.`,
@@ -5663,8 +5661,8 @@ Renderer.monster = {
 					`{@note ${Renderer.monster.dragonCasterVariant.getSpellcasterDetailsPart({...meta, isSeeSpellsPageNote: true})}${exampleSpellsUnofficial?.length ? ` A selection of examples are shown below:` : ""}}`,
 				],
 			};
-			if (dragon.source !== SRC_MM) {
-				vBasic.source = SRC_MM;
+			if (dragon.source !== Parser.SRC_MM) {
+				vBasic.source = Parser.SRC_MM;
 				vBasic.page = 86;
 			}
 			if (exampleSpellsUnofficial) {
@@ -7019,7 +7017,7 @@ Renderer.item = {
 			(specificVariant.lootTables = specificVariant.lootTables || []).push(...opts.linkedLootTables[specificVariant.source][specificVariant.name]);
 		}
 
-		if (baseItem.source !== SRC_PHB && baseItem.source !== SRC_DMG) {
+		if (baseItem.source !== Parser.SRC_PHB && baseItem.source !== Parser.SRC_DMG) {
 			Renderer.item._initFullEntries(specificVariant);
 			specificVariant._fullEntries.unshift({
 				type: "wrapper",
@@ -7181,7 +7179,7 @@ Renderer.item = {
 		}
 		if (item.type === "SCF") {
 			if (item._isItemGroup) {
-				if (item.scfType === "arcane" && item.source !== SRC_ERLW) {
+				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
 					Renderer.item._initFullEntries(item);
 					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
 				}
@@ -10183,8 +10181,3 @@ Renderer.HEAD_1 = "rd__b--2";
 Renderer.HEAD_2 = "rd__b--3";
 Renderer.HEAD_2_SUB_VARIANT = "rd__b--4";
 Renderer.DATA_NONE = "data-none";
-
-if (typeof module !== "undefined") {
-	module.exports.Renderer = Renderer;
-	global.Renderer = Renderer;
-}

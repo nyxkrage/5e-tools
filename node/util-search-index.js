@@ -1,8 +1,8 @@
-require("../js/utils.js");
-require("../js/utils-dataloader.js");
-require("../js/render.js");
-require("../js/omnidexer.js");
-const ut = require("./util.js");
+import "../js/utils.js";
+import "../js/utils-dataloader.js";
+import "../js/render.js";
+import "../js/omnidexer.js";
+import * as ut from "./util.js";
 
 class UtilSearchIndex {
 	/**
@@ -125,4 +125,4 @@ class UtilSearchIndex {
 	}
 }
 
-module.exports = {UtilSearchIndex};
+export {UtilSearchIndex};

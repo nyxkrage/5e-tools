@@ -1,28 +1,23 @@
-// ************************************************************************* //
-// Strict mode should not be used, as the roll20 script depends on this file //
-// Do not use classes                                                        //
-// ************************************************************************* //
-IS_NODE = typeof module !== "undefined";
-if (IS_NODE) require("./parser.js");
+"use strict";
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
-IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.172.2"/* 5ETOOLS_VERSION__CLOSE */;
-DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
+globalThis.IS_DEPLOYED = undefined;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.172.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
-IS_VTT = false;
+globalThis.IS_VTT = false;
 
-IMGUR_CLIENT_ID = `abdea4de492d3b0`;
+globalThis.IMGUR_CLIENT_ID = `abdea4de492d3b0`;
 
 // TODO refactor into VeCt
-HASH_PART_SEP = ",";
-HASH_LIST_SEP = "_";
-HASH_SUB_LIST_SEP = "~";
-HASH_SUB_KV_SEP = ":";
-HASH_BLANK = "blankhash";
-HASH_SUB_NONE = "null";
+globalThis.HASH_PART_SEP = ",";
+globalThis.HASH_LIST_SEP = "_";
+globalThis.HASH_SUB_LIST_SEP = "~";
+globalThis.HASH_SUB_KV_SEP = ":";
+globalThis.HASH_BLANK = "blankhash";
+globalThis.HASH_SUB_NONE = "null";
 
-VeCt = {
+globalThis.VeCt = {
 	STR_NONE: "None",
 	STR_SEE_CONSOLE: "See the console (CTRL+SHIFT+J) for details.",
 
@@ -279,7 +274,7 @@ Array.prototype.joinConjunct || Object.defineProperty(Array.prototype, "joinConj
 	},
 });
 
-StrUtil = {
+globalThis.StrUtil = {
 	COMMAS_NOT_IN_PARENTHESES_REGEX: /,\s?(?![^(]*\))/g,
 	COMMA_SPACE_NOT_IN_PARENTHESES_REGEX: /, (?![^(]*\))/g,
 
@@ -315,7 +310,7 @@ StrUtil = {
 	qq (str) { return (str = str || "").qq(); },
 };
 
-CleanUtil = {
+globalThis.CleanUtil = {
 	getCleanJson (data, {isMinify = false, isFast = true} = {}) {
 		data = MiscUtil.copy(data);
 		data = MiscUtil.getWalker().walk(data, {string: (str) => CleanUtil.getCleanString(str, {isFast})});
@@ -397,7 +392,7 @@ CleanUtil._ELLIPSIS_COLLAPSE_REGEX = /\s*(\.\s*\.\s*\.)/g;
 CleanUtil._DASH_COLLAPSE_REGEX = /[ ]*([\u2014\u2013])[ ]*/g;
 
 // SOURCES =============================================================================================================
-SourceUtil = {
+globalThis.SourceUtil = {
 	ADV_BOOK_GROUPS: [
 		{group: "core", displayName: "Core"},
 		{group: "supplement", displayName: "Supplements"},
@@ -438,7 +433,7 @@ SourceUtil = {
 	},
 
 	isNonstandardSourceWotc (source) {
-		return source.startsWith(SRC_UA_PREFIX) || source.startsWith(SRC_PS_PREFIX) || source.startsWith(SRC_AL_PREFIX) || source.startsWith(SRC_MCVX_PREFIX) || Parser.SOURCES_NON_STANDARD_WOTC.has(source);
+		return source.startsWith(Parser.SRC_UA_PREFIX) || source.startsWith(Parser.SRC_PS_PREFIX) || source.startsWith(Parser.SRC_AL_PREFIX) || source.startsWith(Parser.SRC_MCVX_PREFIX) || Parser.SOURCES_NON_STANDARD_WOTC.has(source);
 	},
 
 	getFilterGroup (source) {
@@ -471,7 +466,7 @@ SourceUtil = {
 };
 
 // CURRENCY ============================================================================================================
-CurrencyUtil = {
+globalThis.CurrencyUtil = {
 	/**
 	 * Convert 10 gold -> 1 platinum, etc.
 	 * @param obj Object of the form {cp: 123, sp: 456, ...} (values optional)
@@ -583,7 +578,7 @@ Math.seed = Math.seed || function (s) {
 	};
 };
 
-JqueryUtil = {
+globalThis.JqueryUtil = {
 	_isEnhancementsInit: false,
 	initEnhancements () {
 		if (JqueryUtil._isEnhancementsInit) return;
@@ -841,7 +836,7 @@ JqueryUtil = {
 
 	_doToastCleanup (eleToast) {
 		eleToast.removeClass("toast--animate");
-		setTimeout(() => document.body.removeChild(eleToast), 85);
+		setTimeout(() => eleToast.parentElement && document.body.removeChild(eleToast), 85);
 		JqueryUtil._ACTIVE_TOAST.splice(JqueryUtil._ACTIVE_TOAST.indexOf(eleToast), 1);
 	},
 
@@ -854,7 +849,7 @@ JqueryUtil = {
 
 if (typeof window !== "undefined") window.addEventListener("load", JqueryUtil.initEnhancements);
 
-ElementUtil = {
+globalThis.ElementUtil = {
 	getOrModify ({
 		tag,
 		clazz,
@@ -1071,7 +1066,7 @@ ElementUtil = {
 
 if (typeof window !== "undefined") window.e_ = ElementUtil.getOrModify;
 
-ObjUtil = {
+globalThis.ObjUtil = {
 	async pForEachDeep (source, pCallback, options = {depth: Infinity, callEachLevel: false}) {
 		const path = [];
 		const pDiveDeep = async function (val, path, depth = 0) {
@@ -1091,7 +1086,7 @@ ObjUtil = {
 };
 
 // TODO refactor other misc utils into this
-MiscUtil = {
+globalThis.MiscUtil = {
 	COLOR_HEALTHY: "#00bb20",
 	COLOR_HURT: "#c5ca00",
 	COLOR_BLOODIED: "#f7a100",
@@ -1844,7 +1839,7 @@ MiscUtil = {
 };
 
 // EVENT HANDLERS ======================================================================================================
-EventUtil = {
+globalThis.EventUtil = {
 	_mouseX: 0,
 	_mouseY: 0,
 	_isUsingTouch: false,
@@ -1894,7 +1889,7 @@ EventUtil = {
 if (typeof window !== "undefined") window.addEventListener("load", EventUtil.init);
 
 // CONTEXT MENUS =======================================================================================================
-ContextUtil = {
+globalThis.ContextUtil = {
 	_isInit: false,
 	_menus: [],
 
@@ -2119,7 +2114,7 @@ ContextUtil = {
 };
 
 // LIST AND SEARCH =====================================================================================================
-SearchUtil = {
+globalThis.SearchUtil = {
 	removeStemmer (elasticSearch) {
 		const stemmer = elasticlunr.Pipeline.getRegisteredFunction("stemmer");
 		elasticSearch.pipeline.remove(stemmer);
@@ -2127,7 +2122,7 @@ SearchUtil = {
 };
 
 // ENCODING/DECODING ===================================================================================================
-UrlUtil = {
+globalThis.UrlUtil = {
 	encodeForHash (toEncode) {
 		if (toEncode instanceof Array) return toEncode.map(it => `${it}`.toUrlified()).join(HASH_LIST_SEP);
 		else return `${toEncode}`.toUrlified();
@@ -2638,7 +2633,7 @@ if (!IS_DEPLOYED && !IS_VTT && typeof window !== "undefined") {
 }
 
 // SORTING =============================================================================================================
-SortUtil = {
+globalThis.SortUtil = {
 	ascSort: (a, b) => {
 		if (typeof FilterItem !== "undefined") {
 			if (a instanceof FilterItem) a = a.item;
@@ -2967,7 +2962,7 @@ class _DataUtilPropConfigCustom extends _DataUtilPropConfig {
 	static async loadUnmergedJSON () { throw new Error("Unimplemented!"); }
 }
 
-DataUtil = {
+globalThis.DataUtil = {
 	_loading: {},
 	_loaded: {},
 	_merging: {},
@@ -3014,8 +3009,9 @@ DataUtil = {
 		if (data && typeof data === "object") {
 			for (const k in data) {
 				if (data[k] instanceof Array) {
-					for (let i = 0, len = data[k].length; i < len; ++i) {
-						data[k][i].__prop = k;
+					for (const it of data[k]) {
+						if (typeof it !== "object") continue;
+						it.__prop = k;
 					}
 				}
 			}
@@ -4831,7 +4827,7 @@ DataUtil = {
 			opts = opts || {};
 			if (opts.isLower) uid = uid.toLowerCase();
 			let [name, className, classSource, level, source, displayText] = uid.split("|").map(it => it.trim());
-			classSource = classSource || (opts.isLower ? SRC_PHB.toLowerCase() : SRC_PHB);
+			classSource = classSource || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
 			source = source || classSource;
 			level = Number(level);
 			return {
@@ -4854,7 +4850,7 @@ DataUtil = {
 			return [
 				f.name,
 				f.className,
-				f.classSource === SRC_PHB ? "" : f.classSource, // assume the class has PHB source
+				f.classSource === Parser.SRC_PHB ? "" : f.classSource, // assume the class has PHB source
 				f.level,
 				f.source === f.classSource ? "" : f.source, // assume the class feature has the class source
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
@@ -4869,8 +4865,8 @@ DataUtil = {
 			opts = opts || {};
 			if (opts.isLower) uid = uid.toLowerCase();
 			let [name, className, classSource, subclassShortName, subclassSource, level, source, displayText] = uid.split("|").map(it => it.trim());
-			classSource = classSource || (opts.isLower ? SRC_PHB.toLowerCase() : SRC_PHB);
-			subclassSource = subclassSource || (opts.isLower ? SRC_PHB.toLowerCase() : SRC_PHB);
+			classSource = classSource || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
+			subclassSource = subclassSource || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
 			source = source || subclassSource;
 			level = Number(level);
 			return {
@@ -4895,9 +4891,9 @@ DataUtil = {
 			return [
 				f.name,
 				f.className,
-				f.classSource === SRC_PHB ? "" : f.classSource, // assume the class has the PHB source
+				f.classSource === Parser.SRC_PHB ? "" : f.classSource, // assume the class has the PHB source
 				f.subclassShortName,
-				f.subclassSource === SRC_PHB ? "" : f.subclassSource, // assume the subclass has the PHB source
+				f.subclassSource === Parser.SRC_PHB ? "" : f.subclassSource, // assume the subclass has the PHB source
 				f.level,
 				f.source === f.subclassSource ? "" : f.source, // assume the feature has the same source as the subclass
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
@@ -4928,12 +4924,12 @@ DataUtil = {
 
 		static doPostLoad (data) {
 			const PRINT_ORDER = [
-				SRC_PHB,
-				SRC_DMG,
-				SRC_SCAG,
-				SRC_VGM,
-				SRC_MTF,
-				SRC_ERLW,
+				Parser.SRC_PHB,
+				Parser.SRC_DMG,
+				Parser.SRC_SCAG,
+				Parser.SRC_VGM,
+				Parser.SRC_MTF,
+				Parser.SRC_ERLW,
 			];
 
 			const inSource = {};
@@ -5061,7 +5057,7 @@ DataUtil = {
 			opts = opts || {};
 			if (opts.isLower) uid = uid.toLowerCase();
 			let [name, source, ixChapter, ixHeader, displayText] = uid.split("|").map(it => it.trim());
-			source = source || (opts.isLower ? SRC_PHB.toLowerCase() : SRC_PHB);
+			source = source || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
 			ixChapter = Number(ixChapter || 0);
 			return {
 				name,
@@ -5121,7 +5117,7 @@ DataUtil = {
 };
 
 // ROLLING =============================================================================================================
-RollerUtil = {
+globalThis.RollerUtil = {
 	isCrypto () {
 		return typeof window !== "undefined" && typeof window.crypto !== "undefined";
 	},
@@ -5442,10 +5438,10 @@ function StorageUtilBacked () {
 	};
 }
 
-StorageUtil = new StorageUtilBacked();
+globalThis.StorageUtil = new StorageUtilBacked();
 
 // TODO transition cookie-like storage items over to this
-SessionStorageUtil = {
+globalThis.SessionStorageUtil = {
 	_fakeStorage: {},
 	__storage: null,
 	getStorage: () => {
@@ -5503,7 +5499,7 @@ SessionStorageUtil = {
 };
 
 // ID GENERATION =======================================================================================================
-CryptUtil = {
+globalThis.CryptUtil = {
 	// region md5 internals
 	// stolen from http://www.myersdaily.org/joseph/javascript/md5.js
 	_md5cycle: (x, k) => {
@@ -5698,7 +5694,7 @@ CryptUtil = {
 };
 
 // COLLECTIONS =========================================================================================================
-CollectionUtil = {
+globalThis.CollectionUtil = {
 	ObjectSet: class ObjectSet {
 		constructor () {
 			this.map = new Map();
@@ -6282,7 +6278,7 @@ function BookModeView (opts) {
 BookModeView._BOOK_VIEW_COLUMNS_K = "bookViewColumns";
 
 // CONTENT EXCLUSION ===================================================================================================
-ExcludeUtil = {
+globalThis.ExcludeUtil = {
 	isInitialised: false,
 	_excludes: null,
 	_cache_excludesLookup: null,
@@ -6433,7 +6429,7 @@ ExcludeUtil = {
 };
 
 // EXTENSIONS ==========================================================================================================
-ExtensionUtil = {
+globalThis.ExtensionUtil = {
 	ACTIVE: false,
 
 	_doSend (type, data) {
@@ -6498,7 +6494,7 @@ ExtensionUtil = {
 if (typeof window !== "undefined") window.addEventListener("rivet.active", () => ExtensionUtil.ACTIVE = true);
 
 // TOKENS ==============================================================================================================
-TokenUtil = {
+globalThis.TokenUtil = {
 	handleStatblockScroll (event, ele) {
 		$(`#token_image`)
 			.toggle(ele.scrollTop < 32)
@@ -6515,7 +6511,7 @@ TokenUtil = {
  * @param {boolean} isDbg
  * @constructor
  */
-VeLock = function ({name = null, isDbg = false} = {}) {
+globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
 	this._name = name;
 	this._isDbg = isDbg;
 	this._lockMeta = null;
@@ -6569,7 +6565,7 @@ VeLock = function ({name = null, isDbg = false} = {}) {
 ExcludeUtil._lock = new VeLock();
 
 // DATETIME ============================================================================================================
-DatetimeUtil = {
+globalThis.DatetimeUtil = {
 	getDateStr ({date, isShort = false, isPad = false} = {}) {
 		const month = DatetimeUtil._MONTHS[date.getMonth()];
 		return `${isShort ? month.substring(0, 3) : month} ${isPad && date.getDate() < 10 ? "\u00A0" : ""}${Parser.getOrdinalForm(date.getDate())}, ${date.getFullYear()}`;
@@ -6628,7 +6624,7 @@ DatetimeUtil._SECS_PER_DAY = 86400;
 DatetimeUtil._SECS_PER_HOUR = 3600;
 DatetimeUtil._SECS_PER_MINUTE = 60;
 
-EditorUtil = {
+globalThis.EditorUtil = {
 	getTheme () {
 		const {isNight} = styleSwitcher.getSummary();
 		return isNight ? "ace/theme/tomorrow_night" : "ace/theme/textmate";
@@ -6720,7 +6716,7 @@ if (!IS_VTT && typeof window !== "undefined") {
 	// });
 }
 
-_Donate = {
+globalThis._Donate = {
 	// TAG Disabled until further notice
 	/*
 	init () {

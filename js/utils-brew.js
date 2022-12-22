@@ -162,7 +162,7 @@ class BrewDoc {
 			json.subrace.forEach(sr => {
 				if (!sr.race) return;
 				sr.raceName = sr.race.name;
-				sr.raceSource = sr.race.source || sr.source || SRC_PHB;
+				sr.raceSource = sr.race.source || sr.source || Parser.SRC_PHB;
 			});
 		}
 		// endregion

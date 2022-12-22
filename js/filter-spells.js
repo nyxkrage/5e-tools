@@ -1,10 +1,5 @@
 "use strict";
 
-if (typeof module !== "undefined") {
-	const imports = require("./filter");
-	Object.assign(global, imports);
-}
-
 class VariantClassFilter extends Filter {
 	constructor (opts) {
 		super({
@@ -201,15 +196,15 @@ class PageFilterSpells extends PageFilter {
 		let offset = 0;
 
 		switch (range.type) {
-			case RNG_SPECIAL: return 1000000000;
-			case RNG_POINT: adjustForDistance(); break;
-			case RNG_LINE: offset = 1; adjustForDistance(); break;
-			case RNG_CONE: offset = 2; adjustForDistance(); break;
-			case RNG_RADIUS: offset = 3; adjustForDistance(); break;
-			case RNG_HEMISPHERE: offset = 4; adjustForDistance(); break;
-			case RNG_SPHERE: offset = 5; adjustForDistance(); break;
-			case RNG_CYLINDER: offset = 6; adjustForDistance(); break;
-			case RNG_CUBE: offset = 7; adjustForDistance(); break;
+			case Parser.RNG_SPECIAL: return 1000000000;
+			case Parser.RNG_POINT: adjustForDistance(); break;
+			case Parser.RNG_LINE: offset = 1; adjustForDistance(); break;
+			case Parser.RNG_CONE: offset = 2; adjustForDistance(); break;
+			case Parser.RNG_RADIUS: offset = 3; adjustForDistance(); break;
+			case Parser.RNG_HEMISPHERE: offset = 4; adjustForDistance(); break;
+			case Parser.RNG_SPHERE: offset = 5; adjustForDistance(); break;
+			case Parser.RNG_CYLINDER: offset = 6; adjustForDistance(); break;
+			case Parser.RNG_CUBE: offset = 7; adjustForDistance(); break;
 		}
 
 		// value in inches, to allow greater granularity
@@ -218,13 +213,13 @@ class PageFilterSpells extends PageFilter {
 		function adjustForDistance () {
 			const dist = range.distance;
 			switch (dist.type) {
-				case UNT_FEET: multiplier = PageFilterSpells.INCHES_PER_FOOT; distance = dist.amount; break;
-				case UNT_MILES: multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; distance = dist.amount; break;
-				case RNG_SELF: distance = 0; break;
-				case RNG_TOUCH: distance = 1; break;
-				case RNG_SIGHT: multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; distance = 12; break; // assume sight range of person ~100 ft. above the ground
-				case RNG_UNLIMITED_SAME_PLANE: distance = 900000000; break; // from BolS (homebrew)
-				case RNG_UNLIMITED: distance = 900000001; break;
+				case Parser.UNT_FEET: multiplier = PageFilterSpells.INCHES_PER_FOOT; distance = dist.amount; break;
+				case Parser.UNT_MILES: multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; distance = dist.amount; break;
+				case Parser.RNG_SELF: distance = 0; break;
+				case Parser.RNG_TOUCH: distance = 1; break;
+				case Parser.RNG_SIGHT: multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; distance = 12; break; // assume sight range of person ~100 ft. above the ground
+				case Parser.RNG_UNLIMITED_SAME_PLANE: distance = 900000000; break; // from BolS (homebrew)
+				case Parser.RNG_UNLIMITED: distance = 900000001; break;
 				default: {
 					// it's homebrew?
 					const fromBrew = BrewUtil2.getMetaLookup("spellDistanceUnits")?.[dist.type];
@@ -249,20 +244,20 @@ class PageFilterSpells extends PageFilter {
 
 	static getRangeType (range) {
 		switch (range.type) {
-			case RNG_SPECIAL: return PageFilterSpells.F_RNG_SPECIAL;
-			case RNG_POINT:
+			case Parser.RNG_SPECIAL: return PageFilterSpells.F_RNG_SPECIAL;
+			case Parser.RNG_POINT:
 				switch (range.distance.type) {
-					case RNG_SELF: return PageFilterSpells.F_RNG_SELF;
-					case RNG_TOUCH: return PageFilterSpells.F_RNG_TOUCH;
+					case Parser.RNG_SELF: return PageFilterSpells.F_RNG_SELF;
+					case Parser.RNG_TOUCH: return PageFilterSpells.F_RNG_TOUCH;
 					default: return PageFilterSpells.F_RNG_POINT;
 				}
-			case RNG_LINE:
-			case RNG_CONE:
-			case RNG_RADIUS:
-			case RNG_HEMISPHERE:
-			case RNG_SPHERE:
-			case RNG_CYLINDER:
-			case RNG_CUBE:
+			case Parser.RNG_LINE:
+			case Parser.RNG_CONE:
+			case Parser.RNG_RADIUS:
+			case Parser.RNG_HEMISPHERE:
+			case Parser.RNG_SPHERE:
+			case Parser.RNG_CYLINDER:
+			case Parser.RNG_CUBE:
 				return PageFilterSpells.F_RNG_SELF_AREA;
 		}
 	}
@@ -277,15 +272,15 @@ class PageFilterSpells extends PageFilter {
 
 	static getRaceFilterItem (r) {
 		const addSuffix = (
-			r.source === SRC_DMG
-			|| SourceUtil.isNonstandardSource(r.source || SRC_PHB)
-			|| (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(r.source || SRC_PHB))
+			r.source === Parser.SRC_DMG
+			|| SourceUtil.isNonstandardSource(r.source || Parser.SRC_PHB)
+			|| (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(r.source || Parser.SRC_PHB))
 		) && !r.name.includes(Parser.sourceJsonToAbv(r.source));
 		const name = `${r.name}${addSuffix ? ` (${Parser.sourceJsonToAbv(r.source)})` : ""}`;
 		const opts = {
 			item: name,
 			userData: {
-				group: SourceUtil.getFilterGroup(r.source || SRC_PHB),
+				group: SourceUtil.getFilterGroup(r.source || Parser.SRC_PHB),
 			},
 		};
 		if (r.baseName) opts.nest = r.baseName;
@@ -454,6 +449,7 @@ class PageFilterSpells extends PageFilter {
 				return this._getSubclassFilterItem({
 					className: c.class.name,
 					classSource: c.class.source,
+					subclassName: c.subclass.name,
 					subclassShortName: c.subclass.shortName,
 					subclassSource: c.subclass.source,
 					subSubclassName: c.subclass.subSubclass,
@@ -662,14 +658,14 @@ class ModalFilterSpells extends ModalFilter {
 		const concentration = spell._isConc ? "×" : "";
 		const range = Parser.spRangeToFull(spell.range);
 
-		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells ${spell._versionBase_isVersion ? "ve-muted" : ""}">
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells">
 			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
 			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 
-			<div class="col-3 ${this._getNameStyle()}">${spell.name}</div>
+			<div class="col-3 ${spell._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${spell._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${spell.name}</div>
 			<div class="col-1-5 text-center">${levelText}</div>
 			<div class="col-2 text-center">${time}</div>
 			<div class="col-1 sp__school-${spell.school} text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools)}" ${Parser.spSchoolAbvToStyle(spell.school)}>${school}</div>
@@ -724,6 +720,4 @@ class ListSyntaxSpells extends ListUiUtil.ListSyntax {
 	}
 }
 
-if (typeof module !== "undefined") {
-	module.exports = PageFilterSpells;
-}
+globalThis.PageFilterSpells = PageFilterSpells;

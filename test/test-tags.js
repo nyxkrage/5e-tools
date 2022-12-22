@@ -1,12 +1,13 @@
-const fs = require("fs");
-require("../js/utils.js");
-require("../js/render.js");
-require("../js/render-dice.js");
-require("../js/hist.js");
-require("../js/utils-dataloader.js");
-const utS = require("../node/util-search-index");
-require("../js/omnidexer.js");
-const ut = require("../node/util.js");
+import * as fs from "fs";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/render.js";
+import "../js/render-dice.js";
+import "../js/hist.js";
+import "../js/utils-dataloader.js";
+import * as utS from "../node/util-search-index.js";
+import "../js/omnidexer.js";
+import * as ut from "../node/util.js";
 
 const TIME_TAG = "\tRun duration";
 console.time(TIME_TAG);
@@ -67,7 +68,7 @@ class TagTestUtil {
 		const tmpClassIxFeatures = {};
 		classData.class.forEach(cls => {
 			cls.name = cls.name.toLowerCase();
-			cls.source = (cls.source || SRC_PHB).toLowerCase();
+			cls.source = (cls.source || Parser.SRC_PHB).toLowerCase();
 
 			this._CLASS_SUBCLASS_LOOKUP[cls.source] = this._CLASS_SUBCLASS_LOOKUP[cls.source] || {};
 			this._CLASS_SUBCLASS_LOOKUP[cls.source][cls.name] = {};
@@ -96,7 +97,7 @@ class TagTestUtil {
 
 	static getSubclassFeatureIndex (className, classSource, subclassName, subclassSource) {
 		classSource = classSource || Parser.getTagSource("class");
-		subclassSource = subclassSource || SRC_PHB;
+		subclassSource = subclassSource || Parser.SRC_PHB;
 
 		className = className.toLowerCase();
 		classSource = classSource.toLowerCase();
@@ -440,14 +441,14 @@ class ItemDataCheck extends GenericDataCheck {
 	}
 
 	static run () {
-		const basicItems = require(`../data/items-base.json`);
+		const basicItems = ut.readJson(`./data/items-base.json`);
 		basicItems.baseitem.forEach(it => this._checkRoot("data/items-base.json", it, it.name, it.source));
 
-		const items = require(`../data/items.json`);
+		const items = ut.readJson(`./data/items.json`);
 		items.item.forEach(it => this._checkRoot("data/items.json", it, it.name, it.source));
 		items.itemGroup.forEach(it => this._checkRoot("data/items.json", it, it.name, it.source));
 
-		const magicVariants = require(`../data/magicvariants.json`);
+		const magicVariants = ut.readJson(`./data/magicvariants.json`);
 		magicVariants.magicvariant.forEach(va => this._checkRoot("data/magicvariants.json", va, va.name, va.source) || (va.inherits && this._checkRoot("data/magicvariants.json", va.inherits, `${va.name} (inherits)`, va.source)));
 	}
 }
@@ -455,7 +456,7 @@ class ItemDataCheck extends GenericDataCheck {
 class ActionData extends GenericDataCheck {
 	static run () {
 		const file = `data/actions.json`;
-		const actions = require(`../${file}`);
+		const actions = ut.readJson(`./${file}`);
 		actions.action.forEach(it => {
 			if (it.fromVariant) {
 				const url = getEncoded(it.fromVariant, "variantrule");
@@ -470,7 +471,7 @@ class ActionData extends GenericDataCheck {
 class DeityDataCheck extends GenericDataCheck {
 	static run () {
 		const file = `data/deities.json`;
-		const deities = require(`../${file}`);
+		const deities = ut.readJson(`./${file}`);
 		deities.deity.forEach(it => {
 			if (!it.customExtensionOf) return;
 
@@ -734,12 +735,12 @@ AreaCheck.fileMatcher = /\/(adventure-).*\.json/;
 class LootDataCheck extends GenericDataCheck {
 	static run () {
 		function handleItem (it) {
-			const toCheck = typeof it === "string" ? {name: it, source: SRC_DMG} : it;
+			const toCheck = typeof it === "string" ? {name: it, source: Parser.SRC_DMG} : it;
 			const url = `${Renderer.hover.TAG_TO_PAGE["item"]}#${UrlUtil.encodeForHash([toCheck.name, toCheck.source])}`.toLowerCase().trim();
 			if (!ALL_URLS.has(url)) MSG.LootCheck += `Missing link: ${JSON.stringify(it)} in file "${LootDataCheck.file}" (evaluates to "${url}")\nSimilar URLs were:\n${getSimilar(url)}\n`;
 		}
 
-		const loot = require(`../${LootDataCheck.file}`);
+		const loot = ut.readJson(`./${LootDataCheck.file}`);
 		loot.magicItems.forEach(it => {
 			if (it.table) {
 				it.table.forEach(row => {
@@ -887,7 +888,7 @@ class RaceDataCheck extends GenericDataCheck {
 
 	static run () {
 		const file = `data/races.json`;
-		const races = require(`../${file}`);
+		const races = ut.readJson(`./${file}`);
 		races.race.forEach(r => this._handleRaceOrSubraceRaw(file, r));
 		races.subrace.forEach(sr => this._handleRaceOrSubraceRaw(file, sr));
 	}
@@ -900,7 +901,7 @@ class FeatDataCheck extends GenericDataCheck {
 
 	static run () {
 		const file = `data/feats.json`;
-		const featJson = require(`../${file}`);
+		const featJson = ut.readJson(`./${file}`);
 		featJson.feat.forEach(f => this._handleFeat(file, f));
 	}
 }
@@ -913,7 +914,7 @@ class BackgroundDataCheck extends GenericDataCheck {
 
 	static run () {
 		const file = `data/backgrounds.json`;
-		const backgroundJson = require(`../${file}`);
+		const backgroundJson = ut.readJson(`./${file}`);
 		backgroundJson.background.forEach(f => this._handleBackground(file, f));
 	}
 }
@@ -1333,4 +1334,4 @@ async function main () {
 	return !outMessage;
 }
 
-module.exports = main();
+export default main();

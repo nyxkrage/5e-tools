@@ -1,0 +1,12 @@
+data/bestiary/bestiary-nrh-tlt.json
+[
+  {
+    "instancePath": "/monster",
+    "schemaPath": "#/properties/monster/minItems",
+    "keyword": "minItems",
+    "params": {
+      "limit": 1
+    },
+    "message": "must NOT have fewer than 1 items"
+  }
+]

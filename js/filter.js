@@ -42,8 +42,8 @@ class PageFilter {
 		const nm = className.split("(")[0].trim();
 		const variantSuffix = isVariantClass ? ` [${definedInSource ? Parser.sourceJsonToAbv(definedInSource) : "Unknown"}]` : "";
 		const sourceSuffix = (
-			SourceUtil.isNonstandardSource(classSource || SRC_PHB)
-			|| (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(classSource || SRC_PHB))
+			SourceUtil.isNonstandardSource(classSource || Parser.SRC_PHB)
+			|| (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(classSource || Parser.SRC_PHB))
 		)
 			? ` (${Parser.sourceJsonToAbv(classSource)})` : "";
 		const name = `${nm}${variantSuffix}${sourceSuffix}`;
@@ -51,7 +51,7 @@ class PageFilter {
 		const opts = {
 			item: name,
 			userData: {
-				group: SourceUtil.getFilterGroup(classSource || SRC_PHB),
+				group: SourceUtil.getFilterGroup(classSource || Parser.SRC_PHB),
 			},
 		};
 
@@ -64,11 +64,11 @@ class PageFilter {
 		return new FilterItem(opts);
 	}
 
-	static _getSubclassFilterItem ({className, classSource, subclassShortName, subclassSource, subSubclassName, isVariantClass, definedInSource}) {
-		const group = SourceUtil.isSubclassReprinted(className, classSource, subclassShortName, subclassSource) || Parser.sourceJsonToFull(subclassSource).startsWith(UA_PREFIX) || Parser.sourceJsonToFull(subclassSource).startsWith(PS_PREFIX);
+	static _getSubclassFilterItem ({className, classSource, subclassShortName, subclassName, subclassSource, subSubclassName, isVariantClass, definedInSource}) {
+		const group = SourceUtil.isSubclassReprinted(className, classSource, subclassShortName, subclassSource) || Parser.sourceJsonToFull(subclassSource).startsWith(Parser.UA_PREFIX) || Parser.sourceJsonToFull(subclassSource).startsWith(Parser.PS_PREFIX);
 
 		const classFilterItem = this._getClassFilterItem({
-			className: subclassShortName,
+			className: subclassShortName || subclassName,
 			classSource: subclassSource,
 		});
 
@@ -2938,7 +2938,7 @@ class SourceFilter extends Filter {
 	}
 
 	_doSetPinsSrd () {
-		SourceFilter._SRD_SOURCES = SourceFilter._SRD_SOURCES || new Set([SRC_PHB, SRC_MM, SRC_DMG]);
+		SourceFilter._SRD_SOURCES = SourceFilter._SRD_SOURCES || new Set([Parser.SRC_PHB, Parser.SRC_MM, Parser.SRC_DMG]);
 
 		Object.keys(this._state).forEach(k => this._state[k] = SourceFilter._SRD_SOURCES.has(k) ? 1 : 0);
 
@@ -2954,7 +2954,7 @@ class SourceFilter extends Filter {
 	}
 
 	_doSetPinsBasicRules () {
-		SourceFilter._BASIC_RULES_SOURCES = SourceFilter._BASIC_RULES_SOURCES || new Set([SRC_PHB, SRC_MM, SRC_DMG]);
+		SourceFilter._BASIC_RULES_SOURCES = SourceFilter._BASIC_RULES_SOURCES || new Set([Parser.SRC_PHB, Parser.SRC_MM, Parser.SRC_DMG]);
 
 		Object.keys(this._state).forEach(k => this._state[k] = SourceFilter._BASIC_RULES_SOURCES.has(k) ? 1 : 0);
 
@@ -4341,8 +4341,6 @@ class MultiFilter extends FilterBase {
 	_mutNextState_reset (nxtState, {isResetAll = false} = {}) {
 		if (isResetAll) this._mutNextState_resetBase(nxtState, {isResetAll});
 		this._mutNextState_reset_self(nxtState);
-
-		this._filters.forEach(it => it._mutNextState_reset(nxtState, {isResetAll}));
 	}
 
 	reset ({isResetAll = false} = {}) {
@@ -4409,16 +4407,12 @@ MultiFilter._DETAULT_STATE = {
 })();
 FilterUtil.SUB_HASH_PREFIXES = new Set([...Object.values(FilterBox._SUB_HASH_PREFIXES), ...Object.values(FilterBase._SUB_HASH_PREFIXES)]);
 
-if (typeof module !== "undefined") {
-	module.exports = {
-		FilterUtil,
-		PageFilter,
-		FilterBox,
-		FilterItem,
-		FilterBase,
-		Filter,
-		SourceFilter,
-		RangeFilter,
-		MultiFilter,
-	};
-}
+globalThis.FilterUtil = FilterUtil;
+globalThis.PageFilter = PageFilter;
+globalThis.FilterBox = FilterBox;
+globalThis.FilterItem = FilterItem;
+globalThis.FilterBase = FilterBase;
+globalThis.Filter = Filter;
+globalThis.SourceFilter = SourceFilter;
+globalThis.RangeFilter = RangeFilter;
+globalThis.MultiFilter = MultiFilter;

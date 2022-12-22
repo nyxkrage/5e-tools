@@ -1,3 +1,5 @@
+"use strict";
+
 class RenderOptionalFeatures {
 	static $getRenderedOptionalFeature (it) {
 		return $$`${Renderer.utils.getBorderTr()}

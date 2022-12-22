@@ -1,3 +1,5 @@
+"use strict";
+
 class RenderFeats {
 	static $getRenderedFeat (feat) {
 		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite);

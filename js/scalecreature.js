@@ -2032,7 +2032,7 @@ globalThis.ScaleCreature = {
 					const targetCantripCount = this._getScaledToRatio(curCantrips, idealCantripsIn, idealCantripsOut);
 
 					if (curCantrips < targetCantripCount) {
-						const cantrips = Object.keys((this._spells[SRC_PHB][spellsFromClass.toLowerCase()] || {})[0]).map(it => it.toLowerCase());
+						const cantrips = Object.keys((this._spells[Parser.SRC_PHB][spellsFromClass.toLowerCase()] || {})[0]).map(it => it.toLowerCase());
 						if (cantrips.length) {
 							const extraCantrips = [];
 							const numNew = Math.min(targetCantripCount - curCantrips, cantrips.length);
@@ -2065,7 +2065,7 @@ globalThis.ScaleCreature = {
 					}
 
 					const numSpellsKnown = this._adjustSpellcasting_getWarlockNumSpellsKnown(primaryOutLevel);
-					const warlockSpells = this._spells[SRC_PHB].warlock;
+					const warlockSpells = this._spells[Parser.SRC_PHB].warlock;
 					let spellList = [];
 					for (let i = 1; i < maxSpellLevel + 1; ++i) {
 						spellList = spellList.concat(Object.keys(warlockSpells[i]).map(sp => sp.toSpellCase()));
@@ -2105,9 +2105,9 @@ globalThis.ScaleCreature = {
 							}
 						} else if (i <= maxSpellLevel) {
 							const slots = Math.max(1, Math.round(idealSlotsOut * lastRatio));
-							if (spellsFromClass && (this._spells[SRC_PHB][spellsFromClass.toLowerCase()] || {})[i]) {
+							if (spellsFromClass && (this._spells[Parser.SRC_PHB][spellsFromClass.toLowerCase()] || {})[i]) {
 								const examples = [];
-								const levelSpells = Object.keys(this._spells[SRC_PHB][spellsFromClass.toLowerCase()][i]).map(it => it.toSpellCase());
+								const levelSpells = Object.keys(this._spells[Parser.SRC_PHB][spellsFromClass.toLowerCase()][i]).map(it => it.toSpellCase());
 								const numExamples = Math.min(5, levelSpells.length);
 								for (let n = 0; n < numExamples; ++n) {
 									const ix = RollerUtil.roll(levelSpells.length, this._rng);
@@ -2152,7 +2152,7 @@ globalThis.ScaleCreature = {
 						const m = /{@spell ([^|}]+)(?:\|([^|}]+))?[|}]/.exec(it);
 						if (m) {
 							const nameTag = m[1].toLowerCase();
-							const srcTag = (m[2] || SRC_PHB).toLowerCase();
+							const srcTag = (m[2] || Parser.SRC_PHB).toLowerCase();
 
 							const src = Object.keys(this._spells).find(it => it.toLowerCase() === srcTag);
 							if (src) {
@@ -2175,7 +2175,7 @@ globalThis.ScaleCreature = {
 					sc.daily["1e"] = curSpells.map(it => it.original);
 				} else {
 					for (let i = 5 + curNumSpells; i < 5 + numArcanum; ++i) {
-						const rollOn = Object.keys(this._spells[SRC_PHB].warlock[i]);
+						const rollOn = Object.keys(this._spells[Parser.SRC_PHB].warlock[i]);
 						const ix = RollerUtil.roll(rollOn.length, this._rng);
 						sc.daily["1e"].push(`{@spell ${rollOn[ix].toSpellCase()}}`);
 					}

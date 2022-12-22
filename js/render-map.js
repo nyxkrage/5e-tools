@@ -1,3 +1,5 @@
+"use strict";
+
 class RenderMap {
 	static _getZoom (mapData) {
 		return this._ZOOM_LEVELS[mapData.ixZoom];

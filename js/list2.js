@@ -593,4 +593,5 @@ List._DEFAULTS = {
 	fnFilter: null,
 };
 
-if (typeof module !== "undefined") module.exports = {List, ListItem};
+globalThis.List = List;
+globalThis.ListItem = ListItem;

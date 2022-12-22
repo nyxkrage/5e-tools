@@ -1,3 +1,5 @@
+"use strict";
+
 class MapsUtil {
 	static _IMAGE_TYPES = new Set(["map", "mapPlayer"]);
 
@@ -58,6 +60,4 @@ class MapsUtil {
 	}
 }
 
-if (typeof module !== "undefined") {
-	module.exports = {MapsUtil};
-}
+globalThis.MapsUtil = MapsUtil;

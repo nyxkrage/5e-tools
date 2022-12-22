@@ -1,6 +1,6 @@
-const fs = require("fs");
-const ut = require("./util.js");
-require("../js/utils");
+import * as fs from "fs";
+import * as ut from "./util.js";
+import "../js/utils.js";
 const probe = require("probe-image-size");
 
 const allFiles = [];

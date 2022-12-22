@@ -139,8 +139,8 @@ class PageFilterItems extends PageFilterEquipment {
 		if (!baseItem) return null;
 		let [name, source] = baseItem.split("__");
 		name = name.toTitleCase();
-		source = source || SRC_DMG;
-		if (source.toLowerCase() === SRC_PHB.toLowerCase()) return name;
+		source = source || Parser.SRC_DMG;
+		if (source.toLowerCase() === Parser.SRC_PHB.toLowerCase()) return name;
 		return `${name} (${Parser.sourceJsonToAbv(source)})`;
 	}
 
@@ -254,7 +254,7 @@ class PageFilterItems extends PageFilterEquipment {
 
 		const fBaseItemSelf = item._isBaseItem ? `${item.name}__${item.source}`.toLowerCase() : null;
 		item._fBaseItem = [
-			item.baseItem ? (item.baseItem.includes("|") ? item.baseItem.replace("|", "__") : `${item.baseItem}__${SRC_DMG}`).toLowerCase() : null,
+			item.baseItem ? (item.baseItem.includes("|") ? item.baseItem.replace("|", "__") : `${item.baseItem}__${Parser.SRC_DMG}`).toLowerCase() : null,
 			item._baseName ? `${item._baseName}__${item._baseSource || item.source}`.toLowerCase() : null,
 		].filter(Boolean);
 		item._fBaseItemAll = fBaseItemSelf ? [fBaseItemSelf, ...item._fBaseItem] : item._fBaseItem;
@@ -404,14 +404,14 @@ class ModalFilterItems extends ModalFilter {
 		const source = Parser.sourceJsonToAbv(item.source);
 		const type = item._typeListText.join(", ");
 
-		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells" ${item._versionBase_isVersion ? "ve-muted" : ""}>
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells">
 			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
 			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 
-			<div class="col-5 ${this._getNameStyle()}">${item.name}</div>
+			<div class="col-5 ${item._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${item._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${item.name}</div>
 			<div class="col-5">${type.uppercaseFirst()}</div>
 			<div class="col-1 text-center ${Parser.sourceJsonToColor(item.source)} pr-0" title="${Parser.sourceJsonToFull(item.source)}" ${BrewUtil2.sourceJsonToStyle(item.source)}>${source}</div>
 		</div>`;

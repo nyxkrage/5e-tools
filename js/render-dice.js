@@ -1,3 +1,5 @@
+"use strict";
+
 Renderer.dice = {
 	SYSTEM_USER: {
 		name: "Avandra", // goddess of luck

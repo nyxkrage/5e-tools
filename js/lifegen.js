@@ -599,7 +599,7 @@ function onJsonLoad (lifeData, nameData) {
 	].forEach(age => $selAge.append(`<option value="${age.val}" ${age.style ? `style="${age.style}"` : ""} ${age.class ? `class="${age.class}"` : ""}>${age.text}</option>`));
 
 	nameTables = {};
-	nameData.name.filter(it => it.source === SRC_XGE)
+	nameData.name.filter(it => it.source === Parser.SRC_XGE)
 		.forEach(nameMeta => {
 			nameTables[Parser.stringToSlug(nameMeta.name)] = nameMeta;
 

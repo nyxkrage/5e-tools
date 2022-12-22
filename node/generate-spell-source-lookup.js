@@ -1,17 +1,17 @@
 // TODO this replaces `generate-subclass-lookup.js` in effect
 // TODO make a system for generating the same data on homebrew docs
 
-const fs = require("fs");
-const ut = require("./util.js");
-require("../js/utils.js");
-require("../js/utils-ui.js");
-require("../js/utils-proporder.js");
-require("../js/parser.js");
-require("../js/filter.js");
-require("../js/filter-spells.js");
-require("../js/utils-dataloader.js");
-require("../js/render.js");
-require("../js/hist.js");
+import * as fs from "fs";
+import * as ut from "./util.js";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/utils-ui.js";
+import "../js/utils-proporder.js";
+import "../js/filter.js";
+import "../js/filter-spells.js";
+import "../js/utils-dataloader.js";
+import "../js/render.js";
+import "../js/hist.js";
 
 // region Based on `Charactermancer_AdditionalSpellsUtil`
 
@@ -454,4 +454,4 @@ async function pMain () {
 	console.log("Regenerated spell source lookup.");
 }
 
-module.exports = pMain();
+export default pMain();

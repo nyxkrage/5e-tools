@@ -1,3 +1,5 @@
+"use strict";
+
 class MapsPage extends BaseComponent {
 	static _STORAGE_STATE = "state";
 	static _PROPS_STORABLE_STATE = [

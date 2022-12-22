@@ -1,3 +1,5 @@
+"use strict";
+
 class RenderSpells {
 	static SETTINGS = {
 		isDisplayClasses: new SettingsUtil.Setting({
@@ -143,7 +145,7 @@ class RenderSpells {
 
 		if (
 			sp.level >= 5
-			&& fromClassList?.some(it => it.name === "Wizard" && it?.source === SRC_PHB)
+			&& fromClassList?.some(it => it.name === "Wizard" && it?.source === Parser.SRC_PHB)
 		) {
 			renderStack.push(`<tr class="text"><td colspan="6"><section class="text-muted">`);
 			renderer.recursiveRender(`{@italic Note: Both the {@class fighter||Fighter (Eldritch Knight)|eldritch knight} and the {@class rogue||Rogue (Arcane Trickster)|arcane trickster} spell lists include all {@class Wizard} spells. Spells of 5th level or higher may be cast with the aid of a spell scroll or similar.}`, renderStack, {depth: 2});

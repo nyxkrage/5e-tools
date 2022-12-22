@@ -225,8 +225,8 @@
 				},
 				{
 					"colLabels": [
-						"{@filter Cantrips Known|spells|level=0|class=Sorcerer}",
-						"{@filter Spells Known|spells|class=Sorcerer}"
+						"{@filter Cantrips Known|spells|level=0|class=Cleric}",
+						"{@filter Spells Known|spells|class=Cleric}"
 					],
 					"rows": [
 						[
@@ -314,15 +314,15 @@
 				{
 					"title": "Spell Slots per Spell Level",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=Sorcerer}",
-						"{@filter 2nd|spells|level=2|class=Sorcerer}",
-						"{@filter 3rd|spells|level=3|class=Sorcerer}",
-						"{@filter 4th|spells|level=4|class=Sorcerer}",
-						"{@filter 5th|spells|level=5|class=Sorcerer}",
-						"{@filter 6th|spells|level=6|class=Sorcerer}",
-						"{@filter 7th|spells|level=7|class=Sorcerer}",
-						"{@filter 8th|spells|level=8|class=Sorcerer}",
-						"{@filter 9th|spells|level=9|class=Sorcerer}"
+						"{@filter 1st|spells|level=1|class=Cleric}",
+						"{@filter 2nd|spells|level=2|class=Cleric}",
+						"{@filter 3rd|spells|level=3|class=Cleric}",
+						"{@filter 4th|spells|level=4|class=Cleric}",
+						"{@filter 5th|spells|level=5|class=Cleric}",
+						"{@filter 6th|spells|level=6|class=Cleric}",
+						"{@filter 7th|spells|level=7|class=Cleric}",
+						"{@filter 8th|spells|level=8|class=Cleric}",
+						"{@filter 9th|spells|level=9|class=Cleric}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -1073,50 +1073,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -1221,50 +1221,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -1295,50 +1295,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -1353,50 +1353,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -1411,50 +1411,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -1469,50 +1469,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -1527,50 +1527,50 @@
 					"expanded": {
 						"1": [
 							{
-								"all": "level=0|class=Sorcerer"
+								"all": "level=0|class=Cleric"
 							},
 							{
-								"all": "level=1|class=Sorcerer"
+								"all": "level=1|class=Cleric"
 							}
 						],
 						"3": [
 							{
-								"all": "level=2|class=Sorcerer"
+								"all": "level=2|class=Cleric"
 							}
 						],
 						"5": [
 							{
-								"all": "level=3|class=Sorcerer"
+								"all": "level=3|class=Cleric"
 							}
 						],
 						"7": [
 							{
-								"all": "level=4|class=Sorcerer"
+								"all": "level=4|class=Cleric"
 							}
 						],
 						"9": [
 							{
-								"all": "level=5|class=Sorcerer"
+								"all": "level=5|class=Cleric"
 							}
 						],
 						"11": [
 							{
-								"all": "level=6|class=Sorcerer"
+								"all": "level=6|class=Cleric"
 							}
 						],
 						"13": [
 							{
-								"all": "level=7|class=Sorcerer"
+								"all": "level=7|class=Cleric"
 							}
 						],
 						"15": [
 							{
-								"all": "level=8|class=Sorcerer"
+								"all": "level=8|class=Cleric"
 							}
 						],
 						"17": [
 							{
-								"all": "level=9|class=Sorcerer"
+								"all": "level=9|class=Cleric"
 							}
 						]
 					}
@@ -2443,7 +2443,7 @@
 					"type": "list",
 					"items": [
 						"Replace one of the options you chose for the Metamagic feature with a different {@filter Metamagic option|optionalfeatures|Feature Type=MM} available to you.",
-						"Replace one cantrip you learned from this class's Spellcasting feature with another cantrip from the {@filter sorcerer spell list|spells|level=0|class=Sorcerer}."
+						"Replace one cantrip you learned from this class's Spellcasting feature with another cantrip from the {@filter sorcerer spell list|spells|level=0|class=Cleric}."
 					]
 				}
 			]

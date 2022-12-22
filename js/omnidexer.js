@@ -1,12 +1,5 @@
 "use strict";
 
-if (typeof require !== "undefined") {
-	require("./utils.js");
-	require("./render.js");
-	require("./render-dice.js");
-	require("./hist.js");
-}
-
 class Omnidexer {
 	constructor (id = 0) {
 		/**
@@ -509,14 +502,11 @@ class IndexableFileMagicVariants extends IndexableFile {
 			additionalIndexes: {
 				item: async (indexer, rawVariants) => {
 					const specVars = await (async () => {
-						if (typeof module !== "undefined") return Renderer.item.getAllIndexableItems(rawVariants, require(`../data/items-base.json`));
-						else {
-							const baseItemJson = await DataUtil.loadJSON(`data/items-base.json`);
-							const rawBaseItems = {...baseItemJson, baseitem: [...baseItemJson.baseitem]};
-							const brew = await BrewUtil2.pGetBrewProcessed();
-							if (brew.baseitem) rawBaseItems.baseitem.push(...brew.baseitem);
-							return Renderer.item.getAllIndexableItems(rawVariants, rawBaseItems);
-						}
+						const baseItemJson = await DataUtil.loadJSON(`data/items-base.json`);
+						const rawBaseItems = {...baseItemJson, baseitem: [...baseItemJson.baseitem]};
+						const brew = typeof BrewUtil2 !== "undefined" ? await BrewUtil2.pGetBrewProcessed() : {};
+						if (brew.baseitem) rawBaseItems.baseitem.push(...brew.baseitem);
+						return Renderer.item.getAllIndexableItems(rawVariants, rawBaseItems);
 					})();
 					return specVars.map(sv => {
 						const out = {

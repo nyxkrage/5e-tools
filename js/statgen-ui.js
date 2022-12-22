@@ -784,7 +784,7 @@ class StatGenUi extends BaseComponent {
 				fnDisplay: ix => {
 					const r = this._races[ix];
 					if (!r) return "(Unknown)";
-					return `${r.name} ${r.source !== SRC_PHB ? `[${Parser.sourceJsonToAbv(r.source)}]` : ""}`;
+					return `${r.name} ${r.source !== Parser.SRC_PHB ? `[${Parser.sourceJsonToAbv(r.source)}]` : ""}`;
 				},
 				asMeta: true,
 			},
@@ -876,7 +876,7 @@ class StatGenUi extends BaseComponent {
 		);
 
 		const $dispTashas = $(`<div class="ve-flex-col"><div class="italic ve-muted">Loading...</div></div>`);
-		DataLoader.pCacheAndGet(UrlUtil.PG_VARIANTRULES, SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: SRC_TCE}))
+		DataLoader.pCacheAndGet(UrlUtil.PG_VARIANTRULES, Parser.SRC_TCE, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES]({name: "Customizing Your Origin", source: Parser.SRC_TCE}))
 			.then(rule => {
 				$$($dispTashas.empty())`${Renderer.hover.$getHoverContent_stats(UrlUtil.PG_VARIANTRULES, rule)}<hr class="hr-3">`;
 			});

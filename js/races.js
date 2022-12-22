@@ -12,7 +12,7 @@ class RacesSublistManager extends SublistManager {
 				<a href="#${UrlUtil.autoEncodeHash(race)}" class="lst--border lst__row-inner">
 					<span class="bold col-5 pl-0">${race.name}</span>
 					<span class="col-5 ${race._slAbility === "Lineage (choose)" ? "italic" : ""}">${race._slAbility}</span>
-					<span class="col-2 text-center pr-0">${(race.size || [SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/")}</span>
+					<span class="col-2 text-center pr-0">${(race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/")}</span>
 				</a>
 			</div>
 		`)
@@ -75,7 +75,7 @@ class RacesPage extends ListPage {
 		const eleLi = document.createElement("div");
 		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
-		const size = (race.size || [SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/");
+		const size = (race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/");
 		const source = Parser.sourceJsonToAbv(race.source);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">

@@ -1,3 +1,5 @@
+"use strict";
+
 class UtilsTableview {
 	static _State = class {
 		constructor () {

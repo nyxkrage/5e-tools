@@ -36,13 +36,13 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	// region Data loading
 	static async _pGetParentClass (sc) {
 		// Search in base classes
-		let baseClass = (await DataUtil.class.loadRawJSON()).class.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || SRC_PHB) === sc.classSource.toLowerCase());
+		let baseClass = (await DataUtil.class.loadRawJSON()).class.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
 
 		const brew = BrewUtil2.pGetBrewProcessed();
 
 		// Search in brew classes
 		if (!baseClass) {
-			baseClass = (brew.class || []).find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || SRC_PHB) === sc.classSource.toLowerCase());
+			baseClass = (brew.class || []).find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
 		}
 
 		return baseClass;
@@ -61,9 +61,9 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			// Do this sequentially, to avoid double-adding the same base classes
 			for (const sc of data.subclass) {
 				if (!sc.className) continue; // Subclass class name is required
-				sc.classSource = sc.classSource || SRC_PHB;
+				sc.classSource = sc.classSource || Parser.SRC_PHB;
 
-				let cls = data.class.find(it => (it.name || "").toLowerCase() === sc.className.toLowerCase() && (it.source || SRC_PHB).toLowerCase() === sc.classSource.toLowerCase());
+				let cls = data.class.find(it => (it.name || "").toLowerCase() === sc.className.toLowerCase() && (it.source || Parser.SRC_PHB).toLowerCase() === sc.classSource.toLowerCase());
 
 				if (!cls) {
 					cls = await this._pGetParentClass(sc);
@@ -87,7 +87,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 
 		// Clean and initialise fields; sort arrays
 		data.class.forEach(cls => {
-			cls.source = cls.source || SRC_PHB;
+			cls.source = cls.source || Parser.SRC_PHB;
 
 			cls.subclasses = cls.subclasses || [];
 
@@ -95,7 +95,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 				sc.name = sc.name || "(Unnamed subclass)";
 				sc.source = sc.source || cls.source;
 				sc.className = sc.className || cls.name;
-				sc.classSource = sc.classSource || cls.source || SRC_PHB;
+				sc.classSource = sc.classSource || cls.source || Parser.SRC_PHB;
 			});
 
 			cls.subclasses.sort((a, b) => SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.source || cls.source, b.source || cls.source));
@@ -924,12 +924,12 @@ class ModalFilterClasses extends ModalFilter {
 
 	_getListItems_getClassItem (pageFilter, cls, clsI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = `w-100 ve-flex lst--border veapp__list-row no-select lst__wrp-cells ${cls._versionBase_isVersion ? "ve-muted" : ""}`;
+		eleLabel.className = `w-100 ve-flex lst--border veapp__list-row no-select lst__wrp-cells`;
 
 		const source = Parser.sourceJsonToAbv(cls.source);
 
 		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="bold col-9">${cls.name}</div>
+		<div class="bold col-9 ${cls._versionBase_isVersion ? "italic" : ""}">${cls._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${cls.name}</div>
 		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${BrewUtil2.sourceJsonToStyle(cls.source)}>${source}</div>`;
 
 		return new ListItem(
@@ -948,12 +948,12 @@ class ModalFilterClasses extends ModalFilter {
 
 	_getListItems_getSubclassItem (pageFilter, cls, clsI, sc, scI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = `w-100 ve-flex lst--border veapp__list-row no-select lst__wrp-cells ${sc._versionBase_isVersion ? "ve-muted" : ""}`;
+		eleLabel.className = `w-100 ve-flex lst--border veapp__list-row no-select lst__wrp-cells`;
 
 		const source = Parser.sourceJsonToAbv(sc.source);
 
 		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="col-9 pl-1 ve-flex-v-center"><span class="mx-3">\u2014</span> ${sc.name}</div>
+		<div class="col-9 pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "italic" : ""}">${sc._versionBase_isVersion ? `<span class="px-3"></span>` : ""}<span class="mx-3">\u2014</span> ${sc.name}</div>
 		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${BrewUtil2.sourceJsonToStyle(sc.source)}>${source}</div>`;
 
 		return new ListItem(

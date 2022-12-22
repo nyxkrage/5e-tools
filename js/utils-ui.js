@@ -1796,7 +1796,7 @@ class SearchWidget {
 			fnTransform: doc => {
 				const cpy = MiscUtil.copyFast(doc);
 				Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-				cpy.tag = `{@spell ${doc.n.toSpellCase()}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+				cpy.tag = `{@spell ${doc.n.toSpellCase()}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 				return cpy;
 			},
 		};
@@ -1860,7 +1860,7 @@ class SearchWidget {
 				fnTransform: doc => {
 					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@feat ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@feat ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1889,7 +1889,7 @@ class SearchWidget {
 				fnTransform: doc => {
 					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@background ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@background ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1921,7 +1921,7 @@ class SearchWidget {
 				fnTransform: doc => {
 					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@race ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@race ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1950,7 +1950,7 @@ class SearchWidget {
 				fnTransform: doc => {
 					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@optfeature ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@optfeature ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -2021,7 +2021,7 @@ class SearchWidget {
 			fnTransform: doc => {
 				const cpy = MiscUtil.copyFast(doc);
 				Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-				cpy.tag = `{@creature ${doc.n}${doc.s !== SRC_MM ? `|${doc.s}` : ""}}`;
+				cpy.tag = `{@creature ${doc.n}${doc.s !== Parser.SRC_MM ? `|${doc.s}` : ""}}`;
 				return cpy;
 			},
 		};
@@ -2070,7 +2070,7 @@ class SearchWidget {
 				fnTransform: doc => {
 					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@item ${doc.n}${doc.s !== SRC_DMG ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@item ${doc.n}${doc.s !== Parser.SRC_DMG ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -5537,21 +5537,16 @@ class SettingsUtil {
 	}
 }
 
-// Expose classes for Node/VTTs as appropriate
-const utilsUiExports = {
-	ProxyBase,
-	UiUtil,
-	ListUiUtil,
-	ProfUiUtil,
-	TabUiUtil,
-	SearchUiUtil,
-	SearchWidget,
-	InputUiUtil,
-	DragReorderUiUtil,
-	SourceUiUtil,
-	BaseComponent,
-	ComponentUiUtil,
-	RenderableCollectionBase,
-};
-if (typeof module !== "undefined") module.exports = utilsUiExports;
-else Object.assign(window, utilsUiExports);
+globalThis.ProxyBase = ProxyBase;
+globalThis.UiUtil = UiUtil;
+globalThis.ListUiUtil = ListUiUtil;
+globalThis.ProfUiUtil = ProfUiUtil;
+globalThis.TabUiUtil = TabUiUtil;
+globalThis.SearchUiUtil = SearchUiUtil;
+globalThis.SearchWidget = SearchWidget;
+globalThis.InputUiUtil = InputUiUtil;
+globalThis.DragReorderUiUtil = DragReorderUiUtil;
+globalThis.SourceUiUtil = SourceUiUtil;
+globalThis.BaseComponent = BaseComponent;
+globalThis.ComponentUiUtil = ComponentUiUtil;
+globalThis.RenderableCollectionBase = RenderableCollectionBase;

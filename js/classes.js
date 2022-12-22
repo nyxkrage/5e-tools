@@ -220,10 +220,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		data.subclass.forEach(sc => {
 			if (sc.className === VeCt.STR_GENERIC || sc.classSource === VeCt.STR_GENERIC) return;
 
-			const cls = this._dataList.find(c => c.name.toLowerCase() === sc.className.toLowerCase() && c.source.toLowerCase() === (sc.classSource || SRC_PHB).toLowerCase());
+			const cls = this._dataList.find(c => c.name.toLowerCase() === sc.className.toLowerCase() && c.source.toLowerCase() === (sc.classSource || Parser.SRC_PHB).toLowerCase());
 			if (!cls) {
 				JqueryUtil.doToast({
-					content: `Could not add subclass; could not find class with name: ${sc.className} and source ${sc.classSource || SRC_PHB}`,
+					content: `Could not add subclass; could not find class with name: ${sc.className} and source ${sc.classSource || Parser.SRC_PHB}`,
 					type: "danger",
 				});
 				return;
@@ -1291,7 +1291,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		const filterSets = [
 			{name: "View Official", subHashes: [], isClearSources: false},
-			{name: "View Most Recent", subHashes: [], isClearSources: false, sources: {[SRC_UACFV]: 2}},
+			{name: "View Most Recent", subHashes: [], isClearSources: false, sources: {[Parser.SRC_UACFV]: 2}},
 			{name: "View All", subHashes: ["flstmiscellaneous:reprinted=0"], isClearSources: true},
 		];
 		const setFilterSet = ix => {

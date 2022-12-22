@@ -1,3 +1,5 @@
+"use strict";
+
 class RenderCharCreationOptions {
 	static $getRenderedCharCreationOption (it) {
 		const renderStack = [];

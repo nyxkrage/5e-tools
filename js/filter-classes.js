@@ -39,7 +39,7 @@ class PageFilterClassesBase extends PageFilter {
 	get optionsFilter () { return this._optionsFilter; }
 
 	static mutateForFilters (cls) {
-		cls.source = cls.source || SRC_PHB;
+		cls.source = cls.source || Parser.SRC_PHB;
 		cls.subclasses = cls.subclasses || [];
 
 		cls._fSources = SourceFilter.getCompleteFilterSources(cls);

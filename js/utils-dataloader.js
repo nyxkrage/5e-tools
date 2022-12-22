@@ -513,6 +513,19 @@ class _DataLoaderCache {
 // region Data type loading
 
 class _DataTypeLoader {
+	static PROPS = [];
+	static PAGE = null;
+	static IS_FLUFF = false;
+
+	static register ({fnRegister}) {
+		fnRegister({
+			loader: new this(),
+			props: this.PROPS,
+			page: this.PAGE,
+			isFluff: this.IS_FLUFF,
+		});
+	}
+
 	static _getAsRawPrefixed (json, {propsRaw}) {
 		return {
 			...propsRaw.mergeMap(prop => ({[`raw_${prop}`]: json[prop]})),
@@ -520,13 +533,6 @@ class _DataTypeLoader {
 	}
 
 	/* -------------------------------------------- */
-
-	/**
-	 * Props which are (loosely) associated with this loader. Can be specified to optimize load time.
-	 * Note that for the dereferencer to function, this list should include all props which may be required by the
-	 *   dereferencing process for this entity type.
-	 */
-	propAllowlist;
 
 	/** Used to reduce phase 1 caching for a loader where phase 2 is the primary caching step. */
 	phase1CachePropAllowlist;
@@ -586,11 +592,6 @@ class _DataTypeLoader {
 class _DataTypeLoaderSingleSource extends _DataTypeLoader {
 	_filename;
 
-	constructor ({filename}) {
-		super();
-		this._filename = filename;
-	}
-
 	_getSiteIdent ({pageClean, sourceClean}) { return this._filename; }
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
@@ -598,22 +599,198 @@ class _DataTypeLoaderSingleSource extends _DataTypeLoader {
 	}
 }
 
+class _DataTypeLoaderBackground extends _DataTypeLoaderSingleSource {
+	static PROPS = ["background"];
+	static PAGE = UrlUtil.PG_BACKGROUNDS;
+
+	_filename = "backgrounds.json";
+}
+
+class _DataTypeLoaderPsionic extends _DataTypeLoaderSingleSource {
+	static PROPS = ["psionic"];
+	static PAGE = UrlUtil.PG_PSIONICS;
+
+	_filename = "psionics.json";
+}
+
+class _DataTypeLoaderObject extends _DataTypeLoaderSingleSource {
+	static PROPS = ["object"];
+	static PAGE = UrlUtil.PG_OBJECTS;
+
+	_filename = "objects.json";
+}
+
+class _DataTypeLoaderAction extends _DataTypeLoaderSingleSource {
+	static PROPS = ["action"];
+	static PAGE = UrlUtil.PG_ACTIONS;
+
+	_filename = "actions.json";
+}
+
+class _DataTypeLoaderFeat extends _DataTypeLoaderSingleSource {
+	static PROPS = ["feat"];
+	static PAGE = UrlUtil.PG_FEATS;
+
+	_filename = "feats.json";
+}
+
+class _DataTypeLoaderOptionalfeature extends _DataTypeLoaderSingleSource {
+	static PROPS = ["optionalfeature"];
+	static PAGE = UrlUtil.PG_OPT_FEATURES;
+
+	_filename = "optionalfeatures.json";
+}
+
+class _DataTypeLoaderReward extends _DataTypeLoaderSingleSource {
+	static PROPS = ["reward"];
+	static PAGE = UrlUtil.PG_REWARDS;
+
+	_filename = "rewards.json";
+}
+
+class _DataTypeLoaderCharoption extends _DataTypeLoaderSingleSource {
+	static PROPS = ["charoption"];
+	static PAGE = UrlUtil.PG_CHAR_CREATION_OPTIONS;
+
+	_filename = "charcreationoptions.json";
+}
+
+class _DataTypeLoaderTrapHazard extends _DataTypeLoaderSingleSource {
+	static PROPS = ["trap", "hazard"];
+	static PAGE = UrlUtil.PG_TRAPS_HAZARDS;
+
+	_filename = "trapshazards.json";
+}
+
+class _DataTypeLoaderCultBoon extends _DataTypeLoaderSingleSource {
+	static PROPS = ["cult", "boon"];
+	static PAGE = UrlUtil.PG_CULTS_BOONS;
+
+	_filename = "cultsboons.json";
+}
+
+class _DataTypeLoaderVehicle extends _DataTypeLoaderSingleSource {
+	static PROPS = ["vehicle", "vehicleUpgrade"];
+	static PAGE = UrlUtil.PG_VEHICLES;
+
+	_filename = "vehicles.json";
+}
+
+class _DataTypeLoaderConditionDisease extends _DataTypeLoaderSingleSource {
+	static PROPS = ["condition", "disease", "status"];
+	static PAGE = UrlUtil.PG_CONDITIONS_DISEASES;
+
+	_filename = "conditionsdiseases.json";
+}
+
+class _DataTypeLoaderSkill extends _DataTypeLoaderSingleSource {
+	static PROPS = ["skill"];
+
+	_filename = "skills.json";
+}
+
+class _DataTypeLoaderSense extends _DataTypeLoaderSingleSource {
+	static PROPS = ["sense"];
+
+	_filename = "senses.json";
+}
+
+class _DataTypeLoaderLegendaryGroup extends _DataTypeLoaderSingleSource {
+	static PROPS = ["legendaryGroup"];
+
+	_filename = "legendarygroups.json";
+}
+
+class _DataTypeLoaderItemEntry extends _DataTypeLoaderSingleSource {
+	static PROPS = ["itemEntry"];
+
+	_filename = "items-base.json";
+}
+
+class _DataTypeLoaderBackgroundFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["backgroundFluff"];
+	static PAGE = UrlUtil.PG_BACKGROUNDS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-backgrounds.json";
+}
+
+class _DataTypeLoaderFeatFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["featFluff"];
+	static PAGE = UrlUtil.PG_FEATS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-feats.json";
+}
+
+class _DataTypeLoaderItemFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["itemFluff"];
+	static PAGE = UrlUtil.PG_ITEMS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-items.json";
+}
+
+class _DataTypeLoaderRaceFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["raceFluff"];
+	static PAGE = UrlUtil.PG_RACES;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-races.json";
+}
+
+class _DataTypeLoaderLanguageFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["languageFluff"];
+	static PAGE = UrlUtil.PG_LANGUAGES;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-languages.json";
+}
+
+class _DataTypeLoaderVehicleFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["vehicleFluff"];
+	static PAGE = UrlUtil.PG_VEHICLES;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-vehicles.json";
+}
+
+class _DataTypeLoaderObjectFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["objectFluff"];
+	static PAGE = UrlUtil.PG_OBJECTS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-objects.json";
+}
+
+class _DataTypeLoaderCharoptionFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["charoptionFluff"];
+	static PAGE = UrlUtil.PG_CHAR_CREATION_OPTIONS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-charcreationoptions.json";
+}
+
+class _DataTypeLoaderRecipeFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["recipeFluff"];
+	static PAGE = UrlUtil.PG_RECIPES;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-recipes.json";
+}
+
+class _DataTypeLoaderConditionDiseaseFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["conditionFluff", "diseaseFluff", "statusFluff"];
+	static PAGE = UrlUtil.PG_CONDITIONS_DISEASES;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-conditionsdiseases.json";
+}
+
 class _DataTypeLoaderPredefined extends _DataTypeLoader {
 	_loader;
-	_loadJsonArgs;
-	_loadBrewArgs;
-
-	/**
-	 * @param {string} loader
-	 * @param {object|undefined} loaderLoadJsonArgs
-	 * @param {object|undefined} loadBrewArgs
-	 */
-	constructor ({loader, loadJsonArgs, loadBrewArgs}) {
-		super();
-		this._loader = loader;
-		this._loadJsonArgs = loadJsonArgs;
-		this._loadBrewArgs = loadBrewArgs;
-	}
+	_loadJsonArgs = null;
+	_loadBrewArgs = null;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return this._loader; }
 
@@ -627,13 +804,52 @@ class _DataTypeLoaderPredefined extends _DataTypeLoader {
 	}
 }
 
+class _DataTypeLoaderRace extends _DataTypeLoaderPredefined {
+	static PROPS = ["race", "subrace"];
+	static PAGE = UrlUtil.PG_RACES;
+
+	_loader = "race";
+	_loadJsonArgs = {isAddBaseRaces: true};
+	_loadBrewArgs = {isAddBaseRaces: true};
+}
+
+class _DataTypeLoaderDeity extends _DataTypeLoaderPredefined {
+	static PROPS = ["deity"];
+	static PAGE = UrlUtil.PG_DEITIES;
+
+	_loader = "deity";
+}
+
+class _DataTypeLoaderVariantrule extends _DataTypeLoaderPredefined {
+	static PROPS = ["variantrule"];
+	static PAGE = UrlUtil.PG_VARIANTRULES;
+
+	_loader = "variantrule";
+}
+
+class _DataTypeLoaderTable extends _DataTypeLoaderPredefined {
+	static PROPS = ["table", "tableGroup"];
+	static PAGE = UrlUtil.PG_TABLES;
+
+	_loader = "table";
+}
+
+class _DataTypeLoaderLanguage extends _DataTypeLoaderPredefined {
+	static PROPS = ["language"];
+	static PAGE = UrlUtil.PG_LANGUAGES;
+
+	_loader = "language";
+}
+
+class _DataTypeLoaderRecpie extends _DataTypeLoaderPredefined {
+	static PROPS = ["recipe"];
+	static PAGE = UrlUtil.PG_RECIPES;
+
+	_loader = "recipe";
+}
+
 class _DataTypeLoaderMultiSource extends _DataTypeLoader {
 	_prop;
-
-	constructor ({prop}) {
-		super();
-		this._prop = prop;
-	}
 
 	_getSiteIdent ({pageClean, sourceClean}) { return `${this._prop}__${sourceClean}`; }
 
@@ -651,12 +867,11 @@ class _DataTypeLoaderMultiSource extends _DataTypeLoader {
 	}
 }
 
-class _DataTypeLoaderCustomBestiary extends _DataTypeLoaderMultiSource {
-	propAllowlist = new Set(["monster", "monsterFluff", "legendaryGroup", "makebrewCreatureTrait"]);
+class _DataTypeLoaderCustomMonster extends _DataTypeLoaderMultiSource {
+	static PROPS = ["monster"];
+	static PAGE = UrlUtil.PG_BESTIARY;
 
-	constructor () {
-		super({prop: "monster"});
-	}
+	_prop = "monster";
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
 		await DataUtil.monster.pPreloadMeta();
@@ -668,35 +883,52 @@ class _DataTypeLoaderCustomBestiary extends _DataTypeLoaderMultiSource {
 	}
 }
 
-class _DataTypeLoaderCustomSpells extends _DataTypeLoaderMultiSource {
-	constructor () {
-		super({prop: "spell"});
-	}
+class _DataTypeLoaderCustomMonsterFluff extends _DataTypeLoaderMultiSource {
+	static PROPS = ["monsterFluff"];
+	static PAGE = UrlUtil.PG_BESTIARY;
+	static IS_FLUFF = true;
+
+	_prop = "monsterFluff";
+}
+
+class _DataTypeLoaderCustomSpell extends _DataTypeLoaderMultiSource {
+	static PROPS = ["spell"];
+	static PAGE = UrlUtil.PG_SPELLS;
+
+	_prop = "spell";
 
 	async _pPrePopulate ({data, isBrew}) {
 		Renderer.spell.prePopulateHover(data, {isBrew});
 	}
 }
 
-class _DataTypeLoaderCustomClassesSubclasses extends _DataTypeLoader {
-	// Note that this only loads these specific props, to avoid deadlock incurred by dereferencing class/subclass features
-	static _PROPS = ["class", "subclass"];
+class _DataTypeLoaderCustomSpellFluff extends _DataTypeLoaderMultiSource {
+	static PROPS = ["spell"];
+	static PAGE = UrlUtil.PG_SPELLS;
+	static IS_FLUFF = true;
 
-	constructor ({hasPhase2Cache = false} = {}) {
-		super();
-		this.hasPhase2Cache = hasPhase2Cache;
-	}
+	_prop = "spellFluff";
+}
+
+class _DataTypeLoaderCustomClassesSubclass extends _DataTypeLoader {
+	static PROPS = ["raw_class", "raw_subclass", "class", "subclass"];
+	static PAGE = UrlUtil.PG_CLASSES;
+
+	// Note that this only loads these specific props, to avoid deadlock incurred by dereferencing class/subclass features
+	static _PROPS_RAWABLE = ["class", "subclass"];
+
+	hasPhase2Cache = true;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return `${pageClean}__${this.constructor.name}`; }
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
 		const json = await DataUtil.class.loadRawJSON();
-		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS});
+		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
 	async _pGetStoredBrewData () {
 		const brew = await BrewUtil2.pGetBrewProcessed();
-		return this.constructor._getAsRawPrefixed(brew, {propsRaw: this.constructor._PROPS});
+		return this.constructor._getAsRawPrefixed(brew, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
 	async _pGetPostCacheData_obj ({obj, lockToken2}) {
@@ -797,7 +1029,7 @@ class _DataTypeLoaderCustomClassesSubclasses extends _DataTypeLoader {
 				if (fnIsInvalidUnpackedUid(unpackedUid)) return;
 
 				// Skip over temp/nonexistent links
-				if (source === SRC_5ETOOLS_TMP) return;
+				if (source === Parser.SRC_5ETOOLS_TMP) return;
 
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[propFeature](unpackedUid);
 
@@ -842,24 +1074,24 @@ class _DataTypeLoaderCustomClassesSubclasses extends _DataTypeLoader {
 	}
 }
 
-class _DataTypeLoaderCustomClassSubclassFeatures extends _DataTypeLoader {
-	static _PROPS = ["classFeature", "subclassFeature"];
+class _DataTypeLoaderCustomClassSubclassFeature extends _DataTypeLoader {
+	static PROPS = ["raw_classFeature", "raw_subclassFeature", "classFeature", "subclassFeature"];
+	static PAGE = UrlUtil.PG_CLASS_SUBCLASS_FEATURES;
 
-	constructor ({hasPhase2Cache = false} = {}) {
-		super();
-		this.hasPhase2Cache = hasPhase2Cache;
-	}
+	static _PROPS_RAWABLE = ["classFeature", "subclassFeature"];
+
+	hasPhase2Cache = true;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return `${pageClean}__${this.constructor.name}`; }
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
 		const json = await DataUtil.class.loadRawJSON();
-		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS});
+		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
 	async _pGetStoredBrewData () {
 		const brew = await BrewUtil2.pGetBrewProcessed();
-		return this.constructor._getAsRawPrefixed(brew, {propsRaw: this.constructor._PROPS});
+		return this.constructor._getAsRawPrefixed(brew, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
 	async _pGetPostCacheData_obj ({obj, lockToken2}) {
@@ -881,8 +1113,9 @@ class _DataTypeLoaderCustomClassSubclassFeatures extends _DataTypeLoader {
 	}
 }
 
-class _DataTypeLoaderCustomItems extends _DataTypeLoader {
-	propAllowlist = new Set(["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "baseitem", "itemFluff"]);
+class _DataTypeLoaderCustomItem extends _DataTypeLoader {
+	static PROPS = ["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "baseitem", "magicvariant"];
+	static PAGE = UrlUtil.PG_ITEMS;
 
 	/**
 	 * Avoid adding phase 1 items to the cache. Adding them as `raw_item` is inaccurate, as we have already e.g. merged
@@ -934,7 +1167,7 @@ class _DataTypeLoaderCustomItems extends _DataTypeLoader {
 }
 
 class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
-	static _PROPS = ["reference", "referenceData"];
+	static PROPS = ["reference", "referenceData"];
 
 	_getSiteIdent ({pageClean, sourceClean}) { return this.constructor.name; }
 
@@ -948,11 +1181,11 @@ class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
 		};
 	}
 
-	hasCustomCacheStrategy ({obj}) { return this.constructor._PROPS.some(prop => obj[prop]?.length); }
+	hasCustomCacheStrategy ({obj}) { return this.constructor.PROPS.some(prop => obj[prop]?.length); }
 
 	addToCacheCustom ({cache, obj}) {
 		obj.referenceData.forEach((chapter, ixChapter) => this._addToCacheCustom_chapter({cache, chapter, ixChapter}));
-		return [...this.constructor._PROPS];
+		return [...this.constructor.PROPS];
 	}
 
 	_addToCacheCustom_chapter ({cache, chapter, ixChapter}) {
@@ -988,56 +1221,57 @@ class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
 }
 
 class _DataTypeLoaderCustomAdventureBook extends _DataTypeLoader {
-	_page;
-	_prop;
-	_propData;
 	_filename;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return `${pageClean}__${sourceClean}`; }
 
-	hasCustomCacheStrategy ({obj}) { return [this._prop, this._propData].some(prop => obj[prop]?.length); }
+	hasCustomCacheStrategy ({obj}) { return this.constructor.PROPS.some(prop => obj[prop]?.length); }
 
 	addToCacheCustom ({cache, obj}) {
+		const [prop, propData] = this.constructor.PROPS;
+
 		// Get only the ids that exist in both data + contents
-		const dataIds = (obj[this._propData] || []).filter(it => it.id).map(it => it.id);
-		const contentsIds = new Set((obj[this._prop] || []).filter(it => it.id).map(it => it.id));
+		const dataIds = (obj[propData] || []).filter(it => it.id).map(it => it.id);
+		const contentsIds = new Set((obj[prop] || []).filter(it => it.id).map(it => it.id));
 		const matchingIds = dataIds.filter(id => contentsIds.has(id));
 
 		matchingIds.forEach(id => {
-			const data = (obj[this._propData] || []).find(it => it.id === id);
-			const contents = (obj[this._prop] || []).find(it => it.id === id);
+			const data = (obj[propData] || []).find(it => it.id === id);
+			const contents = (obj[prop] || []).find(it => it.id === id);
 
-			const hash = UrlUtil.URL_TO_HASH_BUILDER[this._page](contents);
-			this._addImageBackReferences(data, this._page, contents.source, hash);
+			const hash = UrlUtil.URL_TO_HASH_BUILDER[this.constructor.PAGE](contents);
+			this._addImageBackReferences(data, this.constructor.PAGE, contents.source, hash);
 
 			const {page: pageClean, source: sourceClean, hash: hashClean} = _DataLoaderInternalUtil.getCleanPageSourceHash({
-				page: this._page,
+				page: this.constructor.PAGE,
 				source: contents.source,
 				hash,
 			});
 
 			const pack = {
-				[this._prop]: contents,
-				[this._propData]: data,
+				[prop]: contents,
+				[propData]: data,
 			};
 
 			cache.set(pageClean, sourceClean, hashClean, pack);
 		});
 
-		return [this._prop, this._propData];
+		return [prop, propData];
 	}
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
+		const [prop, propData] = this.constructor.PROPS;
+
 		const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._filename}`);
-		const contents = index[this._prop].find(contents => _DataLoaderInternalUtil.getCleanSource({source: contents.source}) === sourceClean);
+		const contents = index[prop].find(contents => _DataLoaderInternalUtil.getCleanSource({source: contents.source}) === sourceClean);
 
 		if (!contents) return {};
 
-		const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${this._prop}/${this._prop}-${UrlUtil.encodeForHash(contents.id.toLowerCase())}.json`);
+		const json = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/${prop}/${prop}-${UrlUtil.encodeForHash(contents.id.toLowerCase())}.json`);
 
 		return {
-			[this._prop]: [contents],
-			[this._propData]: [
+			[prop]: [contents],
+			[propData]: [
 				{
 					source: contents.source,
 					id: contents.id,
@@ -1067,16 +1301,16 @@ class _DataTypeLoaderCustomAdventureBook extends _DataTypeLoader {
 }
 
 class _DataTypeLoaderCustomAdventure extends _DataTypeLoaderCustomAdventureBook {
-	_page = UrlUtil.PG_ADVENTURE;
-	_prop = "adventure";
-	_propData = "adventureData";
+	static PROPS = ["adventure", "adventureData"];
+	static PAGE = UrlUtil.PG_ADVENTURE;
+
 	_filename = "adventures.json";
 }
 
 class _DataTypeLoaderCustomBook extends _DataTypeLoaderCustomAdventureBook {
-	_page = UrlUtil.PG_BOOK;
-	_prop = "book";
-	_propData = "bookData";
+	static PROPS = ["book", "bookData"];
+	static PAGE = UrlUtil.PG_BOOK;
+
 	_filename = "books.json";
 }
 
@@ -1142,213 +1376,84 @@ class DataLoader {
 			.forEach(([k, v]) => this._PROP_TO_HASH_PAGE[`${k}Fluff`] = _DataLoaderInternalUtil.getCleanPageFluff({page: v}));
 	}
 
-	static _registerDataTypeLoader (loader) {
+	static _registerDataTypeLoader ({loader, props, page, isFluff}) {
 		this._DATA_TYPE_LOADER_LIST.push(loader);
-		return loader;
+
+		if (!props?.length) throw new Error(`No "props" specified for loader "${loader.constructor.name}"!`);
+
+		props.forEach(prop => this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: prop})] = loader);
+
+		if (!page) return;
+
+		this._DATA_TYPE_LOADERS[
+			isFluff
+				? _DataLoaderInternalUtil.getCleanPageFluff({page})
+				: _DataLoaderInternalUtil.getCleanPage({page})
+		] = loader;
 	}
 
 	static _registerDataTypeLoaders () {
+		const fnRegister = this._registerDataTypeLoader.bind(this);
+
 		// region Multi-file
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "monster"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_BESTIARY})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomBestiary());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "monsterFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_BESTIARY})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderMultiSource({prop: "monsterFluff"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "spell"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_SPELLS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomSpells());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "spellFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_SPELLS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderMultiSource({prop: "spellFluff"}));
-
+		_DataTypeLoaderCustomMonster.register({fnRegister});
+		_DataTypeLoaderCustomMonsterFluff.register({fnRegister});
+		_DataTypeLoaderCustomSpell.register({fnRegister});
+		_DataTypeLoaderCustomSpellFluff.register({fnRegister});
 		// endregion
 
 		// region Predefined
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "race"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "subrace"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_RACES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderPredefined({loader: "race", loadJsonArgs: {isAddBaseRaces: true}, loadBrewArgs: {isAddBaseRaces: true}}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "deity"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_DEITIES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderPredefined({loader: "deity"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "variantrule"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_VARIANTRULES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderPredefined({loader: "variantrule"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "table"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "tableGroup"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_TABLES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderPredefined({loader: "table"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "language"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_LANGUAGES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderPredefined({loader: "language"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "recipe"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_RECIPES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderPredefined({loader: "recipe"}));
-
+		_DataTypeLoaderRace.register({fnRegister});
+		_DataTypeLoaderDeity.register({fnRegister});
+		_DataTypeLoaderVariantrule.register({fnRegister});
+		_DataTypeLoaderTable.register({fnRegister});
+		_DataTypeLoaderLanguage.register({fnRegister});
+		_DataTypeLoaderRecpie.register({fnRegister});
 		// endregion
 
 		// region Special
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_class"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_subclass"})] =
-				this._registerDataTypeLoader(new _DataTypeLoaderCustomClassesSubclasses());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "class"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "subclass"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_CLASSES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomClassesSubclasses({hasPhase2Cache: true}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_classfeature"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_subclassfeature"})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomClassSubclassFeatures());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "classFeature"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "subclassFeature"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_CLASS_SUBCLASS_FEATURES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomClassSubclassFeatures({hasPhase2Cache: true}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "item"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_ITEMS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomItems());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "reference"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "referenceData"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_QUICKREF})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomQuickref());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "adventure"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "adventureData"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_ADVENTURE})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomAdventure());
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "book"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "bookData"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_BOOK})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderCustomBook());
+		_DataTypeLoaderCustomClassesSubclass.register({fnRegister});
+		_DataTypeLoaderCustomClassSubclassFeature.register({fnRegister});
+		_DataTypeLoaderCustomItem.register({fnRegister});
+		_DataTypeLoaderCustomQuickref.register({fnRegister});
+		_DataTypeLoaderCustomAdventure.register({fnRegister});
+		_DataTypeLoaderCustomBook.register({fnRegister});
 		// endregion
 
 		// region Single file
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "background"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_BACKGROUNDS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "backgrounds.json"}));
+		_DataTypeLoaderBackground.register({fnRegister});
+		_DataTypeLoaderPsionic.register({fnRegister});
+		_DataTypeLoaderObject.register({fnRegister});
+		_DataTypeLoaderAction.register({fnRegister});
+		_DataTypeLoaderFeat.register({fnRegister});
+		_DataTypeLoaderOptionalfeature.register({fnRegister});
+		_DataTypeLoaderReward.register({fnRegister});
+		_DataTypeLoaderCharoption.register({fnRegister});
 
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "psionic"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_PSIONICS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "psionics.json"}));
+		_DataTypeLoaderTrapHazard.register({fnRegister});
+		_DataTypeLoaderCultBoon.register({fnRegister});
+		_DataTypeLoaderVehicle.register({fnRegister});
 
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "object"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_OBJECTS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "objects.json"}));
+		_DataTypeLoaderConditionDisease.register({fnRegister});
 
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "action"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_ACTIONS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "actions.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "trap"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "hazard"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_TRAPS_HAZARDS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "trapshazards.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "cult"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "boon"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_CULTS_BOONS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "cultsboons.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "condition"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "disease"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "status"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_CONDITIONS_DISEASES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "conditionsdiseases.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "vehicle"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "vehicleUpgrade"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_VEHICLES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "vehicles.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "feat"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_feat"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_FEATS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "feats.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "optionalfeature"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_optionalfeature"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_OPT_FEATURES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "optionalfeatures.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "reward"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_reward"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_REWARDS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "rewards.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "charoption"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raw_charoption"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: UrlUtil.PG_CHAR_CREATION_OPTIONS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "charcreationoptions.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "skill"})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "skills.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "sense"})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "senses.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "legendaryGroup"})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "bestiary/legendarygroups.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "itemEntry"})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "items-base.json"}));
+		_DataTypeLoaderSkill.register({fnRegister});
+		_DataTypeLoaderSense.register({fnRegister});
+		_DataTypeLoaderLegendaryGroup.register({fnRegister});
+		_DataTypeLoaderItemEntry.register({fnRegister});
 		// endregion
 
 		// region Fluff
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "backgroundFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_BACKGROUNDS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-backgrounds.json"}));
+		_DataTypeLoaderBackgroundFluff.register({fnRegister});
+		_DataTypeLoaderFeatFluff.register({fnRegister});
+		_DataTypeLoaderItemFluff.register({fnRegister});
+		_DataTypeLoaderRaceFluff.register({fnRegister});
+		_DataTypeLoaderLanguageFluff.register({fnRegister});
+		_DataTypeLoaderVehicleFluff.register({fnRegister});
+		_DataTypeLoaderObjectFluff.register({fnRegister});
+		_DataTypeLoaderCharoptionFluff.register({fnRegister});
+		_DataTypeLoaderRecipeFluff.register({fnRegister});
 
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "featFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_FEATS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-feats.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "itemFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_ITEMS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-items.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "conditionFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "diseaseFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "statusFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_CONDITIONS_DISEASES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-conditionsdiseases.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "raceFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_RACES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-races.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "languageFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_LANGUAGES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-languages.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "vehicleFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_VEHICLES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-vehicles.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "objectFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_OBJECTS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-objects.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "charoptionFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_CHAR_CREATION_OPTIONS})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-charcreationoptions.json"}));
-
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPage({page: "recipeFluff"})] =
-		this._DATA_TYPE_LOADERS[_DataLoaderInternalUtil.getCleanPageFluff({page: UrlUtil.PG_RECIPES})] =
-			this._registerDataTypeLoader(new _DataTypeLoaderSingleSource({filename: "fluff-recipes.json"}));
-
+		_DataTypeLoaderConditionDiseaseFluff.register({fnRegister});
 		// endregion
 	}
 
@@ -1548,7 +1653,7 @@ class DataLoader {
 	static async _pCache ({pageClean, sourceClean, dataLoader}) {
 		// region Fetch from site data
 		const siteData = await dataLoader.pGetSiteData({pageClean, sourceClean});
-		this._pCache_addToCache({allDataMerged: siteData, propAllowlist: dataLoader.phase1CachePropAllowlist || dataLoader.propAllowlist});
+		this._pCache_addToCache({allDataMerged: siteData, propAllowlist: dataLoader.phase1CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
 		// Always early-exit, regardless of whether the entity was found in the cache, if we know this is a site source
 		if (this._isSiteSource({sourceClean})) return {siteData};
 		// endregion
@@ -1558,7 +1663,7 @@ class DataLoader {
 		// region Fetch from already-stored brew data
 		//   As we have preloaded missing brew earlier in the flow, we know that a brew is either present, or unavailable
 		let brewData = await dataLoader.pGetStoredBrewData();
-		this._pCache_addToCache({allDataMerged: brewData, propAllowlist: dataLoader.phase1CachePropAllowlist || dataLoader.propAllowlist});
+		this._pCache_addToCache({allDataMerged: brewData, propAllowlist: dataLoader.phase1CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
 		// endregion
 
 		return {siteData, brewData};
@@ -1578,8 +1683,8 @@ class DataLoader {
 	static async _pCacheAndGet_processCacheMeta_ ({dataLoader, siteData = null, brewData = null, lockToken2 = null}) {
 		const {siteDataPostCache, brewDataPostCache} = await dataLoader.pGetPostCacheData({siteData, brewData, lockToken2});
 
-		this._pCache_addToCache({allDataMerged: siteDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || dataLoader.propAllowlist});
-		this._pCache_addToCache({allDataMerged: brewDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || dataLoader.propAllowlist});
+		this._pCache_addToCache({allDataMerged: siteDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
+		this._pCache_addToCache({allDataMerged: brewDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
 	}
 
 	static _pCache_getDataTypeLoader ({pageClean, isSilent}) {
@@ -1588,7 +1693,7 @@ class DataLoader {
 		return dataLoader;
 	}
 
-	static _pCache_addToCache ({allDataMerged, propAllowlist = null}) {
+	static _pCache_addToCache ({allDataMerged, propAllowlist}) {
 		if (!allDataMerged) return;
 
 		allDataMerged = {...allDataMerged};
@@ -1602,7 +1707,7 @@ class DataLoader {
 
 		Object.keys(allDataMerged)
 			.forEach(prop => {
-				if (propAllowlist && !propAllowlist.has(prop)) return;
+				if (!propAllowlist.has(prop)) return;
 
 				const arr = allDataMerged[prop];
 				if (!arr?.length || !(arr instanceof Array)) return;

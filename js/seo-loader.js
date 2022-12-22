@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener("load", async () => {
 	Renderer.get().setBaseUrl("/");
 	const fullPage = `${_SEO_PAGE}.html`;

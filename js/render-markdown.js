@@ -1,3 +1,5 @@
+"use strict";
+
 // TODO implement remaining methods
 class RendererMarkdown {
 	static async pInit () {
@@ -1922,9 +1924,5 @@ class MarkdownConverter {
 	// endregion
 }
 
-if (typeof module !== "undefined") {
-	module.exports = {
-		RendererMarkdown,
-		MarkdownConverter,
-	};
-}
+globalThis.RendererMarkdown = RendererMarkdown;
+globalThis.MarkdownConverter = MarkdownConverter;

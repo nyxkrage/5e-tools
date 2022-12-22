@@ -1,8 +1,9 @@
-const fs = require("fs");
-const ut = require("./util.js");
+import * as fs from "fs";
+import * as ut from "./util.js";
 
-require("../js/utils.js");
-const {MapsUtil} = require("../js/maps-util.js");
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/maps-util.js";
 
 const out = {};
 

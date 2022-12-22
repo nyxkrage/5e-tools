@@ -1,6 +1,11 @@
-const fs = require("fs");
-const utS = require("./util-search-index");
-const {Timer} = require("./util.js");
+import * as fs from "fs";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/render.js";
+import "../js/render-dice.js";
+import "../js/hist.js";
+import * as utS from "./util-search-index.js";
+import {Timer} from "./util.js";
 
 async function main () {
 	const t = Timer.start();
@@ -19,4 +24,4 @@ async function main () {
 	console.log(`Created indexes in ${Timer.stop(t)}`);
 }
 
-module.exports = main();
+export default main();

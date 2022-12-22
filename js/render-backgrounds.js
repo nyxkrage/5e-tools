@@ -1,3 +1,5 @@
+"use strict";
+
 class RenderBackgrounds {
 	static $getRenderedBackground (bg) {
 		const prerequisite = Renderer.utils.getPrerequisiteHtml(bg.prerequisite);

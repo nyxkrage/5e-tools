@@ -191,14 +191,14 @@ class ModalFilterOptionalFeatures extends ModalFilter {
 		const prerequisite = Renderer.utils.getPrerequisiteHtml(optfeat.prerequisite, {isListMode: true, blocklistKeys: new Set(["level"])});
 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(optfeat.prerequisite);
 
-		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells ${optfeat._versionBase_isVersion ? "ve-muted" : ""}">
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells">
 			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
 			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 
-			<div class="col-3 ${this._getNameStyle()}">${optfeat.name}</div>
+			<div class="col-3 ${optfeat._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${optfeat._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${optfeat.name}</div>
 			<span class="col-2 text-center" title="${optfeat._dFeatureType}">${optfeat._lFeatureType}</span>
 			<span class="col-4 text-center">${prerequisite}</span>
 			<span class="col-1 text-center">${level}</span>

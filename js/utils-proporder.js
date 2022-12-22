@@ -1434,8 +1434,4 @@ PropOrder._PROP_TO_LIST = {
 	"sense": PropOrder._SENSE,
 };
 
-if (typeof module !== "undefined") {
-	module.exports = PropOrder;
-}
-
 globalThis.PropOrder = PropOrder;

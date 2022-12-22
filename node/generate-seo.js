@@ -2,12 +2,13 @@
  * Generator script which creates stub per-entity pages for SEO.
  */
 
-const fs = require("fs");
-require("../js/utils.js");
-require("../js/utils-dataloader.js");
-require("../js/render.js");
-require("../js/render-dice.js");
-const ut = require("./util.js");
+import * as fs from "fs";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/utils-dataloader.js";
+import "../js/render.js";
+import "../js/render-dice.js";
+import * as ut from "./util.js";
 
 const IS_DEV_MODE = !!process.env.VET_SEO_IS_DEV_MODE;
 const BASE_SITE_URL = process.env.VET_BASE_SITE_URL || "https://5e.tools/";

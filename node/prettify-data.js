@@ -1,9 +1,10 @@
 "use strict";
 
-const fs = require("fs");
-const ut = require("./util");
-require("../js/utils");
-require("../js/utils-proporder.js");
+import * as fs from "fs";
+import * as ut from "./util.js";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/utils-proporder.js";
 
 const FILE_BLOCKLIST = new Set([
 	"loot.json",

@@ -1,9 +1,11 @@
 "use strict";
 
-const fs = require("fs");
-const ut = require("./util");
-require("../js/utils");
-require("../js/render.js");
+import * as fs from "fs";
+import * as ut from "./util.js";
+
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/render.js";
 
 function cleanFolder (folder, {isFast = false} = {}) {
 	console.log(`Cleaning directory ${folder}...`);

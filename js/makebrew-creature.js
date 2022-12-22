@@ -531,7 +531,7 @@ class CreatureBuilder extends Builder {
 				cb();
 			});
 
-		const $initialSizeRows = (initial ? [initial].flat() : [SZ_MEDIUM]).map(tag => this.__$getSizeInput__getSizeRow(tag, rows, setState));
+		const $initialSizeRows = (initial ? [initial].flat() : [Parser.SZ_MEDIUM]).map(tag => this.__$getSizeInput__getSizeRow(tag, rows, setState));
 
 		const $wrpTagRows = $$`<div>${$initialSizeRows ? $initialSizeRows.map(it => it.$wrp) : ""}</div>`;
 		$$`<div>
@@ -546,7 +546,7 @@ class CreatureBuilder extends Builder {
 		const $selSize = $(`<select class="form-control input-xs">
 			${Parser.SIZE_ABVS.map(sz => `<option value="${sz}">${Parser.sizeAbvToFull(sz)}</option>`)}
 		</select>`)
-			.val(size || SZ_MEDIUM)
+			.val(size || Parser.SZ_MEDIUM)
 			.change(() => {
 				setState();
 			});
@@ -1060,7 +1060,7 @@ class CreatureBuilder extends Builder {
 				const searchWidget = new SearchWidget(
 					{Item: SearchWidget.CONTENT_INDICES.Item},
 					(doc) => {
-						$iptFrom.val(`{@item ${doc.n}${doc.s !== SRC_DMG ? `|${doc.s}` : ""}}`.toLowerCase());
+						$iptFrom.val(`{@item ${doc.n}${doc.s !== Parser.SRC_DMG ? `|${doc.s}` : ""}}`.toLowerCase());
 						doUpdateState();
 						doClose();
 					},
@@ -2942,7 +2942,7 @@ class CreatureBuilder extends Builder {
 			})
 			.appendTo($rowInner);
 
-		this._legendaryGroupCache.filter(it => it.source).forEach((g, i) => this._$selLegendaryGroup.append(`<option value="${i}">${g.name}${g.source === SRC_MM ? "" : ` [${Parser.sourceJsonToAbv(g.source)}]`}</option>`));
+		this._legendaryGroupCache.filter(it => it.source).forEach((g, i) => this._$selLegendaryGroup.append(`<option value="${i}">${g.name}${g.source === Parser.SRC_MM ? "" : ` [${Parser.sourceJsonToAbv(g.source)}]`}</option>`));
 
 		this._handleLegendaryGroupChange();
 
