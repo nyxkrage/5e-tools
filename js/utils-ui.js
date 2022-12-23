@@ -672,7 +672,8 @@ class ListUiUtil {
 		opts = opts || {};
 
 		if (opts.isPassThroughEvents) {
-			const subEles = evt.path.slice(0, evt.path.indexOf(evt.currentTarget));
+			const evtPath = evt.composedPath();
+			const subEles = evtPath.slice(0, evtPath.indexOf(evt.currentTarget));
 			if (subEles.some(ele => ListUiUtil._EVT_PASS_THOUGH_TAGS.has(ele?.tagName))) return;
 		}
 

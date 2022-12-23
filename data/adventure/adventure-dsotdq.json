@@ -8245,7 +8245,7 @@
 												"Castle Kalaman's courtyard is largely deserted, as most of the city's defenders remain with the troops west of the city. Near the covered cloisters leading to the city council's conference rooms are two heavily armored Knights of Solamnia on horseback. One of them holds a banner bearing a prominent rose emblem."
 											]
 										},
-										"The two knights here are Undead soldiers. They use the {@creature wight} stat block with the following changes:",
+										"The two knights here are {@creature Undead soldier|DSotDQ|Undead soldiers}. They use the {@creature wight} stat block with the following changes:",
 										{
 											"type": "list",
 											"items": [
@@ -24598,7 +24598,7 @@
 														"\"I find you worthy. Join me, and I will open the River of Souls to you.\""
 													]
 												},
-												"If the character refuses the offer, the altar emits smoke that coalesces into a hulking figure. This hostile figure uses the {@creature clay golem} stat block, but it is an Undead instead of a Construct. If the character accepts, they immediately become aware of how to use the altar to speak with the dead, and they don't need a holy symbol to do so."
+												"If the character refuses the offer, the altar emits smoke that coalesces into a {@creature hulking shadow|DSotDQ|hulking figure}. This hostile figure uses the {@creature clay golem} stat block, but it is an Undead instead of a Construct. If the character accepts, they immediately become aware of how to use the altar to speak with the dead, and they don't need a holy symbol to do so."
 											]
 										},
 										{

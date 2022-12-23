@@ -1151,8 +1151,8 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 		const out = {};
 
 		if (obj.item?.length) {
-			out.item = (await _DataLoaderDereferencer.pGetDereferenced(obj.item, "item", {entryProp: "entries", propIsRef: "hasRefs"}))?.item || [];
-			out.item = (await _DataLoaderDereferencer.pGetDereferenced(out.item, "item", {entryProp: "_fullEntries", propIsRef: "hasRefs"}))?.item || [];
+			out.item = (await _DataLoaderDereferencer.pGetDereferenced(obj.item, "item", {propEntries: "entries", propIsRef: "hasRefs"}))?.item || [];
+			out.item = (await _DataLoaderDereferencer.pGetDereferenced(out.item, "item", {propEntries: "_fullEntries", propIsRef: "hasRefs"}))?.item || [];
 		}
 
 		return out;
@@ -1168,6 +1168,7 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 
 class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
 	static PROPS = ["reference", "referenceData"];
+	static PAGE = UrlUtil.PG_QUICKREF;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return this.constructor.name; }
 

@@ -12,7 +12,7 @@ env:
    # See: https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio
    IMAGE_NAME: 5etools
 
-   # TODO(FUTURE) flip/remove this to allow incremental builds
+   # Used to force a clean (i.e., non-incremental) Docker build
    DO_CLEAN_BUILD: 1
 
 concurrency:

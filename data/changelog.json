@@ -2297,5 +2297,10 @@
 		"ver": "1.172.3",
 		"date": "2022-12-22",
 		"txt": "- Added system for incremental Docker image builds (thanks @ cs96and) _[note that *this* build, as the first from the new system, is a full-sized freestanding image]_\n- Fixed crash when resetting filters on certain pages\n- (Brew) Fixed `refSubclassFeature`s (and potentially others) silently failing to load, resulting in initial subclass features never being displayed \n- (Brew) Fixed Spells page crash when constructing subclass filters\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.172.4",
+		"date": "2022-12-23",
+		"txt": "- Fixed hovering quick-reference rules tags (difficult terrain, etc.) failing to load\n- Fixed items failing to expand `{#itemEntry ...}` content in some cases\n- (Fixed typos/added tags)"
 	}
 ]
