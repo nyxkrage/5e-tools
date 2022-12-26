@@ -191,51 +191,60 @@ class PageFilterSpells extends PageFilter {
 	}
 
 	static getNormalisedRange (range) {
-		let multiplier = 1;
-		let distance = 0;
-		let offset = 0;
+		const state = {
+			multiplier: 1,
+			distance: 0,
+			offset: 0,
+		};
 
 		switch (range.type) {
 			case Parser.RNG_SPECIAL: return 1000000000;
-			case Parser.RNG_POINT: adjustForDistance(); break;
-			case Parser.RNG_LINE: offset = 1; adjustForDistance(); break;
-			case Parser.RNG_CONE: offset = 2; adjustForDistance(); break;
-			case Parser.RNG_RADIUS: offset = 3; adjustForDistance(); break;
-			case Parser.RNG_HEMISPHERE: offset = 4; adjustForDistance(); break;
-			case Parser.RNG_SPHERE: offset = 5; adjustForDistance(); break;
-			case Parser.RNG_CYLINDER: offset = 6; adjustForDistance(); break;
-			case Parser.RNG_CUBE: offset = 7; adjustForDistance(); break;
+			case Parser.RNG_POINT: this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_LINE: state.offset = 1; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_CONE: state.offset = 2; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_RADIUS: state.offset = 3; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_HEMISPHERE: state.offset = 4; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_SPHERE: state.offset = 5; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_CYLINDER: state.offset = 6; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
+			case Parser.RNG_CUBE: state.offset = 7; this._getNormalisedRange_getAdjustedForDistance({range, state}); break;
 		}
 
 		// value in inches, to allow greater granularity
-		return (multiplier * distance) + offset;
+		return (state.multiplier * state.distance) + state.offset;
+	}
 
-		function adjustForDistance () {
-			const dist = range.distance;
-			switch (dist.type) {
-				case Parser.UNT_FEET: multiplier = PageFilterSpells.INCHES_PER_FOOT; distance = dist.amount; break;
-				case Parser.UNT_MILES: multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; distance = dist.amount; break;
-				case Parser.RNG_SELF: distance = 0; break;
-				case Parser.RNG_TOUCH: distance = 1; break;
-				case Parser.RNG_SIGHT: multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; distance = 12; break; // assume sight range of person ~100 ft. above the ground
-				case Parser.RNG_UNLIMITED_SAME_PLANE: distance = 900000000; break; // from BolS (homebrew)
-				case Parser.RNG_UNLIMITED: distance = 900000001; break;
-				default: {
-					// it's homebrew?
-					const fromBrew = BrewUtil2.getMetaLookup("spellDistanceUnits")?.[dist.type];
-					if (fromBrew) {
-						const ftPerUnit = fromBrew.feetPerUnit;
-						if (ftPerUnit != null) {
-							multiplier = PageFilterSpells.INCHES_PER_FOOT * ftPerUnit;
-							distance = dist.amount;
-						} else {
-							distance = 910000000; // default to max distance, to have them displayed at the bottom
-						}
-					}
-					break;
-				}
+	static _getNormalisedRange_getAdjustedForDistance ({range, state}) {
+		const dist = range.distance;
+		switch (dist.type) {
+			case Parser.UNT_FEET: state.multiplier = PageFilterSpells.INCHES_PER_FOOT; state.distance = dist.amount; break;
+			case Parser.UNT_MILES: state.multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; state.distance = dist.amount; break;
+			case Parser.RNG_SELF: state.distance = 0; break;
+			case Parser.RNG_TOUCH: state.distance = 1; break;
+			case Parser.RNG_SIGHT: state.multiplier = PageFilterSpells.INCHES_PER_FOOT * PageFilterSpells.FEET_PER_MILE; state.distance = 12; break; // assume sight range of person ~100 ft. above the ground
+			case Parser.RNG_UNLIMITED_SAME_PLANE: state.distance = 900000000; break; // from BolS (homebrew)
+			case Parser.RNG_UNLIMITED: state.distance = 900000001; break;
+			default: {
+				// it's prerelease/homebrew?
+				this._getNormalisedRange_getAdjustedForDistance_prereleaseBrew({range, state, brewUtil: PrereleaseUtil})
+					|| this._getNormalisedRange_getAdjustedForDistance_prereleaseBrew({range, state, brewUtil: BrewUtil2});
 			}
 		}
+	}
+
+	static _getNormalisedRange_getAdjustedForDistance_prereleaseBrew ({range, state, brewUtil}) {
+		const dist = range.distance;
+		const fromBrew = brewUtil.getMetaLookup("spellDistanceUnits")?.[dist.type];
+		if (!fromBrew) return false;
+
+		const ftPerUnit = fromBrew.feetPerUnit;
+		if (ftPerUnit != null) {
+			state.multiplier = PageFilterSpells.INCHES_PER_FOOT * ftPerUnit;
+			state.distance = dist.amount;
+		} else {
+			state.distance = 910000000; // default to max distance, to have them displayed at the bottom
+		}
+
+		return true;
 	}
 
 	static getFltrSpellLevelStr (level) {
@@ -274,6 +283,7 @@ class PageFilterSpells extends PageFilter {
 		const addSuffix = (
 			r.source === Parser.SRC_DMG
 			|| SourceUtil.isNonstandardSource(r.source || Parser.SRC_PHB)
+			|| (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(r.source || Parser.SRC_PHB))
 			|| (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(r.source || Parser.SRC_PHB))
 		) && !r.name.includes(Parser.sourceJsonToAbv(r.source));
 		const name = `${r.name}${addSuffix ? ` (${Parser.sourceJsonToAbv(r.source)})` : ""}`;
@@ -633,17 +643,16 @@ class ModalFilterSpells extends ModalFilter {
 	}
 
 	async _pInit () {
-		if (typeof BrewUtil2 !== "undefined") {
-			const brew = await BrewUtil2.pGetBrewProcessed();
-			Renderer.spell.populateHomebrewLookup(brew);
-		}
+		if (typeof PrereleaseUtil !== "undefined") Renderer.spell.populatePrereleaseLookup(await PrereleaseUtil.pGetBrewProcessed());
+		if (typeof BrewUtil2 !== "undefined") Renderer.spell.populateBrewLookup(await BrewUtil2.pGetBrewProcessed());
 	}
 
 	async _pLoadAllData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		const fromData = await DataUtil.spell.pLoadAll();
-		const fromBrew = brew.spell || [];
-		return [...fromData, ...fromBrew];
+		return [
+			...(await DataUtil.spell.pLoadAll()),
+			...((await PrereleaseUtil.pGetBrewProcessed()).spell || []),
+			...((await BrewUtil2.pGetBrewProcessed()).spell || []),
+		];
 	}
 
 	_getListItem (pageFilter, spell, spI) {
@@ -671,7 +680,7 @@ class ModalFilterSpells extends ModalFilter {
 			<div class="col-1 sp__school-${spell.school} text-center" title="${Parser.spSchoolAndSubschoolsAbvsToFull(spell.school, spell.subschools)}" ${Parser.spSchoolAbvToStyle(spell.school)}>${school}</div>
 			<div class="col-0-5 text-center" title="Concentration">${concentration}</div>
 			<div class="col-2 text-right">${range}</div>
-			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(spell.source)}" title="${Parser.sourceJsonToFull(spell.source)}" ${BrewUtil2.sourceJsonToStyle(spell.source)}>${source}</div>
+			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(spell.source)}" title="${Parser.sourceJsonToFull(spell.source)}" ${Parser.sourceJsonToStyle(spell.source)}>${source}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;

@@ -176,10 +176,11 @@ class ModalFilterOptionalFeatures extends ModalFilter {
 	}
 
 	async _pLoadAllData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		const fromData = (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/optionalfeatures.json`)).optionalfeature;
-		const fromBrew = brew.optionalfeature || [];
-		return [...fromData, ...fromBrew];
+		return [
+			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/optionalfeatures.json`)).optionalfeature,
+			...((await PrereleaseUtil.pGetBrewProcessed()).optionalfeature || []),
+			...((await BrewUtil2.pGetBrewProcessed()).optionalfeature || []),
+		];
 	}
 
 	_getListItem (pageFilter, optfeat, ftI) {
@@ -202,7 +203,7 @@ class ModalFilterOptionalFeatures extends ModalFilter {
 			<span class="col-2 text-center" title="${optfeat._dFeatureType}">${optfeat._lFeatureType}</span>
 			<span class="col-4 text-center">${prerequisite}</span>
 			<span class="col-1 text-center">${level}</span>
-			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(optfeat.source)}" title="${Parser.sourceJsonToFull(optfeat.source)}" ${BrewUtil2.sourceJsonToStyle(optfeat.source)}>${source}</div>
+			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(optfeat.source)}" title="${Parser.sourceJsonToFull(optfeat.source)}" ${Parser.sourceJsonToStyle(optfeat.source)}>${source}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;

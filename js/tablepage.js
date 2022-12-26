@@ -65,7 +65,7 @@ class TableListPage extends ListPage {
 				const $btnHeader = $$`<div class="lst__item-group-header mt-3 split-v-center py-1 no-select clickable">
 					<div class="split-v-center w-100 min-w-0 mr-2">
 						<div class="bold">${ent.name}</div>
-						<div class="${Parser.sourceJsonToColor(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}" ${BrewUtil2.sourceJsonToStyle(ent.source)}>${Parser.sourceJsonToAbv(ent.source)}</div>
+						<div class="${Parser.sourceJsonToColor(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}" ${Parser.sourceJsonToStyle(ent.source)}>${Parser.sourceJsonToAbv(ent.source)}</div>
 					</div>
 					${$dispShowHide}
 				</div>`

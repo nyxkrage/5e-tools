@@ -10,6 +10,7 @@ class Blocklist {
 }
 
 window.addEventListener("load", async () => {
+	await PrereleaseUtil.pInit();
 	await BrewUtil2.pInit();
 	await ExcludeUtil.pInitialise();
 	await Blocklist.pInit();

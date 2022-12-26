@@ -1313,6 +1313,7 @@ class Makebrew {
 		Makebrew._LOCK = new VeLock();
 
 		// generic init
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 		await this.pPrepareExistingEditableBrew();

@@ -2,6 +2,7 @@
 
 class MakeCards extends BaseComponent {
 	static async pInit () {
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 
@@ -378,7 +379,7 @@ class MakeCards extends BaseComponent {
 		const $ele = $$`<label class="ve-flex-v-center my-1 w-100 lst__row lst--border lst__row-inner">
 			<div class="col-1 mr-2 ve-flex-vh-center">${$cbSel}</div>
 			<div class="col-3 mr-2 ve-flex-v-center">${loaded.name}</div>
-			<div class="col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToColor(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${BrewUtil2.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToColor(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${Parser.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
 			<div class="col-1-5 mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
 			<div class="col-1-1 mr-2 ve-flex-vh-center">${$iptRgb}</div>
 			<div class="col-1-1 mr-2 ve-flex-vh-center">${$btnIcon}</div>

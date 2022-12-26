@@ -172,6 +172,7 @@ class Board {
 		this.doAdjust$creenCss();
 		this.doShowLoading();
 
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 
@@ -314,8 +315,6 @@ class Board {
 			indexIdField,
 		},
 	) {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-
 		const data = await DataUtil.loadJSON(dataPath);
 		adventureOrBookIdToSource[dataProp] = adventureOrBookIdToSource[dataProp] || {};
 
@@ -362,7 +361,8 @@ class Board {
 		};
 
 		data[dataProp].forEach(adventureOrBook => handleAdventureOrBook(adventureOrBook));
-		(brew[dataProp] || []).forEach(adventureOrBook => handleAdventureOrBook(adventureOrBook, true));
+		((await PrereleaseUtil.pGetBrewProcessed())[dataProp] || []).forEach(adventureOrBook => handleAdventureOrBook(adventureOrBook, true));
+		((await BrewUtil2.pGetBrewProcessed())[dataProp] || []).forEach(adventureOrBook => handleAdventureOrBook(adventureOrBook, true));
 	}
 
 	getPanel (x, y) {
@@ -1115,7 +1115,7 @@ class Panel {
 			$contentStats.append(fn(it));
 
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
-			if (fnBind) fnBind(it, $contentStats[0]);
+			if (fnBind) fnBind(it, $contentInner[0]);
 
 			this._stats_bindCrScaleClickHandler(it, meta, $contentInner, $contentStats);
 			this._stats_bindSummonScaleClickHandler(it, meta, $contentInner, $contentStats);
@@ -3570,9 +3570,17 @@ class AdventureOrBookLoader {
 		}
 	}
 
+	async _pGetPrereleaseData ({advBookId, prop}) {
+		return this._pGetPrereleaseBrewData({advBookId, prop, brewUtil: PrereleaseUtil});
+	}
+
 	async _pGetBrewData ({advBookId, prop}) {
+		return this._pGetPrereleaseBrewData({advBookId, prop, brewUtil: BrewUtil2});
+	}
+
+	async _pGetPrereleaseBrewData ({advBookId, prop, brewUtil}) {
 		const searchFor = advBookId.toLowerCase();
-		const brew = await BrewUtil2.pGetBrewProcessed();
+		const brew = await brewUtil.pGetBrewProcessed();
 		switch (this._type) {
 			case "adventure":
 			case "book": {

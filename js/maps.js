@@ -27,6 +27,7 @@ class MapsPage extends BaseComponent {
 	}
 
 	async pOnLoad () {
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 
@@ -48,19 +49,19 @@ class MapsPage extends BaseComponent {
 
 	async _pGetMapData () {
 		const mapDataBase = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-maps.json`);
-		const mapDataBrew = await this._pGetBrewMaps();
 
 		const mapData = {};
 
-		// Apply the brew data first, so the "official" data takes precedence, where required
-		Object.assign(mapData, MiscUtil.copy(mapDataBrew));
+		// Apply the prerelease/brew data first, so the "official" data takes precedence, where required
+		Object.assign(mapData, MiscUtil.copy(await this._pGetPrereleaseBrewMaps({brewUtil: BrewUtil2})));
+		Object.assign(mapData, MiscUtil.copy(await this._pGetPrereleaseBrewMaps({brewUtil: PrereleaseUtil})));
 		Object.assign(mapData, MiscUtil.copy(mapDataBase));
 
 		return mapData;
 	}
 
-	async _pGetBrewMaps () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
+	async _pGetPrereleaseBrewMaps ({brewUtil}) {
+		const brew = await brewUtil.pGetBrewProcessed();
 
 		const tuples = [
 			{prop: "adventure", propData: "adventureData"},

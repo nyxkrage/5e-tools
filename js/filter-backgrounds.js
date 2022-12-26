@@ -92,10 +92,11 @@ class ModalFilterBackgrounds extends ModalFilter {
 	}
 
 	async _pLoadAllData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		const fromData = (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/backgrounds.json`)).background;
-		const fromBrew = brew.background || [];
-		return [...fromData, ...fromBrew];
+		return [
+			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/backgrounds.json`)).background,
+			...((await PrereleaseUtil.pGetBrewProcessed()).background || []),
+			...((await BrewUtil2.pGetBrewProcessed()).background || []),
+		];
 	}
 
 	_getListItem (pageFilter, bg, bgI) {
@@ -114,7 +115,7 @@ class ModalFilterBackgrounds extends ModalFilter {
 
 			<div class="col-4 ${bg._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${bg._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${bg.name}</div>
 			<div class="col-6">${bg._skillDisplay}</div>
-			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(bg.source)}" title="${Parser.sourceJsonToFull(bg.source)}" ${BrewUtil2.sourceJsonToStyle(bg.source)}>${source}</div>
+			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(bg.source)}" title="${Parser.sourceJsonToFull(bg.source)}" ${Parser.sourceJsonToStyle(bg.source)}>${source}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;

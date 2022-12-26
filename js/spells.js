@@ -266,7 +266,7 @@ class SpellsPage extends ListPageMultiSource {
 						e_({
 							tag: "span",
 							clazz: `col-1-7 text-center ${Parser.sourceJsonToColor(spell.source)} pr-0`,
-							style: BrewUtil2.sourceJsonToStylePart(spell.source),
+							style: Parser.sourceJsonToStylePart(spell.source),
 							title: `${Parser.sourceJsonToFull(spell.source)}${Renderer.utils.getSourceSubText(spell)}`,
 							text: source,
 						}),
@@ -363,8 +363,8 @@ class SpellsPage extends ListPageMultiSource {
 	}
 
 	async _pOnLoad_pPreDataAdd () {
-		const homebrew = await BrewUtil2.pGetBrewProcessed();
-		Renderer.spell.populateHomebrewLookup(homebrew);
+		Renderer.spell.populatePrereleaseLookup(await PrereleaseUtil.pGetBrewProcessed());
+		Renderer.spell.populateBrewLookup(await BrewUtil2.pGetBrewProcessed());
 	}
 
 	async pPreloadSublistSources (json) {

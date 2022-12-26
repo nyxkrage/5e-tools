@@ -2301,6 +2301,12 @@
 	{
 		"ver": "1.172.4",
 		"date": "2022-12-23",
-		"txt": "- Fixed hovering quick-reference rules tags (difficult terrain, etc.) failing to load\n- Fixed items failing to expand `{#itemEntry ...}` content in some cases\n- (Fixed typos/added tags)"
+		"txt": "- Fixed hovering quick-reference rules tags (difficult terrain, etc.) failing to load\n- Fixed items failing to expand `{#itemEntry...}` content in some cases\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.173.0",
+		"date": "2022-12-26",
+		"title": "Empty Box",
+		"txt": "- Added Prerelease Content system. This can be accessed via Utilities -> Prerelease Content Manager, and functions (very) similarly to the existing Homebrew system. _[Note that the only piece of content available at time of writing is 2015's \"UA: When Armies Clash,\" as this was the oldest UA not already available on the site, so made for a good/simple test case. More on this Soon:tm:]_\n- Fixed some range filters (notable, the Items page Cost filter) failing to match values within the selected range\n- Fixed grouped filters (notably, the Spells page Class filter(s)) failing to set their state from URL\n- (Brew) Added support for `\"vulnerable\"`/`\"resist\"`/`\"immune\"`/`\"conditionImmune\"` on `\"baseitem\"`s\n- (Brew) Fixed scaling controls failing to function in embedded creature statblocks\n- (Fixed typos/added tags)"
 	}
 ]

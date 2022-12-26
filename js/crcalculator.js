@@ -6,6 +6,7 @@ let msbcr;
 let monsterFeatures;
 
 window.addEventListener("load", async () => {
+	await PrereleaseUtil.pInit();
 	await BrewUtil2.pInit();
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 	msbcr = await DataUtil.loadJSON(MONSTER_STATS_BY_CR_JSON_URL);

@@ -1402,7 +1402,10 @@ globalThis.Renderer = function () {
 			.map(plugin => plugin(entryType, entry)).filter(Boolean);
 
 		if (!pluginResults.some(it => it.isSkip)) {
-			if (SourceUtil.isNonstandardSource(entry.source)) outList.push("spicy-sauce");
+			if (
+				SourceUtil.isNonstandardSource(entry.source)
+				|| (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(entry.source))
+			) outList.push("spicy-sauce");
 			if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(entry.source)) outList.push("refreshing-brew");
 		}
 
@@ -1719,8 +1722,17 @@ globalThis.Renderer = function () {
 
 			// HOMEBREW LOADING ////////////////////////////////////////////////////////////////////////////////
 			case "@loader": {
-				const {name, path} = this._renderString_getLoaderTagMeta(text);
-				textStack[0] += `<span onclick="BrewUtil2.pAddBrewFromLoaderTag(this)" data-rd-loader-path="${path.escapeQuotes()}" data-rd-loader-name="${name.escapeQuotes()}" class="rd__wrp-loadbrew--ready" title="Click to install homebrew">${name}<span class="glyphicon glyphicon-download-alt rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
+				const {name, path, mode} = this._renderString_getLoaderTagMeta(text);
+
+				const brewUtil = mode === "homebrew" ? "BrewUtil2" : mode === "prerelease" ? "PrereleaseUtil" : null;
+
+				if (!brewUtil) {
+					textStack[0] += `<span class="text-danger" title="Unknown loader mode &quot;${mode.qq()}&quot;!">${name}<span class="glyphicon glyphicon-alert rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
+
+					break;
+				}
+
+				textStack[0] += `<span onclick="${brewUtil}.pAddBrewFromLoaderTag(this)" data-rd-loader-path="${path.escapeQuotes()}" data-rd-loader-name="${name.escapeQuotes()}" class="rd__wrp-loadbrew--ready" title="Click to install ${brewUtil.DISPLAY_NAME}">${name}<span class="glyphicon glyphicon-download-alt rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
 				break;
 			}
 
@@ -1783,7 +1795,7 @@ globalThis.Renderer = function () {
 
 	this._renderString_renderTag_getBrewColorPart = function (color) {
 		if (!color) return "";
-		const scrubbedColor = BrewUtil2.getValidColor(color, {isExtended: true});
+		const scrubbedColor = BrewUtilShared.getValidColor(color, {isExtended: true});
 		return scrubbedColor.startsWith("--") ? `var(${scrubbedColor})` : `#${scrubbedColor}`;
 	};
 
@@ -1799,12 +1811,12 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderString_getLoaderTagMeta = function (text, {isDefaultUrl = false} = {}) {
-		const [name, file] = Renderer.splitTagByPipe(text);
+		const [name, file, mode = "homebrew"] = Renderer.splitTagByPipe(text);
 
-		if (!isDefaultUrl) return {name, path: file};
+		if (!isDefaultUrl) return {name, path: file, mode};
 
 		const path = /^.*?:\/\//.test(file) ? file : `${VeCt.URL_ROOT_BREW}${file}`;
-		return {name, path};
+		return {name, path, mode};
 	};
 
 	this._renderPrimitive = function (entry, textStack, meta, options) { textStack[0] += entry; };
@@ -2535,15 +2547,14 @@ Renderer.utils = {
 			pageLinkPart = SourceUtil.getAdventureBookSourceHref(it.source, it.page);
 
 			// Enable Rivet import for entities embedded in entries
-			if (opts.isEmbeddedEntity) Renderer.hover.addEmbeddedToCache(opts.page, it.source, hash, MiscUtil.copyFast(it));
+			if (opts.isEmbeddedEntity) ExtensionUtil.addEmbeddedToCache(opts.page, it.source, hash, it);
 		}
 
 		const tagPartSourceStart = `<${pageLinkPart ? `a href="${Renderer.get().baseUrl}${pageLinkPart}"` : "span"}`;
 		const tagPartSourceEnd = `</${pageLinkPart ? "a" : "span"}>`;
 
-		const ptBrewSourceLink = BrewUtil2.hasSourceJson(it.source) && BrewUtil2.sourceJsonToSource(it.source)?.url
-			? `<a href="${BrewUtil2.sourceJsonToSource(it.source).url}" title="View Homebrew Source" class="ve-self-flex-center ml-2 ve-muted rd__stats-name-brew-link" target="_blank" rel="noopener noreferrer"><span class="	glyphicon glyphicon-share"></span></a>`
-			: "";
+		const ptBrewSourceLink = Renderer.utils._getNameTr_getPtBrewPrereleaseSourceLink({ent: it, brewUtil: PrereleaseUtil})
+			|| Renderer.utils._getNameTr_getPtBrewPrereleaseSourceLink({ent: it, brewUtil: BrewUtil2});
 
 		// Add data-page/source/hash attributes for external script use (e.g. Rivet)
 		const $ele = $$`<tr>
@@ -2555,7 +2566,7 @@ Renderer.utils = {
 						${!IS_VTT && ExtensionUtil.ACTIVE && opts.page ? Renderer.utils.getBtnSendToFoundryHtml() : ""}
 					</div>
 					<div class="stats-source ve-flex-v-baseline">
-						${tagPartSourceStart} class="help-subtle stats-source-abbreviation ${it.source ? `${Parser.sourceJsonToColor(it.source)}" title="${Parser.sourceJsonToFull(it.source)}${Renderer.utils.getSourceSubText(it)}` : ""}" ${BrewUtil2.sourceJsonToStyle(it.source)}>${it.source ? Parser.sourceJsonToAbv(it.source) : ""}${tagPartSourceEnd}
+						${tagPartSourceStart} class="help-subtle stats-source-abbreviation ${it.source ? `${Parser.sourceJsonToColor(it.source)}" title="${Parser.sourceJsonToFull(it.source)}${Renderer.utils.getSourceSubText(it)}` : ""}" ${Parser.sourceJsonToStyle(it.source)}>${it.source ? Parser.sourceJsonToAbv(it.source) : ""}${tagPartSourceEnd}
 
 						${Renderer.utils.isDisplayPage(it.page) ? ` ${tagPartSourceStart} class="rd__stats-name-page ml-1" title="Page ${it.page}">p${it.page}${tagPartSourceEnd}` : ""}
 
@@ -2567,6 +2578,12 @@ Renderer.utils = {
 
 		if (opts.asJquery) return $ele;
 		else return $ele[0].outerHTML;
+	},
+
+	_getNameTr_getPtBrewPrereleaseSourceLink ({ent, brewUtil}) {
+		if (!brewUtil.hasSourceJson(ent.source) || !brewUtil.sourceJsonToSource(ent.source)?.url) return "";
+
+		return `<a href="${brewUtil.sourceJsonToSource(ent.source).url}" title="View ${brewUtil.DISPLAY_NAME.toTitleCase()} Source" class="ve-self-flex-center ml-2 ve-muted rd__stats-name-brew-link" target="_blank" rel="noopener noreferrer"><span class="	glyphicon glyphicon-share"></span></a>`;
 	},
 
 	getBtnSendToFoundryHtml ({isMb = true} = {}) {
@@ -2665,7 +2682,7 @@ Renderer.utils = {
 
 	getEmbeddedDataHeader (name, style, {isCollapsed = false} = {}) {
 		return `<table class="rd__b-special rd__b-data ${style ? `rd__b-data--${style}` : ""}">
-		<thead><tr><th class="rd__data-embed-header" colspan="6" data-rd-data-embed-header="true"><span class="rd__data-embed-name ${isCollapsed ? "" : `ve-hidden`}">${name}</span><span class="rd__data-embed-toggle">[${isCollapsed ? "+" : "\u2013"}]</span></th></tr></thead><tbody class="${isCollapsed ? `ve-hidden` : ""}">`;
+		<thead><tr><th class="rd__data-embed-header" colspan="6" data-rd-data-embed-header="true"><span class="rd__data-embed-name ${isCollapsed ? "" : `ve-hidden`}">${name}</span><span class="rd__data-embed-toggle">[${isCollapsed ? "+" : "\u2013"}]</span></th></tr></thead><tbody class="${isCollapsed ? `ve-hidden` : ""}" data-rd-embedded-data-render-target="true">`;
 	},
 
 	getEmbeddedDataFooter () {
@@ -2793,17 +2810,28 @@ Renderer.utils = {
 		assignPropsIfExist(entry.fluff, "name", "type", "entries", "images");
 
 		if (entry.fluff[mappedProp]) {
-			const fromList = (BrewUtil2.getBrewProcessedFromCache(prop) || []).find(it =>
-				it.name === entry.fluff[mappedProp].name
-				&& it.source === entry.fluff[mappedProp].source,
-			);
+			const fromList = [
+				...(PrereleaseUtil.getBrewProcessedFromCache(prop) || []),
+				...(BrewUtil2.getBrewProcessedFromCache(prop) || []),
+			]
+				.find(it =>
+					it.name === entry.fluff[mappedProp].name
+					&& it.source === entry.fluff[mappedProp].source,
+				);
 			if (fromList) {
 				assignPropsIfExist(fromList, "name", "type", "entries", "images");
 			}
 		}
 
 		if (entry.fluff[mappedPropAppend]) {
-			const fromList = (BrewUtil2.getBrewProcessedFromCache(prop) || []).find(it => it.name === entry.fluff[mappedPropAppend].name && it.source === entry.fluff[mappedPropAppend].source);
+			const fromList = [
+				...(PrereleaseUtil.getBrewProcessedFromCache(prop) || []),
+				...(BrewUtil2.getBrewProcessedFromCache(prop) || []),
+			]
+				.find(it =>
+					it.name === entry.fluff[mappedPropAppend].name
+					&& it.source === entry.fluff[mappedPropAppend].source,
+				);
 			if (fromList) {
 				if (fromList.entries) {
 					fluff.entries = MiscUtil.copyFast(fluff.entries || []);
@@ -3896,8 +3924,10 @@ Renderer.events = {
 					tbl,
 				);
 
+				const nxtTgt = nxt.querySelector(`[data-rd-embedded-data-render-target="true"]`);
+
 				const fnBind = Renderer.hover.getFnBindListenersCompact(page);
-				if (fnBind) fnBind(toRender, nxt);
+				if (fnBind) fnBind(toRender, nxtTgt);
 			});
 	},
 };
@@ -4201,11 +4231,21 @@ Renderer.spell = {
 		return renderStack.join("");
 	},
 
+	_prereleaseSourcesCache: null,
 	_brewSourcesCache: null,
-	populateHomebrewLookup (homebrew, {isForce = false} = {}) {
-		if (Renderer.spell._brewSourcesCache && !isForce) return;
 
-		Renderer.spell._brewSourcesCache = {
+	populatePrereleaseLookup (brew, {isForce = false} = {}) {
+		Renderer.spell._populatePrereleaseBrewLookup({brew, isForce, propCache: "_prereleaseSourcesCache"});
+	},
+
+	populateBrewLookup (brew, {isForce = false} = {}) {
+		Renderer.spell._populatePrereleaseBrewLookup({brew, isForce, propCache: "_brewSourcesCache"});
+	},
+
+	_populatePrereleaseBrewLookup ({brew, propCache, isForce}) {
+		if (Renderer.spell[propCache] && !isForce) return;
+
+		const tgt = Renderer.spell[propCache] = {
 			classes: {},
 
 			// region Unused
@@ -4219,28 +4259,28 @@ Renderer.spell = {
 		// region Load homebrew class spell list addons
 		// Three formats are available. A string (shorthand for "spell" format with source "PHB"), "spell" format (object
 		//   with a `name` and a `source`), and "class" format (object with a `class` and a `source`).
-		if (homebrew.class) {
-			homebrew.class.forEach(c => {
+		if (brew.class) {
+			brew.class.forEach(c => {
 				c.source = c.source || Parser.SRC_PHB;
 
-				if (c.classSpells) c.classSpells.forEach(it => Renderer.spell._populateHomebrewLookup_handleSpellListItem(it, c.name, c.source));
+				if (c.classSpells) c.classSpells.forEach(it => Renderer.spell._populatePrereleaseBrewLookup_handleSpellListItem(tgt, it, c.name, c.source));
 			});
 		}
 
-		if (homebrew.subclass) {
-			homebrew.subclass.forEach(sc => {
+		if (brew.subclass) {
+			brew.subclass.forEach(sc => {
 				sc.classSource = sc.classSource || Parser.SRC_PHB;
 				sc.shortName = sc.shortName || sc.name;
 				sc.source = sc.source || sc.classSource;
 
-				if (sc.subclassSpells) sc.subclassSpells.forEach(it => Renderer.spell._populateHomebrewLookup_handleSpellListItem(it, sc.className, sc.classSource, sc.shortName, sc.name, sc.source));
-				if (sc.subSubclassSpells) Object.entries(sc.subSubclassSpells).forEach(([ssC, arr]) => arr.forEach(it => Renderer.spell._populateHomebrewLookup_handleSpellListItem(it, sc.className, sc.classSource, sc.shortName, sc.name, sc.source, ssC)));
+				if (sc.subclassSpells) sc.subclassSpells.forEach(it => Renderer.spell._populatePrereleaseBrewLookup_handleSpellListItem(tgt, it, sc.className, sc.classSource, sc.shortName, sc.name, sc.source));
+				if (sc.subSubclassSpells) Object.entries(sc.subSubclassSpells).forEach(([ssC, arr]) => arr.forEach(it => Renderer.spell._populatePrereleaseBrewLookup_handleSpellListItem(tgt, it, sc.className, sc.classSource, sc.shortName, sc.name, sc.source, ssC)));
 			});
 		}
 		// endregion
 	},
 
-	_populateHomebrewLookup_handleSpellListItem (it, className, classSource, subclassShortName, subclassName, subclassSource, subSubclassName) {
+	_populatePrereleaseBrewLookup_handleSpellListItem (cache, it, className, classSource, subclassShortName, subclassName, subclassSource, subSubclassName) {
 		const doAdd = (target) => {
 			if (subclassShortName) {
 				const toAdd = {
@@ -4261,34 +4301,41 @@ Renderer.spell = {
 
 		// region Duplicate the spell list of another class/subclass/sub-subclass
 		if (it.className) {
-			Renderer.spell._brewSourcesCache.classes.class = Renderer.spell._brewSourcesCache.classes.class || {};
+			cache.classes.class = cache.classes.class || {};
 
 			const cls = it.className.toLowerCase();
 			const source = (it.classSource || Parser.SRC_PHB).toLowerCase();
 
-			Renderer.spell._brewSourcesCache.classes.class[source] = Renderer.spell._brewSourcesCache.classes.class[source] || {};
-			Renderer.spell._brewSourcesCache.classes.class[source][cls] = Renderer.spell._brewSourcesCache.classes.class[source][cls] || {};
+			cache.classes.class[source] = cache.classes.class[source] || {};
+			cache.classes.class[source][cls] = cache.classes.class[source][cls] || {};
 
-			return doAdd(Renderer.spell._brewSourcesCache.classes.class[source][cls]);
+			return doAdd(cache.classes.class[source][cls]);
 		}
 		// endregion
 
 		// region Individual spell
-		Renderer.spell._brewSourcesCache.classes.spell = Renderer.spell._brewSourcesCache.classes.spell || {};
+		cache.classes.spell = cache.classes.spell || {};
 
 		let [name, source] = `${it}`.toLowerCase().split("|");
 		source = source || Parser.SRC_PHB.toLowerCase();
 
-		Renderer.spell._brewSourcesCache.classes.spell[source] = Renderer.spell._brewSourcesCache.classes.spell[source] || {};
-		Renderer.spell._brewSourcesCache.classes.spell[source][name] = Renderer.spell._brewSourcesCache.classes.spell[source][name] || {fromClassList: [], fromSubclass: []};
+		cache.classes.spell[source] = cache.classes.spell[source] || {};
+		cache.classes.spell[source][name] = cache.classes.spell[source][name] || {fromClassList: [], fromSubclass: []};
 
-		doAdd(Renderer.spell._brewSourcesCache.classes.spell[source][name]);
+		doAdd(cache.classes.spell[source][name]);
 		// endregion
 	},
 
-	prePopulateHover (data, opts) {
-		if (opts && opts.isBrew) Renderer.spell.populateHomebrewLookup(data);
+	prePopulateHover (data) {
 		(data.spell || []).forEach(sp => Renderer.spell.initBrewSources(sp));
+	},
+
+	prePopulateHoverPrerelease (data) {
+		Renderer.spell.populatePrereleaseLookup(data);
+	},
+
+	prePopulateHoverBrew (data) {
+		Renderer.spell.populateBrewLookup(data);
 	},
 
 	getCombinedClasses (sp, prop) {
@@ -4374,35 +4421,37 @@ Renderer.spell = {
 		const lowName = sp.name.toLowerCase();
 		const lowSource = sp.source.toLowerCase();
 
-		Renderer.spell._initBrewSources_brewClassesSubclasses({sp, lowName, lowSource});
-		Renderer.spell._initBrewSources_brewGeneric({sp, lowName, lowSource, propSpell: "races", prop: "race"});
-		Renderer.spell._initBrewSources_brewGeneric({sp, lowName, lowSource, propSpell: "backgrounds", prop: "background"});
-		Renderer.spell._initBrewSources_brewGeneric({sp, lowName, lowSource, propSpell: "feats", prop: "feat"});
-		Renderer.spell._initBrewSources_brewGeneric({sp, lowName, lowSource, propSpell: "optionalfeatures", prop: "optionalfeature"});
+		for (const cache of [Renderer.spell._prereleaseSourcesCache, Renderer.spell._brewSourcesCache]) {
+			Renderer.spell._initBrewSources_brewClassesSubclasses({cache, sp, lowName, lowSource});
+			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "races", prop: "race"});
+			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "backgrounds", prop: "background"});
+			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "feats", prop: "feat"});
+			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "optionalfeatures", prop: "optionalfeature"});
+		}
 	},
 
-	_initBrewSources_brewClassesSubclasses ({sp, lowName, lowSource}) {
-		if (!Renderer.spell._brewSourcesCache?.classes) return;
+	_initBrewSources_brewClassesSubclasses ({cache, sp, lowName, lowSource}) {
+		if (!cache?.classes) return;
 
-		if (Renderer.spell._brewSourcesCache.classes.spell) {
-			if (Renderer.spell._brewSourcesCache.classes.spell[lowSource] && Renderer.spell._brewSourcesCache.classes.spell[lowSource][lowName]) {
-				if (Renderer.spell._brewSourcesCache.classes.spell[lowSource][lowName].fromClassList.length) {
+		if (cache.classes.spell) {
+			if (cache.classes.spell[lowSource] && cache.classes.spell[lowSource][lowName]) {
+				if (cache.classes.spell[lowSource][lowName].fromClassList.length) {
 					sp._tmpClasses.fromClassList = sp._tmpClasses.fromClassList || [];
-					sp._tmpClasses.fromClassList.push(...Renderer.spell._brewSourcesCache.classes.spell[lowSource][lowName].fromClassList);
+					sp._tmpClasses.fromClassList.push(...cache.classes.spell[lowSource][lowName].fromClassList);
 				}
-				if (Renderer.spell._brewSourcesCache.classes.spell[lowSource][lowName].fromSubclass.length) {
+				if (cache.classes.spell[lowSource][lowName].fromSubclass.length) {
 					sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
-					sp._tmpClasses.fromSubclass.push(...Renderer.spell._brewSourcesCache.classes.spell[lowSource][lowName].fromSubclass);
+					sp._tmpClasses.fromSubclass.push(...cache.classes.spell[lowSource][lowName].fromSubclass);
 				}
 			}
 		}
 
-		if (Renderer.spell._brewSourcesCache.classes.class && sp.classes && sp.classes.fromClassList) {
+		if (cache.classes.class && sp.classes && sp.classes.fromClassList) {
 			(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
 
 			// speed over safety
-			outer: for (const srcLower in Renderer.spell._brewSourcesCache.classes.class) {
-				const searchForClasses = Renderer.spell._brewSourcesCache.classes.class[srcLower];
+			outer: for (const srcLower in cache.classes.class) {
+				const searchForClasses = cache.classes.class[srcLower];
 
 				for (const clsLowName in searchForClasses) {
 					const spellHasClass = sp.classes && sp.classes.fromClassList.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
@@ -4426,24 +4475,24 @@ Renderer.spell = {
 		}
 	},
 
-	_initBrewSources_brewGeneric ({sp, lowName, lowSource, propSpell, prop}) {
-		if (!Renderer.spell._brewSourcesCache?.[propSpell]) return;
+	_initBrewSources_brewGeneric ({cache, sp, lowName, lowSource, propSpell, prop}) {
+		if (!cache?.[propSpell]) return;
 
 		const propTmp = `_tmp${propSpell.uppercaseFirst()}`;
 
 		// If a precise spell has been specified
-		if (Renderer.spell._brewSourcesCache[propSpell]?.spell?.[lowSource]?.[lowName]?.length) {
+		if (cache[propSpell]?.spell?.[lowSource]?.[lowName]?.length) {
 			(sp[propTmp] = sp[propTmp] || [])
-				.push(...Renderer.spell._brewSourcesCache[propSpell].spell[lowSource][lowName]);
+				.push(...cache[propSpell].spell[lowSource][lowName]);
 		}
 
 		// If we have a copy of an existing entity's spells
-		if (Renderer.spell._brewSourcesCache?.[propSpell]?.[prop] && sp[propSpell]) {
+		if (cache?.[propSpell]?.[prop] && sp[propSpell]) {
 			sp[propTmp] = sp[propTmp] || [];
 
 			// speed over safety
-			outer: for (const srcLower in Renderer.spell._brewSourcesCache[propSpell][prop]) {
-				const searchForExisting = Renderer.spell._brewSourcesCache[propSpell][prop][srcLower];
+			outer: for (const srcLower in cache[propSpell][prop]) {
+				const searchForExisting = cache[propSpell][prop][srcLower];
 
 				for (const lowName in searchForExisting) {
 					const spellHasEnt = sp[propSpell].some(it => (it.source || "").toLowerCase() === srcLower && it.name.toLowerCase() === lowName);
@@ -4978,8 +5027,11 @@ Renderer.race = {
 			if ((_baseRace._seenSubraces || []).some(it => it.name === sr.name && it.source === sr.source)) return;
 			(_baseRace._seenSubraces = _baseRace._seenSubraces || []).push({name: sr.name, source: sr.source});
 
-			// If this is a homebrew "base race" which is not marked as such, upgrade it to a base race
-			if (!_baseRace._isBaseRace && BrewUtil2.hasSourceJson(_baseRace.source)) {
+			// If this is a prerelease/homebrew "base race" which is not marked as such, upgrade it to a base race
+			if (
+				!_baseRace._isBaseRace
+				&& (PrereleaseUtil.hasSourceJson(_baseRace.source) || BrewUtil2.hasSourceJson(_baseRace.source))
+			) {
 				Renderer.race._mutMakeBaseRace(_baseRace);
 			}
 
@@ -5743,7 +5795,7 @@ Renderer.monster = {
 
 		return e_({
 			tag: "select",
-			clazz: "input-xs form-control form-control--minimal w-initial inline-block",
+			clazz: "input-xs form-control form-control--minimal w-initial inline-block ve-popwindow__hidden",
 			name: "mon__sel-summon-spell-level",
 			children: [
 				e_({tag: "option", val: "-1", text: "\u2014"}),
@@ -5761,7 +5813,7 @@ Renderer.monster = {
 
 		return e_({
 			tag: "select",
-			clazz: "input-xs form-control form-control--minimal w-initial inline-block",
+			clazz: "input-xs form-control form-control--minimal w-initial inline-block ve-popwindow__hidden",
 			name: "mon__sel-summon-class-level",
 			children: [
 				e_({tag: "option", val: "-1", text: "\u2014"}),
@@ -6095,7 +6147,11 @@ Renderer.monster = {
 		if (isPlainText) return senses.join(", ");
 
 		if (!Renderer.monster._FN_TAG_SENSES) {
-			Renderer.monster._SENSE_TAG_METAS = [...MiscUtil.copyFast(Parser.SENSES), ...BrewUtil2.getBrewProcessedFromCache("sense")];
+			Renderer.monster._SENSE_TAG_METAS = [
+				...MiscUtil.copyFast(Parser.SENSES),
+				...(PrereleaseUtil.getBrewProcessedFromCache("sense") || []),
+				...(BrewUtil2.getBrewProcessedFromCache("sense") || []),
+			];
 			Renderer.monster._SENSE_TAG_METAS.forEach(it => it._re = new RegExp(`\\b(?<sense>${it.name.escapeRegexp()})\\b`, "gi"));
 			Renderer.monster._FN_TAG_SENSES = str => {
 				Renderer.monster._SENSE_TAG_METAS
@@ -6184,144 +6240,6 @@ Renderer.monster = {
 		});
 	},
 
-	doBindCompactContentHandlers (
-		{
-			$content,
-			compactReferenceData,
-			toRender,
-			fnRender,
-			page,
-			source,
-			hash,
-			meta,
-		},
-	) {
-		$content
-			.find(".mon__btn-scale-cr")
-			.click(evt => {
-				evt.stopPropagation();
-				const win = (evt.view || {}).window;
-
-				const $btn = $(evt.target).closest("button");
-				const initialCr = toRender._originalCr != null ? toRender._originalCr : toRender.cr.cr || toRender.cr;
-				const lastCr = toRender.cr.cr || toRender.cr;
-
-				Renderer.monster.getCrScaleTarget({
-					win,
-					$btnScale: $btn,
-					initialCr: lastCr,
-					isCompact: true,
-					cbRender: async (targetCr) => {
-						const original = await DataLoader.pCacheAndGet(page, source, hash);
-						if (Parser.numberToCr(targetCr) === initialCr) {
-							toRender = original;
-							compactReferenceData.type = "stats";
-							delete compactReferenceData.crNumber;
-						} else {
-							toRender = await ScaleCreature.scale(original, targetCr);
-							compactReferenceData.type = "statsCreatureScaledCr";
-							compactReferenceData.crNumber = targetCr;
-						}
-
-						$content.empty().append(fnRender(toRender));
-						meta.windowMeta.$windowTitle.text(toRender._displayName || toRender.name);
-
-						Renderer.monster.doBindCompactContentHandlers({
-							$content,
-							compactReferenceData,
-							toRender,
-							fnRender,
-							page,
-							source,
-							hash,
-							meta,
-						});
-					},
-				});
-			});
-
-		$content
-			.find(".mon__btn-reset-cr")
-			.click(async () => {
-				toRender = await DataLoader.pCacheAndGet(page, source, hash);
-				$content.empty().append(fnRender(toRender));
-				meta.windowMeta.$windowTitle.text(toRender._displayName || toRender.name);
-
-				Renderer.monster.doBindCompactContentHandlers({
-					$content,
-					compactReferenceData,
-					toRender,
-					fnRender,
-					page,
-					source,
-					hash,
-					meta,
-				});
-			});
-
-		const $selSummonSpellLevel = $content
-			.find(`[name="mon__sel-summon-spell-level"]`)
-			.change(async () => {
-				const original = await DataLoader.pCacheAndGet(page, source, hash);
-				const spellLevel = Number($selSummonSpellLevel.val());
-				if (~spellLevel) {
-					toRender = await ScaleSpellSummonedCreature.scale(original, spellLevel);
-					compactReferenceData.type = "statsCreatureScaledSpellSummonLevel";
-					compactReferenceData.summonSpellLevel = spellLevel;
-				} else {
-					toRender = original;
-					compactReferenceData.type = "stats";
-					delete compactReferenceData.summonSpellLevel;
-				}
-
-				$content.empty().append(fnRender(toRender));
-				meta.windowMeta.$windowTitle.text(toRender._displayName || toRender.name);
-
-				Renderer.monster.doBindCompactContentHandlers({
-					$content,
-					compactReferenceData,
-					toRender,
-					fnRender,
-					page,
-					source,
-					hash,
-					meta,
-				});
-			})
-			.val(toRender._summonedBySpell_level != null ? `${toRender._summonedBySpell_level}` : "-1");
-
-		const $selSummonClassLevel = $content
-			.find(`[name="mon__sel-summon-class-level"]`)
-			.change(async () => {
-				const original = await DataLoader.pCacheAndGet(page, source, hash);
-				const classLevel = Number($selSummonClassLevel.val());
-				if (~classLevel) {
-					toRender = await ScaleClassSummonedCreature.scale(original, classLevel);
-					compactReferenceData.type = "statsCreatureScaledClassSummonLevel";
-					compactReferenceData.summonClassLevel = classLevel;
-				} else {
-					toRender = original;
-					compactReferenceData.type = "stats";
-					delete compactReferenceData.summonClassLevel;
-				}
-
-				$content.empty().append(fnRender(toRender));
-				meta.windowMeta.$windowTitle.text(toRender._displayName || toRender.name);
-
-				Renderer.monster.doBindCompactContentHandlers({
-					$content,
-					compactReferenceData,
-					toRender,
-					fnRender,
-					page,
-					source,
-					hash,
-					meta,
-				});
-			})
-			.val(toRender._summonedByClass_level != null ? `${toRender._summonedByClass_level}` : "-1");
-	},
-
 	// region Custom hash ID packing/unpacking
 	getCustomHashId (mon) {
 		if (!mon._isScaledCr && !mon._isScaledSpellSummon && !mon._scaledClassSummonLevel) return null;
@@ -6366,6 +6284,89 @@ Renderer.monster = {
 		if (_scaledSpellSummonLevel) return ScaleSpellSummonedCreature.scale(monRaw, _scaledSpellSummonLevel);
 		if (_scaledClassSummonLevel) return ScaleClassSummonedCreature.scale(monRaw, _scaledClassSummonLevel);
 		throw new Error(`Unhandled custom hash ID "${customHashId}"`);
+	},
+
+	_bindListenersScale (mon, ele) {
+		const page = UrlUtil.PG_BESTIARY;
+		const source = mon.source;
+		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
+
+		const fnRender = Renderer.hover.getFnRenderCompact(page);
+
+		const $content = $(ele);
+
+		$content
+			.find(".mon__btn-scale-cr")
+			.click(evt => {
+				evt.stopPropagation();
+				const win = (evt.view || {}).window;
+
+				const $btn = $(evt.target).closest("button");
+				const initialCr = mon._originalCr != null ? mon._originalCr : mon.cr.cr || mon.cr;
+				const lastCr = mon.cr.cr || mon.cr;
+
+				Renderer.monster.getCrScaleTarget({
+					win,
+					$btnScale: $btn,
+					initialCr: lastCr,
+					isCompact: true,
+					cbRender: async (targetCr) => {
+						const original = await DataLoader.pCacheAndGet(page, source, hash);
+						const toRender = Parser.numberToCr(targetCr) === initialCr
+							? original
+							: await ScaleCreature.scale(original, targetCr);
+
+						$content.empty().append(fnRender(toRender));
+
+						Renderer.monster._bindListenersScale(toRender, ele);
+					},
+				});
+			});
+
+		$content
+			.find(".mon__btn-reset-cr")
+			.click(async () => {
+				const toRender = await DataLoader.pCacheAndGet(page, source, hash);
+				$content.empty().append(fnRender(toRender));
+
+				Renderer.monster._bindListenersScale(toRender, ele);
+			});
+
+		const $selSummonSpellLevel = $content
+			.find(`[name="mon__sel-summon-spell-level"]`)
+			.change(async () => {
+				const original = await DataLoader.pCacheAndGet(page, source, hash);
+				const spellLevel = Number($selSummonSpellLevel.val());
+
+				const toRender = ~spellLevel
+					? await ScaleSpellSummonedCreature.scale(original, spellLevel)
+					: original;
+
+				$content.empty().append(fnRender(toRender));
+
+				Renderer.monster._bindListenersScale(toRender, ele);
+			})
+			.val(mon._summonedBySpell_level != null ? `${mon._summonedBySpell_level}` : "-1");
+
+		const $selSummonClassLevel = $content
+			.find(`[name="mon__sel-summon-class-level"]`)
+			.change(async () => {
+				const original = await DataLoader.pCacheAndGet(page, source, hash);
+				const classLevel = Number($selSummonClassLevel.val());
+
+				const toRender = ~classLevel
+					? await ScaleClassSummonedCreature.scale(original, classLevel)
+					: original;
+
+				$content.empty().append(fnRender(toRender));
+
+				Renderer.monster._bindListenersScale(toRender, ele);
+			})
+			.val(mon._summonedByClass_level != null ? `${mon._summonedByClass_level}` : "-1");
+	},
+
+	bindListenersCompact (mon, ele) {
+		Renderer.monster._bindListenersScale(mon, ele);
 	},
 };
 Renderer.monster.CHILD_PROPS_EXTENDED = [...Renderer.monster.CHILD_PROPS, "lairActions", "regionalEffects"];
@@ -6778,9 +6779,12 @@ Renderer.item = {
 		if (Renderer.item._additionalEntriesMap[e.appliesTo]) return;
 		Renderer.item._additionalEntriesMap[e.appliesTo] = MiscUtil.copyFast(e.entries);
 	},
-	async _pAddBrewPropertiesAndTypes () {
-		if (typeof BrewUtil2 === "undefined") return;
-		const brew = await BrewUtil2.pGetBrewProcessed();
+	async _pAddPrereleaseBrewPropertiesAndTypes () {
+		if (typeof PrereleaseUtil !== "undefined") await this._pAddPrereleaseBrewPropertiesAndTypes_({brewUtil: PrereleaseUtil});
+		if (typeof BrewUtil2 !== "undefined") await this._pAddPrereleaseBrewPropertiesAndTypes_({brewUtil: BrewUtil2});
+	},
+	async _pAddPrereleaseBrewPropertiesAndTypes_ ({brewUtil}) {
+		const brew = await brewUtil.pGetBrewProcessed();
 		(brew.itemProperty || []).forEach(p => Renderer.item._addProperty(p));
 		(brew.itemType || []).forEach(t => Renderer.item._addType(t));
 		(brew.itemEntry || []).forEach(t => Renderer.item._addEntry(t));
@@ -6841,7 +6845,7 @@ Renderer.item = {
 
 	async _pGetAndProcBaseItems (baseItemData) {
 		Renderer.item._addBasePropertiesAndTypes(baseItemData);
-		await Renderer.item._pAddBrewPropertiesAndTypes();
+		await Renderer.item._pAddPrereleaseBrewPropertiesAndTypes();
 		return baseItemData.baseitem;
 	},
 
@@ -6961,6 +6965,16 @@ Renderer.item = {
 						appliedPropertyEntries.forEach((ent, i) => specificVariant._fullEntries.splice(i, 0, ent));
 						break;
 					}
+					case "vulnerable":
+					case "resist":
+					case "immune": {
+						// Handled below
+						break;
+					}
+					case "conditionImmune": {
+						specificVariant[inheritedProperty] = [...specificVariant[inheritedProperty] || [], ...val].unique();
+						break;
+					}
 					case "nameRemove": {
 						specificVariant.name = specificVariant.name.replace(new RegExp(val.escapeRegexp(), "g"), "");
 
@@ -7002,6 +7016,8 @@ Renderer.item = {
 				}
 			});
 
+		Renderer.item._createSpecificVariants_mergeVulnerableResistImmune({specificVariant, inherits});
+
 		// track the specific variant on the parent generic, to later render as part of the stats
 		genericVariant.variants = genericVariant.variants || [];
 		if (!genericVariant.variants.some(it => it.base?.name === baseItem.name && it.base?.source === baseItem.source)) genericVariant.variants.push({base: baseItem, specificVariant});
@@ -7042,6 +7058,68 @@ Renderer.item = {
 		});
 	},
 
+	_PROPS_VULN_RES_IMMUNE: [
+		"vulnerable",
+		"resist",
+		"immune",
+	],
+	_createSpecificVariants_mergeVulnerableResistImmune ({specificVariant, inherits}) {
+		const fromBase = {};
+		Renderer.item._PROPS_VULN_RES_IMMUNE
+			.filter(prop => specificVariant[prop])
+			.forEach(prop => fromBase[prop] = [...specificVariant[prop]]);
+
+		// For each `inherits` prop, remove matching values from non-matching props in base item (i.e., a value should be
+		//   unique across all three arrays).
+		Renderer.item._PROPS_VULN_RES_IMMUNE
+			.forEach(prop => {
+				const val = inherits[prop];
+
+				// Retain existing from base item
+				if (val === undefined) return;
+
+				// Delete from base item
+				if (val == null) return delete fromBase[prop];
+
+				const valSet = new Set();
+				val.forEach(it => {
+					if (typeof it === "string") valSet.add(it);
+					if (!it?.[prop]?.length) return;
+					it?.[prop].forEach(itSub => {
+						if (typeof itSub === "string") valSet.add(itSub);
+					});
+				});
+
+				Renderer.item._PROPS_VULN_RES_IMMUNE
+					.filter(it => it !== prop)
+					.forEach(propOther => {
+						if (!fromBase[propOther]) return;
+
+						fromBase[propOther] = fromBase[propOther]
+							.filter(it => {
+								if (typeof it === "string") return !valSet.has(it);
+
+								if (it?.[propOther]?.length) {
+									it[propOther] = it[propOther].filter(itSub => {
+										if (typeof itSub === "string") return !valSet.has(itSub);
+										return true;
+									});
+								}
+
+								return true;
+							});
+
+						if (!fromBase[propOther].length) delete fromBase[propOther];
+					});
+			});
+
+		Renderer.item._PROPS_VULN_RES_IMMUNE
+			.forEach(prop => {
+				if (fromBase[prop] || inherits[prop]) specificVariant[prop] = [...(fromBase[prop] || []), ...(inherits[prop] || [])].unique();
+				else delete specificVariant[prop];
+			});
+	},
+
 	_enhanceItems (allItems) {
 		allItems.forEach((item) => Renderer.item.enhanceItem(item));
 		return allItems;
@@ -7068,7 +7146,7 @@ Renderer.item = {
 			baseItems = [...baseItemData.baseitem, ...(opts.additionalBaseItems || [])];
 		}
 
-		await Renderer.item._pAddBrewPropertiesAndTypes();
+		await Renderer.item._pAddPrereleaseBrewPropertiesAndTypes();
 		genericVariants.forEach(Renderer.item._genericVariants_addInheritedPropertiesToSelf);
 		const specificVariants = Renderer.item._createSpecificVariants(baseItems, genericVariants);
 		const outSpecificVariants = Renderer.item._enhanceItems(specificVariants);
@@ -7309,10 +7387,10 @@ Renderer.item = {
 		delete item._fullEntries;
 	},
 
-	async pGetSiteUnresolvedRefItemsFromHomebrew (brew = null) {
-		if (typeof BrewUtil2 === "undefined" && brew == null) return [];
+	async pGetSiteUnresolvedRefItemsFromPrereleaseBrew ({brewUtil, brew = null}) {
+		if (brewUtil == null && brew == null) return [];
 
-		brew = brew || await BrewUtil2.pGetBrewProcessed();
+		brew = brew || await brewUtil.pGetBrewProcessed();
 
 		(brew.itemProperty || []).forEach(p => Renderer.item._addProperty(p));
 		(brew.itemType || []).forEach(t => Renderer.item._addType(t));
@@ -7368,8 +7446,11 @@ Renderer.item = {
 		return items;
 	},
 
-	async pGetItemsFromHomebrew () {
-		if (typeof BrewUtil2 === "undefined") return [];
+	async pGetItemsFromPrerelease () {
+		return DataLoader.pCacheAndGetAllPrerelease(UrlUtil.PG_ITEMS);
+	},
+
+	async pGetItemsFromBrew () {
 		return DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_ITEMS);
 	},
 
@@ -7384,7 +7465,7 @@ Renderer.item = {
 			data.itemEntry.forEach(it => Renderer.item._addEntry(it));
 			data.itemTypeAdditionalEntries.forEach(e => Renderer.item._addAdditionalEntries(e));
 
-			await Renderer.item._pAddBrewPropertiesAndTypes();
+			await Renderer.item._pAddPrereleaseBrewPropertiesAndTypes();
 		})();
 	},
 
@@ -8452,7 +8533,6 @@ Renderer.hover = {
 	_BAR_HEIGHT: 16,
 
 	_linkCache: {},
-	_hasBrewSourceBeenAttemptedCache: {},
 	_eleCache: new Map(),
 	_entryCache: {},
 	_isInit: false,
@@ -8617,11 +8697,15 @@ Renderer.hover = {
 		const tmpEvt = meta._tmpEvt;
 		delete meta._tmpEvt;
 
+		// TODO(Future) avoid rendering e.g. creature scaling controls if `win?._IS_POPOUT`
+		const win = (evt.view || {}).window;
+
 		const $content = meta.isFluff
 			? Renderer.hover.$getHoverContent_fluff(page, toRender)
 			: Renderer.hover.$getHoverContent_stats(page, toRender);
+
+		// FIXME(Future) replace this with something maintainable
 		const compactReferenceData = {
-			type: "stats",
 			page,
 			source,
 			hash,
@@ -8646,27 +8730,9 @@ Renderer.hover = {
 			},
 		);
 
-		if (page === UrlUtil.PG_BESTIARY && !meta.isFluff) {
-			const win = (evt.view || {}).window;
-			if (win._IS_POPOUT) {
-				$content.find(`.mon__btn-scale-cr`).remove();
-				$content.find(`.mon__btn-reset-cr`).remove();
-			} else {
-				switch (page) {
-					case UrlUtil.PG_BESTIARY: {
-						Renderer.monster.doBindCompactContentHandlers({
-							$content,
-							compactReferenceData,
-							toRender,
-							fnRender: Renderer.hover.getFnRenderCompact(page),
-							page,
-							source,
-							hash,
-							meta,
-						});
-					}
-				}
-			}
+		if (!meta.isFluff && !win?._IS_POPOUT) {
+			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
+			if (fnBind) fnBind(toRender, $content);
 		}
 	},
 
@@ -8882,7 +8948,6 @@ Renderer.hover = {
 	 * popout window.
 	 * @param [opts.isPopout] If the window should be immediately popped out.
 	 * @param [opts.compactReferenceData] Reference (e.g. page/source/hash/others) which can be used to load the contents into the DM screen.
-	 * @param [opts.compactReferenceData.type]
 	 * @param [opts.sourceData] Source JSON (as raw as possible) used to construct this popout.
 	 */
 	getShowWindow ($content, position, opts) {
@@ -9044,24 +9109,7 @@ Renderer.hover = {
 							const target = panel.getAddButtonPos();
 
 							if (isOverHoverTarget(evt, target)) {
-								switch (opts.compactReferenceData.type) {
-									case "stats": {
-										panel.doPopulate_Stats(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash);
-										break;
-									}
-									case "statsCreatureScaledCr": {
-										panel.doPopulate_StatsScaledCr(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash, opts.compactReferenceData.crNumber);
-										break;
-									}
-									case "statsCreatureScaledSpellSummonLevel": {
-										panel.doPopulate_StatsScaledSpellSummonLevel(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash, opts.compactReferenceData.summonSpellLevel);
-										break;
-									}
-									case "statsCreatureScaledClassSummonLevel": {
-										panel.doPopulate_StatsScaledClassSummonLevel(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash, opts.compactReferenceData.summonClassLevel);
-										break;
-									}
-								}
+								panel.doPopulate_Stats(opts.compactReferenceData.page, opts.compactReferenceData.source, opts.compactReferenceData.hash);
 								doClose();
 							}
 							this._dmScreen.resetHoveringButton();
@@ -9143,7 +9191,7 @@ Renderer.hover = {
 				win._IS_POPOUT = true;
 				win.document.write(`
 					<!DOCTYPE html>
-					<html lang="en" class="${typeof styleSwitcher !== "undefined" ? styleSwitcher.getDayNightClassNames() : ""}"><head>
+					<html lang="en" class="ve-popwindow ${typeof styleSwitcher !== "undefined" ? styleSwitcher.getDayNightClassNames() : ""}"><head>
 						<meta name="viewport" content="width=device-width, initial-scale=1">
 						<title>${opts.title}</title>
 						${$(`link[rel="stylesheet"][href]`).map((i, e) => e.outerHTML).get().join("\n")}
@@ -9203,8 +9251,6 @@ Renderer.hover = {
 				$cpyContent = await opts.$pFnGetPopoutContent();
 			} else {
 				$cpyContent = $content.clone(true, true);
-				$cpyContent.find(`.mon__btn-scale-cr`).remove();
-				$cpyContent.find(`.mon__btn-reset-cr`).remove();
 			}
 
 			$cpyContent.appendTo(win.$wrpHoverContent.empty());
@@ -9437,72 +9483,6 @@ Renderer.hover = {
 	},
 
 	// region entry fetching
-	addEmbeddedToCache (page, source, hash, entity) {
-		Renderer.hover._addToCache(page, source, hash, entity);
-	},
-
-	_addToCache: (page, source, hash, entity) => {
-		page = page.toLowerCase();
-		source = source.toLowerCase();
-		hash = hash.toLowerCase();
-
-		((Renderer.hover._linkCache[page] =
-			Renderer.hover._linkCache[page] || {})[source] =
-			Renderer.hover._linkCache[page][source] || {})[hash] = entity;
-	},
-
-	getFromCache: (page, source, hash, {isCopy = false} = {}) => {
-		page = page.toLowerCase();
-		source = source.toLowerCase();
-		hash = hash.toLowerCase();
-
-		const out = MiscUtil.get(Renderer.hover._linkCache, page, source, hash);
-		if (isCopy && out != null) return MiscUtil.copyFast(out);
-		return out;
-	},
-
-	isCached (page, source, hash) {
-		page = page.toLowerCase();
-		source = source.toLowerCase();
-		hash = hash.toLowerCase();
-		return !!(Renderer.hover._linkCache[page] && Renderer.hover._linkCache[page][source] && Renderer.hover._linkCache[page][source][hash]);
-	},
-
-	isPageSourceCached (page, source) {
-		return !!(Renderer.hover._linkCache[page.toLowerCase()] && Renderer.hover._linkCache[page][source.toLowerCase()]);
-	},
-
-	_hasBrewSourceBeenAttempted (source) { return !!Renderer.hover._hasBrewSourceBeenAttemptedCache[source]; },
-	_setHasBrewSourceBeenAttempted (source) { Renderer.hover._hasBrewSourceBeenAttemptedCache[source] = true; },
-
-	_pDoLoadFromBrew_cachedSources: null,
-	async _pDoLoadFromBrew (page, source, hash) {
-		// Cache the sources, so we can do case-insensitve lookups
-		if (!Renderer.hover._pDoLoadFromBrew_cachedSources) {
-			if (typeof BrewUtil2 === "undefined") return false;
-
-			let sourceIndex;
-			try {
-				sourceIndex = await DataUtil.brew.pLoadSourceIndex(await BrewUtil2.pGetCustomUrl());
-			} catch (e) {
-				setTimeout(() => { throw e; });
-			}
-			if (!sourceIndex) return false;
-
-			Renderer.hover._pDoLoadFromBrew_cachedSources = {};
-			Object.keys(sourceIndex)
-				.forEach((source) => {
-					Renderer.hover._pDoLoadFromBrew_cachedSources[source.toLowerCase()] = source;
-				});
-		}
-
-		const sourceJsonCorrectCase = Renderer.hover._pDoLoadFromBrew_cachedSources[source];
-		if (!sourceJsonCorrectCase) return false;
-
-		const brewJson = await DataUtil.pAddBrewBySource(sourceJsonCorrectCase);
-		return brewJson?.length;
-	},
-
 	getEntityLink (
 		ent,
 		{
@@ -9646,6 +9626,7 @@ Renderer.hover = {
 
 	getFnBindListenersCompact (page) {
 		switch (page) {
+			case UrlUtil.PG_BESTIARY: return Renderer.monster.bindListenersCompact;
 			case UrlUtil.PG_RACES: return Renderer.race.bindListenersCompact;
 			default: return null;
 		}

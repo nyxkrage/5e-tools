@@ -795,6 +795,7 @@ class ListPage {
 	/**
 	 * @param opts Options object.
 	 * @param opts.dataSource Main JSON data url or function to fetch main data.
+	 * @param [opts.prereleaseDataSource] Function to fetch prerelease data.
 	 * @param [opts.brewDataSource] Function to fetch brew data.
 	 * @param [opts.pFnGetFluff] Function to fetch fluff for a given entity.
 	 * @param [opts.dataSourceFluff] Fluff JSON data url or function to fetch fluff data.
@@ -826,6 +827,7 @@ class ListPage {
 	 */
 	constructor (opts) {
 		this._dataSource = opts.dataSource;
+		this._prereleaseDataSource = opts.prereleaseDataSource;
 		this._brewDataSource = opts.brewDataSource;
 		this._pFnGetFluff = opts.pFnGetFluff;
 		this._dataSourcefluff = opts.dataSourceFluff;
@@ -876,6 +878,7 @@ class ListPage {
 
 		this._$pgContent = $(`#pagecontent`);
 
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 
@@ -1000,9 +1003,10 @@ class ListPage {
 
 	async _pOnLoad_pGetData () {
 		const data = await (typeof this._dataSource === "string" ? DataUtil.loadJSON(this._dataSource) : this._dataSource());
+		const prerelease = await (this._prereleaseDataSource ? this._prereleaseDataSource() : PrereleaseUtil.pGetBrewProcessed());
 		const homebrew = await (this._brewDataSource ? this._brewDataSource() : BrewUtil2.pGetBrewProcessed());
 
-		return BrewUtil2.getMergedData(data, homebrew);
+		return BrewUtil2.getMergedData(PrereleaseUtil.getMergedData(data, prerelease), homebrew);
 	}
 
 	_pOnLoad_bookView () {

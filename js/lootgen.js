@@ -6,6 +6,7 @@ class LootGenPage {
 	}
 
 	async pInit () {
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 
@@ -30,11 +31,14 @@ class LootGenPage {
 	}
 
 	async _pLoadSpells () {
-		const [stockSpells, brew] = await Promise.all([
+		const [stockSpells, prerelease, brew] = await Promise.all([
 			DataUtil.spell.pLoadAll(),
+			PrereleaseUtil.pGetBrewProcessed(),
 			BrewUtil2.pGetBrewProcessed(),
 		]);
-		return stockSpells.concat(brew?.spell || [])
+		return stockSpells
+			.concat(prerelease?.spell || [])
+			.concat(brew?.spell || [])
 			.filter(sp => {
 				return !ExcludeUtil.isExcluded(
 					UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS](sp),
@@ -47,8 +51,9 @@ class LootGenPage {
 
 	async _pLoadItems () {
 		const stockItems = (await Renderer.item.pBuildList()).filter(it => !it._isItemGroup);
-		const brewItems = await Renderer.item.pGetItemsFromHomebrew();
-		return stockItems.concat(brewItems)
+		return stockItems
+			.concat(await Renderer.item.pGetItemsFromPrerelease())
+			.concat(await Renderer.item.pGetItemsFromBrew())
 			.filter(it => {
 				return !ExcludeUtil.isExcluded(
 					UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS](it),

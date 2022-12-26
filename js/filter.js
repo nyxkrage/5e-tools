@@ -43,6 +43,7 @@ class PageFilter {
 		const variantSuffix = isVariantClass ? ` [${definedInSource ? Parser.sourceJsonToAbv(definedInSource) : "Unknown"}]` : "";
 		const sourceSuffix = (
 			SourceUtil.isNonstandardSource(classSource || Parser.SRC_PHB)
+			|| (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(classSource || Parser.SRC_PHB))
 			|| (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(classSource || Parser.SRC_PHB))
 		)
 			? ` (${Parser.sourceJsonToAbv(classSource)})` : "";
@@ -611,7 +612,7 @@ class FilterBox extends ProxyBase {
 
 		const sourceFilter = this._filters.find(it => it.header === FilterBox.SOURCE_HEADER);
 		if (sourceFilter) {
-			const selFnAlt = (val) => !SourceUtil.isNonstandardSource(val) && !BrewUtil2.hasSourceJson(val);
+			const selFnAlt = (val) => !SourceUtil.isNonstandardSource(val) && !PrereleaseUtil.hasSourceJson(val) && !BrewUtil2.hasSourceJson(val);
 			const hkSelFn = () => {
 				if (this._meta.isBrewDefaultHidden) sourceFilter.setTempFnSel(selFnAlt);
 				else sourceFilter.setTempFnSel(null);
@@ -924,7 +925,12 @@ class FilterBox extends ProxyBase {
 		const {box: nxtStateBox, filters: nxtStatesFilters} = this.getNextStateFromSubHashes({unpackedSubhashes});
 
 		this._setBoxStateFromNextBoxState(nxtStateBox);
+
 		this._filters
+			.flatMap(f => [
+				f,
+				...f.getChildFilters(),
+			])
 			.filter(filter => nxtStatesFilters[filter.header])
 			.forEach(filter => filter.setStateFromNextState(nxtStatesFilters));
 		// endregion
@@ -2769,15 +2775,15 @@ class SourceFilter extends Filter {
 	static _SORT_ITEMS_MINI (a, b) {
 		a = a.item ?? a;
 		b = b.item ?? b;
-		const valA = BrewUtil2.hasSourceJson(a) ? 2 : SourceUtil.isNonstandardSource(a) ? 1 : 0;
-		const valB = BrewUtil2.hasSourceJson(b) ? 2 : SourceUtil.isNonstandardSource(b) ? 1 : 0;
+		const valA = BrewUtil2.hasSourceJson(a) ? 2 : (SourceUtil.isNonstandardSource(a) || PrereleaseUtil.hasSourceJson(a)) ? 1 : 0;
+		const valB = BrewUtil2.hasSourceJson(b) ? 2 : (SourceUtil.isNonstandardSource(b) || PrereleaseUtil.hasSourceJson(b)) ? 1 : 0;
 		return SortUtil.ascSort(valA, valB) || SortUtil.ascSortLower(Parser.sourceJsonToFull(a), Parser.sourceJsonToFull(b));
 	}
 
 	static _getDisplayHtmlMini (item) {
 		item = item.item || item;
 		const isBrewSource = BrewUtil2.hasSourceJson(item);
-		const isNonStandardSource = !isBrewSource && SourceUtil.isNonstandardSource(item);
+		const isNonStandardSource = !isBrewSource && (SourceUtil.isNonstandardSource(item) || PrereleaseUtil.hasSourceJson(item));
 		return `<span ${isBrewSource ? `title="(Homebrew)"` : isNonStandardSource ? `title="(UA/Etc.)"` : ""} class="glyphicon ${isBrewSource ? `glyphicon-glass` : isNonStandardSource ? `glyphicon-file` : `glyphicon-book`}"></span> ${Parser.sourceJsonToAbv(item)}`;
 	}
 
@@ -3698,9 +3704,17 @@ class RangeFilter extends FilterBase {
 			const slice = this._labels.slice(filterState.min, filterState.max + 1);
 
 			// Special case for "isAllowGreater" filters, which assumes the labels are numerical values
-			if (this._isAllowGreater && filterState.max === this._state.max && entryVal > this._state.max) return true;
+			if (this._isAllowGreater) {
+				if (filterState.max === this._state.max && entryVal > this._state.max) return true;
 
-			if (entryVal instanceof Array) return !!entryVal.find(it => slice.includes(it));
+				const sliceMin = Math.min(...slice);
+				const sliceMax = Math.max(...slice);
+
+				if (entryVal instanceof Array) return entryVal.some(it => it >= sliceMin && it <= sliceMax);
+				return entryVal >= sliceMin && entryVal <= sliceMax;
+			}
+
+			if (entryVal instanceof Array) return entryVal.some(it => slice.includes(it));
 			return slice.includes(entryVal);
 		} else {
 			if (entryVal instanceof Array) {
@@ -4193,6 +4207,10 @@ class MultiFilter extends FilterBase {
 	_getCompressedState () {
 		return Object.keys(this._defaultState)
 			.map(k => UrlUtil.mini.compress(this._state[k] === undefined ? this._defaultState[k] : this._state[k]));
+	}
+
+	setStateFromNextState (nxtState) {
+		super.setStateFromNextState(nxtState);
 	}
 
 	getNextStateFromSubhashState (state) {

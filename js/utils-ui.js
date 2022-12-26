@@ -1380,6 +1380,10 @@ class SearchUiUtil {
 			await Promise.all(options.additionalIndices.map(async add => {
 				additionalData[add] = Omnidexer.decompressIndex(await DataUtil.loadJSON(`${Renderer.get().baseUrl}search/index-${add}.json`));
 				const maxId = additionalData[add].last().id;
+
+				const prereleaseIndex = await PrereleaseUtil.pGetAdditionalSearchIndices(maxId, add);
+				if (prereleaseIndex.length) additionalData[add] = additionalData[add].concat(prereleaseIndex);
+
 				const brewIndex = await BrewUtil2.pGetAdditionalSearchIndices(maxId, add);
 				if (brewIndex.length) additionalData[add] = additionalData[add].concat(brewIndex);
 			}));
@@ -1390,6 +1394,10 @@ class SearchUiUtil {
 			await Promise.all(options.alternateIndices.map(async alt => {
 				alternateData[alt] = Omnidexer.decompressIndex(await DataUtil.loadJSON(`${Renderer.get().baseUrl}search/index-alt-${alt}.json`));
 				const maxId = alternateData[alt].last().id;
+
+				const prereleaseIndex = await BrewUtil2.pGetAlternateSearchIndices(maxId, alt);
+				if (prereleaseIndex.length) alternateData[alt] = alternateData[alt].concat(prereleaseIndex);
+
 				const brewIndex = await BrewUtil2.pGetAlternateSearchIndices(maxId, alt);
 				if (brewIndex.length) alternateData[alt] = alternateData[alt].concat(brewIndex);
 			}));
@@ -1436,16 +1444,21 @@ class SearchUiUtil {
 		Object.values(additionalData).forEach(arr => arr.forEach(d => handleDataItem(d)));
 		Object.values(alternateData).forEach(arr => arr.forEach(d => handleDataItem(d, true)));
 
-		const brewIndex = await BrewUtil2.pGetSearchIndex({id: availContent.ALL.documentStore.length});
+		const pAddPrereleaseBrewIndex = async ({brewUtil}) => {
+			const brewIndex = await brewUtil.pGetSearchIndex({id: availContent.ALL.documentStore.length});
 
-		brewIndex.forEach(d => {
-			if (SearchUiUtil._isNoHoverCat(d.c) || fromDeepIndex(d)) return;
-			d.cf = Parser.pageCategoryToFull(d.c);
-			d.cf = d.c === Parser.CAT_ID_CREATURE ? "Creature" : Parser.pageCategoryToFull(d.c);
-			initIndexForFullCat(d);
-			availContent.ALL.addDoc(d);
-			availContent[d.cf].addDoc(d);
-		});
+			brewIndex.forEach(d => {
+				if (SearchUiUtil._isNoHoverCat(d.c) || fromDeepIndex(d)) return;
+				d.cf = Parser.pageCategoryToFull(d.c);
+				d.cf = d.c === Parser.CAT_ID_CREATURE ? "Creature" : Parser.pageCategoryToFull(d.c);
+				initIndexForFullCat(d);
+				availContent.ALL.addDoc(d);
+				availContent[d.cf].addDoc(d);
+			});
+		};
+
+		await pAddPrereleaseBrewIndex({brewUtil: PrereleaseUtil});
+		await pAddPrereleaseBrewIndex({brewUtil: BrewUtil2});
 
 		return availContent;
 	}
@@ -2167,14 +2180,19 @@ class SearchWidget {
 
 		let id = 0;
 		for (const subSpec of customIndexSubSpecs) {
-			const [json, homebrew] = await Promise.all([
+			const [json, prerelease, brew] = await Promise.all([
 				typeof subSpec.dataSource === "string"
 					? DataUtil.loadJSON(subSpec.dataSource)
 					: subSpec.dataSource(),
+				PrereleaseUtil.pGetBrewProcessed(),
 				BrewUtil2.pGetBrewProcessed(),
 			]);
 
-			await [...json[subSpec.prop], ...(homebrew[subSpec.prop] || [])]
+			await [
+				...json[subSpec.prop],
+				...(prerelease[subSpec.prop] || []),
+				...(brew[subSpec.prop] || []),
+			]
 				.pSerialAwaitMap(async ent => {
 					const doc = {
 						id: id++,

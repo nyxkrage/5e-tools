@@ -504,8 +504,13 @@ class IndexableFileMagicVariants extends IndexableFile {
 					const specVars = await (async () => {
 						const baseItemJson = await DataUtil.loadJSON(`data/items-base.json`);
 						const rawBaseItems = {...baseItemJson, baseitem: [...baseItemJson.baseitem]};
+
+						const prerelease = typeof PrereleaseUtil !== "undefined" ? await PrereleaseUtil.pGetBrewProcessed() : {};
+						if (prerelease.baseitem) rawBaseItems.baseitem.push(...prerelease.baseitem);
+
 						const brew = typeof BrewUtil2 !== "undefined" ? await BrewUtil2.pGetBrewProcessed() : {};
 						if (brew.baseitem) rawBaseItems.baseitem.push(...brew.baseitem);
+
 						return Renderer.item.getAllIndexableItems(rawVariants, rawBaseItems);
 					})();
 					return specVars.map(sv => {
@@ -796,12 +801,12 @@ class IndexableFileRaces extends IndexableFile {
 			postLoad: data => {
 				return DataUtil.race.getPostProcessedSiteJson(data, {isAddBaseRaces: true});
 			},
-			pFnPreProcBrew: async brew => {
-				if (!brew.race?.length && !brew.subrace?.length) return brew;
+			pFnPreProcBrew: async prereleaseBrew => {
+				if (!prereleaseBrew.race?.length && !prereleaseBrew.subrace?.length) return prereleaseBrew;
 
 				const site = await DataUtil.race.loadRawJSON();
 
-				return DataUtil.race.getPostProcessedBrewJson(site, brew, {isAddBaseRaces: true});
+				return DataUtil.race.getPostProcessedPrereleaseBrewJson(site, prereleaseBrew, {isAddBaseRaces: true});
 			},
 		});
 	}

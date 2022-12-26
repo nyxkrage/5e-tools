@@ -1601,7 +1601,7 @@
 					]
 				}
 			],
-			"template": "{{prop_name}} ({{item.range}} ft.)"
+			"template": "{{prop_name}} ({{item.range}}\u00A0ft.)"
 		},
 		{
 			"abbreviation": "AF",
@@ -1617,7 +1617,7 @@
 					]
 				}
 			],
-			"template": "{{prop_name}} ({{item.range}} ft.)"
+			"template": "{{prop_name}} ({{item.range}}\u00A0ft.)"
 		},
 		{
 			"abbreviation": "BF",
@@ -1737,7 +1737,7 @@
 					]
 				}
 			],
-			"template": "{{prop_name}} ({{item.range}} ft.)"
+			"template": "{{prop_name}} ({{item.range}}\u00A0ft.)"
 		},
 		{
 			"abbreviation": "2H",

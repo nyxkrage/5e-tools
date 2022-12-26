@@ -13,6 +13,7 @@
 
 class _DataLoaderConst {
 	static SOURCE_SITE_ALL = Symbol("SOURCE_SITE_ALL");
+	static SOURCE_PRERELEASE_ALL_CURRENT = Symbol("SOURCE_PRERELEASE_ALL_CURRENT");
 	static SOURCE_BREW_ALL_CURRENT = Symbol("SOURCE_BREW_ALL_CURRENT");
 
 	static ENTITY_NULL = Symbol("ENTITY_NULL");
@@ -96,13 +97,36 @@ class _DataLoaderDereferencerBase {
 		keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
 	});
 
-	_pPreloadingRefContent = null;
+	/* -------------------------------------------- */
+
+	_pPreloadingRefContentSite = null;
+	_pPreloadingRefContentPrerelease = null;
+	_pPreloadingRefContentBrew = null;
+
+	_preloadingPrereleaseLastIdent = null;
+	_preloadingBrewLastIdent = null;
 
 	async pPreloadRefContent () {
-		return (this._pPreloadingRefContent = this._pPreloadingRefContent || this._pPreloadRefContent());
+		await (this._pPreloadingRefContentSite = this._pPreloadingRefContentSite || this._pPreloadRefContentSite());
+
+		if (typeof PrereleaseUtil !== "undefined") {
+			const identPrerelease = PrereleaseUtil.getCacheIteration();
+			if (identPrerelease !== this._preloadingPrereleaseLastIdent) this._pPreloadingRefContentPrerelease = null;
+			await (this._pPreloadingRefContentPrerelease = this._pPreloadingRefContentPrerelease || this._pPreloadRefContentPrerelease());
+		}
+
+		if (typeof BrewUtil2 !== "undefined") {
+			const identBrew = BrewUtil2.getCacheIteration();
+			if (identBrew !== this._preloadingBrewLastIdent) this._pPreloadingRefContentBrew = null;
+			await (this._pPreloadingRefContentBrew = this._pPreloadingRefContentBrew || this._pPreloadRefContentBrew());
+		}
 	}
 
-	async _pPreloadRefContent () { /* Implement as required */ }
+	async _pPreloadRefContentSite () { /* Implement as required */ }
+	async _pPreloadRefContentPrerelease () { /* Implement as required */ }
+	async _pPreloadRefContentBrew () { /* Implement as required */ }
+
+	/* -------------------------------------------- */
 
 	dereference ({ent, entriesWithoutRefs, toReplaceMeta, ixReplace}) { throw new Error("Unimplemented!"); }
 
@@ -142,10 +166,9 @@ class _DataLoaderDereferencerClassSubclassFeatures extends _DataLoaderDereferenc
 }
 
 class _DataLoaderDereferencerOptionalfeatures extends _DataLoaderDereferencerBase {
-	async _pPreloadRefContent () {
-		await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_OPT_FEATURES);
-		await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_OPT_FEATURES);
-	}
+	async _pPreloadRefContentSite () { await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_OPT_FEATURES); }
+	async _pPreloadRefContentPrerelease () { await DataLoader.pCacheAndGetAllPrerelease(UrlUtil.PG_OPT_FEATURES); }
+	async _pPreloadRefContentBrew () { await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_OPT_FEATURES); }
 
 	dereference ({ent, entriesWithoutRefs, toReplaceMeta, ixReplace}) {
 		const refUnpacked = DataUtil.generic.unpackUid(toReplaceMeta.optionalfeature, "optfeature");
@@ -170,10 +193,9 @@ class _DataLoaderDereferencerOptionalfeatures extends _DataLoaderDereferencerBas
 }
 
 class _DataLoaderDereferencerItemEntries extends _DataLoaderDereferencerBase {
-	async _pPreloadRefContent () {
-		await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_ITEMS);
-		await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_ITEMS);
-	}
+	async _pPreloadRefContentSite () { await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_ITEMS); }
+	async _pPreloadRefContentPrerelease () { await DataLoader.pCacheAndGetAllPrerelease(UrlUtil.PG_ITEMS); }
+	async _pPreloadRefContentBrew () { await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_ITEMS); }
 
 	dereference ({ent, entriesWithoutRefs, toReplaceMeta, ixReplace}) {
 		const refUnpacked = DataUtil.generic.unpackUid(toReplaceMeta.itemEntry, "itemEntry");
@@ -439,6 +461,7 @@ class _DataLoaderDereferencer {
 class _DataLoaderCache {
 	_cache = {};
 	_cacheSiteLists = {};
+	_cachePrereleaseLists = {};
 	_cacheBrewLists = {};
 
 	get (pageClean, sourceClean, hashClean) {
@@ -447,6 +470,10 @@ class _DataLoaderCache {
 
 	getAllSite (pageClean) {
 		return Object.values(this._cacheSiteLists[pageClean] || {});
+	}
+
+	getAllPrerelease (pageClean) {
+		return Object.values(this._cachePrereleaseLists[pageClean] || {});
 	}
 
 	getAllBrew (pageClean) {
@@ -472,31 +499,34 @@ class _DataLoaderCache {
 
 		if (ent === _DataLoaderConst.ENTITY_NULL) return;
 
-		// region Set site/brew list cache
-		const isSiteSource = SourceUtil.isSiteSource(Parser.sourceJsonToJson(sourceClean));
-
-		this._set_addToPartition({
-			isSite: true,
-			cache: this._cacheSiteLists,
-			isSiteSource,
-			pageClean,
-			hashClean,
-			ent,
-		});
-
-		this._set_addToPartition({
-			isSite: false,
-			cache: this._cacheBrewLists,
-			isSiteSource,
-			pageClean,
-			hashClean,
-			ent,
-		});
+		// region Set site/prerelease/brew list cache
+		const sourceJson = Parser.sourceJsonToJson(sourceClean);
+		if (SourceUtil.isSiteSource(sourceJson)) {
+			this._set_addToPartition({
+				cache: this._cacheSiteLists,
+				pageClean,
+				hashClean,
+				ent,
+			});
+		} else if (PrereleaseUtil.hasSourceJson(sourceJson)) {
+			this._set_addToPartition({
+				cache: this._cachePrereleaseLists,
+				pageClean,
+				hashClean,
+				ent,
+			});
+		} else if (BrewUtil2.hasSourceJson(sourceJson)) {
+			this._set_addToPartition({
+				cache: this._cacheBrewLists,
+				pageClean,
+				hashClean,
+				ent,
+			});
+		}
 		// endregion
 	}
 
-	_set_addToPartition ({isSite, isSiteSource, cache, pageClean, hashClean, ent}) {
-		if (isSiteSource !== isSite) return;
+	_set_addToPartition ({cache, pageClean, hashClean, ent}) {
 		let siteListCache = cache[pageClean];
 		if (!siteListCache) {
 			siteListCache = {};
@@ -552,9 +582,11 @@ class _DataTypeLoader {
 	 */
 	_getSiteIdent ({pageClean, sourceClean}) { throw new Error("Unimplemented!"); }
 
+	_isPrereleaseAvailable () { return typeof PrereleaseUtil !== "undefined"; }
+
 	_isBrewAvailable () { return typeof BrewUtil2 !== "undefined"; }
 
-	async _pPrePopulate ({data, isBrew}) { /* Implement as required */ }
+	async _pPrePopulate ({data, isPrerelease, isBrew}) { /* Implement as required */ }
 
 	async pGetSiteData ({pageClean, sourceClean}) {
 		const propCache = this._getSiteIdent({pageClean, sourceClean});
@@ -564,18 +596,31 @@ class _DataTypeLoader {
 
 	async _pGetSiteData ({pageClean, sourceClean}) { throw new Error("Unimplemented!"); }
 
+	async pGetStoredPrereleaseData () {
+		if (!this._isPrereleaseAvailable()) return {};
+		return this._pGetStoredPrereleaseData();
+	}
+
 	async pGetStoredBrewData () {
 		if (!this._isBrewAvailable()) return {};
 		return this._pGetStoredBrewData();
 	}
 
-	async _pGetStoredBrewData () {
-		const brewData = await BrewUtil2.pGetBrewProcessed();
-		await this._pPrePopulate({data: brewData, isBrew: true});
-		return brewData;
+	async _pGetStoredPrereleaseData () {
+		return this._pGetStoredPrereleaseBrewData({brewUtil: PrereleaseUtil, isPrerelease: true});
 	}
 
-	async pGetPostCacheData ({siteData = null, brewData = null, lockToken2}) { /* Implement as required */ }
+	async _pGetStoredBrewData () {
+		return this._pGetStoredPrereleaseBrewData({brewUtil: BrewUtil2, isBrew: true});
+	}
+
+	async _pGetStoredPrereleaseBrewData ({brewUtil, isPrerelease, isBrew}) {
+		const prereleaseBrewData = await brewUtil.pGetBrewProcessed();
+		await this._pPrePopulate({data: prereleaseBrewData, isPrerelease, isBrew});
+		return prereleaseBrewData;
+	}
+
+	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) { /* Implement as required */ }
 
 	async _pGetPostCacheData_obj_withCache ({obj, propCache, lockToken2}) {
 		this._cache_pPostCaches[propCache] = this._cache_pPostCaches[propCache] || this._pGetPostCacheData_obj({obj, lockToken2});
@@ -790,12 +835,18 @@ class _DataTypeLoaderConditionDiseaseFluff extends _DataTypeLoaderSingleSource {
 class _DataTypeLoaderPredefined extends _DataTypeLoader {
 	_loader;
 	_loadJsonArgs = null;
+	_loadPrereleaseArgs = null;
 	_loadBrewArgs = null;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return this._loader; }
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
 		return DataUtil[this._loader].loadJSON(this._loadJsonArgs);
+	}
+
+	async _pGetStoredPrereleaseData () {
+		if (!DataUtil[this._loader].loadPrerelease) return super._pGetStoredPrereleaseData();
+		return DataUtil[this._loader].loadPrerelease(this._loadPrereleaseArgs);
 	}
 
 	async _pGetStoredBrewData () {
@@ -810,6 +861,7 @@ class _DataTypeLoaderRace extends _DataTypeLoaderPredefined {
 
 	_loader = "race";
 	_loadJsonArgs = {isAddBaseRaces: true};
+	_loadPrereleaseArgs = {isAddBaseRaces: true};
 	_loadBrewArgs = {isAddBaseRaces: true};
 }
 
@@ -853,8 +905,6 @@ class _DataTypeLoaderMultiSource extends _DataTypeLoader {
 
 	_getSiteIdent ({pageClean, sourceClean}) { return `${this._prop}__${sourceClean}`; }
 
-	_pPrePopulate ({data}) { /* Implement as required */ }
-
 	async _pGetSiteData ({pageClean, sourceClean}) {
 		const source = Parser.sourceJsonToJson(sourceClean);
 		const data = await DataUtil[this._prop].pLoadSingleSource(source);
@@ -878,7 +928,7 @@ class _DataTypeLoaderCustomMonster extends _DataTypeLoaderMultiSource {
 		return super._pGetSiteData({pageClean, sourceClean});
 	}
 
-	async _pPrePopulate ({data, isBrew}) {
+	async _pPrePopulate ({data, isPrerelease, isBrew}) {
 		DataUtil.monster.populateMetaReference(data);
 	}
 }
@@ -897,8 +947,10 @@ class _DataTypeLoaderCustomSpell extends _DataTypeLoaderMultiSource {
 
 	_prop = "spell";
 
-	async _pPrePopulate ({data, isBrew}) {
-		Renderer.spell.prePopulateHover(data, {isBrew});
+	async _pPrePopulate ({data, isPrerelease, isBrew}) {
+		Renderer.spell.prePopulateHover(data);
+		if (isPrerelease) Renderer.spell.prePopulateHoverPrerelease(data);
+		if (isBrew) Renderer.spell.prePopulateHoverBrew(data);
 	}
 }
 
@@ -926,9 +978,9 @@ class _DataTypeLoaderCustomClassesSubclass extends _DataTypeLoader {
 		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
-	async _pGetStoredBrewData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		return this.constructor._getAsRawPrefixed(brew, {propsRaw: this.constructor._PROPS_RAWABLE});
+	async _pGetStoredPrereleaseBrewData ({brewUtil, isPrerelease, isBrew}) {
+		const prereleaseBrew = await brewUtil.pGetBrewProcessed();
+		return this.constructor._getAsRawPrefixed(prereleaseBrew, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
 	async _pGetPostCacheData_obj ({obj, lockToken2}) {
@@ -1066,9 +1118,10 @@ class _DataTypeLoaderCustomClassesSubclass extends _DataTypeLoader {
 		_DataLoaderInternalUtil.doNotifyFailedDereferences({missingRefSets});
 	}
 
-	async pGetPostCacheData ({siteData = null, brewData = null, lockToken2}) {
+	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
 			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
+			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseData, lockToken2}),
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};
 	}
@@ -1089,9 +1142,9 @@ class _DataTypeLoaderCustomClassSubclassFeature extends _DataTypeLoader {
 		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
-	async _pGetStoredBrewData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		return this.constructor._getAsRawPrefixed(brew, {propsRaw: this.constructor._PROPS_RAWABLE});
+	async _pGetStoredPrereleaseBrewData ({brewUtil, isPrerelease, isBrew}) {
+		const prereleaseBrew = await brewUtil.pGetBrewProcessed();
+		return this.constructor._getAsRawPrefixed(prereleaseBrew, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
 	async _pGetPostCacheData_obj ({obj, lockToken2}) {
@@ -1105,9 +1158,10 @@ class _DataTypeLoaderCustomClassSubclassFeature extends _DataTypeLoader {
 		return out;
 	}
 
-	async pGetPostCacheData ({siteData = null, brewData = null, lockToken2}) {
+	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
 			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
+			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseData, lockToken2}),
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};
 	}
@@ -1136,12 +1190,12 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 		return Renderer.item.pGetSiteUnresolvedRefItems();
 	}
 
-	async _pGetStoredBrewData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
+	async _pGetStoredPrereleaseBrewData ({brewUtil, isPrerelease, isBrew}) {
+		const prereleaseBrew = await brewUtil.pGetBrewProcessed();
 
 		return {
-			item: await Renderer.item.pGetSiteUnresolvedRefItemsFromHomebrew(brew),
-			itemEntry: brew.itemEntry || [],
+			item: await Renderer.item.pGetSiteUnresolvedRefItemsFromPrereleaseBrew({brewUtil, brew: prereleaseBrew}),
+			itemEntry: prereleaseBrew.itemEntry || [],
 		};
 	}
 
@@ -1158,9 +1212,10 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 		return out;
 	}
 
-	async pGetPostCacheData ({siteData = null, brewData = null, lockToken2}) {
+	async pGetPostCacheData ({siteData = null, prereleaseBrew = null, brewData = null, lockToken2}) {
 		return {
 			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
+			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseBrew, lockToken2}),
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};
 	}
@@ -1171,6 +1226,8 @@ class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
 	static PAGE = UrlUtil.PG_QUICKREF;
 
 	_getSiteIdent ({pageClean, sourceClean}) { return this.constructor.name; }
+
+	_isPrereleaseAvailable () { return false; }
 
 	_isBrewAvailable () { return false; }
 
@@ -1461,7 +1518,6 @@ class DataLoader {
 	static _ = this._init();
 
 	static _CACHE = new _DataLoaderCache();
-	static _LOCK_0 = new VeLock({isDbg: false, name: "loader-lock-0"});
 	static _LOCK_1 = new VeLock({isDbg: false, name: "loader-lock-1"});
 	static _LOCK_2 = new VeLock({isDbg: false, name: "loader-lock-2"});
 
@@ -1542,21 +1598,57 @@ class DataLoader {
 		return this._CACHE.getAllSite(pageClean);
 	}
 
-	static async pCacheAndGetAllBrew (page, {isSilent = false} = {}) {
-		const pageClean = _DataLoaderInternalUtil.getCleanPage({page});
-
-		if (this._PAGES_NO_CONTENT.has(pageClean)) return null;
-
-		const dataLoader = this._pCache_getDataTypeLoader({pageClean, isSilent});
-		if (!dataLoader) return null;
-
-		// (Avoid preloading missing brew here, as we only return currently-loaded brew.)
-
-		const {brewData} = await this._pCacheAndGet_getCacheMeta({pageClean, sourceClean: _DataLoaderConst.SOURCE_BREW_ALL_CURRENT, dataLoader});
-		await this._pCacheAndGet_processCacheMeta({dataLoader, brewData});
-
-		return this._CACHE.getAllBrew(pageClean);
+	static async pCacheAndGetAllPrerelease (page, {isSilent = false} = {}) {
+		return this._CacheAndGetAllPrerelease.pCacheAndGetAll({parent: this, page, isSilent});
 	}
+
+	static async pCacheAndGetAllBrew (page, {isSilent = false} = {}) {
+		return this._CacheAndGetAllBrew.pCacheAndGetAll({parent: this, page, isSilent});
+	}
+
+	static _CacheAndGetAllPrereleaseBrew = class {
+		static _SOURCE_ALL;
+		static _PROP_DATA;
+
+		static async pCacheAndGetAll (
+			{
+				parent,
+				page,
+				isSilent,
+			},
+		) {
+			const pageClean = _DataLoaderInternalUtil.getCleanPage({page});
+
+			if (parent._PAGES_NO_CONTENT.has(pageClean)) return null;
+
+			const dataLoader = parent._pCache_getDataTypeLoader({pageClean, isSilent});
+			if (!dataLoader) return null;
+
+			// (Avoid preloading missing prerelease/homebrew here, as we only return currently-loaded prerelease/homebrew.)
+
+			const cacheMeta = await parent._pCacheAndGet_getCacheMeta({pageClean, sourceClean: this._SOURCE_ALL, dataLoader});
+			await parent._pCacheAndGet_processCacheMeta({dataLoader, [this._PROP_DATA]: cacheMeta[this._PROP_DATA]});
+
+			return this._getAllCached({parent, pageClean});
+		}
+
+		/** @abstract */
+		static _getAllCached ({parent, pageClean}) { throw new Error("Unimplemented!"); }
+	};
+
+	static _CacheAndGetAllPrerelease = class extends this._CacheAndGetAllPrereleaseBrew {
+		static _SOURCE_ALL = _DataLoaderConst.SOURCE_PRERELEASE_ALL_CURRENT;
+		static _PROP_DATA = "prereleaseData";
+
+		static _getAllCached ({parent, pageClean}) { return parent._CACHE.getAllPrerelease(pageClean); }
+	};
+
+	static _CacheAndGetAllBrew = class extends this._CacheAndGetAllPrereleaseBrew {
+		static _SOURCE_ALL = _DataLoaderConst.SOURCE_BREW_ALL_CURRENT;
+		static _PROP_DATA = "brewData";
+
+		static _getAllCached ({parent, pageClean}) { return parent._CACHE.getAllBrew(pageClean); }
+	};
 
 	/* -------------------------------------------- */
 
@@ -1586,11 +1678,14 @@ class DataLoader {
 		const dataLoader = this._pCache_getDataTypeLoader({pageClean, isSilent});
 		if (!dataLoader) return this._getVerifiedRequiredEntity({pageClean, sourceClean, hashClean, ent: null, isRequired});
 
-		const isUnavailableBrew = await this._pCacheAndGet_preloadMissingBrew({sourceClean});
+		const isUnavailablePrerelease = await this._PrereleasePreloader._pPreloadMissing({parent: this, sourceClean});
+		if (isUnavailablePrerelease) return this._getVerifiedRequiredEntity({pageClean, sourceClean, hashClean, ent: null, isRequired});
+
+		const isUnavailableBrew = await this._BrewPreloader._pPreloadMissing({parent: this, sourceClean});
 		if (isUnavailableBrew) return this._getVerifiedRequiredEntity({pageClean, sourceClean, hashClean, ent: null, isRequired});
 
-		const {siteData = null, brewData = null} = await this._pCacheAndGet_getCacheMeta({pageClean, sourceClean, dataLoader});
-		await this._pCacheAndGet_processCacheMeta({dataLoader, siteData, brewData, lockToken2});
+		const {siteData = null, prereleaseData = null, brewData = null} = await this._pCacheAndGet_getCacheMeta({pageClean, sourceClean, dataLoader});
+		await this._pCacheAndGet_processCacheMeta({dataLoader, siteData, prereleaseData, brewData, lockToken2});
 
 		return this.getFromCache(page, source, hash, {isCopy, _isInsertSentinelOnMiss: true});
 	}
@@ -1600,47 +1695,123 @@ class DataLoader {
 		return DataLoader.pCacheAndGet(page, source, hash, opts);
 	}
 
-	/**
-	 * Phase 0: check if homebrew, and if so, check/load the source (if available).
-	 *   Track failures (i.e., there is no available JSON for the brew source requested), and skip repeated failures.
-	 *   This allows us to avoid an expensive mass re-cache, if a brew source which does not exist is requested for
-	 *   loading multiple times.
-	 */
-	static async _pCacheAndGet_preloadMissingBrew ({sourceClean}) {
-		try {
-			await this._LOCK_0.pLock();
-			return (await this._pPreloadMissingBrew({sourceClean}));
-		} finally {
-			this._LOCK_0.unlock();
-		}
-	}
+	static _PrereleaseBrewPreloader = class {
+		static _LOCK_0;
+		static _SOURCES_ATTEMPTED;
+		/** Cache of clean (lowercase) source -> URL. */
+		static _CACHE_SOURCE_CLEAN_TO_URL;
+		static _SOURCE_ALL;
 
-	/**
-	 * @param sourceClean
-	 * @return {Promise<boolean>} `true` if the brew does not exist and could not be loaded, false otherwise.
-	 */
-	static async _pPreloadMissingBrew ({sourceClean}) {
-		if (this._isExistingBrewMiss({sourceClean})) return true;
-
-		if (this._isSiteSource({sourceClean})) return false;
-		if (sourceClean === _DataLoaderConst.SOURCE_BREW_ALL_CURRENT) return false;
-
-		if (typeof BrewUtil2 === "undefined") {
-			this._setExistingBrewMiss({sourceClean});
-			return true;
+		/**
+		 * Phase 0: check if prerelease/homebrew, and if so, check/load the source (if available).
+		 *   Track failures (i.e., there is no available JSON for the source requested), and skip repeated failures.
+		 *   This allows us to avoid an expensive mass re-cache, if a source which does not exist is requested for
+		 *   loading multiple times.
+		 */
+		static async pPreloadMissing ({parent, sourceClean}) {
+			try {
+				await this._LOCK_0.pLock();
+				return (await this._pPreloadMissing({parent, sourceClean}));
+			} finally {
+				this._LOCK_0.unlock();
+			}
 		}
 
-		if (BrewUtil2.hasSourceJson(sourceClean)) return false;
+		/**
+		 * @param parent
+		 * @param sourceClean
+		 * @return {Promise<boolean>} `true` if the source does not exist and could not be loaded, false otherwise.
+		 */
+		static async _pPreloadMissing ({parent, sourceClean}) {
+			if (this._isExistingMiss({parent, sourceClean})) return true;
 
-		const urlBrew = await this._pGetBrewUrl({sourceClean});
-		if (!urlBrew) {
-			this._setExistingBrewMiss({sourceClean});
-			return true;
+			if (!this._isPossibleSource({parent, sourceClean})) return false;
+			if (sourceClean === this._SOURCE_ALL) return false;
+
+			const brewUtil = this._getBrewUtil();
+			if (!brewUtil) {
+				this._setExistingMiss({parent, sourceClean});
+				return true;
+			}
+
+			if (brewUtil.hasSourceJson(sourceClean)) return false;
+
+			const urlBrew = await this._pGetSourceUrl({parent, sourceClean});
+			if (!urlBrew) {
+				this._setExistingMiss({parent, sourceClean});
+				return true;
+			}
+
+			await brewUtil.pAddBrewFromUrl(urlBrew);
+			return false;
 		}
 
-		await BrewUtil2.pAddBrewFromUrl(urlBrew);
-		return false;
-	}
+		static _isExistingMiss ({sourceClean}) {
+			return this._SOURCES_ATTEMPTED.has(sourceClean);
+		}
+
+		static _setExistingMiss ({sourceClean}) {
+			this._SOURCES_ATTEMPTED.add(sourceClean);
+		}
+
+		/* -------------------------------------------- */
+
+		static async _pInitCacheSourceToUrl () {
+			if (this._CACHE_SOURCE_CLEAN_TO_URL) return;
+
+			const index = await this._pGetUrlIndex();
+			if (!index) return this._CACHE_SOURCE_CLEAN_TO_URL = {};
+
+			const brewUtil = this._getBrewUtil();
+			const urlRoot = await brewUtil.pGetCustomUrl();
+
+			this._CACHE_SOURCE_CLEAN_TO_URL = Object.entries(index)
+				.mergeMap(([src, url]) => ({[_DataLoaderInternalUtil.getCleanSource({source: src})]: brewUtil.getFileUrl(url, urlRoot)}));
+		}
+
+		static async _pGetUrlIndex () {
+			try {
+				return (await this._pGetSourceIndex());
+			} catch (e) {
+				setTimeout(() => { throw e; });
+				return null;
+			}
+		}
+
+		static async _pGetSourceUrl ({sourceClean}) {
+			await this._pInitCacheSourceToUrl();
+			return this._CACHE_SOURCE_CLEAN_TO_URL[sourceClean];
+		}
+
+		/** @abstract */
+		static _isPossibleSource ({parent, sourceClean}) { throw new Error("Unimplemented!"); }
+		/** @abstract */
+		static _getBrewUtil () { throw new Error("Unimplemented!"); }
+		/** @abstract */
+		static _pGetSourceIndex () { throw new Error("Unimplemented!"); }
+	};
+
+	static _PrereleasePreloader = class extends this._PrereleaseBrewPreloader {
+		static _LOCK_0 = new VeLock({isDbg: false, name: "loader-lock-0--prerelease"});
+		static _SOURCE_ALL = _DataLoaderConst.SOURCE_BREW_ALL_CURRENT;
+		static _SOURCES_ATTEMPTED = new Set();
+		static _CACHE_SOURCE_CLEAN_TO_URL = null;
+
+		static _isPossibleSource ({parent, sourceClean}) { parent._isPrereleaseSource({sourceClean}); }
+		static _getBrewUtil () { return typeof PrereleaseUtil !== "undefined" ? PrereleaseUtil : null; }
+		static _pGetSourceIndex () { return DataUtil.prerelease.pLoadSourceIndex(); }
+	};
+
+	static _BrewPreloader = class extends this._PrereleaseBrewPreloader {
+		static _LOCK_0 = new VeLock({isDbg: false, name: "loader-lock-0--brew"});
+		static _SOURCE_ALL = _DataLoaderConst.SOURCE_PRERELEASE_ALL_CURRENT;
+		static _SOURCES_ATTEMPTED = new Set();
+		static _CACHE_SOURCE_CLEAN_TO_URL = null;
+
+		static _isPossibleSource ({parent, sourceClean}) { return !parent._isSiteSource({sourceClean}) && !parent._isPrereleaseSource({sourceClean}); }
+		static _getBrewUtil () { return typeof BrewUtil2 !== "undefined" ? BrewUtil2 : null; }
+		static _pGetSourceIndex () { return DataUtil.brew.pLoadSourceIndex(); }
+	};
 
 	static async _pCacheAndGet_getCacheMeta ({pageClean, sourceClean, dataLoader}) {
 		try {
@@ -1659,32 +1830,43 @@ class DataLoader {
 		if (this._isSiteSource({sourceClean})) return {siteData};
 		// endregion
 
-		if (typeof BrewUtil2 === "undefined") return {siteData};
+		const out = {siteData};
 
-		// region Fetch from already-stored brew data
-		//   As we have preloaded missing brew earlier in the flow, we know that a brew is either present, or unavailable
-		let brewData = await dataLoader.pGetStoredBrewData();
-		this._pCache_addToCache({allDataMerged: brewData, propAllowlist: dataLoader.phase1CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
+		// region Fetch from already-stored prerelease/brew data
+		//   As we have preloaded missing prerelease/brew earlier in the flow, we know that a prerelease/brew is either
+		//   present, or unavailable
+		if (typeof PrereleaseUtil !== "undefined") {
+			const prereleaseData = await dataLoader.pGetStoredPrereleaseData();
+			this._pCache_addToCache({allDataMerged: prereleaseData, propAllowlist: dataLoader.phase1CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
+			out.prereleaseData = prereleaseData;
+		}
+
+		if (typeof BrewUtil2 !== "undefined") {
+			const brewData = await dataLoader.pGetStoredBrewData();
+			this._pCache_addToCache({allDataMerged: brewData, propAllowlist: dataLoader.phase1CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
+			out.brewData = brewData;
+		}
 		// endregion
 
-		return {siteData, brewData};
+		return out;
 	}
 
-	static async _pCacheAndGet_processCacheMeta ({dataLoader, siteData = null, brewData = null, lockToken2 = null}) {
+	static async _pCacheAndGet_processCacheMeta ({dataLoader, siteData = null, prereleaseData = null, brewData = null, lockToken2 = null}) {
 		if (!dataLoader.hasPhase2Cache) return;
 
 		try {
 			lockToken2 = await this._LOCK_2.pLock({token: lockToken2});
-			await this._pCacheAndGet_processCacheMeta_({dataLoader, siteData, brewData, lockToken2});
+			await this._pCacheAndGet_processCacheMeta_({dataLoader, siteData, prereleaseData, brewData, lockToken2});
 		} finally {
 			this._LOCK_2.unlock();
 		}
 	}
 
-	static async _pCacheAndGet_processCacheMeta_ ({dataLoader, siteData = null, brewData = null, lockToken2 = null}) {
-		const {siteDataPostCache, brewDataPostCache} = await dataLoader.pGetPostCacheData({siteData, brewData, lockToken2});
+	static async _pCacheAndGet_processCacheMeta_ ({dataLoader, siteData = null, prereleaseData = null, brewData = null, lockToken2 = null}) {
+		const {siteDataPostCache, prereleaseDataPostCache, brewDataPostCache} = await dataLoader.pGetPostCacheData({siteData, prereleaseData, brewData, lockToken2});
 
 		this._pCache_addToCache({allDataMerged: siteDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
+		this._pCache_addToCache({allDataMerged: prereleaseDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
 		this._pCache_addToCache({allDataMerged: brewDataPostCache, propAllowlist: dataLoader.phase2CachePropAllowlist || new Set(dataLoader.constructor.PROPS)});
 	}
 
@@ -1734,61 +1916,32 @@ class DataLoader {
 
 	/* -------------------------------------------- */
 
-	static _BREW_SOURCES_ATTEMPTED = new Set();
-
-	static _isExistingBrewMiss ({sourceClean}) {
-		return this._BREW_SOURCES_ATTEMPTED.has(sourceClean);
-	}
-
-	static _setExistingBrewMiss ({sourceClean}) {
-		this._BREW_SOURCES_ATTEMPTED.add(sourceClean);
-	}
-
-	/* -------------------------------------------- */
-
 	static _CACHE_SITE_SOURCE_CLEAN = null;
+
+	static _doBuildSourceCaches () {
+		this._CACHE_SITE_SOURCE_CLEAN = this._CACHE_SITE_SOURCE_CLEAN || new Set(Object.keys(Parser.SOURCE_JSON_TO_FULL)
+			.map(src => _DataLoaderInternalUtil.getCleanSource({source: src})));
+	}
 
 	static _isSiteSource ({sourceClean}) {
 		if (sourceClean === _DataLoaderConst.SOURCE_SITE_ALL) return true;
 		if (sourceClean === _DataLoaderConst.SOURCE_BREW_ALL_CURRENT) return false;
+		if (sourceClean === _DataLoaderConst.SOURCE_PRERELEASE_ALL_CURRENT) return false;
 
-		this._CACHE_SITE_SOURCE_CLEAN = this._CACHE_SITE_SOURCE_CLEAN || new Set(Object.keys(Parser.SOURCE_JSON_TO_FULL)
-			.map(src => _DataLoaderInternalUtil.getCleanSource({source: src})));
+		this._doBuildSourceCaches();
+
 		return this._CACHE_SITE_SOURCE_CLEAN.has(sourceClean);
 	}
 
-	/* -------------------------------------------- */
+	static _isPrereleaseSource ({sourceClean}) {
+		if (sourceClean === _DataLoaderConst.SOURCE_SITE_ALL) return false;
+		if (sourceClean === _DataLoaderConst.SOURCE_BREW_ALL_CURRENT) return false;
+		if (sourceClean === _DataLoaderConst.SOURCE_PRERELEASE_ALL_CURRENT) return true;
 
-	/** Cache of clean (lowercase) source -> brew URL. */
-	static _CACHE_BREW_SOURCE_CLEAN_TO_URL = null;
+		this._doBuildSourceCaches();
 
-	static async _pInitCacheBrewSourceToUrl () {
-		if (this._CACHE_BREW_SOURCE_CLEAN_TO_URL) return;
-
-		const index = await this._pGetBrewUrlIndex();
-		if (!index) return this._CACHE_BREW_SOURCE_CLEAN_TO_URL = {};
-
-		const urlRoot = await BrewUtil2.pGetCustomUrl();
-
-		this._CACHE_BREW_SOURCE_CLEAN_TO_URL = Object.entries(index)
-			.mergeMap(([src, url]) => ({[_DataLoaderInternalUtil.getCleanSource({source: src})]: DataUtil.brew.getFileUrl(url, urlRoot)}));
+		return sourceClean.startsWith(_DataLoaderInternalUtil.getCleanSource({source: Parser.SRC_UA_PREFIX}));
 	}
-
-	static async _pGetBrewUrlIndex () {
-		try {
-			return (await DataUtil.brew.pLoadSourceIndex());
-		} catch (e) {
-			setTimeout(() => { throw e; });
-			return null;
-		}
-	}
-
-	static async _pGetBrewUrl ({sourceClean}) {
-		await this._pInitCacheBrewSourceToUrl();
-		return this._CACHE_BREW_SOURCE_CLEAN_TO_URL[sourceClean];
-	}
-
-	/* -------------------------------------------- */
 }
 
 // endregion

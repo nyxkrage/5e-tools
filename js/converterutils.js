@@ -138,6 +138,9 @@ class TaggerUtils {
 
 		const doFind = arr => arr.find(it => it.name.toLowerCase() === name && it.source.toLowerCase() === source);
 
+		const fromPrerelease = typeof PrereleaseUtil !== "undefined" ? doFind(PrereleaseUtil.getBrewProcessedFromCache("legendaryGroup")) : null;
+		if (fromPrerelease) return fromPrerelease;
+
 		const fromBrew = typeof BrewUtil2 !== "undefined" ? doFind(BrewUtil2.getBrewProcessedFromCache("legendaryGroup")) : null;
 		if (fromBrew) return fromBrew;
 
@@ -149,6 +152,9 @@ class TaggerUtils {
 		source = source.toLowerCase();
 
 		const doFind = arr => arr.find(s => (s.name.toLowerCase() === name || (typeof s.srd === "string" && s.srd.toLowerCase() === name)) && s.source.toLowerCase() === source);
+
+		const fromPrerelease = typeof PrereleaseUtil !== "undefined" ? doFind(PrereleaseUtil.getBrewProcessedFromCache("spell")) : null;
+		if (fromPrerelease) return fromPrerelease;
 
 		const fromBrew = typeof BrewUtil2 !== "undefined" ? doFind(BrewUtil2.getBrewProcessedFromCache("spell")) : null;
 		if (fromBrew) return fromBrew;

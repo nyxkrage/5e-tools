@@ -47,7 +47,7 @@ class ListPageMultiSource extends ListPage {
 		//    - reload the page
 		//    - load the cached sublist
 		const sourcesUnknown = (exportedSublist.sources || [])
-			.filter(src => !SourceUtil.isSiteSource(src) && !BrewUtil2.hasSourceJson(src));
+			.filter(src => !SourceUtil.isSiteSource(src) && !PrereleaseUtil.hasSourceJson(src) && !BrewUtil2.hasSourceJson(src));
 		if (!sourcesUnknown.length) return;
 
 		JqueryUtil.doToast({
@@ -146,9 +146,10 @@ class ListPageMultiSource extends ListPage {
 			.map(src => new FilterItem({item: src, pFnChange: this._pLoadSource.bind(this)}))
 			.forEach(fi => this._pageFilter.sourceFilter.addItem(fi));
 
+		const prerelease = await (this._prereleaseDataSource ? this._prereleaseDataSource() : PrereleaseUtil.pGetBrewProcessed());
 		const homebrew = await (this._brewDataSource ? this._brewDataSource() : BrewUtil2.pGetBrewProcessed());
 
-		return BrewUtil2.getMergedData(toAdd, homebrew);
+		return BrewUtil2.getMergedData(PrereleaseUtil.getMergedData(toAdd, prerelease), homebrew);
 	}
 
 	_pOnLoad_getLinkHashSource ({siteSourcesAvail}) {

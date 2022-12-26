@@ -571,12 +571,14 @@ Parser.hasSourceDate = function (source) {
 Parser.sourceJsonToJson = function (source) {
 	source = Parser._getSourceStringFromSource(source);
 	if (Parser.hasSourceJson(source)) return Parser._sourceJsonCache[source.toLowerCase()];
+	if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return PrereleaseUtil.sourceJsonToSource(source).json;
 	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToSource(source).json;
 	return source;
 };
 Parser.sourceJsonToFull = function (source) {
 	source = Parser._getSourceStringFromSource(source);
 	if (Parser.hasSourceFull(source)) return Parser._sourceFullCache[source.toLowerCase()].replace(/'/g, "\u2019");
+	if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return PrereleaseUtil.sourceJsonToFull(source).replace(/'/g, "\u2019");
 	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToFull(source).replace(/'/g, "\u2019");
 	return Parser._parse_aToB(Parser.SOURCE_JSON_TO_FULL, source).replace(/'/g, "\u2019");
 };
@@ -589,18 +591,36 @@ Parser.sourceJsonToFullCompactPrefix = function (source) {
 Parser.sourceJsonToAbv = function (source) {
 	source = Parser._getSourceStringFromSource(source);
 	if (Parser.hasSourceAbv(source)) return Parser._sourceAbvCache[source.toLowerCase()];
+	if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return PrereleaseUtil.sourceJsonToAbv(source);
 	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToAbv(source);
 	return Parser._parse_aToB(Parser.SOURCE_JSON_TO_ABV, source);
 };
 Parser.sourceJsonToDate = function (source) {
 	source = Parser._getSourceStringFromSource(source);
 	if (Parser.hasSourceDate(source)) return Parser._sourceDateCache[source.toLowerCase()];
+	if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return PrereleaseUtil.sourceJsonToDate(source);
 	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToDate(source);
 	return Parser._parse_aToB(Parser.SOURCE_JSON_TO_DATE, source, null);
 };
 
 Parser.sourceJsonToColor = function (source) {
 	return `source${Parser.sourceJsonToAbv(source)}`;
+};
+
+Parser.sourceJsonToStyle = function (source) {
+	source = Parser._getSourceStringFromSource(source);
+	if (Parser.hasSourceJson(source)) return "";
+	if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return PrereleaseUtil.sourceJsonToStyle(source);
+	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToStyle(source);
+	return "";
+};
+
+Parser.sourceJsonToStylePart = function (source) {
+	source = Parser._getSourceStringFromSource(source);
+	if (Parser.hasSourceJson(source)) return "";
+	if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return PrereleaseUtil.sourceJsonToStylePart(source);
+	if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return BrewUtil2.sourceJsonToStylePart(source);
+	return "";
 };
 
 Parser.stringToSlug = function (str) {
@@ -714,8 +734,13 @@ Parser.FULL_CURRENCY_CONVERSION_TABLE = [
 	},
 ];
 Parser.getCurrencyConversionTable = function (currencyConversionId) {
+	const fromPrerelease = currencyConversionId ? PrereleaseUtil.getMetaLookup("currencyConversions")?.[currencyConversionId] : null;
 	const fromBrew = currencyConversionId ? BrewUtil2.getMetaLookup("currencyConversions")?.[currencyConversionId] : null;
-	const conversionTable = fromBrew && fromBrew.length ? fromBrew : Parser.DEFAULT_CURRENCY_CONVERSION_TABLE;
+	const conversionTable = fromPrerelease?.length
+		? fromPrerelease
+		: fromBrew?.length
+			? fromBrew
+			: Parser.DEFAULT_CURRENCY_CONVERSION_TABLE;
 	if (conversionTable !== Parser.DEFAULT_CURRENCY_CONVERSION_TABLE) conversionTable.sort((a, b) => SortUtil.ascSort(b.mult, a.mult));
 	return conversionTable;
 };
@@ -875,6 +900,7 @@ Parser.spSchoolAndSubschoolsAbvsToFull = function (school, subschools) {
 Parser.spSchoolAbvToFull = function (schoolOrSubschool) {
 	const out = Parser._parse_aToB(Parser.SP_SCHOOL_ABV_TO_FULL, schoolOrSubschool);
 	if (Parser.SP_SCHOOL_ABV_TO_FULL[schoolOrSubschool]) return out;
+	if (PrereleaseUtil.getMetaLookup("spellSchools")?.[schoolOrSubschool]) return PrereleaseUtil.getMetaLookup("spellSchools")?.[schoolOrSubschool].full;
 	if (BrewUtil2.getMetaLookup("spellSchools")?.[schoolOrSubschool]) return BrewUtil2.getMetaLookup("spellSchools")?.[schoolOrSubschool].full;
 	return out;
 };
@@ -887,22 +913,28 @@ Parser.spSchoolAndSubschoolsAbvsShort = function (school, subschools) {
 Parser.spSchoolAbvToShort = function (school) {
 	const out = Parser._parse_aToB(Parser.SP_SCHOOL_ABV_TO_SHORT, school);
 	if (Parser.SP_SCHOOL_ABV_TO_SHORT[school]) return out;
+	if (PrereleaseUtil.getMetaLookup("spellSchools")?.[school]) return PrereleaseUtil.getMetaLookup("spellSchools")?.[school].short;
 	if (BrewUtil2.getMetaLookup("spellSchools")?.[school]) return BrewUtil2.getMetaLookup("spellSchools")?.[school].short;
 	return out;
 };
 
-Parser.spSchoolAbvToStyle = function (school) { // For homebrew
+Parser.spSchoolAbvToStyle = function (school) { // For prerelease/homebrew
 	const stylePart = Parser.spSchoolAbvToStylePart(school);
 	if (!stylePart) return stylePart;
 	return `style="${stylePart}"`;
 };
 
-Parser.spSchoolAbvToStylePart = function (school) { // For homebrew
-	const rawColor = BrewUtil2.getMetaLookup("spellSchools")?.[school]?.color;
+Parser.spSchoolAbvToStylePart = function (school) { // For prerelease/homebrew
+	return Parser._spSchoolAbvToStylePart_prereleaseBrew({school, brewUtil: PrereleaseUtil})
+		|| Parser._spSchoolAbvToStylePart_prereleaseBrew({school, brewUtil: BrewUtil2})
+		|| "";
+};
+
+Parser._spSchoolAbvToStylePart_prereleaseBrew = function ({school, brewUtil}) {
+	const rawColor = brewUtil.getMetaLookup("spellSchools")?.[school]?.color;
 	if (!rawColor || !rawColor.trim()) return "";
-	const validColor = BrewUtil2.getValidColor(rawColor);
+	const validColor = BrewUtilShared.getValidColor(rawColor);
 	if (validColor.length) return `color: #${validColor};`;
-	return "";
 };
 
 Parser.getOrdinalForm = function (i) {
@@ -1132,12 +1164,21 @@ Parser.getSingletonUnit = function (unit, isShort) {
 		case Parser.UNT_MILES:
 			return isShort ? "mi." : "mile";
 		default: {
-			const fromBrew = BrewUtil2.getMetaLookup("spellDistanceUnits")?.[unit]?.["singular"];
+			const fromPrerelease = Parser._getSingletonUnit_prereleaseBrew({unit, isShort, brewUtil: PrereleaseUtil});
+			if (fromPrerelease) return fromPrerelease;
+
+			const fromBrew = Parser._getSingletonUnit_prereleaseBrew({unit, isShort, brewUtil: BrewUtil2});
 			if (fromBrew) return fromBrew;
+
 			if (unit.charAt(unit.length - 1) === "s") return unit.slice(0, -1);
 			return unit;
 		}
 	}
+};
+
+Parser._getSingletonUnit_prereleaseBrew = function ({unit, isShort, brewUtil}) {
+	const fromBrew = brewUtil.getMetaLookup("spellDistanceUnits")?.[unit]?.["singular"];
+	if (fromBrew) return fromBrew;
 };
 
 Parser.RANGE_TYPES = [
@@ -1585,6 +1626,7 @@ Parser.psiTypeToMeta = type => {
 	let out = {};
 	if (type === Parser.PSI_ABV_TYPE_TALENT) out = {hasOrder: false, full: "Talent"};
 	else if (type === Parser.PSI_ABV_TYPE_DISCIPLINE) out = {hasOrder: true, full: "Discipline"};
+	else if (PrereleaseUtil.getMetaLookup("psionicTypes")?.[type]) out = MiscUtil.copyFast(PrereleaseUtil.getMetaLookup("psionicTypes")[type]);
 	else if (BrewUtil2.getMetaLookup("psionicTypes")?.[type]) out = MiscUtil.copyFast(BrewUtil2.getMetaLookup("psionicTypes")[type]);
 	out.full = out.full || "Unknown";
 	out.short = out.short || out.full;
@@ -1644,6 +1686,7 @@ Parser.OPT_FEATURE_TYPE_TO_FULL = {
 
 Parser.optFeatureTypeToFull = function (type) {
 	if (Parser.OPT_FEATURE_TYPE_TO_FULL[type]) return Parser.OPT_FEATURE_TYPE_TO_FULL[type];
+	if (PrereleaseUtil.getMetaLookup("optionalFeatureTypes")?.[type]) return PrereleaseUtil.getMetaLookup("optionalFeatureTypes")[type];
 	if (BrewUtil2.getMetaLookup("optionalFeatureTypes")?.[type]) return BrewUtil2.getMetaLookup("optionalFeatureTypes")[type];
 	return type;
 };
@@ -1658,6 +1701,7 @@ Parser.CHAR_OPTIONAL_FEATURE_TYPE_TO_FULL = {
 
 Parser.charCreationOptionTypeToFull = function (type) {
 	if (Parser.CHAR_OPTIONAL_FEATURE_TYPE_TO_FULL[type]) return Parser.CHAR_OPTIONAL_FEATURE_TYPE_TO_FULL[type];
+	if (PrereleaseUtil.getMetaLookup("charOption")?.[type]) return PrereleaseUtil.getMetaLookup("charOption")[type];
 	if (BrewUtil2.getMetaLookup("charOption")?.[type]) return BrewUtil2.getMetaLookup("charOption")[type];
 	return type;
 };

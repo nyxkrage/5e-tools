@@ -41,6 +41,7 @@ class RacesPage extends ListPage {
 		super({
 			dataSource: DataUtil.race.loadJSON.bind(DataUtil.race, {isAddBaseRaces: true}),
 			dataSourceFluff: DataUtil.raceFluff.loadJSON.bind(DataUtil.raceFluff),
+			prereleaseDataSource: DataUtil.race.loadPrerelease.bind(DataUtil.race),
 			brewDataSource: DataUtil.race.loadBrew.bind(DataUtil.race),
 
 			pFnGetFluff: Renderer.race.pGetFluff.bind(Renderer.race),
@@ -82,7 +83,7 @@ class RacesPage extends ListPage {
 			<span class="bold col-4 pl-0">${race.name}</span>
 			<span class="col-4 ${race._slAbility === "Lineage (choose)" ? "italic" : ""}">${race._slAbility}</span>
 			<span class="col-2 text-center">${size}</span>
-			<span class="col-2 text-center ${Parser.sourceJsonToColor(race.source)} pr-0" title="${Parser.sourceJsonToFull(race.source)}" ${BrewUtil2.sourceJsonToStyle(race.source)}>${source}</span>
+			<span class="col-2 text-center ${Parser.sourceJsonToColor(race.source)} pr-0" title="${Parser.sourceJsonToFull(race.source)}" ${Parser.sourceJsonToStyle(race.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

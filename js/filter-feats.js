@@ -158,10 +158,11 @@ class ModalFilterFeats extends ModalFilter {
 	}
 
 	async _pLoadAllData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		const fromData = (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/feats.json`)).feat;
-		const fromBrew = brew.feat || [];
-		return [...fromData, ...fromBrew];
+		return [
+			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/feats.json`)).feat,
+			...((await PrereleaseUtil.pGetBrewProcessed()).feat || []),
+			...((await BrewUtil2.pGetBrewProcessed()).feat || []),
+		];
 	}
 
 	_getListItem (pageFilter, feat, ftI) {
@@ -181,7 +182,7 @@ class ModalFilterFeats extends ModalFilter {
 			<div class="col-4 ${feat._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${feat._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${feat.name}</div>
 			<span class="col-3 ${feat._slAbility === VeCt.STR_NONE ? "italic" : ""}">${feat._slAbility}</span>
 				<span class="col-3 ${feat._slPrereq === VeCt.STR_NONE ? "italic" : ""}">${feat._slPrereq}</span>
-			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(feat.source)}" title="${Parser.sourceJsonToFull(feat.source)}" ${BrewUtil2.sourceJsonToStyle(feat.source)}>${source}</div>
+			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(feat.source)}" title="${Parser.sourceJsonToFull(feat.source)}" ${Parser.sourceJsonToStyle(feat.source)}>${source}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;

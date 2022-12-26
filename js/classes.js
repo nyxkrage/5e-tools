@@ -67,6 +67,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		this._$pgContent = $(`#pagecontent`);
 
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 		Omnisearch.addScrollTopFloat();
@@ -93,6 +94,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		});
 
 		this._addData(data);
+		await this._pAddPrereleaseData();
 		await this._pAddBrewData();
 
 		this._pageFilter.trimState();
@@ -126,13 +128,16 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
 
+	async _pAddPrereleaseData () {
+		await this._pAddPrereleaseBrewData({prereleaseBrewData: await DataUtil.class.loadPrerelease()});
+	}
+
 	async _pAddBrewData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		if (!brew?.class?.length && !brew?.subclass?.length) return;
+		await this._pAddPrereleaseBrewData({prereleaseBrewData: await DataUtil.class.loadBrew()});
+	}
 
-		const brewData = await DataUtil.class.loadBrew();
-
-		const {isAddedAnyClass, isAddedAnySubclass} = this._addData(brewData);
+	async _pAddPrereleaseBrewData ({prereleaseBrewData}) {
+		const {isAddedAnyClass, isAddedAnySubclass} = this._addData(prereleaseBrewData);
 
 		if (isAddedAnySubclass && !Hist.initialLoad) await this._pDoRender();
 	}
@@ -153,7 +158,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			this._pageFilter.constructor.mutateForFilters(cls);
 
 			// Force data on any classes with unusual sources to behave as though they have normal sources
-			if (SourceUtil.isNonstandardSource(cls.source) || BrewUtil2.hasSourceJson(cls.source)) {
+			if (SourceUtil.isNonstandardSource(cls.source) || PrereleaseUtil.hasSourceJson(cls.source) || BrewUtil2.hasSourceJson(cls.source)) {
 				if (cls.fluff) cls.fluff.filter(f => f.source === cls.source).forEach(f => f._isStandardSource = true);
 				cls.subclasses.filter(sc => sc.source === cls.source).forEach(sc => sc._isStandardSource = true);
 			}
@@ -466,7 +471,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		const $lnk = $(`<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="bold col-8 pl-0">${cls.name}</span>
-			<span class="col-4 text-center ${Parser.sourceJsonToColor(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}" ${BrewUtil2.sourceJsonToStyle(cls.source)}>${source}</span>
+			<span class="col-4 text-center ${Parser.sourceJsonToColor(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}" ${Parser.sourceJsonToStyle(cls.source)}>${source}</span>
 		</a>`);
 
 		const $ele = $$`<li class="lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${$lnk}</li>`;
@@ -1917,7 +1922,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		if (sc.source !== cls.source) {
 			return BrewUtil2.hasSourceJson(sc.source)
 				? "brew"
-				: SourceUtil.isNonstandardSource(sc.source)
+				: (SourceUtil.isNonstandardSource(sc.source) || PrereleaseUtil.hasSourceJson(sc.source))
 					? sc.isReprinted ? "stale" : "spicy"
 					: sc.isReprinted ? "reprinted" : "fresh";
 		}
@@ -1928,29 +1933,29 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		if (isSubclass) {
 			if (entry.isClassFeatureVariant) {
 				if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew-subclass`];
-				if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-variant-ua-subclass`];
+				if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-variant-ua-subclass`];
 				return [`${prefix}feature-variant-subclass`];
 			}
 
 			if (entry.isReprinted) {
 				if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass-reprint`];
-				if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-ua-subclass-reprint`];
+				if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua-subclass-reprint`];
 				return [`${prefix}feature-subclass-reprint`];
 			}
 
 			if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass`];
-			if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-ua-subclass`];
+			if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua-subclass`];
 			return [`${prefix}feature-subclass`];
 		}
 
 		if (entry.isClassFeatureVariant) {
 			if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew`];
-			if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-variant-ua`];
+			if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-variant-ua`];
 			return [`${prefix}feature-variant`];
 		}
 
 		if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew`];
-		if (entry.source && !isForceStandardSource && SourceUtil.isNonstandardSource(entry.source)) return [`${prefix}feature-ua`];
+		if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua`];
 		return [];
 	}
 

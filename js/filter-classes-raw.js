@@ -38,20 +38,32 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		// Search in base classes
 		let baseClass = (await DataUtil.class.loadRawJSON()).class.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
 
-		const brew = BrewUtil2.pGetBrewProcessed();
-
 		// Search in brew classes
-		if (!baseClass) {
-			baseClass = (brew.class || []).find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
-		}
+		baseClass = baseClass || await this._pGetParentClass_pPrerelease({sc});
+		baseClass = baseClass || await this._pGetParentClass_pBrew({sc});
 
 		return baseClass;
+	}
+
+	static async _pGetParentClass_pPrerelease ({sc}) {
+		await this._pGetParentClass_pPrereleaseBrew({sc, brewUtil: PrereleaseUtil});
+	}
+
+	static async _pGetParentClass_pBrew ({sc}) {
+		await this._pGetParentClass_pPrereleaseBrew({sc, brewUtil: BrewUtil2});
+	}
+
+	static async _pGetParentClass_pPrereleaseBrew ({sc, brewUtil}) {
+		const brew = await brewUtil.pGetBrewProcessed();
+		return (brew.class || [])
+			.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
 	}
 
 	static async pPostLoad (data, {...opts} = {}) {
 		data = MiscUtil.copy(data);
 
-		// Ensure homebrew is initialised
+		// Ensure prerelease/homebrew is initialised
+		await PrereleaseUtil.pGetBrewProcessed();
 		await BrewUtil2.pGetBrewProcessed();
 
 		if (!data.class) data.class = [];
@@ -895,24 +907,34 @@ class ModalFilterClasses extends ModalFilter {
 	/** Caches the result for fast re-querying. */
 	async _pLoadAllData () {
 		this._pLoadingAllData = this._pLoadingAllData || (async () => {
-			const [data, brew] = await Promise.all([
+			const [data, prerelease, brew] = await Promise.all([
 				MiscUtil.copy(await DataUtil.class.loadRawJSON()),
+				PrereleaseUtil.pGetBrewProcessed(),
 				BrewUtil2.pGetBrewProcessed(),
 			]);
 
-			// Combine main data with brew
-			const clsProps = BrewUtil2.getPageProps({page: UrlUtil.PG_CLASSES});
-			if (clsProps.includes("*")) {
-				Object.entries(brew)
-					.filter(([, brewVal]) => brewVal instanceof Array)
-					.forEach(([prop, brewArr]) => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brewArr)]);
-			} else clsProps.forEach(prop => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brew[prop] || [])]);
+			// Combine main data with prerelease/brew
+			this._pLoadAllData_mutAddPrereleaseBrew({data, brew: prerelease, brewUtil: PrereleaseUtil});
+			this._pLoadAllData_mutAddPrereleaseBrew({data, brew: brew, brewUtil: BrewUtil2});
 
 			this._allData = (await PageFilterClassesRaw.pPostLoad(data)).class;
 		})();
 
 		await this._pLoadingAllData;
 		return this._allData;
+	}
+
+	_pLoadAllData_mutAddPrereleaseBrew ({data, brew, brewUtil}) {
+		const clsProps = brewUtil.getPageProps({page: UrlUtil.PG_CLASSES});
+
+		if (!clsProps.includes("*")) {
+			clsProps.forEach(prop => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brew[prop] || [])]);
+			return;
+		}
+
+		Object.entries(brew)
+			.filter(([, brewVal]) => brewVal instanceof Array)
+			.forEach(([prop, brewArr]) => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brewArr)]);
 	}
 
 	_getListItems (pageFilter, cls, clsI) {
@@ -930,7 +952,7 @@ class ModalFilterClasses extends ModalFilter {
 
 		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
 		<div class="bold col-9 ${cls._versionBase_isVersion ? "italic" : ""}">${cls._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${cls.name}</div>
-		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${BrewUtil2.sourceJsonToStyle(cls.source)}>${source}</div>`;
+		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${Parser.sourceJsonToStyle(cls.source)}>${source}</div>`;
 
 		return new ListItem(
 			clsI,
@@ -954,7 +976,7 @@ class ModalFilterClasses extends ModalFilter {
 
 		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
 		<div class="col-9 pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "italic" : ""}">${sc._versionBase_isVersion ? `<span class="px-3"></span>` : ""}<span class="mx-3">\u2014</span> ${sc.name}</div>
-		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${BrewUtil2.sourceJsonToStyle(sc.source)}>${source}</div>`;
+		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${Parser.sourceJsonToStyle(sc.source)}>${source}</div>`;
 
 		return new ListItem(
 			`${clsI}--${scI}`,

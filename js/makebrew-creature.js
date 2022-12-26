@@ -181,13 +181,16 @@ class CreatureBuilder extends Builder {
 			DataUtil.loadJSON("data/makebrew-creature.json"),
 			DataUtil.monster.pPreloadMeta(),
 		]);
-		const brew = await BrewUtil2.pGetBrewProcessed();
 
 		this._bestiaryFluffIndex = bestiaryFluffIndex;
 
-		await this._pBuildLegendaryGroupCache({brew});
+		await this._pBuildLegendaryGroupCache();
 
-		this._jsonCreatureTraits = [...jsonCreature.makebrewCreatureTrait, ...(brew.makebrewCreatureTrait || [])];
+		this._jsonCreatureTraits = [
+			...jsonCreature.makebrewCreatureTrait,
+			...((await PrereleaseUtil.pGetBrewProcessed()).makebrewCreatureTrait || []),
+			...((await BrewUtil2.pGetBrewProcessed()).makebrewCreatureTrait || []),
+		];
 		this._indexedTraits = elasticlunr(function () {
 			this.addField("n");
 			this.setRef("id");
@@ -2949,10 +2952,10 @@ class CreatureBuilder extends Builder {
 		return $row;
 	}
 
-	async _pBuildLegendaryGroupCache ({brew} = {}) {
-		brew = brew || await BrewUtil2.pGetBrewProcessed();
+	async _pBuildLegendaryGroupCache () {
+		DataUtil.monster.populateMetaReference({legendaryGroup: (await BrewUtil2.pGetBrewProcessed()).legendaryGroup || []});
+		DataUtil.monster.populateMetaReference({legendaryGroup: (await BrewUtil2.pGetBrewProcessed()).legendaryGroup || []});
 
-		DataUtil.monster.populateMetaReference({legendaryGroup: brew.legendaryGroup || []});
 		const baseLegendaryGroups = Object.values(DataUtil.monster.metaGroupMap).map(obj => Object.values(obj)).flat();
 		this._legendaryGroups = [...baseLegendaryGroups];
 

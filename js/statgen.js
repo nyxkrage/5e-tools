@@ -7,6 +7,7 @@ class StatGenPage {
 	}
 
 	async pInit () {
+		await PrereleaseUtil.pInit();
 		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 		const [races, feats] = await Promise.all([
@@ -102,33 +103,27 @@ class StatGenPage {
 	}
 
 	async _pLoadRaces () {
-		const fromData = await DataUtil.race.loadJSON();
-		const fromBrew = await DataUtil.race.loadBrew({isAddBaseRaces: false});
-
-		let races = [...fromData.race, ...fromBrew.race];
-
-		races = races.filter(it => {
-			const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);
-			return !ExcludeUtil.isExcluded(hash, "race", it.source);
-		});
-
-		return races;
+		return [
+			...(await DataUtil.race.loadJSON()).race,
+			...((await DataUtil.race.loadPrerelease({isAddBaseRaces: false}).race) || []),
+			...((await DataUtil.race.loadBrew({isAddBaseRaces: false}).race) || []),
+		]
+			.filter(it => {
+				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);
+				return !ExcludeUtil.isExcluded(hash, "race", it.source);
+			});
 	}
 
 	async _pLoadFeats () {
-		const data = await DataUtil.loadJSON("data/feats.json");
-
-		const brew = await BrewUtil2.pGetBrewProcessed();
-
-		let feats = data.feat;
-		if (brew.feat) feats = [...feats, ...brew.feat];
-
-		feats = feats.filter(it => {
-			const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS](it);
-			return !ExcludeUtil.isExcluded(hash, "feat", it.source);
-		});
-
-		return feats;
+		return [
+			...(await DataUtil.loadJSON("data/feats.json")).feat,
+			...((await PrereleaseUtil.pGetBrewProcessed()).feat || []),
+			...((await BrewUtil2.pGetBrewProcessed()).feat || []),
+		]
+			.filter(it => {
+				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS](it);
+				return !ExcludeUtil.isExcluded(hash, "feat", it.source);
+			});
 	}
 
 	_setTabFromHash (tabName) {
