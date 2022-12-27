@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.173.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.173.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -3137,7 +3137,7 @@ globalThis.DataUtil = {
 
 					const dependencyData = await Promise.all(sourceIds.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)));
 
-					const flatDependencyData = dependencyData.map(dd => dd[dataProp]).flat();
+					const flatDependencyData = dependencyData.map(dd => dd[dataProp]).flat().filter(Boolean);
 					await Promise.all(data[dataProp].map(entry => DataUtil._pDoMetaMerge_handleCopyProp(dataProp, flatDependencyData, entry, {...options, isErrorOnMissing: !isHasInternalCopies})));
 				}));
 				delete data._meta.dependencies;
@@ -3163,7 +3163,7 @@ globalThis.DataUtil = {
 
 					const includesData = await Promise.all(sourceIds.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)));
 
-					const flatIncludesData = includesData.map(dd => dd[dataProp]).flat();
+					const flatIncludesData = includesData.map(dd => dd[dataProp]).flat().filter(Boolean);
 					return {dataProp, flatIncludesData};
 				}));
 				delete data._meta.includes;
@@ -3423,13 +3423,17 @@ globalThis.DataUtil = {
 	},
 
 	async pLoadPrereleaseBySource (source) {
-		if (typeof PrereleaseUtil !== "undefined") return null;
-		return PrereleaseUtil.pGetSourceUrl(source);
+		if (typeof PrereleaseUtil === "undefined") return null;
+		const url = await PrereleaseUtil.pGetSourceUrl(source);
+		if (!url) return null;
+		return DataUtil.loadJSON(url);
 	},
 
 	async pLoadBrewBySource (source) {
-		if (typeof BrewUtil2 !== "undefined") return null;
-		return BrewUtil2.pGetSourceUrl(source);
+		if (typeof BrewUtil2 === "undefined") return null;
+		const url = await BrewUtil2.pGetSourceUrl(source);
+		if (!url) return null;
+		return DataUtil.loadJSON(url);
 	},
 
 	// region Dbg

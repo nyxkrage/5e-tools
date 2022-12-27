@@ -112,12 +112,14 @@ class _DataLoaderDereferencerBase {
 		if (typeof PrereleaseUtil !== "undefined") {
 			const identPrerelease = PrereleaseUtil.getCacheIteration();
 			if (identPrerelease !== this._preloadingPrereleaseLastIdent) this._pPreloadingRefContentPrerelease = null;
+			this._preloadingPrereleaseLastIdent = identPrerelease;
 			await (this._pPreloadingRefContentPrerelease = this._pPreloadingRefContentPrerelease || this._pPreloadRefContentPrerelease());
 		}
 
 		if (typeof BrewUtil2 !== "undefined") {
 			const identBrew = BrewUtil2.getCacheIteration();
 			if (identBrew !== this._preloadingBrewLastIdent) this._pPreloadingRefContentBrew = null;
+			this._preloadingBrewLastIdent = identBrew;
 			await (this._pPreloadingRefContentBrew = this._pPreloadingRefContentBrew || this._pPreloadRefContentBrew());
 		}
 	}

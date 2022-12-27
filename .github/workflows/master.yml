@@ -114,7 +114,7 @@ jobs:
                   SAVE_CMD=$(docker inspect --format='{{json .Config.Cmd}}' $IMAGE_ID:latest)
 
                   # Convert .dockerignore to .rsync-filter
-                  ./.github/create-rsync-filter.sh
+                  bash ./.github/create-rsync-filter.sh
 
                   # Run up the previous container, and rsync the current new of files into it
                   CONTAINER_ID=$(docker run -d -v "$(pwd)":/tmp/5et-new $IMAGE_ID:latest  rsync -rlcvF --delete-excluded /tmp/5et-new/ /var/www/localhost/htdocs/)

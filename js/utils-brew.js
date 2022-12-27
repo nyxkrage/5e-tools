@@ -556,8 +556,14 @@ class _BrewUtil2Base {
 		const urlRoot = await this.pGetCustomUrl();
 		const brewIndex = await this._pGetSourceIndex(urlRoot);
 
-		if (!brewIndex[source]) return null;
-		return this.getFileUrl(brewIndex[source], urlRoot);
+		if (brewIndex[source]) return this.getFileUrl(brewIndex[source], urlRoot);
+
+		const sourceLower = source.toLowerCase();
+		if (brewIndex[sourceLower]) return this.getFileUrl(brewIndex[sourceLower], urlRoot);
+
+		const sourceOriginal = Object.keys(brewIndex).find(k => k.toLowerCase() === sourceLower);
+		if (!brewIndex[sourceOriginal]) return null;
+		return this.getFileUrl(brewIndex[sourceOriginal], urlRoot);
 	}
 
 	/** @abstract */
