@@ -9286,7 +9286,7 @@ Renderer.hover = {
 				win.document.write(`
 					<!DOCTYPE html>
 					<html lang="en" class="ve-popwindow ${typeof styleSwitcher !== "undefined" ? styleSwitcher.getDayNightClassNames() : ""}"><head>
-						<meta name="viewport" content="width=device-width, initial-scale=1">
+						<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 						<title>${opts.title}</title>
 						${$(`link[rel="stylesheet"][href]`).map((i, e) => e.outerHTML).get().join("\n")}
 						<!-- Favicons -->
