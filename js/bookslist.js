@@ -54,8 +54,10 @@ class AdventuresBooksList {
 	}
 
 	async pOnPageLoad () {
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 
 		const [data] = await Promise.all([
 			await DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._contentsUrl}`),

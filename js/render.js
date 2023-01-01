@@ -3157,7 +3157,12 @@ Renderer.utils = {
 		if (isListMode) return [shared, listOfChoices.join("/")].filter(Boolean).join(" + ");
 
 		const joinedChoices = hasNote ? listOfChoices.join(" Or, ") : listOfChoices.joinConjunct(listOfChoices.some(it => / or /.test(it)) ? "; " : ", ", " or ");
-		return `${isSkipPrefix ? "" : `Prerequisite${cntPrerequisites === 1 ? "" : "s"}: `}${[shared, joinedChoices].filter(Boolean).join(", plus ")}`;
+		return `${isSkipPrefix ? "" : `${isListMode ? "" : "<b>"}Prerequisite${cntPrerequisites === 1 ? "" : "s"}:${isListMode ? "" : "</b>"} `}${[shared, joinedChoices].filter(Boolean).join(", plus ")}`;
+	},
+
+	getRepeatableHtml (ent, {isListMode = false} = {}) {
+		if (ent.repeatable == null) return isListMode ? "\u2014" : "";
+		return `${isListMode ? "" : "<b>"}Repeatable:${isListMode ? "" : "</b>"} ${ent.repeatableNote || (ent.repeatable ? "Yes" : "No")}`;
 	},
 
 	getRenderedSize (size) {
@@ -4003,12 +4008,14 @@ Renderer.feat = {
 		const renderStack = [];
 
 		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite);
+		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat);
 		Renderer.feat.initFullEntries(feat);
 		renderStack.push(`
 			${Renderer.utils.getExcludedTr({entity: feat, dataProp: "feat", page: UrlUtil.PG_FEATS})}
 			${opts.isSkipNameRow ? "" : Renderer.utils.getNameTr(feat, {page: UrlUtil.PG_FEATS})}
 			<tr class="text"><td colspan="6" class="text">
-			${prerequisite ? `<p><i>${prerequisite}</i></p>` : ""}
+			${prerequisite ? `<p>${prerequisite}</p>` : ""}
+			${ptRepeatable ? `<p>${prerequisite}</p>` : ""}
 		`);
 		renderer.recursiveRender({entries: feat._fullEntries || feat.entries}, renderStack, {depth: 2});
 		renderStack.push(`</td></tr>`);
@@ -4245,8 +4252,10 @@ Renderer.spell = {
 	_populatePrereleaseBrewLookup ({brew, propCache, isForce}) {
 		if (Renderer.spell[propCache] && !isForce) return;
 
-		const tgt = Renderer.spell[propCache] = {
+		const cache = Renderer.spell[propCache] = {
 			classes: {},
+
+			groups: {},
 
 			// region Unused
 			races: {},
@@ -4257,13 +4266,18 @@ Renderer.spell = {
 		};
 
 		// region Load homebrew class spell list addons
-		// Three formats are available. A string (shorthand for "spell" format with source "PHB"), "spell" format (object
-		//   with a `name` and a `source`), and "class" format (object with a `class` and a `source`).
+		// Two formats are available: a string UID, or "class" object (object with a `className`, etc.).
 		if (brew.class) {
 			brew.class.forEach(c => {
 				c.source = c.source || Parser.SRC_PHB;
 
-				if (c.classSpells) c.classSpells.forEach(it => Renderer.spell._populatePrereleaseBrewLookup_handleSpellListItem(tgt, it, c.name, c.source));
+				(c.classSpells || [])
+					.forEach(itm => Renderer.spell._populatePrereleaseBrewLookup_item_classSubclass({
+						cache,
+						itm,
+						className: c.name,
+						classSource: c.source,
+					}));
 			});
 		}
 
@@ -4273,14 +4287,50 @@ Renderer.spell = {
 				sc.shortName = sc.shortName || sc.name;
 				sc.source = sc.source || sc.classSource;
 
-				if (sc.subclassSpells) sc.subclassSpells.forEach(it => Renderer.spell._populatePrereleaseBrewLookup_handleSpellListItem(tgt, it, sc.className, sc.classSource, sc.shortName, sc.name, sc.source));
-				if (sc.subSubclassSpells) Object.entries(sc.subSubclassSpells).forEach(([ssC, arr]) => arr.forEach(it => Renderer.spell._populatePrereleaseBrewLookup_handleSpellListItem(tgt, it, sc.className, sc.classSource, sc.shortName, sc.name, sc.source, ssC)));
+				(sc.subclassSpells || [])
+					.forEach(itm => Renderer.spell._populatePrereleaseBrewLookup_item_classSubclass({
+						cache,
+						itm,
+						className: sc.className,
+						classSource: sc.classSource,
+						subclassShortName: sc.shortName,
+						subclassName: sc.name,
+						subclassSource: sc.source,
+					}));
+
+				Object.entries(sc.subSubclassSpells || {})
+					.forEach(([subSubclassName, arr]) => {
+						arr
+							.forEach(itm => Renderer.spell._populatePrereleaseBrewLookup_item_classSubclass({
+								cache,
+								itm,
+								className: sc.className,
+								classSource: sc.classSource,
+								subclassShortName: sc.shortName,
+								subclassName: sc.name,
+								subclassSource: sc.source,
+								subSubclassName,
+							}));
+					});
 			});
 		}
 		// endregion
+
+		(brew.spellList || []).forEach(spellList => Renderer.spell._populatePrereleaseBrewLookup_item_group({cache, spellList}));
 	},
 
-	_populatePrereleaseBrewLookup_handleSpellListItem (cache, it, className, classSource, subclassShortName, subclassName, subclassSource, subSubclassName) {
+	_populatePrereleaseBrewLookup_item_classSubclass (
+		{
+			cache,
+			itm,
+			className,
+			classSource,
+			subclassShortName,
+			subclassName,
+			subclassSource,
+			subSubclassName,
+		},
+	) {
 		const doAdd = (target) => {
 			if (subclassShortName) {
 				const toAdd = {
@@ -4291,20 +4341,21 @@ Renderer.spell = {
 
 				target.fromSubclass = target.fromSubclass || [];
 				target.fromSubclass.push(toAdd);
-			} else {
-				const toAdd = {name: className, source: classSource};
-
-				target.fromClassList = target.fromClassList || [];
-				target.fromClassList.push(toAdd);
+				return;
 			}
+
+			const toAdd = {name: className, source: classSource};
+
+			target.fromClassList = target.fromClassList || [];
+			target.fromClassList.push(toAdd);
 		};
 
 		// region Duplicate the spell list of another class/subclass/sub-subclass
-		if (it.className) {
+		if (itm.className) {
 			cache.classes.class = cache.classes.class || {};
 
-			const cls = it.className.toLowerCase();
-			const source = (it.classSource || Parser.SRC_PHB).toLowerCase();
+			const cls = itm.className.toLowerCase();
+			const source = (itm.classSource || Parser.SRC_PHB).toLowerCase();
 
 			cache.classes.class[source] = cache.classes.class[source] || {};
 			cache.classes.class[source][cls] = cache.classes.class[source][cls] || {};
@@ -4316,7 +4367,7 @@ Renderer.spell = {
 		// region Individual spell
 		cache.classes.spell = cache.classes.spell || {};
 
-		let [name, source] = `${it}`.toLowerCase().split("|");
+		let [name, source] = `${itm}`.toLowerCase().split("|");
 		source = source || Parser.SRC_PHB.toLowerCase();
 
 		cache.classes.spell[source] = cache.classes.spell[source] || {};
@@ -4324,6 +4375,27 @@ Renderer.spell = {
 
 		doAdd(cache.classes.spell[source][name]);
 		// endregion
+	},
+
+	_populatePrereleaseBrewLookup_item_group (
+		{
+			cache,
+			spellList,
+		},
+	) {
+		const spellListSourceLower = (spellList.source || "").toLowerCase();
+		const spellListNameLower = (spellList.name || "").toLowerCase();
+
+		spellList.spells
+			.forEach(spell => {
+				if (typeof spell === "string") {
+					const {name, source} = DataUtil.proxy.unpackUid("spell", spell, "spell", {isLower: true});
+					return MiscUtil.set(cache.groups, "spell", source, name, spellListSourceLower, spellListNameLower, {name: spellList.name, source: spellList.source});
+				}
+
+				// TODO(Future) implement "copy existing list"
+				throw new Error(`Grouping spells based on other spell lists is not yet supported!`);
+			});
 	},
 
 	prePopulateHover (data) {
@@ -4389,7 +4461,7 @@ Renderer.spell = {
 			...(sp[propSpellTmp] || []),
 		]
 			.filter(it => {
-				if (!ExcludeUtil.isInitialised) return true;
+				if (!ExcludeUtil.isInitialised || !prop) return true;
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[prop](it);
 				return !ExcludeUtil.isExcluded(hash, prop, it.source, {isNoCount: true});
 			})
@@ -4403,6 +4475,7 @@ Renderer.spell = {
 		"_tmpBackgrounds",
 		"_tmpFeats",
 		"_tmpOptionalfeatures",
+		"_tmpGroups",
 	],
 	uninitBrewSources (sp) {
 		Renderer.spell._BREW_SOURCES_TMP_PROPS.forEach(prop => delete sp[prop]);
@@ -4417,6 +4490,7 @@ Renderer.spell = {
 		sp._tmpBackgrounds = [];
 		sp._tmpFeats = [];
 		sp._tmpOptionalfeatures = [];
+		sp._tmpGroups = [];
 
 		const lowName = sp.name.toLowerCase();
 		const lowSource = sp.source.toLowerCase();
@@ -4427,26 +4501,26 @@ Renderer.spell = {
 			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "backgrounds", prop: "background"});
 			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "feats", prop: "feat"});
 			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "optionalfeatures", prop: "optionalfeature"});
+			Renderer.spell._initBrewSources_brewGroup({cache, sp, lowName, lowSource});
 		}
 	},
 
 	_initBrewSources_brewClassesSubclasses ({cache, sp, lowName, lowSource}) {
 		if (!cache?.classes) return;
 
-		if (cache.classes.spell) {
-			if (cache.classes.spell[lowSource] && cache.classes.spell[lowSource][lowName]) {
-				if (cache.classes.spell[lowSource][lowName].fromClassList.length) {
-					sp._tmpClasses.fromClassList = sp._tmpClasses.fromClassList || [];
-					sp._tmpClasses.fromClassList.push(...cache.classes.spell[lowSource][lowName].fromClassList);
-				}
-				if (cache.classes.spell[lowSource][lowName].fromSubclass.length) {
-					sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
-					sp._tmpClasses.fromSubclass.push(...cache.classes.spell[lowSource][lowName].fromSubclass);
-				}
+		if (cache.classes.spell?.[lowSource]?.[lowName]) {
+			if (cache.classes.spell[lowSource][lowName].fromClassList.length) {
+				sp._tmpClasses.fromClassList = sp._tmpClasses.fromClassList || [];
+				sp._tmpClasses.fromClassList.push(...cache.classes.spell[lowSource][lowName].fromClassList);
+			}
+
+			if (cache.classes.spell[lowSource][lowName].fromSubclass.length) {
+				sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+				sp._tmpClasses.fromSubclass.push(...cache.classes.spell[lowSource][lowName].fromSubclass);
 			}
 		}
 
-		if (cache.classes.class && sp.classes && sp.classes.fromClassList) {
+		if (cache.classes.class && sp.classes?.fromClassList) {
 			(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
 
 			// speed over safety
@@ -4454,7 +4528,7 @@ Renderer.spell = {
 				const searchForClasses = cache.classes.class[srcLower];
 
 				for (const clsLowName in searchForClasses) {
-					const spellHasClass = sp.classes && sp.classes.fromClassList.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
+					const spellHasClass = sp.classes?.fromClassList?.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
 					if (!spellHasClass) continue;
 
 					const fromDetails = searchForClasses[clsLowName];
@@ -4509,6 +4583,22 @@ Renderer.spell = {
 		}
 	},
 
+	_initBrewSources_brewGroup ({cache, sp, lowName, lowSource}) {
+		if (!cache?.groups) return;
+
+		if (cache.groups.spell?.[lowSource]?.[lowName]) {
+			Object.values(cache.groups.spell[lowSource][lowName])
+				.forEach(bySource => {
+					Object.values(bySource)
+						.forEach(byName => {
+							sp._tmpGroups.push(byName);
+						});
+				});
+		}
+
+		// TODO(Future) implement "copy existing list"
+	},
+
 	pGetFluff (sp) {
 		return Renderer.utils.pGetFluff({
 			entity: sp,
@@ -4551,7 +4641,7 @@ Renderer.background = {
 		${Renderer.utils.getExcludedTr({entity: bg, dataProp: "background", page: UrlUtil.PG_BACKGROUNDS})}
 		${Renderer.utils.getNameTr(bg, {page: UrlUtil.PG_BACKGROUNDS})}
 		<tr class="text"><td colspan="6">
-		${prerequisite ? `<p><i>${prerequisite}</i></p>` : ""}
+		${prerequisite ? `<p>${prerequisite}</p>` : ""}
 		${Renderer.get().render({type: "entries", entries: bg.entries})}
 		</td></tr>
 		`;
@@ -4646,7 +4736,7 @@ Renderer.optionalfeature = {
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "optionalfeature", page: UrlUtil.PG_OPT_FEATURES})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_OPT_FEATURES})}
 			<tr class="text"><td colspan="6">
-			${it.prerequisite ? `<p><i>${Renderer.utils.getPrerequisiteHtml(it.prerequisite)}</i></p>` : ""}
+			${it.prerequisite ? `<p>${Renderer.utils.getPrerequisiteHtml(it.prerequisite)}</p>` : ""}
 		`);
 		renderer.recursiveRender({entries: it.entries}, renderStack, {depth: 1});
 		renderStack.push(`</td></tr>`);
@@ -6787,7 +6877,8 @@ Renderer.item = {
 		const brew = await brewUtil.pGetBrewProcessed();
 		(brew.itemProperty || []).forEach(p => Renderer.item._addProperty(p));
 		(brew.itemType || []).forEach(t => Renderer.item._addType(t));
-		(brew.itemEntry || []).forEach(t => Renderer.item._addEntry(t));
+		(brew.itemEntry || []).forEach(it => Renderer.item._addEntry(it));
+		(brew.itemTypeAdditionalEntries || []).forEach(it => Renderer.item._addAdditionalEntries(it));
 	},
 	_addBasePropertiesAndTypes (baseItemData) {
 		Object.entries(Parser.ITEM_TYPE_JSON_TO_ABV).forEach(([abv, name]) => Renderer.item._addType({abbreviation: abv, name}));
@@ -7395,6 +7486,7 @@ Renderer.item = {
 		(brew.itemProperty || []).forEach(p => Renderer.item._addProperty(p));
 		(brew.itemType || []).forEach(t => Renderer.item._addType(t));
 		(brew.itemEntry || []).forEach(it => Renderer.item._addEntry(it));
+		(brew.itemTypeAdditionalEntries || []).forEach(it => Renderer.item._addAdditionalEntries(it));
 
 		let items = [...(brew.baseitem || []), ...(brew.item || [])];
 
@@ -8154,8 +8246,10 @@ Renderer.adventureBook = {
 		return out;
 	},
 
+	_isAltMissingCoverUsed: false,
 	getCoverUrl (contents) {
-		return contents.coverUrl || `${Renderer.get().baseMediaUrls["img"] || Renderer.get().baseUrl}img/covers/blank${Math.random() <= 0.05 ? "-alt" : ""}.png`;
+		return contents.coverUrl
+			|| `${Renderer.get().baseMediaUrls["img"] || Renderer.get().baseUrl}img/covers/blank${Math.random() <= 0.05 && !Renderer.adventureBook._isAltMissingCoverUsed && (Renderer.adventureBook._isAltMissingCoverUsed = true) ? "-alt" : ""}.png`;
 	},
 };
 
@@ -8167,7 +8261,7 @@ Renderer.charoption = {
 		${Renderer.utils.getExcludedTr({entity: it, dataProp: "charoption", page: UrlUtil.PG_CHAR_CREATION_OPTIONS})}
 		${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_CHAR_CREATION_OPTIONS})}
 		<tr class="text"><td colspan="6">
-		${prerequisite ? `<p><i>${prerequisite}</i></p>` : ""}
+		${prerequisite ? `<p>${prerequisite}</p>` : ""}
 		${preText || ""}${Renderer.get().setFirstSection(true).render({type: "entries", entries: it.entries})}
 		</td></tr>
 		`;

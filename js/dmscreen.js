@@ -172,8 +172,10 @@ class Board {
 		this.doAdjust$creenCss();
 		this.doShowLoading();
 
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
 
 		await Promise.all([

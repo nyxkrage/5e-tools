@@ -197,7 +197,7 @@ class GenTables {
 			page: group.page,
 			caption: nameCaption,
 			colLabels: [
-				`d${tableRaw.diceType}`,
+				`d${tableRaw.diceExpression}`,
 				colLabel1,
 				tableRaw.rollAttitude ? `Attitude` : null,
 			].filter(Boolean),

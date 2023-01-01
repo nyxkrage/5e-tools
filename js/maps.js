@@ -27,8 +27,10 @@ class MapsPage extends BaseComponent {
 	}
 
 	async pOnLoad () {
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
 
 		const savedState = await StorageUtil.pGetForPage(this.constructor._STORAGE_STATE);

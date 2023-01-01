@@ -4,8 +4,10 @@ const JSON_URL = "data/books.json";
 
 window.addEventListener("load", async () => {
 	BookUtil.$dispBook = $(`#pagecontent`);
-	await PrereleaseUtil.pInit();
-	await BrewUtil2.pInit();
+	await Promise.all([
+		PrereleaseUtil.pInit(),
+		BrewUtil2.pInit(),
+	]);
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 	DataUtil.loadJSON(JSON_URL).then(onJsonLoad);
 });

@@ -1841,7 +1841,7 @@
 										{
 											"type": "item",
 											"name": "Light",
-											"entry": "The interior caves are illuminated by bioluminescent fungi, which provide dim light throughout the area. See \"{@book Vision|PHB|8|Vision and Light}\" in the {@book Basic Rules|PHB}."
+											"entry": "The interior caves are illuminated by bioluminescent fungi, which provide dim light throughout the area. See \"{@quickref Vision and Light|PHB|2||Vision}\" in the {@book Basic Rules|PHB}."
 										},
 										{
 											"type": "item",
@@ -4654,7 +4654,7 @@
 										{
 											"type": "item",
 											"name": "Light",
-											"entry": "During the day, the sun fills the upper deck and main deck with bright light and the lower deck with {@book dim light|PHB|8|Vision and Light}. Sunlight doesn't reach into the hold, and the whole wreck is {@book dark|PHB|8|Vision and Light} at night. See \"{@book Vision|PHB|8|Vision and Light}\" in the {@book Basic Rules|PHB}."
+											"entry": "During the day, the sun fills the upper deck and main deck with bright light and the lower deck with {@quickref Vision and Light|PHB|2||dim light}. Sunlight doesn't reach into the hold, and the whole wreck is {@quickref Vision and Light|PHB|2||dark} at night. See \"{@quickref Vision and Light|PHB|2||Vision}\" in the {@book Basic Rules|PHB}."
 										}
 									]
 								}

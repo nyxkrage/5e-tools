@@ -585,6 +585,7 @@ Parser.sourceJsonToFull = function (source) {
 Parser.sourceJsonToFullCompactPrefix = function (source) {
 	return Parser.sourceJsonToFull(source)
 		.replace(Parser.UA_PREFIX, Parser.UA_PREFIX_SHORT)
+		.replace(/^Unearthed Arcana (\d+): /, "UA$1: ")
 		.replace(Parser.AL_PREFIX, Parser.AL_PREFIX_SHORT)
 		.replace(Parser.PS_PREFIX, Parser.PS_PREFIX_SHORT);
 };
@@ -2553,6 +2554,7 @@ Parser.SRC_PSX = `${Parser.SRC_PS_PREFIX}X`;
 Parser.SRC_PSD = `${Parser.SRC_PS_PREFIX}D`;
 
 Parser.SRC_UA_PREFIX = "UA";
+Parser.SRC_UA_ONE_PREFIX = "XUA";
 Parser.SRC_MCVX_PREFIX = "MCV";
 
 Parser.SRC_UAA = `${Parser.SRC_UA_PREFIX}Artificer`;

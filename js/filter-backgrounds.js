@@ -12,6 +12,7 @@ class PageFilterBackgrounds extends PageFilter {
 		this._skillFilter = new Filter({header: "Skill Proficiencies", displayFn: StrUtil.toTitleCase});
 		this._toolFilter = new Filter({header: "Tool Proficiencies", displayFn: PageFilterBackgrounds._getToolDisplayText.bind(PageFilterBackgrounds)});
 		this._languageFilter = new Filter({header: "Language Proficiencies", displayFn: it => it === "anyStandard" ? "Any Standard" : StrUtil.toTitleCase(it)});
+		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores"});
 		this._otherBenefitsFilter = new Filter({header: "Other Benefits"});
 		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Basic Rules"], isMiscFilter: true});
 	}
@@ -39,6 +40,7 @@ class PageFilterBackgrounds extends PageFilter {
 		this._skillFilter.addItem(bg._fSkills);
 		this._toolFilter.addItem(bg._fTools);
 		this._languageFilter.addItem(bg._fLangs);
+		this._asiFilter.addItem(bg.ability);
 		this._otherBenefitsFilter.addItem(bg._fOtherBenifits);
 	}
 
@@ -48,6 +50,7 @@ class PageFilterBackgrounds extends PageFilter {
 			this._skillFilter,
 			this._toolFilter,
 			this._languageFilter,
+			this._asiFilter,
 			this._otherBenefitsFilter,
 			this._miscFilter,
 		];
@@ -60,6 +63,7 @@ class PageFilterBackgrounds extends PageFilter {
 			bg._fSkills,
 			bg._fTools,
 			bg._fLangs,
+			bg.ability,
 			bg._fOtherBenifits,
 			bg._fMisc,
 		);

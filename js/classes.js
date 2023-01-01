@@ -67,8 +67,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		this._$pgContent = $(`#pagecontent`);
 
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
 		Omnisearch.addScrollTopFloat();
 		const data = await DataUtil.class.loadJSON();
@@ -1025,6 +1027,18 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const $btnSendToFoundry = ExtensionUtil.ACTIVE ? $(Renderer.utils.getBtnSendToFoundryHtml({isMb: false})) : null;
 		const dataPartSendToFoundry = `data-page="${UrlUtil.PG_CLASSES}" data-source="${cls.source.qq()}" data-hash="${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls).qq()}"`;
 
+		// region Group
+		let $ptGroup = null;
+		if (cls.classGroup) {
+			$ptGroup = $(`<tr></tr>`)
+				.fastSetHtml(`<td colspan="6" class="cls-side__section">
+					<h5 class="cls-side__section-head">Groups</h5>
+					<div>${cls.classGroup.map(it => it.toTitleCase()).join(", ")}</div>
+				</td>`);
+			$ptsToToggle.push($ptGroup);
+		}
+		// endregion
+
 		// region Requirements
 		const $getRenderedRequirements = (requirements, intro = null) => {
 			const renderPart = (obj, joiner = ", ") => Object.keys(obj).filter(k => Parser.ABIL_ABVS.includes(k)).sort(SortUtil.ascSortAtts).map(k => `${Parser.attAbvToFull(k)} ${obj[k]}`).join(joiner);
@@ -1176,14 +1190,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			</th></tr>
 			${cls.authors ? `<tr><th colspan="6">By ${cls.authors.join(", ")}</th></tr>` : ""}
 
+			${$ptGroup}
 			${$ptRequirements}
-
 			${$ptHp}
-
 			${$ptProfs}
-
 			${$ptEquipment}
-
 			${$ptMulticlassing}
 
 			<tr><th class="border" colspan="6"></th></tr>

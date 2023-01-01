@@ -59,16 +59,16 @@ jobs:
                rm -rf node_modules
 
          -  name: Setup Pages
-            uses: actions/configure-pages@v2
+            uses: actions/configure-pages@master
 
          -  name: Upload artifact
-            uses: actions/upload-pages-artifact@v1
+            uses: actions/upload-pages-artifact@master
             with:
                path: '.'
 
          -  name: Deploy to GitHub Pages
             id: deployment
-            uses: actions/deploy-pages@v1
+            uses: actions/deploy-pages@master
             with:
                # Timeout in millis (1 hour)
                timeout: 3600000

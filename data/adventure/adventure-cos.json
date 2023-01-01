@@ -1826,7 +1826,7 @@
 									"items": [
 										"A creature that starts its turn in the fog must succeed on a DC 20 Constitution saving throw or gain one level of {@condition exhaustion} (see {@book appendix A|PHB|11} in the {@book Player's Handbook|PHB}). This {@condition exhaustion} can't be removed while the creature is in the fog.",
 										"No matter how far a creature travels in the fog, or in which direction it goes, it gets turned around so that it eventually finds itself back in Barovia.",
-										"The area within the fog is heavily obscured (see \"{@book Vision and Light|PHB|8|Vision and Light}\" in chapter 8 of the {@book Player's Handbook|PHB})."
+										"The area within the fog is heavily obscured (see \"{@quickref Vision and Light|PHB|2||Vision and Light}\" in chapter 8 of the {@book Player's Handbook|PHB})."
 									]
 								}
 							]

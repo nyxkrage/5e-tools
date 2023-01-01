@@ -443,7 +443,12 @@ class QuickrefTag {
 		;
 	}
 }
-QuickrefTag._RE_BASIC = /\b(difficult terrain)\b/g;
+QuickrefTag._RE_BASIC = /\b(difficult terrain|dim light|bright light|lightly obscured|heavily obscured|Vision and Light)\b/g;
 QuickrefTag._LOOKUP = {
 	"difficult terrain": "difficult terrain||3",
+	"Vision and Light": "Vision and Light||2",
+	"bright light": "Vision and Light||2",
+	"dim light": "Vision and Light||2",
+	"lightly obscured": "Vision and Light||2",
+	"heavily obscured": "Vision and Light||2",
 };

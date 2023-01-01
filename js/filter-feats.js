@@ -78,6 +78,7 @@ class PageFilterFeats extends PageFilter {
 		if (feat.basicRules) feat._fMisc.push("Basic Rules");
 		if (feat.hasFluff) feat._fMisc.push("Has Info");
 		if (feat.hasFluffImages) feat._fMisc.push("Has Images");
+		if (feat.repeatable != null) feat._fMisc.push(feat.repeatable ? "Repeatable" : "Not Repeatable");
 
 		feat._slAbility = ability.asText || VeCt.STR_NONE;
 		feat._slPrereq = prereqText;
@@ -96,6 +97,7 @@ class PageFilterFeats extends PageFilter {
 		this._immuneFilter.addItem(feat._fImm);
 		this._conditionImmuneFilter.addItem(feat._fCondImm);
 		this._benefitsFilter.addItem(feat._fBenifits);
+		this._miscFilter.addItem(feat._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

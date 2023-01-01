@@ -878,8 +878,10 @@ class ListPage {
 
 		this._$pgContent = $(`#pagecontent`);
 
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
 
 		if (this._compSettings) {

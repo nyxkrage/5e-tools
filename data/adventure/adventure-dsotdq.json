@@ -13751,7 +13751,7 @@
 												{
 													"type": "item",
 													"name": "Lighting",
-													"entry": "{@area Areas E1|2ad|x} and {@area E2|2b2|x} are brightly lit by {@spell continual flame} spells cast on wall sconces. In {@area areas E3|2b6|x} and {@area E4|2bb|x}, these glowing sconces are affected by Shadowfell magic that causes them to produce only {@book dim light|PHB|8|Vision and Light} and shine with an eerie green glow. {@area Area E5|2be|x} is dimly lit by a gloomy gray sky."
+													"entry": "{@area Areas E1|2ad|x} and {@area E2|2b2|x} are brightly lit by {@spell continual flame} spells cast on wall sconces. In {@area areas E3|2b6|x} and {@area E4|2bb|x}, these glowing sconces are affected by Shadowfell magic that causes them to produce only {@quickref Vision and Light|PHB|2||dim light} and shine with an eerie green glow. {@area Area E5|2be|x} is dimly lit by a gloomy gray sky."
 												}
 											]
 										}
@@ -14171,7 +14171,7 @@
 												{
 													"type": "item",
 													"name": "Lighting",
-													"entry": "Crystals fill the upper level of the cave with {@book dim light|PHB|8|Vision and Light}. The lower level opens to the surface, allowing natural bright light in during the daytime."
+													"entry": "Crystals fill the upper level of the cave with {@quickref Vision and Light|PHB|2||dim light}. The lower level opens to the surface, allowing natural bright light in during the daytime."
 												}
 											]
 										}
@@ -15901,7 +15901,7 @@
 							"id": "30f",
 							"entries": [
 								"After the characters conclude their business at Wakenreth, {@creature Dalamar|DSotDQ} requests they escort him here.",
-								"Dread Wolf Cove is usually an unassuming inlet along the coast. However, the cove is {@book lightly obscured|PHB|8|Vision and Light} by fog that billows from a nearby cave. If the characters enter, they encounter a wolflike {@creature anhkolox|DSotDQ} (see {@adventure appendix B|DSotDQ|9}). Should the characters battle the monster, {@creature Dalamar|DSotDQ} (neutral elf {@creature mage}) aids them.",
+								"Dread Wolf Cove is usually an unassuming inlet along the coast. However, the cove is {@quickref Vision and Light|PHB|2||lightly obscured} by fog that billows from a nearby cave. If the characters enter, they encounter a wolflike {@creature anhkolox|DSotDQ} (see {@adventure appendix B|DSotDQ|9}). Should the characters battle the monster, {@creature Dalamar|DSotDQ} (neutral elf {@creature mage}) aids them.",
 								{
 									"type": "entries",
 									"id": "310",
@@ -16144,7 +16144,7 @@
 												],
 												[
 													"5\u20137",
-													"A dragonnel roars and strafes the battlefield, throwing up a cloud of dust. For the next round, the battlefield is {@book heavily obscured|PHB|8|Vision and Light}."
+													"A dragonnel roars and strafes the battlefield, throwing up a cloud of dust. For the next round, the battlefield is {@quickref Vision and Light|PHB|2||heavily obscured}."
 												],
 												[
 													"8\u20139",
@@ -22312,7 +22312,7 @@
 												{
 													"type": "item",
 													"name": "Burnt Ground and Trees",
-													"entry": "This area has recently been blasted with flames. It still smolders, and smoke {@book heavily obscures|PHB|8|Vision and Light} this area. The smoke disperses after 5 minutes or if exposed to wind moving at least 10 miles an hour."
+													"entry": "This area has recently been blasted with flames. It still smolders, and smoke {@quickref Vision and Light|PHB|2||heavily obscures} this area. The smoke disperses after 5 minutes or if exposed to wind moving at least 10 miles an hour."
 												},
 												{
 													"type": "item",
@@ -22599,7 +22599,7 @@
 										{
 											"type": "item",
 											"name": "Lighting",
-											"entry": "Except for natural chambers and areas that note otherwise, areas inside the flying citadel are {@book dimly lit|PHB|8|Vision and Light} by the flickering flames of magical torches and candles."
+											"entry": "Except for natural chambers and areas that note otherwise, areas inside the flying citadel are {@quickref Vision and Light|PHB|2||dimly lit} by the flickering flames of magical torches and candles."
 										}
 									]
 								}
@@ -25693,7 +25693,7 @@
 												{
 													"type": "item",
 													"name": "Cataclysmic Smoke",
-													"entry": "Violet vapor drifts from the temple, leaving the area it fills {@book heavily obscured|PHB|8|Vision and Light}."
+													"entry": "Violet vapor drifts from the temple, leaving the area it fills {@quickref Vision and Light|PHB|2||heavily obscured}."
 												},
 												{
 													"type": "item",

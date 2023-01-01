@@ -2,8 +2,10 @@
 
 class MakeCards extends BaseComponent {
 	static async pInit () {
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
 
 		MakeCards._ = new MakeCards();
@@ -553,10 +555,12 @@ class MakeCards extends BaseComponent {
 
 	static _getCardContents_feat (feat) {
 		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite, {isListMode: true});
+		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat, {isListMode: true});
 		Renderer.feat.initFullEntries(feat);
 		return [
-			prerequisite ? this._ct_property("Prerequisites", prerequisite) : null,
-			prerequisite ? this._ct_rule() : null,
+			(prerequisite && prerequisite !== "\u2014") ? this._ct_property("Prerequisites", prerequisite) : null,
+			(ptRepeatable && ptRepeatable !== "\u2014") ? this._ct_property("Repeatable", ptRepeatable) : null,
+			(prerequisite || ptRepeatable) ? this._ct_rule() : null,
 			...this._ct_renderEntries(feat._fullEntries || feat.entries, 2),
 		].filter(Boolean);
 	}

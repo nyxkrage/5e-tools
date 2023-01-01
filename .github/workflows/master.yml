@@ -121,7 +121,7 @@ jobs:
                   docker logs -f $CONTAINER_ID
 
                   # Commit the changes
-                  docker commit -c 'CMD $SAVE_CMD' $CONTAINER_ID $IMAGE_NAME
+                  docker commit -c "CMD $SAVE_CMD" $CONTAINER_ID $IMAGE_NAME
                fi
 
          -  name: Log In to Registry

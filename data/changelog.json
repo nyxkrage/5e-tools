@@ -2313,5 +2313,11 @@
 		"ver": "1.173.1",
 		"date": "2022-12-27",
 		"txt": "- (Brew) Mis-cased sources are now tolerated when finding/loading dependencies (although getting the case correct is still recommended, for performance reasons)\n- (Brew) Fixed crash when loading homebrew with dependencies\n- (Brew) Fixed unnecessary re-caching of content, causing slow loads (notably on the Classes page)"
+	},
+	{
+		"ver": "1.174.0",
+		"date": "2023-01-01",
+		"title": "One",
+		"txt": "- Added support for various One D&D UA additions/content formatting\n  - Added Ability Scores filter to Backgrounds page\n  - Added background selector, and background ability score support, to Statgen\n  - Added \"Group\" filter and display to Spells page\n  - Added \"Repeatable\" filter and display to feats\n  - Added group display to classes\n  - _[Note that the three One D&D UAs are now available via the Prerelease Manager]_\n- Added DMG encounters to Encounters page\n- (Brew) Added support for local prerelease content (matching functionality for local homebrew)\n- (Brew) Added support for homebrew `\"itemTypeAdditionalEntries\"`\n- (Fixed typos/added tags)"
 	}
 ]

@@ -504,8 +504,10 @@ Unearthed Arcana content can be accessed by cycling the &quot;All Sources&quot; 
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 <script>
 	(async () => {
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		ExcludeUtil.pInitialise().then(null);
 
 		const $demoRoller = $(`#demo_roller`);

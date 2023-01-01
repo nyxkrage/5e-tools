@@ -2,6 +2,13 @@
 
 class RenderSpells {
 	static SETTINGS = {
+		isDisplayGroups: new SettingsUtil.Setting({
+			type: "boolean",
+			name: "Spell Sources: Show Groups",
+			help: `Whether or not "Groups" should be shown for a spell.`,
+			defaultVal: true,
+		}),
+
 		isDisplayClasses: new SettingsUtil.Setting({
 			type: "boolean",
 			name: "Spell Sources: Show Classes",
@@ -30,34 +37,34 @@ class RenderSpells {
 
 		isDisplayVariantClasses: new SettingsUtil.Setting({
 			type: "boolean",
-			name: "Spell Sources: Optional/Variant Classes",
+			name: "Spell Sources: Show Optional/Variant Classes",
 			help: `Whether or not "Optional/Variant Classes" should be shown for a spell.`,
 			defaultVal: true,
 		}),
 		isDisplayVariantClassesLegacy: new SettingsUtil.Setting({
 			type: "boolean",
-			name: "Spell Sources: Optional/Variant Classes (Legacy)",
+			name: "Spell Sources: Show Optional/Variant Classes (Legacy)",
 			help: `Whether or not "Optional/Variant Classes (legacy)" should be shown for a spell.`,
 			defaultVal: false,
 		}),
 
 		isDisplayRaces: new SettingsUtil.Setting({
 			type: "boolean",
-			name: "Spell Sources: Races",
+			name: "Spell Sources: Show Races",
 			help: `Whether or not "Races" should be shown for a spell.`,
 			defaultVal: true,
 		}),
 
 		isDisplayBackgrounds: new SettingsUtil.Setting({
 			type: "boolean",
-			name: "Spell Sources: Backgrounds",
+			name: "Spell Sources: Show Backgrounds",
 			help: `Whether or not "Backgrounds" should be shown for a spell.`,
 			defaultVal: true,
 		}),
 
 		isDisplayFeats: new SettingsUtil.Setting({
 			type: "boolean",
-			name: "Spell Sources: Feats",
+			name: "Spell Sources: Show Feats",
 			help: `Whether or not "Feats" should be shown for a spell.`,
 			defaultVal: true,
 		}),
@@ -100,6 +107,8 @@ class RenderSpells {
 		renderStack.push(`</td></tr>`);
 
 		const stackFroms = [];
+
+		if (settings.isDisplayGroups) this._mutStackPtSpellSource({sp, stackFroms, renderer, title: "Groups", propSpell: "groups"});
 
 		const fromClassList = Renderer.spell.getCombinedClasses(sp, "fromClassList");
 		if (fromClassList.length) {
@@ -164,6 +173,13 @@ class RenderSpells {
 		const froms = Renderer.spell.getCombinedGeneric(sp, {propSpell, prop});
 		if (!froms.length) return;
 
-		stackFroms.push(`<div><span class="bold">${title}: </span>${froms.map(it => `${SourceUtil.isNonstandardSource(it.source) ? `<span class="text-muted">` : ``}${renderer.render(`{@${tag} ${it.name}|${it.source}}`)}${SourceUtil.isNonstandardSource(it.source) ? `</span>` : ``}`).join(", ")}</div>`);
+		const ptFroms = froms
+			.map(it => {
+				const pt = tag ? renderer.render(`{@${tag} ${it.name}|${it.source}}`) : `<span class="help-subtle" title="Source: ${(Parser.sourceJsonToFull(it.source)).qq()}">${it.name}</span>`;
+				return `${SourceUtil.isNonstandardSource(it.source) ? `<span class="text-muted">` : ``}${pt}${SourceUtil.isNonstandardSource(it.source) ? `</span>` : ``}`;
+			})
+			.join(", ");
+
+		stackFroms.push(`<div><span class="bold">${title}: </span>${ptFroms}</div>`);
 	}
 }

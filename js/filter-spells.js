@@ -302,76 +302,84 @@ class PageFilterSpells extends PageFilter {
 	constructor () {
 		super();
 
-		const levelFilter = new Filter({
+		this._classFilter = new Filter({
+			header: "Class",
+			groupFn: it => it.userData.group,
+		});
+		this._subclassFilter = new Filter({
+			header: "Subclass",
+			nests: {},
+			groupFn: it => it.userData.group,
+		});
+		this._levelFilter = new Filter({
 			header: "Level",
 			items: [
 				0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
 			],
 			displayFn: PageFilterSpells.getFltrSpellLevelStr,
 		});
-		const classFilter = new Filter({
-			header: "Class",
-			groupFn: it => it.userData.group,
+		this._variantClassFilter = new VariantClassFilter();
+		this._classAndSubclassFilter = new MultiFilterClasses({
+			classFilter: this._classFilter,
+			subclassFilter: this._subclassFilter,
+			variantClassFilter: this._variantClassFilter,
 		});
-		const subclassFilter = new Filter({
-			header: "Subclass",
-			nests: {},
-			groupFn: it => it.userData.group,
-		});
-		const variantClassFilter = new VariantClassFilter();
-		const classAndSubclassFilter = new MultiFilterClasses({classFilter, subclassFilter, variantClassFilter});
-		const raceFilter = new Filter({
+		this._raceFilter = new Filter({
 			header: "Race",
 			nests: {},
 			groupFn: it => it.userData.group,
 		});
-		const metaFilter = new Filter({
+		this._backgroundFilter = new SearchableFilter({header: "Background"});
+		this._featFilter = new SearchableFilter({header: "Feat"});
+		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
+		this._metaFilter = new Filter({
 			header: "Components & Miscellaneous",
 			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "SRD", "Basic Rules", "Has Images", "Has Token"],
 			itemSortFn: PageFilterSpells.sortMetaFilter,
 			isMiscFilter: true,
 			displayFn: it => Parser.spMiscTagToFull(it),
 		});
-		const schoolFilter = new Filter({
+		this._groupFilter = new Filter({header: "Group"});
+		this._schoolFilter = new Filter({
 			header: "School",
 			items: [...Parser.SKL_ABVS],
 			displayFn: Parser.spSchoolAbvToFull,
 			itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.spSchoolAbvToFull(a.item), Parser.spSchoolAbvToFull(b.item)),
 		});
-		const subSchoolFilter = new Filter({
+		this._subSchoolFilter = new Filter({
 			header: "Subschool",
 			items: [],
 			displayFn: Parser.spSchoolAbvToFull,
 		});
-		const damageFilter = new Filter({
+		this._damageFilter = new Filter({
 			header: "Damage Type",
 			items: MiscUtil.copy(Parser.DMG_TYPES),
 			displayFn: StrUtil.uppercaseFirst,
 		});
-		const conditionFilter = new Filter({
+		this._conditionFilter = new Filter({
 			header: "Conditions Inflicted",
 			items: [...Parser.CONDITIONS],
 			displayFn: uid => uid.split("|")[0].toTitleCase(),
 		});
-		const spellAttackFilter = new Filter({
+		this._spellAttackFilter = new Filter({
 			header: "Spell Attack",
 			items: ["M", "R", "O"],
 			displayFn: Parser.spAttackTypeToFull,
 			itemSortFn: null,
 		});
-		const saveFilter = new Filter({
+		this._saveFilter = new Filter({
 			header: "Saving Throw",
 			items: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
 			displayFn: PageFilterSpells.getFilterAbilitySave,
 			itemSortFn: null,
 		});
-		const checkFilter = new Filter({
+		this._checkFilter = new Filter({
 			header: "Ability Check",
 			items: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"],
 			displayFn: PageFilterSpells.getFilterAbilityCheck,
 			itemSortFn: null,
 		});
-		const timeFilter = new Filter({
+		this._timeFilter = new Filter({
 			header: "Cast Time",
 			items: [
 				Parser.SP_TM_ACTION,
@@ -384,13 +392,13 @@ class PageFilterSpells extends PageFilter {
 			displayFn: Parser.spTimeUnitToFull,
 			itemSortFn: null,
 		});
-		const durationFilter = new RangeFilter({
+		this._durationFilter = new RangeFilter({
 			header: "Duration",
 			isLabelled: true,
 			labelSortFn: null,
 			labels: ["Instant", "1 Round", "1 Minute", "10 Minutes", "1 Hour", "8 Hours", "24+ Hours", "Permanent", "Special"],
 		});
-		const rangeFilter = new Filter({
+		this._rangeFilter = new Filter({
 			header: "Range",
 			items: [
 				PageFilterSpells.F_RNG_SELF,
@@ -401,34 +409,12 @@ class PageFilterSpells extends PageFilter {
 			],
 			itemSortFn: null,
 		});
-		const areaTypeFilter = new Filter({
+		this._areaTypeFilter = new Filter({
 			header: "Area Style",
 			items: ["ST", "MT", "R", "N", "C", "Y", "H", "L", "S", "Q", "W"],
 			displayFn: Parser.spAreaTypeToFull,
 			itemSortFn: null,
 		});
-
-		this._classFilter = classFilter;
-		this._subclassFilter = subclassFilter;
-		this._levelFilter = levelFilter;
-		this._variantClassFilter = variantClassFilter;
-		this._classAndSubclassFilter = classAndSubclassFilter;
-		this._raceFilter = raceFilter;
-		this._backgroundFilter = new SearchableFilter({header: "Background"});
-		this._featFilter = new SearchableFilter({header: "Feat"});
-		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
-		this._metaFilter = metaFilter;
-		this._schoolFilter = schoolFilter;
-		this._subSchoolFilter = subSchoolFilter;
-		this._damageFilter = damageFilter;
-		this._conditionFilter = conditionFilter;
-		this._spellAttackFilter = spellAttackFilter;
-		this._saveFilter = saveFilter;
-		this._checkFilter = checkFilter;
-		this._timeFilter = timeFilter;
-		this._durationFilter = durationFilter;
-		this._rangeFilter = rangeFilter;
-		this._areaTypeFilter = areaTypeFilter;
 		this._affectsCreatureTypeFilter = new Filter({
 			header: "Affects Creature Types",
 			items: [...Parser.MON_TYPES],
@@ -483,6 +469,7 @@ class PageFilterSpells extends PageFilter {
 		s._fBackgrounds = Renderer.spell.getCombinedGeneric(s, {propSpell: "backgrounds", prop: "background"}).map(it => it.name);
 		s._fFeats = Renderer.spell.getCombinedGeneric(s, {propSpell: "feats", prop: "feat"}).map(it => it.name);
 		s._fOptionalfeatures = Renderer.spell.getCombinedGeneric(s, {propSpell: "optionalfeatures", prop: "optionalfeature"}).map(it => it.name);
+		s._fGroups = Renderer.spell.getCombinedGeneric(s, {propSpell: "groups"}).map(it => it.name);
 		s._fTimeType = s.time.map(t => t.unit);
 		s._fDurationType = PageFilterSpells.getFilterDuration(s);
 		s._fRangeType = PageFilterSpells.getRangeType(s.range);
@@ -508,6 +495,7 @@ class PageFilterSpells extends PageFilter {
 		if (isExcluded) return;
 
 		if (s.level > 9) this._levelFilter.addItem(s.level);
+		this._groupFilter.addItem(s._fGroups);
 		this._schoolFilter.addItem(s.school);
 		this._sourceFilter.addItem(s._fSources);
 		this._metaFilter.addItem(s._fMeta);
@@ -544,6 +532,7 @@ class PageFilterSpells extends PageFilter {
 			this._featFilter,
 			this._optionalfeaturesFilter,
 			this._metaFilter,
+			this._groupFilter,
 			this._schoolFilter,
 			this._subSchoolFilter,
 			this._damageFilter,
@@ -574,6 +563,7 @@ class PageFilterSpells extends PageFilter {
 			s._fFeats,
 			s._fOptionalfeatures,
 			s._fMeta,
+			s._fGroups,
 			s.school,
 			s.subschools,
 			s.damageInflict,

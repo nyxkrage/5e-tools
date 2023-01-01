@@ -253,6 +253,9 @@ class _BrewUtil2Base {
 
 	_VERSION;
 
+	_PATH_LOCAL_DIR;
+	_PATH_LOCAL_INDEX;
+
 	IS_EDITABLE;
 	PAGE_MANAGE;
 	URL_REPO_DEFAULT;
@@ -391,8 +394,43 @@ class _BrewUtil2Base {
 		}
 	}
 
-	/** @abstract */
-	async _pGetBrew_pGetLocalBrew () { throw new Error("Unimplemented!"); }
+	/* -------------------------------------------- */
+
+	async _pGetBrew_pGetLocalBrew ({lockToken} = {}) {
+		if (this._cache_brewsLocal) return this._cache_brewsLocal;
+		if (IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
+
+		try {
+			await this._LOCK.pLock({token: lockToken});
+			return (await this._pGetBrew_pGetLocalBrew_());
+		} finally {
+			this._LOCK.unlock();
+		}
+	}
+
+	async _pGetBrew_pGetLocalBrew_ () {
+		// auto-load from `prerelease/` and `homebrew/`, for custom versions of the site
+		const indexLocal = await DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._PATH_LOCAL_INDEX}`);
+		if (!indexLocal?.toImport?.length) return this._cache_brewsLocal = [];
+
+		const out = await indexLocal.toImport.pMap(async name => {
+			name = `${name}`.trim();
+			const url = /^https?:\/\//.test(name) ? name : `${Renderer.get().baseUrl}${this._PATH_LOCAL_DIR}/${name}`;
+			const filename = UrlUtil.getFilename(url);
+			try {
+				const json = await DataUtil.loadRawJSON(url);
+				return this._getBrewDoc({json, url, filename, isLocal: true});
+			} catch (e) {
+				JqueryUtil.doToast({type: "danger", content: `Failed to load local homebrew from URL "${url}"! ${VeCt.STR_SEE_CONSOLE}`});
+				setTimeout(() => { throw e; });
+				return null;
+			}
+		});
+
+		return this._cache_brewsLocal = out.filter(Boolean);
+	}
+
+	/* -------------------------------------------- */
 
 	async _pGetBrewRaw ({lockToken} = {}) {
 		try {
@@ -877,7 +915,7 @@ class _BrewUtil2Base {
 		[UrlUtil.PG_OBJECTS]: ["object"],
 		[UrlUtil.PG_TRAPS_HAZARDS]: ["trap", "hazard"],
 		[UrlUtil.PG_DEITIES]: ["deity"],
-		[UrlUtil.PG_ITEMS]: ["item", "baseitem", "magicvariant", "itemProperty", "itemType", "itemFluff", "itemGroup", "itemEntry"],
+		[UrlUtil.PG_ITEMS]: ["item", "baseitem", "magicvariant", "itemProperty", "itemType", "itemFluff", "itemGroup", "itemEntry", "itemTypeAdditionalEntries"],
 		[UrlUtil.PG_REWARDS]: ["reward"],
 		[UrlUtil.PG_PSIONICS]: ["psionic"],
 		[UrlUtil.PG_VARIANTRULES]: ["variantrule"],
@@ -1158,6 +1196,9 @@ class _BrewUtil2 extends _BrewUtil2Base {
 
 	_VERSION = 2;
 
+	_PATH_LOCAL_DIR = "homebrew";
+	_PATH_LOCAL_INDEX = VeCt.JSON_BREW_INDEX;
+
 	IS_EDITABLE = true;
 	PAGE_MANAGE = UrlUtil.PG_MANAGE_BREW;
 	URL_REPO_DEFAULT = VeCt.URL_BREW;
@@ -1214,42 +1255,6 @@ class _BrewUtil2 extends _BrewUtil2Base {
 			evt.stopPropagation();
 			evt.preventDefault();
 		});
-	}
-
-	/* -------------------------------------------- */
-
-	async _pGetBrew_pGetLocalBrew ({lockToken} = {}) {
-		if (this._cache_brewsLocal) return this._cache_brewsLocal;
-		if (IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
-
-		try {
-			await this._LOCK.pLock({token: lockToken});
-			return (await this._pGetBrew_pGetLocalBrew_());
-		} finally {
-			this._LOCK.unlock();
-		}
-	}
-
-	async _pGetBrew_pGetLocalBrew_ () {
-		// auto-load from `homebrew/`, for custom versions of the site
-		const indexLocal = await DataUtil.loadJSON(`${Renderer.get().baseUrl}${VeCt.JSON_HOMEBREW_INDEX}`);
-		if (!indexLocal?.toImport?.length) return this._cache_brewsLocal = [];
-
-		const out = await indexLocal.toImport.pMap(async name => {
-			name = `${name}`.trim();
-			const url = /^https?:\/\//.test(name) ? name : `${Renderer.get().baseUrl}homebrew/${name}`;
-			const filename = UrlUtil.getFilename(url);
-			try {
-				const json = await DataUtil.loadRawJSON(url);
-				return this._getBrewDoc({json, url, filename, isLocal: true});
-			} catch (e) {
-				JqueryUtil.doToast({type: "danger", content: `Failed to load local homebrew from URL "${url}"! ${VeCt.STR_SEE_CONSOLE}`});
-				setTimeout(() => { throw e; });
-				return null;
-			}
-		});
-
-		return this._cache_brewsLocal = out.filter(Boolean);
 	}
 
 	/* -------------------------------------------- */
@@ -1443,6 +1448,9 @@ class _PrereleaseUtil extends _BrewUtil2Base {
 	_STORAGE_KEY_CUSTOM_URL = "PRERELEASE_CUSTOM_REPO_URL";
 	_STORAGE_KEY_MIGRATION_VERSION = "PRERELEASE_STORAGE_MIGRATION";
 
+	_PATH_LOCAL_DIR = "prerelease";
+	_PATH_LOCAL_INDEX = VeCt.JSON_PRERELEASE_INDEX;
+
 	_VERSION = 1;
 
 	IS_EDITABLE = false;
@@ -1456,10 +1464,6 @@ class _PrereleaseUtil extends _BrewUtil2Base {
 	/* -------------------------------------------- */
 
 	_pInit_doBindDragDrop () { /* No-op */ }
-
-	/* -------------------------------------------- */
-
-	async _pGetBrew_pGetLocalBrew ({lockToken} = {}) { return []; }
 
 	/* -------------------------------------------- */
 

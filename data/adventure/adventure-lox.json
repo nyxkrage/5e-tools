@@ -3677,9 +3677,9 @@
 									"type": "insetReadaloud",
 									"id": "0dd",
 									"entries": [
-										"\"My efforts to create a coalition have been unsuccessful. The factions of Doomspace have little interest in battling the Xaryxian Empire, which seems only a distant threat to them. They would rather fight among themselves. You saw for yourselves how prickly the aartuks were. My peaceful entreaty must have offended their war gods.",
+										"\"My efforts to create a coalition have been unsuccessful. The factions of Doomspace have little interest in battling the Xaryxian Empire, which seems only a distant threat to them. They would rather fight among themselves. You saw for yourselves how prickly the aartuks were. My peaceful entreaty seems to have offended them.",
 										"\"The only thing these factions seem to have in common is their hunger for ships, spelljamming helms, and weapons\u2014things I can't provide. War is everyone's native tongue here, and the ones most fluent in it are the mercanes. The blue giants are making a killing by selling ships, helms, and weapons to the other factions in exchange for raw mineral resources.",
-										"\"But all is not lost. I've learned that the factions are in debt to a mercane named {@creature Vocath|LoX}. My peaceful entreaty seems to have offended them.\""
+										"\"But all is not lost. I've learned that the factions are in debt to a mercane named {@creature Vocath|LoX}. He might be willing to help us... for a price.\""
 									]
 								},
 								{

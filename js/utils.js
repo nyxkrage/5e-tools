@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.173.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.174.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -27,7 +27,8 @@ globalThis.VeCt = {
 
 	FILTER_BOX_SUB_HASH_SEARCH_PREFIX: "fbsr",
 
-	JSON_HOMEBREW_INDEX: `homebrew/index.json`,
+	JSON_PRERELEASE_INDEX: `prerelease/index.json`,
+	JSON_BREW_INDEX: `homebrew/index.json`,
 
 	STORAGE_HOMEBREW: "HOMEBREW_STORAGE",
 	STORAGE_HOMEBREW_META: "HOMEBREW_META_STORAGE",
@@ -430,10 +431,12 @@ globalThis.SourceUtil = {
 	},
 
 	isNonstandardSource (source) {
-		return source != null
-			&& (typeof PrereleaseUtil === "undefined" || !PrereleaseUtil.hasSourceJson(source))
-			&& (typeof BrewUtil2 === "undefined" || !BrewUtil2.hasSourceJson(source))
-			&& SourceUtil.isNonstandardSourceWotc(source);
+		if (source == null) return false;
+		return (
+			(typeof BrewUtil2 === "undefined" || !BrewUtil2.hasSourceJson(source))
+				&& SourceUtil.isNonstandardSourceWotc(source)
+		)
+			|| SourceUtil.isPrereleaseSource(source);
 	},
 
 	// TODO(Future) remove this in favor of simply checking existence in `PrereleaseUtil`
@@ -441,11 +444,12 @@ globalThis.SourceUtil = {
 	isPrereleaseSource (source) {
 		if (source == null) return false;
 		if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return true;
-		return source.startsWith(Parser.SRC_UA_PREFIX);
+		return source.startsWith(Parser.SRC_UA_PREFIX)
+			|| source.startsWith(Parser.SRC_UA_ONE_PREFIX);
 	},
 
 	isNonstandardSourceWotc (source) {
-		return source.startsWith(Parser.SRC_UA_PREFIX) || source.startsWith(Parser.SRC_PS_PREFIX) || source.startsWith(Parser.SRC_AL_PREFIX) || source.startsWith(Parser.SRC_MCVX_PREFIX) || Parser.SOURCES_NON_STANDARD_WOTC.has(source);
+		return source.startsWith(Parser.SRC_UA_PREFIX) || source.startsWith(Parser.SRC_UA_ONE_PREFIX) || source.startsWith(Parser.SRC_PS_PREFIX) || source.startsWith(Parser.SRC_AL_PREFIX) || source.startsWith(Parser.SRC_MCVX_PREFIX) || Parser.SOURCES_NON_STANDARD_WOTC.has(source);
 	},
 
 	getFilterGroup (source) {
@@ -2485,6 +2489,7 @@ UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["itemProperty"] = (it) => UrlUtil.encodeArrayForHash(it.abbreviation, it.source);
 UrlUtil.URL_TO_HASH_BUILDER["itemType"] = (it) => UrlUtil.encodeArrayForHash(it.abbreviation, it.source);
+UrlUtil.URL_TO_HASH_BUILDER["itemTypeAdditionalEntries"] = (it) => UrlUtil.encodeArrayForHash(it.appliesTo, it.source);
 UrlUtil.URL_TO_HASH_BUILDER["skill"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["sense"] = UrlUtil.URL_TO_HASH_GENERIC;
 

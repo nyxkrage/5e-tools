@@ -7,16 +7,20 @@ class StatGenPage {
 	}
 
 	async pInit () {
-		await PrereleaseUtil.pInit();
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
-		const [races, feats] = await Promise.all([
+		const [races, backgrounds, feats] = await Promise.all([
 			await this._pLoadRaces(),
+			await this._pLoadBackgrounds(),
 			await this._pLoadFeats(),
 		]);
 
 		this._statGenUi = new StatGenUi({
 			races,
+			backgrounds,
 			feats,
 			tabMetasAdditional: this._getAdditionalTabMetas(),
 		});
@@ -111,6 +115,18 @@ class StatGenPage {
 			.filter(it => {
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);
 				return !ExcludeUtil.isExcluded(hash, "race", it.source);
+			});
+	}
+
+	async _pLoadBackgrounds () {
+		return [
+			...(await DataUtil.loadJSON("data/backgrounds.json")).background,
+			...((await PrereleaseUtil.pGetBrewProcessed()).background || []),
+			...((await BrewUtil2.pGetBrewProcessed()).background || []),
+		]
+			.filter(it => {
+				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS](it);
+				return !ExcludeUtil.isExcluded(hash, "background", it.source);
 			});
 	}
 

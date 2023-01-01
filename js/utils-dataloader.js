@@ -1170,7 +1170,7 @@ class _DataTypeLoaderCustomClassSubclassFeature extends _DataTypeLoader {
 }
 
 class _DataTypeLoaderCustomItem extends _DataTypeLoader {
-	static PROPS = ["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "baseitem", "magicvariant"];
+	static PROPS = ["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "itemTypeAdditionalEntries", "baseitem", "magicvariant"];
 	static PAGE = UrlUtil.PG_ITEMS;
 
 	/**
@@ -1214,10 +1214,10 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 		return out;
 	}
 
-	async pGetPostCacheData ({siteData = null, prereleaseBrew = null, brewData = null, lockToken2}) {
+	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
 			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
-			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseBrew, lockToken2}),
+			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseData, lockToken2}),
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};
 	}
@@ -1942,7 +1942,8 @@ class DataLoader {
 
 		this._doBuildSourceCaches();
 
-		return sourceClean.startsWith(_DataLoaderInternalUtil.getCleanSource({source: Parser.SRC_UA_PREFIX}));
+		return sourceClean.startsWith(_DataLoaderInternalUtil.getCleanSource({source: Parser.SRC_UA_PREFIX}))
+			|| sourceClean.startsWith(_DataLoaderInternalUtil.getCleanSource({source: Parser.SRC_UA_ONE_PREFIX}));
 	}
 }
 
