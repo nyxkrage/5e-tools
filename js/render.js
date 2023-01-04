@@ -2920,244 +2920,306 @@ Renderer.utils = {
 	HTML_NO_INFO: "<i>No information available.</i>",
 	HTML_NO_IMAGES: "<i>No images available.</i>",
 
-	_prereqWeights: {
-		level: 0,
-		pact: 1,
-		patron: 2,
-		spell: 3,
-		race: 4,
-		ability: 5,
-		proficiency: 6,
-		spellcasting: 7,
-		feature: 8,
-		item: 9,
-		other: 10,
-		otherSummary: 11,
-		[undefined]: 12,
-	},
-	_getPrerequisiteHtml_getShortClassName (className) {
-		// remove all the vowels except the first
-		const ixFirstVowel = /[aeiou]/.exec(className).index;
-		const start = className.slice(0, ixFirstVowel + 1);
-		let end = className.slice(ixFirstVowel + 1);
-		end = end.replace(/[aeiou]/g, "");
-		return `${start}${end}`.toTitleCase();
-	},
-	// TODO refactor to builder class; meta-state
-	getPrerequisiteHtml: (prerequisites, {isListMode = false, blocklistKeys = new Set(), isTextOnly = false, isSkipPrefix = false} = {}) => {
-		if (!prerequisites?.length) return isListMode ? "\u2014" : "";
+	prerequisite: class {
+		static _WEIGHTS = {
+			level: 0,
+			pact: 1,
+			patron: 2,
+			spell: 3,
+			race: 4,
+			ability: 5,
+			proficiency: 6,
+			spellcasting: 7,
+			feature: 8,
+			item: 9,
+			other: 10,
+			otherSummary: 11,
+			[undefined]: 12,
+		};
 
-		const prereqsShared = prerequisites.length === 1
-			? {}
-			: Object.entries(
-				prerequisites
-					.slice(1)
-					.reduce((a, b) => CollectionUtil.objectIntersect(a, b), prerequisites[0]),
-			)
-				.filter(([k, v]) => prerequisites.every(pre => CollectionUtil.deepEquals(pre[k], v)))
-				.mergeMap(([k, v]) => ({[k]: v}));
+		static _getShortClassName (className) {
+			// remove all the vowels except the first
+			const ixFirstVowel = /[aeiou]/.exec(className).index;
+			const start = className.slice(0, ixFirstVowel + 1);
+			let end = className.slice(ixFirstVowel + 1);
+			end = end.replace(/[aeiou]/g, "");
+			return `${start}${end}`.toTitleCase();
+		}
 
-		const shared = Object.keys(prereqsShared).length
-			? Renderer.utils.getPrerequisiteHtml([prereqsShared], {isListMode, blocklistKeys, isTextOnly, isSkipPrefix: true})
-			: null;
+		static getHtml (prerequisites, {isListMode = false, blocklistKeys = new Set(), isTextOnly = false, isSkipPrefix = false} = {}) {
+			if (!prerequisites?.length) return isListMode ? "\u2014" : "";
 
-		let cntPrerequisites = 0;
-		let hasNote = false;
-		const listOfChoices = prerequisites.map(pr => {
-			// Never include notes in list mode
-			const ptNote = !isListMode && pr.note ? Renderer.get().render(pr.note) : null;
-			if (ptNote) {
-				hasNote = true;
+			const prereqsShared = prerequisites.length === 1
+				? {}
+				: Object.entries(
+					prerequisites
+						.slice(1)
+						.reduce((a, b) => CollectionUtil.objectIntersect(a, b), prerequisites[0]),
+				)
+					.filter(([k, v]) => prerequisites.every(pre => CollectionUtil.deepEquals(pre[k], v)))
+					.mergeMap(([k, v]) => ({[k]: v}));
+
+			const shared = Object.keys(prereqsShared).length
+				? this.getHtml([prereqsShared], {isListMode, blocklistKeys, isTextOnly, isSkipPrefix: true})
+				: null;
+
+			let cntPrerequisites = 0;
+			let hasNote = false;
+			const listOfChoices = prerequisites.map(pr => {
+				// Never include notes in list mode
+				const ptNote = !isListMode && pr.note ? Renderer.get().render(pr.note) : null;
+				if (ptNote) {
+					hasNote = true;
+				}
+
+				const prereqsToJoin = Object.entries(pr)
+					.filter(([k]) => !prereqsShared[k])
+					.sort(([kA], [kB]) => this._WEIGHTS[kA] - this._WEIGHTS[kB])
+					.map(([k, v]) => {
+						if (k === "note" || blocklistKeys.has(k)) return false;
+
+						cntPrerequisites += 1;
+
+						switch (k) {
+							case "level": return this._getHtml_level({v, isListMode, isTextOnly});
+							case "pact": return this._getHtml_pact({v, isListMode, isTextOnly});
+							case "patron": return this._getHtml_patron({v, isListMode, isTextOnly});
+							case "spell": return this._getHtml_spell({v, isListMode, isTextOnly});
+							case "feat": return this._getHtml_feat({v, isListMode, isTextOnly});
+							case "feature": return this._getHtml_feature({v, isListMode, isTextOnly});
+							case "item": return this._getHtml_item({v, isListMode, isTextOnly});
+							case "otherSummary": return this._getHtml_otherSummary({v, isListMode, isTextOnly});
+							case "other": return this._getHtml_other({v, isListMode, isTextOnly});
+							case "race": return this._getHtml_race({v, isListMode, isTextOnly});
+							case "background": return this._getHtml_background({v, isListMode, isTextOnly});
+							case "ability": return this._getHtml_ability({v, isListMode, isTextOnly});
+							case "proficiency": return this._getHtml_proficiency({v, isListMode, isTextOnly});
+							case "spellcasting": return this._getHtml_spellcasting({v, isListMode, isTextOnly});
+							case "spellcasting2020": return this._getHtml_spellcasting2020({v, isListMode, isTextOnly});
+							case "psionics": return this._getHtml_psionics({v, isListMode, isTextOnly});
+							case "alignment": return this._getHtml_alignment({v, isListMode, isTextOnly});
+							case "campaign": return this._getHtml_campaign({v, isListMode, isTextOnly});
+							case "group": return this._getHtml_group({v, isListMode, isTextOnly});
+							default: throw new Error(`Unhandled key: ${k}`);
+						}
+					})
+					.filter(Boolean);
+
+				const ptPrereqs = prereqsToJoin
+					.join(prereqsToJoin.some(it => / or /.test(it)) ? "; " : ", ");
+
+				return [ptPrereqs, ptNote].filter(Boolean).join(". ");
+			}).filter(Boolean);
+
+			if (!listOfChoices.length && !shared) return isListMode ? "\u2014" : "";
+			if (isListMode) return [shared, listOfChoices.join("/")].filter(Boolean).join(" + ");
+
+			const joinedChoices = hasNote ? listOfChoices.join(" Or, ") : listOfChoices.joinConjunct(listOfChoices.some(it => / or /.test(it)) ? "; " : ", ", " or ");
+			return `${isSkipPrefix ? "" : `${isListMode ? "" : "<b>"}Prerequisite${cntPrerequisites === 1 ? "" : "s"}:${isListMode ? "" : "</b>"} `}${[shared, joinedChoices].filter(Boolean).join(", plus ")}`;
+		}
+
+		static _getHtml_level ({v, isListMode}) {
+			// a generic level requirement
+			if (typeof v === "number") {
+				if (isListMode) return `Lvl ${v}`;
+				else return `${Parser.getOrdinalForm(v)} level`;
+			} else if (!v.class && !v.subclass) {
+				if (isListMode) return `Lvl ${v.level}`;
+				else return `${Parser.getOrdinalForm(v.level)} level`;
 			}
 
-			const prereqsToJoin = Object.entries(pr)
-				.filter(([k]) => !prereqsShared[k])
-				.sort(([kA], [kB]) => Renderer.utils._prereqWeights[kA] - Renderer.utils._prereqWeights[kB])
-				.map(([k, v]) => {
-					if (k === "note" || blocklistKeys.has(k)) return false;
+			const isLevelVisible = v.level !== 1; // Hide the "implicit" 1st level.
+			const isSubclassVisible = v.subclass && v.subclass.visible;
+			const isClassVisible = v.class && (v.class.visible || isSubclassVisible); // force the class name to be displayed if there's a subclass being displayed
+			if (isListMode) {
+				const shortNameRaw = isClassVisible ? this._getShortClassName(v.class.name) : null;
+				return `${isClassVisible ? `${shortNameRaw.slice(0, 4)}${isSubclassVisible ? "*" : "."}` : ""}${isLevelVisible ? ` Lvl ${v.level}` : ""}`;
+			} else {
+				let classPart = "";
+				if (isClassVisible && isSubclassVisible) classPart = ` ${v.class.name} (${v.subclass.name})`;
+				else if (isClassVisible) classPart = ` ${v.class.name}`;
+				else if (isSubclassVisible) classPart = ` &lt;remember to insert class name here&gt; (${v.subclass.name})`; // :^)
+				return `${isLevelVisible ? `${Parser.getOrdinalForm(v.level)} level` : ""}${isClassVisible ? ` ${classPart}` : ""}`;
+			}
+		}
 
-					cntPrerequisites += 1;
+		static _getHtml_pact ({v, isListMode}) {
+			return Parser.prereqPactToFull(v);
+		}
 
-					switch (k) {
-						case "level": {
-							// a generic level requirement
-							if (typeof v === "number") {
-								if (isListMode) return `Lvl ${v}`;
-								else return `${Parser.getOrdinalForm(v)} level`;
-							} else if (!v.class && !v.subclass) {
-								if (isListMode) return `Lvl ${v.level}`;
-								else return `${Parser.getOrdinalForm(v.level)} level`;
-							}
+		static _getHtml_patron ({v, isListMode}) {
+			return isListMode ? `${Parser.prereqPatronToShort(v)} patron` : `${v} patron`;
+		}
 
-							const isLevelVisible = v.level !== 1; // Hide the "implicit" 1st level.
-							const isSubclassVisible = v.subclass && v.subclass.visible;
-							const isClassVisible = v.class && (v.class.visible || isSubclassVisible); // force the class name to be displayed if there's a subclass being displayed
-							if (isListMode) {
-								const shortNameRaw = isClassVisible ? Renderer.utils._getPrerequisiteHtml_getShortClassName(v.class.name) : null;
-								return `${isClassVisible ? `${shortNameRaw.slice(0, 4)}${isSubclassVisible ? "*" : "."}` : ""}${isLevelVisible ? ` Lvl ${v.level}` : ""}`;
-							} else {
-								let classPart = "";
-								if (isClassVisible && isSubclassVisible) classPart = ` ${v.class.name} (${v.subclass.name})`;
-								else if (isClassVisible) classPart = ` ${v.class.name}`;
-								else if (isSubclassVisible) classPart = ` &lt;remember to insert class name here&gt; (${v.subclass.name})`; // :^)
-								return `${isLevelVisible ? `${Parser.getOrdinalForm(v.level)} level` : ""}${isClassVisible ? ` ${classPart}` : ""}`;
-							}
+		static _getHtml_spell ({v, isListMode, isTextOnly}) {
+			return isListMode
+				? v.map(x => x.split("#")[0].split("|")[0].toTitleCase()).join("/")
+				: v.map(sp => Parser.prereqSpellToFull(sp, {isTextOnly})).joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_feat ({v, isListMode, isTextOnly}) {
+			return isListMode
+				? v.map(x => x.split("|")[0].toTitleCase()).join("/")
+				: v.map(it => (isTextOnly ? Renderer.stripTags.bind(Renderer) : Renderer.get().render.bind(Renderer.get()))(`{@feat ${it}} feat`)).joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_feature ({v, isListMode, isTextOnly}) {
+			return isListMode
+				? v.map(x => Renderer.stripTags(x).toTitleCase()).join("/")
+				: v.map(it => isTextOnly ? Renderer.stripTags(it) : Renderer.get().render(it)).joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_item ({v, isListMode}) {
+			return isListMode ? v.map(x => x.toTitleCase()).join("/") : v.joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_otherSummary ({v, isListMode, isTextOnly}) {
+			return isListMode
+				? (v.entrySummary || Renderer.stripTags(v.entry))
+				: (isTextOnly ? Renderer.stripTags(v.entry) : Renderer.get().render(v.entry));
+		}
+
+		static _getHtml_other ({v, isListMode, isTextOnly}) {
+			return isListMode ? "Special" : (isTextOnly ? Renderer.stripTags(v) : Renderer.get().render(v));
+		}
+
+		static _getHtml_race ({v, isListMode, isTextOnly}) {
+			const parts = v.map((it, i) => {
+				if (isListMode) {
+					return `${it.name.toTitleCase()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+				} else {
+					const raceName = it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : i === 0 ? it.name.toTitleCase() : it.name;
+					return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
+				}
+			});
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_background ({v, isListMode, isTextOnly}) {
+			const parts = v.map((it, i) => {
+				if (isListMode) {
+					return `${it.name.toTitleCase()}`;
+				} else {
+					return it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : i === 0 ? it.name.toTitleCase() : it.name;
+				}
+			});
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_ability ({v, isListMode, isTextOnly}) {
+			// `v` is an array or objects with str/dex/... properties; array is "OR"'d togther, object is "AND"'d together
+
+			let hadMultipleInner = false;
+			let hadMultiMultipleInner = false;
+			let allValuesEqual = null;
+
+			outer: for (const abMeta of v) {
+				for (const req of Object.values(abMeta)) {
+					if (allValuesEqual == null) allValuesEqual = req;
+					else {
+						if (req !== allValuesEqual) {
+							allValuesEqual = null;
+							break outer;
 						}
-						case "pact": return Parser.prereqPactToFull(v);
-						case "patron": return isListMode ? `${Parser.prereqPatronToShort(v)} patron` : `${v} patron`;
-						case "spell":
-							return isListMode
-								? v.map(x => x.split("#")[0].split("|")[0].toTitleCase()).join("/")
-								: v.map(sp => Parser.prereqSpellToFull(sp, {isTextOnly})).joinConjunct(", ", " or ");
-						case "feat":
-							return isListMode
-								? v.map(x => x.split("|")[0].toTitleCase()).join("/")
-								: v.map(it => (isTextOnly ? Renderer.stripTags.bind(Renderer) : Renderer.get().render.bind(Renderer.get()))(`{@feat ${it}} feat`)).joinConjunct(", ", " or ");
-						case "feature":
-							return isListMode
-								? v.map(x => Renderer.stripTags(x).toTitleCase()).join("/")
-								: v.map(it => isTextOnly ? Renderer.stripTags(it) : Renderer.get().render(it)).joinConjunct(", ", " or ");
-						case "item":
-							return isListMode ? v.map(x => x.toTitleCase()).join("/") : v.joinConjunct(", ", " or ");
-						case "otherSummary":
-							return isListMode ? (v.entrySummary || Renderer.stripTags(v.entry)) : (isTextOnly ? Renderer.stripTags(v.entry) : Renderer.get().render(v.entry));
-						case "other": return isListMode ? "Special" : (isTextOnly ? Renderer.stripTags(v) : Renderer.get().render(v));
-						case "race": {
-							const parts = v.map((it, i) => {
-								if (isListMode) {
-									return `${it.name.toTitleCase()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
-								} else {
-									const raceName = it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : i === 0 ? it.name.toTitleCase() : it.name;
-									return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
-								}
-							});
-							return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
-						}
-						case "background": {
-							const parts = v.map((it, i) => {
-								if (isListMode) {
-									return `${it.name.toTitleCase()}`;
-								} else {
-									return it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : i === 0 ? it.name.toTitleCase() : it.name;
-								}
-							});
-							return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
-						}
-						case "ability": {
-							// `v` is an array or objects with str/dex/... properties; array is "OR"'d togther, object is "AND"'d together
-
-							let hadMultipleInner = false;
-							let hadMultiMultipleInner = false;
-							let allValuesEqual = null;
-
-							outer: for (const abMeta of v) {
-								for (const req of Object.values(abMeta)) {
-									if (allValuesEqual == null) allValuesEqual = req;
-									else {
-										if (req !== allValuesEqual) {
-											allValuesEqual = null;
-											break outer;
-										}
-									}
-								}
-							}
-
-							const abilityOptions = v.map(abMeta => {
-								if (allValuesEqual) {
-									const abList = Object.keys(abMeta);
-									hadMultipleInner = hadMultipleInner || abList.length > 1;
-									return isListMode ? abList.map(ab => ab.uppercaseFirst()).join(", ") : abList.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " and ");
-								} else {
-									const groups = {};
-
-									Object.entries(abMeta).forEach(([ab, req]) => {
-										(groups[req] = groups[req] || []).push(ab);
-									});
-
-									let isMulti = false;
-									const byScore = Object.entries(groups)
-										.sort(([reqA], [reqB]) => SortUtil.ascSort(Number(reqB), Number(reqA)))
-										.map(([req, abs]) => {
-											hadMultipleInner = hadMultipleInner || abs.length > 1;
-											if (abs.length > 1) hadMultiMultipleInner = isMulti = true;
-
-											abs = abs.sort(SortUtil.ascSortAtts);
-											return isListMode
-												? `${abs.map(ab => ab.uppercaseFirst()).join(", ")} ${req}+`
-												: `${abs.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " and ")} ${req} or higher`;
-										});
-
-									return isListMode
-										? `${isMulti || byScore.length > 1 ? "(" : ""}${byScore.join(" & ")}${isMulti || byScore.length > 1 ? ")" : ""}`
-										: isMulti ? byScore.joinConjunct("; ", " and ") : byScore.joinConjunct(", ", " and ");
-								}
-							});
-
-							// if all values were equal, add the "X+" text at the end, as the options render doesn't include it
-							if (isListMode) {
-								return `${abilityOptions.join("/")}${allValuesEqual != null ? ` ${allValuesEqual}+` : ""}`;
-							} else {
-								const isComplex = hadMultiMultipleInner || hadMultipleInner || allValuesEqual == null;
-								const joined = abilityOptions.joinConjunct(
-									hadMultiMultipleInner ? " - " : hadMultipleInner ? "; " : ", ",
-									isComplex ? (isTextOnly ? ` /or/ ` : ` <i>or</i> `) : " or ",
-								);
-								return `${joined}${allValuesEqual != null ? ` ${allValuesEqual} or higher` : ""}`;
-							}
-						}
-						case "proficiency": {
-							const parts = v.map(obj => {
-								return Object.entries(obj).map(([profType, prof]) => {
-									switch (profType) {
-										case "armor": {
-											return isListMode ? `Prof ${Parser.armorFullToAbv(prof)} armor` : `Proficiency with ${prof} armor`;
-										}
-										case "weapon": {
-											return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
-										}
-										default: throw new Error(`Unhandled proficiency type: "${profType}"`);
-									}
-								});
-							});
-							return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
-						}
-						case "spellcasting": return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
-						case "spellcasting2020": return isListMode ? "Spellcasting" : "Spellcasting or Pact Magic feature";
-						case "psionics": return isListMode ? "Psionics" : (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))("Psionic Talent feature or {@feat Wild Talent|UA2020PsionicOptionsRevisited} feat");
-						case "alignment": {
-							return isListMode
-								? Parser.alignmentListToFull(v)
-									.replace(/\bany\b/gi, "").trim()
-									.replace(/\balignment\b/gi, "align").trim()
-									.toTitleCase()
-								: Parser.alignmentListToFull(v);
-						}
-						case "campaign": {
-							return isListMode
-								? v.join("/")
-								: `${v.joinConjunct(", ", " or ")} Campaign`;
-						}
-						case "group": {
-							return isListMode
-								? v.map(it => it.toTitleCase()).join("/")
-								: `${v.map(it => it.toTitleCase()).joinConjunct(", ", " or ")} Group`;
-						}
-						default: throw new Error(`Unhandled key: ${k}`);
 					}
-				})
-				.filter(Boolean);
+				}
+			}
 
-			const ptPrereqs = prereqsToJoin
-				.join(prereqsToJoin.some(it => / or /.test(it)) ? "; " : ", ");
+			const abilityOptions = v.map(abMeta => {
+				if (allValuesEqual) {
+					const abList = Object.keys(abMeta);
+					hadMultipleInner = hadMultipleInner || abList.length > 1;
+					return isListMode ? abList.map(ab => ab.uppercaseFirst()).join(", ") : abList.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " and ");
+				} else {
+					const groups = {};
 
-			return [ptPrereqs, ptNote].filter(Boolean).join(". ");
-		}).filter(Boolean);
+					Object.entries(abMeta).forEach(([ab, req]) => {
+						(groups[req] = groups[req] || []).push(ab);
+					});
 
-		if (!listOfChoices.length && !shared) return isListMode ? "\u2014" : "";
-		if (isListMode) return [shared, listOfChoices.join("/")].filter(Boolean).join(" + ");
+					let isMulti = false;
+					const byScore = Object.entries(groups)
+						.sort(([reqA], [reqB]) => SortUtil.ascSort(Number(reqB), Number(reqA)))
+						.map(([req, abs]) => {
+							hadMultipleInner = hadMultipleInner || abs.length > 1;
+							if (abs.length > 1) hadMultiMultipleInner = isMulti = true;
 
-		const joinedChoices = hasNote ? listOfChoices.join(" Or, ") : listOfChoices.joinConjunct(listOfChoices.some(it => / or /.test(it)) ? "; " : ", ", " or ");
-		return `${isSkipPrefix ? "" : `${isListMode ? "" : "<b>"}Prerequisite${cntPrerequisites === 1 ? "" : "s"}:${isListMode ? "" : "</b>"} `}${[shared, joinedChoices].filter(Boolean).join(", plus ")}`;
+							abs = abs.sort(SortUtil.ascSortAtts);
+							return isListMode
+								? `${abs.map(ab => ab.uppercaseFirst()).join(", ")} ${req}+`
+								: `${abs.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " and ")} ${req} or higher`;
+						});
+
+					return isListMode
+						? `${isMulti || byScore.length > 1 ? "(" : ""}${byScore.join(" & ")}${isMulti || byScore.length > 1 ? ")" : ""}`
+						: isMulti ? byScore.joinConjunct("; ", " and ") : byScore.joinConjunct(", ", " and ");
+				}
+			});
+
+			// if all values were equal, add the "X+" text at the end, as the options render doesn't include it
+			if (isListMode) {
+				return `${abilityOptions.join("/")}${allValuesEqual != null ? ` ${allValuesEqual}+` : ""}`;
+			} else {
+				const isComplex = hadMultiMultipleInner || hadMultipleInner || allValuesEqual == null;
+				const joined = abilityOptions.joinConjunct(
+					hadMultiMultipleInner ? " - " : hadMultipleInner ? "; " : ", ",
+					isComplex ? (isTextOnly ? ` /or/ ` : ` <i>or</i> `) : " or ",
+				);
+				return `${joined}${allValuesEqual != null ? ` ${allValuesEqual} or higher` : ""}`;
+			}
+		}
+
+		static _getHtml_proficiency ({v, isListMode}) {
+			const parts = v.map(obj => {
+				return Object.entries(obj).map(([profType, prof]) => {
+					switch (profType) {
+						case "armor": {
+							return isListMode ? `Prof ${Parser.armorFullToAbv(prof)} armor` : `Proficiency with ${prof} armor`;
+						}
+						case "weapon": {
+							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
+						}
+						default: throw new Error(`Unhandled proficiency type: "${profType}"`);
+					}
+				});
+			});
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+		}
+
+		static _getHtml_spellcasting ({v, isListMode}) {
+			return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
+		}
+
+		static _getHtml_spellcasting2020 ({v, isListMode}) {
+			return isListMode ? "Spellcasting" : "Spellcasting or Pact Magic feature";
+		}
+
+		static _getHtml_psionics ({v, isListMode, isTextOnly}) {
+			return isListMode
+				? "Psionics"
+				: (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))("Psionic Talent feature or {@feat Wild Talent|UA2020PsionicOptionsRevisited} feat");
+		}
+
+		static _getHtml_alignment ({v, isListMode}) {
+			return isListMode
+				? Parser.alignmentListToFull(v)
+					.replace(/\bany\b/gi, "").trim()
+					.replace(/\balignment\b/gi, "align").trim()
+					.toTitleCase()
+				: Parser.alignmentListToFull(v);
+		}
+
+		static _getHtml_campaign ({v, isListMode}) {
+			return isListMode
+				? v.join("/")
+				: `${v.joinConjunct(", ", " or ")} Campaign`;
+		}
+
+		static _getHtml_group ({v, isListMode}) {
+			return isListMode
+				? v.map(it => it.toTitleCase()).join("/")
+				: `${v.map(it => it.toTitleCase()).joinConjunct(", ", " or ")} Group`;
+		}
 	},
 
 	getRepeatableHtml (ent, {isListMode = false} = {}) {
@@ -4007,7 +4069,7 @@ Renderer.feat = {
 		const renderer = Renderer.get().setFirstSection(true);
 		const renderStack = [];
 
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite);
+		const prerequisite = Renderer.utils.prerequisite.getHtml(feat.prerequisite);
 		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat);
 		Renderer.feat.initFullEntries(feat);
 		renderStack.push(`
@@ -4635,7 +4697,7 @@ Renderer.condition = {
 
 Renderer.background = {
 	getCompactRenderedString (bg) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(bg.prerequisite);
+		const prerequisite = Renderer.utils.prerequisite.getHtml(bg.prerequisite);
 
 		return `
 		${Renderer.utils.getExcludedTr({entity: bg, dataProp: "background", page: UrlUtil.PG_BACKGROUNDS})}
@@ -4736,7 +4798,7 @@ Renderer.optionalfeature = {
 			${Renderer.utils.getExcludedTr({entity: it, dataProp: "optionalfeature", page: UrlUtil.PG_OPT_FEATURES})}
 			${Renderer.utils.getNameTr(it, {page: UrlUtil.PG_OPT_FEATURES})}
 			<tr class="text"><td colspan="6">
-			${it.prerequisite ? `<p>${Renderer.utils.getPrerequisiteHtml(it.prerequisite)}</p>` : ""}
+			${it.prerequisite ? `<p>${Renderer.utils.prerequisite.getHtml(it.prerequisite)}</p>` : ""}
 		`);
 		renderer.recursiveRender({entries: it.entries}, renderStack, {depth: 1});
 		renderStack.push(`</td></tr>`);
@@ -7785,7 +7847,7 @@ Renderer.vehicle = {
 	getUpgradeSummary (it) {
 		return [
 			it.upgradeType ? it.upgradeType.map(t => Parser.vehicleTypeToFull(t)) : null,
-			it.prerequisite ? Renderer.utils.getPrerequisiteHtml(it.prerequisite) : "",
+			it.prerequisite ? Renderer.utils.prerequisite.getHtml(it.prerequisite) : "",
 		].filter(Boolean).join(", ");
 	},
 
@@ -8255,7 +8317,7 @@ Renderer.adventureBook = {
 
 Renderer.charoption = {
 	getCompactRenderedString (it) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(it.prerequisite);
+		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite);
 		const preText = Renderer.charoption.getOptionTypePreText(it.optionType);
 		return `
 		${Renderer.utils.getExcludedTr({entity: it, dataProp: "charoption", page: UrlUtil.PG_CHAR_CREATION_OPTIONS})}
@@ -10125,6 +10187,7 @@ Renderer._stripTagLayer = function (str) {
 // Generatedd by running `[...Renderer._stripTagLayer.toString().matchAll(/case "@(\w+?)"/g)].map(item => item[1])`
 Renderer.TAGS = ["b", "bold", "i", "italic", "s", "strike", "u", "underline", "code", "style", "unit", "h", "m", "dc", "atk", "chance", "d20", "damage", "dice", "autodice", "hit", "recharge", "ability", "savingThrow", "skillCheck", "damage", "dice", "autodice", "d20", "hit", "recharge", "chance", "ability", "savingThrow", "skillCheck", "scaledice", "scaledamage", "hitYourSpellAttack", "coinflip", "comic", "comicH1", "comicH2", "comicH3", "comicH4", "comicNote", "note", "5etools", "adventure", "book", "filter", "footnote", "link", "loader", "color", "highlight", "help", "quickref", "area", "action", "background", "boon", "charoption", "class", "condition", "creature", "cult", "disease", "feat", "hazard", "item", "language", "object", "optfeature", "psionic", "race", "recipe", "reward", "vehicle", "vehupgrade", "sense", "skill", "spell", "status", "table", "trap", "variantrule", "deity", "classFeature", "subclassFeature", "homebrew"];
 
+Renderer._RE_TABLE_ROW_DASHED_NUMBERS = /^\d+([-\u2012\u2013]\d+)?/;
 Renderer.getAutoConvertedTableRollMode = function (table) {
 	if (!table.colLabels || table.colLabels.length < 2) return RollerUtil.ROLL_COL_NONE;
 
@@ -10139,7 +10202,7 @@ Renderer.getAutoConvertedTableRollMode = function (table) {
 		if (typeof it[0] === "number") return Number.isInteger(it[0]);
 
 		// u2012 = figure dash; u2013 = en-dash
-		return typeof it[0] === "string" && /^\d+([-\u2012\u2013]\d+)?/.test(it[0]);
+		return typeof it[0] === "string" && Renderer._RE_TABLE_ROW_DASHED_NUMBERS.test(it[0]);
 	})) return RollerUtil.ROLL_COL_NONE;
 
 	return rollColMode;
@@ -10156,6 +10219,15 @@ Renderer.getAutoConvertedTableRollMode = function (table) {
  */
 Renderer.getRollableRow = function (row, opts) {
 	opts = opts || {};
+
+	if (
+		row[0]?.type === "cell"
+		&& (
+			row[0]?.roll?.exact != null
+			|| (row[0]?.roll?.min != null && row[0]?.roll?.max != null)
+		)
+	) return row;
+
 	row = MiscUtil.copyFast(row);
 	try {
 		const cleanRow = String(row[0]).trim();
@@ -10215,7 +10287,9 @@ Renderer.getRollableRow = function (row, opts) {
 				},
 			};
 		}
-	} catch (e) { if (opts.cbErr) opts.cbErr(row[0], e); }
+	} catch (e) {
+		if (opts.cbErr) opts.cbErr(row[0], e);
+	}
 	return row;
 };
 Renderer.getRollableRow._handleInfiniteOpts = function (row, opts) {

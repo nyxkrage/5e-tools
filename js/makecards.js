@@ -554,7 +554,7 @@ class MakeCards extends BaseComponent {
 	}
 
 	static _getCardContents_feat (feat) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite, {isListMode: true});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true});
 		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat, {isListMode: true});
 		Renderer.feat.initFullEntries(feat);
 		return [
@@ -566,7 +566,7 @@ class MakeCards extends BaseComponent {
 	}
 
 	static _getCardContents_optionalfeature (optfeat) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(optfeat.prerequisite, {isListMode: true});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true});
 		Renderer.feat.initFullEntries(optfeat);
 		return [
 			prerequisite ? this._ct_property("Prerequisites", prerequisite) : null,

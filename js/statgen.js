@@ -109,8 +109,8 @@ class StatGenPage {
 	async _pLoadRaces () {
 		return [
 			...(await DataUtil.race.loadJSON()).race,
-			...((await DataUtil.race.loadPrerelease({isAddBaseRaces: false}).race) || []),
-			...((await DataUtil.race.loadBrew({isAddBaseRaces: false}).race) || []),
+			...((await DataUtil.race.loadPrerelease({isAddBaseRaces: false})).race || []),
+			...((await DataUtil.race.loadBrew({isAddBaseRaces: false})).race || []),
 		]
 			.filter(it => {
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);

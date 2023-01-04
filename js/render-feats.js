@@ -2,7 +2,7 @@
 
 class RenderFeats {
 	static $getRenderedFeat (feat) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite);
+		const prerequisite = Renderer.utils.prerequisite.getHtml(feat.prerequisite);
 		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat);
 
 		Renderer.feat.initFullEntries(feat);

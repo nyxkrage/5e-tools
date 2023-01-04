@@ -7,6 +7,8 @@ import "../js/maps-util.js";
 
 const out = {};
 
+console.log("Updating maps...");
+
 [
 	{
 		prop: "adventure",
@@ -20,7 +22,7 @@ const out = {};
 	},
 ].forEach(({prop, index, dir}) => {
 	ut.readJson(index)[prop].forEach(head => {
-		console.log(`Generating map data for ${head.id}`);
+		console.log(`\tGenerating map data for ${head.id}`);
 		const body = ut.readJson(`${dir}/${prop}-${head.id.toLowerCase()}.json`).data;
 		const imageData = MapsUtil.getImageData({prop, head, body});
 		if (imageData) Object.assign(out, imageData);

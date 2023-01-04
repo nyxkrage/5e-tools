@@ -1,7 +1,7 @@
 import * as fs from "fs";
-import * as ut from "./util.js";
 import "../js/utils.js";
 const probe = require("probe-image-size");
+import {ObjectWalker} from "5etools-utils";
 
 const allFiles = [];
 
@@ -38,7 +38,15 @@ function addMutImageDimensions (file, imgEntry) {
 async function main () {
 	addDir("./data/adventure");
 	addDir("./data/book");
-	allFiles.forEach(meta => ut.dataRecurse(meta.path, meta.json, {object: addMutImageDimensions}));
+	allFiles.forEach(meta => {
+		ObjectWalker.walk({
+			filePath: meta.path,
+			obj: meta.json,
+			primitiveHandlers: {
+				object: addMutImageDimensions,
+			},
+		});
+	});
 	await Promise.all(_PROMISES);
 	allFiles.forEach(meta => fs.writeFileSync(meta.path, CleanUtil.getCleanJson(meta.json), "utf-8"));
 }

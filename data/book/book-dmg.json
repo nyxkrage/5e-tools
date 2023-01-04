@@ -24416,7 +24416,7 @@
 							"type": "table",
 							"caption": "Passage Width",
 							"colLabels": [
-								"{@dice d12}/{@dice d20}",
+								"{@dice d12;d20}",
 								"Width"
 							],
 							"colStyles": [

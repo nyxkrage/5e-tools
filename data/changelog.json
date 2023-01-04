@@ -2319,5 +2319,15 @@
 		"date": "2023-01-01",
 		"title": "One",
 		"txt": "- Added support for various One D&D UA additions/content formatting\n  - Added Ability Scores filter to Backgrounds page\n  - Added background selector, and background ability score support, to Statgen\n  - Added \"Group\" filter and display to Spells page\n  - Added \"Repeatable\" filter and display to feats\n  - Added group display to classes\n  - _[Note that the three One D&D UAs are now available via the Prerelease Manager]_\n- Added DMG encounters to Encounters page\n- (Brew) Added support for local prerelease content (matching functionality for local homebrew)\n- (Brew) Added support for homebrew `\"itemTypeAdditionalEntries\"`\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.174.1",
+		"date": "2023-01-01",
+		"txt": "- (Literally nothing)"
+	},
+	{
+		"ver": "1.174.2",
+		"date": "2023-01-04",
+		"txt": "- Added an \"Add Predefined Action\" button to the Creature Homebrew Builder, similar in function to the existing \"Add Predefined Trait\" button (thanks @ FishCrystals for the prototype and data entry) \n- (Prerelease/Brew) Fixed Prerelease/Homebrew races failing to load in Statgen\n- (Brew) Fixed crash when opening the \"Manage [Editable Homebrew] Contents\" dialog\n- (Fixed typos/added tags)"
 	}
 ]

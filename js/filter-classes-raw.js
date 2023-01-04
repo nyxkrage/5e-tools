@@ -456,7 +456,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						entity = await pRecurse(entity);
+						entity = await pRecurse(entity.entries);
 
 						break;
 					}
@@ -497,7 +497,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						entity = await pRecurse(entity);
+						entity = await pRecurse(entity.entries);
 
 						break;
 					}
@@ -553,7 +553,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			return toWalk;
 		};
 
-		entityRoot = await pRecurse(entityRoot);
+		if (entityRoot.entries) entityRoot.entries = await pRecurse(entityRoot.entries);
 
 		return {entityRoot, subLoadeds: out};
 	}

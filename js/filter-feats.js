@@ -52,7 +52,7 @@ class PageFilterFeats extends PageFilter {
 		const ability = Renderer.getAbilityData(feat.ability);
 		feat._fAbility = ability.asCollection.filter(a => !ability.areNegative.includes(a)); // used for filtering
 
-		const prereqText = Renderer.utils.getPrerequisiteHtml(feat.prerequisite, {isListMode: true}) || VeCt.STR_NONE;
+		const prereqText = Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true}) || VeCt.STR_NONE;
 
 		const preSet = new Set();
 		(feat.prerequisite || []).forEach(it => preSet.add(...Object.keys(it)));

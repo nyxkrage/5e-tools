@@ -1499,35 +1499,54 @@ class SearchWidget {
 	static bindAutoSearch ($iptSearch, opts) {
 		UiUtil.bindTypingEnd({
 			$ipt: $iptSearch,
-			fnKeyup: () => {
+			fnKeyup: evt => {
+				if (evt.type === "blur") return;
+
+				// Handled in `fnKeydown`
+				switch (evt.key) {
+					case "ArrowDown": {
+						evt.preventDefault();
+						return;
+					}
+					case "Enter": return;
+				}
+
 				opts.fnSearch && opts.fnSearch();
 			},
 			fnKeypress: evt => {
-				if (evt.which === 13) {
-					opts.flags.doClickFirst = true;
-					opts.fnSearch && opts.fnSearch();
+				switch (evt.key) {
+					case "ArrowDown": {
+						evt.preventDefault();
+						return;
+					}
+					case "Enter": {
+						opts.flags.doClickFirst = true;
+						opts.fnSearch && opts.fnSearch();
+					}
 				}
 			},
 			fnKeydown: evt => {
 				if (opts.flags.isWait) {
 					opts.flags.isWait = false;
 					opts.fnShowWait && opts.fnShowWait();
-				} else {
-					switch (evt.which) {
-						case 40: { // down
-							if (opts.$ptrRows && opts.$ptrRows._[0]) {
-								evt.preventDefault();
-								opts.$ptrRows._[0].focus();
-							}
-							break;
+					return;
+				}
+
+				switch (evt.key) {
+					case "ArrowDown": {
+						if (opts.$ptrRows && opts.$ptrRows._[0]) {
+							evt.stopPropagation();
+							evt.preventDefault();
+							opts.$ptrRows._[0][0].focus();
 						}
-						case 13: { // enter
-							if (opts.$ptrRows && opts.$ptrRows._[0]) {
-								evt.preventDefault();
-								opts.$ptrRows._[0].click();
-							}
-							break;
+						break;
+					}
+					case "Enter": {
+						if (opts.$ptrRows && opts.$ptrRows._[0]) {
+							evt.preventDefault();
+							opts.$ptrRows._[0].click();
 						}
+						break;
 					}
 				}
 			},
