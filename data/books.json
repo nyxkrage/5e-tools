@@ -3550,6 +3550,19 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Dungeon Master's Screen: Spelljammer",
+			"id": "ScreenSpelljammer",
+			"source": "ScreenSpelljammer",
+			"group": "screen",
+			"coverUrl": "img/covers/ScreenSpelljammer.png",
+			"published": "2022-08-16",
+			"contents": [
+				{
+					"name": "Screen"
+				}
+			]
 		}
 	]
 }

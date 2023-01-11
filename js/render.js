@@ -2512,7 +2512,7 @@ Renderer._cache = {
 };
 
 Renderer.utils = {
-	getBorderTr: (optText) => {
+	getBorderTr: (optText = null) => {
 		return `<tr><th class="border" colspan="6">${optText || ""}</th></tr>`;
 	},
 
@@ -2782,19 +2782,19 @@ Renderer.utils = {
 		});
 	},
 
-	hasFluffText (entity, prop) {
-		return entity.hasFluff || (Renderer.utils.getPredefinedFluff(entity, prop)?.entries?.length || 0) > 0;
+	async pHasFluffText (entity, prop) {
+		return entity.hasFluff || ((await Renderer.utils.pGetPredefinedFluff(entity, prop))?.entries?.length || 0) > 0;
 	},
 
-	hasFluffImages (entity, prop) {
-		return entity.hasFluffImages || ((Renderer.utils.getPredefinedFluff(entity, prop)?.images?.length || 0) > 0);
+	async pHasFluffImages (entity, prop) {
+		return entity.hasFluffImages || (((await Renderer.utils.pGetPredefinedFluff(entity, prop))?.images?.length || 0) > 0);
 	},
 
 	/**
 	 * @param entry Data entry to search for fluff on, e.g. a monster
 	 * @param prop The fluff index reference prop, e.g. `"monsterFluff"`
 	 */
-	getPredefinedFluff (entry, prop) {
+	async pGetPredefinedFluff (entry, prop) {
 		if (!entry.fluff) return null;
 
 		const mappedProp = `_${prop}`;
@@ -2811,8 +2811,8 @@ Renderer.utils = {
 
 		if (entry.fluff[mappedProp]) {
 			const fromList = [
-				...(PrereleaseUtil.getBrewProcessedFromCache(prop) || []),
-				...(BrewUtil2.getBrewProcessedFromCache(prop) || []),
+				...((await PrereleaseUtil.pGetBrewProcessed())[prop] || []),
+				...((await BrewUtil2.pGetBrewProcessed())[prop] || []),
 			]
 				.find(it =>
 					it.name === entry.fluff[mappedProp].name
@@ -2825,8 +2825,8 @@ Renderer.utils = {
 
 		if (entry.fluff[mappedPropAppend]) {
 			const fromList = [
-				...(PrereleaseUtil.getBrewProcessedFromCache(prop) || []),
-				...(BrewUtil2.getBrewProcessedFromCache(prop) || []),
+				...((await PrereleaseUtil.pGetBrewProcessed())[prop] || []),
+				...((await BrewUtil2.pGetBrewProcessed())[prop] || []),
 			]
 				.find(it =>
 					it.name === entry.fluff[mappedPropAppend].name
@@ -2848,7 +2848,7 @@ Renderer.utils = {
 	},
 
 	async pGetFluff ({entity, pFnPostProcess, fnGetFluffData, fluffUrl, fluffBaseUrl, fluffProp} = {}) {
-		let predefinedFluff = Renderer.utils.getPredefinedFluff(entity, fluffProp);
+		let predefinedFluff = await Renderer.utils.pGetPredefinedFluff(entity, fluffProp);
 		if (predefinedFluff) {
 			if (pFnPostProcess) predefinedFluff = await pFnPostProcess(predefinedFluff);
 			return predefinedFluff;
@@ -5397,7 +5397,7 @@ Renderer.object = {
 	getRenderedString (obj, opts) {
 		opts = opts || {};
 
-		const renderer = Renderer.get();
+		const renderer = Renderer.get().setFirstSection(true);
 
 		const hasToken = obj.tokenUrl || obj.hasToken;
 		const extraThClasses = !opts.isCompact && hasToken ? ["objs__name--token"] : null;

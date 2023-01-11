@@ -298,58 +298,10 @@ class SpellsPage extends ListPageMultiSource {
 		return listItem;
 	}
 
-	handleFilterChange () {
-		const f = this._pageFilter.filterBox.getValues();
-		this._list.filter(li => {
-			const s = this._dataList[li.ix];
-			return this._pageFilter.toDisplay(f, s);
-		});
-		this._onFilterChangeMulti(this._dataList, f);
-	}
+	_tabTitleStats = "Spell";
 
-	doLoadHash (id) {
-		this._lastRender.entity = this._dataList[id];
-		Renderer.get().setFirstSection(true);
-		this._$pgContent.empty();
-		const spell = this._dataList[id];
-
-		const buildStatsTab = () => {
-			this._$pgContent.append(RenderSpells.$getRenderedSpell(spell, this._subclassLookup, {settings: this._compSettings.getValues()}));
-		};
-
-		const buildFluffTab = (isImageTab) => {
-			return Renderer.utils.pBuildFluffTab({
-				isImageTab,
-				$content: this._$pgContent,
-				entity: spell,
-				pFnGetFluff: this._pFnGetFluff,
-			});
-		};
-
-		const tabMetas = [
-			new Renderer.utils.TabButton({
-				label: "Spell",
-				fnPopulate: buildStatsTab,
-				isVisible: true,
-			}),
-			new Renderer.utils.TabButton({
-				label: "Info",
-				fnPopulate: buildFluffTab,
-				isVisible: Renderer.utils.hasFluffText(spell, "spellFluff"),
-			}),
-			new Renderer.utils.TabButton({
-				label: "Images",
-				fnPopulate: buildFluffTab.bind(null, true),
-				isVisible: Renderer.utils.hasFluffImages(spell, "spellFluff"),
-			}),
-		];
-
-		Renderer.utils.bindTabButtons({
-			tabButtons: tabMetas.filter(it => it.isVisible),
-			tabLabelReference: tabMetas.map(it => it.label),
-		});
-
-		this._updateSelected();
+	_renderStats_doBuildStatsTab ({ent}) {
+		this._$pgContent.empty().append(RenderSpells.$getRenderedSpell(ent, this._subclassLookup, {settings: this._compSettings.getValues()}));
 	}
 
 	async pDoLoadSubHash (sub) {

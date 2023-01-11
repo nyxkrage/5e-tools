@@ -213,13 +213,16 @@ class CreatureBuilder extends Builder {
 					if (!mDice) return null;
 
 					const abil = item.type === "M" ? "str" : "dex";
-					const ptRange = item.range ? `range ${item.range} ft.` : "reach 5 ft.";
+					const ptAtk = `${item.type === "M" ? "m" : "r"}w${item.type === "M" && item.range ? `,rw` : ""}`;
+					const ptRange = item.range
+						? `${item.type === "M" ? `reach 5 ft. or ` : ""}range ${item.range} ft.`
+						: "reach 5 ft.";
 					const dmgAvg = Number(mDice.groups.count) * ((Number(mDice.groups.face) + 1) / 2);
 
 					return {
 						name: item.name,
 						entries: [
-							`{@atk ${item.type === "M" ? "m" : "r"}w} {@hit <$to_hit__${abil}$>} to hit, ${ptRange}, one target. {@h}<$damage_avg__(size_mult*${dmgAvg})+${abil}$> ({@damage <$size_mult__${mDice.groups.count}$>d${mDice.groups.face}<$damage_mod__${abil}$>}) ${Parser.dmgTypeToFull(item.dmgType)} damage.`,
+							`{@atk ${ptAtk}} {@hit <$to_hit__${abil}$>} to hit, ${ptRange}, one target. {@h}<$damage_avg__(size_mult*${dmgAvg})+${abil}$> ({@damage <$size_mult__${mDice.groups.count}$>d${mDice.groups.face}<$damage_mod__${abil}$>}) ${Parser.dmgTypeToFull(item.dmgType)} damage.`,
 						],
 					};
 				})

@@ -4040,7 +4040,7 @@ class RangeFilter extends FilterBase {
 
 					switch (prop) {
 						case "min":
-							if (num < nxtState.state.min) nxtState[this.header].state.min = num;
+							if (num < nxtState[this.header].state.min) nxtState[this.header].state.min = num;
 							nxtState[this.header].state.curMin = Math.max(nxtState[this.header].state.min, num);
 							break;
 						case "max":

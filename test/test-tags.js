@@ -1219,6 +1219,7 @@ async function main () {
 		BackgroundDataCheck,
 		BestiaryDataCheck,
 	];
+	DataTester.register({ClazzDataTesters});
 
 	await DataTester.pRun(
 		"./data",

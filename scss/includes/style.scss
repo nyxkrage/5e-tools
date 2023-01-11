@@ -70,6 +70,7 @@
 	&nav-date {
 		margin-left: -16px;
 		width: 27px;
+		color: $rgb-font--muted;
 	}
 
 	&wrp-download {
@@ -124,6 +125,12 @@
 		left: calc(50% - 30px);
 		width: 90px;
 		text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 3px 3px 5px black;
+	}
+}
+
+.active > .nav__link > .page__ {
+	&nav-date {
+		color: white;
 	}
 }
 

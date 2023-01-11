@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.174.2"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.174.3"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -584,6 +584,31 @@ globalThis.CurrencyUtil = {
 		return Parser.FULL_CURRENCY_CONVERSION_TABLE
 			.map(currencyMeta => (obj[currencyMeta.coin] || 0) * (1 / currencyMeta.mult))
 			.reduce((a, b) => a + b, 0);
+	},
+
+	/**
+	 * Convert a collection of coins into an equivalent number of coins of the highest denomination.
+	 * @param obj Object of the form {cp: 123, sp: 456, ...} (values optional)
+	 */
+	getAsSingleCurrency (obj) {
+		const simplified = CurrencyUtil.doSimplifyCoins({...obj});
+
+		if (Object.keys(simplified).length === 1) return simplified;
+
+		const out = {};
+
+		const targetDemonination = Parser.FULL_CURRENCY_CONVERSION_TABLE.find(it => simplified[it.coin]);
+
+		out[targetDemonination.coin] = simplified[targetDemonination.coin];
+		delete simplified[targetDemonination.coin];
+
+		Object.entries(simplified)
+			.forEach(([coin, amt]) => {
+				const denom = Parser.FULL_CURRENCY_CONVERSION_TABLE.find(it => it.coin === coin);
+				out[targetDemonination.coin] = (out[targetDemonination.coin] || 0) + (amt / denom.mult) * targetDemonination.mult;
+			});
+
+		return out;
 	},
 };
 
@@ -2964,7 +2989,7 @@ class _DataUtilPropConfigMultiSource extends _DataUtilPropConfig {
 
 	static async _pInitPreData_ () { /* Implement as required */ }
 
-	static _mutEntity (ent) { /* Implement as required */ }
+	static _mutEntity (ent) { return ent; }
 }
 
 class _DataUtilPropConfigCustom extends _DataUtilPropConfig {
@@ -4386,7 +4411,7 @@ globalThis.DataUtil = {
 		}
 
 		static _mutEntity (sp) {
-			if (sp._isMutEntity) return;
+			if (sp._isMutEntity) return sp;
 
 			const spSources = this._SPELL_SOURCE_LOOKUP[sp.source.toLowerCase()]?.[sp.name.toLowerCase()];
 			if (!spSources) return;
@@ -6439,7 +6464,7 @@ globalThis.ExcludeUtil = {
 	_getCacheUids (hash, category, source, isExact) {
 		hash = (hash || "").toLowerCase();
 		category = (category || "").toLowerCase();
-		source = (source.source || source || "").toLowerCase();
+		source = (source?.source || source || "").toLowerCase();
 
 		const exact = `${hash}__${category}__${source}`;
 		if (isExact) return [exact];

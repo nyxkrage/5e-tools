@@ -640,7 +640,10 @@
 													"1 spelljamming ship (roll on the {@book Ship Encounters table|BAM|0|Ship Encounters})",
 													"\u2014"
 												]
-											]
+											],
+											"data": {
+												"tableIgnore": true
+											}
 										}
 									]
 								},
@@ -787,7 +790,10 @@
 													"1 spelljamming ship (roll on the Ship Encounters table)",
 													"\u2014"
 												]
-											]
+											],
+											"data": {
+												"tableIgnore": true
+											}
 										}
 									]
 								},

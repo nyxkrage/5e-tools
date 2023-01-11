@@ -510,14 +510,20 @@ class _DataLoaderCache {
 				hashClean,
 				ent,
 			});
-		} else if (PrereleaseUtil.hasSourceJson(sourceJson)) {
+			return;
+		}
+
+		if (PrereleaseUtil.hasSourceJson(sourceJson)) {
 			this._set_addToPartition({
 				cache: this._cachePrereleaseLists,
 				pageClean,
 				hashClean,
 				ent,
 			});
-		} else if (BrewUtil2.hasSourceJson(sourceJson)) {
+			return;
+		}
+
+		if (BrewUtil2.hasSourceJson(sourceJson)) {
 			this._set_addToPartition({
 				cache: this._cacheBrewLists,
 				pageClean,
@@ -1799,7 +1805,7 @@ class DataLoader {
 		static _SOURCES_ATTEMPTED = new Set();
 		static _CACHE_SOURCE_CLEAN_TO_URL = null;
 
-		static _isPossibleSource ({parent, sourceClean}) { parent._isPrereleaseSource({sourceClean}); }
+		static _isPossibleSource ({parent, sourceClean}) { return parent._isPrereleaseSource({sourceClean}) && !Parser.SOURCE_JSON_TO_FULL[Parser.sourceJsonToJson(sourceClean)]; }
 		static _getBrewUtil () { return typeof PrereleaseUtil !== "undefined" ? PrereleaseUtil : null; }
 		static _pGetSourceIndex () { return DataUtil.prerelease.pLoadSourceIndex(); }
 	};
@@ -1901,19 +1907,25 @@ class DataLoader {
 				if (!hashBuilder) return;
 
 				arr.forEach(ent => {
-					ent.__prop = ent.__prop || prop;
-
-					const page = this._PROP_TO_HASH_PAGE[prop];
-					const source = SourceUtil.getEntitySource(ent);
-					const hash = hashBuilder(ent);
-
-					const {page: propClean, source: sourceClean, hash: hashClean} = _DataLoaderInternalUtil.getCleanPageSourceHash({page: prop, source, hash});
-					const pageClean = page ? _DataLoaderInternalUtil.getCleanPage({page}) : null;
-
-					this._CACHE.set(propClean, sourceClean, hashClean, ent);
-					if (pageClean) this._CACHE.set(pageClean, sourceClean, hashClean, ent);
+					this._pCache_addEntityToCache({prop, hashBuilder, ent});
+					DataUtil.proxy.getVersions(prop, ent)
+						.forEach(entVer => this._pCache_addEntityToCache({prop, hashBuilder, ent: entVer}));
 				});
 			});
+	}
+
+	static _pCache_addEntityToCache ({prop, hashBuilder, ent}) {
+		ent.__prop = ent.__prop || prop;
+
+		const page = this._PROP_TO_HASH_PAGE[prop];
+		const source = SourceUtil.getEntitySource(ent);
+		const hash = hashBuilder(ent);
+
+		const {page: propClean, source: sourceClean, hash: hashClean} = _DataLoaderInternalUtil.getCleanPageSourceHash({page: prop, source, hash});
+		const pageClean = page ? _DataLoaderInternalUtil.getCleanPage({page}) : null;
+
+		this._CACHE.set(propClean, sourceClean, hashClean, ent);
+		if (pageClean) this._CACHE.set(pageClean, sourceClean, hashClean, ent);
 	}
 
 	/* -------------------------------------------- */

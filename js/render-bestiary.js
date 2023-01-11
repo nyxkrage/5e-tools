@@ -103,8 +103,8 @@ class RenderBestiary {
 	}
 
 	static _getRenderedSectionHeader ({mon, title, prop}) {
-		const noteKey = `${prop}Note`;
-		return `<tr><td colspan="6" class="mon__stat-header-underline"><h3 class="mon__sect-header-inner">${title}${mon[noteKey] ? ` (<span class="small">${mon[noteKey]}</span>)` : ""}</h3></td></tr>`;
+		const propNote = `${prop}Note`;
+		return `<tr><td colspan="6" class="mon__stat-header-underline"><h3 class="mon__sect-header-inner">${title}${mon[propNote] ? ` (<span class="small">${mon[propNote]}</span>)` : ""}</h3></td></tr>`;
 	}
 
 	static _getRenderedSection ({mon = null, prop, entries, depth = 1, fnGetHeader = null}) {

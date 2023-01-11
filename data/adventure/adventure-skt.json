@@ -14317,7 +14317,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Battlefield|15b|x}",
+									"{@area Uthgardt Marauders|159|x}",
 									"09\u201318",
 									"08\u201332",
 									"05\u201324",
@@ -14327,7 +14327,7 @@
 									"01\u201315"
 								],
 								[
-									"{@area Cloud castle|15c|x}",
+									"{@area Battlefield|15b|x}",
 									"19\u201321",
 									"33\u201337",
 									"25\u201328",
@@ -14337,7 +14337,7 @@
 									"16\u201319"
 								],
 								[
-									"{@area Crag cats|1e1|x}",
+									"{@area Cloud castle|15c|x}",
 									"\u2014",
 									"38\u201339",
 									"29\u201330",
@@ -14347,7 +14347,7 @@
 									"20\u201322"
 								],
 								[
-									"{@area Dig site|15e|x}",
+									"{@area Crag cats|1e1|x}",
 									"\u2014",
 									"\u2014",
 									"31\u201335",
@@ -14357,7 +14357,7 @@
 									"23\u201335"
 								],
 								[
-									"{@area Dragon|160|x}",
+									"{@area Dig site|15e|x}",
 									"22\u201329",
 									"40\u201346",
 									"36\u201338",
@@ -14367,7 +14367,7 @@
 									"36\u201341"
 								],
 								[
-									"{@area Elk|161|x}",
+									"{@area Dragon|160|x}",
 									"\u2014",
 									"\u2014",
 									"39\u201341",
@@ -14377,7 +14377,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Elves|163|x}",
+									"{@area Elk|161|x}",
 									"30\u201337",
 									"47\u201353",
 									"42\u201350",
@@ -14387,7 +14387,7 @@
 									"42\u201354"
 								],
 								[
-									"{@area Fire giant|165|x}",
+									"{@area Elves|163|x}",
 									"38\u201353",
 									"\u2014",
 									"\u2014",
@@ -14397,7 +14397,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Food hunters|167|x}",
+									"{@area Fire giant|165|x}",
 									"54\u201355",
 									"54\u201355",
 									"51\u201353",
@@ -14407,7 +14407,7 @@
 									"55\u201356"
 								],
 								[
-									"{@area Frost giants|1e2|x}",
+									"{@area Food hunters|167|x}",
 									"56\u201362",
 									"56\u201362",
 									"54\u201359",
@@ -14417,7 +14417,7 @@
 									"57\u201358"
 								],
 								[
-									"{@area Hill giants|16b|x}",
+									"{@area Frost giants|1e2|x}",
 									"63\u201367",
 									"63\u201366",
 									"60\u201361",
@@ -14427,7 +14427,7 @@
 									"59\u201370"
 								],
 								[
-									"{@area Horse-drawn wagon|16c|x}",
+									"{@area Hill giants|16b|x}",
 									"68\u201370",
 									"67\u201368",
 									"62\u201376",
@@ -14437,7 +14437,7 @@
 									"71\u201374"
 								],
 								[
-									"{@area Knight|16d|x}",
+									"{@area Horse-drawn wagon|16c|x}",
 									"71\u201375",
 									"69\u201375",
 									"\u2014",
@@ -14447,7 +14447,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Ogres|16e|x}",
+									"{@area Knight|16d|x}",
 									"76\u201380",
 									"76\u201378",
 									"77\u201380",
@@ -14457,7 +14457,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Orcs|170|x}",
+									"{@area Ogres|16e|x}",
 									"81\u201382",
 									"79\u201384",
 									"81\u201385",
@@ -14467,7 +14467,7 @@
 									"75\u201376"
 								],
 								[
-									"{@area Ranger|172|x}",
+									"{@area Orcs|170|x}",
 									"83\u201390",
 									"85\u201391",
 									"86\u201390",
@@ -14477,7 +14477,7 @@
 									"77\u201387"
 								],
 								[
-									"{@area Stone giants|173|x}",
+									"{@area Ranger|172|x}",
 									"91\u201395",
 									"92\u201395",
 									"91\u201394",
@@ -14487,7 +14487,7 @@
 									"88\u201393"
 								],
 								[
-									"{@area Travelers|175|x}",
+									"{@area Stone giants|173|x}",
 									"\u2014",
 									"\u2014",
 									"95\u201397",
@@ -14497,7 +14497,7 @@
 									"94\u201395"
 								],
 								[
-									"{@area Uthgardt Marauders|159|x}",
+									"{@area Travelers|175|x}",
 									"96\u201300",
 									"96\u201300",
 									"98\u201300",
@@ -14535,26 +14535,6 @@
 											"id": "158",
 											"entries": [
 												"Each bandit carries a pouch containing {@dice 1d10} gp. The bandit captain's pouch holds {@dice 2d10} gp and {@dice 1d6} gems worth 100 gp each."
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Uthgardt Marauders",
-									"page": 69,
-									"id": "159",
-									"entries": [
-										"The characters encounter a hostile group of Uthgardt barbarians consisting of {@dice 4d6} {@creature Tribal Warrior||tribal warriors} and an {@creature Uthgardt shaman|SKT} (see {@adventure appendix C|SKT|15}). If the group has twenty or more tribal warriors, add {@dice 1d3} {@creature Berserker||berserkers} and a tribal chieftain (a {@creature berserker} with 90 hit points) to the group. If the encounter occurs during the day, the Uthgardt are prowling the countryside while hunting wild game; if the encounter occurs at night, they are camped.",
-										"Use the information in the \"Uthgardt\" section to choose an appropriate tribe based on the location where the encounter takes place. If these Uthgardt belong to the Gray Wolf tribe, use the {@creature werewolf} statistics for the chieftain and the berserkers, and give the chieftain 90 hit points. Also give the Gray Wolf chieftain {@dice 1d4} {@creature Wolf||wolves} as animal companions.",
-										"The barbarians carry no treasure.",
-										{
-											"type": "entries",
-											"name": "Sea",
-											"page": 69,
-											"id": "15a",
-											"entries": [
-												"If this encounter occurs at sea, the characters encounter {@dice 1d3} longships, each with ten {@creature Berserker||berserkers} and thirty {@creature Tribal Warrior||tribal warriors} aboard. One of the berserkers serves as the captain. These hostile, bloodthirsty Northfolk raiders hail from Gundarlun, the Korinn Archipelago, Tuern, or the Whalebones. The longships have a speed of 3 miles per hour. If the vessel the characters are in moves at least as fast, the characters can flee from the barbarians and avoid an altercation."
 											]
 										}
 									]
@@ -14848,6 +14828,26 @@
 												"R{@b oad/Trail}: Either {@dice 3d6} peasants fleeing their homes after a frost giant, hill giant, or stone giant attack; an angry mob of {@dice 6d6} peasants looking to reclaim their land or avenge dead loved ones; or a lone merchant or minstrel in a horse-drawn wagon who is relocating to a safer settlement",
 												"{@b Sea}: Either a friendly vessel carrying {@dice 6d6} crew and passengers who saw a cloud giant castle or a frost giant greatship, or {@dice 1d4} survivors floating on debris after their ship was sunk by a frost giant greatship",
 												"{@b Tundra}: {@dice 1d4} hunters or trappers who narrowly escaped from a fire giant or a frost giant but were forced to leave a companion behind"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Uthgardt Marauders",
+									"page": 69,
+									"id": "159",
+									"entries": [
+										"The characters encounter a hostile group of Uthgardt barbarians consisting of {@dice 4d6} {@creature Tribal Warrior||tribal warriors} and an {@creature Uthgardt shaman|SKT} (see {@adventure appendix C|SKT|15}). If the group has twenty or more tribal warriors, add {@dice 1d3} {@creature Berserker||berserkers} and a tribal chieftain (a {@creature berserker} with 90 hit points) to the group. If the encounter occurs during the day, the Uthgardt are prowling the countryside while hunting wild game; if the encounter occurs at night, they are camped.",
+										"Use the information in the \"Uthgardt\" section to choose an appropriate tribe based on the location where the encounter takes place. If these Uthgardt belong to the Gray Wolf tribe, use the {@creature werewolf} statistics for the chieftain and the berserkers, and give the chieftain 90 hit points. Also give the Gray Wolf chieftain {@dice 1d4} {@creature Wolf||wolves} as animal companions.",
+										"The barbarians carry no treasure.",
+										{
+											"type": "entries",
+											"name": "Sea",
+											"page": 69,
+											"id": "15a",
+											"entries": [
+												"If this encounter occurs at sea, the characters encounter {@dice 1d3} longships, each with ten {@creature Berserker||berserkers} and thirty {@creature Tribal Warrior||tribal warriors} aboard. One of the berserkers serves as the captain. These hostile, bloodthirsty Northfolk raiders hail from Gundarlun, the Korinn Archipelago, Tuern, or the Whalebones. The longships have a speed of 3 miles per hour. If the vessel the characters are in moves at least as fast, the characters can flee from the barbarians and avoid an altercation."
 											]
 										}
 									]

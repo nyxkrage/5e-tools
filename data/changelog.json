@@ -2329,5 +2329,10 @@
 		"ver": "1.174.2",
 		"date": "2023-01-04",
 		"txt": "- Added an \"Add Predefined Action\" button to the Creature Homebrew Builder, similar in function to the existing \"Add Predefined Trait\" button (thanks @ FishCrystals for the prototype and data entry) \n- (Prerelease/Brew) Fixed Prerelease/Homebrew races failing to load in Statgen\n- (Brew) Fixed crash when opening the \"Manage [Editable Homebrew] Contents\" dialog\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.174.3",
+		"date": "2023-01-11",
+		"txt": "- Added Spelljammer DM Screen\n- Added \"Copy as JSON\"/\"Copy as Markdown\" menu to list page \"Info\" tabs (this functionality was previously available only in the Bestiary)\n- Fixed various spell-related crashes\n- Fixed crash when loading range filter values from URL\n- (Brew) Added Markdown rendering support for creature statblock section intros/notes\n- (Fixed typos/added tags)"
 	}
 ]

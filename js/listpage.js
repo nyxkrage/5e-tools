@@ -934,7 +934,7 @@ class ListPage {
 		this._pOnLoad_tableView();
 
 		// bind hash-change functions for hist.js to use
-		window.loadHash = this.doLoadHash.bind(this);
+		window.loadHash = this.pDoLoadHash.bind(this);
 		window.loadSubHash = this.pDoLoadSubHash.bind(this);
 		if (this._isBindHashHandlerUnknown) window.pHandleUnknownHash = this.pHandleUnknownHash.bind(this);
 
@@ -1693,14 +1693,12 @@ class ListPage {
 
 	doDeselectAll () { this.primaryLists.forEach(list => list.deselectAll()); }
 
-	doLoadHash (id) {
+	async pDoLoadHash (id) {
 		this._lastRender.entity = this._dataList[id];
-		this._doLoadHash(id);
+		await this._pDoLoadHash(id);
 	}
 
 	getListItem () { throw new Error(`Unimplemented!`); }
-	handleFilterChange () { throw new Error(`Unimplemented!`); }
-	_doLoadHash (id) { throw new Error(`Unimplemented!`); }
 	pHandleUnknownHash () { throw new Error(`Unimplemented!`); }
 
 	async pDoLoadSubHash (sub) {
@@ -1708,4 +1706,134 @@ class ListPage {
 		if (this._sublistManager) sub = await this._sublistManager.pSetFromSubHashes(sub);
 		return sub;
 	}
+
+	/* -------------------------------------------- */
+
+	handleFilterChange () {
+		const f = this._filterBox.getValues();
+		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
+		FilterBox.selectFirstVisible(this._dataList);
+	}
+
+	/* -------------------------------------------- */
+
+	_tabTitleStats = "Traits";
+
+	async _pDoLoadHash (id) {
+		this._$pgContent.empty();
+
+		this._renderer.setFirstSection(true);
+		const ent = this._dataList[id];
+
+		const tabMetaStats = new Renderer.utils.TabButton({
+			label: this._tabTitleStats,
+			fnChange: this._renderStats_onTabChangeStats.bind(this),
+			fnPopulate: this._renderStats_doBuildStatsTab.bind(this, {ent}),
+			isVisible: true,
+		});
+
+		const tabMetasAdditional = this._renderStats_getTabMetasAdditional({ent});
+
+		Renderer.utils.bindTabButtons({
+			tabButtons: [tabMetaStats, ...tabMetasAdditional].filter(it => it.isVisible),
+			tabLabelReference: [tabMetaStats, ...tabMetasAdditional].map(it => it.label),
+		});
+
+		this._updateSelected();
+
+		await this._renderStats_pBuildFluffTabs({
+			ent,
+			tabMetaStats,
+			tabMetasAdditional,
+		});
+	}
+
+	_renderStats_getTabMetasAdditional ({ent}) { return []; }
+
+	_renderStats_onTabChangeStats () { /* Implement as required. */ }
+	_renderStats_onTabChangeFluff () { /* Implement as required. */ }
+
+	async _renderStats_pBuildFluffTabs (
+		{
+			ent,
+			tabMetaStats,
+			tabMetasAdditional,
+		},
+	) {
+		const propFluff = `${ent.__prop}Fluff`;
+
+		const [hasFluffText, hasFluffImages] = await Promise.all([
+			Renderer.utils.pHasFluffText(ent, propFluff),
+			Renderer.utils.pHasFluffImages(ent, propFluff),
+		]);
+
+		if (!hasFluffText && !hasFluffImages) return;
+
+		const tabMetas = [
+			tabMetaStats,
+			new Renderer.utils.TabButton({
+				label: "Info",
+				fnChange: this._renderStats_onTabChangeFluff.bind(this),
+				fnPopulate: this._renderStats_doBuildFluffTab.bind(this, {ent, isImageTab: false}),
+				isVisible: hasFluffText,
+			}),
+			new Renderer.utils.TabButton({
+				label: "Images",
+				fnChange: this._renderStats_onTabChangeFluff.bind(this),
+				fnPopulate: this._renderStats_doBuildFluffTab.bind(this, {ent, isImageTab: true}),
+				isVisible: hasFluffImages,
+			}),
+			...tabMetasAdditional,
+		];
+
+		Renderer.utils.bindTabButtons({
+			tabButtons: tabMetas.filter(it => it.isVisible),
+			tabLabelReference: tabMetas.map(it => it.label),
+		});
+	}
+
+	_renderStats_doBuildFluffTab ({ent, isImageTab = false}) {
+		this._$pgContent.empty();
+
+		return Renderer.utils.pBuildFluffTab({
+			isImageTab,
+			$content: this._$pgContent,
+			pFnGetFluff: this._pFnGetFluff,
+			entity: ent,
+			$headerControls: this._renderStats_doBuildFluffTab_$getHeaderControls({ent, isImageTab}),
+		});
+	}
+
+	_renderStats_doBuildFluffTab_$getHeaderControls ({ent, isImageTab = false}) {
+		if (isImageTab) return null;
+
+		const actions = [
+			new ContextUtil.Action(
+				"Copy as JSON",
+				async () => {
+					const fluffEntries = (await this._pFnGetFluff(ent))?.entries || [];
+					MiscUtil.pCopyTextToClipboard(JSON.stringify(fluffEntries, null, "\t"));
+					JqueryUtil.showCopiedEffect($btnOptions);
+				},
+			),
+			new ContextUtil.Action(
+				"Copy as Markdown",
+				async () => {
+					const fluffEntries = (await this._pFnGetFluff(ent))?.entries || [];
+					const rendererMd = RendererMarkdown.get().setFirstSection(true);
+					MiscUtil.pCopyTextToClipboard(fluffEntries.map(f => rendererMd.render(f)).join("\n"));
+					JqueryUtil.showCopiedEffect($btnOptions);
+				},
+			),
+		];
+		const menu = ContextUtil.getMenu(actions);
+
+		const $btnOptions = $(`<button class="btn btn-default btn-xs btn-stats-name" title="Other Options"><span class="glyphicon glyphicon-option-vertical"/></button>`)
+			.click(evt => ContextUtil.pOpenMenu(evt, menu));
+
+		return $$`<div class="ve-flex-v-center btn-group ml-2">${$btnOptions}</div>`;
+	}
+
+	/** @abstract */
+	_renderStats_doBuildStatsTab ({ent}) { throw new Error("Unimplemented!"); }
 }

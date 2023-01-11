@@ -11977,7 +11977,7 @@
 									],
 									"id": "1f6"
 								},
-								"You can determine the trinket by rolling on the Trinket stable in the {@i Player's Handbook}.",
+								"You can determine the trinket by rolling on the {@item Trinket|PHB|Trinkets table} in the {@i Player's Handbook}.",
 								{
 									"type": "entries",
 									"name": "Guard Harassment",

@@ -307,57 +307,16 @@ class ItemsPage extends ListPage {
 
 	handleFilterChange () {
 		const f = this._pageFilter.filterBox.getValues();
-		const listFilter = li => {
-			const it = this._dataList[li.ix];
-			return this._pageFilter.toDisplay(f, it);
-		};
+		const listFilter = li => this._pageFilter.toDisplay(f, this._dataList[li.ix]);
 		this._mundaneList.filter(listFilter);
 		this._magicList.filter(listFilter);
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	_doLoadHash (id) {
-		Renderer.get().setFirstSection(true);
-		this._$pgContent.empty();
-		const item = this._dataList[id];
+	_tabTitleStats = "Item";
 
-		const buildStatsTab = () => {
-			this._$pgContent.append(RenderItems.$getRenderedItem(item));
-		};
-
-		const buildFluffTab = (isImageTab) => {
-			return Renderer.utils.pBuildFluffTab({
-				isImageTab,
-				$content: this._$pgContent,
-				entity: item,
-				pFnGetFluff: this._pFnGetFluff,
-			});
-		};
-
-		const tabMetas = [
-			new Renderer.utils.TabButton({
-				label: "Item",
-				fnPopulate: buildStatsTab,
-				isVisible: true,
-			}),
-			new Renderer.utils.TabButton({
-				label: "Info",
-				fnPopulate: buildFluffTab,
-				isVisible: Renderer.utils.hasFluffText(item, "itemFluff"),
-			}),
-			new Renderer.utils.TabButton({
-				label: "Images",
-				fnPopulate: buildFluffTab.bind(null, true),
-				isVisible: Renderer.utils.hasFluffImages(item, "itemFluff"),
-			}),
-		];
-
-		Renderer.utils.bindTabButtons({
-			tabButtons: tabMetas.filter(it => it.isVisible),
-			tabLabelReference: tabMetas.map(it => it.label),
-		});
-
-		this._updateSelected();
+	_renderStats_doBuildStatsTab ({ent}) {
+		this._$pgContent.empty().append(RenderItems.$getRenderedItem(ent));
 	}
 
 	async pDoLoadSubHash (sub) {

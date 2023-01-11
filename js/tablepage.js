@@ -119,7 +119,7 @@ class TableListPage extends ListPage {
 	_pOnLoad_bindMiscButtons () { /* No-op */ }
 	pDoLoadSubHash () { /* No-op */ }
 
-	_doLoadHash (id) {
+	_pDoLoadHash (id) {
 		Renderer.get().setFirstSection(true);
 
 		const ent = this._dataList[id];
