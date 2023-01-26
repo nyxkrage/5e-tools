@@ -55,6 +55,8 @@ class PageFilterTrapsHazards extends PageFilter {
 	}
 }
 
+globalThis.PageFilterTrapsHazards = PageFilterTrapsHazards;
+
 class ListSyntaxTrapsHazards extends ListUiUtil.ListSyntax {
 	_getSearchCacheStats (entity) {
 		if (!entity.effect && !entity.trigger && !entity.countermeasures && !entity.entries) return "";
@@ -66,3 +68,5 @@ class ListSyntaxTrapsHazards extends ListUiUtil.ListSyntax {
 		return ptrOut._;
 	}
 }
+
+globalThis.ListSyntaxTrapsHazards = ListSyntaxTrapsHazards;

@@ -92,6 +92,8 @@ class PageFilter {
 	// endregion
 }
 
+globalThis.PageFilter = PageFilter;
+
 class ModalFilter {
 	static _$getFilterColumnHeaders (btnMeta) {
 		return btnMeta.map((it, i) => $(`<button class="col-${it.width} ${i === 0 ? "pl-0" : i === btnMeta.length ? "pr-0" : ""} ${it.disabled ? "" : "sort"} btn btn-default btn-xs" ${it.disabled ? "" : `data-sort="${it.sort}"`} ${it.title ? `title="${it.title}"` : ""} ${it.disabled ? "disabled" : ""}>${it.text}</button>`));
@@ -3809,6 +3811,8 @@ class AbilityScoreFilter extends FilterBase {
 	}
 }
 
+globalThis.AbilityScoreFilter = AbilityScoreFilter;
+
 AbilityScoreFilter.FilterItem = class {
 	static getUid_ ({ability = null, isAnyIncrease = false, isAnyDecrease = false, modifier = null}) {
 		return `${Parser.attAbvToFull(ability)} ${modifier != null ? UiUtil.intToBonus(modifier) : (isAnyIncrease ? `+any` : isAnyDecrease ? `-any` : "?")}`;
@@ -5121,4 +5125,5 @@ globalThis.FilterBase = FilterBase;
 globalThis.Filter = Filter;
 globalThis.SourceFilter = SourceFilter;
 globalThis.RangeFilter = RangeFilter;
+globalThis.OptionsFilter = OptionsFilter;
 globalThis.MultiFilter = MultiFilter;

@@ -146,7 +146,7 @@ class GenTables {
 			output,
 			path: `./data/encounters.json`,
 			prop: "encounter",
-			fnGetNameCaption: this.constructor._getConvertedEncounterTableName.bind(this),
+			fnGetNameCaption: Renderer.table.getConvertedEncounterTableName.bind(Renderer.table),
 			colLabel1: "Encounter",
 		});
 	}
@@ -156,7 +156,7 @@ class GenTables {
 			output,
 			path: `./data/names.json`,
 			prop: "name",
-			fnGetNameCaption: this.constructor._getConvertedNameTableName.bind(this),
+			fnGetNameCaption: Renderer.table.getConvertedNameTableName.bind(Renderer.table),
 			colLabel1: "Name",
 		});
 	}
@@ -176,7 +176,7 @@ class GenTables {
 
 		jsonData[prop].forEach(group => {
 			group.tables.forEach(tableRaw => {
-				output.tables.push(this.constructor._getConvertedEncounterOrNamesTable({
+				output.tables.push(Renderer.table.getConvertedEncounterOrNamesTable({
 					group,
 					tableRaw,
 					fnGetNameCaption,
@@ -184,34 +184,6 @@ class GenTables {
 				}));
 			});
 		});
-	}
-
-	static _getConvertedEncounterTableName (group, tableRaw) { return `${group.name}${/\bencounters?\b/i.test(group.name) ? "" : " Encounters"}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`; }
-	static _getConvertedNameTableName (group, tableRaw) { return `${group.name} Names - ${tableRaw.option}`; }
-
-	static _getConvertedEncounterOrNamesTable ({group, tableRaw, fnGetNameCaption, colLabel1}) {
-		const nameCaption = fnGetNameCaption(group, tableRaw);
-		return {
-			name: nameCaption,
-			source: group.source,
-			page: group.page,
-			caption: nameCaption,
-			colLabels: [
-				`d${tableRaw.diceExpression}`,
-				colLabel1,
-				tableRaw.rollAttitude ? `Attitude` : null,
-			].filter(Boolean),
-			colStyles: [
-				"col-2 text-center",
-				tableRaw.rollAttitude ? "col-8" : "col-10",
-				tableRaw.rollAttitude ? `col-2 text-center` : null,
-			].filter(Boolean),
-			rows: tableRaw.table.map(it => [
-				`${it.min}${it.max != null && it.max !== it.min ? `-${it.max}` : ""}`,
-				it.result,
-				tableRaw.rollAttitude ? it.resultAttitude || "\u2014" : null,
-			].filter(Boolean)),
-		};
 	}
 
 	// -----------------------

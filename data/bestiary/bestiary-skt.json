@@ -148,7 +148,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"shield dwarf"
+					{
+						"tag": "dwarf",
+						"prefix": "Shield"
+					}
 				]
 			},
 			"alignment": [
@@ -1892,7 +1895,7 @@
 				"tags": [
 					{
 						"tag": "dwarf",
-						"prefix": "shield"
+						"prefix": "Shield"
 					}
 				]
 			},
@@ -4404,7 +4407,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"strongheart halfling"
+					{
+						"tag": "halfling",
+						"prefix": "Strongheart"
+					}
 				]
 			},
 			"alignment": [

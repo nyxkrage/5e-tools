@@ -1287,6 +1287,9 @@ class TabUiUtil extends TabUiUtilBase {
 		obj.__$getDispTabTitle = function () { return null; };
 	}
 }
+
+globalThis.TabUiUtil = TabUiUtil;
+
 TabUiUtil.TabMeta = class extends TabUiUtilBase.TabMeta {
 	constructor (opts) {
 		super(opts);
@@ -1351,6 +1354,8 @@ class TabUiUtilSide extends TabUiUtilBase {
 		};
 	}
 }
+
+globalThis.TabUiUtilSide = TabUiUtilSide;
 
 // TODO have this respect the blocklist?
 class SearchUiUtil {

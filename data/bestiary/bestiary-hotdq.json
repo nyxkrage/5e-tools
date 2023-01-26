@@ -819,7 +819,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"high elf"
+					{
+						"tag": "elf",
+						"prefix": "High"
+					}
 				]
 			},
 			"alignment": [

@@ -2355,6 +2355,9 @@ globalThis.ScaleClassSummonedCreature = {
 		this._scale_ac(mon, toClassLevel, state);
 		this._scale_hp(mon, toClassLevel, state);
 
+		this._scale_saves(mon, toClassLevel, state);
+		this._scale_skills(mon, toClassLevel, state);
+
 		this._scale_pbNote(mon, toClassLevel, state);
 
 		this._scale_traits(mon, toClassLevel, state);
@@ -2384,6 +2387,26 @@ globalThis.ScaleClassSummonedCreature = {
 
 			return it;
 		});
+	},
+
+	_scale_savesSkills (mon, toClassLevel, state, prop) {
+		mon[prop] = Object.entries(mon[prop])
+			.mergeMap(([k, v]) => {
+				if (typeof v !== "string") return {[k]: v};
+				return {[k]: v
+					.replace(/\bplus\b/gi, "+")
+					.replace(/(\b|[-+])PB\b/g, `$1${state.proficiencyBonus}`)};
+			});
+	},
+
+	_scale_saves (mon, toClassLevel, state) {
+		if (!mon.save) return;
+		this._scale_savesSkills(mon, toClassLevel, state, "save");
+	},
+
+	_scale_skills (mon, toClassLevel, state) {
+		if (!mon.skill) return;
+		this._scale_savesSkills(mon, toClassLevel, state, "skill");
 	},
 
 	_scale_hp (mon, toClassLevel, state) {

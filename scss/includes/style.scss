@@ -3270,23 +3270,6 @@ th.border {
 		color: $rgb-name-red--night;
 	}
 
-	.source {
-		$rgb-source-PHB: $rgb-subclass--night;
-		$rgb-source-SADS: #4f63f5;
-
-		&PHB {
-			color: $rgb-source-PHB !important;
-			border-color: $rgb-source-PHB !important;
-			text-decoration-color: $rgb-source-PHB !important;
-		}
-
-		&SADS {
-			color: $rgb-source-SADS !important;
-			border-color: $rgb-source-SADS !important;
-			text-decoration-color: $rgb-source-SADS !important;
-		}
-	}
-
 	.bkmv {
 		background: #272727;
 	}

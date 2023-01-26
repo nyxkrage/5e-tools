@@ -1365,7 +1365,10 @@
 				"type": "humanoid",
 				"tags": [
 					"ranger",
-					"water genasi"
+					{
+						"tag": "genasi",
+						"prefix": "Water"
+					}
 				]
 			},
 			"alignment": [
@@ -1499,7 +1502,10 @@
 				"type": "humanoid",
 				"tags": [
 					"ranger",
-					"water genasi"
+					{
+						"tag": "genasi",
+						"prefix": "Water"
+					}
 				]
 			},
 			"alignment": [
@@ -1641,7 +1647,10 @@
 				"type": "humanoid",
 				"tags": [
 					"ranger",
-					"water genasi"
+					{
+						"tag": "genasi",
+						"prefix": "Water"
+					}
 				]
 			},
 			"alignment": [

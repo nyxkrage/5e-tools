@@ -1751,7 +1751,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"dusk elf"
+					{
+						"tag": "elf",
+						"prefix": "Dusk"
+					}
 				]
 			},
 			"alignment": [
@@ -2642,7 +2645,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"dusk elf"
+					{
+						"tag": "elf",
+						"prefix": "Dusk"
+					}
 				]
 			},
 			"alignment": [
@@ -3347,7 +3353,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"dusk elf"
+					{
+						"tag": "elf",
+						"prefix": "Dusk"
+					}
 				]
 			},
 			"alignment": [

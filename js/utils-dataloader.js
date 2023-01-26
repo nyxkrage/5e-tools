@@ -751,7 +751,7 @@ class _DataTypeLoaderSense extends _DataTypeLoaderSingleSource {
 class _DataTypeLoaderLegendaryGroup extends _DataTypeLoaderSingleSource {
 	static PROPS = ["legendaryGroup"];
 
-	_filename = "legendarygroups.json";
+	_filename = "bestiary/legendarygroups.json";
 }
 
 class _DataTypeLoaderItemEntry extends _DataTypeLoaderSingleSource {

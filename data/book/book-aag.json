@@ -1481,7 +1481,11 @@
 							"title": "The Rock of Bral: Topside",
 							"width": 4096,
 							"height": 2887,
-							"imageType": "map"
+							"grid": {
+								"type": "none"
+							},
+							"imageType": "map",
+							"id": "00b"
 						},
 						{
 							"type": "image",
@@ -1489,10 +1493,16 @@
 								"type": "internal",
 								"path": "book/AAG/Bral-Map-Topside-player.webp"
 							},
-							"title": "(Player Version)",
+							"title": "Player Version",
 							"width": 4096,
 							"height": 2887,
-							"imageType": "mapPlayer"
+							"grid": {
+								"type": "none"
+							},
+							"imageType": "mapPlayer",
+							"mapParent": {
+								"id": "00b"
+							}
 						}
 					]
 				},
@@ -1508,7 +1518,11 @@
 							"title": "The Rock of Bral: Underside",
 							"width": 4096,
 							"height": 2887,
-							"imageType": "map"
+							"grid": {
+								"type": "none"
+							},
+							"imageType": "map",
+							"id": "013"
 						},
 						{
 							"type": "image",
@@ -1516,10 +1530,16 @@
 								"type": "internal",
 								"path": "book/AAG/Bral-Map-Underside-player.webp"
 							},
-							"title": "(Player Version)",
+							"title": "Player Version",
 							"width": 4096,
 							"height": 2887,
-							"imageType": "mapPlayer"
+							"grid": {
+								"type": "none"
+							},
+							"imageType": "mapPlayer",
+							"mapParent": {
+								"id": "013"
+							}
 						}
 					]
 				}

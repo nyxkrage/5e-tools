@@ -11319,7 +11319,8 @@
 			],
 			"speed": 35,
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Natural Weapon"
 			],
 			"skillProficiencies": [
 				{
@@ -12330,6 +12331,9 @@
 				"climb": true
 			},
 			"darkvision": 60,
+			"traitTags": [
+				"Natural Weapon"
+			],
 			"skillProficiencies": [
 				{
 					"perception": true,

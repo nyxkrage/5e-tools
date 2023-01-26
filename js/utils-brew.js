@@ -240,6 +240,8 @@ class BrewUtilShared {
 	}
 }
 
+globalThis.BrewUtilShared = BrewUtilShared;
+
 class _BrewUtil2Base {
 	_STORAGE_KEY_LEGACY;
 	_STORAGE_KEY_LEGACY_META;

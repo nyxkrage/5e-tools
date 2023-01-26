@@ -2,6 +2,9 @@
 
 // TODO refactor the "feature" parts of this to a `PageFilterFeatures`
 class PageFilterClassesRaw extends PageFilterClassesBase {
+	static _WALKER = null;
+	static _IMPLS_SIDE_DATA = {};
+
 	async _pPopulateBoxOptions (opts) {
 		await super._pPopulateBoxOptions(opts);
 		opts.isCompact = false;
@@ -597,8 +600,8 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	static setImplSideData (prop, Impl) { PageFilterClassesRaw._IMPLS_SIDE_DATA[prop] = Impl; }
 	// endregion
 }
-PageFilterClassesRaw._WALKER = null;
-PageFilterClassesRaw._IMPLS_SIDE_DATA = {};
+
+globalThis.PageFilterClassesRaw = PageFilterClassesRaw;
 
 class ModalFilterClasses extends ModalFilter {
 	/**
@@ -993,3 +996,5 @@ class ModalFilterClasses extends ModalFilter {
 		);
 	}
 }
+
+globalThis.ModalFilterClasses = ModalFilterClasses;

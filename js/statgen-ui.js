@@ -1796,6 +1796,8 @@ StatGenUi.MODES_FVTT = [
 ];
 StatGenUi._MAX_CUSTOM_FEATS = 20;
 
+globalThis.StatGenUi = StatGenUi;
+
 class UtilAdditionalFeats {
 	static isNoChoice (available) {
 		if (!available?.length) return true;
@@ -1838,6 +1840,8 @@ class UtilAdditionalFeats {
 		);
 	}
 }
+
+globalThis.UtilAdditionalFeats = UtilAdditionalFeats;
 
 StatGenUi.CompAsi = class extends BaseComponent {
 	constructor ({parent}) {

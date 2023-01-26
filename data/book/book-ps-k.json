@@ -545,9 +545,31 @@
 				{
 					"type": "list",
 					"items": [
+						"{@creature Angel|PSK}",
+						"{@creature Construct (Animated Armor)|PSK}",
+						"{@creature Construct (Helmed Horror)|PSK}",
+						"{@creature Construct (Modron)|PSK}",
+						"{@creature Construct (Shield Guardian)|PSK}",
+						"{@creature Demon|PSK}",
+						"{@creature Dragon|PSK}",
+						"{@creature Drake (Large)|PSK}",
+						"{@creature Drake (Small)|PSK}",
+						"{@creature Giant|PSK}",
 						"{@creature Gremlin|PSK}",
+						"{@creature Hellion (Huge)|PSK}",
+						"{@creature Hellion (Large)|PSK}",
+						"{@creature Hydra|PSK}",
 						"{@creature Servo|PSK}",
-						"{@creature Sky Leviathan|PSK}"
+						"{@creature Sky Leviathan|PSK}",
+						"{@creature Thopter (Bat)|PSK}",
+						"{@creature Thopter (Blood Hawk)|PSK}",
+						"{@creature Thopter (Eagle)|PSK}",
+						"{@creature Thopter (Hawk)|PSK}",
+						"{@creature Thopter (Owl)|PSK}",
+						"{@creature Thopter (Pseudodragon)|PSK}",
+						"{@creature Thopter (Raven)|PSK}",
+						"{@creature Thopter (Vulture)|PSK}",
+						"{@creature Wurm|PSK}"
 					]
 				},
 				{

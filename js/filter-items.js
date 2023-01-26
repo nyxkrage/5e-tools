@@ -47,8 +47,8 @@ class PageFilterEquipment extends PageFilter {
 		if (item.packContents) item._fMisc.push("Bundle");
 		if (item.srd) item._fMisc.push("SRD");
 		if (item.basicRules) item._fMisc.push("Basic Rules");
-		if (item.hasFluff) item._fMisc.push("Has Info");
-		if (item.hasFluffImages) item._fMisc.push("Has Images");
+		if (item.hasFluff || item.fluff?.entries) item._fMisc.push("Has Info");
+		if (item.hasFluffImages || item.fluff?.images) item._fMisc.push("Has Images");
 		if (item.miscTags) item._fMisc.push(...item.miscTags.map(Parser.itemMiscTagToFull));
 
 		if (item.focus || item.name === "Thieves' Tools" || item.type === "INS" || item.type === "SCF" || item.type === "AT") {
@@ -121,7 +121,12 @@ class PageFilterEquipment extends PageFilter {
 	}
 }
 
+globalThis.PageFilterEquipment = PageFilterEquipment;
+
 class PageFilterItems extends PageFilterEquipment {
+	static _DEFAULT_HIDDEN_TYPES = new Set(["treasure", "futuristic", "modern", "renaissance"]);
+	static _FILTER_BASE_ITEMS_ATTUNEMENT = ["Requires Attunement", "Requires Attunement By...", "Attunement Optional", VeCt.STR_NO_ATTUNEMENT];
+
 	// region static
 	static sortItems (a, b, o) {
 		if (o.sortBy === "name") return SortUtil.compareListNames(a, b);
@@ -352,8 +357,8 @@ class PageFilterItems extends PageFilterEquipment {
 		);
 	}
 }
-PageFilterItems._DEFAULT_HIDDEN_TYPES = new Set(["treasure", "futuristic", "modern", "renaissance"]);
-PageFilterItems._FILTER_BASE_ITEMS_ATTUNEMENT = ["Requires Attunement", "Requires Attunement By...", "Attunement Optional", VeCt.STR_NO_ATTUNEMENT];
+
+globalThis.PageFilterItems = PageFilterItems;
 
 class ModalFilterItems extends ModalFilter {
 	/**
@@ -441,3 +446,5 @@ class ModalFilterItems extends ModalFilter {
 		return listItem;
 	}
 }
+
+globalThis.ModalFilterItems = ModalFilterItems;

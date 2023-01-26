@@ -100,6 +100,7 @@ class CreatureBuilder extends Builder {
 		delete creature.hasToken;
 		delete creature.uniqueId;
 		delete creature._versions;
+		delete creature.reprintedAs;
 		if (creature.variant) creature.variant.forEach(ent => delete ent._version);
 
 		// Semi-gracefully handle e.g. ERLW's Steel Defender

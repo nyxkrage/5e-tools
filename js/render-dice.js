@@ -716,7 +716,13 @@ Renderer.dice = {
 
 			const title = `${rolledBy.name ? `${rolledBy.name} \u2014 ` : ""}${lbl ? `${lbl}: ` : ""}${tree}`;
 
-			ExtensionUtil.doSendRoll({dice: tree.toString(), rolledBy: rolledBy.name, label: lbl});
+			const message = opts.fnGetMessage ? opts.fnGetMessage(result) : null;
+			ExtensionUtil.doSendRoll({
+				dice: tree.toString(),
+				result,
+				rolledBy: rolledBy.name,
+				label: [lbl, message].filter(Boolean).join(" \u2013 "),
+			});
 
 			if (!opts.isHidden) {
 				$out.append(`
@@ -726,7 +732,7 @@ Renderer.dice = {
 							${totalPart}
 							${ptTarget}
 							<span class="all-rolls ve-muted">${fullHtml}</span>
-							${opts.fnGetMessage ? `<span class="message">${opts.fnGetMessage(result)}</span>` : ""}
+							${message ? `<span class="message">${message}</span>` : ""}
 						</div>
 						<div class="out-roll-item-button-wrp">
 							<button title="Copy to input" class="btn btn-default btn-xs btn-copy-roll" onclick="Renderer.dice._$iptRoll.val('${tree.toString().replace(/\s+/g, "")}'); Renderer.dice._$iptRoll.focus()"><span class="glyphicon glyphicon-pencil"></span></button>

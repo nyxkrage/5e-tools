@@ -1322,14 +1322,14 @@ globalThis.Renderer = function () {
 
 	this._renderFlowBlock = function (entry, textStack, meta, options) {
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
-		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-flow" ${dataString}>`;
+		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-flow text-center" ${dataString}>`;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 1);
 
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
-			textStack[0] += `<span class="rd__h rd__h--2-flow-block" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4></span>`;
+			textStack[0] += `<span class="rd__h rd__h--2-flow-block" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${this.render({type: "inline", entries: [entry.name]})}</h4></span>`;
 		}
 		if (entry.entries) {
 			const len = entry.entries.length;
@@ -7818,6 +7818,46 @@ Renderer.table = {
 			${Renderer.get().setFirstSection(true).render(it)}
 			</td></tr>
 		`;
+	},
+
+	getConvertedEncounterOrNamesTable ({group, tableRaw, fnGetNameCaption, colLabel1}) {
+		const getPadded = (number) => {
+			if (tableRaw.diceExpression === "d100") return String(number).padStart(2, "0");
+			return String(number);
+		};
+
+		const nameCaption = fnGetNameCaption(group, tableRaw);
+		return {
+			name: nameCaption,
+			type: "table",
+			source: group?.source,
+			page: group?.page,
+			caption: nameCaption,
+			colLabels: [
+				`{@dice ${tableRaw.diceExpression}}`,
+				colLabel1,
+				tableRaw.rollAttitude ? `Attitude` : null,
+			].filter(Boolean),
+			colStyles: [
+				"col-2 text-center",
+				tableRaw.rollAttitude ? "col-8" : "col-10",
+				tableRaw.rollAttitude ? `col-2 text-center` : null,
+			].filter(Boolean),
+			rows: tableRaw.table.map(it => [
+				`${getPadded(it.min)}${it.max != null && it.max !== it.min ? `-${getPadded(it.max)}` : ""}`,
+				it.result,
+				tableRaw.rollAttitude ? it.resultAttitude || "\u2014" : null,
+			].filter(Boolean)),
+			footnotes: tableRaw.footnotes,
+		};
+	},
+
+	getConvertedEncounterTableName (group, tableRaw) {
+		return `${group.name}${/\bencounters?\b/i.test(group.name) ? "" : " Encounters"}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
+	},
+
+	getConvertedNameTableName (group, tableRaw) {
+		return `${group.name} Names \u2013 ${tableRaw.option}`;
 	},
 };
 

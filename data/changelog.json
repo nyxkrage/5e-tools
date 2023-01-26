@@ -2334,5 +2334,10 @@
 		"ver": "1.174.3",
 		"date": "2023-01-11",
 		"txt": "- Added Spelljammer DM Screen\n- Added \"Copy as JSON\"/\"Copy as Markdown\" menu to list page \"Info\" tabs (this functionality was previously available only in the Bestiary)\n- Fixed various spell-related crashes\n- Fixed crash when loading range filter values from URL\n- (Brew) Added Markdown rendering support for creature statblock section intros/notes\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.174.4",
+		"date": "2023-01-26",
+		"txt": "- Overhauled Name/Encounter page table rendering to better match table rendering elsewhere on the site, and to enable footnotes\n- Added VGM Yuan-ti Gods to Deities page\n- Added various Plane Shift Kaladesh and Ixalan creature versions\n- Fixed Markdown renderer rendering images as links, rather than images (thanks @ jbutz)\n- (Foundry) Fixed Rivet failing to send data\n- (Brew) Added support for evaluating `\"save\"`/`\"skill\"` when scaling creatures by level\n- (Brew) Added detection for inlined fluff when tagging entities for \"Has Info\" and \"Has Images\" filters\n- (Brew) Fixed `\"reprintedAs\"` not being filtered out by default by `\"_copy\"`, and not being stripped when copying existing entities in the Homebrew Builder\n- (Fixed typos/added tags)"
 	}
 ]

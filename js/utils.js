@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.174.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.174.4"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -3468,6 +3468,7 @@ globalThis.DataUtil = {
 			otherSources: true,
 			srd: true,
 			basicRules: true,
+			reprintedAs: true,
 			hasFluff: true,
 			hasFluffImages: true,
 			hasToken: true,
@@ -5238,6 +5239,8 @@ globalThis.RollerUtil = {
 	 * Cryptographically secure RNG
 	 */
 	_randomise: (min, max) => {
+		if (isNaN(min) || isNaN(max)) throw new Error(`Invalid min/max!`);
+
 		const range = max - min;
 		const bytesNeeded = Math.ceil(Math.log2(range) / 8);
 		const randomBytes = new Uint8Array(bytesNeeded);
@@ -5471,6 +5474,8 @@ function StorageUtilMemory () {
 		return this._fakeStorageAsync;
 	};
 }
+
+globalThis.StorageUtilMemory = StorageUtilMemory;
 
 function StorageUtilBacked () {
 	StorageUtilBase.call(this);
@@ -6531,7 +6536,7 @@ globalThis.ExtensionUtil = {
 	ACTIVE: false,
 
 	_doSend (type, data) {
-		const detail = MiscUtil.copyFast({type, data});
+		const detail = MiscUtil.copy({type, data}); // Note that this needs to include `JSON.parse` to function
 		window.dispatchEvent(new CustomEvent("rivet.send", {detail}));
 	},
 

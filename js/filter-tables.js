@@ -40,6 +40,8 @@ class PageFilterTables extends PageFilter {
 	}
 }
 
+globalThis.PageFilterTables = PageFilterTables;
+
 class ListSyntaxTables extends ListUiUtil.ListSyntax {
 	_getSearchCacheStats (entity) {
 		if (!entity.rows && !entity.tables) return "";
@@ -49,3 +51,5 @@ class ListSyntaxTables extends ListUiUtil.ListSyntax {
 		return ptrOut._;
 	}
 }
+
+globalThis.ListSyntaxTables = ListSyntaxTables;

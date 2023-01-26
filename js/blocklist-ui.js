@@ -62,6 +62,8 @@ class BlocklistUtil {
 	}
 }
 
+globalThis.BlocklistUtil = BlocklistUtil;
+
 class BlocklistUi {
 	constructor (
 		{
@@ -672,6 +674,8 @@ class BlocklistUi {
 		this._list.update();
 	}
 }
+
+globalThis.BlocklistUi = BlocklistUi;
 
 BlocklistUi.Component = class extends BaseComponent {
 	get source () { return this._state.source; }

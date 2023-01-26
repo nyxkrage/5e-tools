@@ -1043,9 +1043,11 @@ Parser.spRangeTypeToFull = function (range) {
 };
 
 Parser.UNT_FEET = "feet";
+Parser.UNT_YARDS = "yards";
 Parser.UNT_MILES = "miles";
 Parser.SP_DIST_TYPE_TO_FULL = {
 	[Parser.UNT_FEET]: "Feet",
+	[Parser.UNT_YARDS]: "Yards",
 	[Parser.UNT_MILES]: "Miles",
 	[Parser.RNG_SELF]: Parser.SP_RANGE_TYPE_TO_FULL[Parser.RNG_SELF],
 	[Parser.RNG_TOUCH]: Parser.SP_RANGE_TYPE_TO_FULL[Parser.RNG_TOUCH],
@@ -1103,6 +1105,7 @@ Parser.spRangeToShortHtml._renderPoint = function (range) {
 		case Parser.RNG_SPECIAL:
 		case Parser.RNG_TOUCH: return `<span class="fas fa-fw ${Parser.spRangeTypeToIcon(dist.type)} help-subtle" title="${Parser.spRangeTypeToFull(dist.type)}"></span>`;
 		case Parser.UNT_FEET:
+		case Parser.UNT_YARDS:
 		case Parser.UNT_MILES:
 		default:
 			return `${dist.amount} <span class="ve-small">${Parser.getSingletonUnit(dist.type, true)}</span>`;
@@ -1140,6 +1143,7 @@ Parser.spRangeToFull._renderPoint = function (range) {
 		case Parser.RNG_SPECIAL:
 		case Parser.RNG_TOUCH: return Parser.spRangeTypeToFull(dist.type);
 		case Parser.UNT_FEET:
+		case Parser.UNT_YARDS:
 		case Parser.UNT_MILES:
 		default:
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
@@ -1162,6 +1166,8 @@ Parser.getSingletonUnit = function (unit, isShort) {
 	switch (unit) {
 		case Parser.UNT_FEET:
 			return isShort ? "ft." : "foot";
+		case Parser.UNT_YARDS:
+			return isShort ? "yd." : "yard";
 		case Parser.UNT_MILES:
 			return isShort ? "mi." : "mile";
 		default: {
@@ -1201,6 +1207,7 @@ Parser.DIST_TYPES = [
 	{type: Parser.RNG_TOUCH, hasAmount: false},
 
 	{type: Parser.UNT_FEET, hasAmount: true},
+	{type: Parser.UNT_YARDS, hasAmount: true},
 	{type: Parser.UNT_MILES, hasAmount: true},
 
 	{type: Parser.RNG_SIGHT, hasAmount: false},
@@ -3685,6 +3692,7 @@ Parser.metric = {
 	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec
 	MILES_TO_KILOMETRES: 1.6,
 	FEET_TO_METRES: 0.3, // 5 ft = 1.5 m
+	YARDS_TO_METRES: 0.9, // (as above)
 	POUNDS_TO_KILOGRAMS: 0.5, // 2 lb = 1 kg
 
 	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {
@@ -3694,8 +3702,9 @@ Parser.metric = {
 
 		let out = null;
 		switch (originalUnit) {
-			case "mi.": case "mi": case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
 			case "ft.": case "ft": case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
+			case "yd.": case "yd": case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
+			case "mi.": case "mi": case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
 			case "lb.": case "lb": case "lbs": out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
 			default: return originalValue;
 		}
@@ -3705,11 +3714,26 @@ Parser.metric = {
 
 	getMetricUnit ({originalUnit, isShortForm = false, isPlural = true}) {
 		switch (originalUnit) {
-			case "mi.": case "mi": case Parser.UNT_MILES: return isShortForm ? "km" : `kilometre${isPlural ? "s" : ""}`;
 			case "ft.": case "ft": case Parser.UNT_FEET: return isShortForm ? "m" : `meter${isPlural ? "s" : ""}`;
+			case "yd.": case "yd": case Parser.UNT_YARDS: return isShortForm ? "m" : `meter${isPlural ? "s" : ""}`;
+			case "mi.": case "mi": case Parser.UNT_MILES: return isShortForm ? "km" : `kilometre${isPlural ? "s" : ""}`;
 			case "lb.": case "lb": case "lbs": return isShortForm ? "kg" : `kilogram${isPlural ? "s" : ""}`;
 			default: return originalUnit;
 		}
 	},
+};
+// endregion
+// region Map grids
+
+Parser.MAP_GRID_TYPE_TO_FULL = {};
+Parser.MAP_GRID_TYPE_TO_FULL["none"] = "None";
+Parser.MAP_GRID_TYPE_TO_FULL["square"] = "Square";
+Parser.MAP_GRID_TYPE_TO_FULL["hexRowsOdd"] = "Hex Rows (Odd)";
+Parser.MAP_GRID_TYPE_TO_FULL["hexRowsEven"] = "Hex Rows (Even)";
+Parser.MAP_GRID_TYPE_TO_FULL["hexColsOdd"] = "Hex Columns (Odd)";
+Parser.MAP_GRID_TYPE_TO_FULL["hexColsEven"] = "Hex Columns (Even)";
+
+Parser.mapGridTypeToFull = function (gridType) {
+	return Parser._parse_aToB(Parser.MAP_GRID_TYPE_TO_FULL, gridType);
 };
 // endregion

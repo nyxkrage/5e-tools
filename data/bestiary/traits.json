@@ -121,7 +121,9 @@
 							"gnome"
 						]
 					},
-					"speed": 20
+					"speed": {
+						"walk": 20
+					}
 				},
 				"_mod": {
 					"_": {
@@ -359,7 +361,9 @@
 							"dwarf"
 						]
 					},
-					"speed": 25
+					"speed": {
+						"walk": 25
+					}
 				},
 				"_mod": {
 					"_": {
@@ -2341,7 +2345,9 @@
 							"dwarf"
 						]
 					},
-					"speed": 25
+					"speed": {
+						"walk": 25
+					}
 				},
 				"_mod": {
 					"_": {
@@ -2539,7 +2545,9 @@
 							"gnome"
 						]
 					},
-					"speed": 25
+					"speed": {
+						"walk": 25
+					}
 				},
 				"_mod": {
 					"_": {
@@ -2628,7 +2636,9 @@
 							"halfling"
 						]
 					},
-					"speed": 25
+					"speed": {
+						"walk": 25
+					}
 				},
 				"_mod": {
 					"languages": {
@@ -2817,7 +2827,10 @@
 					"type": {
 						"type": "humanoid",
 						"tags": [
-							"water genasi"
+							{
+								"tag": "genasi",
+								"prefix": "Water"
+							}
 						]
 					},
 					"speed": {
@@ -2860,7 +2873,9 @@
 							"elf"
 						]
 					},
-					"speed": 35
+					"speed": {
+						"walk": 35
+					}
 				},
 				"_mod": {
 					"_": [
@@ -2918,7 +2933,9 @@
 							"yuan-ti"
 						]
 					},
-					"speed": 35
+					"speed": {
+						"walk": 35
+					}
 				},
 				"_mod": {
 					"_": [

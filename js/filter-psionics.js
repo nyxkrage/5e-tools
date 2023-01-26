@@ -50,6 +50,8 @@ class PageFilterPsionics extends PageFilter {
 	}
 }
 
+globalThis.PageFilterPsionics = PageFilterPsionics;
+
 class ListSyntaxPsionics extends ListUiUtil.ListSyntax {
 	_getSearchCacheStats (entity) {
 		if (!entity.entries && !entity.modes && !entity.focus) return "";
@@ -60,3 +62,5 @@ class ListSyntaxPsionics extends ListUiUtil.ListSyntax {
 		return ptrOut._;
 	}
 }
+
+globalThis.ListSyntaxPsionics = ListSyntaxPsionics;
