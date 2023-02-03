@@ -2339,5 +2339,11 @@
 		"ver": "1.174.4",
 		"date": "2023-01-26",
 		"txt": "- Overhauled Name/Encounter page table rendering to better match table rendering elsewhere on the site, and to enable footnotes\n- Added VGM Yuan-ti Gods to Deities page\n- Added various Plane Shift Kaladesh and Ixalan creature versions\n- Fixed Markdown renderer rendering images as links, rather than images (thanks @ jbutz)\n- (Foundry) Fixed Rivet failing to send data\n- (Brew) Added support for evaluating `\"save\"`/`\"skill\"` when scaling creatures by level\n- (Brew) Added detection for inlined fluff when tagging entities for \"Has Info\" and \"Has Images\" filters\n- (Brew) Fixed `\"reprintedAs\"` not being filtered out by default by `\"_copy\"`, and not being stripped when copying existing entities in the Homebrew Builder\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.175.0",
+		"date": "2023-02-03",
+		"title": "Big Deck Lover",
+		"txt": "- Added Decks page <https://5e.tools/decks.html>\n- Added more Plane Shift art; tokens\n- (Brew) Improved Creature Converter handling of line-broken parentheses\n- (Brew) Improved Creature Converter handling of CR appearing in name/first line\n- (Brew) Added print styling to the Render Demo page, allowing it to be printed in a useful format\n- (Fixed typos/added tags)"
 	}
 ]

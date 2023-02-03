@@ -113,6 +113,8 @@ class ObjectsPage extends ListPage {
 		Renderer.utils.bindTabButtons({
 			tabButtons: [tabMetaStats, ...tabMetasAdditional],
 			tabLabelReference: [tabMetaStats, ...tabMetasAdditional].map(it => it.label),
+			$wrpTabs: this._$wrpTabs,
+			$pgContent: this._$pgContent,
 		});
 
 		this._updateSelected();

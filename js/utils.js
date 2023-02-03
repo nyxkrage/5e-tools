@@ -2,8 +2,9 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.174.4"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.175.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
+globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
 
@@ -756,7 +757,7 @@ globalThis.JqueryUtil = {
 		const duration = bubble ? 250 + seed * 200 : 250;
 		const offsetY = bubble ? 16 : 0;
 
-		const $dispCopied = $(`<div class="clp__disp-copied"></div>`);
+		const $dispCopied = $(`<div class="clp__disp-copied ve-flex-vh-center py-2 px-4"></div>`);
 		$dispCopied
 			.html(text)
 			.css({
@@ -1875,15 +1876,27 @@ globalThis.EventUtil = {
 	_mouseX: 0,
 	_mouseY: 0,
 	_isUsingTouch: false,
+	_isSetCssVars: false,
 
 	init () {
 		document.addEventListener("mousemove", evt => {
 			EventUtil._mouseX = evt.clientX;
 			EventUtil._mouseY = evt.clientY;
+			EventUtil._onMouseMove_setCssVars();
 		});
 		document.addEventListener("touchstart", () => {
 			EventUtil._isUsingTouch = true;
 		});
+	},
+
+	_eleDocRoot: null,
+	_onMouseMove_setCssVars () {
+		if (!EventUtil._isSetCssVars) return;
+
+		EventUtil._eleDocRoot = EventUtil._eleDocRoot || document.querySelector(":root");
+
+		EventUtil._eleDocRoot.style.setProperty("--mouse-position-x", EventUtil._mouseX);
+		EventUtil._eleDocRoot.style.setProperty("--mouse-position-y", EventUtil._mouseY);
 	},
 
 	getClientX (evt) { return evt.touches && evt.touches.length ? evt.touches[0].clientX : evt.clientX; },
@@ -1894,6 +1907,10 @@ globalThis.EventUtil = {
 
 		const bounds = evt.target.getBoundingClientRect();
 		return evt.targetTouches[0].clientY - bounds.y;
+	},
+
+	getMousePos () {
+		return {x: EventUtil._mouseX, y: EventUtil._mouseY};
 	},
 
 	isUsingTouch () { return !!EventUtil._isUsingTouch; },
@@ -1919,6 +1936,36 @@ globalThis.EventUtil = {
 };
 
 if (typeof window !== "undefined") window.addEventListener("load", EventUtil.init);
+
+// ANIMATIONS ==========================================================================================================
+globalThis.AnimationUtil = class {
+	/**
+	 * See: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Tips
+	 *
+	 * requestAnimationFrame() [...] gets executed just before the next repaint of the document. [...] because it's
+	 * before the repaint, the style recomputation hasn't actually happened yet!
+	 * [...] calls requestAnimationFrame() a second time! This time, the callback is run before the next repaint,
+	 * which is after the style recomputation has occurred.
+	 */
+	static async pRecomputeStyles () {
+		return new Promise(resolve => {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					resolve();
+				});
+			});
+		});
+	}
+
+	static pLoadImage (uri) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.onerror = err => reject(err);
+			img.onload = () => resolve(img);
+			img.src = uri;
+		});
+	}
+};
 
 // CONTEXT MENUS =======================================================================================================
 globalThis.ContextUtil = {
@@ -2418,6 +2465,7 @@ UrlUtil.PG_RECIPES = "recipes.html";
 UrlUtil.PG_CLASS_SUBCLASS_FEATURES = "classfeatures.html";
 UrlUtil.PG_MAPS = "maps.html";
 UrlUtil.PG_SEARCH = "search.html";
+UrlUtil.PG_DECKS = "decks.html";
 
 UrlUtil.URL_TO_HASH_GENERIC = (it) => UrlUtil.encodeArrayForHash(it.name, it.source);
 
@@ -2448,6 +2496,7 @@ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ACTIONS] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_LANGUAGES] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CHAR_CREATION_OPTIONS] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RECIPES] = (it) => `${UrlUtil.encodeArrayForHash(it.name, it.source)}${it._scaleFactor ? `${HASH_PART_SEP}${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}${it._scaleFactor}` : ""}`;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_DECKS] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASS_SUBCLASS_FEATURES] = (it) => (it.__prop === "subclassFeature" || it.subclassSource) ? UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](it) : UrlUtil.URL_TO_HASH_BUILDER["classFeature"](it);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_QUICKREF] = ({name, ixChapter, ixHeader}) => {
 	const hashParts = ["bookref-quick", ixChapter, UrlUtil.encodeForHash(name.toLowerCase())];
@@ -2492,6 +2541,7 @@ UrlUtil.URL_TO_HASH_BUILDER["action"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_A
 UrlUtil.URL_TO_HASH_BUILDER["language"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_LANGUAGES];
 UrlUtil.URL_TO_HASH_BUILDER["charoption"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CHAR_CREATION_OPTIONS];
 UrlUtil.URL_TO_HASH_BUILDER["recipe"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RECIPES];
+UrlUtil.URL_TO_HASH_BUILDER["deck"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_DECKS];
 
 UrlUtil.URL_TO_HASH_BUILDER["subclass"] = it => {
 	return Hist.util.getCleanHash(
@@ -2500,6 +2550,7 @@ UrlUtil.URL_TO_HASH_BUILDER["subclass"] = it => {
 };
 UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.className, it.classSource, it.level, it.source);
 UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source);
+UrlUtil.URL_TO_HASH_BUILDER["card"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.set, it.source);
 UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["itemProperty"] = (it) => UrlUtil.encodeArrayForHash(it.abbreviation, it.source);
@@ -2566,6 +2617,7 @@ UrlUtil.PG_TO_NAME[UrlUtil.PG_CHAR_CREATION_OPTIONS] = "Other Character Creation
 UrlUtil.PG_TO_NAME[UrlUtil.PG_RECIPES] = "Recipes";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_CLASS_SUBCLASS_FEATURES] = "Class & Subclass Features";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MAPS] = "Maps";
+UrlUtil.PG_TO_NAME[UrlUtil.PG_DECKS] = "Decks";
 
 UrlUtil.CAT_TO_PAGE = {};
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_CREATURE] = UrlUtil.PG_BESTIARY;
@@ -2618,12 +2670,15 @@ UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_LEGENDARY_GROUP] = null;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_CHAR_CREATION_OPTIONS] = UrlUtil.PG_CHAR_CREATION_OPTIONS;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_RECIPES] = UrlUtil.PG_RECIPES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_STATUS] = UrlUtil.PG_CONDITIONS_DISEASES;
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_DECK] = UrlUtil.PG_DECKS;
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_CARD] = "card";
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SKILLS] = "skill";
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SENSES] = "sense";
 
 UrlUtil.CAT_TO_HOVER_PAGE = {};
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_CLASS_FEATURE] = "classfeature";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SUBCLASS_FEATURE] = "subclassfeature";
+UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_CARD] = "card";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SKILLS] = "skill";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SENSES] = "sense";
 
@@ -2653,6 +2708,7 @@ UrlUtil.SUBLIST_PAGES = {
 	[UrlUtil.PG_LANGUAGES]: true,
 	[UrlUtil.PG_CHAR_CREATION_OPTIONS]: true,
 	[UrlUtil.PG_RECIPES]: true,
+	[UrlUtil.PG_DECKS]: true,
 };
 
 if (!IS_DEPLOYED && !IS_VTT && typeof window !== "undefined") {
@@ -2896,6 +2952,10 @@ globalThis.SortUtil = {
 
 	ascSortDeity (a, b) {
 		return SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.source, b.source) || SortUtil.ascSortLower(a.pantheon, b.pantheon);
+	},
+
+	ascSortCard (a, b) {
+		return SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.source, b.source) || SortUtil.ascSortLower(a.set, b.set);
 	},
 
 	_ITEM_RARITY_ORDER: ["none", "common", "uncommon", "rare", "very rare", "legendary", "artifact", "varies", "unknown (magic)", "unknown"],
@@ -4912,6 +4972,7 @@ globalThis.DataUtil = {
 
 		static _pLoadJson = null;
 		static _pLoadRawJson = null;
+
 		static loadJSON () {
 			return DataUtil.class._pLoadJson = DataUtil.class._pLoadJson || (async () => {
 				return {
@@ -5189,6 +5250,59 @@ globalThis.DataUtil = {
 		}
 	},
 
+	deck: class extends _DataUtilPropConfigCustom {
+		static _PAGE = UrlUtil.PG_DECKS;
+
+		static _pLoadJson = null;
+		static _pLoadRawJson = null;
+
+		static loadJSON () {
+			return DataUtil.deck._pLoadJson = DataUtil.deck._pLoadJson || (async () => {
+				return {
+					deck: await DataLoader.pCacheAndGetAllSite("deck"),
+					card: await DataLoader.pCacheAndGetAllSite("card"),
+				};
+			})();
+		}
+
+		static loadRawJSON () {
+			return DataUtil.deck._pLoadRawJson = DataUtil.deck._pLoadRawJson || DataUtil.loadJSON(`${Renderer.get().baseUrl}data/decks.json`);
+		}
+
+		static async loadPrerelease () {
+			return {
+				deck: await DataLoader.pCacheAndGetAllPrerelease("deck"),
+				card: await DataLoader.pCacheAndGetAllPrerelease("card"),
+			};
+		}
+
+		static async loadBrew () {
+			return {
+				deck: await DataLoader.pCacheAndGetAllBrew("deck"),
+				card: await DataLoader.pCacheAndGetAllBrew("card"),
+			};
+		}
+
+		/**
+		 * @param uid
+		 * @param [opts]
+		 * @param [opts.isLower] If the returned values should be lowercase.
+		 */
+		static unpackUidCard (uid, opts) {
+			opts = opts || {};
+			if (opts.isLower) uid = uid.toLowerCase();
+			let [name, set, source, displayText] = uid.split("|").map(it => it.trim());
+			set = set || "none";
+			source = source || Parser.getTagSource("card", source)[opts.isLower ? "toLowerCase" : "toString"]();
+			return {
+				name,
+				set,
+				source,
+				displayText,
+			};
+		}
+	},
+
 	quickreference: {
 		/**
 		 * @param uid
@@ -5305,8 +5419,8 @@ globalThis.RollerUtil = {
 	_DICE_REGEX_STR: "((([1-9]\\d*)?d([1-9]\\d*)(\\s*?[-+×x*÷/]\\s*?(\\d,\\d|\\d)+(\\.\\d+)?)?))+?",
 };
 RollerUtil.DICE_REGEX = new RegExp(RollerUtil._DICE_REGEX_STR, "g");
-RollerUtil.REGEX_DAMAGE_DICE = /(\d+)( \((?:{@dice |{@damage ))([-+0-9d ]*)(}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
-RollerUtil.REGEX_DAMAGE_FLAT = /(Hit: |{@h})([0-9]+)( [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit: |{@h})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
 RollerUtil.ROLL_COL_NONE = 0;
 RollerUtil.ROLL_COL_STANDARD = 1;

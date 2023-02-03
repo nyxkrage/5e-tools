@@ -21,6 +21,10 @@ globalThis.Renderer = function () {
 	this.baseUrl = "";
 	this.baseMediaUrls = {};
 
+	if (globalThis.DEPLOYED_IMG_ROOT) {
+		this.baseMediaUrls["img"] = globalThis.DEPLOYED_IMG_ROOT;
+	}
+
 	this._lazyImages = false;
 	this._subVariant = false;
 	this._firstSection = true;
@@ -2699,14 +2703,11 @@ Renderer.utils = {
 	_tabs: {},
 	_curTab: null,
 	_tabsPreferredLabel: null,
-	bindTabButtons ({tabButtons, tabLabelReference}) {
+	bindTabButtons ({tabButtons, tabLabelReference, $wrpTabs, $pgContent}) {
 		Renderer.utils._tabs = {};
 		Renderer.utils._curTab = null;
 
-		const $content = $("#pagecontent");
-		const $wrpTab = $(`#stat-tabs`);
-
-		$wrpTab.find(`.stat-tab-gen`).remove();
+		$wrpTabs.find(`.stat-tab-gen`).remove();
 
 		tabButtons.forEach((tb, i) => {
 			tb.ix = i;
@@ -2722,11 +2723,11 @@ Renderer.utils = {
 					if (curTab) curTab.$t.removeClass(`ui-tab__btn-tab-head--active`);
 					Renderer.utils._curTab = tb;
 					tb.$t.addClass(`ui-tab__btn-tab-head--active`);
-					if (curTab) tabs[curTab.label].$content = $content.children().detach();
+					if (curTab) tabs[curTab.label].$content = $pgContent.children().detach();
 
 					tabs[tb.label] = tb;
 					if (!tabs[tb.label].$content && tb.fnPopulate) tb.fnPopulate();
-					else $content.append(tabs[tb.label].$content);
+					else $pgContent.append(tabs[tb.label].$content);
 					if (tb.fnChange) tb.fnChange();
 				}
 
@@ -2736,7 +2737,7 @@ Renderer.utils = {
 		});
 
 		// Avoid displaying a tab button for single tabs
-		if (tabButtons.length !== 1) tabButtons.slice().reverse().forEach(tb => $wrpTab.prepend(tb.$t));
+		if (tabButtons.length !== 1) tabButtons.slice().reverse().forEach(tb => $wrpTabs.prepend(tb.$t));
 
 		// If there was no previous selection, select the first tab
 		if (!Renderer.utils._tabsPreferredLabel) return tabButtons[0].fnActivateTab();
@@ -3452,6 +3453,23 @@ Renderer.utils = {
 				};
 			}
 
+			case "@card": {
+				const unpacked = DataUtil.deck.unpackUidCard(text);
+				const {name, set, source, displayText} = unpacked;
+				const hash = UrlUtil.URL_TO_HASH_BUILDER["card"]({name, set, source});
+
+				return {
+					name,
+					displayText,
+
+					isFauxPage: true,
+					page: "card",
+					source,
+					hash,
+					hashPreEncoded: true,
+				};
+			}
+
 			case "@classFeature": {
 				const unpacked = DataUtil.class.unpackUidClassFeature(text);
 
@@ -3557,6 +3575,7 @@ Renderer.utils = {
 			case "@language": out.page = UrlUtil.PG_LANGUAGES; break;
 			case "@charoption": out.page = UrlUtil.PG_CHAR_CREATION_OPTIONS; break;
 			case "@recipe": out.page = UrlUtil.PG_RECIPES; break;
+			case "@deck": out.page = UrlUtil.PG_DECKS; break;
 
 			case "@creature": {
 				out.page = UrlUtil.PG_BESTIARY;
@@ -8653,6 +8672,43 @@ Renderer.recipe = {
 	// endregion
 };
 
+Renderer.card = {
+	getCompactRenderedString (ent) {
+		return `
+			${Renderer.utils.getNameTr(ent)}
+			<tr class="text"><td colspan="6">
+			${Renderer.get().setFirstSection(true).render({...ent.face, maxHeight: 40, maxHeightUnits: "vh"})}
+			<hr class="hr-3">
+			${Renderer.get().setFirstSection(true).render({type: "entries", entries: ent.entries}, 1)}
+			</td></tr>
+		`;
+	},
+};
+
+Renderer.deck = {
+	getCompactRenderedString (ent) {
+		const lstCards = {
+			name: "Cards",
+			entries: [
+				{
+					type: "list",
+					columns: 3,
+					items: ent.cards.map(card => `{@card ${card.name}|${card.set}|${card.source}}`),
+				},
+			],
+		};
+
+		return `
+			${Renderer.utils.getNameTr(ent)}
+			<tr class="text"><td colspan="6">
+			${Renderer.get().setFirstSection(true).render({type: "entries", entries: ent.entries}, 1)}
+			<hr class="hr-3">
+			${Renderer.get().setFirstSection(true).render(lstCards, 1)}
+			</td></tr>
+		`;
+	},
+};
+
 Renderer.skill = {
 	getCompactRenderedString (ent) {
 		return Renderer.generic.getCompactRenderedString(ent);
@@ -8715,6 +8771,8 @@ Renderer.hover = {
 		"table": UrlUtil.PG_TABLES,
 		"recipe": UrlUtil.PG_RECIPES,
 		"quickref": UrlUtil.PG_QUICKREF,
+		"deck": UrlUtil.PG_DECKS,
+		"card": "card",
 		"skill": "skill",
 		"sense": "sense",
 	},
@@ -9806,6 +9864,7 @@ Renderer.hover = {
 			case UrlUtil.PG_CHAR_CREATION_OPTIONS: return Renderer.charoption.getCompactRenderedString;
 			case UrlUtil.PG_RECIPES: return Renderer.recipe.getCompactRenderedString;
 			case UrlUtil.PG_CLASS_SUBCLASS_FEATURES: return Renderer.hover.getGenericCompactRenderedString;
+			case UrlUtil.PG_DECKS: return Renderer.deck.getCompactRenderedString;
 			// region props
 			case "classfeature":
 			case "classFeature":
@@ -10167,6 +10226,7 @@ Renderer._stripTagLayer = function (str) {
 					case "@condition":
 					case "@creature":
 					case "@cult":
+					case "@deck":
 					case "@disease":
 					case "@feat":
 					case "@hazard":
@@ -10191,6 +10251,7 @@ Renderer._stripTagLayer = function (str) {
 						return parts.length >= 3 ? parts[2] : parts[0];
 					}
 
+					case "@card":
 					case "@deity": {
 						const parts = Renderer.splitTagByPipe(text);
 						return parts.length >= 4 ? parts[3] : parts[0];

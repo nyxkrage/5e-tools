@@ -85,6 +85,7 @@ class NavBar {
 		this._addElement_li(NavBar._CAT_REFERENCES, "actions.html", "Actions");
 		this._addElement_li(NavBar._CAT_REFERENCES, "bestiary.html", "Bestiary");
 		this._addElement_li(NavBar._CAT_REFERENCES, "conditionsdiseases.html", "Conditions & Diseases");
+		this._addElement_li(NavBar._CAT_REFERENCES, "decks.html", "Decks");
 		this._addElement_li(NavBar._CAT_REFERENCES, "deities.html", "Deities");
 		this._addElement_li(NavBar._CAT_REFERENCES, "items.html", "Items");
 		this._addElement_li(NavBar._CAT_REFERENCES, "languages.html", "Languages");

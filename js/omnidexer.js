@@ -1188,6 +1188,31 @@ class IndexableFileSenses extends IndexableFile {
 	}
 }
 
+class IndexableFileCards extends IndexableFile {
+	constructor () {
+		super({
+			category: Parser.CAT_ID_CARD,
+			file: "decks.json",
+			listProp: "card",
+			baseUrl: "card",
+			isHover: true,
+			isFauxPage: true,
+		});
+	}
+}
+
+class IndexableFileDecks extends IndexableFile {
+	constructor () {
+		super({
+			category: Parser.CAT_ID_DECK,
+			file: "decks.json",
+			listProp: "deck",
+			baseUrl: UrlUtil.PG_DECKS,
+			isHover: true,
+		});
+	}
+}
+
 Omnidexer.TO_INDEX = [
 	new IndexableFileBackgrounds(),
 	new IndexableFileConditions(),
@@ -1232,6 +1257,8 @@ Omnidexer.TO_INDEX = [
 	new IndexableFileTables(),
 	new IndexableFileTablesGenerated(),
 	new IndexableFileTableGroups(),
+	new IndexableFileCards(),
+	new IndexableFileDecks(),
 
 	new IndexableFileVehicles(),
 	new IndexableFileVehicles_ShipUpgrade(),

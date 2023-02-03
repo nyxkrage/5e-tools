@@ -16,7 +16,9 @@
 				"name": "Ankylosaurus",
 				"source": "MM"
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Aerosaur (Large)",
@@ -33,7 +35,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Aerosaur (Small)",
@@ -50,7 +54,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Air Totem Elemental",
@@ -67,7 +73,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Armasaur",
@@ -77,7 +85,9 @@
 				"name": "Stegosaurus",
 				"source": "VGM"
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Awakened Shrub Totem Elemental",
@@ -94,6 +104,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -111,6 +122,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -121,7 +133,9 @@
 				"name": "Brontosaurus",
 				"source": "VGM"
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ceratops",
@@ -138,7 +152,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Chupacabra",
@@ -240,7 +256,9 @@
 			"conditionInflict": [
 				"prone"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Coatl",
@@ -257,7 +275,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Deinonychus",
@@ -267,7 +287,9 @@
 				"name": "Deinonychus",
 				"source": "VGM"
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Demon",
@@ -284,7 +306,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Dryad",
@@ -294,7 +318,9 @@
 				"name": "Dryad",
 				"source": "MM"
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Earth Totem Elemental",
@@ -311,6 +337,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -460,7 +487,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elder Dinosaur (Etali, Primal Storm)",
@@ -637,7 +665,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elder Dinosaur (Ghalta, Primal Hunger)",
@@ -813,7 +842,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elder Dinosaur (Nezahal, Primal Tide)",
@@ -990,7 +1020,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elder Dinosaur (Tetzimoc, Primal Death)",
@@ -1191,7 +1222,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elder Dinosaur (Zacama, Primal Calamity)",
@@ -1367,7 +1399,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elder Dinosaur (Zetalpa, Primal Dawn)",
@@ -1553,7 +1586,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ferocidon",
@@ -1570,6 +1604,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1587,6 +1622,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1668,7 +1704,8 @@
 				"blinded"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Gishath, Sun's Avatar",
@@ -1793,7 +1830,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Griffin",
@@ -1810,7 +1848,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Hadrosaur",
@@ -1820,6 +1860,7 @@
 				"name": "Hadrosaurus",
 				"source": "VGM"
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1837,7 +1878,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Harpy",
@@ -1860,7 +1903,8 @@
 				}
 			},
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Horned Frog",
@@ -1870,6 +1914,7 @@
 				"name": "Giant Frog",
 				"source": "MM"
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1887,6 +1932,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1904,6 +1950,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1921,6 +1968,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1938,7 +1986,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Shambling Mound Totem Elemental",
@@ -1955,6 +2005,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1972,7 +2023,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Stone Guardian (Helmed Horror)",
@@ -1989,7 +2042,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Stone Guardian (Shield Guardian)",
@@ -2006,7 +2061,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Stone Guardian (Stone Golem)",
@@ -2023,7 +2080,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Sunbird",
@@ -2160,7 +2219,8 @@
 				"restrained"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Swarm of Piranhas",
@@ -2177,6 +2237,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2194,6 +2255,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2211,6 +2273,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2228,6 +2291,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2251,7 +2315,9 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Velociraptor",
@@ -2261,7 +2327,9 @@
 				"name": "Velociraptor",
 				"source": "VGM"
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Water Totem Elemental",
@@ -2278,6 +2346,7 @@
 					}
 				}
 			},
+			"hasToken": true,
 			"hasFluff": true
 		}
 	]

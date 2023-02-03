@@ -680,7 +680,9 @@
 						"An aetherborn with this gift gains the Drain Life ability: a natural attack that deals {@dice 1d6} necrotic damage and restores the same number of hit points to the aetherborn. However, if the aetherborn goes for 7 days without dealing this damage, their hit point maximum is reduced by {@dice 1d6} per week. This reduction can't be removed until the aetherborn has used their Drain Life ability and completed a long rest."
 					]
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Astral Elf",
@@ -1227,7 +1229,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Bugbear",
@@ -3904,7 +3908,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Eladrin",
@@ -4208,7 +4214,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Elf (Zendikar)",
@@ -4290,7 +4298,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Fairy",
@@ -5821,7 +5830,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Goblin (Zendikar)",
@@ -5898,7 +5909,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Goliath",
@@ -7430,7 +7442,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Human (Ixalan)",
@@ -7494,7 +7508,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Human (Zendikar)",
@@ -7527,7 +7543,8 @@
 					"cha": 1
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Kalashtar",
@@ -8619,7 +8636,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Kuo-Toa",
@@ -9479,7 +9497,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Merfolk (Zendikar)",
@@ -9555,7 +9575,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Minotaur",
@@ -10635,7 +10656,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Owlfolk",
@@ -12254,7 +12277,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Skeleton",
@@ -13381,7 +13406,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Vampire (Zendikar)",
@@ -13458,7 +13485,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Vedalken",
@@ -13636,7 +13664,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Vedalken",
@@ -16691,7 +16721,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Vahadar",
@@ -16728,7 +16760,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Joraga Nation",
@@ -16773,7 +16807,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Mul Daya Nation",
@@ -16857,7 +16892,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Tajuru Nation",
@@ -16896,7 +16932,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Air",
@@ -18150,7 +18187,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Lavastep Tribe",
@@ -18167,7 +18205,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Tuktuk Tribe",
@@ -18187,7 +18226,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"source": "PHB",
@@ -19548,7 +19588,9 @@
 			],
 			"overwrite": {
 				"languageProficiencies": true
-			}
+			},
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Mark of Handling",
@@ -20274,7 +20316,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Kessig",
@@ -20323,7 +20367,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Nephalia",
@@ -20362,7 +20408,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Stensia",
@@ -20396,7 +20444,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Blue",
@@ -20444,7 +20494,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Green",
@@ -20486,7 +20538,9 @@
 					],
 					"type": "entries"
 				}
-			]
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Cosi Creed",
@@ -20536,7 +20590,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Emeria Creed",
@@ -20585,7 +20640,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ula Creed",
@@ -20636,7 +20692,8 @@
 					"type": "entries"
 				}
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Beasthide",

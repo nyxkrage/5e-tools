@@ -1014,6 +1014,7 @@ PropOrder._ITEM = [
 	"spellScrollLevel",
 	"lootTables",
 
+	"seeAlsoDeck",
 	"seeAlsoVehicle",
 
 	"miscTags",
@@ -1377,6 +1378,51 @@ PropOrder._SENSE = [
 
 	"entries",
 ];
+PropOrder._DECK = [
+	"name",
+
+	"source",
+	"page",
+	"srd",
+	"basicRules",
+
+	new PropOrder._ObjectKey("_copy", {
+		order: [
+			"name",
+			"source",
+			new PropOrder._ObjectKey("_mod", {
+				fnGetOrder: () => PropOrder._DECK__COPY_MOD,
+			}),
+			"_preserve",
+		],
+	}),
+
+	"cards",
+	"back",
+
+	"entries",
+
+	"hasCardArt",
+];
+
+PropOrder._DECK__COPY_MOD = [
+	"*",
+	"_",
+	...PropOrder._DECK,
+];
+PropOrder._CARD = [
+	"name",
+
+	"source",
+	"set",
+	"page",
+	"srd",
+	"basicRules",
+
+	"face",
+
+	"entries",
+];
 
 PropOrder._PROP_TO_LIST = {
 	"monster": PropOrder._MONSTER,
@@ -1432,6 +1478,8 @@ PropOrder._PROP_TO_LIST = {
 	"charoptionFluff": PropOrder._GENERIC_FLUFF,
 	"skill": PropOrder._SKILL,
 	"sense": PropOrder._SENSE,
+	"deck": PropOrder._DECK,
+	"card": PropOrder._CARD,
 };
 
 globalThis.PropOrder = PropOrder;

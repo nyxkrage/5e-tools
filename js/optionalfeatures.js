@@ -116,9 +116,8 @@ class OptionalFeaturesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		const $wrpTab = $(`#stat-tabs`);
-		$wrpTab.find(`.opt-feature-type`).remove();
-		const $wrpOptFeatType = $(`<div class="opt-feature-type"/>`).prependTo($wrpTab);
+		this._$wrpTabs.find(`.opt-feature-type`).remove();
+		const $wrpOptFeatType = $(`<div class="opt-feature-type"/>`).prependTo(this._$wrpTabs);
 
 		const commonPrefix = ent.featureType.length > 1 ? MiscUtil.findCommonPrefix(ent.featureType.map(fs => Parser.optFeatureTypeToFull(fs)), {isRespectWordBoundaries: true}) : "";
 		if (commonPrefix) $wrpOptFeatType.append(`${commonPrefix.trim()} `);

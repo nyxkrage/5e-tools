@@ -583,7 +583,10 @@
 			"type": {
 				"type": "humanoid",
 				"tags": [
-					"water genasi"
+					{
+						"tag": "genasi",
+						"prefix": "Water"
+					}
 				]
 			},
 			"alignment": [

@@ -215,6 +215,10 @@ class LinkCheck extends DataTesterBase {
 					toEncode.push(parts[0], parts[1] || "forgotten realms", Parser.getTagSource(tag, parts[2]));
 					break;
 				}
+				case "card": {
+					toEncode.push(parts[0], parts[1] || "none", Parser.getTagSource(tag, parts[2]));
+					break;
+				}
 				case "classFeature": {
 					const {name, source, className, classSource, level} = DataUtil.class.unpackUidClassFeature(match[2]);
 					toEncode.push(name, className, classSource, level, source);
@@ -361,6 +365,7 @@ class ItemDataCheck extends GenericDataCheck {
 			}
 		}
 
+		this._doCheckSeeAlso({entity: root, prop: "seeAlsoDeck", tag: "deck", file});
 		this._doCheckSeeAlso({entity: root, prop: "seeAlsoVehicle", tag: "vehicle", file});
 
 		if (root.reqAttuneTags) this._checkReqAttuneTags(file, root, name, source, "reqAttuneTags");
@@ -380,7 +385,7 @@ class ItemDataCheck extends GenericDataCheck {
 	}
 }
 
-class ActionData extends GenericDataCheck {
+class ActionDataCheck extends GenericDataCheck {
 	static pRun () {
 		const file = `data/actions.json`;
 		const actions = ut.readJson(`./${file}`);
@@ -856,6 +861,25 @@ class BestiaryDataCheck extends GenericDataCheck {
 	}
 }
 
+class DeckDataCheck extends GenericDataCheck {
+	static _handleDeck (file, deck) {
+		(deck.cards || [])
+			.forEach(cardMeta => {
+				const uid = typeof cardMeta === "string" ? cardMeta : cardMeta.uid;
+				const unpacked = DataUtil.deck.unpackUidCard(uid, {isLower: true});
+				const hash = UrlUtil.URL_TO_HASH_BUILDER["card"](unpacked);
+				const url = `card#${hash}`.toLowerCase().trim();
+				if (!ALL_URLS.has(url)) this._addMessage(`Missing link: ${uid} in file ${file} (evaluates to "${url}") in "cards"\nSimilar URLs were:\n${getSimilar(url)}\n`);
+			});
+	}
+
+	static pRun () {
+		const file = `data/decks.json`;
+		const featJson = ut.readJson(`./${file}`);
+		featJson.deck.forEach(f => this._handleDeck(file, f));
+	}
+}
+
 class DuplicateEntityCheck extends DataTesterBase {
 	static registerParsedFileCheckers (parsedJsonChecker) {
 		parsedJsonChecker.registerFileHandler(this);
@@ -912,6 +936,13 @@ class DuplicateEntityCheck extends DataTesterBase {
 			case "deity": {
 				if (name != null && source != null) {
 					const key = `${source} :: ${ent.pantheon} :: ${name}`;
+					(positions[key] = positions[key] || []).push(keyIx);
+				}
+				break;
+			}
+			case "card": {
+				if (name != null && source != null) {
+					const key = `${source} :: ${ent.set} :: ${name}`;
 					(positions[key] = positions[key] || []).push(keyIx);
 				}
 				break;
@@ -1064,7 +1095,7 @@ class HasFluffCheck extends GenericDataCheck {
 			const isFluff = prop.endsWith("Fluff");
 			const propBase = isFluff ? prop.replace(/Fluff$/, "") : prop;
 
-			const allData = await impl.loadJSON();
+			const allData = await impl.loadJSON({isAddBaseRaces: true});
 
 			const tgt = (metas[propBase] = metas[propBase] || {});
 			tgt.prop = propBase;
@@ -1079,7 +1110,7 @@ class HasFluffCheck extends GenericDataCheck {
 			}
 		}
 
-		const [metasWithFluff, metasWithoutFluff] = Object.values(metas)
+		const [metasWithFluff] = Object.values(metas)
 			.segregate(it => it.propFluff);
 
 		for (const {prop, propFluff, dataFluff, dataFluffUnmerged, data, page} of metasWithFluff) {
@@ -1210,7 +1241,7 @@ async function main () {
 		TestCopyCheck,
 		HasFluffCheck,
 		ItemDataCheck,
-		ActionData,
+		ActionDataCheck,
 		DeityDataCheck,
 		LootDataCheck,
 		ClassDataCheck,
@@ -1218,6 +1249,7 @@ async function main () {
 		FeatDataCheck,
 		BackgroundDataCheck,
 		BestiaryDataCheck,
+		DeckDataCheck,
 	];
 	DataTester.register({ClazzDataTesters});
 

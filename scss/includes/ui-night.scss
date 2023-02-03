@@ -219,6 +219,14 @@ Shared UI components
 }
 /* endregion */
 
+/* region "Copied" tooltip */
+.night-mode .clp__ {
+	&disp-copied {
+		background: radial-gradient(ellipse at center, $rgb-bg--night 0%, $rgb-bg--night 35%, transparent 75%, transparent 100%);
+	}
+}
+/* endregion */
+
 /* region Decorated inputs */
 .night-mode .ui-ideco__ {
 	&btn-ticker {

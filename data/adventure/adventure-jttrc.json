@@ -9156,6 +9156,11 @@
 									"title": "Map 6.1: Yeonido",
 									"width": 2063,
 									"height": 1425,
+									"grid": {
+										"type": "none",
+										"size": 94,
+										"distance": 500
+									},
 									"id": "542",
 									"mapRegions": [
 										{

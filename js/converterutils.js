@@ -46,6 +46,11 @@ class BaseParser {
 		iptClean = iptClean
 			.replace(/((?: | ")[A-Za-z][a-z]+)- *\n([a-z])/g, "$1$2");
 
+		// Connect line-broken parentheses
+		iptClean = this._getCleanInput_parens(iptClean, "(", ")");
+		iptClean = this._getCleanInput_parens(iptClean, "[", "]");
+		iptClean = this._getCleanInput_parens(iptClean, "{", "}");
+
 		// Apply `PAGE=...`
 		iptClean = iptClean
 			.replace(/(?:\n|^)PAGE=(?<page>\d+)(?:\n|$)/gi, (...m) => {
@@ -54,6 +59,28 @@ class BaseParser {
 			});
 
 		return iptClean;
+	}
+
+	static _getCleanInput_parens (iptClean, cOpen, cClose) {
+		const lines = iptClean
+			.split("\n");
+
+		for (let i = 0; i < lines.length; ++i) {
+			const line = lines[i];
+			const lineNxt = lines[i + 1];
+			if (!lineNxt) continue;
+
+			const cntOpen = line.split(cOpen).length - 1;
+			const cntClose = line.split(cClose).length - 1;
+
+			if (cntOpen <= cntClose) continue;
+
+			lines[i] = `${line} ${lineNxt}`.replace(/ {2}/g, " ");
+			lines.splice(i + 1, 1);
+			i--;
+		}
+
+		return lines.join("\n");
 	}
 
 	static _hasEntryContent (trait) {

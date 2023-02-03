@@ -24446,6 +24446,14 @@
 							},
 							"width": 2259,
 							"height": 3000,
+							"grid": {
+								"type": "square",
+								"size": 68,
+								"offsetX": 40,
+								"offsetY": 15,
+								"scale": 2,
+								"distance": 10
+							},
 							"title": "Map 9",
 							"mapRegions": [
 								{

@@ -3769,6 +3769,16 @@ th.border {
 		box-shadow: none !important;
 		border-color: black !important;
 	}
+
+	.rd__h-toggle {
+		display: none !important;
+	}
+
+	.rd__b-special,
+	.rd__li {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
 	// endregion
 
 	// region books/adventures
@@ -3828,6 +3838,10 @@ th.border {
 	}
 
 	.toast {
+		display: none !important;
+	}
+
+	.cancer__anchor {
 		display: none !important;
 	}
 }

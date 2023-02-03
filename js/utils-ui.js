@@ -115,6 +115,7 @@ function MixinProxyBase (Cls) {
 		_addHook (hookProp, prop, hook) {
 			ProxyBase._addHook_to(this.__hooks, hookProp, prop, hook);
 			if (this.__hooksTmp) ProxyBase._addHook_to(this.__hooksTmp, hookProp, prop, hook);
+			return hook;
 		}
 
 		static _addHook_to (obj, hookProp, prop, hook) {
@@ -5571,6 +5572,18 @@ class SettingsUtil {
 			this.name = name;
 			this.help = help;
 			this.defaultVal = defaultVal;
+		}
+	};
+
+	static EnumSetting = class extends SettingsUtil.Setting {
+		constructor (
+			{
+				enumVals,
+				...rest
+			},
+		) {
+			super(rest);
+			this.enumVals = enumVals;
 		}
 	};
 

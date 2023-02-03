@@ -9071,6 +9071,9 @@
 			],
 			"lootTables": [
 				"Magic Item Table F"
+			],
+			"seeAlsoDeck": [
+				"Deck of Illusions"
 			]
 		},
 		{
@@ -9095,7 +9098,7 @@
 			},
 			"grantsProficiency": true,
 			"entries": [
-				"Usually found in a box or pouch, this deck contains a number of cards made of ivory or vellum. Most (75 percent) of these decks have only thirteen cards, but the rest have twenty-two.",
+				"Usually found in a box or pouch, this deck contains a number of cards made of ivory or vellum. Most ({@chance 75|75 percent}) of these decks have only thirteen cards, but the rest have twenty-two.",
 				"Before you draw a card, you must declare how many cards you intend to draw and then draw them randomly (you can use an altered deck of playing cards to simulate the deck). Any cards drawn in excess of this number have no effect. Otherwise, as soon as you draw a card from the deck, its magic takes effect. You must draw each card no more than 1 hour after the previous draw. If you fail to draw the chosen number, the remaining number of cards fly from the deck on their own and take effect all at once.",
 				"Once a card is drawn, it fades from existence. Unless the card is the Fool or the Jester, the card reappears in the deck, making it possible to draw the same card twice.",
 				{
@@ -9502,6 +9505,9 @@
 			],
 			"lootTables": [
 				"Magic Item Table I"
+			],
+			"seeAlsoDeck": [
+				"Deck of Many Things"
 			],
 			"hasFluffImages": true
 		},
@@ -9925,6 +9931,9 @@
 						"For cards that effectively remove a character from play for a period of time (Donjon and the Void), you can allow a player to take on the role of one of the party's NPC hirelings, or introduce a temporary character as an NPC met during the party's journey. Alternatively, you can decide that only some aspect of the character's will disappears and is imprisoned, leaving the character to operate in a robotic state until freed."
 					]
 				}
+			],
+			"seeAlsoDeck": [
+				"Deck of Several Things|LLK"
 			]
 		},
 		{
@@ -23127,6 +23136,7 @@
 		{
 			"name": "Nightbringer",
 			"source": "MCV2DC",
+			"page": 14,
 			"baseItem": "mace|PHB",
 			"type": "M",
 			"immune": [
@@ -27430,6 +27440,7 @@
 				}
 			],
 			"wondrous": true,
+			"bonusSpellSaveDc": "+2",
 			"entries": [
 				"While holding this concertina, you gain a +2 bonus to the saving throw DC of your bard spells.",
 				"As an action, you can use the concertina to cast {@spell Otto's irresistible dance} from the item. This property of the concertina can't be used again until the next dawn."

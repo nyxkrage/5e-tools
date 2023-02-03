@@ -594,6 +594,8 @@ class BestiaryPage extends ListPageMultiSource {
 		Renderer.utils.bindTabButtons({
 			tabButtons: [tabMetaStats],
 			tabLabelReference: [tabMetaStats].map(it => it.label),
+			$wrpTabs: this._$wrpTabs,
+			$pgContent: this._$pgContent,
 		});
 
 		Promise.all([
@@ -630,6 +632,8 @@ class BestiaryPage extends ListPageMultiSource {
 				Renderer.utils.bindTabButtons({
 					tabButtons: tabMetas.filter(it => it.isVisible),
 					tabLabelReference: tabMetas.map(it => it.label),
+					$wrpTabs: this._$wrpTabs,
+					$pgContent: this._$pgContent,
 				});
 			});
 	}

@@ -374,7 +374,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	static async _pLoadSubEntries (walker, entityRoot, {ancestorType, ancestorMeta, ...opts}) {
 		const out = [];
 
-		const pRecurse = async toWalk => {
+		const pRecurse = async (parent, toWalk) => {
 			const references = [];
 			const path = [];
 
@@ -389,6 +389,8 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 					},
 					preObject: (obj) => {
 						if (obj.type === "options") {
+							const parentName = (path.last() || {}).name ?? parent.name;
+
 							// Add metadata to options--only if they have a "count" specified, otherwise we assume
 							//   that the entire option set is to be imported as per regular features.
 							if (obj.count != null) {
@@ -397,12 +399,11 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 									ent._optionsMeta = {
 										setId: optionSetId,
 										count: obj.count,
-										name: (path.last() || {}).name,
+										name: parentName,
 									};
 								});
 							}
 
-							const parentName = MiscUtil.get(path.last(), "name");
 							if (parentName) {
 								obj.entries.forEach(ent => {
 									if (typeof ent !== "object") return;
@@ -459,7 +460,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						entity = await pRecurse(entity.entries);
+						entity = await pRecurse(entity, entity.entries);
 
 						break;
 					}
@@ -500,7 +501,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						entity = await pRecurse(entity.entries);
+						entity = await pRecurse(entity, entity.entries);
 
 						break;
 					}
@@ -556,7 +557,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			return toWalk;
 		};
 
-		if (entityRoot.entries) entityRoot.entries = await pRecurse(entityRoot.entries);
+		if (entityRoot.entries) entityRoot.entries = await pRecurse(entityRoot, entityRoot.entries);
 
 		return {entityRoot, subLoadeds: out};
 	}

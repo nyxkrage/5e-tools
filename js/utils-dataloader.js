@@ -901,7 +901,7 @@ class _DataTypeLoaderLanguage extends _DataTypeLoaderPredefined {
 	_loader = "language";
 }
 
-class _DataTypeLoaderRecpie extends _DataTypeLoaderPredefined {
+class _DataTypeLoaderRecipe extends _DataTypeLoaderPredefined {
 	static PROPS = ["recipe"];
 	static PAGE = UrlUtil.PG_RECIPES;
 
@@ -1229,6 +1229,107 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 	}
 }
 
+class _DataTypeLoaderCustomCard extends _DataTypeLoader {
+	static PROPS = ["card"];
+	static PAGE = UrlUtil.PG_DECKS;
+
+	_getSiteIdent ({pageClean, sourceClean}) { return `${pageClean}__${this.constructor.name}`; }
+
+	async _pGetSiteData ({pageClean, sourceClean}) {
+		const json = await DataUtil.deck.loadRawJSON();
+		return {card: json.card};
+	}
+}
+
+class _DataTypeLoaderCustomDeck extends _DataTypeLoader {
+	static PROPS = ["raw_deck", "deck"];
+	static PAGE = UrlUtil.PG_DECKS;
+
+	static _PROPS_RAWABLE = ["deck"];
+
+	hasPhase2Cache = true;
+
+	_getSiteIdent ({pageClean, sourceClean}) { return `${pageClean}__${this.constructor.name}`; }
+
+	async _pGetSiteData ({pageClean, sourceClean}) {
+		const json = await DataUtil.deck.loadRawJSON();
+		return this.constructor._getAsRawPrefixed(json, {propsRaw: this.constructor._PROPS_RAWABLE});
+	}
+
+	async _pGetStoredPrereleaseBrewData ({brewUtil, isPrerelease, isBrew}) {
+		const prereleaseBrew = await brewUtil.pGetBrewProcessed();
+		return this.constructor._getAsRawPrefixed(prereleaseBrew, {propsRaw: this.constructor._PROPS_RAWABLE});
+	}
+
+	async _pGetPostCacheData_obj ({obj, lockToken2}) {
+		if (!obj) return null;
+
+		const out = {};
+
+		if (obj.raw_deck?.length) out.deck = await obj.raw_deck.pSerialAwaitMap(ent => this.constructor._pGetDereferencedDeckData(ent, {lockToken2}));
+
+		return out;
+	}
+
+	static async _pGetDereferencedDeckData (deck, {lockToken2}) {
+		deck = MiscUtil.copyFast(deck);
+
+		deck.cards = await this._pGetDereferencedCardData(deck, {lockToken2});
+
+		return deck;
+	}
+
+	static async _pGetDereferencedCardData (deck, {lockToken2}) {
+		const notFoundUids = [];
+
+		const out = (await (deck.cards || [])
+			.pSerialAwaitMap(async cardMeta => {
+				const uid = typeof cardMeta === "string" ? cardMeta : cardMeta.uid;
+				const count = typeof cardMeta === "string" ? 1 : cardMeta.count ?? 1;
+
+				const unpackedUid = DataUtil.deck.unpackUidCard(uid);
+				const {source} = unpackedUid;
+
+				// Skip over broken links
+				if (unpackedUid.name == null || unpackedUid.set == null || unpackedUid.source == null) return;
+
+				const hash = UrlUtil.URL_TO_HASH_BUILDER["card"](unpackedUid);
+
+				// Skip blocklisted
+				if (ExcludeUtil.isInitialised && ExcludeUtil.isExcluded(hash, "card", source, {isNoCount: true})) return;
+
+				const card = await DataLoader.pCacheAndGet("card", source, hash, {isCopy: true, lockToken2});
+				// Skip over missing links
+				if (!card) return notFoundUids.push(uid);
+
+				if (deck.otherSources && deck.source === card.source) card.otherSources = MiscUtil.copyFast(deck.otherSources);
+
+				return [...new Array(count)].map(() => MiscUtil.copyFast(card));
+			}))
+			.flat();
+
+		this._pGetDereferencedData_doNotifyFailed({uids: notFoundUids, prop: "card"});
+
+		return out;
+	}
+
+	static _pGetDereferencedData_doNotifyFailed ({uids, prop}) {
+		const missingRefSets = {
+			[prop]: new Set(uids),
+		};
+
+		_DataLoaderInternalUtil.doNotifyFailedDereferences({missingRefSets});
+	}
+
+	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
+		return {
+			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
+			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseData, lockToken2}),
+			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
+		};
+	}
+}
+
 class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
 	static PROPS = ["reference", "referenceData"];
 	static PAGE = UrlUtil.PG_QUICKREF;
@@ -1402,6 +1503,7 @@ class DataLoader {
 		"cult": UrlUtil.PG_CULTS_BOONS,
 		"boon": UrlUtil.PG_CULTS_BOONS,
 		"condition": UrlUtil.PG_CONDITIONS_DISEASES,
+		"deck": UrlUtil.PG_DECKS,
 		"disease": UrlUtil.PG_CONDITIONS_DISEASES,
 		"status": UrlUtil.PG_CONDITIONS_DISEASES,
 		"vehicle": UrlUtil.PG_VEHICLES,
@@ -1474,13 +1576,15 @@ class DataLoader {
 		_DataTypeLoaderVariantrule.register({fnRegister});
 		_DataTypeLoaderTable.register({fnRegister});
 		_DataTypeLoaderLanguage.register({fnRegister});
-		_DataTypeLoaderRecpie.register({fnRegister});
+		_DataTypeLoaderRecipe.register({fnRegister});
 		// endregion
 
 		// region Special
 		_DataTypeLoaderCustomClassesSubclass.register({fnRegister});
 		_DataTypeLoaderCustomClassSubclassFeature.register({fnRegister});
 		_DataTypeLoaderCustomItem.register({fnRegister});
+		_DataTypeLoaderCustomCard.register({fnRegister});
+		_DataTypeLoaderCustomDeck.register({fnRegister});
 		_DataTypeLoaderCustomQuickref.register({fnRegister});
 		_DataTypeLoaderCustomAdventure.register({fnRegister});
 		_DataTypeLoaderCustomBook.register({fnRegister});

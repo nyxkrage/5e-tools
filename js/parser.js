@@ -1849,6 +1849,8 @@ Parser.CAT_ID_RECIPES = 48;
 Parser.CAT_ID_STATUS = 49;
 Parser.CAT_ID_SKILLS = 50;
 Parser.CAT_ID_SENSES = 51;
+Parser.CAT_ID_DECK = 52;
+Parser.CAT_ID_CARD = 53;
 
 Parser.CAT_ID_TO_FULL = {};
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CREATURE] = "Bestiary";
@@ -1901,6 +1903,8 @@ Parser.CAT_ID_TO_FULL[Parser.CAT_ID_LEGENDARY_GROUP] = "Legendary Group";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CHAR_CREATION_OPTIONS] = "Character Creation Option";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_RECIPES] = "Recipe";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_STATUS] = "Status";
+Parser.CAT_ID_TO_FULL[Parser.CAT_ID_DECK] = "Deck";
+Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CARD] = "Card";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_SKILLS] = "Skill";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_SENSES] = "Sense";
 
@@ -1959,6 +1963,8 @@ Parser.CAT_ID_TO_PROP[Parser.CAT_ID_LEGENDARY_GROUP] = null;
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_CHAR_CREATION_OPTIONS] = "charoption";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_RECIPES] = "recipe";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_STATUS] = "status";
+Parser.CAT_ID_TO_PROP[Parser.CAT_ID_DECK] = "deck";
+Parser.CAT_ID_TO_PROP[Parser.CAT_ID_CARD] = "card";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_SKILLS] = "skill";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_SENSES] = "sense";
 
@@ -3565,6 +3571,8 @@ Parser.TAG_TO_DEFAULT_SOURCE = {
 	"quickref": Parser.SRC_PHB,
 	"skill": Parser.SRC_PHB,
 	"sense": Parser.SRC_PHB,
+	"deck": Parser.SRC_DMG,
+	"card": Parser.SRC_DMG,
 };
 Parser.getTagSource = function (tag, source) {
 	if (source && source.trim()) return source;

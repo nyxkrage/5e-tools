@@ -1155,11 +1155,11 @@
 							],
 							"imageType": "map",
 							"grid": {
-								"type": "hexColsOdd",
-								"size": 189,
-								"offsetX": -37,
-								"offsetY": 59,
-								"units": "miles"
+								"type": "square",
+								"size": 82,
+								"offsetX": 19,
+								"offsetY": -11,
+								"scale": 3
 							},
 							"id": "08b",
 							"hrefThumbnail": {
