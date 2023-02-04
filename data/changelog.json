@@ -2345,5 +2345,10 @@
 		"date": "2023-02-03",
 		"title": "Big Deck Lover",
 		"txt": "- Added Decks page <https://5e.tools/decks.html>\n- Added more Plane Shift art; tokens\n- (Brew) Improved Creature Converter handling of line-broken parentheses\n- (Brew) Improved Creature Converter handling of CR appearing in name/first line\n- (Brew) Added print styling to the Render Demo page, allowing it to be printed in a useful format\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.175.1",
+		"date": "2023-02-04",
+		"txt": "- Added \"Flip\" button to drawn card on the Decks page\n- Added \"draw with replacement\" to Decks page, which can be skipped by SHIFT-clicking the card draw button\n- Added \"Return Card to Deck\" button to cards on the Decks page\n- (Fixed typos/added tags)"
 	}
 ]

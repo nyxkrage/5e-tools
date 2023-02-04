@@ -1270,7 +1270,7 @@ globalThis.Renderer = function () {
 		this._renderPrefix(entry, textStack, meta, options);
 
 		const page = entry.prop || Renderer.hover.TAG_TO_PAGE[entry.tag];
-		const source = entry.source || Parser.TAG_TO_DEFAULT_SOURCE[entry.tag];
+		const source = Parser.getTagSource(entry.tag, entry.source);
 		const hash = entry.hash || (UrlUtil.URL_TO_HASH_BUILDER[page] ? UrlUtil.URL_TO_HASH_BUILDER[page]({...entry, name: entry.name, source}) : null);
 
 		const asTag = `{@${entry.tag} ${entry.name}|${source}${entry.displayName ? `|${entry.displayName}` : ""}}`;
@@ -3884,6 +3884,654 @@ Renderer.utils = {
 	},
 };
 
+Renderer.tag = class {
+	static _TagBase = class {
+		tagName;
+		defaultSource = null;
+
+		get tag () { return `@${this.tagName}`; }
+
+		getStripped (tag, text) {
+			text = text.replace(/<\$([^$]+)\$>/gi, ""); // remove any variable tags
+			return this._getStripped(tag, text);
+		}
+
+		/** @abstract */
+		_getStripped (tag, text) { throw new Error("Unimplemented!"); }
+	};
+
+	static _TagBaseAt = class extends this._TagBase {
+		get tag () { return `@${this.tagName}`; }
+	};
+
+	static _TagBaseHash = class extends this._TagBase {
+		get tag () { return `#${this.tagName}`; }
+	};
+
+	static _TagTextStyle = class extends this._TagBaseAt {
+		_getStripped (tag, text) { return text; }
+	};
+
+	static TagBoldShort = class extends this._TagTextStyle {
+		tagName = "b";
+	};
+
+	static TagBoldLong = class extends this._TagTextStyle {
+		tagName = "bold";
+	};
+
+	static TagItalicShort = class extends this._TagTextStyle {
+		tagName = "i";
+	};
+
+	static TagItalicLong = class extends this._TagTextStyle {
+		tagName = "italic";
+	};
+
+	static TagStrikethroughShort = class extends this._TagTextStyle {
+		tagName = "s";
+	};
+
+	static TagStrikethroughLong = class extends this._TagTextStyle {
+		tagName = "strike";
+	};
+
+	static TagUnderlineShort = class extends this._TagTextStyle {
+		tagName = "u";
+	};
+
+	static TagUnderlineLong = class extends this._TagTextStyle {
+		tagName = "underline";
+	};
+
+	static TagCode = class extends this._TagTextStyle {
+		tagName = "code";
+	};
+
+	static TagStyle = class extends this._TagTextStyle {
+		tagName = "style";
+	};
+
+	static TagComic = class extends this._TagTextStyle {
+		tagName = "comic";
+	};
+
+	static TagComicH1 = class extends this._TagTextStyle {
+		tagName = "comicH1";
+	};
+
+	static TagComicH2 = class extends this._TagTextStyle {
+		tagName = "comicH2";
+	};
+
+	static TagComicH3 = class extends this._TagTextStyle {
+		tagName = "comicH3";
+	};
+
+	static TagComicH4 = class extends this._TagTextStyle {
+		tagName = "comicH4";
+	};
+
+	static TagComicNote = class extends this._TagTextStyle {
+		tagName = "comicNote";
+	};
+
+	static TagNote = class extends this._TagTextStyle {
+		tagName = "note";
+	};
+
+	static TagUnit = class extends this._TagBaseAt {
+		tagName = "unit";
+
+		_getStripped (tag, text) {
+			const [amount, unitSingle, unitPlural] = Renderer.splitTagByPipe(text);
+			return isNaN(amount) ? unitSingle : Number(amount) > 1 ? unitPlural : unitSingle;
+		}
+	};
+
+	static TagHit = class extends this._TagBaseAt {
+		tagName = "h";
+
+		_getStripped (tag, text) { return "Hit: "; }
+	};
+
+	static TagMiss = class extends this._TagBaseAt {
+		tagName = "m";
+
+		_getStripped (tag, text) { return "Miss: "; }
+	};
+
+	static TagAtk = class extends this._TagBaseAt {
+		tagName = "atk";
+
+		_getStripped (tag, text) { return Renderer.attackTagToFull(text); }
+	};
+
+	static TagHitYourSpellAttack = class extends this._TagBaseAt {
+		tagName = "hitYourSpellAttack";
+
+		_getStripped (tag, text) { return "your spell attack modifier"; }
+	};
+
+	static TagDc = class extends this._TagBaseAt {
+		tagName = "dc";
+
+		_getStripped (tag, text) {
+			const [dcText, displayText] = Renderer.splitTagByPipe(text);
+			return `DC ${displayText || dcText}`;
+		}
+	};
+
+	static _TagDiceFlavor = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const [rollText, displayText] = Renderer.splitTagByPipe(text);
+			switch (tag) {
+				case "@damage":
+				case "@dice":
+				case "@autodice": {
+					return displayText || rollText.replace(/;/g, "/");
+				}
+				case "@d20":
+				case "@hit": {
+					return displayText || (() => {
+						const n = Number(rollText);
+						if (!isNaN(n)) return `${n >= 0 ? "+" : ""}${n}`;
+						return rollText;
+					})();
+				}
+				case "@recharge": {
+					const asNum = Number(rollText || 6);
+					if (isNaN(asNum)) {
+						throw new Error(`Could not parse "${rollText}" as a number!`);
+					}
+					return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
+				}
+				case "@chance": {
+					return displayText || `${rollText} percent`;
+				}
+				case "@ability": {
+					const [, rawScore] = rollText.split(" ").map(it => it.trim().toLowerCase()).filter(Boolean);
+					const score = Number(rawScore) || 0;
+					return displayText || `${score} (${Parser.getAbilityModifier(score)})`;
+				}
+				case "@savingThrow":
+				case "@skillCheck": {
+					return displayText || rollText;
+				}
+			}
+			throw new Error(`Unhandled tag: ${tag}`);
+		}
+	};
+
+	static TaChance = class extends this._TagDiceFlavor {
+		tagName = "chance";
+	};
+
+	static TaD20 = class extends this._TagDiceFlavor {
+		tagName = "d20";
+	};
+
+	static TaDamage = class extends this._TagDiceFlavor {
+		tagName = "damage";
+	};
+
+	static TaDice = class extends this._TagDiceFlavor {
+		tagName = "dice";
+	};
+
+	static TaAutodice = class extends this._TagDiceFlavor {
+		tagName = "autodice";
+	};
+
+	static TaHit = class extends this._TagDiceFlavor {
+		tagName = "hit";
+	};
+
+	static TaRecharge = class extends this._TagDiceFlavor {
+		tagName = "recharge";
+	};
+
+	static TaAbility = class extends this._TagDiceFlavor {
+		tagName = "ability";
+	};
+
+	static TaSavingThrow = class extends this._TagDiceFlavor {
+		tagName = "savingThrow";
+	};
+
+	static TaSkillCheck = class extends this._TagDiceFlavor {
+		tagName = "skillCheck";
+	};
+
+	static _TagDiceFlavorScaling = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const [, , addPerProgress ] = Renderer.splitTagByPipe(text);
+			return addPerProgress;
+		}
+	};
+
+	static TagScaledice = class extends this._TagDiceFlavorScaling {
+		tagName = "scaledice";
+	};
+
+	static TagScaledamage = class extends this._TagDiceFlavorScaling {
+		tagName = "scaledamage";
+	};
+
+	static TagCoinflip = class extends this._TagBaseAt {
+		tagName = "coinflip";
+
+		_getStripped (tag, text) {
+			const [displayText] = Renderer.splitTagByPipe(text);
+			return displayText || "flip a coin";
+		}
+	};
+
+	static _TagPipedNoDisplayText = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const parts = Renderer.splitTagByPipe(text);
+			return parts[0];
+		}
+	};
+
+	static Tag5etools = class extends this._TagPipedNoDisplayText {
+		tagName = "5etools";
+	};
+
+	static TagAdventure = class extends this._TagPipedNoDisplayText {
+		tagName = "adventure";
+	};
+
+	static TagBook = class extends this._TagPipedNoDisplayText {
+		tagName = "book";
+	};
+
+	static TagFilter = class extends this._TagPipedNoDisplayText {
+		tagName = "filter";
+	};
+
+	static TagFootnote = class extends this._TagPipedNoDisplayText {
+		tagName = "footnote";
+	};
+
+	static TagLink = class extends this._TagPipedNoDisplayText {
+		tagName = "link";
+	};
+
+	static TagLoader = class extends this._TagPipedNoDisplayText {
+		tagName = "loader";
+	};
+
+	static TagColor = class extends this._TagPipedNoDisplayText {
+		tagName = "color";
+	};
+
+	static TagHighlight = class extends this._TagPipedNoDisplayText {
+		tagName = "highlight";
+	};
+
+	static TagHelp = class extends this._TagPipedNoDisplayText {
+		tagName = "help";
+	};
+
+	static _TagPipedDisplayTextThird = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const parts = Renderer.splitTagByPipe(text);
+			return parts.length >= 3 ? parts[2] : parts[0];
+		}
+	};
+
+	static TagAction = class extends this._TagPipedDisplayTextThird {
+		tagName = "action";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagBackground = class extends this._TagPipedDisplayTextThird {
+		tagName = "background";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagBoon = class extends this._TagPipedDisplayTextThird {
+		tagName = "boon";
+		defaultSource = Parser.SRC_MTF;
+	};
+
+	static TagCharoption = class extends this._TagPipedDisplayTextThird {
+		tagName = "charoption";
+		defaultSource = Parser.SRC_MOT;
+	};
+
+	static TagClass = class extends this._TagPipedDisplayTextThird {
+		tagName = "class";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagCondition = class extends this._TagPipedDisplayTextThird {
+		tagName = "condition";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagCreature = class extends this._TagPipedDisplayTextThird {
+		tagName = "creature";
+		defaultSource = Parser.SRC_MM;
+	};
+
+	static TagCult = class extends this._TagPipedDisplayTextThird {
+		tagName = "cult";
+		defaultSource = Parser.SRC_MTF;
+	};
+
+	static TagDeck = class extends this._TagPipedDisplayTextThird {
+		tagName = "deck";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagDisease = class extends this._TagPipedDisplayTextThird {
+		tagName = "disease";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagFeat = class extends this._TagPipedDisplayTextThird {
+		tagName = "feat";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagHazard = class extends this._TagPipedDisplayTextThird {
+		tagName = "hazard";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagItem = class extends this._TagPipedDisplayTextThird {
+		tagName = "item";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagLanguage = class extends this._TagPipedDisplayTextThird {
+		tagName = "language";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagObject = class extends this._TagPipedDisplayTextThird {
+		tagName = "object";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagOptfeature = class extends this._TagPipedDisplayTextThird {
+		tagName = "optfeature";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagPsionic = class extends this._TagPipedDisplayTextThird {
+		tagName = "psionic";
+		defaultSource = Parser.SRC_UATMC;
+	};
+
+	static TagRace = class extends this._TagPipedDisplayTextThird {
+		tagName = "race";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagRecipe = class extends this._TagPipedDisplayTextThird {
+		tagName = "recipe";
+		defaultSource = Parser.SRC_HEROES_FEAST;
+	};
+
+	static TagReward = class extends this._TagPipedDisplayTextThird {
+		tagName = "reward";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagVehicle = class extends this._TagPipedDisplayTextThird {
+		tagName = "vehicle";
+		defaultSource = Parser.SRC_GoS;
+	};
+
+	static TagVehupgrade = class extends this._TagPipedDisplayTextThird {
+		tagName = "vehupgrade";
+		defaultSource = Parser.SRC_GoS;
+	};
+
+	static TagSense = class extends this._TagPipedDisplayTextThird {
+		tagName = "sense";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagSkill = class extends this._TagPipedDisplayTextThird {
+		tagName = "skill";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagSpell = class extends this._TagPipedDisplayTextThird {
+		tagName = "spell";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagStatus = class extends this._TagPipedDisplayTextThird {
+		tagName = "status";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagTable = class extends this._TagPipedDisplayTextThird {
+		tagName = "table";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagTrap = class extends this._TagPipedDisplayTextThird {
+		tagName = "trap";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagVariantrule = class extends this._TagPipedDisplayTextThird {
+		tagName = "variantrule";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static _TagPipedDisplayTextFourth = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const parts = Renderer.splitTagByPipe(text);
+			return parts.length >= 4 ? parts[3] : parts[0];
+		}
+	};
+
+	static TagCard = class extends this._TagPipedDisplayTextFourth {
+		tagName = "card";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	static TagDeity = class extends this._TagPipedDisplayTextFourth {
+		tagName = "deity";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static _TagPipedDisplayTextSixth = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const parts = Renderer.splitTagByPipe(text);
+			return parts.length >= 6 ? parts[5] : parts[0];
+		}
+	};
+
+	static TagClassFeature = class extends this._TagPipedDisplayTextSixth {
+		tagName = "classFeature";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static _TagPipedDisplayTextEight = class extends this._TagBaseAt {
+		_getStripped (tag, text) {
+			const parts = Renderer.splitTagByPipe(text);
+			return parts.length >= 8 ? parts[7] : parts[0];
+		}
+	};
+
+	static TagSubclassFeature = class extends this._TagPipedDisplayTextEight {
+		tagName = "subclassFeature";
+		defaultSource = Parser.SRC_PHB;
+	};
+
+	static TagQuickref = class extends this._TagBaseAt {
+		tagName = "quickref";
+		defaultSource = Parser.SRC_PHB;
+
+		_getStripped (tag, text) {
+			const {name, displayText} = DataUtil.quickreference.unpackUid(text);
+			return displayText || name;
+		}
+	};
+
+	static TagArea = class extends this._TagBaseAt {
+		tagName = "area";
+
+		_getStripped (tag, text) {
+			const [compactText, , flags] = Renderer.splitTagByPipe(text);
+
+			return flags && flags.includes("x")
+				? compactText
+				: `${flags && flags.includes("u") ? "A" : "a"}rea ${compactText}`;
+		}
+	};
+
+	static TagHomebrew = class extends this._TagBaseAt {
+		tagName = "homebrew";
+
+		_getStripped (tag, text) {
+			const [newText, oldText] = Renderer.splitTagByPipe(text);
+			if (newText && oldText) {
+				return `${newText} [this is a homebrew addition, replacing the following: "${oldText}"]`;
+			} else if (newText) {
+				return `${newText} [this is a homebrew addition]`;
+			} else if (oldText) {
+				return `[the following text has been removed due to homebrew: ${oldText}]`;
+			} else throw new Error(`Homebrew tag had neither old nor new text!`);
+		}
+	};
+
+	static TagItemEntry = class extends this._TagBaseHash {
+		tagName = "itemEntry";
+		defaultSource = Parser.SRC_DMG;
+	};
+
+	/* -------------------------------------------- */
+
+	static TAGS = [
+		new this.TagBoldShort(),
+		new this.TagBoldLong(),
+		new this.TagItalicShort(),
+		new this.TagItalicLong(),
+		new this.TagStrikethroughShort(),
+		new this.TagStrikethroughLong(),
+		new this.TagUnderlineShort(),
+		new this.TagUnderlineLong(),
+		new this.TagCode(),
+		new this.TagStyle(),
+
+		new this.TagComic(),
+		new this.TagComicH1(),
+		new this.TagComicH2(),
+		new this.TagComicH3(),
+		new this.TagComicH4(),
+		new this.TagComicNote(),
+
+		new this.TagNote(),
+
+		new this.TagUnit(),
+
+		new this.TagHit(),
+		new this.TagMiss(),
+
+		new this.TagAtk(),
+
+		new this.TagHitYourSpellAttack(),
+
+		new this.TagDc(),
+
+		new this.TaChance(),
+		new this.TaD20(),
+		new this.TaDamage(),
+		new this.TaDice(),
+		new this.TaAutodice(),
+		new this.TaHit(),
+		new this.TaRecharge(),
+		new this.TaAbility(),
+		new this.TaSavingThrow(),
+		new this.TaSkillCheck(),
+
+		new this.TagScaledice(),
+		new this.TagScaledamage(),
+
+		new this.TagCoinflip(),
+
+		new this.Tag5etools(),
+		new this.TagAdventure(),
+		new this.TagBook(),
+		new this.TagFilter(),
+		new this.TagFootnote(),
+		new this.TagLink(),
+		new this.TagLoader(),
+		new this.TagColor(),
+		new this.TagHighlight(),
+		new this.TagHelp(),
+
+		new this.TagQuickref(),
+
+		new this.TagArea(),
+
+		new this.TagAction(),
+		new this.TagBackground(),
+		new this.TagBoon(),
+		new this.TagCharoption(),
+		new this.TagClass(),
+		new this.TagCondition(),
+		new this.TagCreature(),
+		new this.TagCult(),
+		new this.TagDeck(),
+		new this.TagDisease(),
+		new this.TagFeat(),
+		new this.TagHazard(),
+		new this.TagItem(),
+		new this.TagLanguage(),
+		new this.TagObject(),
+		new this.TagOptfeature(),
+		new this.TagPsionic(),
+		new this.TagRace(),
+		new this.TagRecipe(),
+		new this.TagReward(),
+		new this.TagVehicle(),
+		new this.TagVehupgrade(),
+		new this.TagSense(),
+		new this.TagSkill(),
+		new this.TagSpell(),
+		new this.TagStatus(),
+		new this.TagTable(),
+		new this.TagTrap(),
+		new this.TagVariantrule(),
+
+		new this.TagCard(),
+		new this.TagDeity(),
+
+		new this.TagClassFeature({tagName: "classFeature"}),
+
+		new this.TagSubclassFeature({tagName: "subclassFeature"}),
+
+		new this.TagHomebrew(),
+
+		/* ----------------------------------------- */
+
+		new this.TagItemEntry(),
+	];
+
+	static TAG_LOOKUP = {};
+
+	static _init () {
+		this.TAGS.forEach(tag => {
+			this.TAG_LOOKUP[tag.tag] = tag;
+			this.TAG_LOOKUP[tag.tagName] = tag;
+		});
+
+		return null;
+	}
+
+	static _ = this._init();
+};
+
 Renderer.events = {
 	handleClick_copyCode (evt, ele) {
 		const $e = $(ele).parent().next("pre");
@@ -3986,7 +4634,7 @@ Renderer.events = {
 		const hash = ele.dataset.rdHash.uq();
 		const style = ele.dataset.rdStyle.uq();
 
-		DataLoader.pCacheAndGet(page, source || Parser.TAG_TO_DEFAULT_SOURCE[tag], hash)
+		DataLoader.pCacheAndGet(page, Parser.getTagSource(tag, source), hash)
 			.then(toRender => {
 				const tr = ele.closest("tr");
 
@@ -10091,202 +10739,13 @@ Renderer._stripTagLayer = function (str) {
 		return tagSplit.filter(it => it).map(it => {
 			if (it.startsWith("{@")) {
 				let [tag, text] = Renderer.splitFirstSpace(it.slice(1, -1));
-				text = text.replace(/<\$([^$]+)\$>/gi, ""); // remove any variable tags
-				switch (tag) {
-					case "@b":
-					case "@bold":
-					case "@i":
-					case "@italic":
-					case "@s":
-					case "@strike":
-					case "@u":
-					case "@underline":
-					case "@code":
-					case "@style":
-						return text;
-
-					case "@unit": {
-						const [amount, unitSingle, unitPlural] = Renderer.splitTagByPipe(text);
-						return isNaN(amount) ? unitSingle : Number(amount) > 1 ? unitPlural : unitSingle;
-					}
-
-					case "@h": return "Hit: ";
-					case "@m": return "Miss: ";
-
-					case "@dc": {
-						const [dcText, displayText] = Renderer.splitTagByPipe(text);
-						return `DC ${displayText || dcText}`;
-					}
-
-					case "@atk": return Renderer.attackTagToFull(text);
-
-					case "@chance":
-					case "@d20":
-					case "@damage":
-					case "@dice":
-					case "@autodice":
-					case "@hit":
-					case "@recharge":
-					case "@ability":
-					case "@savingThrow":
-					case "@skillCheck": {
-						const [rollText, displayText] = Renderer.splitTagByPipe(text);
-						switch (tag) {
-							case "@damage":
-							case "@dice":
-							case "@autodice": {
-								return displayText || rollText.replace(/;/g, "/");
-							}
-							case "@d20":
-							case "@hit": {
-								return displayText || (() => {
-									const n = Number(rollText);
-									if (!isNaN(n)) return `${n >= 0 ? "+" : ""}${n}`;
-									return rollText;
-								})();
-							}
-							case "@recharge": {
-								const asNum = Number(rollText || 6);
-								if (isNaN(asNum)) {
-									throw new Error(`Could not parse "${rollText}" as a number!`);
-								}
-								return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
-							}
-							case "@chance": {
-								return displayText || `${rollText} percent`;
-							}
-							case "@ability": {
-								const [abil, rawScore] = rollText.split(" ").map(it => it.trim().toLowerCase()).filter(Boolean);
-								const score = Number(rawScore) || 0;
-								return displayText || `${score} (${Parser.getAbilityModifier(score)})`;
-							}
-							case "@savingThrow":
-							case "@skillCheck": {
-								return displayText || rollText;
-							}
-						}
-						throw new Error(`Unhandled tag: ${tag}`);
-					}
-
-					case "@scaledice":
-					case "@scaledamage": {
-						const [baseRoll, progression, addPerProgress, renderMode] = Renderer.splitTagByPipe(text);
-						return addPerProgress;
-					}
-
-					case "@hitYourSpellAttack": return "your spell attack modifier";
-
-					case "@coinflip": {
-						const [displayText] = Renderer.splitTagByPipe(text);
-						return displayText || "flip a coin";
-					}
-
-					case "@comic":
-					case "@comicH1":
-					case "@comicH2":
-					case "@comicH3":
-					case "@comicH4":
-					case "@comicNote":
-					case "@note": {
-						return text;
-					}
-
-					case "@5etools":
-					case "@adventure":
-					case "@book":
-					case "@filter":
-					case "@footnote":
-					case "@link":
-					case "@loader":
-					case "@color":
-					case "@highlight":
-					case "@help": {
-						const parts = Renderer.splitTagByPipe(text);
-						return parts[0];
-					}
-
-					case "@quickref": {
-						const {name, displayText} = DataUtil.quickreference.unpackUid(text);
-						return displayText || name;
-					}
-
-					case "@area": {
-						const [compactText, areaId, flags, ...others] = Renderer.splitTagByPipe(text);
-
-						return flags && flags.includes("x")
-							? compactText
-							: `${flags && flags.includes("u") ? "A" : "a"}rea ${compactText}`;
-					}
-
-					case "@action":
-					case "@background":
-					case "@boon":
-					case "@charoption":
-					case "@class":
-					case "@condition":
-					case "@creature":
-					case "@cult":
-					case "@deck":
-					case "@disease":
-					case "@feat":
-					case "@hazard":
-					case "@item":
-					case "@language":
-					case "@object":
-					case "@optfeature":
-					case "@psionic":
-					case "@race":
-					case "@recipe":
-					case "@reward":
-					case "@vehicle":
-					case "@vehupgrade":
-					case "@sense":
-					case "@skill":
-					case "@spell":
-					case "@status":
-					case "@table":
-					case "@trap":
-					case "@variantrule": {
-						const parts = Renderer.splitTagByPipe(text);
-						return parts.length >= 3 ? parts[2] : parts[0];
-					}
-
-					case "@card":
-					case "@deity": {
-						const parts = Renderer.splitTagByPipe(text);
-						return parts.length >= 4 ? parts[3] : parts[0];
-					}
-
-					case "@classFeature": {
-						const parts = Renderer.splitTagByPipe(text);
-						return parts.length >= 6 ? parts[5] : parts[0];
-					}
-
-					case "@subclassFeature": {
-						const parts = Renderer.splitTagByPipe(text);
-						return parts.length >= 8 ? parts[7] : parts[0];
-					}
-
-					case "@homebrew": {
-						const [newText, oldText] = Renderer.splitTagByPipe(text);
-						if (newText && oldText) {
-							return `${newText} [this is a homebrew addition, replacing the following: "${oldText}"]`;
-						} else if (newText) {
-							return `${newText} [this is a homebrew addition]`;
-						} else if (oldText) {
-							return `[the following text has been removed due to homebrew: ${oldText}]`;
-						} else throw new Error(`Homebrew tag had neither old nor new text!`);
-					}
-
-					default: throw new Error(`Unhandled tag: "${tag}"`);
-				}
+				const tagInfo = Renderer.tag.TAG_LOOKUP[tag];
+				if (!tagInfo) throw new Error(`Unhandled tag: "${tag}"`);
+				return tagInfo.getStripped(tag, text);
 			} else return it;
 		}).join("");
 	} return str;
 };
-
-// Generatedd by running `[...Renderer._stripTagLayer.toString().matchAll(/case "@(\w+?)"/g)].map(item => item[1])`
-Renderer.TAGS = ["b", "bold", "i", "italic", "s", "strike", "u", "underline", "code", "style", "unit", "h", "m", "dc", "atk", "chance", "d20", "damage", "dice", "autodice", "hit", "recharge", "ability", "savingThrow", "skillCheck", "damage", "dice", "autodice", "d20", "hit", "recharge", "chance", "ability", "savingThrow", "skillCheck", "scaledice", "scaledamage", "hitYourSpellAttack", "coinflip", "comic", "comicH1", "comicH2", "comicH3", "comicH4", "comicNote", "note", "5etools", "adventure", "book", "filter", "footnote", "link", "loader", "color", "highlight", "help", "quickref", "area", "action", "background", "boon", "charoption", "class", "condition", "creature", "cult", "disease", "feat", "hazard", "item", "language", "object", "optfeature", "psionic", "race", "recipe", "reward", "vehicle", "vehupgrade", "sense", "skill", "spell", "status", "table", "trap", "variantrule", "deity", "classFeature", "subclassFeature", "homebrew"];
 
 Renderer._RE_TABLE_ROW_DASHED_NUMBERS = /^\d+([-\u2012\u2013]\d+)?/;
 Renderer.getAutoConvertedTableRollMode = function (table) {

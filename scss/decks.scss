@@ -111,6 +111,7 @@
 
 	&-draw__ {
 		$time-intro: 500ms;
+		$time-flip: 750ms;
 		$time-sway: 7s;
 
 		@keyframes anim-sway {
@@ -238,12 +239,15 @@
 				}
 			}
 
-			padding: $spacer;
-			background: $rgb-name-red;
+			border: $spacer solid $rgb-name-red;
 			border-radius: $spacer;
 			box-shadow: 0 0 30px 10px transparentize($rgb-name-red, 0.7);
 
 			scale: 0;
+
+			&:hover {
+				cursor: none;
+			}
 
 			&--visible {
 				animation-name: anim-card-pop-in;
@@ -254,6 +258,18 @@
 			}
 		}
 
+		&img-card {
+			z-index: 0;
+			max-height: 50vh;
+			max-width: 60vw;
+		}
+
+		&img-card-back {
+			z-index: -1;
+
+			transition: z-index $time-flip;
+		}
+
 		&wrp-card-sway {
 			animation-name: anim-sway;
 			animation-duration: $time-sway;
@@ -261,22 +277,33 @@
 			animation-iteration-count: infinite;
 		}
 
-		&img-card {
-			max-height: 50vh;
-			max-width: 60vw;
+		&wrp-card-flip {
+			transition: transform $time-flip;
+
+			&--flipped {
+				transform: rotateY(180deg);
+
+				transition: transform $time-flip;
+
+				.decks-draw__img-card-back {
+					z-index: 0;
+				}
+			}
 		}
 
 		&disp-glint {
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
+			z-index: 2;
+
+			top: -$spacer;
+			right: -$spacer;
+			bottom: -$spacer;
+			left: -$spacer;
 
 			border-radius: $spacer;
 		}
 
-		&wrp-desc {
-			@keyframes anim-desc-pop-in {
+		&wrp-rhs {
+			@keyframes anim-rhs-pop-in {
 				0% {
 					scale: 0;
 				}
@@ -291,23 +318,25 @@
 			}
 
 			width: min(30vw, 360px);
-			border-top: 3px solid $rgb-name-red;
-			border-bottom: 3px solid $rgb-name-red;
-			background-color: #e5c4ba;
 			margin-left: 50px;
-			font-size: 1em;
-			padding-top: 35px;
-			padding-bottom: 40px;
-			box-shadow: 0 0 20px 1px #0008;
-
 			scale: 0;
 
 			&--visible {
-				animation-name: anim-desc-pop-in;
+				animation-name: anim-rhs-pop-in;
 				animation-duration: calc($time-intro * 0.8);
 				animation-timing-function: ease-in-out;
 				scale: 1;
 			}
+		}
+
+		&wrp-desc {
+			border-top: 3px solid $rgb-name-red;
+			border-bottom: 3px solid $rgb-name-red;
+			background-color: #e5c4ba;
+			font-size: 1em;
+			padding-top: 35px;
+			padding-bottom: 40px;
+			box-shadow: 0 0 20px 1px #0008;
 
 			.rd__h {
 				justify-content: center;
@@ -329,7 +358,7 @@
 
 	&-draw__ {
 		&wrp-card {
-			background: $rgb-name-red--night;
+			border-color: $rgb-name-red--night;
 			box-shadow: 0 0 30px 10px transparentize($rgb-name-red--night, 0.7);
 			color: rgba(255, 255, 255, 0.53);
 		}

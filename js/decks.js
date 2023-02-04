@@ -64,6 +64,11 @@ class DecksPageCardStateManager extends ListPageStateManager {
 		await this._pPersistState();
 	}
 
+	async pReplaceCard (deck, card) {
+		delete this._state[this.getPropCardDrawn({deck, card})];
+		await this._pPersistState();
+	}
+
 	async pResetDeck (deck) {
 		const hashDeck = UrlUtil.autoEncodeHash(deck);
 		deck.cards
@@ -158,13 +163,13 @@ class DecksPage extends ListPage {
 		const $wrpControls = $(`<div class="ve-flex mt-auto" data-name="deck-wrp-controls"></div>`)
 			.prependTo(this._$wrpTabs);
 
-		const $btnDraw = $(`<button class="btn btn-xs btn-primary bb-0 bbr-0 bbl-0" title="Draw a Card (CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`)
+		const $btnDraw = $(`<button class="btn btn-xs btn-primary bb-0 bbr-0 bbl-0" title="Draw a Card (SHIFT to Skip Replacement; CTRL to Skip Animation)"><i class="fas fa-fw fa-cards"></i></button>`)
 			.click(async evt => {
 				const cards = this._compCardState.getUndrawnCards(ent);
 				if (!cards.length) return JqueryUtil.doToast({content: "All cards have already been drawn!", type: "warning"});
 
 				const card = RollerUtil.rollOnArray(cards);
-				await this._compCardState.pDrawCard(ent, card);
+				if (!card._isReplacement || evt.shiftKey) await this._compCardState.pDrawCard(ent, card);
 
 				if (evt.ctrlKey || evt.metaKey) {
 					const $eleChat = $$`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
@@ -181,7 +186,7 @@ class DecksPage extends ListPage {
 
 				try {
 					$btnDraw.prop("disabled", true);
-					await RenderDecks.pRenderStgCard({card});
+					await RenderDecks.pRenderStgCard({deck: ent, card});
 				} finally {
 					$btnDraw.prop("disabled", false);
 				}

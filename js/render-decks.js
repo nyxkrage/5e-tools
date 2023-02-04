@@ -45,25 +45,37 @@ class RenderDecks {
 			.map((card, ixCard) => {
 				const ptText = this.getCardTextHtml({card});
 
+				const $btnReplace = $(`<button class="btn btn-default btn-xs" title="Return Card to Deck"><i class="fas fa-arrow-rotate-left"></i></button>`)
+					.click(async evt => {
+						evt.stopPropagation();
+						await cardStateManager.pReplaceCard(ent, card);
+					});
+
 				const $btnViewer = $(`<button class="btn btn-default btn-xs" title="Open Card Viewer"><span class="glyphicon glyphicon-eye-open"></span></button>`)
 					.click(async evt => {
 						evt.stopPropagation();
 						try {
 							$btnViewer.prop("disabled", true);
-							await RenderDecks.pRenderStgCard({card});
+							await RenderDecks.pRenderStgCard({deck: ent, card});
 						} finally {
 							$btnViewer.prop("disabled", false);
 						}
 					});
 
 				const $wrpFace = $$`<div class="no-shrink px-1 decks__wrp-card-face relative">
-					<div class="absolute pt-2 pr-2 decks__wrp-btn-show-card">${$btnViewer}</div>
+					<div class="absolute pt-2 pr-2 decks__wrp-btn-show-card">
+						<div class="btn-group ve-flex-v-center">
+							${$btnReplace}
+							${$btnViewer}
+						</div>
+					</div>
 					${Renderer.get().setFirstSection(true).render({...card.face, title: card.name, altText: card.name})}
 				</div>`;
 
 				const propCardDrawn = cardStateManager.getPropCardDrawn({hashDeck, ixCard});
 				const hkCardDrawn = cardStateManager.addHookBase(propCardDrawn, () => {
 					const isDrawn = !!cardStateManager.get(propCardDrawn);
+					$btnReplace.prop("disabled", !isDrawn);
 					$wrpFace.toggleClass("decks__wrp-card-face--drawn", isDrawn);
 					$wrpFace.find("img").title(isDrawn ? `${card.name} (Drawn)` : card.name);
 				});
@@ -113,31 +125,48 @@ class RenderDecks {
 
 	/* -------------------------------------------- */
 
-	static async pRenderStgCard ({card}) {
-		const imgUrl = Renderer.utils.getMediaUrl(card.face, "href", "img");
+	static async pRenderStgCard ({deck, card}) {
+		const imgUrlBack = (card.back || deck.back) ? Renderer.utils.getMediaUrl(card.back || deck.back, "href", "img") : null;
+		const imgUrlCard = Renderer.utils.getMediaUrl(card.face, "href", "img");
 
-		const imgCard = await AnimationUtil.pLoadImage(imgUrl);
+		const imgBack = imgUrlBack ? await AnimationUtil.pLoadImage(imgUrlBack) : null;
+		if (imgBack) {
+			e_({
+				ele: imgBack,
+				clazz: "decks-draw__img-card-back absolute w-100 h-100",
+			});
+		}
+
+		const imgCard = await AnimationUtil.pLoadImage(imgUrlCard);
 		e_({
 			ele: imgCard,
 			clazz: "decks-draw__img-card",
-			title: card.name,
 		});
 
 		const dispGlint = e_({
 			tag: "div",
-			clazz: "decks-draw__disp-glint no-events no-select w-100 h-100 absolute",
+			clazz: "decks-draw__disp-glint no-events no-select absolute",
 		});
 
 		const wrpCard = e_({
 			tag: "div",
 			clazz: "decks-draw__wrp-card relative",
 			children: [
+				imgBack,
 				imgCard,
 				dispGlint,
 			],
 		});
 
-		const $wrpCardSway = $$`<div class="decks-draw__wrp-card-sway ve-flex-col no-select relative">${wrpCard}</div>`
+		const wrpCardFlip = e_({
+			tag: "div",
+			clazz: "decks-draw__wrp-card-flip",
+			children: [
+				wrpCard,
+			],
+		});
+
+		const $wrpCardSway = $$`<div class="decks-draw__wrp-card-sway ve-flex-col no-select relative">${wrpCardFlip}</div>`
 			.click(evt => evt.stopPropagation());
 
 		const metasSparkles = await [...new Array(8)]
@@ -180,13 +209,28 @@ class RenderDecks {
 		</div>`;
 
 		const ptText = RenderDecks.getCardTextHtml({card});
-		const $wrpInfo = $$`<div class="stats stats--book decks-draw__wrp-desc mobile__hidden px-2 text-center">${ptText}</div>`
+
+		const $wrpInfo = $$`<div class="stats stats--book decks-draw__wrp-desc mobile__hidden px-2 text-center mb-4">${ptText}</div>`
+			.click(evt => evt.stopPropagation());
+
+		const $btnFlip = imgBack
+			? $(`<button class="btn btn-default btn-xs px-3" title="Flip Card"><i class="fas fa-rotate"></i> Flip</button>`)
+				.click(evt => {
+					evt.stopPropagation();
+					wrpCardFlip.classList.toggle("decks-draw__wrp-card-flip--flipped");
+				})
+			: null;
+
+		const $wrpRhs = $$`<div class="decks-draw__wrp-rhs ve-flex-col">
+			${$wrpInfo}
+			<div class="ve-flex-vh-center mobile__mt-5">${$btnFlip}</div>
+		</div>`
 			.click(evt => evt.stopPropagation());
 
 		const $wrpDrawn = $$`<div class="decks-draw__stg ve-flex-vh-center">
-			<div class="ve-flex-v-center">
+			<div class="ve-flex-v-center mobile__ve-flex-col">
 				${$wrpCardOuter}
-				${$wrpInfo}
+				${$wrpRhs}
 			</div>
 		</div>`
 			.click(evt => {
@@ -211,7 +255,7 @@ class RenderDecks {
 
 		$wrpDrawn.addClass("decks-draw__stg--visible");
 		wrpCard.classList.add("decks-draw__wrp-card--visible");
-		$wrpInfo.addClass("decks-draw__wrp-desc--visible");
+		$wrpRhs.addClass("decks-draw__wrp-rhs--visible");
 		metasSparkles.forEach(it => it.imgSparkle.classList.add("decks-draw__img-sparkle--visible"));
 	}
 

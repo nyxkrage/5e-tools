@@ -3536,52 +3536,15 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;
 });
 
-Parser.TAG_TO_DEFAULT_SOURCE = {
-	"spell": Parser.SRC_PHB,
-	"item": Parser.SRC_DMG,
-	"class": Parser.SRC_PHB,
-	"subclass": Parser.SRC_PHB,
-	"creature": Parser.SRC_MM,
-	"condition": Parser.SRC_PHB,
-	"disease": Parser.SRC_DMG,
-	"status": Parser.SRC_DMG,
-	"background": Parser.SRC_PHB,
-	"race": Parser.SRC_PHB,
-	"optfeature": Parser.SRC_PHB,
-	"reward": Parser.SRC_DMG,
-	"feat": Parser.SRC_PHB,
-	"psionic": Parser.SRC_UATMC,
-	"object": Parser.SRC_DMG,
-	"cult": Parser.SRC_MTF,
-	"boon": Parser.SRC_MTF,
-	"trap": Parser.SRC_DMG,
-	"hazard": Parser.SRC_DMG,
-	"deity": Parser.SRC_PHB,
-	"variantrule": Parser.SRC_DMG,
-	"vehicle": Parser.SRC_GoS,
-	"vehupgrade": Parser.SRC_GoS,
-	"action": Parser.SRC_PHB,
-	"classFeature": Parser.SRC_PHB,
-	"subclassFeature": Parser.SRC_PHB,
-	"table": Parser.SRC_DMG,
-	"language": Parser.SRC_PHB,
-	"charoption": Parser.SRC_MOT,
-	"recipe": Parser.SRC_HEROES_FEAST,
-	"itemEntry": Parser.SRC_DMG,
-	"quickref": Parser.SRC_PHB,
-	"skill": Parser.SRC_PHB,
-	"sense": Parser.SRC_PHB,
-	"deck": Parser.SRC_DMG,
-	"card": Parser.SRC_DMG,
-};
 Parser.getTagSource = function (tag, source) {
 	if (source && source.trim()) return source;
 
 	tag = tag.trim();
-	if (tag.startsWith("@")) tag = tag.slice(1);
 
-	if (!Parser.TAG_TO_DEFAULT_SOURCE[tag]) throw new Error(`Unhandled tag "${tag}"`);
-	return Parser.TAG_TO_DEFAULT_SOURCE[tag];
+	const tagMeta = Renderer.tag.TAG_LOOKUP[tag];
+
+	if (!tagMeta) throw new Error(`Unhandled tag "${tag}"`);
+	return tagMeta.defaultSource;
 };
 
 Parser.PROP_TO_TAG = {

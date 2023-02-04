@@ -265,6 +265,10 @@
 					]
 				}
 			],
+			"savingThrow": [
+				"dexterity",
+				"wisdom"
+			],
 			"miscTags": [
 				"RO",
 				"SGT"

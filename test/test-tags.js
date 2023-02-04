@@ -244,7 +244,7 @@ class LinkCheck extends DataTesterBase {
 	}
 }
 LinkCheck._RE_TAG_BLOCKLIST = new Set(["quickref"]);
-LinkCheck.RE = RegExp(`{@(${Object.keys(Parser.TAG_TO_DEFAULT_SOURCE).filter(tag => !LinkCheck._RE_TAG_BLOCKLIST.has(tag)).join("|")}) ([^}]*?)}`, "g");
+LinkCheck.RE = RegExp(`{@(${Renderer.tag.TAGS.filter(it => it.defaultSource).map(it => it.tagName).filter(tag => !LinkCheck._RE_TAG_BLOCKLIST.has(tag)).join("|")}) ([^}]*?)}`, "g");
 
 class ClassLinkCheck extends DataTesterBase {
 	static registerParsedPrimitiveHandlers (parsedJsonChecker) {

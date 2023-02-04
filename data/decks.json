@@ -412,26 +412,86 @@
 			"page": 162,
 			"srd": true,
 			"cards": [
-				"Vizier|Deck of Many Things",
-				"Sun|Deck of Many Things",
-				"Moon|Deck of Many Things",
-				"Star|Deck of Many Things",
-				"Comet|Deck of Many Things",
-				"The Fates|Deck of Many Things",
-				"Throne|Deck of Many Things",
-				"Key|Deck of Many Things",
-				"Knight|Deck of Many Things",
-				"Gem|Deck of Many Things",
-				"Talons|Deck of Many Things",
-				"The Void|Deck of Many Things",
-				"Flames|Deck of Many Things",
-				"Skull|Deck of Many Things",
-				"Idiot|Deck of Many Things",
-				"Donjon|Deck of Many Things",
-				"Ruin|Deck of Many Things",
-				"Euryale|Deck of Many Things",
-				"Rogue|Deck of Many Things",
-				"Balance|Deck of Many Things",
+				{
+					"uid": "Vizier|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Sun|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Moon|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Star|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Comet|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "The Fates|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Throne|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Key|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Knight|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Gem|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Talons|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "The Void|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Flames|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Skull|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Idiot|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Donjon|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Ruin|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Euryale|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Rogue|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Balance|Deck of Many Things",
+					"replacement": true
+				},
 				"Fool|Deck of Many Things",
 				"Jester|Deck of Many Things"
 			],
@@ -856,18 +916,54 @@
 				}
 			},
 			"cards": [
-				"Sun|Deck of Many Things",
-				"Moon|Deck of Many Things",
-				"Star|Deck of Many Things",
-				"Throne|Deck of Many Things",
-				"Key|Deck of Many Things",
-				"Knight|Deck of Many Things",
-				"The Void|Deck of Many Things",
-				"Flames|Deck of Many Things",
-				"Skull|Deck of Many Things",
-				"Ruin|Deck of Many Things",
-				"Euryale|Deck of Many Things",
-				"Rogue|Deck of Many Things",
+				{
+					"uid": "Sun|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Moon|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Star|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Throne|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Key|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Knight|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "The Void|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Flames|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Skull|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Ruin|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Euryale|Deck of Many Things",
+					"replacement": true
+				},
+				{
+					"uid": "Rogue|Deck of Many Things",
+					"replacement": true
+				},
 				"Jester|Deck of Many Things"
 			]
 		},
@@ -876,28 +972,88 @@
 			"source": "LLK",
 			"page": 53,
 			"cards": [
-				"Balance|Deck of Several Things|LLK",
-				"Comet|Deck of Several Things|LLK",
-				"Donjon|Deck of Several Things|LLK",
-				"Euryale|Deck of Several Things|LLK",
-				"The Fates|Deck of Several Things|LLK",
-				"Flames|Deck of Several Things|LLK",
+				{
+					"uid": "Balance|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Comet|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Donjon|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Euryale|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "The Fates|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Flames|Deck of Several Things|LLK",
+					"replacement": true
+				},
 				"Fool|Deck of Several Things|LLK",
-				"Gem|Deck of Several Things|LLK",
-				"Idiot|Deck of Several Things|LLK",
+				{
+					"uid": "Gem|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Idiot|Deck of Several Things|LLK",
+					"replacement": true
+				},
 				"Jester|Deck of Several Things|LLK",
-				"Key|Deck of Several Things|LLK",
-				"Knight|Deck of Several Things|LLK",
-				"Moon|Deck of Several Things|LLK",
-				"Rogue|Deck of Several Things|LLK",
-				"Ruin|Deck of Several Things|LLK",
-				"Skull|Deck of Several Things|LLK",
-				"Star|Deck of Several Things|LLK",
-				"Sun|Deck of Several Things|LLK",
-				"Talons|Deck of Several Things|LLK",
-				"Throne|Deck of Several Things|LLK",
-				"Vizier|Deck of Several Things|LLK",
-				"The Void|Deck of Several Things|LLK"
+				{
+					"uid": "Key|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Knight|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Moon|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Rogue|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Ruin|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Skull|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Star|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Sun|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Talons|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Throne|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "Vizier|Deck of Several Things|LLK",
+					"replacement": true
+				},
+				{
+					"uid": "The Void|Deck of Several Things|LLK",
+					"replacement": true
+				}
 			],
 			"back": {
 				"type": "image",

@@ -1286,6 +1286,7 @@ class _DataTypeLoaderCustomDeck extends _DataTypeLoader {
 			.pSerialAwaitMap(async cardMeta => {
 				const uid = typeof cardMeta === "string" ? cardMeta : cardMeta.uid;
 				const count = typeof cardMeta === "string" ? 1 : cardMeta.count ?? 1;
+				const isReplacement = typeof cardMeta === "string" ? false : cardMeta.replacement ?? false;
 
 				const unpackedUid = DataUtil.deck.unpackUidCard(uid);
 				const {source} = unpackedUid;
@@ -1303,6 +1304,7 @@ class _DataTypeLoaderCustomDeck extends _DataTypeLoader {
 				if (!card) return notFoundUids.push(uid);
 
 				if (deck.otherSources && deck.source === card.source) card.otherSources = MiscUtil.copyFast(deck.otherSources);
+				if (isReplacement) card._isReplacement = true;
 
 				return [...new Array(count)].map(() => MiscUtil.copyFast(card));
 			}))
