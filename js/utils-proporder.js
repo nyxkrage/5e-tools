@@ -1420,6 +1420,7 @@ PropOrder._CARD = [
 	"basicRules",
 
 	"face",
+	"back",
 
 	"entries",
 ];

@@ -3482,7 +3482,10 @@
 									"8\u201310",
 									"The characters come across a group of roving outlaws (five to ten {@creature Thug||Thugs} led by a {@creature Bandit Captain}), who are heading to the monastery to join its ranks. They possess rumors and fragments of a map, and are keen to steal the characters' resources\u2014especially if {@creature Gearbox|LLK} the modron is present."
 								]
-							]
+							],
+							"data": {
+								"tableInclude": true
+							}
 						}
 					]
 				},
@@ -3533,7 +3536,10 @@
 									"8\u201310",
 									"A monastery work party\u2014six humanoid prisoners ({@creature Commoner||Commoners}) watched by five {@creature Cultist||Cultists} and a {@creature Cult Fanatic}\u2014is seen collecting ore to fuel the monastery's engines. If the prisoners are rescued, they can supply some knowledge of the monastery before fleeing the mountains."
 								]
-							]
+							],
+							"data": {
+								"tableInclude": true
+							}
 						}
 					]
 				},
@@ -3580,7 +3586,10 @@
 									"8\u201310",
 									"An isolated village clings to the mountainside, populated by {@creature Kenku} descended from Daoine Gloine refugees who fled the city when it was flooded with ooze. The kenku still remember ancient legends their forebears told about a cult of the medusa, as well as Kwalish's arrival and the \"plague of ooze.\" However, their ability to speak only in mimicry might make it challenging for the characters to communicate with them. In the course of the conversation, the kenku might mimic the sounds of destruction and screaming heard as the city was overwhelmed, relay the mad ranting of the medusa, and so forth. They might even repeat the words of Kwalish himself as he talks of his extradimensional experiments with glass baubles, and his efforts to hide his lab inside of one."
 								]
-							]
+							],
+							"data": {
+								"tableInclude": true
+							}
 						}
 					]
 				}

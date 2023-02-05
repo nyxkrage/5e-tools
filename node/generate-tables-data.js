@@ -11,7 +11,7 @@ class GenTables {
 	_doLoadAdventureData () {
 		return ut.readJson(`./data/adventures.json`).adventure
 			.map(idx => {
-				if (GenTables.ADVENTURE_ALLOWLIST[idx.id]) {
+				if (!GenTables.ADVENTURE_BLOCKLIST[idx.id]) {
 					return {
 						adventure: idx,
 						adventureData: JSON.parse(fs.readFileSync(`./data/adventure/adventure-${idx.id.toLowerCase()}.json`, "utf-8")),
@@ -189,10 +189,7 @@ class GenTables {
 	// -----------------------
 }
 GenTables.BOOK_BLOCKLIST = {};
-GenTables.ADVENTURE_ALLOWLIST = {
-	[Parser.SRC_SKT]: true,
-	[Parser.SRC_TTP]: true,
-};
+GenTables.ADVENTURE_BLOCKLIST = {};
 
 const generator = new GenTables();
 export default generator.pRun();
