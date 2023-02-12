@@ -9083,7 +9083,7 @@
 				{
 					"name": "Special Equipment",
 					"entries": [
-						"Viconia wears a belt of fire giant strength and a cloak of protection and wields a mace +3. Without the belt, her strength is 12 and her speed is reduced to 20 ft."
+						"Viconia wears a {@item belt of fire giant strength} and a {@item cloak of protection} and wields a {@item +3 Mace||mace +3}. Without the belt, her strength is 12 and her speed is reduced to 20 ft."
 					]
 				},
 				{

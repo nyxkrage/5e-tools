@@ -3465,7 +3465,7 @@
 		{
 			"name": "Basic Fishing Equipment",
 			"source": "AAG",
-			"page": 0,
+			"page": 21,
 			"type": "G",
 			"rarity": "none",
 			"value": 10,
@@ -3929,7 +3929,7 @@
 		{
 			"name": "Biza's Breath",
 			"source": "JttRC",
-			"page": 0,
+			"page": 70,
 			"type": "G",
 			"rarity": "none",
 			"poison": true,
@@ -4071,7 +4071,7 @@
 		{
 			"name": "Black Ghost Orchid Seed",
 			"source": "JttRC",
-			"page": 0,
+			"page": 212,
 			"type": "G",
 			"rarity": "none",
 			"entries": [
@@ -4987,7 +4987,7 @@
 		{
 			"name": "Bombard",
 			"source": "AAG",
-			"page": 0,
+			"page": 26,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 5000000,
@@ -8478,7 +8478,7 @@
 		{
 			"name": "Damselfly Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 28,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2000000,
@@ -13765,7 +13765,7 @@
 		{
 			"name": "Flying Fish Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 30,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2000000,
@@ -15421,7 +15421,7 @@
 		{
 			"name": "Hammerhead Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 32,
 			"otherSources": [
 				{
 					"source": "SjA"
@@ -19363,8 +19363,8 @@
 		},
 		{
 			"name": "Keg of Alchemist's Fire",
-			"source": "AAG",
-			"page": 0,
+			"source": "LoX",
+			"page": 35,
 			"type": "G",
 			"rarity": "none",
 			"entries": [
@@ -19757,7 +19757,7 @@
 		{
 			"name": "Lamprey Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 34,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2000000,
@@ -20198,7 +20198,7 @@
 		{
 			"name": "Lesser Hammock of Worlds",
 			"source": "JttRC",
-			"page": 0,
+			"page": 214,
 			"rarity": "legendary",
 			"wondrous": true,
 			"entries": [
@@ -20492,7 +20492,7 @@
 		{
 			"name": "Living Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 36,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2500000,
@@ -20723,7 +20723,7 @@
 			"entries": [
 				"Not all lingering spirits are tragic souls, lost on their way to the hereafter. Some languish as prisoners, souls so wicked mortals dare not free them upon an unsuspecting afterlife.",
 				"Created by a figure of Vistani legend, Luba's Tarokka of Souls shaped the destiny of countless heroes. The prophecies of this deck of cards also revealed great evils and guided its creator into the path of nefarious forces. Untold times the deck's creator, Mother Luba, narrowly escaped doom, spared only by her keen insights. But even for her, not all wickedness could be escaped. In the most dire cases, Mother Luba managed to ensnare beings of pure evil amid the strands of fate, imprisoning them within her tarroka deck. There these foul spirits dwell still, trapped within a nether-realm hidden amid shuffling cards, waiting for fate to turn foul\u2014as it inevitably will.",
-				"Like all tarokka decks, the {@i Tarokka of Souls} is a lavishly illustrated collection of fifty-four cards, comprising the fourteen cards of the high deck and forty other cards divided into four suits: coins, glyphs, stars, and swords.",
+				"Like all {@deck Tarokka Deck|CoS|tarokka decks}, the {@i Tarokka of Souls} is a lavishly illustrated collection of fifty-four cards, comprising the fourteen cards of the high deck and forty other cards divided into four suits: coins, glyphs, stars, and swords.",
 				{
 					"type": "entries",
 					"name": "Random Properties",
@@ -20886,7 +20886,7 @@
 					"type": "entries",
 					"name": "Destroying the Deck",
 					"entries": [
-						"Luba's Tarokka of Souls can be destroyed only if all fourteen souls within are released and destroyed. This reveals a fifteenth soul, a {@creature lich}, that inhabits the Nether card, which appears only when the fourteen souls are defeated. If this ancient entity is destroyed, the Nether card vanishes and the deck becomes a normal tarokka deck, with no special properties, but it includes a new card of the DM's design.",
+						"Luba's Tarokka of Souls can be destroyed only if all fourteen souls within are released and destroyed. This reveals a fifteenth soul, a {@creature lich}, that inhabits the Nether card, which appears only when the fourteen souls are defeated. If this ancient entity is destroyed, the Nether card vanishes and the deck becomes a normal {@deck Tarokka Deck|CoS|tarokka deck}, with no special properties, but it includes a new card of the DM's design.",
 						{
 							"type": "entries",
 							"name": "Mother Luba and the Vistani",
@@ -22747,7 +22747,7 @@
 		{
 			"name": "Nautiloid",
 			"source": "AAG",
-			"page": 0,
+			"page": 38,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 5000000,
@@ -23198,7 +23198,7 @@
 		{
 			"name": "Nightspider",
 			"source": "AAG",
-			"page": 0,
+			"page": 40,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 5000000,
@@ -29668,7 +29668,7 @@
 		{
 			"name": "Scorpion Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 42,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2500000,
@@ -30564,7 +30564,7 @@
 		{
 			"name": "Shrike Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 44,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2000000,
@@ -31538,7 +31538,7 @@
 		{
 			"name": "Space Galleon",
 			"source": "AAG",
-			"page": 0,
+			"page": 46,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 3000000,
@@ -32416,7 +32416,7 @@
 		{
 			"name": "Squid Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 48,
 			"otherSources": [
 				{
 					"source": "SjA"
@@ -33463,7 +33463,7 @@
 		{
 			"name": "Star Moth",
 			"source": "AAG",
-			"page": 0,
+			"page": 50,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 4000000,
@@ -38295,7 +38295,7 @@
 		{
 			"name": "Turtle Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 52,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 4000000,
@@ -38352,7 +38352,7 @@
 		{
 			"name": "Tyrant Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 54,
 			"type": "SPC",
 			"rarity": "none",
 			"crew": 10,
@@ -39599,7 +39599,7 @@
 		{
 			"name": "Wasp Ship",
 			"source": "AAG",
-			"page": 0,
+			"page": 56,
 			"type": "SPC",
 			"rarity": "none",
 			"value": 2000000,
@@ -40208,7 +40208,7 @@
 		{
 			"name": "White Ghost Orchid Seed",
 			"source": "JttRC",
-			"page": 0,
+			"page": 212,
 			"type": "G",
 			"rarity": "none",
 			"entries": [

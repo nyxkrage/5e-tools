@@ -2355,5 +2355,11 @@
 		"ver": "1.175.2",
 		"date": "2023-02-05",
 		"txt": "- Added Dungeon Master's Screen: Dungeon Kit decks to Decks page (thanks @ Lyra)\n- Fixed card backs being mirrored in Decks page\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.176.0",
+		"date": "2023-02-12",
+		"title": "Bits and Pieces",
+		"txt": "- Added page numbers to all remaining adventures/books (CRCotN, DoSI, JttRC, LoX; AAG, BAM), and to all entities from the same sources\n- Added \"Add to Blocklist\" context menu option to entries in list pages\n- Added \"Obscures Vision\", \"Difficult Terrain\", \"Additional Attack Damage\", and \"Affects Objects\" filters to the Spells page Miscellaneous filter\n- Added the CoS Tarokka deck to the Decks page (thanks @ Lyra)\n- (Mobile) Drawn cards on the Decks page can now be angled by tilting your device\n- Fixed Recipes page \"Serves\" dropdown having no effect\n- Fixed CR Scaler crashing when attempting to scale spellcasters\n- Fixed broken subclass source links on the Spells page\n- (Brew) Added rudimentary support for `\"resource\"` array on creatures, which allows HP-like resources to be listed\n- (Brew) Improved text converter handling of comma-separated text split across multiple lines\n- (Fixed typos/added tags)"
 	}
 ]

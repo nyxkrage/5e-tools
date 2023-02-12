@@ -29,7 +29,7 @@ class BaseParser {
 			: line;
 	}
 
-	static _getCleanInput (ipt, options) {
+	static _getCleanInput (ipt, options = null) {
 		let iptClean = ipt
 			.replace(/\n\r/g, "\n")
 			.replace(/\r\n/g, "\n")
@@ -51,12 +51,19 @@ class BaseParser {
 		iptClean = this._getCleanInput_parens(iptClean, "[", "]");
 		iptClean = this._getCleanInput_parens(iptClean, "{", "}");
 
-		// Apply `PAGE=...`
+		// Connect lines ending in, or starting in, a comma
 		iptClean = iptClean
-			.replace(/(?:\n|^)PAGE=(?<page>\d+)(?:\n|$)/gi, (...m) => {
-				options.page = Number(m.last().page);
-				return "";
-			});
+			.replace(/, *\n+ */g, ", ")
+			.replace(/ *\n+, */g, ", ");
+
+		if (options) {
+			// Apply `PAGE=...`
+			iptClean = iptClean
+				.replace(/(?:\n|^)PAGE=(?<page>\d+)(?:\n|$)/gi, (...m) => {
+					options.page = Number(m.last().page);
+					return "";
+				});
+		}
 
 		return iptClean;
 	}

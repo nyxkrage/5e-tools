@@ -60,13 +60,6 @@ class CreatureParser extends BaseParser {
 	) {
 		if (!meta.curLine) return false;
 
-		if (meta.curLine.trim().endsWith(",")) {
-			const nxtLine = meta.toConvert[++meta.ixToConvert];
-			if (!nxtLine) return false;
-			meta.curLine = `${meta.curLine.trim()} ${nxtLine.trim()}`;
-			return true;
-		}
-
 		if (isCrLine) return false; // avoid absorbing past the CR line
 
 		const nxtLine = meta.toConvert[meta.ixToConvert + 1];
@@ -139,18 +132,23 @@ class CreatureParser extends BaseParser {
 				.replace(/(\d\d?\s*\([-—+]?\d+\)\s*)+/gi, (...m) => `${m[0].replace(/\n/g, " ").replace(/\s+/g, " ")}\n`);
 
 			// (re-assemble after cleaning ability scores and) split into lines
-			clean = statsHeadFootSpl.join("").split("\n").filter(it => it && it.trim());
+			clean = statsHeadFootSpl.join("");
+
+			// Re-clean after applying the above
+			clean = this._getCleanInput(clean);
+
+			let cleanLines = clean.split("\n").filter(it => it && it.trim());
 
 			// Split apart "Challenge" and "Proficiency Bonus" if they are on the same line
-			const ixChallengePb = clean.findIndex(line => /^Challenge/.test(line.trim()) && /Proficiency Bonus/.test(line));
+			const ixChallengePb = cleanLines.findIndex(line => /^Challenge/.test(line.trim()) && /Proficiency Bonus/.test(line));
 			if (~ixChallengePb) {
-				let line = clean[ixChallengePb];
+				let line = cleanLines[ixChallengePb];
 				const [challengePart, pbLabel, pbRest] = line.split(/(Proficiency Bonus)/);
-				clean[ixChallengePb] = challengePart;
-				clean.splice(ixChallengePb + 1, 0, [pbLabel, pbRest].join(""));
+				cleanLines[ixChallengePb] = challengePart;
+				cleanLines.splice(ixChallengePb + 1, 0, [pbLabel, pbRest].join(""));
 			}
 
-			return clean;
+			return cleanLines;
 		})();
 
 		const stats = {};
@@ -1498,7 +1496,12 @@ class CreatureParser extends BaseParser {
 
 	static _brew_setResourceSouls (stats, meta, options) {
 		const m = this._RE_BREW_RESOURCE_SOULS.exec(meta.curLine);
-		MiscUtil.set(stats, "resource", "Souls", {value: Number(m.groups.value), formula: m.groups.formula});
+		(stats.resource = stats.resource || [])
+			.push({
+				name: "Souls",
+				value: Number(m.groups.value),
+				formula: m.groups.formula,
+			});
 	}
 	// endregion
 }

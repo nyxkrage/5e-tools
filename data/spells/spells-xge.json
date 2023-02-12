@@ -337,6 +337,9 @@
 			"savingThrow": [
 				"dexterity"
 			],
+			"miscTags": [
+				"OBJ"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -963,6 +966,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"OBJ",
 				"SCL",
 				"SGT"
 			],
@@ -1063,6 +1067,7 @@
 			],
 			"miscTags": [
 				"LGT",
+				"OBJ",
 				"UBA"
 			],
 			"areaTags": [
@@ -1317,6 +1322,7 @@
 				"To a creature immune to this effect, the winds are a fragrant, gentle breeze, and the area of {@spell spike growth} is harmless."
 			],
 			"miscTags": [
+				"OBS",
 				"PRM",
 				"SMN"
 			],
@@ -1885,6 +1891,9 @@
 			],
 			"damageInflict": [
 				"fire"
+			],
+			"miscTags": [
+				"AAD"
 			]
 		},
 		{
@@ -2018,6 +2027,8 @@
 				"force"
 			],
 			"miscTags": [
+				"AAD",
+				"DFT",
 				"THP"
 			]
 		},
@@ -2083,6 +2094,7 @@
 			],
 			"miscTags": [
 				"FMV",
+				"OBJ",
 				"SGT"
 			],
 			"areaTags": [
@@ -2205,6 +2217,7 @@
 				"constitution"
 			],
 			"miscTags": [
+				"AAD",
 				"LGT",
 				"SGT",
 				"UBA"
@@ -2638,6 +2651,9 @@
 			"savingThrow": [
 				"constitution"
 			],
+			"miscTags": [
+				"DFT"
+			],
 			"areaTags": [
 				"N",
 				"S"
@@ -2960,6 +2976,7 @@
 				"strength"
 			],
 			"miscTags": [
+				"DFT",
 				"FMV",
 				"SGT"
 			],
@@ -3729,6 +3746,7 @@
 				"constitution"
 			],
 			"miscTags": [
+				"OBS",
 				"SGT"
 			],
 			"areaTags": [
@@ -3875,6 +3893,9 @@
 			],
 			"damageInflict": [
 				"necrotic"
+			],
+			"miscTags": [
+				"OBS"
 			],
 			"areaTags": [
 				"S"
@@ -4382,6 +4403,7 @@
 				"strength"
 			],
 			"miscTags": [
+				"DFT",
 				"UBA"
 			],
 			"areaTags": [
@@ -4714,6 +4736,7 @@
 				"constitution"
 			],
 			"miscTags": [
+				"AAD",
 				"THP"
 			]
 		},
@@ -4927,6 +4950,7 @@
 				}
 			],
 			"miscTags": [
+				"OBJ",
 				"SMN",
 				"UBA"
 			],
@@ -5252,6 +5276,7 @@
 				"blinded"
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
@@ -5311,6 +5336,7 @@
 				"Any ranged weapon attack that enters the wall's space has disadvantage on the attack roll, and fire damage is halved if the fire effect passes through the wall to reach its target. Spells that deal cold damage that pass through the wall cause the area of the wall they pass through to freeze solid (at least a 5-foot-square section is frozen). Each 5-foot-square frozen section has AC 5 and 15 hit points. Reducing a frozen section to 0 hit points destroys it. When a section is destroyed, the wall's water doesn't fill it."
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
@@ -5370,6 +5396,9 @@
 			],
 			"conditionInflict": [
 				"deafened"
+			],
+			"miscTags": [
+				"DFT"
 			]
 		},
 		{
@@ -5638,6 +5667,7 @@
 				"strength"
 			],
 			"miscTags": [
+				"DFT",
 				"SGT",
 				"UBA"
 			],
@@ -5683,6 +5713,9 @@
 			],
 			"damageInflict": [
 				"force"
+			],
+			"miscTags": [
+				"AAD"
 			]
 		}
 	]

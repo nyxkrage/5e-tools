@@ -1377,6 +1377,10 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	LGT: "Creates Light",
 	UBA: "Uses Bonus Action",
 	PS: "Plane Shifting",
+	OBS: "Obscures Vision",
+	DFT: "Difficult Terrain",
+	AAD: "Additional Attack Damage",
+	OBJ: "Affects Objects",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -2020,7 +2024,7 @@ Parser._spSubclassesToCurrentAndLegacyFull = ({sp, subclassLookup, prop}) => {
 
 			const excludeSubclass = ExcludeUtil.isExcluded(
 				UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-					shortName: c.subclass.name,
+					shortName: c.subclass.shortName,
 					source: c.subclass.source,
 					className: c.class.name,
 					classSource: c.class.source,

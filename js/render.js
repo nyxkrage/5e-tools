@@ -3633,8 +3633,7 @@ Renderer.utils = {
 						subclass: {
 							shortName: subclassShortName.trim(),
 							source: subclassSource
-								// Subclass state uses the abbreviated form of the source for URL shortness
-								? Parser.sourceJsonToAbv(subclassSource.trim())
+								? subclassSource.trim()
 								: Parser.SRC_PHB,
 						},
 					};
@@ -6802,7 +6801,8 @@ Renderer.monster = {
 			</td></tr>
 			<tr><td colspan="6"><div class="border"></div></td></tr>
 			<tr><td colspan="6">
-				<div class="rd__compact-stat">
+				<div class="rd__compact-stat mt-2">
+					${mon.resource ? mon.resource.map(res => `<p><b>${res.name}</b> ${Renderer.monster.getRenderedResource(res)}</p>`).join("") : ""}
 					${mon.save ? `<p><b>Saving Throws</b> ${Renderer.monster.getSavesPart(mon)}</p>` : ""}
 					${mon.skill ? `<p><b>Skills</b> ${Renderer.monster.getSkillsString(renderer, mon)}</p>` : ""}
 					${mon.vulnerable ? `<p><b>Damage Vuln.</b> ${Parser.getFullImmRes(mon.vulnerable)}</p>` : ""}
@@ -6837,24 +6837,32 @@ Renderer.monster = {
 		return renderStack.join("");
 	},
 
+	_getFormulaMax (formula) {
+		return Renderer.dice.parseRandomise2(`dmax(${formula})`);
+	},
+
 	getRenderedHp: (hp, isPlainText) => {
-		function getMaxStr () {
-			const mHp = /^(\d+)d(\d+)([-+]\d+)?$/i.exec(hp.formula);
-			if (mHp) {
-				const num = Number(mHp[1]);
-				const faces = Number(mHp[2]);
-				const mod = mHp[3] ? Number(mHp[3]) : 0;
-				return `Maximum: ${(num * faces) + mod}`;
-			} else return "";
-		}
 		if (hp.special != null) return isPlainText ? Renderer.stripTags(hp.special) : Renderer.get().render(hp.special);
+
 		if (/^\d+d1$/.exec(hp.formula)) {
 			return hp.average;
-		} else {
-			const maxStr = getMaxStr(hp.formula);
-			if (isPlainText) return `${hp.average} (${hp.formula})`;
-			return `${maxStr ? `<span title="${maxStr}" class="help-subtle">` : ""}${hp.average}${maxStr ? "</span>" : ""} ${Renderer.get().render(`({@dice ${hp.formula}|${hp.formula}|Hit Points})`)}`;
 		}
+
+		if (isPlainText) return `${hp.average} (${hp.formula})`;
+
+		const maxVal = Renderer.monster._getFormulaMax(hp.formula);
+		const maxStr = maxVal ? `Maximum: ${maxVal}` : "";
+		return `${maxStr ? `<span title="${maxStr}" class="help-subtle">` : ""}${hp.average}${maxStr ? "</span>" : ""} ${Renderer.get().render(`({@dice ${hp.formula}|${hp.formula}|Hit Points})`)}`;
+	},
+
+	getRenderedResource (res, isPlainText) {
+		if (!res.formula) return `${res.value}`;
+
+		if (isPlainText) return `${res.value} (${res.formula})`;
+
+		const maxVal = Renderer.monster._getFormulaMax(res.formula);
+		const maxStr = maxVal ? `Maximum: ${maxVal}` : "";
+		return `${maxStr ? `<span title="${maxStr}" class="help-subtle">` : ""}${res.value}${maxStr ? "</span>" : ""} ${Renderer.get().render(`({@dice ${res.formula}|${res.formula}|${res.name}})`)}`;
 	},
 
 	getSpellcastingRenderedTraits: (renderer, mon, displayAsProp = "trait") => {
@@ -9321,13 +9329,22 @@ Renderer.recipe = {
 };
 
 Renderer.card = {
+	getFullEntries (ent) {
+		const entries = [...ent.entries || []];
+		if (ent.suit && (ent.valueName || ent.value)) {
+			entries.unshift(`{@i ${((ent.valueName || "") || Parser.numberToText(ent.value)).toTitleCase()} of ${ent.suit.toTitleCase()}}`);
+		}
+		return entries;
+	},
+
 	getCompactRenderedString (ent) {
+		const fullEntries = Renderer.card.getFullEntries(ent);
 		return `
 			${Renderer.utils.getNameTr(ent)}
 			<tr class="text"><td colspan="6">
 			${Renderer.get().setFirstSection(true).render({...ent.face, maxHeight: 40, maxHeightUnits: "vh"})}
-			<hr class="hr-3">
-			${Renderer.get().setFirstSection(true).render({type: "entries", entries: ent.entries}, 1)}
+			${fullEntries?.length ? `<hr class="hr-3">
+			${Renderer.get().setFirstSection(true).render({type: "entries", entries: fullEntries}, 1)}` : ""}
 			</td></tr>
 		`;
 	},

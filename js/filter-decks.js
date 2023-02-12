@@ -38,6 +38,10 @@ class PageFilterDecks extends PageFilter {
 			ent._fMisc,
 		);
 	}
+
+	static getListAliases (ent) {
+		return (ent.alias || []).map(it => `"${it}"`).join(",");
+	}
 }
 
 globalThis.PageFilterDecks = PageFilterDecks;

@@ -1571,12 +1571,14 @@ class ListPage {
 		this._contextMenuList = ContextUtil.getMenu([
 			new ContextUtil.Action(
 				"Popout",
-				(evt, userData) => {
+				async (evt, userData) => {
 					const {ele, selection} = userData;
-					this._handleGenericContextMenuClick_pDoMassPopout(evt, ele, selection);
+					await this._handleGenericContextMenuClick_pDoMassPopout(evt, ele, selection);
 				},
 			),
 			this._getContextActionAdd(),
+			null,
+			this._getContextActionBlocklist(),
 		]);
 	}
 
@@ -1605,6 +1607,16 @@ class ListPage {
 					this._updateSelected();
 				},
 			);
+	}
+
+	_getContextActionBlocklist () {
+		return new ContextUtil.Action(
+			"Add to Blocklist",
+			async (evt, userData) => {
+				const {ele, selection} = userData;
+				await this._handleGenericContextMenuClick_pDoMassBlocklist(evt, ele, selection);
+			},
+		);
 	}
 
 	_getOrTabRightButton (ident, icon, {title} = {}) {
@@ -1717,6 +1729,16 @@ class ListPage {
 			});
 		}
 
+		contextOptions.push(
+			null,
+			new ContextUtil.Action(
+				"Add to Blocklist",
+				async () => {
+					await this._pDoMassBlocklist([this._dataList[Hist.lastLoadedId]]);
+				},
+			),
+		);
+
 		const menu = ContextUtil.getMenu(contextOptions);
 		$btnOptions
 			.off("click")
@@ -1726,6 +1748,25 @@ class ListPage {
 	async _handleGenericContextMenuClick_pDoMassPopout (evt, ele, selection) {
 		const entities = selection.map(listItem => ({entity: this._dataList[listItem.ix], hash: listItem.values.hash}));
 		return _UtilListPage.pDoMassPopout(evt, ele, entities);
+	}
+
+	async _handleGenericContextMenuClick_pDoMassBlocklist (evt, ele, selection) {
+		await this._pDoMassBlocklist(selection.map(listItem => this._dataList[listItem.ix]));
+	}
+
+	async _pDoMassBlocklist (ents) {
+		await ExcludeUtil.pExtendList(
+			ents.map(ent => {
+				return {
+					category: ent.__prop,
+					displayName: ent._displayName || ent.name,
+					hash: UrlUtil.autoEncodeHash(ent),
+					source: ent.source,
+				};
+			}),
+		);
+
+		JqueryUtil.doToast(`Added ${ents.length} entr${ents.length === 1 ? "y" : "ies"} to the blocklist! Reload the page to view any changes.`);
 	}
 
 	doDeselectAll () { this.primaryLists.forEach(list => list.deselectAll()); }

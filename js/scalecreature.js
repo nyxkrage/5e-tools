@@ -1929,12 +1929,13 @@ globalThis.ScaleCreature = {
 	},
 
 	_spells: null,
-	_pInitSpellCache () {
+	async _pInitSpellCache () {
 		if (this._spells) return Promise.resolve();
 
 		this._spells = {};
-		return DataUtil.loadJSON(`${Renderer.get().baseUrl}data/spells/spells-phb.json`).then(data => {
-			this.__initSpellCache(data);
+
+		this.__initSpellCache({
+			spell: (await DataUtil.spell.loadJSON()).spell.filter(sp => sp.source === Parser.SRC_PHB),
 		});
 	},
 
