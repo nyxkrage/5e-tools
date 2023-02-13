@@ -2,6 +2,8 @@
 
 class AcConvert {
 	static tryPostProcessAc (mon, cbMan, cbErr) {
+		if (this._tryPostProcessAc_special(mon, cbMan, cbErr)) return;
+
 		let nuAc = [];
 
 		const parts = mon.ac.trim().split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX).map(it => it.trim()).filter(Boolean);
@@ -126,6 +128,18 @@ class AcConvert {
 		});
 
 		mon.ac = nuAc;
+	}
+
+	static _tryPostProcessAc_special (mon, cbMan, cbErr) {
+		mon.ac = mon.ac.trim();
+
+		const mPlusSpecial = /^(\d+) plus (?:PB|the level of the spell)(?: \([^)]+\))?$/i.exec(mon.ac);
+		if (mPlusSpecial) {
+			mon.ac = [{special: mon.ac}];
+			return true;
+		}
+
+		return false;
 	}
 
 	static _getSimpleFrom (fromLow) {
@@ -333,7 +347,7 @@ class TagDc {
 		m[prop] = m[prop]
 			.map(it => {
 				const str = JSON.stringify(it, null, "\t");
-				const out = str.replace(/DC (\d+)/g, "{@dc $1}");
+				const out = str.replace(/DC (\d+)(\s+plus PB|\s*\+\s*PB)?/g, "{@dc $1$2}");
 				return JSON.parse(out);
 			});
 	}

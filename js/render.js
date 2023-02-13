@@ -9332,7 +9332,8 @@ Renderer.card = {
 	getFullEntries (ent) {
 		const entries = [...ent.entries || []];
 		if (ent.suit && (ent.valueName || ent.value)) {
-			entries.unshift(`{@i ${((ent.valueName || "") || Parser.numberToText(ent.value)).toTitleCase()} of ${ent.suit.toTitleCase()}}`);
+			const suitAndValue = `${((ent.valueName || "") || Parser.numberToText(ent.value)).toTitleCase()} of ${ent.suit.toTitleCase()}`;
+			if (suitAndValue.toLowerCase() !== ent.name.toLowerCase()) entries.unshift(`{@i ${suitAndValue}}`);
 		}
 		return entries;
 	},

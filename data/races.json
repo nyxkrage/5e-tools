@@ -7364,13 +7364,6 @@
 					]
 				},
 				{
-					"name": "Ability Score Increase",
-					"entries": [
-						"Two different ability scores of your choice increase by 1."
-					],
-					"type": "entries"
-				},
-				{
 					"name": "Skills",
 					"entries": [
 						"You gain proficiency in one skill of your choice."
@@ -20306,15 +20299,6 @@
 					"int": 1,
 					"wis": 1,
 					"cha": 1
-				}
-			],
-			"entries": [
-				{
-					"name": "Ability Score Increase",
-					"entries": [
-						"Your ability scores each increase by 1."
-					],
-					"type": "entries"
 				}
 			],
 			"hasFluff": true,
