@@ -28,19 +28,31 @@ class AcConvert {
 			const cur = {ac: acNum};
 			const froms = [];
 
-			// Handle "in ... form" parts
+			// region Handle "in ... form" parts
 			let fromClean = fromRaw
 				// FIXME(Future) Find an example of a creature with this AC form to check accuracy of this parse
 				.replace(/ \(in .*? form\)$/i, (...m) => {
+					if (cur.condition) throw new Error(`Multiple AC conditions! "${cur.condition}" and "${m[0]}"`);
 					cur.condition = m[0].trim().toLowerCase();
 					return "";
 				})
 				.trim()
 				.replace(/ in .*? form$/i, (...m) => {
+					if (cur.condition) throw new Error(`Multiple AC conditions! "${cur.condition}" and "${m[0]}"`);
 					cur.condition = m[0].trim().toLowerCase();
 					return "";
 				})
 				.trim();
+			// endregion
+
+			// region Handle "while ..." parts
+			fromClean = fromClean
+				.replace(/^while .*$/, (...m) => {
+					if (cur.condition) throw new Error(`Multiple AC conditions! "${cur.condition}" and "${m[0]}"`);
+					cur.condition = m[0].trim().toLowerCase();
+					return "";
+				});
+			// endregion
 
 			fromClean
 				.toLowerCase()
@@ -176,8 +188,12 @@ class AcConvert {
 			case "blood aegis":
 			case "psychic defense":
 			case "glory": // BAM :: Reigar
+			case "mountain tattoo": // KftGV :: Prisoner 13
 				return fromLow;
 				// endregion
+
+			case "graz'zt's gift": // KftGV :: Sythian Skalderang
+				return fromLow.uppercaseFirst();
 
 			// region au naturel
 			case "natural armor":

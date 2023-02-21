@@ -5061,14 +5061,14 @@
 					"name": "Random Properties",
 					"type": "entries",
 					"entries": [
-						"The Book of Exalted Deeds has the following random properties:"
-					]
-				},
-				{
-					"type": "list",
-					"items": [
-						"2 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial properties}",
-						"2 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial properties}"
+						"The Book of Exalted Deeds has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial properties}",
+								"2 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial properties}"
+							]
+						}
 					]
 				},
 				{
@@ -5138,16 +5138,16 @@
 					"name": "Random Properties",
 					"type": "entries",
 					"entries": [
-						"The Book of Vile Darkness has the following random properties:"
-					]
-				},
-				{
-					"type": "list",
-					"items": [
-						"3 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial properties}",
-						"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
-						"3 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental properties}",
-						"2 {@table Artifact Properties; Major Detrimental Properties|dmg|major detrimental properties}"
+						"The Book of Vile Darkness has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"3 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial properties}",
+								"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
+								"3 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental properties}",
+								"2 {@table Artifact Properties; Major Detrimental Properties|dmg|major detrimental properties}"
+							]
+						}
 					]
 				},
 				{
@@ -5199,6 +5199,54 @@
 			"attachedSpells": [
 				"dominate monster"
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Book of Vile Darkness (Variant)",
+			"source": "KftGV",
+			"page": 207,
+			"_copy": {
+				"name": "Book of Vile Darkness",
+				"source": "DMG",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": {
+							"index": 7
+						},
+						"items": [
+							"The Book of Vile Darkness has the following properties:",
+							{
+								"type": "list",
+								"style": "list-hang-notitle",
+								"items": [
+									{
+										"type": "item",
+										"name": "Circle of Death",
+										"entries": [
+											"While attuned to the book, you can cast {@spell circle of death} (save DC 20) from it as an action. After you cast the spell, roll a {@dice d6}. On a roll of 1-5, you can't use this property again until the next dawn."
+										]
+									},
+									{
+										"type": "item",
+										"name": "Condition Immunities",
+										"entries": [
+											"While attuned to the book, you can't be {@condition charmed} or {@condition frightened}."
+										]
+									},
+									{
+										"type": "item",
+										"name": "Evil Presence",
+										"entries": [
+											"The book houses an evil spirit that is hostile toward you. When you become attuned to the book, the spirit tries to leave the book and enter your body. If you fail a DC 20 Charisma saving throw, it succeeds, and you become an NPC under the DM's control until the intruding spirit is banished using magic such as the {@spell dispel evil and good} spell. The banished spirit returns to the book."
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -7695,6 +7743,58 @@
 			],
 			"attachedSpells": [
 				"teleport"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Constantori's Portrait",
+			"source": "KftGV",
+			"page": 101,
+			"rarity": "very rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"sentient": true,
+			"weight": 15,
+			"recharge": "dawn",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"This painting by famed artist Dkesii Kwan depicts Constantori, a beautiful courtier, who was paid a staggering sum to be Dkesii's model. Whether Constantori's actual appearance matches the painting remains a subject of debate. The portrait is one of several paintings commissioned by the late Daiyani Grysthorn, a crime lord who frequently gave magical paintings as gifts to her most esteemed associates.",
+				{
+					"type": "entries",
+					"name": "Sentience",
+					"entries": [
+						"Constantori's Portrait is a sentient, lawful evil item with an Intelligence score of 14, a Wisdom score of 12, and a Charisma score of 8. It can hear within a range of 120 feet and has {@sense darkvision} within a range of 60 feet, but it can't see anything behind itself.",
+						"The painting can converse in Common, Draconic, and Elvish as if it were a living person, though Constantori's mouth doesn't move. Whenever conversation occurs within the portrait's auditory range, the painting eagerly gathers secrets, the names of secret tellers, significant events, or any political conversations."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Personality",
+					"entries": [
+						"Constantori's Portrait is demanding, condescending, and vain. It doesn't like being covered or placed out of sight, and it loudly condemns anyone who tries to remove it from its gold-leaf frame."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Wealth of Information",
+					"entries": [
+						"The painting's primary purpose is to observe and recall conversations. Over the past few decades, Constantori's Portrait has quietly observed countless conversations and now possesses an unquantifiable amount of lore\u2014everything from criminal conspiracies to secret passwords. The DM decides what the painting knows and what it doesn't.",
+						"While attuned to the painting, you can take an action to telepathically contact it over any distance, provided you and the painting are on the same plane of existence. The painting can't telepathically contact you, however. Maintaining telepathic contact with the painting requires your concentration (as if concentrating on a spell)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Guardian Portrait",
+					"entries": [
+						"While you are attuned to the painting, you can command it to guard its location against one or more creatures you identify as the painting's enemies. The painting performs this function until you command it to stop or until your attunement to the painting ends.",
+						"The painting has 3 charges. When a creature the painting identifies as its enemy starts its turn in a space the painting can see, the painting expends 1 of its charges to cast {@spell magic missile} (3 missiles), targeting that creature. The painting regains all expended charges daily at dawn.",
+						"The painting is a Small object with AC 12, 20 hit points, and immunity to poison damage. In its gold-leaf frame, the painting weighs 15 pounds. If the painting has at least 1 hit point and is targeted by a {@spell mending} spell, it regains {@dice 2d6} hit points."
+					]
+				}
+			],
+			"attachedSpells": [
+				"magic missile"
 			],
 			"hasFluffImages": true
 		},
@@ -12408,15 +12508,15 @@
 					"name": "Random Properties",
 					"type": "entries",
 					"entries": [
-						"The Eye of Vecna and the {@item Hand of Vecna} each have the following random properties:"
-					]
-				},
-				{
-					"type": "list",
-					"items": [
-						"1 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial property}",
-						"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
-						"1 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental property}"
+						"The Eye of Vecna and the {@item Hand of Vecna} each have the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial property}",
+								"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental property}"
+							]
+						}
 					]
 				},
 				{
@@ -15491,15 +15591,15 @@
 					"name": "Random Properties",
 					"type": "entries",
 					"entries": [
-						"The {@item Eye of Vecna} and the Hand of Vecna each have the following random properties:"
-					]
-				},
-				{
-					"type": "list",
-					"items": [
-						"1 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial property}",
-						"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
-						"1 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental property}"
+						"The {@item Eye of Vecna} and the Hand of Vecna each have the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial property}",
+								"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental property}"
+							]
+						}
 					]
 				},
 				{
@@ -30282,6 +30382,259 @@
 			]
 		},
 		{
+			"name": "Shard of Xeluan",
+			"source": "KftGV",
+			"page": 134,
+			"rarity": "rare",
+			"reqAttune": true,
+			"wondrous": true,
+			"curse": true,
+			"bonusSpellAttack": "+1",
+			"entries": [
+				"This 1-foot-long shard of obsidian has veins of silver and gold beneath its cold surface.",
+				{
+					"type": "entries",
+					"name": "Empowered Magic",
+					"entries": [
+						"While holding the shard, you can use it as a spellcasting focus, and it gives you a +1 bonus to your spell attack rolls."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enhanced Strength",
+					"entries": [
+						"Your Strength score increases by 4 while the shard is on your person. The shard can't raise your Strength score above 22."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Curse",
+					"entries": [
+						"Attuning to this item extends its curse to you. You remain cursed until you are targeted by a {@spell remove curse} spell or similar magic, or until the shard is reattached to Xeluan's {@condition petrified} heart.",
+						"The shard's curse causes misfortune to befall you. When you roll a 1 on an attack roll, an ability check, or a saving throw, roll on the Shard Misfortunes table to determine the misfortune. For as long as this misfortune lasts, no other shard misfortunes befall you."
+					]
+				},
+				{
+					"type": "table",
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"colLabels": [
+						"d6",
+						"Misfortune"
+					],
+					"rows": [
+						[
+							"1",
+							"You accidentally cut yourself with the shard and are {@condition poisoned} until the next dawn."
+						],
+						[
+							"2",
+							"You experience a vision of an ancient calamity\u2014a beautiful city threatened by crumbling mountains and erupting volcanoes\u2014and are {@condition stunned} until the end of your next turn."
+						],
+						[
+							"3",
+							"For a few seconds, the ground shakes under you. You and each creature within 10 feet of you must succeed on a DC 16 Dexterity saving throw or be knocked {@condition prone}."
+						],
+						[
+							"4",
+							"The shard releases three glowing darts of magical force that target one random creature within 30 feet of you. If no such target exists, you become the target. Each dart hits automatically and deals 3 ({@damage 1d4 + 1}) force damage to the target."
+						],
+						[
+							"5",
+							"Until the next dawn, Beasts with an Intelligence score of 3 or lower are hostile to you."
+						],
+						[
+							"6",
+							"Nothing seems to go your way. Until the next dawn, you have disadvantage on ability checks."
+						]
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shard Solitaire (Black Sapphire)",
+			"source": "KftGV",
+			"page": 193,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This gemstone contains an unstable extradimensional rift. Its facets are ribboned with iridescent veins that seem to move of their own accord. Five types of shard solitaire are known to exist, each one a different type of gemstone, as shown in the Shard Solitaire Types table.",
+				{
+					"type": "entries",
+					"name": "Rift Step",
+					"entries": [
+						"As a bonus action, while wearing or holding the shard solitaire, you can teleport yourself, along with anything you're wearing or carrying, to an unoccupied space you can see within 30 feet of yourself.",
+						"When you use this property, you can tap into the unstable power of the stone's extradimensional rift to increase the teleport distance by up to 30 feet, but if you teleport more than 30 feet using Rift Step, you must succeed on a DC 16 Constitution saving throw or take {@damage 3d10} force damage immediately after you teleport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The black sapphire shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell blight} (3 charges), {@spell finger of death} (6 charges)."
+					]
+				}
+			],
+			"attachedSpells": [
+				"mirror image",
+				"banishment",
+				"blight",
+				"finger of death"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shard Solitaire (Diamond)",
+			"source": "KftGV",
+			"page": 193,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This gemstone contains an unstable extradimensional rift. Its facets are ribboned with iridescent veins that seem to move of their own accord. Five types of shard solitaire are known to exist, each one a different type of gemstone, as shown in the Shard Solitaire Types table.",
+				{
+					"type": "entries",
+					"name": "Rift Step",
+					"entries": [
+						"As a bonus action, while wearing or holding the shard solitaire, you can teleport yourself, along with anything you're wearing or carrying, to an unoccupied space you can see within 30 feet of yourself.",
+						"When you use this property, you can tap into the unstable power of the stone's extradimensional rift to increase the teleport distance by up to 30 feet, but if you teleport more than 30 feet using Rift Step, you must succeed on a DC 16 Constitution saving throw or take {@damage 3d10} force damage immediately after you teleport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The diamond shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell ice storm} (3 charges), {@spell simulacrum} (6 charges; the duplicate create."
+					]
+				}
+			],
+			"attachedSpells": [
+				"mirror image",
+				"banishment",
+				"ice storm",
+				"simulacrum"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shard Solitaire (Jacinth)",
+			"source": "KftGV",
+			"page": 193,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This gemstone contains an unstable extradimensional rift. Its facets are ribboned with iridescent veins that seem to move of their own accord. Five types of shard solitaire are known to exist, each one a different type of gemstone, as shown in the Shard Solitaire Types table.",
+				{
+					"type": "entries",
+					"name": "Rift Step",
+					"entries": [
+						"As a bonus action, while wearing or holding the shard solitaire, you can teleport yourself, along with anything you're wearing or carrying, to an unoccupied space you can see within 30 feet of yourself.",
+						"When you use this property, you can tap into the unstable power of the stone's extradimensional rift to increase the teleport distance by up to 30 feet, but if you teleport more than 30 feet using Rift Step, you must succeed on a DC 16 Constitution saving throw or take {@damage 3d10} force damage immediately after you teleport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The jacinth shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell fireball} (2 charges), {@spell fire storm} (6 charges)."
+					]
+				}
+			],
+			"attachedSpells": [
+				"mirror image",
+				"banishment",
+				"fireball",
+				"fire storm"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shard Solitaire (Rainbow Pearl)",
+			"source": "KftGV",
+			"page": 193,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This gemstone contains an unstable extradimensional rift. Its facets are ribboned with iridescent veins that seem to move of their own accord. Five types of shard solitaire are known to exist, each one a different type of gemstone, as shown in the Shard Solitaire Types table.",
+				{
+					"type": "entries",
+					"name": "Rift Step",
+					"entries": [
+						"As a bonus action, while wearing or holding the shard solitaire, you can teleport yourself, along with anything you're wearing or carrying, to an unoccupied space you can see within 30 feet of yourself.",
+						"When you use this property, you can tap into the unstable power of the stone's extradimensional rift to increase the teleport distance by up to 30 feet, but if you teleport more than 30 feet using Rift Step, you must succeed on a DC 16 Constitution saving throw or take {@damage 3d10} force damage immediately after you teleport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The rainbow pearl shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell prismatic spray} (6 charges), {@spell water breathing} (2 charges)."
+					]
+				}
+			],
+			"attachedSpells": [
+				"mirror image",
+				"banishment",
+				"prismatic spray",
+				"water breathing"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shard Solitaire (Ruby)",
+			"source": "KftGV",
+			"page": 193,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This gemstone contains an unstable extradimensional rift. Its facets are ribboned with iridescent veins that seem to move of their own accord. Five types of shard solitaire are known to exist, each one a different type of gemstone, as shown in the Shard Solitaire Types table.",
+				{
+					"type": "entries",
+					"name": "Rift Step",
+					"entries": [
+						"As a bonus action, while wearing or holding the shard solitaire, you can teleport yourself, along with anything you're wearing or carrying, to an unoccupied space you can see within 30 feet of yourself.",
+						"When you use this property, you can tap into the unstable power of the stone's extradimensional rift to increase the teleport distance by up to 30 feet, but if you teleport more than 30 feet using Rift Step, you must succeed on a DC 16 Constitution saving throw or take {@damage 3d10} force damage immediately after you teleport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The ruby shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell fly} (2 charges), {@spell teleport} (6 charges)."
+					]
+				}
+			],
+			"attachedSpells": [
+				"mirror image",
+				"banishment",
+				"fly",
+				"teleport"
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Shatterspike",
 			"source": "TftYP",
 			"page": 229,
@@ -39106,19 +39459,19 @@
 					"name": "Random Properties",
 					"type": "entries",
 					"entries": [
-						"The Wand of Orcus has the following random properties:"
+						"The Wand of Orcus has the following random properties:",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial properties}",
+								"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
+								"2 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental properties}",
+								"1 {@table Artifact Properties; Major Detrimental Properties|dmg|major detrimental property}"
+							]
+						},
+						"The detrimental properties of the Wand of Orcus are suppressed while the wand is attuned to {@creature Orcus|MTF} himself."
 					]
 				},
-				{
-					"type": "list",
-					"items": [
-						"2 {@table Artifact Properties; Minor Beneficial Properties|dmg|minor beneficial properties}",
-						"1 {@table Artifact Properties; Major Beneficial Properties|dmg|major beneficial property}",
-						"2 {@table Artifact Properties; Minor Detrimental Properties|dmg|minor detrimental properties}",
-						"1 {@table Artifact Properties; Major Detrimental Properties|dmg|major detrimental property}"
-					]
-				},
-				"The detrimental properties of the Wand of Orcus are suppressed while the wand is attuned to {@creature Orcus|MTF} himself.",
 				{
 					"name": "Protection",
 					"type": "entries",
@@ -42586,6 +42939,84 @@
 			"lootTables": [
 				"Magic Item Table C"
 			]
+		},
+		{
+			"name": "Shard Solitaire",
+			"source": "KftGV",
+			"page": 193,
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This gemstone contains an unstable extradimensional rift. Its facets are ribboned with iridescent veins that seem to move of their own accord. Five types of shard solitaire are known to exist, each one a different type of gemstone, as shown in the Shard Solitaire Types table.",
+				{
+					"type": "entries",
+					"name": "Rift Step",
+					"entries": [
+						"As a bonus action, while wearing or holding the shard solitaire, you can teleport yourself, along with anything you're wearing or carrying, to an unoccupied space you can see within 30 feet of yourself.",
+						"When you use this property, you can tap into the unstable power of the stone's extradimensional rift to increase the teleport distance by up to 30 feet, but if you teleport more than 30 feet using Rift Step, you must succeed on a DC 16 Constitution saving throw or take {@damage 3d10} force damage immediately after you teleport."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. The Shard Solitaire Types table lists the spells common to all shard solitaires, as well as the spells specific to each kind of stone. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16).",
+						{
+							"type": "table",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Shard Solitaire",
+								"Spells"
+							],
+							"rows": [
+								[
+									"All",
+									"{@spell Banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge)"
+								],
+								[
+									"Black sapphire",
+									"{@spell Blight} (3 charges), {@spell finger of death} (6 charges)"
+								],
+								[
+									"Diamond",
+									"{@spell Ice storm} (3 charges), {@spell simulacrum} (6 charges; the duplicate created by the spell has the same number of hit points as the creature it imitates)"
+								],
+								[
+									"Jacinth",
+									"{@spell Fireball} (2 charges), {@spell fire storm} (6 charges)"
+								],
+								[
+									"Rainbow pearl",
+									"{@spell Prismatic spray} (6 charges), {@spell water breathing} (2 charges)"
+								],
+								[
+									"Ruby",
+									"{@spell Fly} (2 charges), {@spell teleport} (6 charges)"
+								]
+							]
+						}
+					]
+				}
+			],
+			"items": [
+				"Shard Solitaire (Black Sapphire)|KftGV",
+				"Shard Solitaire (Diamond)|KftGV",
+				"Shard Solitaire (Jacinth)|KftGV",
+				"Shard Solitaire (Rainbow Pearl)|KftGV",
+				"Shard Solitaire (Ruby)|KftGV"
+			],
+			"attachedSpells": [
+				"mirror image",
+				"banishment"
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Silken Spite",

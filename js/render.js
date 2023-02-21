@@ -2897,7 +2897,7 @@ Renderer.utils = {
 
 	getFluffTabContent ({entity, fluff, isImageTab = false}) {
 		Renderer.get().setFirstSection(true);
-		return fluff[isImageTab ? "images" : "entries"].map((ent, i) => {
+		return (fluff[isImageTab ? "images" : "entries"] || []).map((ent, i) => {
 			if (isImageTab) return Renderer.get().render(ent);
 
 			// If the first entry has a name, and it matches the name of the statblock, remove it to avoid having two

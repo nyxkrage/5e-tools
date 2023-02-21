@@ -826,7 +826,7 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 
 					$wrpPreviewInner
 						.empty()
-						.fastSetHtml(lis ? `<ul class="my-0">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
+						.fastSetHtml(lis ? `<ul class="my-0" onclick="event.stopPropagation()">${lis}</ul>` : Renderer.get().render(`{@note This list is empty.}`));
 				});
 		};
 		comp._addHookBase("manager_loader_isExpanded", hkIsExpanded);

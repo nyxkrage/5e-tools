@@ -2366,5 +2366,11 @@
 		"ver": "1.176.1",
 		"date": "2023-02-13",
 		"txt": "- (Brew) Improved Class Creature Scaler handling of proficiency bonus (\"PB\") terms\n  - Added PB substitution to passive Perception\n  - Terms are now simplified after substituting PB (e.g. \"+3 +3\" -> \"+6\")\n  - Fixed \"+PB\" not being substituted in dice/damage/etc. tags\n  - @dc tags may now have PB substituted\n  - HP now scales without the need to specify a class name (i.e. \"your level\" works as well as \"your Ranger level\")\n- (Brew) Improved Creature Text Converter handling of certain cases\n  - Added support for \"Saves\" as an alternative to \"Saving Throws\"\n  - Improve handling of alternate CR/XP formats\n  - Improved handling of \"PB\" in skills/saves/AC/DCs\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.177.0",
+		"date": "2023-02-21",
+		"title": "Topical",
+		"txt": "- Added Keys from the Golden Vault\n- (Brew) Fixed class creature scaler failing to scale non-PB-dependent passive perceptions\n- (Brew) Fixed class creature scaler erroneously evaluating some dice\n- (Brew) Fixed adding brew to non-editable sources in the Text Converter\n- (Brew) Fixed Race Text Converter parsing of creature type\n- (Brew) Fixed Text Converter mis-tagging \"vision and light\" headers\n- (Fixed typos/added tags)"
 	}
 ]
