@@ -12424,8 +12424,16 @@
 						"{@spell guidance}",
 						"{@spell mage hand}",
 						"{@spell vicious mockery}",
-						"{@spell true strike}"
+						"{@spell true strike}",
+						"{@spell detect thoughts}",
+						"{@spell levitate}"
 					],
+					"daily": {
+						"1e": [
+							"{@spell dominate monster}",
+							"{@spell plane shift} (self only)"
+						]
+					},
 					"spells": {
 						"1": {
 							"slots": 4,

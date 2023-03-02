@@ -47,17 +47,10 @@ class PageFilterDecks extends PageFilter {
 globalThis.PageFilterDecks = PageFilterDecks;
 
 class ListSyntaxDecks extends ListUiUtil.ListSyntax {
-	static _INDEXABLE_PROPS = [
+	static _INDEXABLE_PROPS_ENTRIES = [
 		"entries",
 		"cards",
 	];
-
-	_getSearchCacheStats (entity) {
-		if (this.constructor._INDEXABLE_PROPS.every(it => !entity[it])) return "";
-		const ptrOut = {_: ""};
-		this.constructor._INDEXABLE_PROPS.forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
-		return ptrOut._;
-	}
 }
 
 globalThis.ListSyntaxDecks = ListSyntaxDecks;

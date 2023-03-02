@@ -964,10 +964,14 @@ class ListUiUtil {
 			return this._getSearchCache_entries(entity);
 		}
 
+		static _INDEXABLE_PROPS_ENTRIES = [
+			"entries",
+		];
+
 		_getSearchCache_entries (entity) {
-			if (!entity.entries) return "";
+			if (this.constructor._INDEXABLE_PROPS_ENTRIES.every(it => !entity[it])) return "";
 			const ptrOut = {_: ""};
-			this._getSearchCache_handleEntryProp(entity, "entries", ptrOut);
+			this.constructor._INDEXABLE_PROPS_ENTRIES.forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
 			return ptrOut._;
 		}
 

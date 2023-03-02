@@ -691,7 +691,8 @@
 						"path": "adventure/XMtS/map of ixalan.webp"
 					},
 					"width": 1403,
-					"height": 936
+					"height": 936,
+					"imageType": "map"
 				}
 			],
 			"id": "030"

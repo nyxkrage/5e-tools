@@ -3932,7 +3932,9 @@
 			},
 			"darkvision": 60,
 			"traitTags": [
-				"Improved Resting"
+				"Improved Resting",
+				"Tool Proficiency",
+				"Weapon Proficiency"
 			],
 			"skillProficiencies": [
 				{
@@ -5006,7 +5008,7 @@
 			],
 			"speed": 30,
 			"traitTags": [
-				"Tool Proficiency"
+				"Weapon Proficiency"
 			],
 			"skillProficiencies": [
 				{
@@ -11413,7 +11415,9 @@
 			"darkvision": 60,
 			"traitTags": [
 				"Amphibious",
-				"Improved Resting"
+				"Improved Resting",
+				"Tool Proficiency",
+				"Weapon Proficiency"
 			],
 			"skillProficiencies": [
 				{
@@ -11505,7 +11509,9 @@
 			},
 			"darkvision": 60,
 			"traitTags": [
-				"Improved Resting"
+				"Improved Resting",
+				"Tool Proficiency",
+				"Weapon Proficiency"
 			],
 			"skillProficiencies": [
 				{

@@ -3206,7 +3206,8 @@
 								"path": "adventure/CM/022-04-002.map-handout.png"
 							},
 							"width": 2213,
-							"height": 3000
+							"height": 3000,
+							"imageType": "map"
 						},
 						{
 							"type": "entries",

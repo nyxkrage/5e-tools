@@ -6847,7 +6847,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"entries": [
-				"Whenever you roll this six\u2014sided die, you can control which number it rolls."
+				"Whenever you roll this six-sided die, you can control which number it rolls."
 			]
 		},
 		{
@@ -30514,7 +30514,7 @@
 					"type": "entries",
 					"name": "Spellcasting",
 					"entries": [
-						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The diamond shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell ice storm} (3 charges), {@spell simulacrum} (6 charges; the duplicate create."
+						"The stone has 6 charges and regains {@dice 1d6} expended charges daily at dawn. As an action, you can cast one of the stone's spells by expending the requisite number of charges, requiring no material components (save DC 16). The diamond shard solitaire can be used to cast the following spells: {@spell banishment} (3 charges; the target is banished to the stone's extradimensional space for the spell's duration), {@spell mirror image} (1 charge), {@spell ice storm} (3 charges), {@spell simulacrum} (6 charges; the duplicate created by the spell has the same number of hit points as the creature it imitates)."
 					]
 				}
 			],

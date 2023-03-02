@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.177.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.177.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -6316,6 +6316,16 @@ Array.prototype.meanAbsoluteDeviation || Object.defineProperty(Array.prototype, 
 	value: function () {
 		const mean = this.mean();
 		return (this.map(num => Math.abs(num - mean)) || []).mean();
+	},
+});
+
+Map.prototype.getOrSet || Object.defineProperty(Map.prototype, "getOrSet", {
+	enumerable: false,
+	writable: true,
+	value: function (k, orV) {
+		if (this.has(k)) return this.get(k);
+		this.set(k, orV);
+		return orV;
 	},
 });
 

@@ -26850,7 +26850,7 @@
 									"entries": [
 										{
 											"type": "image",
-											"imageType": "map",
+											"imageType": "mapPlayer",
 											"grid": {
 												"type": "square",
 												"size": 50

@@ -916,6 +916,7 @@
 				}
 			},
 			"int": 1,
+			"languages": null,
 			"action": [
 				{
 					"name": "Multiattack",
