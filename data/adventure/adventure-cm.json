@@ -3207,7 +3207,11 @@
 							},
 							"width": 2213,
 							"height": 3000,
-							"imageType": "map"
+							"imageType": "map",
+							"grid": {
+								"type": "none"
+							},
+							"title": "Map of Mystery"
 						},
 						{
 							"type": "entries",

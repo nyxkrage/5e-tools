@@ -95,6 +95,7 @@ class SublistManager {
 
 		this._$wrpSummaryControls = this._saveManager.$getRenderedSummary({
 			cbOnNew: (evt) => this.pHandleClick_new(evt),
+			cbOnDuplicate: (evt) => this.pHandleClick_duplicate(evt),
 			cbOnSave: (evt) => this.pHandleClick_save(evt),
 			cbOnLoad: (evt) => this.pHandleClick_load(evt),
 			cbOnReset: (evt, exportedSublist) => this.pDoLoadExportedSublist(exportedSublist),
@@ -389,6 +390,10 @@ class SublistManager {
 			prevExportableSublist: exportableSublistMemory,
 			evt,
 		}));
+	}
+
+	async pHandleClick_duplicate (evt) {
+		await this._saveManager.pDoDuplicate(await this.pGetExportableSublist({isForceIncludePlugins: true}));
 	}
 
 	async pHandleClick_load (evt) {

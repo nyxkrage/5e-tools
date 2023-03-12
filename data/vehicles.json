@@ -3393,7 +3393,7 @@
 						}
 					],
 					"entries": [
-						"This weapon looks like an eye mounted on an eyestalk. A beholder stationed in one of the tyrant ship's meditation pods can see through the eye by concentrating on it (as if concentrating on a spell) and use an action to make the following attack."
+						"This weapon looks like an eye mounted on an eyestalk. A beholder stationed in one of the tyrant ship's meditation pods can see through the eye by {@status concentration||concentrating} on it (as if {@status concentration||concentrating} on a spell) and use an action to make the following attack."
 					],
 					"action": [
 						{

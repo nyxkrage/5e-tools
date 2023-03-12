@@ -38,6 +38,7 @@
 				"paralyzed",
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -153,6 +154,7 @@
 				"poison",
 				"psychic"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -184,6 +186,7 @@
 				"poison",
 				"psychic"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -223,6 +226,7 @@
 			"immune": [
 				"fire"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -255,7 +259,8 @@
 			"immune": [
 				"fire",
 				"lightning"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Ashen Veteran",
@@ -284,6 +289,7 @@
 			"immune": [
 				"fire"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -312,7 +318,8 @@
 			],
 			"immune": [
 				"fire"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Charmayne Daymore",
@@ -681,10 +688,14 @@
 					}
 				}
 			},
+			"ac": [
+				11
+			],
 			"skill": {
 				"performance": "+7"
 			},
-			"reaction": null
+			"reaction": null,
+			"hasToken": true
 		},
 		{
 			"name": "Dr. Cassee Dannell",
@@ -778,6 +789,7 @@
 					"displayAs": "action"
 				}
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -966,7 +978,8 @@
 			"int": 10,
 			"languages": [
 				"Common"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Gregir Fendelsohn (Levels 1-4)",
@@ -1119,7 +1132,8 @@
 			"languages": [
 				"Common",
 				"Elvish"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Jarazoun",
@@ -1250,7 +1264,8 @@
 				"Gnomish",
 				"Terran",
 				"Undercommon"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "King Jhaeros",
@@ -1512,7 +1527,8 @@
 			"alignment": [
 				"L",
 				"G"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Nixylanna Vidorant",
@@ -2024,7 +2040,8 @@
 			"skill": {
 				"acrobatics": "+4",
 				"performance": "+4"
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Tixie Tockworth",
@@ -2194,7 +2211,8 @@
 						"names": "Spell Storing"
 					}
 				}
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Torgja Stonecrusher (Levels 1-4)",

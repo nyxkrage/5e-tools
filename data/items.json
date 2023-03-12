@@ -3000,7 +3000,7 @@
 			"rarity": "uncommon",
 			"wondrous": true,
 			"entries": [
-				"This backpack contains the spirit of an {@creature air elemental} and a compact leather balloon. While you're wearing the backpack, you can deploy the balloon as an action and gain the effect of the {@spell levitate} spell for 10 minutes, targeting yourself and requiring no concentration. Alternatively, you can use a reaction to deploy the balloon when you're falling and gain the effect of the {@spell feather fall} spell for yourself.",
+				"This backpack contains the spirit of an {@creature air elemental} and a compact leather balloon. While you're wearing the backpack, you can deploy the balloon as an action and gain the effect of the {@spell levitate} spell for 10 minutes, targeting yourself and requiring no {@status concentration}. Alternatively, you can use a reaction to deploy the balloon when you're falling and gain the effect of the {@spell feather fall} spell for yourself.",
 				"When either spell ends, the balloon slowly deflates as the elemental spirit escapes and returns to the Elemental Plane of Air. As the balloon deflates, you descend gently toward the ground for up to 60 feet. If you are still in the air at the end of this distance, you fall if you have no other means of staying aloft.",
 				"After the spirit departs, the backpack's property is unusable unless the backpack is recharged for 1 hour in an elemental air node, which binds another spirit to the backpack."
 			],
@@ -4177,7 +4177,7 @@
 					"type": "entries",
 					"entries": [
 						"While you hold the weapon. you are aware of the presence of Tiny or larger creatures within 60 feet of you that aren't constructs or undead. You also can't be {@condition charmed} or {@condition frightened}.",
-						"Blackrazor can cast the {@spell haste} spell on you once per day. It decides when to cast the spell and maintains concentration on it so that you don't have to."
+						"Blackrazor can cast the {@spell haste} spell on you once per day. It decides when to cast the spell and maintains {@status concentration} on it so that you don't have to."
 					]
 				},
 				{
@@ -7780,7 +7780,7 @@
 					"name": "Wealth of Information",
 					"entries": [
 						"The painting's primary purpose is to observe and recall conversations. Over the past few decades, Constantori's Portrait has quietly observed countless conversations and now possesses an unquantifiable amount of lore\u2014everything from criminal conspiracies to secret passwords. The DM decides what the painting knows and what it doesn't.",
-						"While attuned to the painting, you can take an action to telepathically contact it over any distance, provided you and the painting are on the same plane of existence. The painting can't telepathically contact you, however. Maintaining telepathic contact with the painting requires your concentration (as if concentrating on a spell)."
+						"While attuned to the painting, you can take an action to telepathically contact it over any distance, provided you and the painting are on the same plane of existence. The painting can't telepathically contact you, however. Maintaining telepathic contact with the painting requires your {@status concentration} (as if {@status concentration||concentrating} on a spell)."
 					]
 				},
 				{
@@ -12776,7 +12776,7 @@
 					"type": "entries",
 					"name": "Aberrant Ally",
 					"entries": [
-						"You can conjure an aberrant creature from the chaos of the multiverse to serve you. This functions as the {@spell conjure celestial} spell (no concentration required), except the creature you summon is an aberration of challenge rating 4 or lower. Once you use this feature of the far gear, it cannot be used again until the next dawn."
+						"You can conjure an aberrant creature from the chaos of the multiverse to serve you. This functions as the {@spell conjure celestial} spell (no {@status concentration} required), except the creature you summon is an aberration of challenge rating 4 or lower. Once you use this feature of the far gear, it cannot be used again until the next dawn."
 					]
 				},
 				{
@@ -12898,7 +12898,7 @@
 			],
 			"entries": [
 				"This warm crystal glints with the sunset colors of the Feywild sky and evokes whispers of emotional memory. As an action, you can attach the shard to a Tiny object (such as a weapon or a piece of jewelry) or detach it. It falls off if your attunement to it ends. You can use the shard as a spellcasting focus while you hold or wear it.",
-				"When you use a Metamagic option on a spell while you are holding or wearing the shard, you can roll on the {@table Wild Magic Surge|PHB} table in the {@book Player's Handbook|PHB}. If the result is a spell, it is too wild to be affected by your Metamagic, and if it normally requires concentration, it doesn't require concentration in this case; the spell lasts for its full duration.",
+				"When you use a Metamagic option on a spell while you are holding or wearing the shard, you can roll on the {@table Wild Magic Surge|PHB} table in the {@book Player's Handbook|PHB}. If the result is a spell, it is too wild to be affected by your Metamagic, and if it normally requires {@status concentration}, it doesn't require {@status concentration} in this case; the spell lasts for its full duration.",
 				"If you don't have the Wild Magic Sorcerous Origin, once this property is used to roll on the {@table Wild Magic Surge|PHB} table, it can't be used again until the next dawn."
 			],
 			"hasFluffImages": true
@@ -13836,7 +13836,7 @@
 			"entries": [
 				"The function of this ornate chair is to propel and maneuver a flying citadel on which it has been installed. The chair has AC 15, 18 hit points, and immunity to poison and psychic damage. It is destroyed if reduced to 0 hit points.",
 				"The sensation of being attuned to a flying citadel helm is akin to the pins-and-needles effect one experiences after one's arm or leg falls asleep, but not as intense.",
-				"While attuned to a flying citadel helm and sitting in it, you gain the following abilities for as long as you maintain concentration (as if concentrating on a spell):",
+				"While attuned to a flying citadel helm and sitting in it, you gain the following abilities for as long as you maintain {@status concentration} (as if {@status concentration||concentrating} on a spell):",
 				{
 					"type": "list",
 					"items": [
@@ -13845,7 +13845,7 @@
 						"At any time, you can see and hear from the highest point outside the citadel as though you were at that location."
 					]
 				},
-				"If no creature attuned to the helm is maintaining concentration, the citadel remains motionless in its space.",
+				"If no creature attuned to the helm is maintaining {@status concentration}, the citadel remains motionless in its space.",
 				{
 					"type": "entries",
 					"name": "Transfer Attunement",
@@ -16013,7 +16013,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"entries": [
-				"While wearing this helm, you can use an action to cast the {@spell detect thoughts} spell (save DC 13) from it. As long as you maintain concentration on the spell, you can use a bonus action to send a telepathic message to a creature you are focused on. It can reply\u2014using a bonus action to do so\u2014while your focus on it continues.",
+				"While wearing this helm, you can use an action to cast the {@spell detect thoughts} spell (save DC 13) from it. As long as you maintain {@status concentration} on the spell, you can use a bonus action to send a telepathic message to a creature you are focused on. It can reply\u2014using a bonus action to do so\u2014while your focus on it continues.",
 				"While focusing on a creature with {@spell detect thoughts}, you can use an action to cast the {@spell suggestion} spell (save DC 13) from the helm on that creature. Once used, the suggestion property can't be used again until the next dawn."
 			],
 			"optionalfeatures": [
@@ -20849,7 +20849,7 @@
 					"type": "entries",
 					"name": "Enduring Vision",
 					"entries": [
-						"While holding the deck, you automatically succeed on Constitution saving throws made to maintain your concentration on divination spells."
+						"While holding the deck, you automatically succeed on Constitution saving throws made to maintain your {@status concentration} on divination spells."
 					]
 				},
 				{
@@ -25786,7 +25786,7 @@
 			"tier": "minor",
 			"rarity": "rare",
 			"entries": [
-				"When you drink this potion, you gain the \"reduce\" effect of the {@spell enlarge/reduce} spell for {@dice 1d4} hours (no concentration required). The red in the potion's liquid continuously contracts to a tiny bead and then expands to color the clear liquid around it. Shaking the bottle fails to interrupt this process."
+				"When you drink this potion, you gain the \"reduce\" effect of the {@spell enlarge/reduce} spell for {@dice 1d4} hours (no {@status concentration} required). The red in the potion's liquid continuously contracts to a tiny bead and then expands to color the clear liquid around it. Shaking the bottle fails to interrupt this process."
 			],
 			"attachedSpells": [
 				"enlarge/reduce"
@@ -25923,7 +25923,7 @@
 			"tier": "minor",
 			"rarity": "rare",
 			"entries": [
-				"When you drink this potion, you gain the effect of the {@spell gaseous form} spell for 1 hour (no concentration required) or until you end the effect as a bonus action. This potion's container seems to hold fog that moves and pours like water."
+				"When you drink this potion, you gain the effect of the {@spell gaseous form} spell for 1 hour (no {@status concentration} required) or until you end the effect as a bonus action. This potion's container seems to hold fog that moves and pours like water."
 			],
 			"attachedSpells": [
 				"gaseous form"
@@ -25969,7 +25969,7 @@
 			"tier": "minor",
 			"rarity": "uncommon",
 			"entries": [
-				"When you drink this potion, you gain the \"enlarge\" effect of the {@spell enlarge/reduce} spell for {@dice 1d4} hours (no concentration required). The red in the potion's liquid continuously expands from a tiny bead to color the clear liquid around it and then contracts. Shaking the bottle fails to interrupt this process."
+				"When you drink this potion, you gain the \"enlarge\" effect of the {@spell enlarge/reduce} spell for {@dice 1d4} hours (no {@status concentration} required). The red in the potion's liquid continuously expands from a tiny bead to color the clear liquid around it and then contracts. Shaking the bottle fails to interrupt this process."
 			],
 			"attachedSpells": [
 				"enlarge/reduce"
@@ -26010,7 +26010,7 @@
 			"tier": "minor",
 			"rarity": "rare",
 			"entries": [
-				"For 1 hour after drinking it, you gain 10 temporary hit points that last for 1 hour. For the same duration, you are under the effect of the {@spell bless} spell (no concentration required). This blue potion bubbles and steams as if boiling."
+				"For 1 hour after drinking it, you gain 10 temporary hit points that last for 1 hour. For the same duration, you are under the effect of the {@spell bless} spell (no {@status concentration} required). This blue potion bubbles and steams as if boiling."
 			],
 			"attachedSpells": [
 				"bless"
@@ -26134,7 +26134,7 @@
 			"rarity": "rare",
 			"entries": [
 				"When you drink a potion of mind control, you can cast a dominate spell (save DC 15) on a specific creature if you do so before the end of your next turn. If you don't, the potion is wasted.",
-				"A potion of mind control produces the effect of a {@spell dominate beast} spell. If the target's initial saving throw fails, the effect lasts for 1 hour, with no concentration required on your part. The {@condition charmed} creature has disadvantage on new saving throws to break the effect during this time."
+				"A potion of mind control produces the effect of a {@spell dominate beast} spell. If the target's initial saving throw fails, the effect lasts for 1 hour, with no {@status concentration} required on your part. The {@condition charmed} creature has disadvantage on new saving throws to break the effect during this time."
 			],
 			"attachedSpells": [
 				"dominate beast"
@@ -26148,7 +26148,7 @@
 			"rarity": "rare",
 			"entries": [
 				"When you drink a potion of mind control, you can cast a dominate spell (save DC 15) on a specific creature if you do so before the end of your next turn. If you don't, the potion is wasted.",
-				"A potion of mind control produces the effect of a {@spell dominate person} spell. If the target's initial saving throw fails, the effect lasts for 1 hour, with no concentration required on your part. The {@condition charmed} creature has disadvantage on new saving throws to break the effect during this time."
+				"A potion of mind control produces the effect of a {@spell dominate person} spell. If the target's initial saving throw fails, the effect lasts for 1 hour, with no {@status concentration} required on your part. The {@condition charmed} creature has disadvantage on new saving throws to break the effect during this time."
 			],
 			"attachedSpells": [
 				"dominate person"
@@ -26162,7 +26162,7 @@
 			"rarity": "very rare",
 			"entries": [
 				"When you drink a potion of mind control, you can cast a dominate spell (save DC 15) on a specific creature if you do so before the end of your next turn. If you don't, the potion is wasted.",
-				"A potion of mind control produces the effect of a {@spell dominate monster} spell. If the target's initial saving throw fails, the effect lasts for 1 hour, with no concentration required on your part. The {@condition charmed} creature has disadvantage on new saving throws to break the effect during this time."
+				"A potion of mind control produces the effect of a {@spell dominate monster} spell. If the target's initial saving throw fails, the effect lasts for 1 hour, with no {@status concentration} required on your part. The {@condition charmed} creature has disadvantage on new saving throws to break the effect during this time."
 			],
 			"attachedSpells": [
 				"dominate monster"
@@ -26288,7 +26288,7 @@
 			"tier": "minor",
 			"rarity": "very rare",
 			"entries": [
-				"When you drink this potion, you gain the effect of the {@spell haste} spell for 1 minute (no concentration required). The potion's yellow fluid is streaked with black and swirls on its own."
+				"When you drink this potion, you gain the effect of the {@spell haste} spell for 1 minute (no {@status concentration} required). The potion's yellow fluid is streaked with black and swirls on its own."
 			],
 			"attachedSpells": [
 				"haste"
@@ -27708,7 +27708,7 @@
 			"rarity": "legendary",
 			"reqAttune": true,
 			"entries": [
-				"While wearing this ring, you can speak its command word as an action to summon a particular {@creature djinni} from the Elemental Plane of Air. The {@creature djinni} appears in an unoccupied space you choose within 120 feet of you. It remains as long as you concentrate (as if concentrating on a spell), to a maximum of 1 hour, or until it drops to 0 hit points. It then returns to its home plane.",
+				"While wearing this ring, you can speak its command word as an action to summon a particular {@creature djinni} from the Elemental Plane of Air. The {@creature djinni} appears in an unoccupied space you choose within 120 feet of you. It remains as long as you concentrate (as if {@status concentration||concentrating} on a spell), to a maximum of 1 hour, or until it drops to 0 hit points. It then returns to its home plane.",
 				"While summoned, the {@creature djinni} is friendly to you and your companions. It obeys any commands you give it, no matter what language you use. If you fail to command it, the {@creature djinni} defends itself against attackers but takes no other actions.",
 				"After the {@creature djinni} departs, it can't be summoned again for 24 hours, and the ring becomes nonmagical if the {@creature djinni} dies."
 			],
@@ -28006,7 +28006,7 @@
 			"rechargeAmount": "{@dice 1d3}",
 			"charges": 3,
 			"entries": [
-				"This band of iron resembles a skull and is cold to the touch. It has 3 charges and regains {@dice 1d3} expended charges daily at dawn. As an action while wearing the ring, you can expend 1 of its charges to cast the {@spell fog cloud} spell from it, with the following changes: the cloud is centered on you when it first appears, and the spell lasts for 1 minute (no concentration required)."
+				"This band of iron resembles a skull and is cold to the touch. It has 3 charges and regains {@dice 1d3} expended charges daily at dawn. As an action while wearing the ring, you can expend 1 of its charges to cast the {@spell fog cloud} spell from it, with the following changes: the cloud is centered on you when it first appears, and the spell lasts for 1 minute (no {@status concentration} required)."
 			],
 			"attachedSpells": [
 				"fog cloud"
@@ -28192,7 +28192,7 @@
 					"type": "entries",
 					"entries": [
 						"You can expend 2 charges as an action to create one to four 3-foot-diameter spheres of lightning. The more spheres you create, the less powerful each sphere is individually.",
-						"Each sphere appears in an unoccupied space you can see within 120 feet of you. The spheres last as long as you concentrate (as if concentrating on a spell), up to 1 minute. Each sphere sheds dim light in a 30-foot radius.",
+						"Each sphere appears in an unoccupied space you can see within 120 feet of you. The spheres last as long as you concentrate (as if {@status concentration||concentrating} on a spell), up to 1 minute. Each sphere sheds dim light in a 30-foot radius.",
 						"As a bonus action, you can move each sphere up to 30 feet, but no farther than 120 feet away from you. When a creature other than you comes within 5 feet of a sphere, the sphere discharges lightning at that creature and disappears. That creature must make a DC 15 Dexterity saving throw. On a failed save, the creature takes lightning damage based on the number of spheres you created. (4 spheres = {@dice 2d4}, 3 spheres = {@dice 2d6}, 2 spheres = {@dice 5d4}, 1 sphere = {@dice 4d12})"
 					]
 				},
@@ -28881,7 +28881,9 @@
 			"source": "DMG",
 			"page": 196,
 			"srd": true,
+			"baseItem": "mace|phb",
 			"type": "RD",
+			"typeAlt": "M",
 			"tier": "major",
 			"rarity": "legendary",
 			"reqAttune": true,
@@ -30809,7 +30811,7 @@
 							"items": [
 								"The shield has an Intelligence of 22, a Wisdom of 18, and a Charisma of 24, as well as hearing and {@sense truesight} out to a range of 120 feet.",
 								"The shield can speak, read, and understand Common and Infernal, and it can communicate telepathically with any creature it can sense within 120 feet of it. Its voice is a deep, hollow whisper.",
-								"The shield has 3 charges. You can use an action to expend 1 charge to cast {@spell fireball} or 2 charges to cast {@spell wall of fire} from the shield (save DC 21 for each). The {@spell wall of fire} spell lasts for 1 minute (no concentration required). The shield regains all expended charges daily at dawn.",
+								"The shield has 3 charges. You can use an action to expend 1 charge to cast {@spell fireball} or 2 charges to cast {@spell wall of fire} from the shield (save DC 21 for each). The {@spell wall of fire} spell lasts for 1 minute (no {@status concentration} required). The shield regains all expended charges daily at dawn.",
 								"Anytime during your turn, the shield can choose to radiate an aura of dread for 1 minute. (This is not a power of the shield that you control.) Any creature hostile to you that starts its turn within 20 feet of the shield must make a DC 18 Wisdom saving throw. On a failed save, the creature is {@condition frightened} until the start of its next turn. On a successful save, the creature is immune to this power of the shield for the next 24 hours. Once the shield uses this power, it can't use it again until the next dawn."
 							]
 						}
@@ -30872,7 +30874,7 @@
 					"type": "entries",
 					"name": "Bane",
 					"entries": [
-						"You can cast the {@spell bane} spell from the shield (save DC 17). The spell does not require concentration and lasts for 1 minute. Once you cast the spell from the shield, you can't do so again until you finish a short or long rest."
+						"You can cast the {@spell bane} spell from the shield (save DC 17). The spell does not require {@status concentration} and lasts for 1 minute. Once you cast the spell from the shield, you can't do so again until you finish a short or long rest."
 					]
 				},
 				{
@@ -32448,7 +32450,7 @@
 			"entries": [
 				"The function of this ornate chair is to propel and maneuver a ship on which it has been installed through space and air. It can also propel and maneuver a ship on water or underwater, provided the ship is built for such travel. The ship in question must weigh 1 ton or more.",
 				"The sensation of being attuned to a spelljamming helm is akin to the pins-and-needles effect one experiences after one's arm or leg falls asleep, but not as painful.",
-				"While attuned to a spelljamming helm and sitting in it, you gain the following abilities for as long as you maintain concentration (as if concentrating on a spell):",
+				"While attuned to a spelljamming helm and sitting in it, you gain the following abilities for as long as you maintain {@status concentration} (as if {@status concentration||concentrating} on a spell):",
 				{
 					"type": "list",
 					"items": [
@@ -32489,7 +32491,7 @@
 			"wondrous": true,
 			"entries": [
 				"This polished Eberron dragonshard fits in the hand and stores information similar to a book. The shard can hold the equivalent of one book that's no more than 320 pages long. A shard can be created blank or already filled with information. When the shard is created, the creator can set a passphrase that must be spoken to access the information stored within.",
-				"While holding the shard, you can use an action to open your mind to the shard, seeing its content in your mind. On subsequent rounds, reading the text or scribing new text on blank \"pages\" in the shard requires concentration (as if concentrating on a spell) and takes the same amount of time it takes you to read and write normally. Thinking of a particular phrase or topic draws you to the first section in the shard that addresses it.",
+				"While holding the shard, you can use an action to open your mind to the shard, seeing its content in your mind. On subsequent rounds, reading the text or scribing new text on blank \"pages\" in the shard requires {@status concentration} (as if {@status concentration||concentrating} on a spell) and takes the same amount of time it takes you to read and write normally. Thinking of a particular phrase or topic draws you to the first section in the shard that addresses it.",
 				"A wizard can use a spellshard as a spellbook, with the usual cost in gold and time to \"scribe\" a spell into the shard."
 			]
 		},
@@ -35874,7 +35876,7 @@
 					"entries": [
 						"The Infernal Machine's great size makes it largely immobile. To make ongoing use of the machine (such as while adventuring), it can be connected to its attuned user by a silver wire, a supply of which can always be produced from the machine's inner workings. This silver wire shares the same general nature as the silvery cord of an {@spell astral projection} spell, connecting to the body of the user and trailing behind them. When so attached, the wire becomes {@condition invisible}, astral, and extends to virtually infinite length.",
 						"As long as the wire remains intact, the attuned user can make full use of the Infernal Machine's powers, with their effects centered around the user. If the wire is cut\u2014something that can happen only when an effect specifically states that it can cut an {@spell astral projection}'s silvery cord\u2014the user suffers a sudden burst of feedback from the machine that kills them instantly.",
-						"Any effect of the Infernal Machine that requires concentration can be concentrated on by a remote user. The Infernal Machine's effects have a spell save DC of 14 or the attuned user's spell save DC, whichever is higher."
+						"Any effect of the Infernal Machine that requires {@status concentration} can be concentrated on by a remote user. The Infernal Machine's effects have a spell save DC of 14 or the attuned user's spell save DC, whichever is higher."
 					]
 				},
 				{
@@ -40948,6 +40950,8 @@
 			"name": "Witchlight Vane",
 			"source": "WBtW",
 			"page": 27,
+			"baseItem": "mace|phb",
+			"typeAlt": "M",
 			"rarity": "legendary",
 			"reqAttune": "by a mister light or his handpicked successor",
 			"sentient": true,

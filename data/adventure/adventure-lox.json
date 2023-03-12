@@ -783,8 +783,8 @@
 									"page": 14,
 									"id": "028",
 									"entries": [
-										"Once the ships are close enough, the three {@creature Astral Elf Warrior|BAM|astral elf warriors} board the {@i Moondancer}, their faces hidden behind visors, and haughtily demand Captain Sartell's surrender. She politely declines, prompting the astral elves to attack while the hadozees use the {@i Dark Star}'s ballistae to fire on characters they can see. Captain Sartell fights alongside the characters, but Traevus and his thugs, if they are aboard, come to the {@i Moondancer}'s defense only if it looks like the characters are about to lose.",
-										"The astral elves are confident they can conquer the {@i Moondancer}, but if two of the warriors fall, the third tries to retreat to the {@i Dark Star}. After that attempt succeeds or fails, the star moth beats a hasty retreat. The star priest, Altura, remains aboard the {@i Dark Star} and uses a {@spell sending} spell to relay what has happened to Helix, an astral elf on the Rock of Bral (see {@area chapter 4|05a|x}). The hadozees, meanwhile, are not great fighters and either flee or surrender if the characters engage them in melee."
+										"Once the ships are close enough, the three {@creature Astral Elf Warrior|BAM|astral elf warriors} board the {@i Moondancer}, their faces hidden behind visors, and haughtily demand Captain Sartell's surrender. She politely declines, prompting the astral elves to attack while the plasmoids use the {@i Dark Star}'s ballistae to fire on characters they can see. Captain Sartell fights alongside the characters, but Traevus and his thugs, if they are aboard, come to the {@i Moondancer}'s defense only if it looks like the characters are about to lose.",
+										"The astral elves are confident they can conquer the {@i Moondancer}, but if two of the warriors fall, the third tries to retreat to the {@i Dark Star}. After that attempt succeeds or fails, the star moth beats a hasty retreat. The star priest, Altura, remains aboard the {@i Dark Star} and uses a {@spell sending} spell to relay what has happened to Helix, an astral elf on the Rock of Bral (see {@area chapter 4|05a|x}). The plasmoids, meanwhile, are not great fighters and either flee or surrender if the characters engage them in melee."
 									]
 								},
 								{
@@ -807,20 +807,20 @@
 								},
 								{
 									"type": "entries",
-									"name": "Questioning the Hadozees",
+									"name": "Questioning the Plasmoids",
 									"page": 15,
 									"id": "02a",
 									"entries": [
-										"The hadozees are mercenaries and have no insight into the astral elves' motives or plans. Even so, they can provide the characters with the following pieces of information:",
+										"The plasmoids are mercenaries and have no insight into the astral elves' motives or plans. Even so, they can provide the characters with the following pieces of information:",
 										{
 											"type": "list",
 											"items": [
-												"The {@i Dark Star}'s cargo hold was packed with at least a hundred astral seeds, which were jettisoned one by one into the atmosphere of the party's home world. (The hadozees don't know what the astral seeds do, but they know that each one resembles a crystal pod roughly the size and shape of a coffin.)",
+												"The {@i Dark Star}'s cargo hold was packed with at least a hundred astral seeds, which were jettisoned one by one into the atmosphere of the party's home world. (The plasmoids don't know what the astral seeds do, but they know that each one resembles a crystal pod roughly the size and shape of a coffin.)",
 												"The astral elves hail from a faraway Wildspace system called {@area Xaryxispace|130|x}.",
 												"The {@i Dark Star} was one of several astral elf ships that traveled to the party's home world. The rest of the fleet has already departed."
 											]
 										},
-										"The hadozees are willing to serve aboard the {@i Moondancer} if they are treated fairly. If she survives the battle, Captain Sartell puts the hadozees to work, though she keeps them under close supervision."
+										"The plasmoids are willing to serve aboard the {@i Moondancer} if they are treated fairly. If she survives the battle, Captain Sartell puts the plasmoids to work, though she keeps them under close supervision."
 									]
 								},
 								{
@@ -829,7 +829,7 @@
 									"page": 15,
 									"id": "02b",
 									"entries": [
-										"If the characters are defeated, the astral elves allow dying characters to be stabilized. The astral elves assume control of the {@i Moondancer} while keeping Captain Sartell hostage aboard the {@i Dark Star} to ensure {@creature Flapjack|LoX}'s compliance. The astral elf and hadozee crew members are split between the two ships. The astral elves then start heading for the edge of the Wildspace system to rendezvous with the rest of Vael's fleet. En route, the two ships might encounter the derelict nautiloid, neogi raiders, or the Rock of Bral navy (all described in {@area chapters 3|032|x} and {@area 4|053|x}), providing the characters with opportunities to escape."
+										"If the characters are defeated, the astral elves allow dying characters to be stabilized. The astral elves assume control of the {@i Moondancer} while keeping Captain Sartell hostage aboard the {@i Dark Star} to ensure {@creature Flapjack|LoX}'s compliance. The astral elf and plasmoid crew members are split between the two ships. The astral elves then start heading for the edge of the Wildspace system to rendezvous with the rest of Vael's fleet. En route, the two ships might encounter the derelict nautiloid, neogi raiders, or the Rock of Bral navy (all described in {@area chapters 3|032|x} and {@area 4|053|x}), providing the characters with opportunities to escape."
 									]
 								},
 								{
@@ -838,7 +838,7 @@
 									"page": 15,
 									"id": "02c",
 									"entries": [
-										"The {@i Dark Star} is a fine treasure; however, surviving hadozee crew members recommend abandoning it, knowing that the astral elves will rain vengeance upon anyone in control of one of their ships. Its {@item spelljamming helm|AAG} is a more easily usable prize. It looks like a legless, high-backed chair made of wood, with crystal wings and armrests. Luminous crystals under the seat project a golden hexagon onto the floor; this hexagon stabilizes the helm, allowing it to swivel while holding it in place.",
+										"The {@i Dark Star} is a fine treasure; however, surviving plasmoid crew members recommend abandoning it, knowing that the astral elves will rain vengeance upon anyone in control of one of their ships. Its {@item spelljamming helm|AAG} is a more easily usable prize. It looks like a legless, high-backed chair made of wood, with crystal wings and armrests. Luminous crystals under the seat project a golden hexagon onto the floor; this hexagon stabilizes the helm, allowing it to swivel while holding it in place.",
 										"The {@i Dark Star}'s cargo hold contains enough food and water to sustain the ship's crew for twenty days."
 									]
 								}

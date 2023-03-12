@@ -1269,7 +1269,7 @@ globalThis.Renderer = function () {
 	this._renderStatblock = function (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
 
-		const page = entry.prop || Renderer.hover.TAG_TO_PAGE[entry.tag];
+		const page = entry.prop || Renderer.tag.getPage(entry.tag);
 		const source = Parser.getTagSource(entry.tag, entry.source);
 		const hash = entry.hash || (UrlUtil.URL_TO_HASH_BUILDER[page] ? UrlUtil.URL_TO_HASH_BUILDER[page]({...entry, name: entry.name, source}) : null);
 
@@ -1728,7 +1728,7 @@ globalThis.Renderer = function () {
 			case "@loader": {
 				const {name, path, mode} = this._renderString_getLoaderTagMeta(text);
 
-				const brewUtil = mode === "homebrew" ? "BrewUtil2" : mode === "prerelease" ? "PrereleaseUtil" : null;
+				const brewUtil = mode === "homebrew" ? BrewUtil2 : mode === "prerelease" ? PrereleaseUtil : null;
 
 				if (!brewUtil) {
 					textStack[0] += `<span class="text-danger" title="Unknown loader mode &quot;${mode.qq()}&quot;!">${name}<span class="glyphicon glyphicon-alert rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
@@ -3577,6 +3577,12 @@ Renderer.utils = {
 			case "@recipe": out.page = UrlUtil.PG_RECIPES; break;
 			case "@deck": out.page = UrlUtil.PG_DECKS; break;
 
+			case "@legroup": {
+				out.page = "legendaryGroup";
+				out.isFauxPage = true;
+				break;
+			}
+
 			case "@creature": {
 				out.page = UrlUtil.PG_BESTIARY;
 
@@ -3887,6 +3893,7 @@ Renderer.tag = class {
 	static _TagBase = class {
 		tagName;
 		defaultSource = null;
+		page = null;
 
 		get tag () { return `@${this.tagName}`; }
 
@@ -4183,146 +4190,181 @@ Renderer.tag = class {
 	static TagAction = class extends this._TagPipedDisplayTextThird {
 		tagName = "action";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_ACTIONS;
 	};
 
 	static TagBackground = class extends this._TagPipedDisplayTextThird {
 		tagName = "background";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_BACKGROUNDS;
 	};
 
 	static TagBoon = class extends this._TagPipedDisplayTextThird {
 		tagName = "boon";
 		defaultSource = Parser.SRC_MTF;
+		page = UrlUtil.PG_CULTS_BOONS;
 	};
 
 	static TagCharoption = class extends this._TagPipedDisplayTextThird {
 		tagName = "charoption";
 		defaultSource = Parser.SRC_MOT;
+		page = UrlUtil.PG_CHAR_CREATION_OPTIONS;
 	};
 
 	static TagClass = class extends this._TagPipedDisplayTextThird {
 		tagName = "class";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_CLASSES;
 	};
 
 	static TagCondition = class extends this._TagPipedDisplayTextThird {
 		tagName = "condition";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_CONDITIONS_DISEASES;
 	};
 
 	static TagCreature = class extends this._TagPipedDisplayTextThird {
 		tagName = "creature";
 		defaultSource = Parser.SRC_MM;
+		page = UrlUtil.PG_BESTIARY;
 	};
 
 	static TagCult = class extends this._TagPipedDisplayTextThird {
 		tagName = "cult";
 		defaultSource = Parser.SRC_MTF;
+		page = UrlUtil.PG_CULTS_BOONS;
 	};
 
 	static TagDeck = class extends this._TagPipedDisplayTextThird {
 		tagName = "deck";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_DECKS;
 	};
 
 	static TagDisease = class extends this._TagPipedDisplayTextThird {
 		tagName = "disease";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_CONDITIONS_DISEASES;
 	};
 
 	static TagFeat = class extends this._TagPipedDisplayTextThird {
 		tagName = "feat";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_FEATS;
 	};
 
 	static TagHazard = class extends this._TagPipedDisplayTextThird {
 		tagName = "hazard";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_TRAPS_HAZARDS;
 	};
 
 	static TagItem = class extends this._TagPipedDisplayTextThird {
 		tagName = "item";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_ITEMS;
 	};
 
 	static TagLanguage = class extends this._TagPipedDisplayTextThird {
 		tagName = "language";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_LANGUAGES;
+	};
+
+	static TagLegroup = class extends this._TagPipedDisplayTextThird {
+		tagName = "legroup";
+		defaultSource = Parser.SRC_MM;
+		page = "legendaryGroup";
 	};
 
 	static TagObject = class extends this._TagPipedDisplayTextThird {
 		tagName = "object";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_OBJECTS;
 	};
 
 	static TagOptfeature = class extends this._TagPipedDisplayTextThird {
 		tagName = "optfeature";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_OPT_FEATURES;
 	};
 
 	static TagPsionic = class extends this._TagPipedDisplayTextThird {
 		tagName = "psionic";
 		defaultSource = Parser.SRC_UATMC;
+		page = UrlUtil.PG_PSIONICS;
 	};
 
 	static TagRace = class extends this._TagPipedDisplayTextThird {
 		tagName = "race";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_RACES;
 	};
 
 	static TagRecipe = class extends this._TagPipedDisplayTextThird {
 		tagName = "recipe";
 		defaultSource = Parser.SRC_HEROES_FEAST;
+		page = UrlUtil.PG_RECIPES;
 	};
 
 	static TagReward = class extends this._TagPipedDisplayTextThird {
 		tagName = "reward";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_REWARDS;
 	};
 
 	static TagVehicle = class extends this._TagPipedDisplayTextThird {
 		tagName = "vehicle";
 		defaultSource = Parser.SRC_GoS;
+		page = UrlUtil.PG_VEHICLES;
 	};
 
 	static TagVehupgrade = class extends this._TagPipedDisplayTextThird {
 		tagName = "vehupgrade";
 		defaultSource = Parser.SRC_GoS;
+		page = UrlUtil.PG_VEHICLES;
 	};
 
 	static TagSense = class extends this._TagPipedDisplayTextThird {
 		tagName = "sense";
 		defaultSource = Parser.SRC_PHB;
+		page = "sense";
 	};
 
 	static TagSkill = class extends this._TagPipedDisplayTextThird {
 		tagName = "skill";
 		defaultSource = Parser.SRC_PHB;
+		page = "skill";
 	};
 
 	static TagSpell = class extends this._TagPipedDisplayTextThird {
 		tagName = "spell";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_SPELLS;
 	};
 
 	static TagStatus = class extends this._TagPipedDisplayTextThird {
 		tagName = "status";
-		defaultSource = Parser.SRC_DMG;
+		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_CONDITIONS_DISEASES;
 	};
 
 	static TagTable = class extends this._TagPipedDisplayTextThird {
 		tagName = "table";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_TABLES;
 	};
 
 	static TagTrap = class extends this._TagPipedDisplayTextThird {
 		tagName = "trap";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_TRAPS_HAZARDS;
 	};
 
 	static TagVariantrule = class extends this._TagPipedDisplayTextThird {
 		tagName = "variantrule";
 		defaultSource = Parser.SRC_DMG;
+		page = UrlUtil.PG_VARIANTRULES;
 	};
 
 	static _TagPipedDisplayTextFourth = class extends this._TagBaseAt {
@@ -4335,11 +4377,13 @@ Renderer.tag = class {
 	static TagCard = class extends this._TagPipedDisplayTextFourth {
 		tagName = "card";
 		defaultSource = Parser.SRC_DMG;
+		page = "card";
 	};
 
 	static TagDeity = class extends this._TagPipedDisplayTextFourth {
 		tagName = "deity";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_DEITIES;
 	};
 
 	static _TagPipedDisplayTextSixth = class extends this._TagBaseAt {
@@ -4352,6 +4396,7 @@ Renderer.tag = class {
 	static TagClassFeature = class extends this._TagPipedDisplayTextSixth {
 		tagName = "classFeature";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_CLASSES;
 	};
 
 	static _TagPipedDisplayTextEight = class extends this._TagBaseAt {
@@ -4364,11 +4409,13 @@ Renderer.tag = class {
 	static TagSubclassFeature = class extends this._TagPipedDisplayTextEight {
 		tagName = "subclassFeature";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_CLASSES;
 	};
 
 	static TagQuickref = class extends this._TagBaseAt {
 		tagName = "quickref";
 		defaultSource = Parser.SRC_PHB;
+		page = UrlUtil.PG_QUICKREF;
 
 		_getStripped (tag, text) {
 			const {name, displayText} = DataUtil.quickreference.unpackUid(text);
@@ -4487,6 +4534,7 @@ Renderer.tag = class {
 		new this.TagHazard(),
 		new this.TagItem(),
 		new this.TagLanguage(),
+		new this.TagLegroup(),
 		new this.TagObject(),
 		new this.TagOptfeature(),
 		new this.TagPsionic(),
@@ -4529,6 +4577,13 @@ Renderer.tag = class {
 	}
 
 	static _ = this._init();
+
+	/* ----------------------------------------- */
+
+	static getPage (tag) {
+		const tagInfo = this.TAG_LOOKUP[tag];
+		return tagInfo?.page;
+	}
 };
 
 Renderer.events = {
@@ -6666,7 +6721,7 @@ Renderer.monster = {
 	getTypeAlignmentPart (mon) {
 		const typeObj = Parser.monTypeToFullObj(mon.type);
 
-		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick.toTitleCase()}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText.toTitleCase()}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
+		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
 	},
 	getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; },
 	getSensesPart (mon) { return `${mon.senses ? `${Renderer.monster.getRenderedSenses(mon.senses)}, ` : ""}passive Perception ${mon.passive || "\u2014"}`; },
@@ -9406,43 +9461,6 @@ Renderer.generic = {
 };
 
 Renderer.hover = {
-	TAG_TO_PAGE: {
-		"spell": UrlUtil.PG_SPELLS,
-		"item": UrlUtil.PG_ITEMS,
-		"creature": UrlUtil.PG_BESTIARY,
-		"condition": UrlUtil.PG_CONDITIONS_DISEASES,
-		"disease": UrlUtil.PG_CONDITIONS_DISEASES,
-		"status": UrlUtil.PG_CONDITIONS_DISEASES,
-		"background": UrlUtil.PG_BACKGROUNDS,
-		"race": UrlUtil.PG_RACES,
-		"optfeature": UrlUtil.PG_OPT_FEATURES,
-		"reward": UrlUtil.PG_REWARDS,
-		"feat": UrlUtil.PG_FEATS,
-		"psionic": UrlUtil.PG_PSIONICS,
-		"object": UrlUtil.PG_OBJECTS,
-		"cult": UrlUtil.PG_CULTS_BOONS,
-		"boon": UrlUtil.PG_CULTS_BOONS,
-		"trap": UrlUtil.PG_TRAPS_HAZARDS,
-		"hazard": UrlUtil.PG_TRAPS_HAZARDS,
-		"deity": UrlUtil.PG_DEITIES,
-		"variantrule": UrlUtil.PG_VARIANTRULES,
-		"charoption": UrlUtil.PG_CHAR_CREATION_OPTIONS,
-		"vehicle": UrlUtil.PG_VEHICLES,
-		"vehupgrade": UrlUtil.PG_VEHICLES,
-		"class": UrlUtil.PG_CLASSES,
-		"action": UrlUtil.PG_ACTIONS,
-		"language": UrlUtil.PG_LANGUAGES,
-		"classFeature": UrlUtil.PG_CLASSES,
-		"subclassFeature": UrlUtil.PG_CLASSES,
-		"table": UrlUtil.PG_TABLES,
-		"recipe": UrlUtil.PG_RECIPES,
-		"quickref": UrlUtil.PG_QUICKREF,
-		"deck": UrlUtil.PG_DECKS,
-		"card": "card",
-		"skill": "skill",
-		"sense": "sense",
-	},
-
 	LinkMeta: function () {
 		this.isHovered = false;
 		this.isLoading = false;

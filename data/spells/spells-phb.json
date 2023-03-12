@@ -1654,7 +1654,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"If you cast this spell using a spell slot of 4th level or higher, the duration is concentration, up to 10 minutes. If you use a spell slot of 5th level or higher, the duration is 8 hours. If you use a spell slot of 7th level or higher, the duration is 24 hours. If you use a 9th level spell slot, the spell lasts until it is dispelled. Using a spell slot of 5th level or higher grants a duration that doesn't require concentration."
+						"If you cast this spell using a spell slot of 4th level or higher, the duration is {@status concentration}, up to 10 minutes. If you use a spell slot of 5th level or higher, the duration is 8 hours. If you use a spell slot of 7th level or higher, the duration is 24 hours. If you use a 9th level spell slot, the spell lasts until it is dispelled. Using a spell slot of 5th level or higher grants a duration that doesn't require {@status concentration}."
 					]
 				}
 			],
@@ -3666,7 +3666,7 @@
 			"entries": [
 				"You call forth an elemental servant. Choose an area of air, earth, fire, or water that fills a 10-foot cube within range. An {@filter elemental of challenge rating 5 or lower|bestiary|challenge rating=[&0;&5]|type=elemental|miscellaneous=!swarm} appropriate to the area you chose appears in an unoccupied space within 10 feet of it. For example, a {@creature fire elemental} emerges from a bonfire, and an {@creature earth elemental} rises up from the ground. The elemental disappears when it drops to 0 hit points or when the spell ends.",
 				"The elemental is friendly to you and your companions for the duration. Roll initiative for the elemental, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you). If you don't issue any commands to the elemental, it defends itself from hostile creatures but otherwise takes no actions.",
-				"If your concentration is broken, the elemental doesn't disappear. Instead, you lose control of the elemental, it becomes hostile toward you and your companions, and it might attack. An uncontrolled elemental can't be dismissed by you, and it disappears 1 hour after you summoned it.",
+				"If your {@status concentration} is broken, the elemental doesn't disappear. Instead, you lose control of the elemental, it becomes hostile toward you and your companions, and it might attack. An uncontrolled elemental can't be dismissed by you, and it disappears 1 hour after you summoned it.",
 				"The DM has the elemental's statistics."
 			],
 			"entriesHigherLevel": [
@@ -3719,7 +3719,7 @@
 			"entries": [
 				"You summon a {@filter fey creature of challenge rating 6 or lower|bestiary|challenge rating=[&0;&6]|type=fey|miscellaneous=!swarm}, or a fey spirit that takes the form of a {@filter beast of challenge rating 6 or lower|bestiary|challenge rating=[&0;&6]|type=beast|miscellaneous=!swarm}. It appears in an unoccupied space that you can see within range. The fey creature disappears when it drops to 0 hit points or when the spell ends.",
 				"The fey creature is friendly to you and your companions for the duration. Roll initiative for the creature, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you), as long as they don't violate its alignment. If you don't issue any commands to the fey creature, it defends itself from hostile creatures but otherwise takes no actions.",
-				"If your concentration is broken, the fey creature doesn't disappear. Instead, you lose control of the fey creature, it becomes hostile toward you and your companions, and it might attack. An uncontrolled fey creature can't be dismissed by you, and it disappears 1 hour after you summoned it.",
+				"If your {@status concentration} is broken, the fey creature doesn't disappear. Instead, you lose control of the fey creature, it becomes hostile toward you and your companions, and it might attack. An uncontrolled fey creature can't be dismissed by you, and it disappears 1 hour after you summoned it.",
 				"The DM has the fey creature's statistics."
 			],
 			"entriesHigherLevel": [
@@ -5108,7 +5108,7 @@
 				}
 			],
 			"entries": [
-				"A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A creature takes fire damage equal to the total accumulated damage on a failed save, or half as much damage on a successful one.",
+				"A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, either because your {@status concentration} is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A creature takes fire damage equal to the total accumulated damage on a failed save, or half as much damage on a successful one.",
 				"The spell's base damage is {@damage 12d6}. If at the end of your turn the bead has not yet detonated, the damage increases by {@dice 1d6}.",
 				"If the glowing bead is touched before the interval has expired, the creature touching it must make a Dexterity saving throw. On a failed save, the spell ends immediately, causing the bead to erupt in flame. On a successful save, the creature can throw the bead up to 40 feet. When it strikes a creature or a solid object, the spell ends, and the bead explodes.",
 				"The fire damages objects in the area and ignites flammable objects that aren't being worn or carried."
@@ -5906,7 +5906,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"When you cast this spell with a 5th-level spell slot, the duration is concentration, up to 10 minutes. When you use a 6th-level spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 7th level or higher, the duration is concentration, up to 8 hours."
+						"When you cast this spell with a 5th-level spell slot, the duration is {@status concentration}, up to 10 minutes. When you use a 6th-level spell slot, the duration is {@status concentration}, up to 1 hour. When you use a spell slot of 7th level or higher, the duration is {@status concentration}, up to 8 hours."
 					]
 				}
 			],
@@ -5972,7 +5972,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"When you cast this spell with a 9th-level spell slot, the duration is concentration, up to 8 hours."
+						"When you cast this spell with a 9th-level spell slot, the duration is {@status concentration}, up to 8 hours."
 					]
 				}
 			],
@@ -6035,7 +6035,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"When you cast this spell using a 6th-level spell slot, the duration is concentration, up to 10 minutes. When you use a 7th-level spell slot, the duration is concentration, up to 1 hour. When you use a spell slot of 8th level or higher, the duration is concentration, up to 8 hours."
+						"When you cast this spell using a 6th-level spell slot, the duration is {@status concentration}, up to 10 minutes. When you use a 7th-level spell slot, the duration is {@status concentration}, up to 1 hour. When you use a spell slot of 8th level or higher, the duration is {@status concentration}, up to 8 hours."
 					]
 				}
 			],
@@ -6230,8 +6230,8 @@
 			],
 			"entries": [
 				"You create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area.",
-				"The ground in the area becomes {@quickref difficult terrain||3}. Each creature on the ground that is concentrating must make a Constitution saving throw. On a failed save, the creature's concentration is broken.",
-				"When you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a Dexterity saving throw. On a failed save, the creature is knocked {@condition prone}.",
+				"The ground in the area becomes {@quickref difficult terrain||3}. Each creature on the ground that is {@status concentration||concentrating} must make a Constitution saving throw. On a failed save, the creature's {@status concentration} is broken.",
+				"When you cast this spell and at the end of each turn you spend {@status concentration||concentrating} on it, each creature on the ground in the area must make a Dexterity saving throw. On a failed save, the creature is knocked {@condition prone}.",
 				"This spell can have additional effects depending on the terrain in the area, as determined by the DM.",
 				{
 					"type": "entries",
@@ -7903,7 +7903,7 @@
 				"You attempt to turn one creature that you can see within range into stone. If the target's body is made of flesh, the creature must make a Constitution saving throw. On a failed save, it is {@condition restrained} as its flesh begins to harden. On a successful save, the creature isn't affected.",
 				"A creature {@condition restrained} by this spell must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this spell three times, the spell ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrified} condition for the duration. The successes and failures don't need to be consecutive; keep track of both until the target collects three of a kind.",
 				"If the creature is physically broken while {@condition petrified}, it suffers from similar deformities if it reverts to its original state.",
-				"If you maintain your concentration on this spell for the entire possible duration, the creature is turned to stone until the effect is removed."
+				"If you maintain your {@status concentration} on this spell for the entire possible duration, the creature is turned to stone until the effect is removed."
 			],
 			"conditionInflict": [
 				"petrified",
@@ -8653,7 +8653,7 @@
 					"type": "entries",
 					"name": "Spell Glyph",
 					"entries": [
-						"You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires concentration, it lasts until the end of its full duration."
+						"You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires {@status concentration}, it lasts until the end of its full duration."
 					]
 				}
 			],
@@ -9921,7 +9921,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"When you cast this spell using a spell slot of 3rd or 4th level, you can maintain your concentration on the spell for up to 8 hours. When you use a spell slot of 5th level or higher, you can maintain your concentration on the spell for up to 24 hours."
+						"When you cast this spell using a spell slot of 3rd or 4th level, you can maintain your {@status concentration} on the spell for up to 8 hours. When you use a spell slot of 5th level or higher, you can maintain your {@status concentration} on the spell for up to 24 hours."
 					]
 				}
 			],
@@ -10225,7 +10225,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"When you cast this spell using a spell slot of 3rd or 4th level, you can maintain your concentration on the spell for up to 8 hours. When you use a spell slot of 5th level or higher, you can maintain your concentration on the spell for up to 24 hours."
+						"When you cast this spell using a spell slot of 3rd or 4th level, you can maintain your {@status concentration} on the spell for up to 8 hours. When you use a spell slot of 5th level or higher, you can maintain your {@status concentration} on the spell for up to 24 hours."
 					]
 				}
 			],
@@ -11803,7 +11803,7 @@
 					"type": "entries",
 					"name": "At Higher Levels",
 					"entries": [
-						"When you cast this spell using a spell slot of 6th level or higher, the spell lasts until dispelled, without requiring your concentration."
+						"When you cast this spell using a spell slot of 6th level or higher, the spell lasts until dispelled, without requiring your {@status concentration}."
 					]
 				}
 			],
@@ -12961,7 +12961,7 @@
 			],
 			"entries": [
 				"Choose an area of terrain no larger than 40 feet on a side within range. You can reshape dirt, sand, or clay in the area in any manner you choose for the duration. You can raise or lower the area's elevation, create or fill in a trench, erect or flatten a wall, or form a pillar. The extent of any such changes can't exceed half the area's largest dimension. So, if you affect a 40-foot square, you can create a pillar up to 20 feet high, raise or lower the square's elevation by up to 20 feet, dig a trench up to 20 feet deep, and so on. It takes 10 minutes for these changes to complete.",
-				"At the end of every 10 minutes you spend concentrating on the spell, you can choose a new area of terrain to affect.",
+				"At the end of every 10 minutes you spend {@status concentration||concentrating} on the spell, you can choose a new area of terrain to affect.",
 				"Because the terrain's transformation occurs slowly, creatures in the area can't usually be trapped or injured by the ground's movement.",
 				"This spell can't manipulate natural stone or stone construction. Rocks and structures shift to accommodate the new terrain. If the way you shape the terrain would make a structure unstable, it might collapse.",
 				"Similarly, this spell doesn't directly affect plant growth. The moved earth carries any plants along with it."
@@ -16458,7 +16458,7 @@
 			"entries": [
 				"Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is {@quickref Vision and Light|PHB|2||heavily obscured}, and exposed flames in the area are doused.",
 				"The ground in the area is covered with slick ice, making it {@quickref difficult terrain||3}. When a creature enters the spell's area for the first time on a turn or starts its turn there, it must make a Dexterity saving throw. On a failed save, it falls {@condition prone}.",
-				"If a creature starts its turn in the spell's area and is concentrating on a spell, the creature must make a successful Constitution saving throw against your spell save DC or lose concentration."
+				"If a creature starts its turn in the spell's area and is {@status concentration||concentrating} on a spell, the creature must make a successful Constitution saving throw against your spell save DC or lose {@status concentration}."
 			],
 			"conditionInflict": [
 				"prone"
@@ -17142,7 +17142,7 @@
 			],
 			"entries": [
 				"A churning storm cloud forms, centered on a point you can see and spreading to a radius of 360 feet. Lightning flashes in the area, thunder booms, and strong winds roar. Each creature under the cloud (no more than 5,000 feet beneath the cloud) when it appears must make a Constitution saving throw. On a failed save, a creature takes {@damage 2d6} thunder damage and becomes {@condition deafened} for 5 minutes.",
-				"Each round you maintain concentration on this spell, the storm produces different effects on your turn.",
+				"Each round you maintain {@status concentration} on this spell, the storm produces different effects on your turn.",
 				{
 					"type": "entries",
 					"name": "Round 2",
@@ -17168,7 +17168,7 @@
 					"type": "entries",
 					"name": "Round 5\u201310",
 					"entries": [
-						"Gusts and freezing rain assail the area under the cloud. The area becomes {@quickref difficult terrain||3} and is {@quickref Vision and Light|PHB|2||heavily obscured}. Each creature there takes {@damage 1d6} cold damage. Ranged weapon attacks in the area are impossible. The wind and rain count as a severe distraction for the purposes of maintaining concentration on spells. Finally, gusts of strong wind (ranging from 20 to 50 miles per hour) automatically disperse fog, mists, and similar phenomena in the area, whether mundane or magical."
+						"Gusts and freezing rain assail the area under the cloud. The area becomes {@quickref difficult terrain||3} and is {@quickref Vision and Light|PHB|2||heavily obscured}. Each creature there takes {@damage 1d6} cold damage. Ranged weapon attacks in the area are impossible. The wind and rain count as a severe distraction for the purposes of maintaining {@status concentration} on spells. Finally, gusts of strong wind (ranging from 20 to 50 miles per hour) automatically disperse fog, mists, and similar phenomena in the area, whether mundane or magical."
 					]
 				}
 			],
@@ -18912,7 +18912,7 @@
 				"The wall can have any shape you desire, though it can't occupy the same space as a creature or object. The wall doesn't need to be vertical or rest on any firm foundation. It must, however, merge with and be solidly supported by existing stone. Thus, you can use this spell to bridge a chasm or create a ramp.",
 				"If you create a span greater than 20 feet in length, you must halve the size of each panel to create supports. You can crudely shape the wall to create crenellations, battlements, and so on.",
 				"The wall is an object made of stone that can be damaged and thus breached. Each panel has AC 15 and 30 hit points per inch of thickness. Reducing a panel to 0 hit points destroys it and might cause connected panels to collapse at the DM's discretion.",
-				"If you maintain your concentration on this spell for its whole duration, the wall becomes permanent and can't be dispelled. Otherwise, the wall disappears when the spell ends."
+				"If you maintain your {@status concentration} on this spell for its whole duration, the wall becomes permanent and can't be dispelled. Otherwise, the wall disappears when the spell ends."
 			],
 			"savingThrow": [
 				"dexterity"

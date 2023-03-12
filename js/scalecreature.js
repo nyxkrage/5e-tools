@@ -2488,6 +2488,8 @@ globalThis.ScaleClassSummonedCreature = {
 			})
 		;
 
+		basePart = this._scale_getConvertedPbString(state, basePart);
+
 		// "the beast has a number of Hit Dice [d8s] equal to your ranger level"
 		if (hdPart) {
 			hdPart = hdPart.replace(/(?<intro>.*) a number of hit dice \[d(?<hdSides>\d+)s?] equal to your (?:(?<className>[^(]*) )?level/i, (...m) => {

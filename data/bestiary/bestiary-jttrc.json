@@ -1978,7 +1978,11 @@
 				{
 					"name": "Spellcasting",
 					"headerEntries": [
-						"The riverine casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 17}): At-will: control water, fog cloud"
+						"The riverine casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell control water}",
+						"{@spell fog cloud}"
 					],
 					"daily": {
 						"1": [

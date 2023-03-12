@@ -189,6 +189,7 @@ class AcConvert {
 			case "psychic defense":
 			case "glory": // BAM :: Reigar
 			case "mountain tattoo": // KftGV :: Prisoner 13
+			case "disarming charm": // TG :: Forge Fitzwilliam
 				return fromLow;
 				// endregion
 

@@ -2376,6 +2376,11 @@
 	{
 		"ver": "1.177.1",
 		"date": "2023-03-02",
-		"txt": "- Added initial Keys from the Golden Vault tokens _[more/better to come Soon:tm:]_\n- Added Dynamic Map Viewer support to Keys from the Golden Vault maps\n- Added Keys from the Golden Vault adventure NPCs/other creatures\n- Fixed Items page failing to search-index all text when using `stats: ...` or `text: ...`\n- (Fixed typos/added tags)"
+		"txt": "- Added initial Keys from the Golden Vault tokens _[more/better to come Soon:tm:]_\n- Added Dynamic Map Viewer support to Keys from the Golden Vault maps\n- Added Keys from the Golden Vault adventure NPCs/other creatures\n- Fixed Items page failing to search-index all text when using `stats:...` or `text:...`\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.177.2",
+		"date": "2023-03-12",
+		"txt": "- Added Thieves' Gallery content\n- Added more Keys from the Golden Vault tokens\n- Added \"Legendary Groups\" to Omnisearch\n- Added \"Duplicate\" button to pinned lists\n- Added Dynamic Map Viewer support/grid values to a handful of maps that were lacking it (thanks @ Lyra)\n- Fixed crash when up-arrowing in some lists\n- (Brew) Added support for `@legroup` tag; `\"statblock\"` entry support for legendary groups\n- (Brew) Added support for array of `\"choose\"` creature `\"type\"`s\n- (Brew) Added support for scaling `PB` values in `\"special\"` creature HP\n- (Brew) Extended Text Converter condition tagging to also tag the \"concentration\" `@status`\n- (Brew) Fixed some Text Converter tagging requiring exact casing\n- (Fixed typos/added tags)"
 	}
 ]
