@@ -305,6 +305,9 @@
 					]
 				}
 			],
+			"traitTags": [
+				"Tunneler"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -418,6 +421,9 @@
 						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage. If the target is a Large or smaller creature, it is {@condition grappled} (escape {@dc 14}). Until this grapple ends, the aurumvorax can't use its Claw attack on another target, and when it moves, it can drag the {@condition grappled} creature with it, without the aurumvorax's speed being halved."
 					]
 				}
+			],
+			"traitTags": [
+				"Tunneler"
 			],
 			"senseTags": [
 				"D"

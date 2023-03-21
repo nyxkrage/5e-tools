@@ -16696,7 +16696,7 @@
 			"rechargeAmount": "{@dice 1d4}",
 			"charges": 4,
 			"entries": [
-				"This horn has 4 charges. When you use an action to blow it, one creature of your choice can hear the horns blare, provided the creature is within 600 feet of the horn and not {@condition deafened}. No other creature hears sound coming from the horn. The horn regains {@dice 1d4} expended charges daily at dawn."
+				"This horn has 4 charges. When you use an action to blow it, one creature of your choice can hear the horn's blare, provided the creature is within 600 feet of the horn and not {@condition deafened}. No other creature hears sound coming from the horn. The horn regains {@dice 1d4} expended charges daily at dawn."
 			]
 		},
 		{
@@ -17570,7 +17570,7 @@
 							"type": "quote",
 							"entries": [
 								"Eight cats perch atop eight dead attending",
-								"Eight lizards flee from eight cats scavenging",
+								"Eight lizards flee from eight rats scavenging",
 								"Eight toads climbing meet eight dead and falling",
 								"Eight snakes sneak under eight bats screaming",
 								"Eight eyes open, always dreaming",

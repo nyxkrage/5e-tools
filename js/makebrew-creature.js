@@ -297,7 +297,7 @@ class CreatureBuilder extends Builder {
 			if (state.s.save) {
 				const pb = this._getProfBonus();
 				Object.entries(state.s.save).forEach(([prop, val]) => {
-					const expected = Parser.getAbilityModNumber(state.s[prop]) + pb;
+					const expected = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {isDefaultTen: true})) + pb;
 					if (Number(val) === Number(expected)) state.m.profSave[prop] = 1;
 				});
 			}
@@ -308,7 +308,7 @@ class CreatureBuilder extends Builder {
 				const pb = this._getProfBonus();
 				Object.entries(state.s.skill).forEach(([prop, val]) => {
 					const abilProp = Parser.skillToAbilityAbv(prop);
-					const abilMod = Parser.getAbilityModNumber(state.s[abilProp]);
+					const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {isDefaultTen: true}));
 
 					const expectedProf = abilMod + pb;
 					if (Number(val) === Number(expectedProf)) return state.m.profSkill[prop] = 1;
@@ -1252,7 +1252,7 @@ class CreatureBuilder extends Builder {
 			if (!this._meta.autoCalc.hpModifier) return;
 
 			const num = Number($selSimpleNum.val());
-			const mod = Parser.getAbilityModNumber(this._state.con);
+			const mod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "con", {isDefaultTen: true}));
 			const total = num * mod;
 			$iptSimpleMod.val(total ?? null);
 			hpSimpleAverageHook();
@@ -1466,10 +1466,25 @@ class CreatureBuilder extends Builder {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Ability Scores", {isMarked: true, isRow: true});
 
 		const $getRow = (name, prop) => {
+			const valInitial = this._state[prop] != null && typeof this._state[prop] !== "number"
+				? this._state[prop].special
+				: this._state[prop];
+
 			const $iptAbil = $(`<input class="form-control form-control--minimal input-xs text-center">`)
-				.val(this._state[prop])
+				.val(valInitial)
 				.change(() => {
-					this._state[prop] = UiUtil.strToInt($iptAbil.val());
+					const val = $iptAbil.val().trim();
+					if (!val) {
+						delete this._state[prop];
+						return cb();
+					}
+
+					if (isNaN(val)) {
+						this._state[prop] = {special: val};
+						return cb();
+					}
+
+					this._state[prop] = UiUtil.strToInt(val);
 					cb();
 				});
 
@@ -1496,7 +1511,7 @@ class CreatureBuilder extends Builder {
 				});
 
 			const _setFromAbility = () => {
-				const total = Parser.getAbilityModNumber(this._state[prop]) + this._getProfBonus();
+				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {isDefaultTen: true})) + this._getProfBonus();
 				(this._state.save = this._state.save || {})[prop] = total < 0 ? `${total}` : `+${total}`;
 				$iptVal.val(total);
 				cb();
@@ -1552,7 +1567,8 @@ class CreatureBuilder extends Builder {
 				});
 
 			const _setFromAbility = (isExpert) => {
-				const total = Parser.getAbilityModNumber(this._state[abilProp]) + (this._getProfBonus() * (2 - !isExpert));
+				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {isDefaultTen: true}))
+					+ (this._getProfBonus() * (2 - !isExpert));
 
 				const nextSkills = {...(this._state.skill || {})}; // regenerate the object to allow hooks to fire
 				nextSkills[prop] = total < 0 ? `${total}` : `+${total}`;
@@ -1642,7 +1658,7 @@ class CreatureBuilder extends Builder {
 			if (this._meta.autoCalc.passivePerception) {
 				const pp = Math.round((() => {
 					if (this._state.skill && this._state.skill.perception && this._state.skill.perception.trim()) return Number(this._state.skill.perception);
-					else return Parser.getAbilityModNumber(this._state.wis);
+					else return Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "wis", {isDefaultTen: true}));
 				})() + 10);
 
 				$iptPerception.val(pp);
@@ -2727,7 +2743,7 @@ class CreatureBuilder extends Builder {
 								const getFormData = () => {
 									const pb = this._getProfBonus();
 									const isDex = $cbFinesse.prop("checked") || ($cbRanged.prop("checked") && !$cbMelee.prop("checked"));
-									const abilMod = Parser.getAbilityModNumber(isDex ? this._state.dex : this._state.str);
+									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "dex" : "str", {isDefaultTen: true}));
 									const [melee, ranged] = [$cbMelee.prop("checked") ? "mw" : false, $cbRanged.prop("checked") ? "rw" : false];
 
 									const ptAtk = `{@atk ${[melee ? "mw" : null, ranged ? "rw" : null].filter(Boolean).join(",")}}`;

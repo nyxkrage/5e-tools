@@ -514,6 +514,7 @@
 			"dragonAge": "adult",
 			"traitTags": [
 				"Legendary Resistances",
+				"Tunneler",
 				"Unusual Nature"
 			],
 			"senseTags": [
@@ -849,6 +850,7 @@
 			"dragonAge": "ancient",
 			"traitTags": [
 				"Legendary Resistances",
+				"Tunneler",
 				"Unusual Nature"
 			],
 			"senseTags": [
@@ -4480,6 +4482,7 @@
 			],
 			"dragonAge": "wyrmling",
 			"traitTags": [
+				"Tunneler",
 				"Unusual Nature"
 			],
 			"senseTags": [
@@ -8362,6 +8365,7 @@
 			],
 			"dragonAge": "young",
 			"traitTags": [
+				"Tunneler",
 				"Unusual Nature"
 			],
 			"senseTags": [

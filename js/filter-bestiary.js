@@ -204,7 +204,7 @@ class PageFilterBestiary extends PageFilter {
 		this._traitFilter = new Filter({
 			header: "Traits",
 			items: [
-				"Aggressive", "Ambusher", "Amorphous", "Amphibious", "Antimagic Susceptibility", "Brute", "Charge", "Damage Absorption", "Death Burst", "Devil's Sight", "False Appearance", "Fey Ancestry", "Flyby", "Hold Breath", "Illumination", "Immutable Form", "Incorporeal Movement", "Keen Senses", "Legendary Resistances", "Light Sensitivity", "Magic Resistance", "Magic Weapons", "Pack Tactics", "Pounce", "Rampage", "Reckless", "Regeneration", "Rejuvenation", "Shapechanger", "Siege Monster", "Sneak Attack", "Spider Climb", "Sunlight Sensitivity", "Turn Immunity", "Turn Resistance", "Undead Fortitude", "Water Breathing", "Web Sense", "Web Walker",
+				"Aggressive", "Ambusher", "Amorphous", "Amphibious", "Antimagic Susceptibility", "Brute", "Charge", "Damage Absorption", "Death Burst", "Devil's Sight", "False Appearance", "Fey Ancestry", "Flyby", "Hold Breath", "Illumination", "Immutable Form", "Incorporeal Movement", "Keen Senses", "Legendary Resistances", "Light Sensitivity", "Magic Resistance", "Magic Weapons", "Pack Tactics", "Pounce", "Rampage", "Reckless", "Regeneration", "Rejuvenation", "Shapechanger", "Siege Monster", "Sneak Attack", "Spider Climb", "Sunlight Sensitivity", "Tunneler", "Turn Immunity", "Turn Resistance", "Undead Fortitude", "Water Breathing", "Web Sense", "Web Walker",
 			],
 		});
 		this._actionReactionFilter = new Filter({
@@ -282,6 +282,13 @@ class PageFilterBestiary extends PageFilter {
 		mon._fSkill = mon.skill ? Object.keys(mon.skill) : [];
 		mon._fSources = SourceFilter.getCompleteFilterSources(mon);
 		mon._fPassive = !isNaN(mon.passive) ? Number(mon.passive) : null;
+
+		Parser.ABIL_ABVS
+			.forEach(ab => {
+				if (mon[ab] == null) return;
+				const propF = `_f${ab.uppercaseFirst()}`;
+				mon[propF] = typeof mon[propF] !== "number" ? null : mon[propF];
+			});
 
 		mon._fMisc = [...mon.miscTags || []];
 		for (const it of (mon.trait || [])) {
@@ -503,12 +510,12 @@ class PageFilterBestiary extends PageFilter {
 			m._fAc,
 			m._fHp,
 			[
-				m.str,
-				m.dex,
-				m.con,
-				m.int,
-				m.wis,
-				m.cha,
+				m._fStr,
+				m._fDex,
+				m._fCon,
+				m._fInt,
+				m._fWis,
+				m._fCha,
 			],
 			m._fSpellsKnown,
 		);

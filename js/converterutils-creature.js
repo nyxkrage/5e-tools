@@ -145,7 +145,7 @@ class AcConvert {
 	static _tryPostProcessAc_special (mon, cbMan, cbErr) {
 		mon.ac = mon.ac.trim();
 
-		const mPlusSpecial = /^(\d+) plus (?:PB|the level of the spell)(?: \([^)]+\))?$/i.exec(mon.ac);
+		const mPlusSpecial = /^(\d+) (plus|\+) (?:PB|the level of the spell|your [^ ]+ modifier)(?: \([^)]+\))?$/i.exec(mon.ac);
 		if (mPlusSpecial) {
 			mon.ac = [{special: mon.ac}];
 			return true;
@@ -439,8 +439,8 @@ class TraitActionTag {
 	static _isActions (prop) { return prop === "action"; }
 
 	static tryRun (m, cbMan) {
-		m.traitTags = new Set();
-		m.actionTags = new Set();
+		m.traitTags = new Set(m.traitTags || []);
+		m.actionTags = new Set(m.actionTags || []);
 
 		this._doTag({m, cbMan, prop: "trait", outProp: "traitTags"});
 		this._doTag({m, cbMan, prop: "action", outProp: "actionTags"});
@@ -540,6 +540,8 @@ TraitActionTag.tags = { // true = map directly; string = map to this string
 		"tree stride": "Tree Stride",
 
 		"unusual nature": "Unusual Nature",
+
+		"tunneler": "Tunneler",
 	},
 	action: {
 		"multiattack": "Multiattack",

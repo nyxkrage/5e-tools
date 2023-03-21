@@ -387,6 +387,10 @@
 				"darkvision 30 ft.",
 				"tremorsense 60 ft."
 			],
+			"traitTags": [
+				"Keen Senses",
+				"Tunneler"
+			],
 			"senseTags": [
 				"D",
 				"T"

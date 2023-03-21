@@ -1404,7 +1404,8 @@
 				}
 			],
 			"traitTags": [
-				"Illumination"
+				"Illumination",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -1691,7 +1692,8 @@
 				}
 			],
 			"traitTags": [
-				"Death Burst"
+				"Death Burst",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",

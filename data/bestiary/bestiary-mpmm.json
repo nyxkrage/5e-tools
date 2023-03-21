@@ -249,7 +249,8 @@
 				"path": "bestiary/adult-kruthik.mp3"
 			},
 			"traitTags": [
-				"Pack Tactics"
+				"Pack Tactics",
+				"Tunneler"
 			],
 			"senseTags": [
 				"D",
@@ -21809,7 +21810,8 @@
 				"path": "bestiary/kruthik-hive-lord.mp3"
 			},
 			"traitTags": [
-				"Pack Tactics"
+				"Pack Tactics",
+				"Tunneler"
 			],
 			"senseTags": [
 				"D",
@@ -36867,7 +36869,7 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@hit 14} ({@damage 4d4 + 4}) force damage."
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}14 ({@damage 4d4 + 4}) force damage."
 					]
 				}
 			],
@@ -37921,7 +37923,8 @@
 				"path": "bestiary/young-kruthik.mp3"
 			},
 			"traitTags": [
-				"Pack Tactics"
+				"Pack Tactics",
+				"Tunneler"
 			],
 			"senseTags": [
 				"D",

@@ -403,7 +403,7 @@
 							"spells": [
 								"{@spell detect thoughts}",
 								"{@spell enlarge/reduce}",
-								"{@spell Melf's Acid Arrow}",
+								"{@spell Melf's acid arrow}",
 								"{@spell mirror image}"
 							]
 						},
@@ -454,7 +454,7 @@
 						"9": {
 							"slots": 1,
 							"spells": [
-								"{@spell True Polymorph}"
+								"{@spell true polymorph}"
 							]
 						}
 					},
@@ -847,7 +847,8 @@
 				}
 			],
 			"traitTags": [
-				"Regeneration"
+				"Regeneration",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -4011,6 +4012,8 @@
 				"U"
 			],
 			"languages": null,
+			"cr": "0",
+			"action": null,
 			"languageTags": [],
 			"hasToken": true
 		},

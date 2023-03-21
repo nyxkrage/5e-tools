@@ -1143,7 +1143,8 @@
 			],
 			"dragonAge": "adult",
 			"traitTags": [
-				"Legendary Resistances"
+				"Legendary Resistances",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -1729,7 +1730,8 @@
 			"dragonAge": "adult",
 			"traitTags": [
 				"Legendary Resistances",
-				"Spider Climb"
+				"Spider Climb",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -4033,7 +4035,8 @@
 			],
 			"dragonAge": "ancient",
 			"traitTags": [
-				"Legendary Resistances"
+				"Legendary Resistances",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -4618,7 +4621,8 @@
 			"dragonAge": "ancient",
 			"traitTags": [
 				"Legendary Resistances",
-				"Spider Climb"
+				"Spider Climb",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -11086,6 +11090,9 @@
 				}
 			],
 			"dragonAge": "wyrmling",
+			"traitTags": [
+				"Tunneler"
+			],
 			"senseTags": [
 				"B",
 				"D"
@@ -13947,7 +13954,8 @@
 			],
 			"dragonAge": "wyrmling",
 			"traitTags": [
-				"Spider Climb"
+				"Spider Climb",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",
@@ -16610,6 +16618,9 @@
 				}
 			],
 			"dragonAge": "young",
+			"traitTags": [
+				"Tunneler"
+			],
 			"senseTags": [
 				"B",
 				"SD"
@@ -17086,7 +17097,8 @@
 			],
 			"dragonAge": "young",
 			"traitTags": [
-				"Spider Climb"
+				"Spider Climb",
+				"Tunneler"
 			],
 			"senseTags": [
 				"B",

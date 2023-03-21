@@ -21231,7 +21231,7 @@
 						"3": {
 							"slots": 3,
 							"spells": [
-								"{@spell conjure animals} (2 giant spiders)",
+								"{@spell conjure animals} (2 {@creature giant spider|mm|giant spiders})",
 								"{@spell dispel magic}"
 							]
 						},
@@ -50859,6 +50859,9 @@
 				"type": "internal",
 				"path": "bestiary/purple-worm.mp3"
 			},
+			"traitTags": [
+				"Tunneler"
+			],
 			"senseTags": [
 				"B",
 				"T"
@@ -62293,6 +62296,9 @@
 				"type": "internal",
 				"path": "bestiary/umber-hulk.mp3"
 			},
+			"traitTags": [
+				"Tunneler"
+			],
 			"senseTags": [
 				"SD",
 				"T"

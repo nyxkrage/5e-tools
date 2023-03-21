@@ -784,55 +784,55 @@
 									],
 									"rows": [
 										[
-											"Acolyte",
+											"{@background Acolyte}",
 											"Auril the Frostmaiden, the god of winter's fury, has cast an evil spell over Icewind Dale. You can bring hope and faith to the people of Ten-Towns or, even better, free them from winter's cold embrace in the name of your god."
 										],
 										[
-											"Charlatan",
+											"{@background Charlatan}",
 											"Your cons and deceptions nearly got the better of you. You needed to disappear for a while, and Icewind Dale was the perfect place to do so. Nothing could prepare you for the cold and the dark desolation, but at least there's money to be made."
 										],
 										[
-											"Criminal",
+											"{@background Criminal}",
 											"You are wanted for crimes in the cities of Luskan and Mirabar, but no one will think to look for you in Ten-Towns, the cold heart of Icewind Dale. Thankfully, nobody in Ten-Towns cares who you are\u2014or what you've done."
 										],
 										[
-											"Entertainer",
+											"{@background Entertainer}",
 											"You came to Icewind Dale three years ago seeking inspiration for a new song or poem, drawn by tales of the land's harsh beauty and the legendary exploits of Drizzt Do'Urden. Since then, Auril the Frostmaiden has cast an evil spell over the dale, preventing you from returning home."
 										],
 										[
-											"Folk Hero",
+											"{@background Folk Hero}",
 											"Your name is synonymous with heroism throughout Ten-Towns. Did you save a fisher who fell into the ice, scare away a yeti armed with only a fishing pole and a basket, or beat a drunk goliath at arm wrestling?"
 										],
 										[
-											"Guild Artisan",
+											"{@background Guild Artisan}",
 											"You came to Icewind Dale to start a business. Your shop was doing well until Auril the Frostmaiden cast her evil spell to banish the sun. Now, businesses throughout Ten-Towns are suffering, yours included. To avoid hardship, you might need to supplement your income."
 										],
 										[
-											"Hermit",
+											"{@background Hermit}",
 											"You've never felt at ease in civilized society, and there's no place farther from the trappings of civilization than Icewind Dale. This is a land without pretense, and the people of Ten-Towns pay you little mind. To them, you're just another silly old fool."
 										],
 										[
-											"Noble",
+											"{@background Noble}",
 											"Your wealthy grandfather or grandmother sent you to Icewind Dale to learn a hard lesson. Perhaps the cruel indifference of this frozen land will prepare you for the cruel indifference of Waterdeep's politics."
 										],
 										[
-											"Outlander",
+											"{@background Outlander}",
 											"You're a child of the icy wilderness, born and raised in one of the Reghed tribes. Imagine, after following herds of migrating {@creature reindeer|IDRotF} your whole life, getting a taste of what life in Ten-Towns has to offer."
 										],
 										[
-											"Sage",
+											"{@background Sage}",
 											"You came to Icewind Dale in search of ruins and artifacts left behind by the giants who ruled the ancient empire of Ostoria. To find even one Ostorian relic would fulfill a lifelong dream and make your rivals back home green with envy."
 										],
 										[
-											"Sailor",
+											"{@background Sailor}",
 											"You've sailed ships up and down the Sword Coast, but a shipwreck made you reevaluate your life choices. Two years ago, you headed north, bought a house and a fishing boat in Ten-Towns, and became a fisher. You were told that the summers here are beautiful, but you have yet to see one."
 										],
 										[
-											"Soldier",
+											"{@background Soldier}",
 											"You are a soldier of Ten-Towns, trained to fight orcs and other threats lurking in the Spine of the World mountains. Auril the Frostmaiden has cast an evil spell over Icewind Dale, and you struggle to see how your soldier's training can save this land from so terrible a doom. Still, you are not about to give up on the people of Ten-Towns."
 										],
 										[
-											"Urchin",
+											"{@background Urchin}",
 											"Because you grew up in Ten-Towns, your familiarity with the residents makes you useful to Harper spies and Zhentarim bounty hunters who are looking for criminals and other ne'er-do-wells hiding in your midst. Ratting out these newcomers keeps coin in your pockets."
 										]
 									]

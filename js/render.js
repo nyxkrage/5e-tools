@@ -6814,7 +6814,7 @@ Renderer.monster = {
 			<tr><td colspan="6"><i>${Renderer.monster.getTypeAlignmentPart(mon)}</i></td></tr>
 			<tr><td colspan="6"><div class="border"></div></td></tr>
 			<tr><td colspan="6">
-				<table class="w-100 summary-noback relative table-layout-fixed">
+				<table class="w-100 summary-noback relative table-layout-fixed my-1">
 					<tr>
 						<th colspan="2">Armor Class</th>
 						<th colspan="2">Hit Points</th>
@@ -6833,28 +6833,9 @@ Renderer.monster = {
 					</tr>
 				</table>
 			</td></tr>
-			<tr><td colspan="6"><div class="border"></div></td></tr>
-			<tr><td colspan="6">
-				<table class="w-100 summary stripe-even-table">
-					<tr>
-						<th class="col-2 text-center">STR</th>
-						<th class="col-2 text-center">DEX</th>
-						<th class="col-2 text-center">CON</th>
-						<th class="col-2 text-center">INT</th>
-						<th class="col-2 text-center">WIS</th>
-						<th class="col-2 text-center">CHA</th>
-					</tr>
-					<tr>
-						<td class="text-center">${Renderer.utils.getAbilityRoller(mon, "str")}</td>
-						<td class="text-center">${Renderer.utils.getAbilityRoller(mon, "dex")}</td>
-						<td class="text-center">${Renderer.utils.getAbilityRoller(mon, "con")}</td>
-						<td class="text-center">${Renderer.utils.getAbilityRoller(mon, "int")}</td>
-						<td class="text-center">${Renderer.utils.getAbilityRoller(mon, "wis")}</td>
-						<td class="text-center">${Renderer.utils.getAbilityRoller(mon, "cha")}</td>
-					</tr>
-				</table>
-			</td></tr>
-			<tr><td colspan="6"><div class="border"></div></td></tr>
+			<tr><td colspan="6"><div class="border mb-1"></div></td></tr>
+			${Renderer.monster.getRenderedAbilityScores(mon)}
+			<tr><td colspan="6"><div class="border mt-1"></div></td></tr>
 			<tr><td colspan="6">
 				<div class="rd__compact-stat mt-2">
 					${mon.resource ? mon.resource.map(res => `<p><b>${res.name}</b> ${Renderer.monster.getRenderedResource(res)}</p>`).join("") : ""}
@@ -6918,6 +6899,50 @@ Renderer.monster = {
 		const maxVal = Renderer.monster._getFormulaMax(res.formula);
 		const maxStr = maxVal ? `Maximum: ${maxVal}` : "";
 		return `${maxStr ? `<span title="${maxStr}" class="help-subtle">` : ""}${res.value}${maxStr ? "</span>" : ""} ${Renderer.get().render(`({@dice ${res.formula}|${res.formula}|${res.name}})`)}`;
+	},
+
+	getSafeAbilityScore (mon, abil, {isDefaultTen = false} = {}) {
+		if (!mon) return isDefaultTen ? 10 : 0;
+		if (mon[abil] == null) return isDefaultTen ? 10 : 0;
+		return typeof mon[abil] === "number" ? mon[abil] : (isDefaultTen ? 10 : 0);
+	},
+
+	getRenderedAbilityScores (mon) {
+		const byAbil = {};
+		const byValue = {};
+
+		Parser.ABIL_ABVS
+			.forEach(ab => {
+				if (mon[ab] == null || typeof mon[ab] === "number") return;
+
+				const meta = {abil: ab, value: mon[ab].special};
+				byAbil[meta.abil] = meta;
+				meta.family = (byValue[meta.value] = byValue[meta.value] || []);
+				meta.family.push(meta);
+			});
+
+		const seenAbs = new Set();
+		const ptSpecial = Parser.ABIL_ABVS
+			.map(ab => {
+				const meta = byAbil[ab];
+				if (!meta) return null;
+				if (seenAbs.has(meta.abil)) return null;
+				meta.family.forEach(meta => seenAbs.add(meta.abil));
+				return `<b>${meta.family.map(meta => meta.abil.toUpperCase()).join(", ")}</b> ${meta.value}`;
+			})
+			.filter(Boolean)
+			.map(r => `<tr><td colspan="6">${r}</td></tr>`).join("");
+
+		if (Parser.ABIL_ABVS.every(ab => mon[ab] != null && typeof mon[ab] !== "number")) return ptSpecial;
+
+		const absRemaining = Parser.ABIL_ABVS.filter(ab => !seenAbs.has(ab));
+
+		return `<tr>
+			${absRemaining.map(ab => `<th class="col-2 text-center bold">${ab.toUpperCase()}</th>`).join("")}
+		</tr>
+		<tr>
+			${absRemaining.map(ab => `<td class="text-center">${Renderer.utils.getAbilityRoller(mon, ab)}</td>`).join("")}
+		</tr>`;
 	},
 
 	getSpellcastingRenderedTraits: (renderer, mon, displayAsProp = "trait") => {
@@ -8592,7 +8617,7 @@ Renderer.table = {
 };
 
 Renderer.vehicle = {
-	CHILD_PROPS: ["movement", "weapon", "other", "action", "trait", "reaction"],
+	CHILD_PROPS: ["movement", "weapon", "other", "action", "trait", "reaction", "control", "actionStation"],
 
 	getCompactRenderedString (veh, opts) {
 		return Renderer.vehicle.getRenderedString(veh, {...opts, isCompact: true});

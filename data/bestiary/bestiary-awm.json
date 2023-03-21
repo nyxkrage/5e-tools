@@ -573,6 +573,9 @@
 				"type": "external",
 				"url": "https://5e.tools/audio/bestiary/purple-worm.mp3"
 			},
+			"traitTags": [
+				"Tunneler"
+			],
 			"actionTags": [
 				"Multiattack",
 				"Swallow"

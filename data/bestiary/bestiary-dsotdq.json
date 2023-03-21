@@ -8510,6 +8510,12 @@
 					}
 				}
 			},
+			"traitTags": [
+				"Death Burst",
+				"Magic Resistance",
+				"Regeneration",
+				"Shapechanger"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},

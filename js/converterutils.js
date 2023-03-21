@@ -56,6 +56,19 @@ class BaseParser {
 			.replace(/, *\n+ */g, ", ")
 			.replace(/ *\n+, */g, ", ");
 
+		iptClean = iptClean
+			// Connect together e.g. `5d10\nForce damage`
+			.replace(new RegExp(`(?<start>\\d+) *\\n+(?<end>${ConverterConst.STR_RE_DAMAGE_TYPE} damage)\\b`, "gi"), (...m) => `${m.last().start} ${m.last().end}`)
+			// Connect together likely determiners/conjunctions
+			.replace(/(?<start>\b(the|a|an|this|that|these|those|its|his|her|their|have|extra|and|or) *)\n+\s*/g, (...m) => `${m.last().start} `)
+			// Connect together e.g.:
+			//  - `+5\nto hit`, `your Spell Attack Modifier\nto hit`
+			//  - `your Wisdom\nmodifier`
+			.replace(/(?<start>[a-z0-9]) *\n+ *(?<end>to hit|modifier)\b/g, (...m) => `${m.last().start} ${m.last().end}`)
+			// Connect together `<ability> (<skill>)`
+			.replace(new RegExp(`\\b(?<start>${Object.values(Parser.ATB_ABV_TO_FULL).join("|")}) *\\n+ *(?<end>\\((?:${Object.keys(Parser.SKILL_TO_ATB_ABV).join("|")})\\))`, "gi"), (...m) => `${m.last().start.trim()} ${m.last().end.trim()}`)
+		;
+
 		if (options) {
 			// Apply `PAGE=...`
 			iptClean = iptClean
@@ -902,8 +915,8 @@ class ConvertUtil {
 	 * Checks if a line of text starts with a name, e.g.
 	 * "Big Attack. Lorem ipsum..." vs "Lorem ipsum..."
 	 * @param line
-	 * @param exceptions A set of (lowercase) exceptions which should always be treated as "not a name" (e.g. "cantrips")
-	 * @param splitterPunc Regexp to use when splitting by punctuation.
+	 * @param {Set} exceptions A set of (lowercase) exceptions which should always be treated as "not a name" (e.g. "cantrips")
+	 * @param {RegExp} splitterPunc Regexp to use when splitting by punctuation.
 	 * @returns {boolean}
 	 */
 	static isNameLine (line, {exceptions = null, splitterPunc = null} = {}) {
@@ -1054,19 +1067,19 @@ class ConvertUtil {
 
 	static cleanDashes (str) { return str.replace(/[-\u2011-\u2015]/g, "-"); }
 
-	static isStatblockLineHeaderStart (start, line) {
-		const m = this._getStatblockLineHeaderRegExp(start).exec(line);
+	static isStatblockLineHeaderStart ({reStartStr, line}) {
+		const m = this._getStatblockLineHeaderRegExp({reStartStr}).exec(line);
 		return m?.index === 0;
 	}
 
-	static getStatblockLineHeaderText (start, line) {
-		const m = this._getStatblockLineHeaderRegExp(start).exec(line);
+	static getStatblockLineHeaderText ({reStartStr, line}) {
+		const m = this._getStatblockLineHeaderRegExp({reStartStr}).exec(line);
 		if (!m) return line;
 		return line.slice(m.index + m[0].length).trim();
 	}
 
-	static _getStatblockLineHeaderRegExp (start) {
-		return new RegExp(`\\s*${start.escapeRegexp()}\\s*?(?::|\\.|\\b)\\s*`, "i");
+	static _getStatblockLineHeaderRegExp ({reStartStr}) {
+		return new RegExp(`\\s*${reStartStr}\\s*?(?::|\\.|\\b)\\s*`, "i");
 	}
 }
 ConvertUtil._CONTRACTIONS = new Set(["Mr.", "Mrs.", "Ms.", "Dr."]);

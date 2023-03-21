@@ -55,12 +55,7 @@ class RenderBestiary {
 		<tr><td colspan="6"><strong>Speed</strong> ${Parser.getSpeedString(mon)}</td></tr>
 		<tr><td class="divider" colspan="6"><div></div></td></tr>
 
-		<tr class="mon__ability-names">
-			<th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
-		</tr>
-		<tr class="mon__ability-scores">
-			${Parser.ABIL_ABVS.map(ab => `<td>${Renderer.utils.getAbilityRoller(mon, ab)}</td>`).join("")}
-		</tr>
+		${Renderer.monster.getRenderedAbilityScores(mon)}
 		<tr><td class="divider" colspan="6"><div></div></td></tr>
 
 		${mon.save ? `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSavesPart(mon)}</td></tr>` : ""}

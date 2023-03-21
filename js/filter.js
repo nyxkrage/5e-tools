@@ -4398,7 +4398,7 @@ class RangeFilter extends FilterBase {
 
 			// Special case for "isAllowGreater" filters, which assumes the labels are numerical values
 			if (this._isAllowGreater) {
-				if (filterState.max === this._state.max && entryVal > this._state.max) return true;
+				if (filterState.max === this._state.max && entryVal > this._labels[filterState.max]) return true;
 
 				const sliceMin = Math.min(...slice);
 				const sliceMax = Math.max(...slice);

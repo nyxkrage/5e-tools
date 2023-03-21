@@ -1086,17 +1086,6 @@ div#lootoutput {
 		}
 	}
 
-	&ability-names th {
-		text-align: center;
-		font-weight: bold;
-		color: inherit;
-	}
-
-	&ability-scores {
-		text-align: center;
-		width: 16%;
-	}
-
 	&wrp-size-type-align--token,
 	&wrp-avoid-token {
 		max-width: calc(100% - 11rem);
