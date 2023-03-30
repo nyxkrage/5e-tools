@@ -2666,6 +2666,7 @@ Parser.SRC_UA2022GO = `${Parser.SRC_UA_PREFIX}2022GiantOptions`;
 Parser.SRC_UA2022WotM = `${Parser.SRC_UA_PREFIX}2022WondersOfTheMultiverse`;
 Parser.SRC_MCV1SC = `${Parser.SRC_MCVX_PREFIX}1SC`;
 Parser.SRC_MCV2DC = `${Parser.SRC_MCVX_PREFIX}2DC`;
+Parser.SRC_MCV3MC = `${Parser.SRC_MCVX_PREFIX}3MC`;
 
 Parser.AL_PREFIX = "Adventurers League: ";
 Parser.AL_PREFIX_SHORT = "AL: ";
@@ -2876,6 +2877,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_UA2022GO] = `${Parser.UA_PREFIX}2022 Giant
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_UA2022WotM] = `${Parser.UA_PREFIX}2022 Wonders of the Multiverse`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_MCV1SC] = `${Parser.MCVX_PREFIX}1: Spelljammer Creatures`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_MCV2DC] = `${Parser.MCVX_PREFIX}2: Dragonlance Creatures`;
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_MCV3MC] = `${Parser.MCVX_PREFIX}3: Minecraft Creatures`;
 
 Parser.SOURCE_JSON_TO_ABV = {};
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_CoS] = "CoS";
@@ -3075,6 +3077,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_UA2022GO] = "UA22GO";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_UA2022WotM] = "UA22WotM";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_MCV1SC] = "MCV1SC";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_MCV2DC] = "MCV2DC";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_MCV3MC] = "MCV3MC";
 
 Parser.SOURCE_JSON_TO_DATE = {};
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_CoS] = "2016-03-15";
@@ -3273,6 +3276,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_UA2022GO] = "2022-05-26";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_UA2022WotM] = "2022-07-18";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_MCV1SC] = "2022-04-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_MCV2DC] = "2022-12-05";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_MCV3MC] = "2023-03-28";
 
 Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_LMoP,
@@ -3384,6 +3388,7 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	Parser.SRC_VD,
 	Parser.SRC_SjA,
 	Parser.SRC_TG,
+	Parser.SRC_MCV3MC,
 ]);
 // region Source categories
 
@@ -3419,6 +3424,7 @@ Parser.SOURCES_COMEDY = new Set([
 	Parser.SRC_AWM,
 	Parser.SRC_MGELFT,
 	Parser.SRC_TG,
+	Parser.SRC_MCV3MC,
 ]);
 
 // Any opinionated set of sources that are "other settings"

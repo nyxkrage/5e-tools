@@ -156,6 +156,10 @@ i > i {
 	pointer-events: none !important;
 }
 
+.events-initial {
+	pointer-events: initial !important;
+}
+
 .no-select {
 	user-select: none !important;
 }

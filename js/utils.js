@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.177.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.178.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -790,9 +790,10 @@ globalThis.JqueryUtil = {
 		$ele.click(() => setTimeout(() => $ele.parent().addClass("open"), 1)); // defer to allow the above to complete
 	},
 
+	_WRP_TOAST: null,
 	_ACTIVE_TOAST: [],
 	/**
-	 * @param {{content: jQuery|string, type?: string, autoHideTime?: number} | string} options The options for the toast.
+	 * @param {{content: jQuery|string, type?: string, autoHideTime?: boolean} | string} options The options for the toast.
 	 * @param {(jQuery|string)} options.content Toast contents. Supports jQuery objects.
 	 * @param {string} options.type Toast type. Can be any Bootstrap alert type ("success", "info", "warning", or "danger").
 	 * @param {number} options.autoHideTime The time in ms before the toast will be automatically hidden.
@@ -801,6 +802,14 @@ globalThis.JqueryUtil = {
 	 */
 	doToast (options) {
 		if (typeof window === "undefined") return;
+
+		if (JqueryUtil._WRP_TOAST == null) {
+			JqueryUtil._WRP_TOAST = e_({
+				tag: "div",
+				clazz: "toast__container no-events w-100 overflow-y-hidden ve-flex-col",
+			});
+			document.body.appendChild(JqueryUtil._WRP_TOAST);
+		}
 
 		if (typeof options === "string") {
 			options = {
@@ -815,10 +824,7 @@ globalThis.JqueryUtil = {
 
 		const eleToast = e_({
 			tag: "div",
-			clazz: `toast toast--type-${options.type}`,
-			data: {
-				pos: 0,
-			},
+			clazz: `toast toast--type-${options.type} events-initial relative my-2 mx-auto`,
 			children: [
 				e_({
 					tag: "div",
@@ -849,38 +855,47 @@ globalThis.JqueryUtil = {
 			},
 			click: evt => {
 				evt.preventDefault();
-				JqueryUtil._doToastCleanup(eleToast);
+				JqueryUtil._doToastCleanup(toastMeta);
 
 				// Close all on SHIFT-click
 				if (!evt.shiftKey) return;
-				[...JqueryUtil._ACTIVE_TOAST].forEach(eleToast => JqueryUtil._doToastCleanup(eleToast));
+				[...JqueryUtil._ACTIVE_TOAST].forEach(toastMeta => JqueryUtil._doToastCleanup(toastMeta));
 			},
 		});
 
-		eleToast.prependTo(document.body);
+		// FIXME(future) this could be smoother; when stacking multiple tooltips, the incoming tooltip bumps old tooltips
+		//   down instantly (should be animated).
+		//   See e.g.:
+		//   `[...new Array(10)].forEach((_, i) => MiscUtil.pDelay(i * 50).then(() => JqueryUtil.doToast(`test ${i}`)))`
+		eleToast.prependTo(JqueryUtil._WRP_TOAST);
 
-		setTimeout(() => eleToast.addClass(`toast--animate`), 5);
-		if (options.isAutoHide) {
-			setTimeout(() => {
-				JqueryUtil._doToastCleanup(eleToast);
-			}, options.autoHideTime);
-		}
+		const toastMeta = {isAutoHide: !!options.isAutoHide, eleToast};
+		JqueryUtil._ACTIVE_TOAST.push(toastMeta);
 
-		if (JqueryUtil._ACTIVE_TOAST.length) {
-			JqueryUtil._ACTIVE_TOAST.forEach(eleToastOld => {
-				const pos = eleToastOld.dataset["pos"];
-				eleToastOld.dataset["pos"] = pos + 1;
-				if (pos === 2) JqueryUtil._doToastCleanup(eleToastOld);
+		AnimationUtil.pRecomputeStyles()
+			.then(() => {
+				eleToast.addClass(`toast--animate`);
+
+				if (options.isAutoHide) {
+					setTimeout(() => {
+						JqueryUtil._doToastCleanup(toastMeta);
+					}, options.autoHideTime);
+				}
+
+				if (JqueryUtil._ACTIVE_TOAST.length >= 3) {
+					JqueryUtil._ACTIVE_TOAST
+						.filter(({isAutoHide}) => !isAutoHide)
+						.forEach(toastMeta => {
+							JqueryUtil._doToastCleanup(toastMeta);
+						});
+				}
 			});
-		}
-
-		JqueryUtil._ACTIVE_TOAST.push(eleToast);
 	},
 
-	_doToastCleanup (eleToast) {
-		eleToast.removeClass("toast--animate");
-		setTimeout(() => eleToast.parentElement && document.body.removeChild(eleToast), 85);
-		JqueryUtil._ACTIVE_TOAST.splice(JqueryUtil._ACTIVE_TOAST.indexOf(eleToast), 1);
+	_doToastCleanup (toastMeta) {
+		toastMeta.eleToast.removeClass("toast--animate");
+		JqueryUtil._ACTIVE_TOAST.splice(JqueryUtil._ACTIVE_TOAST.indexOf(toastMeta), 1);
+		setTimeout(() => toastMeta.eleToast.parentElement && toastMeta.eleToast.remove(), 85);
 	},
 
 	isMobile () {

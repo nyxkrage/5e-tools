@@ -1,14 +1,27 @@
 "use strict";
 
 class PageFilterEquipment extends PageFilter {
+	static _RE_FOUNDRY_ATTR = /(?:[-+*/]\s*)?@[a-z0-9.]+/gi;
 	static _RE_DAMAGE_DICE_JUNK = /[^-+*/0-9d]/gi;
 	static _RE_DAMAGE_DICE_D = /d/gi;
 
+	static _getSortableDamageTerm (t) {
+		try {
+			/* eslint-disable no-eval */
+			return eval(
+				`${t}`
+					.replace(this._RE_FOUNDRY_ATTR, "")
+					.replace(this._RE_DAMAGE_DICE_JUNK, "")
+					.replace(this._RE_DAMAGE_DICE_D, "*"),
+			);
+			/* eslint-enable no-eval */
+		} catch (ignored) {
+			return Number.MAX_SAFE_INTEGER;
+		}
+	}
+
 	static _sortDamageDice (a, b) {
-		/* eslint-disable no-eval */
-		return eval((`${a.item}`).replace(this._RE_DAMAGE_DICE_JUNK, "").replace(this._RE_DAMAGE_DICE_D, "*"))
-			- eval((`${b.item}`).replace(this._RE_DAMAGE_DICE_JUNK, "").replace(this._RE_DAMAGE_DICE_D, "*"));
-		/* eslint-enable no-eval */
+		return this._getSortableDamageTerm(a.item) - this._getSortableDamageTerm(b.item);
 	}
 
 	constructor ({filterOpts = null} = {}) {

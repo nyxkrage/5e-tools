@@ -2386,6 +2386,12 @@
 	{
 		"ver": "1.177.3",
 		"date": "2023-03-21",
-		"txt": "- Added Weapon Damage Dice filter to Items page (thanks @ bruno-71 for the initial prototype)\n- Added \"Tunneler\" to Bestiary page Traits filter\n- Fixed Items page \"Cost\" filter failing to filter when max was set to \"100+gp\"\n- (Brew) Added support for `\"special\"` values in creature ability scores\n- (Brew) Various improvements to the Text Converter\n  - Improved linebreak handling\n  - Added support for One-UA-style \"special\" ability scores to Creature Text Converter\n  - Added support for choice of size; creature type to Creature Text Converter\n  - Improved Creature Text Converter handling of \"special\" ACs\n  - Improved Spell Text Converter parsing of One-UA-style spells\n  - Fixed various Creature Text Converter inconsistencies around core details header parsing"
+		"txt": "- Added Weapon Damage Dice filter to Items page (thanks @ bruno-71 for the initial prototype)\n- Added \"Tunneler\" to Bestiary page Traits filter\n- Fixed Items page \"Cost\" filter failing to filter when max was set to \"100+gp\"\n- (Brew) Added support for `\"special\"` values in creature ability scores\n- (Brew) Various improvements to the Text Converter\n  - Improved linebreak handling\n  - Added support for One-UA-style \"special\" ability scores to Creature Text Converter\n  - Added support for choice of size; creature type to Creature Text Converter\n  - Improved Creature Text Converter handling of \"special\" ACs\n  - Improved Spell Text Converter parsing of One-UA-style spells\n  - Fixed various Creature Text Converter inconsistencies around core details header parsing\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.178.0",
+		"date": "2023-03-30",
+		"title": "Official 'Crafting Rules",
+		"txt": "- Added Monstrous Compendium 3: Minecraft Creatures content\n- Added regex syntax to list page search bars (e.g. `text:/.*/`)\n- Added deck/card support to Blocklist\n- Tweaked toast system to avoid overlapping notifications\n- Fixed Bestiary \"Ability Score\" filters having no effect\n- Fixed list search failing to index fluff text\n- (Brew) Added filename (where available) to \"failed to load reference(s)\" popups\n- (Brew) Fixed Items page crash when loading items with non-standard damage roll formats\n- (Fixed typos/added tags)"
 	}
 ]

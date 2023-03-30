@@ -838,6 +838,9 @@ class ListSelectClickHandler extends ListSelectClickHandlerBase {
 
 	setCheckbox (item, {fnGetCb, fnOnSelectionChange, isNoHighlightSelection, toVal = true} = {}) {
 		const cbSlave = this._getCb(item, {fnGetCb, fnOnSelectionChange, isNoHighlightSelection});
+
+		if (cbSlave?.disabled) return;
+
 		if (cbSlave) {
 			cbSlave.checked = toVal;
 			if (fnOnSelectionChange) fnOnSelectionChange(item, toVal);
@@ -859,11 +862,14 @@ class ListSelectClickHandler extends ListSelectClickHandlerBase {
 	}
 
 	setCheckboxes ({isChecked, isIncludeHidden}) {
-		(isIncludeHidden ? this._list.items : this._list.visibleItems).forEach(item => {
-			if (item.data.cbSel) item.data.cbSel.checked = isChecked;
+		(isIncludeHidden ? this._list.items : this._list.visibleItems)
+			.forEach(item => {
+				if (item.data.cbSel?.disabled) return;
 
-			this._setHighlighted(item, isChecked);
-		});
+				if (item.data.cbSel) item.data.cbSel.checked = isChecked;
+
+				this._setHighlighted(item, isChecked);
+			});
 	}
 }
 
@@ -980,14 +986,14 @@ class ListUiUtil {
 		build () {
 			return {
 				stats: {
-					help: `"stats:<text>" to search within stat blocks.`,
+					help: `"stats:<text>" ("/text/" for regex) to search within stat blocks.`,
 					fn: (listItem, searchTerm) => {
 						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
 					},
 				},
 				info: {
-					help: `"info:<text>" to search within info.`,
+					help: `"info:<text>" ("/text/" for regex) to search within info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
@@ -995,7 +1001,7 @@ class ListUiUtil {
 					isAsync: true,
 				},
 				text: {
-					help: `"text:<text>" to search within stat blocks plus info.`,
+					help: `"text:<text>" ("/text/" for regex) to search within stat blocks plus info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheAll == null) {
 							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
@@ -1010,7 +1016,11 @@ class ListUiUtil {
 			};
 		}
 
-		_listSyntax_isTextMatch (str, searchTerm) { return str && str.includes(searchTerm); }
+		_listSyntax_isTextMatch (str, searchTerm) {
+			if (!str) return false;
+			if (searchTerm instanceof RegExp) return searchTerm.test(str);
+			return str.includes(searchTerm);
+		}
 
 		// TODO(Future) the ideal solution to this is to render every entity to plain text (or failing that, Markdown) and
 		//   indexing that text with e.g. elasticlunr.
@@ -1022,10 +1032,10 @@ class ListUiUtil {
 			"entries",
 		];
 
-		_getSearchCache_entries (entity) {
-			if (this.constructor._INDEXABLE_PROPS_ENTRIES.every(it => !entity[it])) return "";
+		_getSearchCache_entries (entity, {indexableProps = null} = {}) {
+			if ((indexableProps || this.constructor._INDEXABLE_PROPS_ENTRIES).every(it => !entity[it])) return "";
 			const ptrOut = {_: ""};
-			this.constructor._INDEXABLE_PROPS_ENTRIES.forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
+			(indexableProps || this.constructor._INDEXABLE_PROPS_ENTRIES).forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
 			return ptrOut._;
 		}
 
@@ -1051,7 +1061,7 @@ class ListUiUtil {
 
 		async _pGetSearchCacheFluff (entity) {
 			const fluff = this._pFnGetFluff ? await this._pFnGetFluff(entity) : null;
-			return fluff ? this._getSearchCache_entries(fluff) : "";
+			return fluff ? this._getSearchCache_entries(fluff, {indexableProps: ["entries"]}) : "";
 		}
 
 		async _pGetSearchCacheAll (entity, {textCacheStats = null, textCacheFluff = null}) {
@@ -3164,6 +3174,7 @@ class DragReorderUiUtil {
 	 * @param opts.swapRowPositions
 	 * @param [opts.$children] An array of row elements.
 	 * @param [opts.$getChildren] Should return an array as described in the "$children" option.
+	 * @param [opts.fnOnDragComplete] A function to run when dragging is completed.
 	 */
 	static $getDragPadOpts ($fnGetRow, opts) {
 		if (!opts.$parent || !opts.swapRowPositions || (!opts.$children && !opts.$getChildren)) throw new Error("Missing required option(s)!");
@@ -3174,6 +3185,7 @@ class DragReorderUiUtil {
 			dragMeta.$wrap.remove();
 			dragMeta.$dummies.forEach($d => $d.remove());
 			$(document.body).off(`mouseup.drag__stop`);
+			if (opts.fnOnDragComplete) opts.fnOnDragComplete();
 		};
 
 		const doDragRender = () => {
@@ -3192,7 +3204,7 @@ class DragReorderUiUtil {
 
 			$children.forEach(($child, i) => {
 				const dimensions = {w: $child.outerWidth(true), h: $child.outerHeight(true)};
-				const $dummy = $(`<div class="${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
+				const $dummy = $(`<div class="no-shrink ${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
 					.width(dimensions.w).height(dimensions.h)
 					.mouseup(() => {
 						if (dragMeta.on) doDragCleanup();

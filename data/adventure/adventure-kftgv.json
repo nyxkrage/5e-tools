@@ -24121,7 +24121,7 @@
 												{
 													"type": "item",
 													"name": "Secret Vault",
-													"entry": "\"Zorhanna usually keeps her {@item Shard Solitaire (Diamond)|KftGV|shard solitaire} necklace in a vault hidden beneath a pool of frigid water in Paliset Hall's bathroom turret, which is guarded by a stone golem. Only Zorhanna can safely bypass the golem, and only Zorhanna knows the three-letter combination to the vault.\" (Eliphas can lead characters safely to{@area area P11|495|x} if they ask to see the bathroom turret, and he will help them defeat the golem that guards it.)"
+													"entry": "\"Zorhanna usually keeps her {@item Shard Solitaire (Diamond)|KftGV|shard solitaire} necklace in a vault hidden beneath a pool of frigid water in Paliset Hall's bathroom turret, which is guarded by a stone golem. Only Zorhanna can safely bypass the golem, and only Zorhanna knows the three-letter combination to the vault.\" (Eliphas can lead characters safely to {@area area P11|495|x} if they ask to see the bathroom turret, and he will help them defeat the golem that guards it.)"
 												},
 												{
 													"type": "item",

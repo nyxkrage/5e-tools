@@ -1728,7 +1728,8 @@ globalThis.Renderer = function () {
 			case "@loader": {
 				const {name, path, mode} = this._renderString_getLoaderTagMeta(text);
 
-				const brewUtil = mode === "homebrew" ? BrewUtil2 : mode === "prerelease" ? PrereleaseUtil : null;
+				const brewUtilName = mode === "homebrew" ? "BrewUtil2" : mode === "prerelease" ? "PrereleaseUtil" : null;
+				const brewUtil = globalThis[brewUtilName];
 
 				if (!brewUtil) {
 					textStack[0] += `<span class="text-danger" title="Unknown loader mode &quot;${mode.qq()}&quot;!">${name}<span class="glyphicon glyphicon-alert rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
@@ -1736,7 +1737,7 @@ globalThis.Renderer = function () {
 					break;
 				}
 
-				textStack[0] += `<span onclick="${brewUtil}.pAddBrewFromLoaderTag(this)" data-rd-loader-path="${path.escapeQuotes()}" data-rd-loader-name="${name.escapeQuotes()}" class="rd__wrp-loadbrew--ready" title="Click to install ${brewUtil.DISPLAY_NAME}">${name}<span class="glyphicon glyphicon-download-alt rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
+				textStack[0] += `<span onclick="${brewUtilName}.pAddBrewFromLoaderTag(this)" data-rd-loader-path="${path.escapeQuotes()}" data-rd-loader-name="${name.escapeQuotes()}" class="rd__wrp-loadbrew--ready" title="Click to install ${brewUtil.DISPLAY_NAME}">${name}<span class="glyphicon glyphicon-download-alt rd__loadbrew-icon rd__loadbrew-icon"></span></span>`;
 				break;
 			}
 

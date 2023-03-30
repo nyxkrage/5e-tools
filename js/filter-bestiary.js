@@ -287,7 +287,7 @@ class PageFilterBestiary extends PageFilter {
 			.forEach(ab => {
 				if (mon[ab] == null) return;
 				const propF = `_f${ab.uppercaseFirst()}`;
-				mon[propF] = typeof mon[propF] !== "number" ? null : mon[propF];
+				mon[propF] = typeof mon[ab] !== "number" ? null : mon[ab];
 			});
 
 		mon._fMisc = [...mon.miscTags || []];
@@ -391,12 +391,12 @@ class PageFilterBestiary extends PageFilter {
 
 		this._sourceFilter.addItem(mon._fSources);
 		this._crFilter.addItem(mon._fCr);
-		this._strengthFilter.addItem(mon.str);
-		this._dexterityFilter.addItem(mon.dex);
-		this._constitutionFilter.addItem(mon.con);
-		this._intelligenceFilter.addItem(mon.int);
-		this._wisdomFilter.addItem(mon.wis);
-		this._charismaFilter.addItem(mon.cha);
+		this._strengthFilter.addItem(mon._fStr);
+		this._dexterityFilter.addItem(mon._fDex);
+		this._constitutionFilter.addItem(mon._fCon);
+		this._intelligenceFilter.addItem(mon._fInt);
+		this._wisdomFilter.addItem(mon._fWis);
+		this._charismaFilter.addItem(mon._fCha);
 		this._speedFilter.addItem(mon._fSpeed);
 		mon.ac.forEach(it => this._acFilter.addItem(it.ac || it));
 		if (mon.hp.average) this._averageHpFilter.addItem(mon.hp.average);

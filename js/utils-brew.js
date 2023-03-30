@@ -350,7 +350,11 @@ class _BrewUtil2Base {
 		await this._pGetBrewProcessed_pDoBlocklistExtension({cpyBrews});
 
 		// Avoid caching the meta merge, as we have our own cache. We might edit the brew, so we don't want a stale copy.
-		const cpyBrewsLoaded = await cpyBrews.pSerialAwaitMap(async ({head, body}) => DataUtil.pDoMetaMerge(head.url || head.docIdLocal, body, {isSkipMetaMergeCache: true}));
+		const cpyBrewsLoaded = await cpyBrews.pSerialAwaitMap(async ({head, body}) => {
+			const cpyBrew = await DataUtil.pDoMetaMerge(head.url || head.docIdLocal, body, {isSkipMetaMergeCache: true});
+			this._pGetBrewProcessed_mutDiagnostics({head, cpyBrew});
+			return cpyBrew;
+		});
 
 		this._cache_brewsProc = this._pGetBrewProcessed_getMergedOutput({cpyBrewsLoaded});
 		return this._cache_brewsProc;
@@ -361,6 +365,18 @@ class _BrewUtil2Base {
 		for (const {body} of cpyBrews) {
 			if (!body?.blocklist?.length || !(body.blocklist instanceof Array)) continue;
 			await ExcludeUtil.pExtendList(body.blocklist);
+		}
+	}
+
+	_pGetBrewProcessed_mutDiagnostics ({head, cpyBrew}) {
+		if (!head.filename) return;
+
+		for (const arr of Object.values(cpyBrew)) {
+			if (!(arr instanceof Array)) continue;
+			for (const ent of arr) {
+				if (!("__prop" in ent)) break;
+				ent.__diagnostic = {filename: head.filename};
+			}
 		}
 	}
 
@@ -480,6 +496,11 @@ class _BrewUtil2Base {
 		JqueryUtil.doToast(`Migrated ${this.DISPLAY_NAME} from version ${version} to version ${this._VERSION}!`);
 
 		return this._storage.pGet(this._STORAGE_KEY);
+	}
+
+	_getNewEditableBrewDoc () {
+		const json = {_meta: {sources: []}};
+		return this._getBrewDoc({json, isEditable: true});
 	}
 
 	/* -------------------------------------------- */
@@ -1292,11 +1313,6 @@ class _BrewUtil2 extends _BrewUtil2Base {
 		await this.pSetBrew(brews);
 
 		return brew;
-	}
-
-	_getNewEditableBrewDoc () {
-		const json = {_meta: {sources: []}};
-		return this._getBrewDoc({json, isEditable: true});
 	}
 
 	async pSetEditableBrewDoc (brew) {
