@@ -11694,7 +11694,7 @@
 					"name": "Boarding",
 					"entries": [
 						"When one ship moves to within 5 feet of another ship, the spelljammer or pilot of the moving ship can maneuver it alongside the other ship, enabling creatures to move safely from one ship's deck to the other ship's deck until one of the ships pulls away from the other.",
-						"A ship that has enough movement can pull alongside another vessel, deploy a boarding party, and then move away, provided the members of the boarding party took the {@action ready||Ready} action to position themselves so they can move onto the other vessel when it's close enough."
+						"A ship that has enough movement can pull alongside another vessel, deploy a boarding party, and then move away, provided the members of the boarding party took the {@action Ready} action to position themselves so they can move onto the other vessel when it's close enough."
 					]
 				}
 			]

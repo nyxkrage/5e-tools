@@ -26,6 +26,7 @@ class RenderBestiary {
 		const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, renderer);
 		const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
+		const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
 		const legGroup = DataUtil.monster.getMetaGroup(mon);
 
 		const renderedVariants = Renderer.monster.getRenderedVariants(mon, {renderer});
@@ -78,11 +79,11 @@ class RenderBestiary {
 		<tr>${options.selSummonSpellLevel ? $$`<td colspan="6"><strong>Spell Level</strong> ${options.selSummonSpellLevel}</td>` : ""}</tr>
 		<tr>${options.selSummonClassLevel ? $$`<td colspan="6"><strong>Class Level</strong> ${options.selSummonClassLevel}</td>` : ""}</tr>
 
-		${allTraits ? `<tr><td class="divider" colspan="6"><div></div></td></tr>${RenderBestiary._getRenderedSection({prop: "trait", entries: allTraits})}` : ""}
-		${allActions ? `${this._getRenderedSectionHeader({mon, title: "Actions", prop: "action"})}
+		${allTraits?.length ? `<tr><td class="divider" colspan="6"><div></div></td></tr>${RenderBestiary._getRenderedSection({prop: "trait", entries: allTraits})}` : ""}
+		${allActions?.length ? `${this._getRenderedSectionHeader({mon, title: "Actions", prop: "action"})}
 		${RenderBestiary._getRenderedSection({mon, prop: "action", entries: allActions})}` : ""}
-		${mon.bonus ? `${this._getRenderedSectionHeader({mon, title: "Bonus Actions", prop: "bonus"})}
-		${RenderBestiary._getRenderedSection({mon, prop: "bonus", entries: mon.bonus})}` : ""}
+		${allBonusActions?.length ? `${this._getRenderedSectionHeader({mon, title: "Bonus Actions", prop: "bonus"})}
+		${RenderBestiary._getRenderedSection({mon, prop: "bonus", entries: allBonusActions})}` : ""}
 		${mon.reaction ? `${this._getRenderedSectionHeader({mon, title: "Reactions", prop: "reaction"})}
 		${RenderBestiary._getRenderedSection({mon, prop: "reaction", entries: mon.reaction})}` : ""}
 		${mon.legendary ? `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}

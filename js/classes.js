@@ -1306,7 +1306,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			});
 
 		const filterSets = [
-			{name: "View Official", subHashes: [], isClearSources: false},
+			{name: "View Default", subHashes: [], isClearSources: false},
+			{name: "View Official", subHashes: [], isClearSources: false, sourceCategories: ["official"]},
+			{name: "View Homebrew", subHashes: [], isClearSources: false, sourceCategories: ["homebrew"]},
 			{name: "View Most Recent", subHashes: [], isClearSources: false, sources: {[Parser.SRC_UACFV]: 2}},
 			{name: "View All", subHashes: ["flstmiscellaneous:reprinted=0"], isClearSources: true},
 		];
@@ -1315,10 +1317,22 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			const boxSubhashes = this.filterBox.getBoxSubHashes() || [];
 
 			const cpySubHashes = MiscUtil.copyFast(filterSet.subHashes);
-			if (filterSet.isClearSources) {
+			if (filterSet.sourceCategories || filterSet.isClearSources) {
 				const classifiedSources = this._pageFilter.sourceFilter.getSources();
-				const sourcePart = [...classifiedSources.official, ...classifiedSources.homebrew]
-					.map(src => `${src.toUrlified()}=0`)
+
+				const toInclude = filterSet.sourceCategories || [];
+				const toExclude = ["official", "unofficial", "homebrew"].filter(it => !toInclude.includes(it));
+
+				const sourcePart = [
+					...toInclude
+						.map(prop => classifiedSources[prop])
+						.flat()
+						.map(src => `${src.toUrlified()}=1`),
+					...toExclude
+						.map(prop => classifiedSources[prop])
+						.flat()
+						.map(src => `${src.toUrlified()}=0`),
+				]
 					.join(HASH_SUB_LIST_SEP);
 				cpySubHashes.push(`flstsource:${sourcePart}`);
 			} else if (filterSet.sources) {

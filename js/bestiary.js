@@ -248,7 +248,15 @@ class BestiaryPage extends ListPageMultiSource {
 						},
 						flex: 3,
 					},
-					bonus: {name: "Bonus Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
+					bonus: {
+						name: "Bonus Actions",
+						transform: mon => {
+							const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, Renderer.get());
+							const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
+							return (allBonusActions || []).map(it => it.rendered || Renderer.get().render(it, 2)).join("");
+						},
+						flex: 3,
+					},
 					reaction: {name: "Reactions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
 					legendary: {name: "Legendary Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
 					mythic: {name: "Mythic Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},

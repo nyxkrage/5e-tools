@@ -1228,12 +1228,16 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 	}
 
 	async _pGetStoredPrereleaseBrewData ({brewUtil, isPrerelease, isBrew}) {
-		const prereleaseBrew = await brewUtil.pGetBrewProcessed();
-
+		const prereleaseBrewData = await brewUtil.pGetBrewProcessed();
+		await this._pPrePopulate({data: prereleaseBrewData, isPrerelease, isBrew});
 		return {
-			item: await Renderer.item.pGetSiteUnresolvedRefItemsFromPrereleaseBrew({brewUtil, brew: prereleaseBrew}),
-			itemEntry: prereleaseBrew.itemEntry || [],
+			item: await Renderer.item.pGetSiteUnresolvedRefItemsFromPrereleaseBrew({brewUtil, brew: prereleaseBrewData}),
+			itemEntry: prereleaseBrewData.itemEntry || [],
 		};
+	}
+
+	async _pPrePopulate ({data, isPrerelease, isBrew}) {
+		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
 	}
 
 	async _pGetPostCacheData_obj ({siteData, obj, lockToken2}) {

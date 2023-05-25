@@ -855,6 +855,7 @@ RendererMarkdown.monster = class {
 		const fnGetSpellTraits = RendererMarkdown.monster.getSpellcastingRenderedTraits.bind(RendererMarkdown.monster, meta);
 		const traitArray = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const actionArray = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
+		const bonusActionArray = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
 
 		const traitsPart = traitArray?.length
 			? `\n${RendererMarkdown.monster._getRenderedSection({prop: "trait", entries: traitArray, depth: 1, meta})}`
@@ -863,7 +864,7 @@ RendererMarkdown.monster = class {
 		const actionsPart = actionArray?.length
 			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Actions", prop: "action"})}${RendererMarkdown.monster._getRenderedSection({mon, prop: "action", entries: actionArray, depth: 1, meta})}`
 			: "";
-		const bonusActionsPart = mon.bonus
+		const bonusActionsPart = bonusActionArray?.length
 			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Bonus Actions", prop: "bonus"})}${RendererMarkdown.monster._getRenderedSection({mon, prop: "bonus", entries: mon.bonus, depth: 1, meta})}`
 			: "";
 		const reactionsPart = mon.reaction

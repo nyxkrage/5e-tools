@@ -443,6 +443,7 @@ class MakeCards extends BaseComponent {
 		const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, renderer);
 		const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
+		const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
 
 		return [
 			this._ct_subtitle(Renderer.monster.getTypeAlignmentPart(mon)),
@@ -464,11 +465,11 @@ class MakeCards extends BaseComponent {
 			this._ct_property("Languages", this._ct_htmlToText(Renderer.monster.getRenderedLanguages(mon.languages))),
 			this._ct_property("Challenge", this._ct_htmlToText(Parser.monCrToFull(mon.cr, {isMythic: !!mon.mythic}))),
 			this._ct_rule(),
-			...(allTraits ? this._ct_renderEntries(allTraits, 2) : []),
-			allActions ? this._ct_section("Actions") : null,
-			...(allActions ? this._ct_renderEntries(allActions, 2) : []),
-			mon.bonus ? this._ct_section("Bonus Actions") : null,
-			...(mon.bonus ? this._ct_renderEntries(mon.bonus, 2) : []),
+			...(allTraits?.length ? this._ct_renderEntries(allTraits, 2) : []),
+			allActions?.length ? this._ct_section("Actions") : null,
+			...(allActions?.length ? this._ct_renderEntries(allActions, 2) : []),
+			allBonusActions?.length ? this._ct_section("Bonus Actions") : null,
+			...(allBonusActions?.length ? this._ct_renderEntries(allBonusActions, 2) : []),
 			mon.reaction ? this._ct_section("Reactions") : null,
 			...(mon.reaction ? this._ct_renderEntries(mon.reaction, 2) : []),
 			mon.legendary ? this._ct_section("Legendary Actions") : null,
