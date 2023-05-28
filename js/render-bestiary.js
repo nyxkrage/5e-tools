@@ -27,6 +27,7 @@ class RenderBestiary {
 		const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
 		const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
+		const allReactions = Renderer.monster.getOrderedReactions(mon, {fnGetSpellTraits});
 		const legGroup = DataUtil.monster.getMetaGroup(mon);
 
 		const renderedVariants = Renderer.monster.getRenderedVariants(mon, {renderer});
@@ -84,8 +85,8 @@ class RenderBestiary {
 		${RenderBestiary._getRenderedSection({mon, prop: "action", entries: allActions})}` : ""}
 		${allBonusActions?.length ? `${this._getRenderedSectionHeader({mon, title: "Bonus Actions", prop: "bonus"})}
 		${RenderBestiary._getRenderedSection({mon, prop: "bonus", entries: allBonusActions})}` : ""}
-		${mon.reaction ? `${this._getRenderedSectionHeader({mon, title: "Reactions", prop: "reaction"})}
-		${RenderBestiary._getRenderedSection({mon, prop: "reaction", entries: mon.reaction})}` : ""}
+		${allReactions?.length ? `${this._getRenderedSectionHeader({mon, title: "Reactions", prop: "reaction"})}
+		${RenderBestiary._getRenderedSection({mon, prop: "reaction", entries: allReactions})}` : ""}
 		${mon.legendary ? `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}
 		${RenderBestiary._getRenderedSection({mon, prop: "legendary", entries: mon.legendary, fnGetHeader: Renderer.monster.getLegendaryActionIntro.bind(Renderer.monster)})}` : ""}
 		${mon.mythic ? `${this._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic"})}

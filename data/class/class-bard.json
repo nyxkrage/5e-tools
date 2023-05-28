@@ -111,6 +111,11 @@
 				"tools": [
 					"three {@item musical instrument|PHB|musical instruments} of your choice"
 				],
+				"toolProficiencies": [
+					{
+						"anyMusicalInstrument": 3
+					}
+				],
 				"skills": [
 					{
 						"any": 3
@@ -203,6 +208,11 @@
 					],
 					"tools": [
 						"one {@item musical instrument|PHB} of your choice"
+					],
+					"toolProficiencies": [
+						{
+							"anyMusicalInstrument": 1
+						}
 					]
 				}
 			},

@@ -2265,8 +2265,8 @@ Renderer._getEntryDiceDisplayText_getDiceAsStr = function (entry) {
 };
 
 Renderer.parseScaleDice = function (tag, text) {
-	// format: {@scaledice 2d6;3d6|2-8,9|1d6|psi} (or @scaledamage)
-	const [baseRoll, progression, addPerProgress, renderMode] = Renderer.splitTagByPipe(text);
+	// format: {@scaledice 2d6;3d6|2-8,9|1d6|psi|display text} (or @scaledamage)
+	const [baseRoll, progression, addPerProgress, renderMode, displayText] = Renderer.splitTagByPipe(text);
 	const progressionParse = MiscUtil.parseNumberRange(progression, 1, 9);
 	const baseLevel = Math.min(...progressionParse);
 	const options = {};
@@ -2298,7 +2298,7 @@ Renderer.parseScaleDice = function (tag, text) {
 		type: "dice",
 		rollable: true,
 		toRoll: baseRoll,
-		displayText: addPerProgress,
+		displayText: displayText || addPerProgress,
 		prompt: {
 			entry: renderMode === "psi" ? "Spend Psi Points..." : "Cast at...",
 			mode: renderMode,
@@ -4247,8 +4247,8 @@ Renderer.tag = class {
 
 	static _TagDiceFlavorScaling = class extends this._TagBaseAt {
 		_getStripped (tag, text) {
-			const [, , addPerProgress ] = Renderer.splitTagByPipe(text);
-			return addPerProgress;
+			const [, , addPerProgress, , displayText] = Renderer.splitTagByPipe(text);
+			return displayText || addPerProgress;
 		}
 	};
 
@@ -5171,164 +5171,401 @@ Renderer.spell = {
 		return renderStack.join("");
 	},
 
-	_prereleaseSourcesCache: null,
-	_brewSourcesCache: null,
+	_SpellSourceManager: class {
+		_cache = null;
 
-	populatePrereleaseLookup (brew, {isForce = false} = {}) {
-		Renderer.spell._populatePrereleaseBrewLookup({brew, isForce, propCache: "_prereleaseSourcesCache"});
-	},
+		populate ({brew, isForce = false}) {
+			if (this._cache && !isForce) return;
 
-	populateBrewLookup (brew, {isForce = false} = {}) {
-		Renderer.spell._populatePrereleaseBrewLookup({brew, isForce, propCache: "_brewSourcesCache"});
-	},
+			this._cache = {
+				classes: {},
 
-	_populatePrereleaseBrewLookup ({brew, propCache, isForce}) {
-		if (Renderer.spell[propCache] && !isForce) return;
+				groups: {},
 
-		const cache = Renderer.spell[propCache] = {
-			classes: {},
+				// region Unused
+				races: {},
+				backgrounds: {},
+				feats: {},
+				optionalfeatures: {},
+				// endregion
+			};
 
-			groups: {},
+			// region Load homebrew class spell list addons
+			// Two formats are available: a string UID, or "class" object (object with a `className`, etc.).
+			(brew.class || [])
+				.forEach(c => {
+					c.source = c.source || Parser.SRC_PHB;
 
-			// region Unused
-			races: {},
-			backgrounds: {},
-			feats: {},
-			optionalfeatures: {},
-			// endregion
-		};
+					(c.classSpells || [])
+						.forEach(itm => {
+							this._populate_fromClass_classSubclass({
+								itm,
+								className: c.name,
+								classSource: c.source,
+							});
 
-		// region Load homebrew class spell list addons
-		// Two formats are available: a string UID, or "class" object (object with a `className`, etc.).
-		if (brew.class) {
-			brew.class.forEach(c => {
-				c.source = c.source || Parser.SRC_PHB;
+							this._populate_fromClass_group({
+								itm,
+								className: c.name,
+								classSource: c.source,
+							});
+						});
+				});
 
-				(c.classSpells || [])
-					.forEach(itm => Renderer.spell._populatePrereleaseBrewLookup_item_classSubclass({
-						cache,
-						itm,
-						className: c.name,
-						classSource: c.source,
-					}));
-			});
-		}
+			(brew.subclass || [])
+				.forEach(sc => {
+					sc.classSource = sc.classSource || Parser.SRC_PHB;
+					sc.shortName = sc.shortName || sc.name;
+					sc.source = sc.source || sc.classSource;
 
-		if (brew.subclass) {
-			brew.subclass.forEach(sc => {
-				sc.classSource = sc.classSource || Parser.SRC_PHB;
-				sc.shortName = sc.shortName || sc.name;
-				sc.source = sc.source || sc.classSource;
-
-				(sc.subclassSpells || [])
-					.forEach(itm => Renderer.spell._populatePrereleaseBrewLookup_item_classSubclass({
-						cache,
-						itm,
-						className: sc.className,
-						classSource: sc.classSource,
-						subclassShortName: sc.shortName,
-						subclassName: sc.name,
-						subclassSource: sc.source,
-					}));
-
-				Object.entries(sc.subSubclassSpells || {})
-					.forEach(([subSubclassName, arr]) => {
-						arr
-							.forEach(itm => Renderer.spell._populatePrereleaseBrewLookup_item_classSubclass({
-								cache,
+					(sc.subclassSpells || [])
+						.forEach(itm => {
+							this._populate_fromClass_classSubclass({
 								itm,
 								className: sc.className,
 								classSource: sc.classSource,
 								subclassShortName: sc.shortName,
 								subclassName: sc.name,
 								subclassSource: sc.source,
-								subSubclassName,
-							}));
-					});
-			});
+							});
+
+							this._populate_fromClass_group({
+								itm,
+								className: sc.className,
+								classSource: sc.classSource,
+								subclassShortName: sc.shortName,
+								subclassName: sc.name,
+								subclassSource: sc.source,
+							});
+						});
+
+					Object.entries(sc.subSubclassSpells || {})
+						.forEach(([subSubclassName, arr]) => {
+							arr
+								.forEach(itm => {
+									this._populate_fromClass_classSubclass({
+										itm,
+										className: sc.className,
+										classSource: sc.classSource,
+										subclassShortName: sc.shortName,
+										subclassName: sc.name,
+										subclassSource: sc.source,
+										subSubclassName,
+									});
+
+									this._populate_fromClass_group({
+										itm,
+										className: sc.className,
+										classSource: sc.classSource,
+										subclassShortName: sc.shortName,
+										subclassName: sc.name,
+										subclassSource: sc.source,
+										subSubclassName,
+									});
+								});
+						});
+				});
+			// endregion
+
+			(brew.spellList || [])
+				.forEach(spellList => this._populate_fromGroup_group({spellList}));
 		}
-		// endregion
 
-		(brew.spellList || []).forEach(spellList => Renderer.spell._populatePrereleaseBrewLookup_item_group({cache, spellList}));
-	},
+		_populate_fromClass_classSubclass (
+			{
+				itm,
+				className,
+				classSource,
+				subclassShortName,
+				subclassName,
+				subclassSource,
+				subSubclassName,
+			},
+		) {
+			if (itm.groupName) return;
 
-	_populatePrereleaseBrewLookup_item_classSubclass (
-		{
-			cache,
-			itm,
-			className,
-			classSource,
-			subclassShortName,
-			subclassName,
-			subclassSource,
-			subSubclassName,
-		},
-	) {
-		const doAdd = (target) => {
+			// region Duplicate the spell list of another class/subclass/sub-subclass
+			if (itm.className) {
+				return this._populate_fromClass_doAdd({
+					tgt: MiscUtil.getOrSet(
+						this._cache.classes,
+						"class",
+						(itm.classSource || Parser.SRC_PHB).toLowerCase(),
+						itm.className.toLowerCase(),
+						{},
+					),
+					className,
+					classSource,
+					subclassShortName,
+					subclassName,
+					subclassSource,
+					subSubclassName,
+				});
+			}
+			// endregion
+
+			// region Individual spell
+			let [name, source] = `${itm}`.toLowerCase().split("|");
+			source = source || Parser.SRC_PHB.toLowerCase();
+
+			this._populate_fromClass_doAdd({
+				tgt: MiscUtil.getOrSet(
+					this._cache.classes,
+					"spell",
+					source,
+					name,
+					{fromClassList: [], fromSubclass: []},
+				),
+				className,
+				classSource,
+				subclassShortName,
+				subclassName,
+				subclassSource,
+				subSubclassName,
+			});
+			// endregion
+		}
+
+		_populate_fromClass_doAdd (
+			{
+				tgt,
+				className,
+				classSource,
+				subclassShortName,
+				subclassName,
+				subclassSource,
+				subSubclassName,
+				schools,
+			},
+		) {
 			if (subclassShortName) {
 				const toAdd = {
 					class: {name: className, source: classSource},
 					subclass: {name: subclassName || subclassShortName, shortName: subclassShortName, source: subclassSource},
 				};
 				if (subSubclassName) toAdd.subclass.subSubclass = subSubclassName;
+				if (schools) toAdd.schools = schools;
 
-				target.fromSubclass = target.fromSubclass || [];
-				target.fromSubclass.push(toAdd);
+				tgt.fromSubclass = tgt.fromSubclass || [];
+				tgt.fromSubclass.push(toAdd);
 				return;
 			}
 
 			const toAdd = {name: className, source: classSource};
+			if (schools) toAdd.schools = schools;
 
-			target.fromClassList = target.fromClassList || [];
-			target.fromClassList.push(toAdd);
-		};
-
-		// region Duplicate the spell list of another class/subclass/sub-subclass
-		if (itm.className) {
-			cache.classes.class = cache.classes.class || {};
-
-			const cls = itm.className.toLowerCase();
-			const source = (itm.classSource || Parser.SRC_PHB).toLowerCase();
-
-			cache.classes.class[source] = cache.classes.class[source] || {};
-			cache.classes.class[source][cls] = cache.classes.class[source][cls] || {};
-
-			return doAdd(cache.classes.class[source][cls]);
+			tgt.fromClassList = tgt.fromClassList || [];
+			tgt.fromClassList.push(toAdd);
 		}
-		// endregion
 
-		// region Individual spell
-		cache.classes.spell = cache.classes.spell || {};
+		_populate_fromClass_group (
+			{
+				itm,
+				className,
+				classSource,
+				subclassShortName,
+				subclassName,
+				subclassSource,
+				subSubclassName,
+			},
+		) {
+			if (!itm.groupName) return;
 
-		let [name, source] = `${itm}`.toLowerCase().split("|");
-		source = source || Parser.SRC_PHB.toLowerCase();
+			return this._populate_fromClass_doAdd({
+				tgt: MiscUtil.getOrSet(
+					this._cache.classes,
+					"group",
+					(itm.groupSource || Parser.SRC_PHB).toLowerCase(),
+					itm.groupName.toLowerCase(),
+					{},
+				),
+				className,
+				classSource,
+				subclassShortName,
+				subclassName,
+				subclassSource,
+				subSubclassName,
+				schools: itm.spellSchools,
+			});
+		}
 
-		cache.classes.spell[source] = cache.classes.spell[source] || {};
-		cache.classes.spell[source][name] = cache.classes.spell[source][name] || {fromClassList: [], fromSubclass: []};
+		_populate_fromGroup_group (
+			{
+				spellList,
+			},
+		) {
+			const spellListSourceLower = (spellList.source || "").toLowerCase();
+			const spellListNameLower = (spellList.name || "").toLowerCase();
 
-		doAdd(cache.classes.spell[source][name]);
-		// endregion
+			spellList.spells
+				.forEach(spell => {
+					if (typeof spell === "string") {
+						const {name, source} = DataUtil.proxy.unpackUid("spell", spell, "spell", {isLower: true});
+						return MiscUtil.set(this._cache.groups, "spell", source, name, spellListSourceLower, spellListNameLower, {name: spellList.name, source: spellList.source});
+					}
+
+					// TODO(Future) implement "copy existing list"
+					throw new Error(`Grouping spells based on other spell lists is not yet supported!`);
+				});
+		}
+
+		/* -------------------------------------------- */
+
+		mutateSpell ({spell: sp, lowName, lowSource}) {
+			lowName = lowName || sp.name.toLowerCase();
+			lowSource = lowSource || sp.source.toLowerCase();
+
+			this._mutateSpell_brewGeneric({sp, lowName, lowSource, propSpell: "races", prop: "race"});
+			this._mutateSpell_brewGeneric({sp, lowName, lowSource, propSpell: "backgrounds", prop: "background"});
+			this._mutateSpell_brewGeneric({sp, lowName, lowSource, propSpell: "feats", prop: "feat"});
+			this._mutateSpell_brewGeneric({sp, lowName, lowSource, propSpell: "optionalfeatures", prop: "optionalfeature"});
+			this._mutateSpell_brewGroup({sp, lowName, lowSource});
+			this._mutateSpell_brewClassesSubclasses({sp, lowName, lowSource});
+		}
+
+		_mutateSpell_brewClassesSubclasses ({sp, lowName, lowSource}) {
+			if (!this._cache?.classes) return;
+
+			if (this._cache.classes.spell?.[lowSource]?.[lowName]?.fromClassList?.length) {
+				sp._tmpClasses.fromClassList = sp._tmpClasses.fromClassList || [];
+				sp._tmpClasses.fromClassList.push(...this._cache.classes.spell[lowSource][lowName].fromClassList);
+			}
+
+			if (this._cache.classes.spell?.[lowSource]?.[lowName]?.fromSubclass?.length) {
+				sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+				sp._tmpClasses.fromSubclass.push(...this._cache.classes.spell[lowSource][lowName].fromSubclass);
+			}
+
+			if (this._cache.classes.class && sp.classes?.fromClassList) {
+				(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
+
+				// speed over safety
+				outer: for (const srcLower in this._cache.classes.class) {
+					const searchForClasses = this._cache.classes.class[srcLower];
+
+					for (const clsLowName in searchForClasses) {
+						const spellHasClass = sp.classes?.fromClassList?.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
+						if (!spellHasClass) continue;
+
+						const fromDetails = searchForClasses[clsLowName];
+
+						if (fromDetails.fromClassList) {
+							sp._tmpClasses.fromClassList.push(...this._mutateSpell_getListFilteredBySchool({sp, arr: fromDetails.fromClassList}));
+						}
+
+						if (fromDetails.fromSubclass) {
+							sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+							sp._tmpClasses.fromSubclass.push(...this._mutateSpell_getListFilteredBySchool({sp, arr: fromDetails.fromSubclass}));
+						}
+
+						// Only add it once regardless of how many classes match
+						break outer;
+					}
+				}
+			}
+
+			if (this._cache.classes.group && (sp.groups?.length || sp._tmpGroups?.length)) {
+				const groups = Renderer.spell.getCombinedGeneric(sp, {propSpell: "groups"});
+
+				(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
+
+				// speed over safety
+				outer: for (const srcLower in this._cache.classes.group) {
+					const searchForGroups = this._cache.classes.group[srcLower];
+
+					for (const groupLowName in searchForGroups) {
+						const spellHasGroup = groups?.some(grp => (grp.source || "").toLowerCase() === srcLower && grp.name.toLowerCase() === groupLowName);
+						if (!spellHasGroup) continue;
+
+						const fromDetails = searchForGroups[groupLowName];
+
+						if (fromDetails.fromClassList) {
+							sp._tmpClasses.fromClassList.push(...this._mutateSpell_getListFilteredBySchool({sp, arr: fromDetails.fromClassList}));
+						}
+
+						if (fromDetails.fromSubclass) {
+							sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+							sp._tmpClasses.fromSubclass.push(...this._mutateSpell_getListFilteredBySchool({sp, arr: fromDetails.fromSubclass}));
+						}
+
+						// Only add it once regardless of how many classes match
+						break outer;
+					}
+				}
+			}
+		}
+
+		_mutateSpell_getListFilteredBySchool ({arr, sp}) {
+			return arr
+				.filter(it => {
+					if (!it.schools) return true;
+					return it.schools.includes(sp.school);
+				})
+				.map(it => {
+					if (!it.schools) return it;
+					const out = MiscUtil.copyFast(it);
+					delete it.schools;
+					return it;
+				});
+		}
+
+		_mutateSpell_brewGeneric ({sp, lowName, lowSource, propSpell, prop}) {
+			if (!this._cache?.[propSpell]) return;
+
+			const propTmp = `_tmp${propSpell.uppercaseFirst()}`;
+
+			// If a precise spell has been specified
+			if (this._cache[propSpell]?.spell?.[lowSource]?.[lowName]?.length) {
+				(sp[propTmp] = sp[propTmp] || [])
+					.push(...this._cache[propSpell].spell[lowSource][lowName]);
+			}
+
+			// If we have a copy of an existing entity's spells
+			if (this._cache?.[propSpell]?.[prop] && sp[propSpell]) {
+				sp[propTmp] = sp[propTmp] || [];
+
+				// speed over safety
+				outer: for (const srcLower in this._cache[propSpell][prop]) {
+					const searchForExisting = this._cache[propSpell][prop][srcLower];
+
+					for (const lowName in searchForExisting) {
+						const spellHasEnt = sp[propSpell].some(it => (it.source || "").toLowerCase() === srcLower && it.name.toLowerCase() === lowName);
+						if (!spellHasEnt) continue;
+
+						const fromDetails = searchForExisting[lowName];
+
+						sp[propTmp].push(...fromDetails);
+
+						// Only add it once regardless of how many entities match
+						break outer;
+					}
+				}
+			}
+		}
+
+		_mutateSpell_brewGroup ({sp, lowName, lowSource}) {
+			if (!this._cache?.groups) return;
+
+			if (this._cache.groups.spell?.[lowSource]?.[lowName]) {
+				Object.values(this._cache.groups.spell[lowSource][lowName])
+					.forEach(bySource => {
+						Object.values(bySource)
+							.forEach(byName => {
+								sp._tmpGroups.push(byName);
+							});
+					});
+			}
+
+			// TODO(Future) implement "copy existing list"
+		}
 	},
 
-	_populatePrereleaseBrewLookup_item_group (
-		{
-			cache,
-			spellList,
-		},
-	) {
-		const spellListSourceLower = (spellList.source || "").toLowerCase();
-		const spellListNameLower = (spellList.name || "").toLowerCase();
+	populatePrereleaseLookup (brew, {isForce = false} = {}) {
+		Renderer.spell._spellSourceManagerPrerelease.populate({brew, isForce});
+	},
 
-		spellList.spells
-			.forEach(spell => {
-				if (typeof spell === "string") {
-					const {name, source} = DataUtil.proxy.unpackUid("spell", spell, "spell", {isLower: true});
-					return MiscUtil.set(cache.groups, "spell", source, name, spellListSourceLower, spellListNameLower, {name: spellList.name, source: spellList.source});
-				}
-
-				// TODO(Future) implement "copy existing list"
-				throw new Error(`Grouping spells based on other spell lists is not yet supported!`);
-			});
+	populateBrewLookup (brew, {isForce = false} = {}) {
+		Renderer.spell._spellSourceManagerBrew.populate({brew, isForce});
 	},
 
 	prePopulateHover (data) {
@@ -5341,6 +5578,40 @@ Renderer.spell = {
 
 	prePopulateHoverBrew (data) {
 		Renderer.spell.populateBrewLookup(data);
+	},
+
+	/* -------------------------------------------- */
+
+	_BREW_SOURCES_TMP_PROPS: [
+		"_tmpSourcesInit",
+		"_tmpClasses",
+		"_tmpRaces",
+		"_tmpBackgrounds",
+		"_tmpFeats",
+		"_tmpOptionalfeatures",
+		"_tmpGroups",
+	],
+	uninitBrewSources (sp) {
+		Renderer.spell._BREW_SOURCES_TMP_PROPS.forEach(prop => delete sp[prop]);
+	},
+
+	initBrewSources (sp) {
+		if (sp._tmpSourcesInit) return;
+		sp._tmpSourcesInit = true;
+
+		sp._tmpClasses = {};
+		sp._tmpRaces = [];
+		sp._tmpBackgrounds = [];
+		sp._tmpFeats = [];
+		sp._tmpOptionalfeatures = [];
+		sp._tmpGroups = [];
+
+		const lowName = sp.name.toLowerCase();
+		const lowSource = sp.source.toLowerCase();
+
+		for (const manager of [Renderer.spell._spellSourceManagerPrerelease, Renderer.spell._spellSourceManagerBrew]) {
+			manager.mutateSpell({spell: sp, lowName, lowSource});
+		}
 	},
 
 	getCombinedClasses (sp, prop) {
@@ -5401,136 +5672,7 @@ Renderer.spell = {
 			.sort(SortUtil.ascSortGenericEntity.bind(SortUtil));
 	},
 
-	_BREW_SOURCES_TMP_PROPS: [
-		"_tmpSourcesInit",
-		"_tmpClasses",
-		"_tmpRaces",
-		"_tmpBackgrounds",
-		"_tmpFeats",
-		"_tmpOptionalfeatures",
-		"_tmpGroups",
-	],
-	uninitBrewSources (sp) {
-		Renderer.spell._BREW_SOURCES_TMP_PROPS.forEach(prop => delete sp[prop]);
-	},
-
-	initBrewSources (sp) {
-		if (sp._tmpSourcesInit) return;
-		sp._tmpSourcesInit = true;
-
-		sp._tmpClasses = {};
-		sp._tmpRaces = [];
-		sp._tmpBackgrounds = [];
-		sp._tmpFeats = [];
-		sp._tmpOptionalfeatures = [];
-		sp._tmpGroups = [];
-
-		const lowName = sp.name.toLowerCase();
-		const lowSource = sp.source.toLowerCase();
-
-		for (const cache of [Renderer.spell._prereleaseSourcesCache, Renderer.spell._brewSourcesCache]) {
-			Renderer.spell._initBrewSources_brewClassesSubclasses({cache, sp, lowName, lowSource});
-			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "races", prop: "race"});
-			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "backgrounds", prop: "background"});
-			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "feats", prop: "feat"});
-			Renderer.spell._initBrewSources_brewGeneric({cache, sp, lowName, lowSource, propSpell: "optionalfeatures", prop: "optionalfeature"});
-			Renderer.spell._initBrewSources_brewGroup({cache, sp, lowName, lowSource});
-		}
-	},
-
-	_initBrewSources_brewClassesSubclasses ({cache, sp, lowName, lowSource}) {
-		if (!cache?.classes) return;
-
-		if (cache.classes.spell?.[lowSource]?.[lowName]) {
-			if (cache.classes.spell[lowSource][lowName].fromClassList.length) {
-				sp._tmpClasses.fromClassList = sp._tmpClasses.fromClassList || [];
-				sp._tmpClasses.fromClassList.push(...cache.classes.spell[lowSource][lowName].fromClassList);
-			}
-
-			if (cache.classes.spell[lowSource][lowName].fromSubclass.length) {
-				sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
-				sp._tmpClasses.fromSubclass.push(...cache.classes.spell[lowSource][lowName].fromSubclass);
-			}
-		}
-
-		if (cache.classes.class && sp.classes?.fromClassList) {
-			(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
-
-			// speed over safety
-			outer: for (const srcLower in cache.classes.class) {
-				const searchForClasses = cache.classes.class[srcLower];
-
-				for (const clsLowName in searchForClasses) {
-					const spellHasClass = sp.classes?.fromClassList?.some(cls => (cls.source || "").toLowerCase() === srcLower && cls.name.toLowerCase() === clsLowName);
-					if (!spellHasClass) continue;
-
-					const fromDetails = searchForClasses[clsLowName];
-
-					if (fromDetails.fromClassList) {
-						sp._tmpClasses.fromClassList.push(...fromDetails.fromClassList);
-					}
-
-					if (fromDetails.fromSubclass) {
-						sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
-						sp._tmpClasses.fromSubclass.push(...fromDetails.fromSubclass);
-					}
-
-					// Only add it once regardless of how many classes match
-					break outer;
-				}
-			}
-		}
-	},
-
-	_initBrewSources_brewGeneric ({cache, sp, lowName, lowSource, propSpell, prop}) {
-		if (!cache?.[propSpell]) return;
-
-		const propTmp = `_tmp${propSpell.uppercaseFirst()}`;
-
-		// If a precise spell has been specified
-		if (cache[propSpell]?.spell?.[lowSource]?.[lowName]?.length) {
-			(sp[propTmp] = sp[propTmp] || [])
-				.push(...cache[propSpell].spell[lowSource][lowName]);
-		}
-
-		// If we have a copy of an existing entity's spells
-		if (cache?.[propSpell]?.[prop] && sp[propSpell]) {
-			sp[propTmp] = sp[propTmp] || [];
-
-			// speed over safety
-			outer: for (const srcLower in cache[propSpell][prop]) {
-				const searchForExisting = cache[propSpell][prop][srcLower];
-
-				for (const lowName in searchForExisting) {
-					const spellHasEnt = sp[propSpell].some(it => (it.source || "").toLowerCase() === srcLower && it.name.toLowerCase() === lowName);
-					if (!spellHasEnt) continue;
-
-					const fromDetails = searchForExisting[lowName];
-
-					sp[propTmp].push(...fromDetails);
-
-					// Only add it once regardless of how many entities match
-					break outer;
-				}
-			}
-		}
-	},
-
-	_initBrewSources_brewGroup ({cache, sp, lowName, lowSource}) {
-		if (!cache?.groups) return;
-
-		if (cache.groups.spell?.[lowSource]?.[lowName]) {
-			Object.values(cache.groups.spell[lowSource][lowName])
-				.forEach(bySource => {
-					Object.values(bySource)
-						.forEach(byName => {
-							sp._tmpGroups.push(byName);
-						});
-				});
-		}
-
-		// TODO(Future) implement "copy existing list"
-	},
+	/* -------------------------------------------- */
 
 	pGetFluff (sp) {
 		return Renderer.utils.pGetFluff({
@@ -5540,6 +5682,9 @@ Renderer.spell = {
 		});
 	},
 };
+
+Renderer.spell._spellSourceManagerPrerelease = new Renderer.spell._SpellSourceManager();
+Renderer.spell._spellSourceManagerBrew = new Renderer.spell._SpellSourceManager();
 
 Renderer.condition = {
 	getCompactRenderedString (cond) {
@@ -6940,6 +7085,7 @@ Renderer.monster = {
 		const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
 		const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
+		const allReactions = Renderer.monster.getOrderedReactions(mon, {fnGetSpellTraits});
 
 		let ptCrSpellLevel = `<td colspan="2">\u2014</td>`;
 		if (isShowSpellLevelScaler || isShowClassLevelScaler) {
@@ -7010,7 +7156,7 @@ Renderer.monster = {
 			</td></tr>` : ""}
 			${Renderer.monster.getCompactRenderedStringSection({...mon, action: allActions}, renderer, "Actions", "action", 2)}
 			${Renderer.monster.getCompactRenderedStringSection({...mon, bonus: allBonusActions}, renderer, "Bonus Actions", "bonus", 2)}
-			${Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Reactions", "reaction", 2)}
+			${Renderer.monster.getCompactRenderedStringSection({...mon, reaction: allReactions}, renderer, "Reactions", "reaction", 2)}
 			${Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Legendary Actions", "legendary", 2)}
 			${Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Mythic Actions", "mythic", 2)}
 			${legGroup && legGroup.lairActions ? Renderer.monster.getCompactRenderedStringSection(legGroup, renderer, "Lair Actions", "lairActions", 1) : ""}
@@ -7122,13 +7268,9 @@ Renderer.monster = {
 		if (traits?.length) return traits.sort((a, b) => SortUtil.monTraitSort(a, b));
 	},
 
-	getOrderedActions (mon, {fnGetSpellTraits} = {}) {
-		return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "action"});
-	},
-
-	getOrderedBonusActions (mon, {fnGetSpellTraits} = {}) {
-		return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "bonus"});
-	},
+	getOrderedActions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "action"}); },
+	getOrderedBonusActions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "bonus"}); },
+	getOrderedReactions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "reaction"}); },
 
 	_getOrderedActionsBonusActions ({mon, fnGetSpellTraits, prop} = {}) {
 		let actions = mon[prop] ? MiscUtil.copyFast(mon[prop]) : null;
@@ -7481,7 +7623,7 @@ Renderer.legendaryGroup = {
 
 Renderer.item = {
 	_sortProperties (a, b) {
-		return SortUtil.ascSort(Renderer.item.propertyMap[a]?.name || "", Renderer.item.propertyMap[b]?.name || "");
+		return SortUtil.ascSort(Renderer.item.getProperty(a, {isIgnoreMissing: true})?.name || "", Renderer.item.getProperty(b, {isIgnoreMissing: true})?.name || "");
 	},
 
 	_getPropertiesText (item, {renderer = null} = {}) {
@@ -7498,23 +7640,23 @@ Renderer.item = {
 
 		const renderedProperties = item.property
 			.sort(Renderer.item._sortProperties)
-			.map(prop => {
-				const fullProp = Renderer.item.propertyMap[prop];
+			.map(p => {
+				const pFull = Renderer.item.getProperty(p);
 
-				if (fullProp.template) {
+				if (pFull.template) {
 					const toRender = Renderer.utils.applyTemplate(
 						item,
-						fullProp.template,
+						pFull.template,
 						{
 							fnPreApply: (fullMatch, variablePath) => {
 								if (variablePath === "item.dmg2") renderedDmg2 = true;
 							},
-							mapCustom: {"prop_name": fullProp.name},
+							mapCustom: {"prop_name": pFull.name},
 						},
 					);
 
 					return renderer.render(toRender);
-				} else return fullProp.name;
+				} else return pFull.name;
 			});
 
 		if (!renderedDmg2 && item.dmg2) renderedProperties.unshift(`alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`);
@@ -7831,27 +7973,30 @@ Renderer.item = {
 
 	// ---
 
-	propertyMap: {},
+	_propertyMap: {},
 	_addProperty (prt) {
-		if (Renderer.item.propertyMap[prt.abbreviation]) return;
+		if (Renderer.item._propertyMap[prt.abbreviation]) return;
 		const cpy = MiscUtil.copyFast(prt);
-		Renderer.item.propertyMap[prt.abbreviation] = prt.name ? cpy : {
+		Renderer.item._propertyMap[prt.abbreviation] = prt.name ? cpy : {
 			...cpy,
 			name: (prt.entries || prt.entriesTemplate)[0].name.toLowerCase(),
 		};
 	},
 
-	getProperty (abbv) { return Renderer.item.propertyMap[abbv]; },
+	getProperty (abbv, {isIgnoreMissing = false} = {}) {
+		if (!isIgnoreMissing && !Renderer.item._propertyMap[abbv]) throw new Error(`Item property ${abbv} not found. You probably meant to load the property reference first.`);
+		return Renderer.item._propertyMap[abbv];
+	},
 
 	// ---
 
-	typeMap: {},
+	_typeMap: {},
 	_addType (typ) {
-		if (Renderer.item.typeMap[typ.abbreviation]?.entries || Renderer.item.typeMap[typ.abbreviation]?.entriesTemplate) return;
+		if (Renderer.item._typeMap[typ.abbreviation]?.entries || Renderer.item._typeMap[typ.abbreviation]?.entriesTemplate) return;
 		const cpy = MiscUtil.copyFast(typ);
 
 		// Merge in data from existing version, if it exists
-		Object.entries(Renderer.item.typeMap[typ.abbreviation] || {})
+		Object.entries(Renderer.item._typeMap[typ.abbreviation] || {})
 			.forEach(([k, v]) => {
 				if (cpy[k]) return;
 				cpy[k] = v;
@@ -7859,10 +8004,13 @@ Renderer.item = {
 
 		cpy.name = cpy.name || (cpy.entries || cpy.entriesTemplate)[0].name.toLowerCase();
 
-		Renderer.item.typeMap[typ.abbreviation] = cpy;
+		Renderer.item._typeMap[typ.abbreviation] = cpy;
 	},
 
-	getType (abbv) { return Renderer.item.typeMap[abbv]; },
+	getType (abbv) {
+		if (!Renderer.item._typeMap[abbv]) throw new Error(`Item type ${abbv} not found. You probably meant to load the type reference first.`);
+		return Renderer.item._typeMap[abbv];
+	},
 
 	// ---
 
@@ -7892,7 +8040,9 @@ Renderer.item = {
 
 	_getMastery (uid) {
 		const {name, source} = DataUtil.proxy.unpackUid("itemMastery", uid, "itemMastery", {isLower: true});
-		return MiscUtil.get(Renderer.item._masteryMap, source, name);
+		const out = MiscUtil.get(Renderer.item._masteryMap, source, name);
+		if (!out) throw new Error(`Item mastry ${uid} not found. You probably meant to load the mastery reference first.`);
+		return out;
 	},
 
 	// ---
@@ -8334,9 +8484,7 @@ Renderer.item = {
 	},
 
 	getItemTypeName (t) {
-		const fullType = Renderer.item.typeMap[t];
-		if (!fullType) throw new Error(`Item type ${t} not found. You probably meant to load the property/type reference first; see \`Renderer.item.pPopulatePropertyAndTypeReference()\`.`);
-		return fullType.name || t;
+		return Renderer.item.getType(t).name || t;
 	},
 
 	enhanceItem (item) {
@@ -8346,18 +8494,15 @@ Renderer.item = {
 		if (item.type === "GV") item._category = "Generic Variant";
 		if (item._category == null) item._category = "Other";
 		if (item.entries == null) item.entries = [];
-		if (item.type && (Renderer.item.typeMap[item.type]?.entries || Renderer.item.typeMap[item.type]?.entriesTemplate)) {
+		if (item.type && (Renderer.item.getType(item.type)?.entries || Renderer.item.getType(item.type)?.entriesTemplate)) {
 			Renderer.item._initFullEntries(item);
 
-			const propetyEntries = Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: Renderer.item.typeMap[item.type]});
+			const propetyEntries = Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: Renderer.item.getType(item.type)});
 			propetyEntries.forEach(e => item._fullEntries.push({type: "wrapper", wrapped: e, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}}));
 		}
 		if (item.property) {
 			item.property.forEach(p => {
-				const entProperty = Renderer.item.propertyMap[p];
-
-				if (!entProperty) throw new Error(`Item property ${p} not found. You probably meant to load the property/type reference first; see \`Renderer.item.pPopulatePropertyAndTypeReference()\`.`);
-
+				const entProperty = Renderer.item.getProperty(p);
 				if (!entProperty.entries && !entProperty.entriesTemplate) return;
 
 				Renderer.item._initFullEntries(item);

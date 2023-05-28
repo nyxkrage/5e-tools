@@ -774,6 +774,12 @@ class _DataTypeLoaderItemMastery extends _DataTypeLoaderSingleSource {
 	static PROPS = ["itemMastery"];
 
 	_filename = "items-base.json";
+
+	async _pPrePopulate ({data, isPrerelease, isBrew}) {
+		// Ensure properties are loaded
+		await Renderer.item.pGetSiteUnresolvedRefItems();
+		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
+	}
 }
 
 class _DataTypeLoaderBackgroundFluff extends _DataTypeLoaderSingleSource {

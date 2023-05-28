@@ -28,6 +28,11 @@
 				"tools": [
 					"{@item thieves' tools|PHB}"
 				],
+				"toolProficiencies": [
+					{
+						"thieves' tools": true
+					}
+				],
 				"skills": [
 					{
 						"choose": {
@@ -129,6 +134,11 @@
 					],
 					"tools": [
 						"{@item thieves' tools|PHB}"
+					],
+					"toolProficiencies": [
+						{
+							"thieves' tools": true
+						}
 					]
 				}
 			},

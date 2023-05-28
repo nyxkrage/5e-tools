@@ -1285,6 +1285,11 @@
 				"tools": [
 					"{@item herbalism kit|PHB}"
 				],
+				"toolProficiencies": [
+					{
+						"herbalism kit": true
+					}
+				],
 				"skills": [
 					{
 						"choose": {

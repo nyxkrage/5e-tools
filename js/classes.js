@@ -1269,23 +1269,29 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// endregion
 	}
 
-	_doSelectAllSubclasses () {
+	_doSelectAllSubclasses ({allowlistMods = null} = {}) {
 		const cls = this.activeClass;
-		const allStateKeys = cls.subclasses.map(sc => UrlUtil.getStateKeySubclass(sc));
+		const allStateKeys = cls.subclasses
+			.map(sc => {
+				return {
+					stateKey: UrlUtil.getStateKeySubclass(sc),
+					isSelected: allowlistMods == null || allowlistMods.has(ClassesPage.getSubclassCssMod(cls, sc)),
+				};
+			});
 
 		this._pageFilter.sourceFilter.doSetPillsClear();
 		this.filterBox.fireChangeEvent();
-		this._proxyAssign("state", "_state", "__state", allStateKeys.mergeMap(stateKey => ({[stateKey]: true})));
+		this._proxyAssign("state", "_state", "__state", allStateKeys.mergeMap(({stateKey, isSelected}) => ({[stateKey]: isSelected})));
 	}
 
 	async _render_pInitSubclassControls ($wrp) {
 		const cls = this.activeClass;
 
-		const $btnSelAll = $(`<button class="btn btn-xs btn-default" title="Select All (SHIFT to include most recent UA/etc.; CTRL to select official only)"><span class="glyphicon glyphicon-check"/></button>`)
+		const $btnSelAll = $(`<button class="btn btn-xs btn-default" title="Select All (SHIFT to filter for and include most recent; CTRL to select official plus homebrew)"><span class="glyphicon glyphicon-check"/></button>`)
 			.click(evt => {
 				const allStateKeys = cls.subclasses.map(sc => UrlUtil.getStateKeySubclass(sc));
 				if (evt.shiftKey) {
-					this._doSelectAllSubclasses();
+					this._doSelectAllSubclasses({allowlistMods: new Set(["fresh", "brew", "spicy"])});
 				} else if (evt.ctrlKey || evt.metaKey) {
 					const nxtState = {};
 					allStateKeys.forEach(k => nxtState[k] = false);
