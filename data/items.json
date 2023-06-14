@@ -30502,6 +30502,9 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"curse": true,
+			"ability": {
+				"str": 4
+			},
 			"bonusSpellAttack": "+1",
 			"entries": [
 				"This 1-foot-long shard of obsidian has veins of silver and gold beneath its cold surface.",

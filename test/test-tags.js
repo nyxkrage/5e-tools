@@ -869,6 +869,13 @@ class BestiaryDataCheck extends GenericDataCheck {
 			const url = getEncoded(mon.summonedBySpell, "spell");
 			if (!ALL_URLS.has(url)) this._addMessage(`Missing link: ${mon.summonedBySpell} in file ${file} "summonedBySpell" (evaluates to "${url}")\nSimilar URLs were:\n${getSimilar(url)}\n`);
 		}
+
+		if (mon.attachedItems) {
+			mon.attachedItems.forEach(s => {
+				const url = getEncoded(s, "item");
+				if (!ALL_URLS.has(url)) this._addMessage(`Missing link: ${s} in file ${file} (evaluates to "${url}") in "attachedItems"\nSimilar URLs were:\n${getSimilar(url)}\n`);
+			});
+		}
 	}
 
 	static pRun () {

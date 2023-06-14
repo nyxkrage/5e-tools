@@ -164,7 +164,6 @@ class _DataLoaderDereferencerClassSubclassFeatures extends _DataLoaderDereferenc
 		const cpy = this._getCopyFromCache({page: prop, entriesWithoutRefs, refUnpacked, refHash});
 		if (!cpy) return new this.constructor._DereferenceMeta({cntReplaces: 0});
 
-		delete cpy.level;
 		delete cpy.header;
 		if (toReplaceMeta.name) cpy.name = toReplaceMeta.name;
 		toReplaceMeta.array[toReplaceMeta.ix] = cpy;
@@ -886,7 +885,7 @@ class _DataTypeLoaderPredefined extends _DataTypeLoader {
 }
 
 class _DataTypeLoaderRace extends _DataTypeLoaderPredefined {
-	static PROPS = ["race", "subrace"];
+	static PROPS = [...UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_RACES]];
 	static PAGE = UrlUtil.PG_RACES;
 
 	_loader = "race";

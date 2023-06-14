@@ -56618,7 +56618,7 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spire of Iriolarthas (Y19a-Y19h)",
+							"name": "Spire of Iriolarthas (Y19a-Y19q)",
 							"page": 247,
 							"id": "67b",
 							"entries": [
@@ -56824,15 +56824,7 @@
 											]
 										}
 									]
-								}
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spire of Iriolarthas (Y19i-Y19q)",
-							"page": 249,
-							"id": "691",
-							"entries": [
+								},
 								{
 									"type": "entries",
 									"name": "Y19i. Force Bridge",
@@ -57149,6 +57141,7 @@
 										}
 									]
 								}
+
 							]
 						},
 						{

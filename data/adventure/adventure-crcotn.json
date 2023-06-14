@@ -18645,12 +18645,11 @@
 					"id": "2e2",
 					"entries": [
 						{
-							"type": "insetReadaloud",
-							"id": "2e3",
+							"type": "quote",
 							"entries": [
-								"I lived in service of others, selflessly, for I knew no other way. Now, forgotten, hanging between life and death, I can think of naught but regret for a life haunted and unlived.",
-								"\u2014Alyxian the Apotheon"
-							]
+								"I lived in service of others, selflessly, for I knew no other way. Now, forgotten, hanging between life and death, I can think of naught but regret for a life haunted and unlived."
+							],
+							"by": "Alyxian the Apotheon"
 						},
 						"Rough walls of ruidium-veined stone are interrupted by grand friezes of warriors in their phalanxes, standing proudly against monstrous hordes and towering titans. Wispy figments of memory linger before the carved walls, lost in endless, wistful dreams. Crevasses that turn into winding tunnels connect the grottoes, which the Apotheon uses as vessels for his sorrowful memories.",
 						"Walls and floors in the Grottoes of Regret are festooned with foliage as varied in color as coral\u2014often ghostly white, but eerie colors also pierce the softer, lush landscape, interrupted by glowing crimson veins of ruidium.",
@@ -19646,12 +19645,11 @@
 					"id": "33c",
 					"entries": [
 						{
-							"type": "insetReadaloud",
-							"id": "33d",
+							"type": "quote",
 							"entries": [
-								"I sacrificed everything for them! And now they tear at my flesh to slake their greed, with no thought for their savior. There is only one way to repay their ill gratitude.",
-								"\u2014Alyxian the Apotheon"
-							]
+								"I sacrificed everything for them! And now they tear at my flesh to slake their greed, with no thought for their savior. There is only one way to repay their ill gratitude."
+							],
+							"by": "Alyxian the Apotheon"
 						},
 						"The lowest chambers of the Netherdeep are called the Vents of Fury because of the steam and thermal fissures in the floor. These vents are manifestations of Alyxian's wrath, which also coalesces into monsters that inhabit this region. These creatures are marred with ugly ridges and streaks of ruidium that resemble festering scabs.",
 						{
@@ -20343,12 +20341,11 @@
 					"id": "379",
 					"entries": [
 						{
-							"type": "insetReadaloud",
-							"id": "37a",
+							"type": "quote",
 							"entries": [
-								"Those I saved live on. Their joy, their struggles, their ambitions, filter into my home in the depths like sunlight through the waves. How I long to feel that again\u2014the fluttering of another living soul.",
-								"\u2014Alyxian the Apotheon"
-							]
+								"Those I saved live on. Their joy, their struggles, their ambitions, filter into my home in the depths like sunlight through the waves. How I long to feel that again\u2014the fluttering of another living soul."
+							],
+							"by": "Alyxian the Apotheon"
 						},
 						"This region of the Netherdeep reflects the furtive tunneling of an imprisoned mind yearning for freedom. Yet not all is as it seems. The Chasm of Yearning is a region filled with falsehoods and mirages of things too good to be true. If lit by magic, the walls of this region are a deep, soothing blue, except where interrupted by illusions or ruidium growths.",
 						"The Apotheon's longing for freedom and friendship is felt most strongly here, and the creatures that reside in this region of the Netherdeep appear withered, starved, and sometimes translucent.",

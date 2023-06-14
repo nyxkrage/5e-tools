@@ -1199,6 +1199,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"battleaxe|phb"
+			],
 			"hasToken": true
 		},
 		{
@@ -3580,6 +3583,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"longsword|phb"
+			],
 			"traitTags": [
 				"Legendary Resistances"
 			],
@@ -5414,6 +5420,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"scimitar|phb",
+				"shortbow|phb"
+			],
 			"traitTags": [
 				"Keen Senses",
 				"Shapechanger",
@@ -5775,6 +5785,9 @@
 				"name": "Vampire",
 				"source": "MM"
 			},
+			"attachedItems": [
+				"dwarven thrower|dmg"
+			],
 			"traitTags": [
 				"Legendary Resistances",
 				"Regeneration",

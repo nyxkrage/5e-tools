@@ -823,6 +823,24 @@
 								],
 								"page": 241
 							}
+						},
+						"Using \"dependencies\" and \"_copy\" to copy an existing piece of content:",
+						{
+							"type": "statblockInline",
+							"dataType": "monster",
+							"dependencies": [
+								"MM"
+							],
+							"data": {
+								"name": "Ancient Red Dragon (Weakened)",
+								"source": "MM",
+								"_copy": {
+									"name": "Ancient Red Dragon",
+									"source": "MM"
+								},
+								"str": 3,
+								"con": 3
+							}
 						}
 					]
 				},

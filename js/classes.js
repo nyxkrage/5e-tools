@@ -814,6 +814,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		//   appropriate handling.
 		let $thGroupHeaderSpellPoints = null;
 		let $tblHeaderSpellPoints = null;
+		let $tblHeaderSpellPointsMaxSpellLevel = null;
 		if (tableGroup.rowsSpellProgression) {
 			// This is always a "spacer"
 			$thGroupHeaderSpellPoints = $(`<th colspan="1" class="cls-tbl__cell-spell-points"></th>`);
@@ -823,8 +824,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				.fastSetHtml(Renderer.get().render(`{@variantrule Spell Points}`));
 			$tblHeaders.push($tblHeaderSpellPoints);
 
+			$tblHeaderSpellPointsMaxSpellLevel = $(`<th class="cls-tbl__col-generic-center cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`);
+			$tblHeaders.push($tblHeaderSpellPointsMaxSpellLevel);
+
 			const $elesDefault = [$thGroupHeader, ...$tblHeadersGroup];
-			const $elesSpellPoints = [$thGroupHeaderSpellPoints, $tblHeaderSpellPoints];
+			const $elesSpellPoints = [$thGroupHeaderSpellPoints, $tblHeaderSpellPoints, $tblHeaderSpellPointsMaxSpellLevel];
 
 			const hkSpellPoints = () => {
 				$elesDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
@@ -842,6 +846,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			...$tblHeadersGroup,
 			$thGroupHeaderSpellPoints,
 			$tblHeaderSpellPoints,
+			$tblHeaderSpellPointsMaxSpellLevel,
 		].filter(Boolean);
 
 		const hkShowHide = () => $elesSubclass.forEach($ele => $ele.toggleVe(!!this._state[stateKey]));
@@ -908,7 +913,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				if (!sc.subclassTableGroups) return;
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
 				const $cells = sc.subclassTableGroups
-					.map(tableGroup => this._render_renderClassTable_renderTableGroupRow({tableGroup, stateKey, ixLvl}))
+					.map(tableGroup => this._render_renderClassTable_renderTableGroupRow({tableGroup, stateKey, ixLvl, sc}))
 					.flat();
 				Array.prototype.push.apply($ptTableGroups, $cells);
 			});
@@ -931,10 +936,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			ixLvl,
 			tableGroup,
 			stateKey,
+			sc,
 		},
 	) {
 		const $cells = tableGroup.rowsSpellProgression?.[ixLvl]
-			? this._render_renderClassTable_$getSpellProgressionCells({ixLvl, tableGroup})
+			? this._render_renderClassTable_$getSpellProgressionCells({ixLvl, tableGroup, sc})
 			: this._render_renderClassTable_$getGenericRowCells({ixLvl, tableGroup});
 
 		if (!stateKey) return $cells;
@@ -969,6 +975,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		{
 			ixLvl,
 			tableGroup,
+			sc,
 		},
 	) {
 		const $cellsDefault = this._render_renderClassTable_$getGenericRowCells({
@@ -992,9 +999,23 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			html: spellPoints === 0 ? "\u2014" : spellPoints,
 		}));
 
+		const ixLastSpellNum = row.findIndex(num => num === 0);
+		const maxSpellLevel = !~ixLastSpellNum ? row.length : !ixLastSpellNum ? 0 : ixLastSpellNum;
+
+		const $cellSpellPointsMaxSpellLevel = $(e_({
+			tag: "td",
+			clazz: "cls-tbl__col-generic-center cls-tbl__cell-spell-points",
+			html: maxSpellLevel === 0 ? "\u2014" : Renderer.get().render(`{@filter ${maxSpellLevel}|spells|level=${maxSpellLevel}|${sc ? `subclass=${this.activeClass?.name}: ${sc.shortName}` : `class=${this.activeClass?.name}`}}`),
+		}));
+
+		const $cellsSpellPoints = [
+			$cellSpellPoints,
+			$cellSpellPointsMaxSpellLevel,
+		];
+
 		const hkSpellPoints = () => {
 			$cellsDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-			$cellSpellPoints.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints);
+			$cellsSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
 		};
 		this._addHookGlobal("isUseSpellPoints", hkSpellPoints);
 		hkSpellPoints();
@@ -1002,6 +1023,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		return [
 			...$cellsDefault,
 			$cellSpellPoints,
+			$cellSpellPointsMaxSpellLevel,
 		];
 	}
 
@@ -2111,7 +2133,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			},
 			fn: () => {
 				return $(`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"><td colspan="6"/></tr>`)
-					.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(feature))
+					.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(feature))
 					.appendTo($content);
 			},
 		});
@@ -2175,7 +2197,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					},
 					fn: () => {
 						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature ${cssMod}" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"/></tr>`)
-							.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(toRender))
+							.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(toRender))
 							.appendTo($content);
 					},
 				});

@@ -92,6 +92,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"javelin|phb"
+			],
 			"languageTags": [
 				"AU",
 				"OTH"
@@ -132,6 +135,9 @@
 						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) bludgeoning damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"club|phb"
 			],
 			"languageTags": [
 				"GI"
@@ -227,6 +233,10 @@
 						"{@atk rw} {@hit 2} to hit, range 100/400 ft., one target. {@h}5 ({@damage 1d10}) piercing damage. Augrek carries ten crossbow bolts."
 					]
 				}
+			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"warhammer|phb"
 			],
 			"senseTags": [
 				"D"
@@ -416,6 +426,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"shortsword|phb"
+			],
 			"languageTags": [
 				"C",
 				"D",
@@ -517,6 +531,9 @@
 						"{@atk rw} {@hit 8} to hit, range 60/240 ft., one target. {@h}21 ({@damage 3d10 + 5}) bludgeoning damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"greatclub|phb"
 			],
 			"actionTags": [
 				"Multiattack"
@@ -1011,6 +1028,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"morningstar|phb"
+			],
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -1279,6 +1299,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"greatsword|phb",
+				"heavy crossbow|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -1374,6 +1398,10 @@
 						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. Darz carries twenty sling stones."
 					]
 				}
+			],
+			"attachedItems": [
+				"shortsword|phb",
+				"sling|phb"
 			],
 			"traitTags": [
 				"Sneak Attack"
@@ -1596,6 +1624,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"maul|phb"
+			],
 			"traitTags": [
 				"Siege Monster"
 			],
@@ -1698,6 +1729,9 @@
 						"Duvessa adds 2 to her AC against one melee attack that would hit her. To do so, Duvessa must see the attacker and be wielding a melee weapon."
 					]
 				}
+			],
+			"attachedItems": [
+				"dagger|phb"
 			],
 			"actionTags": [
 				"Parry"
@@ -1998,6 +2032,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"battleaxe|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2078,6 +2115,9 @@
 						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d12 + 4}) slashing damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"+1 greataxe|dmg"
 			],
 			"languageTags": [
 				"C",
@@ -2171,6 +2211,9 @@
 						"{@atk rw} {@hit 9} to hit, range 60/240 ft., one target. {@h}28 ({@damage 4d10 + 6}) bludgeoning damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"gurt's greataxe|skt"
 			],
 			"traitTags": [
 				"Legendary Resistances"
@@ -2815,6 +2858,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"greataxe|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -2938,6 +2984,9 @@
 						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) bludgeoning damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"club|phb"
 			],
 			"languageTags": [
 				"GI"
@@ -3826,6 +3875,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"longsword|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -3921,6 +3974,10 @@
 						"{@atk rw} {@hit 2} to hit, range 100/400 ft., one target. {@h}5 ({@damage 1d10}) piercing damage. Miros carries ten crossbow bolts."
 					]
 				}
+			],
+			"attachedItems": [
+				"club|phb",
+				"heavy crossbow|phb"
 			],
 			"languageTags": [
 				"C"
@@ -4130,6 +4187,10 @@
 						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage. Narth carries twenty crossbow bolts."
 					]
 				}
+			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"shortsword|phb"
 			],
 			"languageTags": [
 				"C",
@@ -4526,6 +4587,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"H"
@@ -4758,6 +4822,9 @@
 						"Othovir adds 2 to its AC against one melee attack that would hit him. To do so, Othovir must see the attacker and be wielding a melee weapon."
 					]
 				}
+			],
+			"attachedItems": [
+				"rapier|phb"
 			],
 			"actionTags": [
 				"Parry"
@@ -5301,6 +5368,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"quarterstaff|phb"
+			],
 			"traitTags": [
 				"Sneak Attack"
 			],
@@ -5447,6 +5518,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"warhammer|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -5486,6 +5560,9 @@
 						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) bludgeoning damage, or 6 ({@damage 1d10 + 1}) bludgeoning damage if used with two hands."
 					]
 				}
+			],
+			"attachedItems": [
+				"warhammer|phb"
 			],
 			"senseTags": [
 				"D"
@@ -5586,6 +5663,10 @@
 						"{@atk rw} {@hit 2} to hit, range 100/400 ft., one target. {@h}5 ({@damage 1d10}) piercing damage. Baric carries twenty crossbow bolts."
 					]
 				}
+			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"maul|phb"
 			],
 			"languageTags": [
 				"C"
@@ -5688,6 +5769,10 @@
 						"Sirac adds 2 to his AC against on melee attack that would hit him. To do so, Sirac must see the attacker and be wielding a melee weapon."
 					]
 				}
+			],
+			"attachedItems": [
+				"dart|phb",
+				"shortsword|phb"
 			],
 			"actionTags": [
 				"Parry"
@@ -6208,6 +6293,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"greatclub|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -6689,6 +6777,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"morningstar|phb",
+				"shortbow|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -6859,6 +6951,10 @@
 						"{@atk rw} {@hit 3} to hit, range 80/320 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"shortbow|phb",
+				"spear|phb"
 			],
 			"languageTags": [
 				"C",
@@ -7382,6 +7478,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -7485,6 +7584,10 @@
 						"{@atk rw} {@hit 2} to hit, range 150/600 ft., one target. {@h}9 ({@damage 2d8}) piercing damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"greatsword|phb",
+				"longbow|phb"
 			],
 			"actionTags": [
 				"Multiattack"
@@ -7598,6 +7701,10 @@
 						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 30/120 ft., one target. {@h}10 ({@damage 2d6 + 3}) piercing damage."
 					]
 				}
+			],
+			"attachedItems": [
+				"battleaxe|phb",
+				"javelin|phb"
 			],
 			"languageTags": [
 				"C",
@@ -7886,6 +7993,10 @@
 						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}4 ({@damage 1d4 + 2}) bludgeoning damage. Zi carries twenty sling stones."
 					]
 				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb",
+				"sling|phb"
 			],
 			"actionTags": [
 				"Multiattack"
