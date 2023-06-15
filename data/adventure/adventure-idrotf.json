@@ -15740,7 +15740,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/IDRotF/064-01-031.gang-the-verbeeg.png"
+														"path": "adventure/IDRotF/064-01-031.gahg-the-verbeeg.png"
 													},
 													"title": "Gahg the verbeeg has a basket of goodies for her beloved Duhg",
 													"width": 1700,
@@ -23630,7 +23630,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/IDRotF/093-02-004.reindeer-hero.png"
+														"path": "adventure/IDRotF/093-02-004.reindeer-herd.png"
 													},
 													"title": "{@creature Reindeer|IDRotF} Herd",
 													"width": 1700,
@@ -57141,7 +57141,6 @@
 										}
 									]
 								}
-
 							]
 						},
 						{

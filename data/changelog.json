@@ -2441,5 +2441,10 @@
 		"ver": "1.181.4",
 		"date": "2023-06-14",
 		"txt": "- Added \"Equipment\" filter to Bestiary page\n- Overhauled Monster Manual fluff, reformatting and adding various missing chunks of text (notably quotes) (thanks @ Spappz)\n- Added \"Spell Level\" column to Classes page class table when in Spell Points mode\n- Fixed Classes page failing to correctly apply \"reprinted\" color styling in some cases\n- Added \"reprinted\" coloring support to Classes page outline view\n- Fixed DM Screen Initiative Tracker \"Spell DC\" additional column failing to auto-populate\n- (Brew) Added support for `\"_copy\"` on `\"baseitem\"`s\n- (Brew) Added support for `\"_copy\"` within `\"statblockInline\"`-type entries\n- (Brew) Fixed rare case where Creature Builder could output invalid creature types\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.181.5",
+		"date": "2023-06-15",
+		"txt": "- Fixed DM Screen Clock/Calendar failing to load \n- (Brew) Fixed self-source-referencing `\"_copy\"`s within `\"statblockInline\"`-type entries failing to load\n- (Fixed typos/added tags)"
 	}
 ]

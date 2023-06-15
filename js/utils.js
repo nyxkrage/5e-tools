@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.181.4"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.181.5"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -3655,7 +3655,7 @@ globalThis.DataUtil = {
 				const data = await DataUtil[prop].pLoadSingleSource(source);
 				if (data) return data;
 
-				return DataUtil._pLoadByMeta_pGetPrereleaseBrewUrl(source);
+				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			// endregion
 
@@ -3668,7 +3668,7 @@ globalThis.DataUtil = {
 				const index = await DataUtil.loadJSON(`${baseUrlPart}/${DataUtil._MULTI_SOURCE_PROP_TO_INDEX_NAME[prop]}`);
 				if (index[source]) return DataUtil.loadJSON(`${baseUrlPart}/${index[source]}`);
 
-				return DataUtil._pLoadByMeta_pGetPrereleaseBrewUrl(source);
+				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			// endregion
 
@@ -3678,12 +3678,12 @@ globalThis.DataUtil = {
 			case "baseitem": {
 				const data = await DataUtil.item.loadRawJSON();
 				if (data[prop] && data[prop].some(it => it.source === source)) return data;
-				return DataUtil._pLoadByMeta_pGetPrereleaseBrewUrl(source);
+				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			case "race": {
 				const data = await DataUtil.race.loadJSON({isAddBaseRaces: true});
 				if (data[prop] && data[prop].some(it => it.source === source)) return data;
-				return DataUtil._pLoadByMeta_pGetPrereleaseBrewUrl(source);
+				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			// endregion
 
@@ -3694,7 +3694,7 @@ globalThis.DataUtil = {
 					const data = await (impl.loadJSON ? impl.loadJSON() : DataUtil.loadJSON(impl.getDataUrl()));
 					if (data[prop] && data[prop].some(it => it.source === source)) return data;
 
-					return DataUtil._pLoadByMeta_pGetPrereleaseBrewUrl(source);
+					return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 				}
 
 				throw new Error(`Could not get loadable URL for \`${JSON.stringify({key: prop, value: source})}\``);
@@ -3703,7 +3703,7 @@ globalThis.DataUtil = {
 		}
 	},
 
-	async _pLoadByMeta_pGetPrereleaseBrewUrl (source) {
+	async _pLoadByMeta_pGetPrereleaseBrew (source) {
 		const fromPrerelease = await DataUtil.pLoadPrereleaseBySource(source);
 		if (fromPrerelease) return fromPrerelease;
 
@@ -3713,19 +3713,31 @@ globalThis.DataUtil = {
 		throw new Error(`Could not find prerelease/brew URL for source "${source}"`);
 	},
 
+	/* -------------------------------------------- */
+
 	async pLoadPrereleaseBySource (source) {
 		if (typeof PrereleaseUtil === "undefined") return null;
-		const url = await PrereleaseUtil.pGetSourceUrl(source);
-		if (!url) return null;
-		return DataUtil.loadJSON(url);
+		return this._pLoadPrereleaseBrewBySource({source, brewUtil: PrereleaseUtil});
 	},
 
 	async pLoadBrewBySource (source) {
 		if (typeof BrewUtil2 === "undefined") return null;
-		const url = await BrewUtil2.pGetSourceUrl(source);
+		return this._pLoadPrereleaseBrewBySource({source, brewUtil: BrewUtil2});
+	},
+
+	async _pLoadPrereleaseBrewBySource ({source, brewUtil}) {
+		// Load from existing first
+		const fromExisting = await brewUtil.pGetBrewBySource(source);
+		if (fromExisting) return MiscUtil.copyFast(fromExisting.body);
+
+		// Load from remote
+		const url = await brewUtil.pGetSourceUrl(source);
 		if (!url) return null;
+
 		return DataUtil.loadJSON(url);
 	},
+
+	/* -------------------------------------------- */
 
 	// region Dbg
 	dbg: {

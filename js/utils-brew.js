@@ -441,6 +441,13 @@ class _BrewUtil2Base {
 
 	/* -------------------------------------------- */
 
+	async pGetBrewBySource (source, {lockToken} = {}) {
+		const brews = await this.pGetBrew({lockToken});
+		return brews.find(brew => brew?.body?._meta?.sources?.some(src => src?.json === source));
+	}
+
+	/* -------------------------------------------- */
+
 	async _pGetBrew_pGetLocalBrew ({lockToken} = {}) {
 		if (this._cache_brewsLocal) return this._cache_brewsLocal;
 		if (IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
