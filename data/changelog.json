@@ -2446,5 +2446,10 @@
 		"ver": "1.181.5",
 		"date": "2023-06-15",
 		"txt": "- Fixed DM Screen Clock/Calendar failing to load \n- (Brew) Fixed self-source-referencing `\"_copy\"`s within `\"statblockInline\"`-type entries failing to load\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.181.6",
+		"date": "2023-06-16",
+		"txt": "- (Brew) Fixed loading performance regression\n- (Fixed typos/added tags)"
 	}
 ]

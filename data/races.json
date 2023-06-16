@@ -18351,15 +18351,7 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 116,
-			"speed": {
-				"walk": 30,
-				"swim": 30
-			},
-			"skillProficiencies": [
-				{
-					"any": 2
-				}
-			],
+			"speed": 30,
 			"entries": [
 				{
 					"type": "inset",
@@ -18385,9 +18377,6 @@
 					}
 				}
 			],
-			"overwrite": {
-				"skillProficiencies": true
-			},
 			"_versions": [
 				{
 					"name": "Variant; Aquatic Elf Descent; Skill Versatility",
@@ -18405,7 +18394,11 @@
 							}
 						}
 					},
-					"speed": 30
+					"skillProficiencies": [
+						{
+							"any": 2
+						}
+					]
 				},
 				{
 					"name": "Variant; Aquatic Elf Descent; Swim Speed",
@@ -18423,7 +18416,14 @@
 							}
 						}
 					},
-					"skillProficiencies": null
+					"speed": {
+						"walk": 30,
+						"swim": 30
+					},
+					"skillProficiencies": null,
+					"overwrite": {
+						"skillProficiencies": true
+					}
 				}
 			]
 		},

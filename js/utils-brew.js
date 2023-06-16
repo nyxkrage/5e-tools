@@ -266,11 +266,12 @@ class _BrewUtil2Base {
 	DEFAULT_AUTHOR;
 	STYLE_BTN;
 
-	_LOCK = new VeLock();
+	_LOCK = new VeLock({name: this.constructor.name});
 
 	_cache_iteration = 0;
 	_cache_brewsProc = null;
 	_cache_metas = null;
+	_cache_brews = null;
 	_cache_brewsLocal = null;
 
 	_isDirty = false;
@@ -423,6 +424,8 @@ class _BrewUtil2Base {
 
 	/** Fetch the raw brew from storage. */
 	async pGetBrew ({lockToken} = {}) {
+		if (this._cache_brews) return this._cache_brews;
+
 		try {
 			lockToken = await this._LOCK.pLock({token: lockToken});
 
@@ -431,7 +434,7 @@ class _BrewUtil2Base {
 				...(await this._pGetBrew_pGetLocalBrew({lockToken})),
 			];
 
-			return out
+			return this._cache_brews = out
 				// Ensure no brews which lack sources are loaded
 				.filter(brew => brew?.body?._meta?.sources?.length);
 		} finally {
@@ -574,6 +577,7 @@ class _BrewUtil2Base {
 
 		if (!isInitialMigration) {
 			if (this._cache_brewsProc) this._cache_iteration++;
+			this._cache_brews = null;
 			this._cache_brewsProc = null;
 		}
 		await this._storage.pSet(this._STORAGE_KEY, val);
