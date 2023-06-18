@@ -190,48 +190,6 @@
 	color: #888;
 }
 
-.dm-init__stats_rows {
-	width: 100%;
-	margin-right: 0;
-}
-
-.dm-init__stats_row {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	margin-bottom: 2px;
-}
-
-.dm-init__stats_up_down {
-	display: flex;
-	justify-content: center;
-}
-
-.dm-init__stats_down {
-	top: 2px;
-	left: 1px;
-}
-
-.dm-init__stats_add {
-	right: -1px;
-}
-
-.dm-init__stats_row--item:only-child .dm-init__stats_up_down {
-	display: none;
-}
-
-.dm-init__stats_up_down--spacer {
-	display: none;
-}
-
-.dm-init__stats_row--item:only-child .dm-init__stats_up_down--spacer {
-	display: block;
-}
-
-.dm-init__stats_row--item:only-child .dm-init__stats_del {
-	display: none;
-}
-
 .dm-init__stat_head {
 	margin-right: 3px;
 	padding: 5px 0;

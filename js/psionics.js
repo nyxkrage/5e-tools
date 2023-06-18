@@ -52,10 +52,9 @@ class PsionicsPage extends ListPage {
 			dataProps: ["psionic"],
 
 			bookViewOptions: {
-				$btnOpen: $(`#btn-psibook`),
-				$eleNoneVisible: $(`<span class="initial-message">If you wish to view multiple psionics, please first make a list</span>`),
+				namePlural: "psionics",
 				pageTitle: "Psionics Book View",
-				fnPartition: it => it.type === "T" ? 0 : 1,
+				fnPartition: ent => ent.type === "T" ? 0 : 1,
 			},
 
 			tableViewOptions: {

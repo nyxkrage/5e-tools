@@ -2540,11 +2540,9 @@ StatGenUi.CompAsi = class extends BaseComponent {
 	}
 };
 
-StatGenUi.RenderableCollectionPbRules = class extends RenderableCollectionBase {
+StatGenUi.RenderableCollectionPbRules = class extends RenderableCollectionGenericRows {
 	constructor (statGenUi, $wrp) {
-		super(statGenUi, "pb_rules");
-
-		this._$wrp = $wrp;
+		super(statGenUi, "pb_rules", $wrp);
 	}
 
 	getNewRender (rule) {
@@ -2584,7 +2582,7 @@ StatGenUi.RenderableCollectionPbRules = class extends RenderableCollectionBase {
 				${$iptCost}
 			</div>
 			<div class="statgen-pb__col-cost-delete">${$btnDelete}</div>
-		</div>`.appendTo(this._$wrp);
+		</div>`.appendTo(this._$wrpRows);
 
 		const hkRules = () => {
 			$btnDelete.toggleVe((parentComp.state.pb_rules[0] === rule || parentComp.state.pb_rules.last() === rule) && parentComp.state.pb_isCustom);
@@ -2604,21 +2602,7 @@ StatGenUi.RenderableCollectionPbRules = class extends RenderableCollectionBase {
 		};
 	}
 
-	doUpdateExistingRender (renderedMeta, rule) {
-		renderedMeta.comp._proxyAssignSimple("state", rule.entity, true);
-	}
-
 	doDeleteExistingRender (renderedMeta) {
 		renderedMeta.fnCleanup();
-	}
-
-	doReorderExistingComponent (renderedMeta, rule) {
-		const parent = this._comp;
-
-		const ix = parent.state.pb_rules.map(it => it.id).indexOf(rule.id);
-		const curIx = this._$wrp.find(`.statgen-pb__row-cost`).index(renderedMeta.$wrpRow);
-
-		const isMove = !this._$wrp.length || curIx !== ix;
-		if (isMove) renderedMeta.$wrpRow.detach().appendTo(this._$wrp);
 	}
 };

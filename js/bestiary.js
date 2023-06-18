@@ -177,6 +177,80 @@ class BestiarySublistManager extends SublistManager {
 	}
 }
 
+class BestiaryPageBookView extends ListPageBookView {
+	constructor (opts) {
+		super({
+			namePlural: "creatures",
+			pageTitle: "Bestiary Printer View",
+			...opts,
+		});
+	}
+
+	_$getWrpControls ({$wrpContent}) {
+		const out = super._$getWrpControls({$wrpContent});
+		const {$wrpPrint} = out;
+
+		// region Markdown
+		// TODO refactor this and spell markdown section
+		const pGetAsMarkdown = async () => {
+			const toRender = this._bookViewToShow.length ? this._bookViewToShow : [this._fnGetEntLastLoaded()];
+			return RendererMarkdown.monster.pGetMarkdownDoc(toRender);
+		};
+
+		const $btnDownloadMarkdown = $(`<button class="btn btn-default btn-sm">Download as Markdown</button>`)
+			.click(async () => DataUtil.userDownloadText("bestiary.md", await pGetAsMarkdown()));
+
+		const $btnCopyMarkdown = $(`<button class="btn btn-default btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"/></button>`)
+			.click(async () => {
+				await MiscUtil.pCopyTextToClipboard(await pGetAsMarkdown());
+				JqueryUtil.showCopiedEffect($btnCopyMarkdown);
+			});
+
+		const $btnDownloadMarkdownSettings = $(`<button class="btn btn-default btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"/></button>`)
+			.click(async () => RendererMarkdown.pShowSettingsModal());
+
+		$$`<div class="ve-flex-v-center btn-group ml-2">
+			${$btnDownloadMarkdown}
+			${$btnCopyMarkdown}
+			${$btnDownloadMarkdownSettings}
+		</div>`.appendTo($wrpPrint);
+		// endregion
+
+		return out;
+	}
+
+	async _pGetRenderContentMeta ({$wrpContent}) {
+		this._bookViewToShow = this._sublistManager.getPinnedEntities()
+			.sort(this._getSorted.bind(this));
+
+		let cntSelectedEnts = 0;
+		let isAnyEntityRendered = false;
+
+		const stack = [];
+
+		const renderCreature = (mon) => {
+			isAnyEntityRendered = true;
+			stack.push(`<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2"><table class="w-100 stats stats--book stats--bkmv"><tbody>`);
+			stack.push(Renderer.monster.getCompactRenderedString(mon));
+			stack.push(`</tbody></table></div>`);
+		};
+
+		this._bookViewToShow.forEach(mon => renderCreature(mon));
+		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
+			renderCreature(this._fnGetEntLastLoaded());
+		}
+
+		cntSelectedEnts += this._bookViewToShow.length;
+		$wrpContent.append(stack.join(""));
+
+		return {cntSelectedEnts, isAnyEntityRendered};
+	}
+
+	_getSorted (a, b) {
+		return SortUtil.ascSort(a._displayName || a.name, b._displayName || b.name);
+	}
+}
+
 class BestiaryPage extends ListPageMultiSource {
 	static async _prereleaseBrewDataSource ({brewUtil}) {
 		const brew = await brewUtil.pGetBrewProcessed();
@@ -210,9 +284,7 @@ class BestiaryPage extends ListPageMultiSource {
 			hasAudio: true,
 
 			bookViewOptions: {
-				$btnOpen: $(`#btn-printbook`),
-				$eleNoneVisible: $(`<span class="initial-message">If you wish to view multiple creatures, please first make a list</span>`),
-				pageTitle: "Bestiary Printer View",
+				ClsBookView: BestiaryPageBookView,
 			},
 
 			tableViewOptions: {
@@ -320,60 +392,6 @@ class BestiaryPage extends ListPageMultiSource {
 	set encounterBuilder (val) { this._encounterBuilder = val; }
 
 	get list_ () { return this._list; }
-
-	async _bookView_popTblGetNumShown ({$wrpContent, $dispName, $wrpControls}) {
-		this._bookViewToShow = await this._sublistManager.getPinnedEntities();
-
-		this._bookViewToShow.sort((a, b) => SortUtil.ascSort(a._displayName || a.name, b._displayName || b.name));
-
-		let numShown = 0;
-
-		const stack = [];
-
-		const renderCreature = (mon) => {
-			stack.push(`<div class="bkmv__wrp-item"><table class="w-100 stats stats--book stats--bkmv"><tbody>`);
-			stack.push(Renderer.monster.getCompactRenderedString(mon));
-			stack.push(`</tbody></table></div>`);
-		};
-
-		stack.push(`<div class="w-100 h-100">`);
-		this._bookViewToShow.forEach(mon => renderCreature(mon));
-		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
-			renderCreature(this._dataList[Hist.lastLoadedId]);
-		}
-		stack.push(`</div>`);
-
-		numShown += this._bookViewToShow.length;
-		$wrpContent.append(stack.join(""));
-
-		// region Markdown
-		// TODO refactor this and spell markdown section
-		const pGetAsMarkdown = async () => {
-			const toRender = this._bookViewToShow.length ? this._bookViewToShow : [this._dataList[Hist.lastLoadedId]];
-			return RendererMarkdown.monster.pGetMarkdownDoc(toRender);
-		};
-
-		const $btnDownloadMarkdown = $(`<button class="btn btn-default btn-sm">Download as Markdown</button>`)
-			.click(async () => DataUtil.userDownloadText("bestiary.md", await pGetAsMarkdown()));
-
-		const $btnCopyMarkdown = $(`<button class="btn btn-default btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"/></button>`)
-			.click(async () => {
-				await MiscUtil.pCopyTextToClipboard(await pGetAsMarkdown());
-				JqueryUtil.showCopiedEffect($btnCopyMarkdown);
-			});
-
-		const $btnDownloadMarkdownSettings = $(`<button class="btn btn-default btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"/></button>`)
-			.click(async () => RendererMarkdown.pShowSettingsModal());
-
-		$$`<div class="ve-flex-v-center btn-group ml-2">
-			${$btnDownloadMarkdown}
-			${$btnCopyMarkdown}
-			${$btnDownloadMarkdownSettings}
-		</div>`.appendTo($wrpControls);
-		// endregion
-
-		return numShown;
-	}
 
 	getListItem (mon, mI) {
 		const hash = UrlUtil.autoEncodeHash(mon);

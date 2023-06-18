@@ -338,7 +338,7 @@ class InitiativeTrackerPlayerMessageHandlerV1 {
 					<div class="initp__r_hp_pill" style="background: ${hpColor};">${hpText}</div>
 				</div>
 				${(rowData.k || []).map(statVal => `<div class="initp__r_stat ve-flex-vh-center">
-					${statVal.u ? "?" : statVal.v === true ? `<span class="text-success glyphicon glyphicon-ok"/>` : statVal.v === false ? `<span class="text-danger glyphicon glyphicon-remove"/>` : statVal.v}
+					${statVal.u ? `<span class="ve-muted italic" title="This value is hidden!">?</span>` : statVal.v === true ? `<span class="text-success glyphicon glyphicon-ok"/>` : statVal.v === false ? `<span class="text-danger glyphicon glyphicon-remove"/>` : statVal.v}
 				</div>`).join("")}
 				<div class="initp__r_score${this._isCompact ? " initp__r_score--compact" : ""}">${rowData.i}</div>
 			</div>

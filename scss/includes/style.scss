@@ -1933,8 +1933,6 @@ header p.lead {
 	width: 100vw;
 	height: 100vh;
 	background: white;
-	display: flex;
-	flex-direction: column;
 
 	&__ {
 		&spacer-name {
@@ -1998,12 +1996,6 @@ header p.lead {
 		&wrp-item {
 			border-color: $rgb-border-grey--night;
 		}
-	}
-}
-
-.stats--bkmv {
-	p {
-		margin-bottom: 4px;
 	}
 }
 
@@ -3196,10 +3188,6 @@ th.border {
 		color: $rgb-name-red--night;
 	}
 
-	.ui-modal__row-sep {
-		background: #999;
-	}
-
 	.panel-content-textarea {
 		background: $rgb-bg--night;
 	}
@@ -3423,7 +3411,7 @@ th.border {
  * Print styles
  ***************************************/
 
-@media print {
+@include is-print {
 	@page {
 		margin: 10mm 15mm;
 	}
@@ -3455,7 +3443,6 @@ th.border {
 		text-decoration: none !important;
 	}
 
-	.no-print,
 	.btn-reroll,
 	.rollbox-min,
 	.rollbox,
@@ -3592,24 +3579,20 @@ th.border {
 		bottom: unset;
 		left: unset;
 		width: calc(100vw - 20px);
-		display: block;
 
 		&__ {
-			&scroller {
-				overflow: visible !important;
-				height: initial;
-			}
-
-			&wrp-controls,
-			&spacer-name,
-			&footer {
-				display: none !important;
-			}
-
 			&no-breaks {
 				break-before: unset !important;
 				break-after: unset !important;
 				break-inside: unset !important;
+			}
+
+			&wrp--columns-1 {
+				column-count: 1;
+			}
+
+			&wrp--columns-2 {
+				column-count: 2;
 			}
 		}
 
@@ -3628,6 +3611,10 @@ th.border {
 		break-before: auto !important;
 		break-after: auto !important;
 		break-inside: avoid !important;
+
+		tr {
+			break-inside: auto !important;
+		}
 	}
 
 	.toast {

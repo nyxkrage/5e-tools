@@ -1,7 +1,7 @@
-"use strict";
+import {PANEL_TYP_INITIATIVE_TRACKER} from "./dmscreen-consts.js";
 
 const _TIME_TRACKER_MOON_SPRITE = new Image();
-const TIME_TRACKER_MOON_SPRITE_LOADER = new Promise(resolve => {
+export const TIME_TRACKER_MOON_SPRITE_LOADER = new Promise(resolve => {
 	_TIME_TRACKER_MOON_SPRITE.onload = resolve;
 	_TIME_TRACKER_MOON_SPRITE.onerror = () => {
 		_TIME_TRACKER_MOON_SPRITE.hasError = true;
@@ -10,7 +10,7 @@ const TIME_TRACKER_MOON_SPRITE_LOADER = new Promise(resolve => {
 });
 _TIME_TRACKER_MOON_SPRITE.src = "img/dmscreen/moon.png";
 
-class TimeTracker {
+export class TimeTracker {
 	static $getTracker (board, state) {
 		const $wrpPanel = $(`<div class="w-100 h-100 dm-time__root dm__panel-bg dm__data-anchor"/>`) // root class used to identify for saving
 			.data("getState", () => tracker.getSaveableState());
@@ -2656,6 +2656,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 	static async pDoRunEncounter (parent, encounter) {
 		if (encounter.countUses > 0) return;
 
+		// TODO(DMS)
 		const $existingTrackers = parent.component._board.getPanelsByType(PANEL_TYP_INITIATIVE_TRACKER)
 			.map(it => it.tabDatas.filter(td => td.type === PANEL_TYP_INITIATIVE_TRACKER).map(td => td.$content.find(`.dm__data-anchor`)))
 			.flat();

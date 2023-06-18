@@ -110,17 +110,6 @@ Shared UI components
 			padding: 0 3px;
 		}
 
-		&--stats-header {
-			min-height: initial;
-			font-weight: bold;
-			font-size: 12px;
-			margin-bottom: 0;
-		}
-
-		&--stats {
-			flex-direction: column;
-		}
-
 		> * {
 			margin-right: 5px;
 
@@ -128,13 +117,6 @@ Shared UI components
 				margin-right: 0;
 			}
 		}
-	}
-
-	&row-sep {
-		height: 1px;
-		width: calc(100% - 12px);
-		margin: 2px 2px 7px;
-		background: $rgb-border-grey;
 	}
 
 	&header {

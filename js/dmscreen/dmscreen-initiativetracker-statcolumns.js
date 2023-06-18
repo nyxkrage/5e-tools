@@ -21,25 +21,25 @@ class _InitiativeTrackerStatColumnBase {
 	getCellValue (mon) { throw new Error("Unimplemented!"); }
 }
 
-export class InitiativeTrackerStatColumn_HpFormula extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_HpFormula extends _InitiativeTrackerStatColumnBase {
 	constructor () { super({name: "HP Formula"}); }
 
 	getCellValue (mon) { return (mon.hp || {}).formula; }
 }
 
-export class InitiativeTrackerStatColumn_ArmorClass extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_ArmorClass extends _InitiativeTrackerStatColumnBase {
 	constructor () { super({name: "Armor Class", abv: "AC"}); }
 
 	getCellValue (mon) { return mon.ac[0] ? (mon.ac[0].ac || mon.ac[0]) : null; }
 }
 
-export class InitiativeTrackerStatColumn_PassivePerception extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_PassivePerception extends _InitiativeTrackerStatColumnBase {
 	constructor () { super({name: "Passive Perception", abv: "PP"}); }
 
 	getCellValue (mon) { return mon.passive; }
 }
 
-export class InitiativeTrackerStatColumn_Speed extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_Speed extends _InitiativeTrackerStatColumnBase {
 	constructor () { super({name: "Speed", abv: "SPD"}); }
 
 	getCellValue (mon) {
@@ -49,7 +49,7 @@ export class InitiativeTrackerStatColumn_Speed extends _InitiativeTrackerStatCol
 	}
 }
 
-export class InitiativeTrackerStatColumn_SpellDc extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_SpellDc extends _InitiativeTrackerStatColumnBase {
 	constructor () { super({name: "Spell DC", abv: "DC"}); }
 
 	getCellValue (mon) {
@@ -73,13 +73,13 @@ export class InitiativeTrackerStatColumn_SpellDc extends _InitiativeTrackerStatC
 	}
 }
 
-export class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerStatColumnBase {
 	constructor () { super({name: "Legendary Actions", abv: "LA"}); }
 
 	getCellValue (mon) { return mon.legendaryActions || mon.legendary ? 3 : null; }
 }
 
-export class InitiativeTrackerStatColumn_Save extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_Save extends _InitiativeTrackerStatColumnBase {
 	constructor ({abv}) {
 		super({name: `${Parser.attAbvToFull(abv)} Save`, abv: abv.toUpperCase()});
 		this._abv = abv;
@@ -88,7 +88,7 @@ export class InitiativeTrackerStatColumn_Save extends _InitiativeTrackerStatColu
 	getCellValue (mon) { return mon.save?.[this._abv] ? mon.save[this._abv] : Parser.getAbilityModifier(mon[this._abv]); }
 }
 
-export class InitiativeTrackerStatColumn_AbilityBonus extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_AbilityBonus extends _InitiativeTrackerStatColumnBase {
 	constructor ({abv}) {
 		super({name: `${Parser.attAbvToFull(abv)} Bonus`, abv: abv.toUpperCase()});
 		this._abv = abv;
@@ -97,7 +97,7 @@ export class InitiativeTrackerStatColumn_AbilityBonus extends _InitiativeTracker
 	getCellValue (mon) { return Parser.getAbilityModifier(mon[this._abv]); }
 }
 
-export class InitiativeTrackerStatColumn_AbilityScore extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_AbilityScore extends _InitiativeTrackerStatColumnBase {
 	constructor ({abv}) {
 		super({name: `${Parser.attAbvToFull(abv)} Score`, abv: abv.toUpperCase()});
 		this._abv = abv;
@@ -106,7 +106,7 @@ export class InitiativeTrackerStatColumn_AbilityScore extends _InitiativeTracker
 	getCellValue (mon) { return mon[this._abv]; }
 }
 
-export class InitiativeTrackerStatColumn_Skill extends _InitiativeTrackerStatColumnBase {
+class InitiativeTrackerStatColumn_Skill extends _InitiativeTrackerStatColumnBase {
 	constructor ({skill}) {
 		super({name: skill, abv: Parser.skillToShort(skill).toUpperCase()});
 		this._skill = skill;
@@ -130,16 +130,43 @@ class _InitiativeTrackerStatColumnCheckboxBase extends _InitiativeTrackerStatCol
 	getCellValue (mon) { return false; }
 }
 
-export class InitiativeTrackerStatColumn_CheckboxAutoLow extends _InitiativeTrackerStatColumnCheckboxBase {
+class InitiativeTrackerStatColumn_CheckboxAutoLow extends _InitiativeTrackerStatColumnCheckboxBase {
 	constructor () { super({name: "Checkbox; clears at start of turn"}); }
 }
 
-export class InitiativeTrackerStatColumn_Checkbox extends _InitiativeTrackerStatColumnCheckboxBase {
+class InitiativeTrackerStatColumn_Checkbox extends _InitiativeTrackerStatColumnCheckboxBase {
 	constructor () { super({name: "Checkbox"}); }
 }
 
-export class InitiativeTrackerStatColumn_CheckboxAutoHigh extends _InitiativeTrackerStatColumnCheckboxBase {
+class InitiativeTrackerStatColumn_CheckboxAutoHigh extends _InitiativeTrackerStatColumnCheckboxBase {
 	constructor () { super({name: "Checkbox; ticks at start of turn"}); }
 
 	getCellValue (mon) { return true; }
 }
+
+export const STAT_COLUMNS = {
+	hr0: null,
+	hpFormula: new InitiativeTrackerStatColumn_HpFormula(),
+	armorClass: new InitiativeTrackerStatColumn_ArmorClass(),
+	passivePerception: new InitiativeTrackerStatColumn_PassivePerception(),
+	speed: new InitiativeTrackerStatColumn_Speed(),
+	spellDc: new InitiativeTrackerStatColumn_SpellDc(),
+	legendaryActions: new InitiativeTrackerStatColumn_LegendaryActions(),
+	hr1: null,
+	...Parser.ABIL_ABVS
+		.mergeMap(abv => ({[`${abv}Save`]: new InitiativeTrackerStatColumn_Save({abv})})),
+	hr2: null,
+	...Parser.ABIL_ABVS
+		.mergeMap(abv => ({[`${abv}Bonus`]: new InitiativeTrackerStatColumn_AbilityBonus({abv})})),
+	hr3: null,
+	...Parser.ABIL_ABVS
+		.mergeMap(abv => ({[`${abv}Score`]: new InitiativeTrackerStatColumn_AbilityScore({abv})})),
+	hr4: null,
+	...Object.keys(Parser.SKILL_TO_ATB_ABV)
+		.sort(SortUtil.ascSort)
+		.mergeMap(skill => ({[skill.toCamelCase()]: new InitiativeTrackerStatColumn_Skill({skill})})),
+	hr5: null,
+	cbAutoLow: new InitiativeTrackerStatColumn_CheckboxAutoLow(),
+	cbNeutral: new InitiativeTrackerStatColumn_Checkbox(),
+	cbAutoHigh: new InitiativeTrackerStatColumn_CheckboxAutoHigh(),
+};

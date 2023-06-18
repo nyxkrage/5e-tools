@@ -414,7 +414,7 @@ class CreatureBuilder extends Builder {
 			MiscTag.tryRun(this._state);
 			TagImmResVulnConditional.tryRun(this._state);
 			DragonAgeTag.tryRun(this._state);
-			AttachedSpellTag.tryRun(this._state);
+			AttachedItemTag.tryRun(this._state);
 
 			this.renderOutput();
 			this.doUiSave();

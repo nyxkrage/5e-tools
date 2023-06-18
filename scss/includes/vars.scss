@@ -249,6 +249,16 @@ $font-line-height: 1.42857143;
 	border-left: 1px solid $rgb-border-grey;
 }
 
+@mixin is-print {
+	@media print {
+		@content;
+	}
+
+	@at-root html.is-faux-print #{&} {
+		@content;
+	}
+}
+
 /* *** */
 
 @mixin font-regular {

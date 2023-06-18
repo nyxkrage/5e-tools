@@ -1,4 +1,36 @@
+import {
+	PANEL_TYP_EMPTY,
+	PANEL_TYP_STATS,
+	PANEL_TYP_ROLLBOX,
+	PANEL_TYP_TEXTBOX,
+	PANEL_TYP_RULES,
+	PANEL_TYP_INITIATIVE_TRACKER,
+	PANEL_TYP_UNIT_CONVERTER,
+	PANEL_TYP_CREATURE_SCALED_CR,
+	PANEL_TYP_CREATURE_SCALED_SPELL_SUMMON,
+	PANEL_TYP_CREATURE_SCALED_CLASS_SUMMON,
+	PANEL_TYP_TIME_TRACKER,
+	PANEL_TYP_MONEY_CONVERTER,
+	PANEL_TYP_TUBE,
+	PANEL_TYP_TWITCH,
+	PANEL_TYP_TWITCH_CHAT,
+	PANEL_TYP_ADVENTURES,
+	PANEL_TYP_BOOKS,
+	PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1,
+	PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0,
+	PANEL_TYP_COUNTER,
+	PANEL_TYP_IMAGE,
+	PANEL_TYP_ADVENTURE_DYNAMIC_MAP,
+	PANEL_TYP_GENERIC_EMBED,
+	PANEL_TYP_ERROR,
+	PANEL_TYP_BLANK,
+} from "./dmscreen/dmscreen-consts.js";
 import {InitiativeTracker} from "./dmscreen/dmscreen-initiativetracker.js";
+import {InitiativeTrackerPlayerV0, InitiativeTrackerPlayerV1} from "./dmscreen/dmscreen-playerinitiativetracker.js";
+import {DmMapper} from "./dmscreen/dmscreen-mapper.js";
+import {MoneyConverter} from "./dmscreen/dmscreen-moneyconverter.js";
+import {TIME_TRACKER_MOON_SPRITE_LOADER, TimeTracker} from "./dmscreen/dmscreen-timetracker.js";
+import {Counter} from "./dmscreen/dmscreen-counter.js";
 
 const UP = "UP";
 const RIGHT = "RIGHT";
@@ -10,32 +42,6 @@ const AX_Y = "AXIS_Y";
 const EVT_NAMESPACE = ".dm_screen";
 
 const TITLE_LOADING = "Loading...";
-
-const PANEL_TYP_EMPTY = 0;
-const PANEL_TYP_STATS = 1;
-const PANEL_TYP_ROLLBOX = 2;
-const PANEL_TYP_TEXTBOX = 3;
-const PANEL_TYP_RULES = 4;
-const PANEL_TYP_INITIATIVE_TRACKER = 5;
-const PANEL_TYP_UNIT_CONVERTER = 6;
-const PANEL_TYP_CREATURE_SCALED_CR = 7;
-const PANEL_TYP_CREATURE_SCALED_SPELL_SUMMON = 71;
-const PANEL_TYP_CREATURE_SCALED_CLASS_SUMMON = 72;
-const PANEL_TYP_TIME_TRACKER = 8;
-const PANEL_TYP_MONEY_CONVERTER = 9;
-const PANEL_TYP_TUBE = 10;
-const PANEL_TYP_TWITCH = 11;
-const PANEL_TYP_TWITCH_CHAT = 12;
-const PANEL_TYP_ADVENTURES = 13;
-const PANEL_TYP_BOOKS = 14;
-const PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1 = 15;
-const PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0 = 151;
-const PANEL_TYP_COUNTER = 16;
-const PANEL_TYP_IMAGE = 20;
-const PANEL_TYP_ADVENTURE_DYNAMIC_MAP = 21;
-const PANEL_TYP_GENERIC_EMBED = 90;
-const PANEL_TYP_ERROR = 98;
-const PANEL_TYP_BLANK = 99;
 
 class Board {
 	constructor () {
@@ -3135,7 +3141,7 @@ class AddMenuImageTab extends AddMenuTab {
 			});
 			// endregion
 
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			// region Adventure dynamic viewer
 			const $btnSelectAdventure = $(`<button class="btn btn-primary btn-sm">Add</button>`)
@@ -3168,7 +3174,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 				Renderer.dice.bindDmScreenPanel(this.menu.pnl);
 				this.menu.doClose();
 			});
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			const $wrpTracker = $(`<div class="ui-modal__row"><span>Initiative Tracker</span></div>`).appendTo($tab);
 			const $btnTracker = $(`<button class="btn btn-primary btn-sm">Add</button>`).appendTo($wrpTracker);
@@ -3199,7 +3205,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 			${$btnPlayertrackerV0}
 			</div>`.appendTo($tab);
 
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			const $btnSublist = $(`<button class="btn btn-primary btn-sm">Add</button>`)
 				.click(async evt => {
@@ -3212,7 +3218,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 			${$btnSublist}
 			</div>`.appendTo($tab);
 
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			const $btnSwitchToEmbedTag = $(`<button class="btn btn-default btn-xxs">embed</button>`)
 				.click(() => {
@@ -3225,7 +3231,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 				this.menu.pnl.doPopulate_TextBox();
 				this.menu.doClose();
 			});
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			const $wrpUnitConverter = $(`<div class="ui-modal__row"><span>Unit Converter</span></div>`).appendTo($tab);
 			const $btnUnitConverter = $(`<button class="btn btn-primary btn-sm">Add</button>`).appendTo($wrpUnitConverter);
@@ -3248,7 +3254,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 				this.menu.doClose();
 			});
 
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			const $wrpTimeTracker = $(`<div class="ui-modal__row"><span>In-Game Clock/Calendar</span></div>`).appendTo($tab);
 			const $btnTimeTracker = $(`<button class="btn btn-primary btn-sm">Add</button>`).appendTo($wrpTimeTracker);
@@ -3257,7 +3263,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 				this.menu.doClose();
 			});
 
-			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
+			$(`<hr class="hr-2"/>`).appendTo($tab);
 
 			const $wrpBlank = $(`<div class="ui-modal__row"><span class="help" title="For those who don't like plus signs.">Blank Space</span></div>`).appendTo($tab);
 			$(`<button class="btn btn-primary btn-sm">Add</button>`)

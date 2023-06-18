@@ -1,5 +1,72 @@
 "use strict";
 
+class UtilClassesPage {
+	static getColorStyleClasses (entry, {isForceStandardSource, prefix, isSubclass} = {}) {
+		if (isSubclass) {
+			if (entry.isClassFeatureVariant) {
+				if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew-subclass`];
+				if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-variant-ua-subclass`];
+				return [`${prefix}feature-variant-subclass`];
+			}
+
+			if (entry.isReprinted) {
+				if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass-reprint`];
+				if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua-subclass-reprint`];
+				return [`${prefix}feature-subclass-reprint`];
+			}
+
+			if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass`];
+			if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua-subclass`];
+			return [`${prefix}feature-subclass`];
+		}
+
+		if (entry.isClassFeatureVariant) {
+			if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew`];
+			if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-variant-ua`];
+			return [`${prefix}feature-variant`];
+		}
+
+		if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew`];
+		if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua`];
+		return [];
+	}
+
+	/* -------------------------------------------- */
+
+	static setRenderFnGetStyleClasses (cls) {
+		// Add extra classses to our features as we render them
+		Renderer.get()
+			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, (entry) => {
+				if (typeof entry === "string") return null;
+
+				const sc = entry.subclassShortName
+					? (cls.subclasses || []).find(it => it.shortName === entry.subclassShortName && it.source === entry.subclassSource)
+					: null;
+				const isForceStandardSource = sc ? sc._isStandardSource : (entry.source === cls.source);
+
+				return UtilClassesPage.getColorStyleClasses(entry, {isSubclass: !!entry.subclassShortName, isForceStandardSource, prefix: "cls__"});
+			});
+	}
+
+	static unsetRenderFnGetStyleClasses () {
+		Renderer.get()
+			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, null);
+	}
+
+	/* -------------------------------------------- */
+
+	static getSubclassCssMod (cls, sc) {
+		if (sc.source !== cls.source) {
+			return BrewUtil2.hasSourceJson(sc.source)
+				? sc.isReprinted ? "rebrewed" : "brew"
+				: (SourceUtil.isNonstandardSource(sc.source) || PrereleaseUtil.hasSourceJson(sc.source))
+					? sc.isReprinted ? "stale" : "spicy"
+					: sc.isReprinted ? "reprinted" : "fresh";
+		}
+		return "fresh";
+	}
+}
+
 class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProxyBase(ListPage))) {
 	static _ascSortSubclasses (scA, scB) {
 		return SortUtil.ascSortLower(scA.name, scB.name);
@@ -1297,7 +1364,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			.map(sc => {
 				return {
 					stateKey: UrlUtil.getStateKeySubclass(sc),
-					isSelected: allowlistMods == null || allowlistMods.has(ClassesPage.getSubclassCssMod(cls, sc)),
+					isSelected: allowlistMods == null || allowlistMods.has(UtilClassesPage.getSubclassCssMod(cls, sc)),
 				};
 			});
 
@@ -1443,7 +1510,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const isExcluded = this.constructor.isSubclassExcluded_(cls, sc);
 
 		const stateKey = UrlUtil.getStateKeySubclass(sc);
-		const mod = ClassesPage.getSubclassCssMod(cls, sc);
+		const mod = UtilClassesPage.getSubclassCssMod(cls, sc);
 		const clsActive = `cls__btn-sc--active-${mod}`;
 
 		if (this._state[stateKey] == null) this._state[stateKey] = false;
@@ -1649,7 +1716,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		if (!this._state.isHideFeatures && depthData) {
 			depthData.filter(it => it.name).forEach(it => {
-				const additionalCssClassesRaw = this._getColorStyleClasses(
+				const additionalCssClassesRaw = UtilClassesPage.getColorStyleClasses(
 					it,
 					{
 						isForceStandardSource: it.source === this.activeClass.source,
@@ -1677,7 +1744,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			// If we didn't render the intro for gaining a subclass feature, do so now
 			if (this._state.isHideFeatures && depthData) {
 				depthData.filter(it => it.name).forEach(it => {
-					const additionalCssClassesRaw = this._getColorStyleClasses(
+					const additionalCssClassesRaw = UtilClassesPage.getColorStyleClasses(
 						it,
 						{
 							isSubclass: true,
@@ -1706,7 +1773,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				scLvlFeatures.forEach((scFeature, ixScFeature) => {
 					const depthData = MiscUtil.get(this._outlineData, stateKey, scFeature.level, ixScFeature);
 					depthData.filter(it => it.name).map(it => {
-						const additionalCssClassesRaw = this._getColorStyleClasses(
+						const additionalCssClassesRaw = UtilClassesPage.getColorStyleClasses(
 							it,
 							{
 								isSubclass: true,
@@ -1745,130 +1812,17 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 	_render_renderAltViews () { // "Hitler was right"
 		const cls = this.activeClass;
-		const cpyCls = MiscUtil.copyFast(this.activeClassRaw);
 
 		// region subclass comparison
 		if (this._subclassComparisonView) this._subclassComparisonView.teardown();
 
-		this._subclassComparisonView = new BookModeView({
-			stateKey: "isViewActiveScComp",
-			state: this._state,
-			$openBtn: $(`#btn-comparemode`),
-			$eleNoneVisible: this._render_renderAltViews_$getStgCompViewNoneVisible(),
-			isHideContentOnNoneShown: true,
-			isHideButtonCloseNone: true,
-			pageTitle: "Subclass Comparison",
-			isFlex: true,
-			popTblGetNumShown: ({$wrpContent}) => {
-				$wrpContent.removeClass("bkmv__wrp").addClass("h-100").addClass("ve-flex-col");
-				$wrpContent.parent().addClass("stats").addClass("stats--book");
-
-				const scs = [...cls.subclasses]
-					.sort((scA, scB) => SortUtil.ascSortLower(scA.shortName, scB.shortName));
-
-				const renderStack = [];
-				const levelsWithFeatures = [
-					...new Set(scs
-						.filter(it => it?.subclassFeatures?.length)
-						.map(it => it.subclassFeatures.map(it => it.map(f => f.level)).flat()).flat()),
-				].sort(SortUtil.ascSort);
-
-				const filterValues = this._pageFilter.filterBox.getValues();
-				const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST, isAllowDeleteObjects: true});
-
-				const isAnySubclassDisplayed = this._pageFilter.isAnySubclassDisplayed(filterValues, cpyCls);
-
-				levelsWithFeatures.forEach(lvl => {
-					const isLastRow = lvl === levelsWithFeatures.last();
-
-					renderStack.push(`<div class="ve-flex ${isLastRow ? "mb-4" : ""}">`);
-
-					const isAnyFeature = scs
-						.filter(sc => !this.constructor.isSubclassExcluded_(cls, sc))
-						.filter(sc => {
-							const key = UrlUtil.getStateKeySubclass(sc);
-							return this._state[key];
-						})
-						.some((sc, ixSubclass) => {
-							return sc.subclassFeatures
-								.some(it => it.length && it[0].level === lvl);
-						});
-
-					if (isAnyFeature) {
-						renderStack.push(`<div class="ve-flex-vh-center sticky cls-bkmv__wrp-level br-1p bt-1p bb-1p btr-5p bbr-5p mr-2 ml-n2">
-							<span class="cls-bkmv__disp-level no-shrink small-caps">Level ${lvl}</span>
-						</div>`);
-					}
-
-					scs
-						.filter(sc => !this.constructor.isSubclassExcluded_(cls, sc))
-						.forEach((sc, ixSubclass) => {
-							const mod = ClassesPage.getSubclassCssMod(cls, sc);
-							renderStack.push(`<div class="mx-2 no-shrink cls-comp__wrp-features cls-main__sc-feature ${mod ? `cls-main__sc-feature--${mod}` : ""}" data-cls-comp-sc-ix="${ixSubclass}">`);
-							sc.subclassFeatures
-								.filter(it => it.length && it[0].level === lvl)
-								.forEach(features => {
-									const cpy = MiscUtil.copyFast(features);
-
-									// Note that this won't affect the root feature, only those nested inside it. The root
-									//   feature is filtered out elsewhere.
-									walker.walk(
-										cpy,
-										{
-											object: (obj) => {
-												if (!obj.source) return obj;
-												const fText = obj.isClassFeatureVariant ? {isClassFeatureVariant: true} : null;
-
-												if (
-													this.filterBox.toDisplayByFilters(
-														filterValues,
-														{
-															filter: this._pageFilter.sourceFilter,
-															value: isAnySubclassDisplayed ? cpyCls._fSourceSubclass : obj.source,
-														},
-														{
-															filter: this._pageFilter.levelFilter,
-															value: lvl,
-														},
-														{
-															filter: this._pageFilter.optionsFilter,
-															value: fText,
-														},
-													)
-												) return obj;
-												return undefined; // If it shouldn't be displayed, delete it
-											},
-										},
-									);
-
-									cpy.forEach(f => Renderer.get().recursiveRender(f, renderStack));
-								});
-							renderStack.push(`</div>`);
-						});
-					renderStack.push(`</div>`);
-
-					if (!isLastRow && isAnyFeature) renderStack.push(`<hr class="hr-2 mt-3 cls-comp__hr-level"/>`);
-				});
-				$wrpContent.append(renderStack.join(""));
-
-				let numShown = 0;
-				scs
-					.filter(sc => !this.constructor.isSubclassExcluded_(cls, sc))
-					.forEach((sc, i) => {
-						const key = UrlUtil.getStateKeySubclass(sc);
-
-						if (!this._state[key]) {
-							$wrpContent.find(`[data-cls-comp-sc-ix="${i}"]`).hideVe();
-						} else numShown++;
-					});
-
-				if (!numShown) $wrpContent.find(".cls-comp__hr-level").hideVe();
-
-				return numShown;
-			},
+		this._subclassComparisonView = new ClassesPage.SubclassComparisonBookView({
+			classPage: this,
+			pageFilter: this._pageFilter,
+			listSubclass: this._listSubclass,
 		});
 
-		const hkToggleScOverlay = async () => {
+		this._addHookBase("isViewActiveScComp", async () => {
 			try {
 				await this._pLock("sc-comparison");
 
@@ -1880,139 +1834,30 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			} finally {
 				this._unlock("sc-comparison");
 			}
-		};
-		this._addHookBase("isViewActiveScComp", hkToggleScOverlay);
-		hkToggleScOverlay();
+		})();
 		// endregion
 
 		// region book view
-		if (this._classBookView) this._classBookView.cleanup();
-		this._classBookView = new ClassesPage.ClassBookView(this, this._pageFilter);
+		if (this._classBookView) this._classBookView.teardown();
+		this._classBookView = new ClassesPage.ClassBookView({
+			classPage: this,
+			pageFilter: this._pageFilter,
+		});
 
-		const hkToggleBookOverlay = () => {
-			if (this._state.isViewActiveBook) this._classBookView.open();
-			else {
-				this._classBookView.teardown();
-				document.title = `${cls ? cls.name : "Classes"} - 5etools`;
+		this._addHookBase("isViewActiveBook", async () => {
+			try {
+				await this._pLock("view-book");
+
+				if (this._state.isViewActiveBook) await this._classBookView.pOpen();
+				else {
+					this._classBookView.teardown();
+					document.title = `${cls ? cls.name : "Classes"} - 5etools`;
+				}
+			} finally {
+				this._unlock("view-book");
 			}
-		};
-		this._addHookBase("isViewActiveBook", hkToggleBookOverlay);
-		hkToggleBookOverlay();
+		})();
 		// endregion
-	}
-
-	_render_renderAltViews_$getStgCompViewNoneVisible () {
-		const $wrpRows = $(`<div class="ve-flex-col min-h-0"></div>`);
-
-		const $btnAdjustFilters = $(`<span class="clickable help no-select" title="Click Here!">adjust your filters</span>`)
-			.click(() => this.filterBox.show());
-		const $dispNoneAvailable = $$`<div class="ve-small ve-muted italic">No subclasses are available. Please ${$btnAdjustFilters} first.</div>`;
-
-		const $stgCompViewNoneVisible = $$`<div class="ve-flex-col h-100">
-			<div class="mb-2 initial-message">Please select some subclasses:</div>
-			${$wrpRows}
-			${$dispNoneAvailable}
-		</div>`;
-
-		const onListUpdate = () => {
-			const subclassStateItems = this._listSubclass.visibleItems.filter(it => it.values.stateKey);
-
-			if (!subclassStateItems.length) {
-				$wrpRows.hideVe();
-				$dispNoneAvailable.showVe();
-				return;
-			}
-
-			$wrpRows.showVe();
-			$dispNoneAvailable.hideVe();
-
-			$wrpRows.empty();
-			const rowMetas = subclassStateItems.map(li => {
-				const $cb = $(`<input type="checkbox">`);
-				$$`<label class="split-v-center py-1">
-					<div>${li.name}</div>
-					${$cb}
-				</label>`.appendTo($wrpRows);
-				return {$cb, stateKey: li.values.stateKey};
-			});
-
-			const $btnSave = $(`<button class="btn btn-default mr-2">Save</button>`)
-				.click(async () => {
-					const nxtState = {isViewActiveScComp: false};
-					const rowMetasFilt = rowMetas.filter(it => it.$cb.prop("checked"));
-					if (!rowMetasFilt.length) return JqueryUtil.doToast({type: "warning", content: `Please select some subclasses first!`});
-
-					// (We don't `false` out the other subclasses, because if we're seeing this UI there are none
-					//   currently selected)
-					rowMetasFilt.forEach(meta => {
-						nxtState[meta.stateKey] = true;
-						meta.$cb.prop("checked", false);
-					});
-
-					this._proxyAssignSimple("state", nxtState);
-
-					// Re-open the subclass comparison view with our new content
-					try {
-						await this._pLock("sc-comparison");
-						this._state.isViewActiveScComp = true;
-					} finally {
-						this._unlock("sc-comparison");
-					}
-				});
-
-			const $btnClose = $(`<button class="btn btn-default">Close</button>`)
-				.click(() => {
-					this._subclassComparisonView.close();
-				});
-
-			$$`<div class="ve-flex-h-right mt-2">${$btnSave}${$btnClose}</div>`
-				.appendTo($wrpRows);
-		};
-		this._listSubclass.on("updated", () => onListUpdate());
-		onListUpdate();
-
-		return $stgCompViewNoneVisible;
-	}
-
-	static getSubclassCssMod (cls, sc) {
-		if (sc.source !== cls.source) {
-			return BrewUtil2.hasSourceJson(sc.source)
-				? "brew"
-				: (SourceUtil.isNonstandardSource(sc.source) || PrereleaseUtil.hasSourceJson(sc.source))
-					? sc.isReprinted ? "stale" : "spicy"
-					: sc.isReprinted ? "reprinted" : "fresh";
-		}
-		return "fresh";
-	}
-
-	_getColorStyleClasses (entry, {isForceStandardSource, prefix, isSubclass} = {}) {
-		if (isSubclass) {
-			if (entry.isClassFeatureVariant) {
-				if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew-subclass`];
-				if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-variant-ua-subclass`];
-				return [`${prefix}feature-variant-subclass`];
-			}
-
-			if (entry.isReprinted) {
-				if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass-reprint`];
-				if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua-subclass-reprint`];
-				return [`${prefix}feature-subclass-reprint`];
-			}
-
-			if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew-subclass`];
-			if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua-subclass`];
-			return [`${prefix}feature-subclass`];
-		}
-
-		if (entry.isClassFeatureVariant) {
-			if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-variant-brew`];
-			if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-variant-ua`];
-			return [`${prefix}feature-variant`];
-		}
-
-		if (entry.source && !isForceStandardSource && BrewUtil2.hasSourceJson(entry.source)) return [`${prefix}feature-brew`];
-		if (entry.source && !isForceStandardSource && (SourceUtil.isNonstandardSource(entry.source) || PrereleaseUtil.hasSourceJson(entry.source))) return [`${prefix}feature-ua`];
-		return [];
 	}
 
 	_render_renderClassContent () {
@@ -2020,18 +1865,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const cls = this.activeClass;
 		this._outlineData = {};
 
-		// Add extra classses to our features as we render them
-		Renderer.get()
-			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, (entry) => {
-				if (typeof entry === "string") return null;
-
-				const sc = entry.subclassShortName
-					? (cls.subclasses || []).find(it => it.shortName === entry.subclassShortName && it.source === entry.subclassSource)
-					: null;
-				const isForceStandardSource = sc ? sc._isStandardSource : (entry.source === cls.source);
-
-				return this._getColorStyleClasses(entry, {isSubclass: !!entry.subclassShortName, isForceStandardSource, prefix: "cls__"});
-			});
+		UtilClassesPage.setRenderFnGetStyleClasses(cls);
 
 		$content.append(Renderer.utils.getBorderTr());
 
@@ -2103,8 +1937,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		$content.append(Renderer.utils.getBorderTr());
 
+		UtilClassesPage.unsetRenderFnGetStyleClasses();
 		Renderer.get()
-			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, null)
 			.removePlugins("entries_namePrefix");
 	}
 
@@ -2153,9 +1987,6 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		cls.subclasses.forEach(sc => {
 			const stateKey = UrlUtil.getStateKeySubclass(sc);
 
-			// Add any extra coloring the subclass might require
-			const cssMod = `cls-main__sc-feature--${ClassesPage.getSubclassCssMod(cls, sc)}`;
-
 			const scLvlFeatures = sc.subclassFeatures.find(it => it[0]?.level === ixLvl + 1);
 			if (!scLvlFeatures) return;
 
@@ -2196,7 +2027,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 						if (source === sc.source) return {isSkip: true};
 					},
 					fn: () => {
-						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature ${cssMod}" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"/></tr>`)
+						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"/></tr>`)
 							.fastSetHtml(Renderer.get().setDepthTracker(depthArr, {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}).render(toRender))
 							.appendTo($content);
 					},
@@ -2236,49 +2067,255 @@ ClassesPage._DEFAULT_STATE = {
 	// `"sub Berserker": false`
 };
 
-ClassesPage.ClassBookView = class {
-	constructor (classPage, pageFilter) {
+ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
+	_stateKey = "isViewActiveScComp";
+	_pageTitle = "Subclass Comparison";
+	_isColumns = false;
+
+	constructor ({classPage, pageFilter, listSubclass}) {
+		super({
+			$btnOpen: $(`#btn-comparemode`),
+			state: classPage._state,
+		});
+
+		this._classPage = classPage;
+		this._pageFilter = pageFilter;
+		this._listSubclass = listSubclass;
+	}
+
+	_$getEleNoneVisible () {
+		const $wrpRows = $(`<div class="ve-flex-col min-h-0"></div>`);
+
+		const $btnAdjustFilters = $(`<span class="clickable help no-select" title="Click Here!">adjust your filters</span>`)
+			.click(() => this._classPage.filterBox.show());
+		const $dispNoneAvailable = $$`<div class="ve-small ve-muted italic">No subclasses are available. Please ${$btnAdjustFilters} first.</div>`;
+
+		const $stgCompViewNoneVisible = $$`<div class="h-100 w-100 ve-flex-vh-center no-shrink no-print">
+			<div class="ve-flex-col">
+				<div class="mb-2 initial-message">Please select some subclasses:</div>
+				${$wrpRows}
+				${$dispNoneAvailable}
+			</div>
+		</div>`;
+
+		const onListUpdate = () => {
+			const subclassStateItems = this._listSubclass.visibleItems.filter(it => it.values.stateKey);
+
+			if (!subclassStateItems.length) {
+				$wrpRows.hideVe();
+				$dispNoneAvailable.showVe();
+				return;
+			}
+
+			$wrpRows.showVe();
+			$dispNoneAvailable.hideVe();
+
+			$wrpRows.empty();
+			const rowMetas = subclassStateItems.map(li => {
+				const $cb = $(`<input type="checkbox">`);
+				$$`<label class="split-v-center py-1">
+					<div>${li.name}</div>
+					${$cb}
+				</label>`.appendTo($wrpRows);
+				return {$cb, stateKey: li.values.stateKey};
+			});
+
+			const $btnSave = $(`<button class="btn btn-default mr-2">Save</button>`)
+				.click(async () => {
+					const nxtState = {isViewActiveScComp: false};
+					const rowMetasFilt = rowMetas.filter(it => it.$cb.prop("checked"));
+					if (!rowMetasFilt.length) return JqueryUtil.doToast({type: "warning", content: `Please select some subclasses first!`});
+
+					// (We don't `false` out the other subclasses, because if we're seeing this UI there are none
+					//   currently selected)
+					rowMetasFilt.forEach(meta => {
+						nxtState[meta.stateKey] = true;
+						meta.$cb.prop("checked", false);
+					});
+
+					this._classPage._proxyAssignSimple("state", nxtState);
+
+					// Re-open the subclass comparison view with our new content
+					try {
+						await this._classPage._pLock("sc-comparison");
+						this._state.isViewActiveScComp = true;
+					} finally {
+						this._classPage._unlock("sc-comparison");
+					}
+				});
+
+			const $btnClose = $(`<button class="btn btn-default">Close</button>`)
+				.click(() => {
+					this.setStateClosed();
+				});
+
+			$$`<div class="ve-flex-h-right mt-2">${$btnSave}${$btnClose}</div>`
+				.appendTo($wrpRows);
+		};
+		this._listSubclass.on("updated", () => onListUpdate());
+		onListUpdate();
+
+		return $stgCompViewNoneVisible;
+	}
+
+	async _pGetRenderContentMeta ({$wrpContent}) {
+		UtilClassesPage.setRenderFnGetStyleClasses(this._classPage.activeClass);
+
+		const cpyCls = MiscUtil.copyFast(this._classPage.activeClassRaw);
+
+		const scs = [...this._classPage.activeClass.subclasses]
+			.sort((scA, scB) => SortUtil.ascSortLower(scA.shortName, scB.shortName));
+
+		const renderStack = [];
+		const levelsWithFeatures = [
+			...new Set(scs
+				.filter(it => it?.subclassFeatures?.length)
+				.map(it => it.subclassFeatures.map(it => it.map(f => f.level)).flat()).flat()),
+		].sort(SortUtil.ascSort);
+
+		const filterValues = this._pageFilter.filterBox.getValues();
+		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST, isAllowDeleteObjects: true});
+
+		const isAnySubclassDisplayed = this._pageFilter.isAnySubclassDisplayed(filterValues, cpyCls);
+
+		levelsWithFeatures.forEach(lvl => {
+			const isLastRow = lvl === levelsWithFeatures.last();
+
+			renderStack.push(`<div class="ve-flex pr-3 ${isLastRow ? "mb-4" : ""}">`);
+
+			const isAnyFeature = scs
+				.filter(sc => !ClassesPage.isSubclassExcluded_(this._classPage.activeClass, sc))
+				.filter(sc => {
+					const key = UrlUtil.getStateKeySubclass(sc);
+					return this._state[key];
+				})
+				.some((sc, ixSubclass) => {
+					return sc.subclassFeatures
+						.some(it => it.length && it[0].level === lvl);
+				});
+
+			if (isAnyFeature) {
+				renderStack.push(`<div class="ve-flex-vh-center sticky cls-bkmv__wrp-level br-1p bt-1p bb-1p btr-5p bbr-5p mr-2 ml-n2">
+					<span class="cls-bkmv__disp-level no-shrink small-caps">Level ${lvl}</span>
+				</div>`);
+			}
+
+			scs
+				.filter(sc => !ClassesPage.isSubclassExcluded_(this._classPage.activeClass, sc))
+				.forEach((sc, ixSubclass) => {
+					renderStack.push(`<div class="mx-2 no-shrink cls-comp__wrp-features cls-main__sc-feature" data-cls-comp-sc-ix="${ixSubclass}">`);
+					sc.subclassFeatures
+						.filter(it => it.length && it[0].level === lvl)
+						.forEach(features => {
+							const cpy = MiscUtil.copyFast(features);
+
+							// Note that this won't affect the root feature, only those nested inside it. The root
+							//   feature is filtered out elsewhere.
+							walker.walk(
+								cpy,
+								{
+									object: (obj) => {
+										if (!obj.source) return obj;
+										const fText = obj.isClassFeatureVariant ? {isClassFeatureVariant: true} : null;
+
+										if (
+											this._classPage.filterBox.toDisplayByFilters(
+												filterValues,
+												{
+													filter: this._pageFilter.sourceFilter,
+													value: isAnySubclassDisplayed ? cpyCls._fSourceSubclass : obj.source,
+												},
+												{
+													filter: this._pageFilter.levelFilter,
+													value: lvl,
+												},
+												{
+													filter: this._pageFilter.optionsFilter,
+													value: fText,
+												},
+											)
+										) return obj;
+										return undefined; // If it shouldn't be displayed, delete it
+									},
+								},
+							);
+
+							cpy.forEach(f => Renderer.get().recursiveRender(f, renderStack));
+						});
+					renderStack.push(`</div>`);
+				});
+			renderStack.push(`</div>`);
+
+			if (!isLastRow && isAnyFeature) renderStack.push(`<hr class="hr-2 mt-3 cls-comp__hr-level"/>`);
+		});
+
+		$wrpContent
+			.addClass("stats stats--book")
+			.append(renderStack.join(""));
+
+		let cntSelectedEnts = 0;
+		let isAnyEntityRendered = false;
+		scs
+			.filter(sc => !ClassesPage.isSubclassExcluded_(this._classPage.activeClass, sc))
+			.forEach((sc, i) => {
+				const key = UrlUtil.getStateKeySubclass(sc);
+
+				if (!this._state[key]) {
+					$wrpContent.find(`[data-cls-comp-sc-ix="${i}"]`).hideVe();
+				} else {
+					cntSelectedEnts++;
+					isAnyEntityRendered = true;
+				}
+			});
+
+		if (!cntSelectedEnts) $wrpContent.find(".cls-comp__hr-level").hideVe();
+
+		UtilClassesPage.unsetRenderFnGetStyleClasses();
+
+		return {
+			cntSelectedEnts,
+			isAnyEntityRendered,
+		};
+	}
+};
+
+ClassesPage.ClassBookView = class extends BookModeViewBase {
+	_stateKey = "isViewActiveBook";
+	_pageTitle = "Book View";
+	_isColumns = false;
+
+	constructor ({classPage, pageFilter}) {
+		super({
+			state: classPage._state,
+			$btnOpen: $(`#btn-readmode`),
+		});
+
 		this._classPage = classPage;
 		this._pageFilter = pageFilter;
 		this._parent = classPage.getPod();
-		this._bookViewActive = false;
 
 		this._hooks = {};
-
-		this._$body = null;
-		this._$wrpBook = null;
-
-		$(`#btn-readmode`).off("click").on("click", () => this._parent.set("isViewActiveBook", true));
 	}
 
-	cleanup () {
+	teardown () {
+		const out = super.teardown();
+
 		Object.entries(this._hooks).forEach(([prop, arr]) => {
 			arr.forEach(hk => this._parent.removeHook(prop, hk));
 		});
+
+		return out;
 	}
 
-	open () {
-		if (this._bookViewActive) return;
-		this._bookViewActive = true;
-
+	async _pGetRenderContentMeta ({$wrpContent}) {
 		const cls = this._classPage.activeClass;
 
-		this._$body = $(document.body);
-		this._$wrpBook = $(`<div class="bkmv"/>`);
-
-		this._$body.css("overflow", "hidden");
-		this._$body.addClass("bkmv-active");
-
 		// Top bar
-		const $btnClose = $(`<button class="btn btn-xs btn-danger br-0 bt-0 bb-0 btl-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`)
-			.click(() => this._parent.set("isViewActiveBook", false));
-		$$`<div class="bkmv__spacer-name ve-flex-h-right no-shrink">${$btnClose}</div>`.appendTo(this._$wrpBook);
-
-		const $pnlMenu = $(`<div class="cls-bkmv__wrp-tabs ve-flex-h-center"/>`).appendTo(this._$wrpBook);
+		const $pnlMenu = $(`<div class="cls-bkmv__wrp-tabs ve-flex-h-center"/>`).appendTo($wrpContent);
 
 		// Main panel
-		const $tblBook = $(`<table class="w-100 stats stats--book stats--book-large"/>`);
-		$$`<div class="ve-flex-col overflow-y-auto container">${$tblBook}</div>`.appendTo(this._$wrpBook);
+		const $tblBook = $(`<table class="w-100 stats stats--book stats--book-large stats--bkmv"></div>`);
+		$$`<div class="ve-flex-col overflow-y-auto container">${$tblBook}</div>`.appendTo($wrpContent);
 
 		const renderStack = [];
 		Renderer.get().setFirstSection(true);
@@ -2313,8 +2350,7 @@ ClassesPage.ClassBookView = class {
 		cls.subclasses
 			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
 			.forEach((sc, ixSubclass) => {
-				const mod = ClassesPage.getSubclassCssMod(cls, sc);
-				renderStack.push(`<tr data-cls-book-sc-ix="${ixSubclass}" class="cls-main__sc-feature ${mod ? `cls-main__sc-feature--${mod}` : ""}"><td colspan="6" class="py-3 px-5">`);
+				renderStack.push(`<tr data-cls-book-sc-ix="${ixSubclass}" class="cls-main__sc-feature"><td colspan="6" class="py-3 px-5">`);
 				sc.subclassFeatures.forEach(lvl => {
 					lvl.forEach(f => Renderer.get().recursiveRender(f, renderStack));
 				});
@@ -2342,7 +2378,7 @@ ClassesPage.ClassBookView = class {
 			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
 			.forEach((sc, i) => {
 				const name = sc.isReprinted ? `${ClassesPage.getBaseShortName(sc)} (${Parser.sourceJsonToAbv(sc.source)})` : sc.shortName;
-				const mod = ClassesPage.getSubclassCssMod(cls, sc);
+				const mod = UtilClassesPage.getSubclassCssMod(cls, sc);
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
 
 				const $btnToggleSc = $(`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`)
@@ -2351,7 +2387,7 @@ ClassesPage.ClassBookView = class {
 				if (!isVisible) $btnToggleSc.hideVe();
 
 				const hkShowHide = () => {
-					const $dispFeatures = this._$wrpBook.find(`[data-cls-book-sc-ix="${i}"]`);
+					const $dispFeatures = $wrpContent.find(`[data-cls-book-sc-ix="${i}"]`);
 					const isActive = !!this._parent.get(stateKey);
 					$btnToggleSc.toggleClass(`cls__btn-sc--active-${mod}`, isActive);
 					$dispFeatures.toggleVe(!!isActive);
@@ -2364,7 +2400,7 @@ ClassesPage.ClassBookView = class {
 			});
 
 		const hkFeatures = () => {
-			const $dispFeatures = this._$wrpBook.find(`[data-cls-book-cf="true"]`);
+			const $dispFeatures = $wrpContent.find(`[data-cls-book-cf="true"]`);
 			const isActive = !this._parent.get("isHideFeatures");
 			$btnToggleCf.toggleClass("cls__btn-cf--active", isActive);
 			$dispFeatures.toggleVe(!!isActive);
@@ -2374,7 +2410,7 @@ ClassesPage.ClassBookView = class {
 		hkFeatures();
 
 		const hkFluff = () => {
-			const $dispFluff = this._$wrpBook.find(`[data-cls-book-fluff="true"]`);
+			const $dispFluff = $wrpContent.find(`[data-cls-book-fluff="true"]`);
 			const isHidden = !this._parent.get("isShowFluff");
 			$btnToggleInfo.toggleVe(!!isHidden);
 			$dispFluff.toggleVe(!isHidden);
@@ -2383,16 +2419,7 @@ ClassesPage.ClassBookView = class {
 		this._parent.addHook("isShowFluff", hkFluff);
 		hkFluff();
 
-		this._$body.append(this._$wrpBook);
-	}
-
-	teardown () {
-		if (this._bookViewActive) {
-			this._$body.css("overflow", "");
-			this._$body.removeClass("bkmv-active");
-			this._$wrpBook.remove();
-			this._bookViewActive = false;
-		}
+		return {cntSelectedEnts: 1, isAnyEntityRendered: true};
 	}
 };
 

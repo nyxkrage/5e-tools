@@ -1,7 +1,5 @@
-"use strict";
-
 // a simple money converter, i.e.: input x electrum, y silver, z copper and get the total in gold, or in any other type of coin chosen.
-class MoneyConverter {
+export class MoneyConverter {
 	static make$Converter (board, state) {
 		const disabledCurrency = state.d || {};
 

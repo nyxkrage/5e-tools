@@ -845,13 +845,14 @@ class ListPage {
 	 * @param opts.listClass List class.
 	 * @param opts.listOptions Other list options.
 	 * @param opts.dataProps JSON data propert(y/ies).
+	 *
 	 * @param [opts.bookViewOptions] Book view options.
-	 * @param [opts.bookViewOptions.$btnOpen]
-	 * @param [opts.bookViewOptions.$eleNoneVisible]
+	 * @param [opts.bookViewOptions.ClsBookView]
 	 * @param [opts.bookViewOptions.pageTitle]
-	 * @param [opts.bookViewOptions.popTblGetNumShown]
-	 * @param [opts.bookViewOptions.fnSort]
-	 * @param [opts.bookViewOptions.fnGetMd]
+	 * @param [opts.bookViewOptions.namePlural]
+	 * @param [opts.bookViewOptions.propMarkdown]
+	 * @param [opts.bookViewOptions.fnPartition]
+	 *
 	 * @param [opts.tableViewOptions] Table view options.
 	 * @param [opts.hasAudio] True if the entities have pronunciation audio.
 	 * @param [opts.isPreviewable] True if the entities can be previewed in-line as part of the list.
@@ -1062,94 +1063,12 @@ class ListPage {
 	_pOnLoad_bookView () {
 		if (!this._bookViewOptions) return;
 
-		this._bookView = new BookModeView({
-			hashKey: "bookview",
-			$openBtn: this._bookViewOptions.$btnOpen,
-			$eleNoneVisible: this._bookViewOptions.$eleNoneVisible,
-			pageTitle: this._bookViewOptions.pageTitle || "Book View",
-			popTblGetNumShown: this._bookView_popTblGetNumShown.bind(this),
-			hasPrintColumns: true,
+		this._bookView = new (this._bookViewOptions.ClsBookView || ListPageBookView)({
+			...this._bookViewOptions,
+			sublistManager: this._sublistManager,
+			fnGetEntLastLoaded: () => this._dataList[Hist.lastLoadedId],
+			$btnOpen: $(`#btn-book`),
 		});
-	}
-
-	_bookView_popTblGetNumShown ({$wrpContent, $dispName, $wrpControls, fnPartition}) {
-		if (this._bookViewOptions.fnGetMd) this._bookView_$getControlsMarkdown().appendTo($wrpControls);
-
-		this._bookViewToShow = this._sublistManager.getSublistedEntities();
-
-		const fnRender = Renderer.hover.getFnRenderCompact(UrlUtil.getCurrentPage(), {isStatic: true});
-
-		const stack = [];
-		const renderEnt = (p) => {
-			stack.push(`<div class="bkmv__wrp-item"><table class="w-100 stats stats--book stats--bkmv"><tbody>`);
-			stack.push(fnRender(p));
-			stack.push(`</tbody></table></div>`);
-		};
-
-		const renderPartition = (dataArr) => {
-			dataArr.forEach(it => renderEnt(it));
-		};
-
-		const partitions = [];
-		if (fnPartition) {
-			this._bookViewToShow.forEach(it => {
-				const partition = fnPartition(it);
-				(partitions[partition] = partitions[partition] || []).push(it);
-			});
-		} else partitions[0] = this._bookViewToShow;
-		partitions.filter(Boolean).forEach(arr => renderPartition(arr));
-
-		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
-			renderEnt(this._dataList[Hist.lastLoadedId]);
-		}
-
-		$wrpContent.append(stack.join(""));
-		return this._bookViewToShow.length;
-	}
-
-	_bookView_getAsMarkdown () {
-		const fnSort = this._bookViewOptions.fnSort || ((a, b) => SortUtil.ascSortLower(a.name, b.name));
-
-		const toRender = this._bookViewToShow?.length ? this._bookViewToShow : [this._dataList[Hist.lastLoadedId]];
-		const parts = [...toRender]
-			.sort(fnSort)
-			.map(this._bookViewOptions.fnGetMd);
-
-		const out = [];
-		let charLimit = RendererMarkdown.CHARS_PER_PAGE;
-		for (let i = 0; i < parts.length; ++i) {
-			const part = parts[i];
-			out.push(part);
-
-			if (i < parts.length - 1) {
-				if ((charLimit -= part.length) < 0) {
-					if (RendererMarkdown.getSetting("isAddPageBreaks")) out.push("", "\\pagebreak", "");
-					charLimit = RendererMarkdown.CHARS_PER_PAGE;
-				}
-			}
-		}
-
-		return out.join("\n\n");
-	}
-
-	_bookView_$getControlsMarkdown () {
-		const $btnDownloadMarkdown = $(`<button class="btn btn-default btn-sm">Download as Markdown</button>`)
-			.click(() => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._bookView_getAsMarkdown()));
-
-		const $btnCopyMarkdown = $(`<button class="btn btn-default btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"/></button>`)
-			.click(async () => {
-				await MiscUtil.pCopyTextToClipboard(this._bookView_getAsMarkdown());
-				JqueryUtil.showCopiedEffect($btnCopyMarkdown);
-			});
-
-		const $btnDownloadMarkdownSettings = $(`<button class="btn btn-default btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"/></button>`)
-			.click(async () => RendererMarkdown.pShowSettingsModal());
-
-		return $$`<div class="ve-flex-v-center btn-group ml-3">
-			${$btnDownloadMarkdown}
-			${$btnCopyMarkdown}
-			${$btnDownloadMarkdownSettings}
-		</div>`;
 	}
 
 	_pOnLoad_tableView () {
@@ -1929,4 +1848,136 @@ class ListPage {
 
 	/** @abstract */
 	_renderStats_doBuildStatsTab ({ent}) { throw new Error("Unimplemented!"); }
+}
+
+class ListPageBookView extends BookModeViewBase {
+	_hashKey = "bookview";
+	_hasPrintColumns = true;
+
+	constructor (
+		{
+			sublistManager,
+			fnGetEntLastLoaded,
+			pageTitle,
+			namePlural,
+			propMarkdown,
+			fnPartition = null,
+			...rest
+		},
+	) {
+		super({...rest});
+		this._sublistManager = sublistManager;
+		this._fnGetEntLastLoaded = fnGetEntLastLoaded;
+		this._pageTitle = pageTitle;
+		this._namePlural = namePlural;
+		this._propMarkdown = propMarkdown;
+		this._fnPartition = fnPartition;
+
+		this._bookViewToShow = null;
+	}
+
+	_$getEleNoneVisible () {
+		return $$`<div class="w-100 ve-flex-col ve-flex-h-center no-shrink no-print mb-3 mt-auto">
+			<div class="mb-2 ve-flex-vh-center min-h-0">
+				<span class="initial-message">If you wish to view multiple ${this._namePlural}, please first make a list</span>
+			</div>
+			<div class="ve-flex-vh-center">${this._$getBtnNoneVisibleClose()}</div>
+		</div>`;
+	}
+
+	_$getWrpControls ({$wrpContent}) {
+		const out = super._$getWrpControls({$wrpContent});
+		const {$wrpPrint} = out;
+		if (this._propMarkdown) this._$getControlsMarkdown().appendTo($wrpPrint);
+		return out;
+	}
+
+	async _pGetRenderContentMeta ({$wrpContent, $wrpContentOuter}) {
+		$wrpContent.addClass("p-2");
+
+		this._bookViewToShow = this._sublistManager.getSublistedEntities()
+			.sort(this._getSorted.bind(this));
+
+		const partitions = [];
+		if (this._fnPartition) {
+			this._bookViewToShow.forEach(it => {
+				const partition = this._fnPartition(it);
+				(partitions[partition] = partitions[partition] || []).push(it);
+			});
+		} else partitions[0] = this._bookViewToShow;
+
+		const stack = partitions
+			.filter(Boolean)
+			.flatMap(arr => arr.map(ent => this._getRenderedEnt(ent)));
+
+		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
+			stack.push(this._getRenderedEnt(this._fnGetEntLastLoaded()));
+		}
+
+		$wrpContent.append(stack.join(""));
+
+		return {
+			cntSelectedEnts: this._bookViewToShow.length,
+			isAnyEntityRendered: !!stack.length,
+		};
+	}
+
+	_getRenderedEnt (ent) {
+		return `<div class="bkmv__wrp-item ve-inline-block print__ve-block print__my-2">
+			<table class="w-100 stats stats--book stats--bkmv"><tbody>
+			${Renderer.hover.getFnRenderCompact(UrlUtil.getCurrentPage(), {isStatic: true})(ent)}
+			</tbody></table>
+		</div>`;
+	}
+
+	_getVisibleAsMarkdown () {
+		const toRender = this._bookViewToShow?.length ? this._bookViewToShow : [this._fnGetEntLastLoaded()];
+		const parts = [...toRender]
+			.sort(this._getSorted.bind(this))
+			.map(this._getEntMd.bind(this));
+
+		const out = [];
+		let charLimit = RendererMarkdown.CHARS_PER_PAGE;
+		for (let i = 0; i < parts.length; ++i) {
+			const part = parts[i];
+			out.push(part);
+
+			if (i < parts.length - 1) {
+				if ((charLimit -= part.length) < 0) {
+					if (RendererMarkdown.getSetting("isAddPageBreaks")) out.push("", "\\pagebreak", "");
+					charLimit = RendererMarkdown.CHARS_PER_PAGE;
+				}
+			}
+		}
+
+		return out.join("\n\n");
+	}
+
+	_$getControlsMarkdown () {
+		const $btnDownloadMarkdown = $(`<button class="btn btn-default btn-sm">Download as Markdown</button>`)
+			.click(() => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
+
+		const $btnCopyMarkdown = $(`<button class="btn btn-default btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"/></button>`)
+			.click(async () => {
+				await MiscUtil.pCopyTextToClipboard(this._getVisibleAsMarkdown());
+				JqueryUtil.showCopiedEffect($btnCopyMarkdown);
+			});
+
+		const $btnDownloadMarkdownSettings = $(`<button class="btn btn-default btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"/></button>`)
+			.click(async () => RendererMarkdown.pShowSettingsModal());
+
+		return $$`<div class="ve-flex-v-center btn-group ml-3">
+			${$btnDownloadMarkdown}
+			${$btnCopyMarkdown}
+			${$btnDownloadMarkdownSettings}
+		</div>`;
+	}
+
+	_getSorted (a, b) {
+		return SortUtil.ascSortLower(a.name, b.name);
+	}
+
+	_getEntMd (ent) {
+		return RendererMarkdown.get().render({type: "statblockInline", dataType: this._propMarkdown, data: ent}).trim();
+	}
 }

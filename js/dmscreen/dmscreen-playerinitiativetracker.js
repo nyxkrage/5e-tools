@@ -1,7 +1,7 @@
-"use strict";
+import {PANEL_TYP_INITIATIVE_TRACKER} from "./dmscreen-consts.js";
 
 // region v1
-class InitiativeTrackerPlayerV1 {
+export class InitiativeTrackerPlayerV1 {
 	static make$tracker (board, state) {
 		const $meta = $(`<div class="initp__meta"/>`).hide();
 		const $head = $(`<div class="initp__header"/>`).hide();
@@ -73,6 +73,7 @@ class InitiativeTrackerPlayerV1 {
 
 		const $btnConnectLocal = $(`<button class="btn btn-primary" style="min-width: 200px;">Connect to Local Tracker</button>`)
 			.click(async () => {
+				// TODO(DMS)
 				const existingTrackers = board.getPanelsByType(PANEL_TYP_INITIATIVE_TRACKER)
 					.map(it => it.tabDatas.filter(td => td.type === PANEL_TYP_INITIATIVE_TRACKER).map(td => td.$content.find(`.dm__data-anchor`)))
 					.flat();
@@ -177,7 +178,7 @@ class InitiativeTrackerPlayerMessageHandlerScreenV1 extends InitiativeTrackerPla
 /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // region v0
-class InitiativeTrackerPlayerV0 {
+export class InitiativeTrackerPlayerV0 {
 	static make$tracker (board, state) {
 		const $meta = $(`<div class="initp__meta"/>`).hide();
 		const $head = $(`<div class="initp__header"/>`).hide();

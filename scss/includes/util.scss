@@ -449,6 +449,14 @@ i > i {
 	height: 27px !important;
 }
 
+.h-100p {
+	height: 100px !important;
+}
+
+.h-120p {
+	height: 120px !important;
+}
+
 .h-ipt-xs {
 	height: $h-ipt-xs;
 }
@@ -464,6 +472,10 @@ i > i {
 
 .min-h-24p {
 	min-height: 24px !important;
+}
+
+.min-h-100p {
+	min-height: 100px !important;
 }
 
 .max-h-40 {
@@ -498,7 +510,15 @@ i > i {
 	display: block !important;
 }
 
+.ve-block {
+	display: block !important;
+}
+
 .inline-block {
+	display: inline-block !important;
+}
+
+.ve-inline-block {
 	display: inline-block !important;
 }
 

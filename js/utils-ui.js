@@ -340,7 +340,7 @@ class UiUtil {
 	 * @param [opts.isHeaderBorder] {boolean}
 	 *
 	 * @param {function} [opts.cbClose] Callback run when the modal is closed.
-	 * @param {JQuery} [opts.$titleSplit] Element to have split alongside the title.
+	 * @param {jQuery} [opts.$titleSplit] Element to have split alongside the title.
 	 * @param {int} [opts.zIndex] Z-index of the modal.
 	 * @param {number} [opts.overlayColor] Overlay color.
 	 * @param {boolean} [opts.isPermanent] If the modal should be impossible to close.
@@ -421,7 +421,7 @@ class UiUtil {
 		const modalFooter = opts.hasFooter
 			? e_({
 				tag: "div",
-				clazz: `"no-shrink w-100 ve-flex-col ui-modal__footer ${opts.isFullscreenModal ? `ui-modal__footer--fullscreen mt-1` : ""}`,
+				clazz: `no-shrink w-100 ve-flex-col ui-modal__footer ${opts.isFullscreenModal ? `ui-modal__footer--fullscreen mt-1` : "mt-auto"}`,
 			})
 			: null;
 
@@ -456,7 +456,7 @@ class UiUtil {
 		}).appendTo(opts.isFullscreenModal ? overlayBlind : wrpOverlay);
 
 		wrpOverlay
-			.addEventListener("mouseup", evt => {
+			.addEventListener("mouseup", async evt => {
 				if (evt.target !== wrpOverlay) return;
 				if (evt.target !== UiUtil._MODAL_LAST_MOUSEDOWN) return;
 				if (opts.isPermanent) return;
@@ -538,7 +538,7 @@ class UiUtil {
 	}
 
 	static addModalSep ($modalInner) {
-		$modalInner.append(`<hr class="ui-modal__row-sep">`);
+		$modalInner.append(`<hr class="hr-2">`);
 	}
 
 	static $getAddModalRow ($modalInner, tag = "div") {
@@ -571,6 +571,28 @@ class UiUtil {
 			})
 			.prop("checked", objectWithProp[propName])
 			.on("change", () => objectWithProp[propName] = $cb.prop("checked"));
+		return $cb;
+	}
+
+	/**
+	 *
+	 * @param $wrp
+	 * @param comp
+	 * @param prop
+	 * @param text
+	 * @param {?string} title
+	 * @return {jQuery}
+	 */
+	static $getAddModalRowCb2 ({$wrp, comp, prop, text, title = null }) {
+		const $cb = ComponentUiUtil.$getCbBool(comp, prop);
+
+		const $row = $$`<label class="split-v-center py-1">
+			<span>${text}</span>
+			${$cb}
+		</label>`
+			.appendTo($wrp);
+		if (title) $row.title(title);
+
 		return $cb;
 	}
 
@@ -3805,6 +3827,84 @@ class RenderableCollectionBase {
 			namespace: this._namespace,
 			isDiffMode: opts.isDiffMode != null ? opts.isDiffMode : this._isDiffMode,
 		});
+	}
+}
+
+class RenderableCollectionGenericRows extends RenderableCollectionBase {
+	/**
+	 * @param comp
+	 * @param prop
+	 * @param $wrpRows
+	 * @param [opts]
+	 * @param [opts.namespace]
+	 * @param [opts.isDiffMode]
+	 */
+	constructor (comp, prop, $wrpRows, opts) {
+		super(comp, prop, opts);
+		this._$wrpRows = $wrpRows;
+	}
+
+	doUpdateExistingRender (renderedMeta, entity, i) {
+		renderedMeta.comp._proxyAssignSimple("state", entity.entity, true);
+		if (!renderedMeta.$wrpRow.parent().is(this._$wrpRows)) renderedMeta.$wrpRow.appendTo(this._$wrpRows);
+	}
+
+	doReorderExistingComponent (renderedMeta, entity, i) {
+		const ix = this._comp._state[this._prop].map(it => it.id).indexOf(entity.id);
+		const curIx = this._$wrpRows.find(`> *`).index(renderedMeta.$wrpRow);
+
+		const isMove = !this._$wrpRows.length || curIx !== ix;
+		if (isMove) renderedMeta.$wrpRow.detach().appendTo(this._$wrpRows);
+	}
+
+	getNewRender (entity, i) {
+		const comp = BaseComponent.fromObject(entity.entity, "*");
+		comp._addHookAll("state", () => {
+			this._getCollectionItem(entity.id).entity = comp.toObject("*");
+			this._comp._triggerCollectionUpdate(this._prop);
+		});
+
+		const $wrpRow = $$`<div class="ve-flex-v-center w-100"></div>`
+			.appendTo(this._$wrpRows);
+
+		this._populateRow({comp, $wrpRow, entity});
+
+		return {
+			comp,
+			$wrpRow,
+		};
+	}
+
+	/**
+	 * @return void
+	 */
+	_populateRow ({comp, $wrpRow, entity}) {
+		throw new Error(`Unimplemented!`);
+	}
+
+	_$getBtnDelete ({entity}) {
+		return $(`<button class="btn btn-xxs btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`)
+			.click(() => {
+				this._comp._state[this._prop] = this._comp._state[this._prop].filter(it => it !== entity);
+			});
+	}
+
+	_$getPadDrag ({$wrpRow}) {
+		return DragReorderUiUtil.$getDragPadOpts(
+			() => $wrpRow,
+			{
+				swapRowPositions: (ixA, ixB) => {
+					[this._comp._state[this._prop][ixA], this._comp._state[this._prop][ixB]] = [this._comp._state[this._prop][ixB], this._comp._state[this._prop][ixA]];
+					this._comp._triggerCollectionUpdate(this._prop);
+				},
+				$getChildren: () => {
+					const rendered = this._comp._getRenderedCollection({prop: this._prop, namespace: this._namespace});
+					return this._comp._state[this._prop]
+						.map(it => rendered[it.id].$wrpRow);
+				},
+				$parent: this._$wrpRows,
+			},
+		);
 	}
 }
 

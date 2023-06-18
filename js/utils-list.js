@@ -815,7 +815,7 @@ class SaveManager extends BaseComponent {
 	}
 }
 
-SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollectionBase {
+SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollectionGenericRows {
 	constructor (
 		{
 			comp,
@@ -826,9 +826,8 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 			isReadOnlyUi,
 		},
 	) {
-		super(comp, "saves", {namespace: "load"});
+		super(comp, "saves", $wrpRows, {namespace: "load"});
 		this._doClose = doClose;
-		this._$wrpRows = $wrpRows;
 		this._page = page;
 		this._isReadOnlyUi = isReadOnlyUi;
 	}
@@ -924,19 +923,6 @@ SaveManager._RenderableCollectionSaves_Load = class extends RenderableCollection
 			comp,
 			$wrpRow,
 		};
-	}
-
-	doUpdateExistingRender (renderedMeta, save, i) {
-		renderedMeta.comp._proxyAssignSimple("state", save.entity, true);
-		if (!renderedMeta.$wrpRow.parent().is(this._$wrpRows)) renderedMeta.$wrpRow.appendTo(this._$wrpRows);
-	}
-
-	doReorderExistingComponent (renderedMeta, save, i) {
-		const ix = this._comp._state.saves.map(it => it.id).indexOf(save.id);
-		const curIx = this._$wrpRows.find(`> *`).index(renderedMeta.$wrpRow);
-
-		const isMove = !this._$wrpRows.length || curIx !== ix;
-		if (isMove) renderedMeta.$wrpRow.detach().appendTo(this._$wrpRows);
 	}
 };
 
