@@ -1480,12 +1480,12 @@
 							"page": 23,
 							"id": "070",
 							"entries": [
-								"Characters have random encounters with raiders when they enter Greenest, but this one should be their first mission of the chapter. It begins when a terrified human family (father, mother, and three young children) dash across their path, hounded by Seven {@creature Kobold||kobolds}.",
+								"Characters have random encounters with raiders when they enter Greenest, but this one should be their first mission of the chapter. It begins when a terrified human family (father, mother, and three young children) dash across their path, hounded by seven {@creature Kobold||kobolds}.",
 								{
 									"type": "insetReadaloud",
 									"id": "071",
 									"entries": [
-										"Without warning, five humans dash out from between two buildings on your left. A limping man and three young children race across the street into more shadows, and a woman carrying a round shield and a broken spear turns and faces back in the direction from which they came. Eight kobolds stream out of the alley on the family's heels and fan out around the woman, who looks determined to delay the creatures for as long as possible."
+										"Without warning, five humans dash out from between two buildings on your left. A limping man and three young children race across the street into more shadows, and a woman carrying a round shield and a broken spear turns and faces back in the direction from which they came. Seven kobolds stream out of the alley on the family's heels and fan out around the woman, who looks determined to delay the creatures for as long as possible."
 									]
 								},
 								"The woman is {@creature Linan Swift|HotDQ}, and her husband is Cuth. Linan is a {@creature commoner} but with 8 hit points. Her attack with the spear is +2 to hit for {@dice 1d6} piercing damage. Her husband is down to 2 hit points from an earlier fight. The children move at speed 20. They can be carried, but a character carrying a child has disadvantage on attack rolls and cannot wield a two-handed weapon.",

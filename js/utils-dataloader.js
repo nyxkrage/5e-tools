@@ -932,17 +932,30 @@ class _DataTypeLoaderRecipe extends _DataTypeLoaderPredefined {
 class _DataTypeLoaderMultiSource extends _DataTypeLoader {
 	_prop;
 
-	_getSiteIdent ({pageClean, sourceClean}) { return `${this._prop}__${sourceClean}`; }
+	_getSiteIdent ({pageClean, sourceClean}) {
+		// use `.toString()` in case `sourceClean` is a `Symbol`
+		return `${this._prop}__${sourceClean.toString()}`;
+	}
 
 	async _pGetSiteData ({pageClean, sourceClean}) {
-		const source = Parser.sourceJsonToJson(sourceClean);
-		const data = await DataUtil[this._prop].pLoadSingleSource(source);
+		const data = await this._pGetSiteData_data({sourceClean});
 
 		if (data == null) return {};
 
 		await this._pPrePopulate({data});
 
 		return data;
+	}
+
+	async _pGetSiteData_data ({sourceClean}) {
+		if (sourceClean === _DataLoaderConst.SOURCE_SITE_ALL) return this._pGetSiteDataAll();
+
+		const source = Parser.sourceJsonToJson(sourceClean);
+		return DataUtil[this._prop].pLoadSingleSource(source);
+	}
+
+	async _pGetSiteDataAll () {
+		return DataUtil[this._prop].loadJSON();
 	}
 }
 

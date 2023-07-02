@@ -1658,6 +1658,15 @@
 			"name": "Appendix A: Miscellaneous Creatures",
 			"page": 317,
 			"entries": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "book/MM/01-062.unicorn-lair.webp"
+					},
+					"width": 1700,
+					"height": 971
+				},
 				"This appendix contains statistics for various animals, vermin, and other critters. The stat blocks are organized alphabetically by creature name.",
 				{
 					"type": "inset",

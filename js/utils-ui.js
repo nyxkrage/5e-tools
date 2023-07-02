@@ -125,6 +125,7 @@ function MixinProxyBase (Cls) {
 		_addHookAll (hookProp, hook) {
 			ProxyBase._addHookAll_to(this.__hooksAll, hookProp, hook);
 			if (this.__hooksAllTmp) ProxyBase._addHookAll_to(this.__hooksAllTmp, hookProp, hook);
+			return hook;
 		}
 
 		static _addHookAll_to (obj, hookProp, hook) {
@@ -586,7 +587,7 @@ class UiUtil {
 	static $getAddModalRowCb2 ({$wrp, comp, prop, text, title = null }) {
 		const $cb = ComponentUiUtil.$getCbBool(comp, prop);
 
-		const $row = $$`<label class="split-v-center py-1">
+		const $row = $$`<label class="split-v-center py-1 veapp__ele-hoverable">
 			<span>${text}</span>
 			${$cb}
 		</label>`
@@ -3864,7 +3865,7 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 			this._comp._triggerCollectionUpdate(this._prop);
 		});
 
-		const $wrpRow = $$`<div class="ve-flex-v-center w-100"></div>`
+		const $wrpRow = this._$getWrpRow()
 			.appendTo(this._$wrpRows);
 
 		this._populateRow({comp, $wrpRow, entity});
@@ -3873,6 +3874,10 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 			comp,
 			$wrpRow,
 		};
+	}
+
+	_$getWrpRow () {
+		return $(`<div class="ve-flex-v-center w-100"></div>`);
 	}
 
 	/**
@@ -3884,9 +3889,11 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 
 	_$getBtnDelete ({entity}) {
 		return $(`<button class="btn btn-xxs btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`)
-			.click(() => {
-				this._comp._state[this._prop] = this._comp._state[this._prop].filter(it => it !== entity);
-			});
+			.click(() => this._doDelete({entity}));
+	}
+
+	_doDelete ({entity}) {
+		this._comp._state[this._prop] = this._comp._state[this._prop].filter(it => it !== entity);
 	}
 
 	_$getPadDrag ({$wrpRow}) {
@@ -3907,6 +3914,8 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 		);
 	}
 }
+
+globalThis.RenderableCollectionGenericRows = RenderableCollectionGenericRows;
 
 class RenderableCollectionAsyncBase {
 	/**

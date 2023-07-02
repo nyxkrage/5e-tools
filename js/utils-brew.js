@@ -1665,7 +1665,7 @@ class ManageBrewUi {
 	async pRender ($wrp, {rdState = null} = {}) {
 		rdState = rdState || new this.constructor._RenderState();
 
-		rdState.$stgBrewList = $(`<div class="manbrew__current_brew ve-flex-col h-100 mt-1"></div>`);
+		rdState.$stgBrewList = $(`<div class="manbrew__current_brew ve-flex-col h-100 mt-1 min-h-0"></div>`);
 
 		await this._pRender_pBrewList(rdState);
 
@@ -1780,7 +1780,7 @@ class ManageBrewUi {
 			.click(evt => this._pHandleClick_btnListMass({evt, rdState}));
 		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control" placeholder="Search ${this._brewUtil.DISPLAY_NAME}...">`);
 		const $cbAll = $(`<input type="checkbox">`);
-		const $wrpList = $(`<div class="list-display-only max-h-unset smooth-scroll overflow-y-auto h-100 brew-list brew-list--target manbrew__list relative ve-flex-col w-100 mb-3"></div>`);
+		const $wrpList = $(`<div class="list-display-only max-h-unset smooth-scroll overflow-y-auto h-100 min-h-0 brew-list brew-list--target manbrew__list relative ve-flex-col w-100 mb-3"></div>`);
 
 		rdState.list = new List({
 			$iptSearch,
@@ -1807,7 +1807,7 @@ class ManageBrewUi {
 				${$iptSearch}
 			</div>
 			${$wrpBtnsSort}
-			<div class="ve-flex w-100 h-100 overflow-y-auto relative">${$wrpList}</div>
+			<div class="ve-flex w-100 h-100 min-h-0 relative">${$wrpList}</div>
 		</div>`;
 
 		rdState.listSelectClickHandler = new ListSelectClickHandler({list: rdState.list});

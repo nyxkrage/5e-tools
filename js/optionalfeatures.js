@@ -133,11 +133,6 @@ class OptionalFeaturesPage extends ListPage {
 
 		this._$pgContent.empty().append(RenderOptionalFeatures.$getRenderedOptionalFeature(ent));
 	}
-
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
-		await this._bookView.pHandleSub(sub);
-	}
 }
 
 const optionalFeaturesPage = new OptionalFeaturesPage();

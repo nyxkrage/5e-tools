@@ -348,10 +348,16 @@ class PageFilterBestiary extends PageFilter {
 
 	/* -------------------------------------------- */
 
+	static _getInitWalker () {
+		return PageFilterBestiary._WALKER = PageFilterBestiary._WALKER || MiscUtil.getWalker({isNoModification: true});
+	}
+
+	/* -------------------------------------------- */
+
 	static _getSpellcasterMeta (mon) {
 		if (!mon.spellcasting?.length) return null;
 
-		PageFilterBestiary._WALKER = PageFilterBestiary._WALKER || MiscUtil.getWalker({isNoModification: true});
+		const walker = this._getInitWalker();
 
 		const spellSet = new Set();
 		const spellLevels = new Set();
@@ -361,7 +367,7 @@ class PageFilterBestiary extends PageFilter {
 				for (const slotLevel of slotLevels) spellLevels.add(slotLevel);
 			}
 
-			PageFilterBestiary._WALKER.walk(
+			walker.walk(
 				spc,
 				{
 					string: this._getSpellcasterMeta_stringHandler.bind(this, spellSet),
@@ -399,6 +405,8 @@ class PageFilterBestiary extends PageFilter {
 	static _getEquipmentList (mon) {
 		const itemSet = new Set(mon.attachedItems || []);
 
+		const walker = this._getInitWalker();
+
 		for (const acItem of (mon.ac || [])) {
 			if (!acItem?.from?.length) continue;
 			for (const from of acItem.from) this._getEquipmentList_stringHandler(itemSet, from);
@@ -406,7 +414,7 @@ class PageFilterBestiary extends PageFilter {
 
 		for (const trait of (mon.trait || [])) {
 			if (!trait.name.toLowerCase().startsWith("special equipment")) continue;
-			PageFilterBestiary._WALKER.walk(
+			walker.walk(
 				trait.entries,
 				{
 					string: this._getEquipmentList_stringHandler.bind(this, itemSet),

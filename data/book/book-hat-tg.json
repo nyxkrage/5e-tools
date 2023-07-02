@@ -9,7 +9,9 @@
 					"href": {
 						"type": "internal",
 						"path": "book/TG/001-00-008.movie-logo.webp"
-					}
+					},
+					"width": 850,
+					"height": 291
 				},
 				"A handful of characters from the film {@i Dungeons & Dragons: Honor Among Thieves} are presented here as NPCs you can include in your D&D campaigns. The stat blocks in this collection use a presentation similar to that which is found in the {@book Monster Manual|MM}. If you are unfamiliar with the stat block format, read the introduction of the Monster Manual before proceeding further. That book explains stat block terminology and gives rules for various monster traits\u2014information that isn't repeated here.",
 				{
@@ -18,7 +20,9 @@
 						"type": "internal",
 						"path": "book/TG/002-00-009.characters-splash.webp"
 					},
-					"title": "A collection of heroes and villains for the world's greatest roleplaying game"
+					"title": "A collection of heroes and villains for the world's greatest roleplaying game",
+					"width": 1700,
+					"height": 1100
 				},
 				{
 					"type": "entries",

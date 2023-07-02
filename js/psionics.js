@@ -125,11 +125,6 @@ class PsionicsPage extends ListPage {
 	_renderStats_doBuildStatsTab ({ent}) {
 		this._$pgContent.empty().append(RenderPsionics.$getRenderedPsionic(ent));
 	}
-
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
-		await this._bookView.pHandleSub(sub);
-	}
 }
 
 const psionicsPage = new PsionicsPage();

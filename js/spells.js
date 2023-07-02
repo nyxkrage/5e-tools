@@ -325,11 +325,6 @@ class SpellsPage extends ListPageMultiSource {
 		this._$pgContent.empty().append(RenderSpells.$getRenderedSpell(ent, this._subclassLookup, {settings: this._compSettings.getValues()}));
 	}
 
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
-		await this._bookView.pHandleSub(sub);
-	}
-
 	async _pOnLoad_pPreDataLoad () {
 		const subclassLookup = await DataUtil.class.pGetSubclassLookup();
 		Object.assign(this._subclassLookup, subclassLookup);

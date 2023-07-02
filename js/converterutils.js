@@ -1128,10 +1128,10 @@ AlignmentUtil.ALIGNMENTS_RAW = {
 	"neutral evil": ["N", "E"],
 	"chaotic evil": ["C", "E"],
 
-	"(?:any )?non-good( alignment)?": ["L", "NX", "C", "NY", "E"],
-	"(?:any )?non-lawful( alignment)?": ["NX", "C", "G", "NY", "E"],
-	"(?:any )?non-evil( alignment)?": ["L", "NX", "C", "NY", "G"],
-	"(?:any )?non-chaotic( alignment)?": ["NX", "L", "G", "NY", "E"],
+	"(?:any )?non-?good( alignment)?": ["L", "NX", "C", "NY", "E"],
+	"(?:any )?non-?lawful( alignment)?": ["NX", "C", "G", "NY", "E"],
+	"(?:any )?non-?evil( alignment)?": ["L", "NX", "C", "NY", "G"],
+	"(?:any )?non-?chaotic( alignment)?": ["NX", "L", "G", "NY", "E"],
 
 	"(?:any )?chaotic( alignment)?": ["C", "G", "NY", "E"],
 	"(?:any )?evil( alignment)?": ["L", "NX", "C", "E"],

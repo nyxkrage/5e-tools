@@ -11398,6 +11398,7 @@
 			"source": "DMG",
 			"page": 167,
 			"srd": true,
+			"baseItem": "plate armor|phb",
 			"type": "HA",
 			"tier": "major",
 			"rarity": "very rare",
@@ -15992,6 +15993,7 @@
 				}
 			],
 			"wondrous": true,
+			"recharge": "special",
 			"charges": 3,
 			"entries": [
 				"This bulky, eyeless helmet is made for a {@creature pit fiend} but magically resizes to fit the heads of other wearers.",
@@ -22624,7 +22626,7 @@
 					"race": "elf",
 					"alignment": [
 						"N",
-						"N"
+						"G"
 					]
 				},
 				{

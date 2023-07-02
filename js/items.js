@@ -322,11 +322,6 @@ class ItemsPage extends ListPage {
 		this._$pgContent.empty().append(RenderItems.$getRenderedItem(ent));
 	}
 
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
-		await this._bookView.pHandleSub(sub);
-	}
-
 	async _pOnLoad_pInitPrimaryLists () {
 		const $iptSearch = $("#lst__search");
 		const $btnReset = $("#reset");

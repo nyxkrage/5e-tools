@@ -1,5 +1,10 @@
-import {STAT_COLUMNS} from "./dmscreen-initiativetracker-statcolumns.js";
 import {InitiativeTrackerUi} from "./dmscreen-initiativetracker-ui.js";
+import {
+	InitiativeTrackerStatColumnFactory,
+	IS_PLAYER_VISIBLE_ALL,
+	IS_PLAYER_VISIBLE_NONE,
+	IS_PLAYER_VISIBLE_PLAYER_UNITS_ONLY,
+} from "./dmscreen-initiativetracker-statcolumns.js";
 
 class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 	constructor (
@@ -17,28 +22,42 @@ class _RenderableCollectionStatsCols extends RenderableCollectionGenericRows {
 	_populateRow ({comp, $wrpRow, entity}) {
 		$wrpRow.addClass("py-1p");
 
+		const ptOptions = InitiativeTrackerStatColumnFactory.getGroupedByUi()
+			.map(Clsses => {
+				return Clsses
+					.map(Cls => `<option value="${Cls.POPULATE_WITH}">${Cls.NAME}</option>`)
+					.join("\n");
+			})
+			.join(`<option disabled>\u2014</option>`);
+
 		const $selPre = $(`
 			<select class="form-control input-xs">
-				<option value="">(Empty)</option>
-				${Object.entries(STAT_COLUMNS).map(([k, v]) => v == null ? `<option disabled>\u2014</option>` : `<option value="${k}">${v.name}</option>`)}
+				${ptOptions}
 			</select>
 		`)
 			.change(() => {
-				const sel = STAT_COLUMNS[$selPre.val()] || {};
-				comp._state.a = sel.abv || "";
-				$iptAbv.val(comp._state.a);
-				comp._state.po = comp._state.p || null;
-				comp._state.p = $selPre.val() || "";
+				const statCol = InitiativeTrackerStatColumnFactory.fromPopulateWith({
+					populateWith: $selPre.val() || "",
+					populateWithPrevious: comp._state.populateWith,
+				});
+
+				const asStateData = statCol.getAsStateData();
+				delete asStateData.id;
+				comp._proxyAssignSimple("state", asStateData);
 			});
-		if (comp._state.p) $selPre.val(comp._state.p);
+		if (comp._state.populateWith) $selPre.val(comp._state.populateWith);
 
-		const $iptAbv = ComponentUiUtil.$getIptStr(comp, "a");
+		const $iptAbv = ComponentUiUtil.$getIptStr(comp, "abbreviation");
 
-		const $cbIsEditable = ComponentUiUtil.$getCbBool(comp, "e");
+		const $cbIsEditable = ComponentUiUtil.$getCbBool(comp, "isEditable");
 
 		const $btnVisible = InitiativeTrackerUi.$getBtnPlayerVisible(
-			comp._state.v,
-			() => comp._state.v = $btnVisible.hasClass("btn-primary--half") ? 2 : $btnVisible.hasClass("btn-primary") ? 1 : 0,
+			comp._state.isPlayerVisible,
+			() => comp._state.isPlayerVisible = $btnVisible.hasClass("btn-primary--half")
+				? IS_PLAYER_VISIBLE_PLAYER_UNITS_ONLY
+				: $btnVisible.hasClass("btn-primary")
+					? IS_PLAYER_VISIBLE_ALL
+					: IS_PLAYER_VISIBLE_NONE,
 			true,
 		);
 
@@ -88,33 +107,26 @@ export class InitiativeTrackerSettings extends BaseComponent {
 	// Convert from classic "flat" format to renderable collection format
 	_getStatColsCollectionFormat (statsCols) {
 		return (statsCols || [])
-			.map(it => {
-				const out = {
-					id: it.id,
-					entity: {
-						...it,
-					},
-				};
-				delete out.entity.id;
-				delete out.entity.o; // Cleanup legacy "[o]rder" field
-				return out;
+			.map(data => {
+				return InitiativeTrackerStatColumnFactory.fromStateData({data})
+					.getAsCollectionRowStateData();
 			});
 	}
 
 	// Convert from renderable collection format to classic "flat" format
-	_getStatColsLegacyFormat (statsCols) {
+	_getStatColsDataFormat (statsCols) {
 		return (statsCols || [])
-			.map(it => ({
-				...it.entity,
-				id: it.id,
-			}));
+			.map(data => {
+				return InitiativeTrackerStatColumnFactory.fromCollectionRowStateData({data})
+					.getAsStateData();
+			});
 	}
 
 	/* -------------------------------------------- */
 
 	getSettingsUpdate () {
 		const out = MiscUtil.copyFast(this._state);
-		out.statsCols = this._getStatColsLegacyFormat(out.statsCols);
+		out.statsCols = this._getStatColsDataFormat(out.statsCols);
 		return out;
 	}
 
@@ -206,24 +218,9 @@ export class InitiativeTrackerSettings extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	_getStatsCol () {
-		return {
-			id: CryptUtil.uid(),
-			entity: {
-				v: 0, // is player-visible (0 = none, 1 = all, 2 = player units only)
-				e: true, // editable
-
-				// input data
-				p: "", // populate with...
-				po: null, // populate with... (previous value)
-				a: "", // abbreviation
-			},
-		};
-	}
-
 	_addStatsCol () {
-		const statsCol = this._getStatsCol();
-		this._state.statsCols = [...this._state.statsCols, statsCol];
-		return statsCol;
+		const statsColData = InitiativeTrackerStatColumnFactory.fromNew().getAsCollectionRowStateData();
+		this._state.statsCols = [...this._state.statsCols, statsColData];
+		return statsColData;
 	}
 }

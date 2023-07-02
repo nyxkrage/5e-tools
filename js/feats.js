@@ -50,6 +50,11 @@ class FeatsPage extends ListPage {
 
 			dataProps: ["feat"],
 
+			bookViewOptions: {
+				namePlural: "feats",
+				pageTitle: "Feats Book View",
+			},
+
 			isPreviewable: true,
 		});
 	}

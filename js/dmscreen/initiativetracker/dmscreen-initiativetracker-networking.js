@@ -175,22 +175,22 @@ export class InitiativeTrackerNetworking {
 		}
 
 		let anyInvalidNames = false;
-		targetRows.forEach(r => {
-			r.$iptName.removeClass("error-background");
-			if (!r.$iptName.val().trim()) {
+		targetRows.forEach(row => {
+			row.$iptName.removeClass("error-background");
+			if (!row.$iptName.val().trim()) {
 				anyInvalidNames = true;
-				r.$iptName.addClass("error-background");
+				row.$iptName.addClass("error-background");
 			}
 		});
 		if (anyInvalidNames) return;
 
-		const names = targetRows.map(r => {
-			r.isActive = true;
+		const names = targetRows.map(row => {
+			row.isActive = true;
 
-			r.$iptName.attr("disabled", true);
-			r.$btnGenServerToken.attr("disabled", true);
+			row.$iptName.attr("disabled", true);
+			row.$btnGenServerToken.attr("disabled", true);
 
-			return r.$iptName.val();
+			return row.$iptName.val();
 		});
 
 		if (p2pMetaV0.serverInfo) {
@@ -203,15 +203,15 @@ export class InitiativeTrackerNetworking {
 				this._playerWindowV0_DM_ERROR_HANDLER,
 			);
 
-			return targetRows.map((r, i) => {
-				r.name = serverInfo[i].name;
-				r.serverInfo = serverInfo[i];
-				r.$iptTokenServer.val(serverInfo[i].textifiedSdp).attr("disabled", false);
+			return targetRows.map((row, i) => {
+				row.name = serverInfo[i].name;
+				row.serverInfo = serverInfo[i];
+				row.$iptTokenServer.val(serverInfo[i].textifiedSdp).attr("disabled", false);
 
-				serverInfo[i].rowMeta = r;
+				serverInfo[i].rowMeta = row;
 
-				r.$iptTokenClient.attr("disabled", false);
-				r.$btnAcceptClientToken.attr("disabled", false);
+				row.$iptTokenClient.attr("disabled", false);
+				row.$btnAcceptClientToken.attr("disabled", false);
 
 				return serverInfo[i].textifiedSdp;
 			});
@@ -219,20 +219,20 @@ export class InitiativeTrackerNetworking {
 			p2pMetaV0.serverInfo = (async () => {
 				p2pMetaV0.serverInfo = await PeerUtilV0.pInitialiseServers(names, this._playerWindowV0_DM_MESSAGE_RECEIVER, this._playerWindowV0_DM_ERROR_HANDLER);
 
-				targetRows.forEach((r, i) => {
-					r.name = p2pMetaV0.serverInfo[i].name;
-					r.serverInfo = p2pMetaV0.serverInfo[i];
-					r.$iptTokenServer.val(p2pMetaV0.serverInfo[i].textifiedSdp).attr("disabled", false);
+				targetRows.forEach((row, i) => {
+					row.name = p2pMetaV0.serverInfo[i].name;
+					row.serverInfo = p2pMetaV0.serverInfo[i];
+					row.$iptTokenServer.val(p2pMetaV0.serverInfo[i].textifiedSdp).attr("disabled", false);
 
-					p2pMetaV0.serverInfo[i].rowMeta = r;
+					p2pMetaV0.serverInfo[i].rowMeta = row;
 
-					r.$iptTokenClient.attr("disabled", false);
-					r.$btnAcceptClientToken.attr("disabled", false);
+					row.$iptTokenClient.attr("disabled", false);
+					row.$btnAcceptClientToken.attr("disabled", false);
 				});
 			})();
 
 			await p2pMetaV0.serverInfo;
-			return targetRows.map(r => r.serverInfo.textifiedSdp);
+			return targetRows.map(row => row.serverInfo.textifiedSdp);
 		}
 	}
 

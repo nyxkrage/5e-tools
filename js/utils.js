@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.181.7"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.181.8"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -2478,7 +2478,8 @@ globalThis.UrlUtil = {
 	mini: {
 		compress (primitive) {
 			const type = typeof primitive;
-			if (primitive == null) return `x`;
+			if (primitive === undefined) return "u";
+			if (primitive === null) return "x";
 			switch (type) {
 				case "boolean": return `b${Number(primitive)}`;
 				case "number": return `n${primitive}`;
@@ -2490,6 +2491,7 @@ globalThis.UrlUtil = {
 		decompress (raw) {
 			const [type, data] = [raw.slice(0, 1), raw.slice(1)];
 			switch (type) {
+				case "u": return undefined;
 				case "x": return null;
 				case "b": return !!Number(data);
 				case "n": return Number(data);
@@ -6739,12 +6741,17 @@ class BookModeViewBase {
 		this._isActive = false;
 	}
 
-	pHandleSub (sub) {
-		if (this._stateKey) return; // Assume anything with state will handle this itself.
+	async pHandleSub (sub) {
+		if (this._stateKey) return sub; // Assume anything with state will handle this itself.
 
 		const bookViewHash = sub.find(it => it.startsWith(this._hashKey));
-		if (bookViewHash && UrlUtil.unpackSubHash(bookViewHash)[this._hashKey][0] === "true") return this.pOpen();
-		else this.teardown();
+		if (!bookViewHash) {
+			this.teardown();
+			return sub;
+		}
+
+		if (UrlUtil.unpackSubHash(bookViewHash)[this._hashKey][0] === "true") await this.pOpen();
+		return sub.filter(it => !it.startsWith(this._hashKey));
 	}
 }
 

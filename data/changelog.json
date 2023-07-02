@@ -2456,5 +2456,10 @@
 		"ver": "1.181.7",
 		"date": "2023-06-18",
 		"txt": "- Fixed DM Screen Initiative Tracker crash when loading encounters with custom stat columns\n- Fixed DM Screen crashes when attempting to load Player Initiative Tracker panels\n- (Brew) Fixed Creature Homebrew Builder crashing when attempting to finalize statblocks\n- (Brew) Fixed Classes page coloring of reprinted homebrew subclass selectors"
+	},
+	{
+		"ver": "1.181.8",
+		"date": "2023-07-02",
+		"txt": "- Added more images to various books (PHB, MM, VGM, MTF, SCAG, XGE)\n- Added Printer View button to Backgrounds page; Feats page\n- Improved CR Scaler handling of heavy armor with shields at high CRs\n- Fixed rare Bestiary crash when loading a specific subset of sources \n- (Fixed typos/added tags)"
 	}
 ]

@@ -1712,6 +1712,7 @@ class ListPage {
 	async pDoLoadSubHash (sub) {
 		if (this._filterBox) sub = this._filterBox.setFromSubHashes(sub);
 		if (this._sublistManager) sub = await this._sublistManager.pSetFromSubHashes(sub);
+		if (this._bookView) sub = await this._bookView.pHandleSub(sub);
 		return sub;
 	}
 

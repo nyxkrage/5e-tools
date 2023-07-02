@@ -25,7 +25,7 @@ import {
 	PANEL_TYP_ERROR,
 	PANEL_TYP_BLANK,
 } from "./dmscreen/dmscreen-consts.js";
-import {InitiativeTracker} from "./dmscreen/dmscreen-initiativetracker.js";
+import {InitiativeTracker} from "./dmscreen/initiativetracker/dmscreen-initiativetracker.js";
 import {InitiativeTrackerPlayerV0, InitiativeTrackerPlayerV1} from "./dmscreen/dmscreen-playerinitiativetracker.js";
 import {DmMapper} from "./dmscreen/dmscreen-mapper.js";
 import {MoneyConverter} from "./dmscreen/dmscreen-moneyconverter.js";

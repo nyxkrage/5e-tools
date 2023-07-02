@@ -50,6 +50,11 @@ class BackgroundPage extends ListPage {
 
 			listClass: "backgrounds",
 
+			bookViewOptions: {
+				namePlural: "backgrounds",
+				pageTitle: "Backgrounds Book View",
+			},
+
 			dataProps: ["background"],
 		});
 	}
