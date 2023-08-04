@@ -3319,6 +3319,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -11716,7 +11719,6 @@
 			"name": "Eldritch Staff",
 			"source": "WBtW",
 			"page": 209,
-			"srd": true,
 			"type": "M",
 			"rarity": "very rare",
 			"reqAttune": true,
@@ -12102,6 +12104,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -13322,6 +13327,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			],
 			"hasFluffImages": true
 		},
@@ -16560,8 +16568,6 @@
 		{
 			"name": "Hither-Thither Staff",
 			"source": "HAT-LMI",
-			"srd": true,
-			"basicRules": true,
 			"type": "M",
 			"rarity": "legendary",
 			"weight": 4,
@@ -17297,6 +17303,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -17505,6 +17514,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			],
 			"hasFluffImages": true
 		},
@@ -33084,7 +33096,6 @@
 			"name": "Staff of Fate",
 			"source": "CM",
 			"page": 183,
-			"srd": true,
 			"baseItem": "quarterstaff|PHB",
 			"type": "M",
 			"rarity": "very rare",
@@ -37666,6 +37677,9 @@
 					]
 				}
 			],
+			"miscTags": [
+				"TT"
+			],
 			"hasFluffImages": true
 		},
 		{
@@ -37890,6 +37904,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -38314,6 +38331,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -38739,6 +38759,9 @@
 						]
 					]
 				}
+			],
+			"miscTags": [
+				"TT"
 			],
 			"hasFluffImages": true
 		},

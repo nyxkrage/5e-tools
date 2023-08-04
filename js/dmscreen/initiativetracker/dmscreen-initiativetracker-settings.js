@@ -65,7 +65,7 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		"playerInitShowExactMonsterHp",
 		"playerInitHideNewMonster",
 		"playerInitShowOrdinals",
-		"statsAddColumns",
+		"isStatsAddColumns",
 		"statsCols",
 	];
 
@@ -148,7 +148,7 @@ export class InitiativeTrackerSettings extends BaseComponent {
 	}
 
 	_pGetShowModalResults_renderSection_additionalCols ({$modalInner}) {
-		UiUtil.$getAddModalRowCb2({$wrp: $modalInner, comp: this, prop: "statsAddColumns", text: "Additional Columns"});
+		UiUtil.$getAddModalRowCb2({$wrp: $modalInner, comp: this, prop: "isStatsAddColumns", text: "Additional Columns"});
 		this._pGetShowModalResults_renderSection_additionalCols_head({$modalInner});
 		this._pGetShowModalResults_renderSection_additionalCols_body({$modalInner});
 	}
@@ -187,12 +187,12 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		</div>`
 			.appendTo($modalInner);
 
-		this._addHookBase("statsAddColumns", () => $wrpTblStatsHead.toggleVe(this._state.statsAddColumns))();
+		this._addHookBase("isStatsAddColumns", () => $wrpTblStatsHead.toggleVe(this._state.isStatsAddColumns))();
 	}
 
 	_pGetShowModalResults_renderSection_additionalCols_body ({$modalInner}) {
 		const $wrpRows = $(`<div class="pr-1 h-120p ve-flex-col overflow-y-auto relative"></div>`).appendTo($modalInner);
-		this._addHookBase("statsAddColumns", () => $wrpRows.toggleVe(this._state.statsAddColumns))();
+		this._addHookBase("isStatsAddColumns", () => $wrpRows.toggleVe(this._state.isStatsAddColumns))();
 
 		const renderableCollectionStatsCols = new _RenderableCollectionStatsCols(
 			{

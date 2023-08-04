@@ -298,7 +298,9 @@ Parser.crToXp = function (cr, {isDouble = false} = {}) {
 
 	const toConvert = cr ? (cr.cr || cr) : null;
 	if (toConvert === "Unknown" || toConvert == null || !Parser.XP_CHART_ALT[toConvert]) return "Unknown";
-	if (toConvert === "0") return "0 or 10";
+	// CR 0 creatures can be 0 or 10 XP, but 10 XP is used in almost every case.
+	//   Exceptions, such as MM's Frog and Sea Horse, have their XP set to 0 on the creature
+	if (toConvert === "0") return "10";
 	const xp = Parser.XP_CHART_ALT[toConvert];
 	return Parser._addCommas(`${isDouble ? 2 * xp : xp}`);
 };
@@ -818,6 +820,7 @@ Parser.itemRechargeToFull = function (recharge) {
 
 Parser.ITEM_MISC_TAG_TO_FULL = {
 	"CF/W": "Creates Food/Water",
+	"TT": "Trinket Table",
 };
 Parser.itemMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.ITEM_MISC_TAG_TO_FULL, type);
@@ -2552,6 +2555,7 @@ Parser.SRC_LoX = "LoX";
 Parser.SRC_DoSI = "DoSI";
 Parser.SRC_DSotDQ = "DSotDQ";
 Parser.SRC_KftGV = "KftGV";
+Parser.SRC_BGG = "BGG";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
 Parser.SRC_SCREEN_DUNGEON_KIT = "ScreenDungeonKit";
@@ -2571,6 +2575,7 @@ Parser.SRC_VD = "VD";
 Parser.SRC_SjA = "SjA";
 Parser.SRC_HAT_TG = "HAT-TG";
 Parser.SRC_HAT_LMI = "HAT-LMI";
+Parser.SRC_GotSF = "GotSF";
 
 Parser.SRC_AL_PREFIX = "AL";
 
@@ -2777,6 +2782,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_LoX] = "Light of Xaryxis";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DoSI] = "Dragons of Stormwreck Isle";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DSotDQ] = "Dragonlance: Shadow of the Dragon Queen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_KftGV] = "Keys from the Golden Vault";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_BGG] = "Bigby Presents: Glory of the Giants";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_DUNGEON_KIT] = "Dungeon Master's Screen: Dungeon Kit";
@@ -2796,6 +2802,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_VD] = "Vecna Dossier";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SjA] = "Spelljammer Academy";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HAT_TG] = "Honor Among Thieves: Thieves' Gallery";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HAT_LMI] = "Honor Among Thieves: Legendary Magic Items";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_GotSF] = "Giants of the Star Forge";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ALCoS] = `${Parser.AL_PREFIX}Curse of Strahd`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ALEE] = `${Parser.AL_PREFIX}Elemental Evil`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ALRoD] = `${Parser.AL_PREFIX}Rage of Demons`;
@@ -2979,6 +2986,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_LoX] = "LoX";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DoSI] = "DoSI";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DSotDQ] = "DSotDQ";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_KftGV] = "KftGV";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_BGG] = "BGG";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Screen";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScWild";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_DUNGEON_KIT] = "ScDun";
@@ -2998,6 +3006,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_VD] = "VD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SjA] = "SjA";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HAT_TG] = "HAT-TG";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HAT_LMI] = "HAT-LMI";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_GotSF] = "GotSF";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ALCoS] = "ALCoS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ALEE] = "ALEE";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ALRoD] = "ALRoD";
@@ -3180,6 +3189,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_LoX] = "2022-08-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DoSI] = "2022-07-31";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DSotDQ] = "2022-11-22";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_KftGV] = "2023-02-21";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_BGG] = "2023-08-15";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_DUNGEON_KIT] = "2020-09-21";
@@ -3199,6 +3209,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_VD] = "2022-06-09";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SjA] = "2022-07-11"; // pt1; pt2 2022-07-18; pt3 2022-07-25; pt4 2022-08-01
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HAT_TG] = "2023-03-06";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HAT_LMI] = "2023-03-31";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_GotSF] = "2023-08-01";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ALCoS] = "2016-03-15";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ALEE] = "2015-04-07";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ALRoD] = "2015-09-15";
@@ -3361,6 +3372,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DoSI,
 	Parser.SRC_DSotDQ,
 	Parser.SRC_KftGV,
+	Parser.SRC_GotSF,
 
 	Parser.SRC_AWM,
 ]);
@@ -3399,6 +3411,7 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	Parser.SRC_SjA,
 	Parser.SRC_HAT_TG,
 	Parser.SRC_HAT_LMI,
+	Parser.SRC_GotSF,
 	Parser.SRC_MCV3MC,
 	Parser.SRC_MisMV1,
 ]);
@@ -3424,6 +3437,8 @@ Parser.SOURCES_VANILLA = new Set([
 	Parser.SRC_SCREEN_WILDERNESS_KIT,
 	Parser.SRC_SCREEN_DUNGEON_KIT,
 	Parser.SRC_VD,
+	Parser.SRC_GotSF,
+	Parser.SRC_BGG,
 ]);
 
 // Any opinionated set of sources that are """hilarious, dude"""
@@ -3501,6 +3516,7 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_SCREEN_WILDERNESS_KIT,
 	Parser.SRC_SCREEN_DUNGEON_KIT,
 	Parser.SRC_SCREEN_SPELLJAMMER,
+	Parser.SRC_BGG,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;
@@ -3585,6 +3601,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_DoSI,
 	Parser.SRC_DSotDQ,
 	Parser.SRC_KftGV,
+	Parser.SRC_GotSF,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

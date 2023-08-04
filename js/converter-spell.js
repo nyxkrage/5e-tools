@@ -90,7 +90,7 @@ class SpellParser extends BaseParser {
 				ptrI,
 				toConvert,
 				{
-					fnStop: (curLine) => /^(?:At Higher Levels|Class(?:es)?)/gi.test(curLine),
+					fnStop: (curLine) => /^(?:At Higher Levels|Class(?:es)?|Cantrip Upgrade)/gi.test(curLine),
 				},
 			);
 			i = ptrI._;
@@ -144,16 +144,16 @@ class SpellParser extends BaseParser {
 	}
 
 	// SHARED UTILITY FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
-	static _tryConvertSchool (s, cbMan) {
+	static _tryConvertSchool (s, {cbMan = null} = {}) {
 		const school = (s.school || "").toLowerCase().trim();
-		if (!school) return cbMan ? cbMan(s.school, "Spell school requires manual conversion") : null;
+		if (!school) return cbMan ? cbMan(`Spell school "${s.school}" requires manual conversion`) : null;
 
 		const out = SpellParser._RES_SCHOOL.find(it => it.regex.test(school));
 		if (out) {
 			s.school = out.output;
 			return;
 		}
-		if (cbMan) cbMan(s.school, "Spell school requires manual conversion");
+		if (cbMan) cbMan(`Spell school "${s.school}" requires manual conversion`);
 	}
 
 	static _doSpellPostProcess (stats, options) {
@@ -201,14 +201,16 @@ class SpellParser extends BaseParser {
 	// SHARED PARSING FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
 	static _setCleanLevelSchoolRitual (stats, line, options) {
 		const rawLine = line;
-		line = ConvertUtil.cleanDashes(line).toLowerCase().trim();
+		line = ConvertUtil.cleanDashes(line).trim();
 
 		const mCantrip = /cantrip/i.exec(line);
 		const mSpellLevel = /^(\d+)(?:st|nd|rd|th)?-level/i.exec(line);
 
 		if (mCantrip) {
-			const trailing = line.slice(mCantrip.index + "cantrip".length, line.length);
+			let trailing = line.slice(mCantrip.index + "cantrip".length, line.length).trim();
 			line = line.slice(0, mCantrip.index).trim();
+
+			trailing = this._setCleanLevelSchoolRitual_trailingClassGroup({stats, trailing});
 
 			// TODO implement as required (see at e.g. Deep Magic series)
 			if (trailing) {
@@ -218,8 +220,11 @@ class SpellParser extends BaseParser {
 			stats.level = 0;
 			stats.school = line;
 
-			this._tryConvertSchool(stats);
-		} else if (mSpellLevel) {
+			this._tryConvertSchool(stats, {cbMan: options.cbWarning});
+			return;
+		}
+
+		if (mSpellLevel) {
 			line = line.slice(mSpellLevel.index + mSpellLevel[0].length);
 
 			let isRitual = false;
@@ -236,13 +241,39 @@ class SpellParser extends BaseParser {
 
 			stats.level = Number(mSpellLevel[1]);
 
-			// TODO further handling of non-school text (see e.g. Deep Magic series)
-			stats.school = line.trim();
+			const [tkSchool, ...tksSchoolRest] = line.trim().split(" ");
+			stats.school = tkSchool;
 
-			this._tryConvertSchool(stats);
-		} else {
-			options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Level/school/ritual part "${rawLine}" requires manual conversion`);
+			if (/^(?:school|spell)$/i.test(tksSchoolRest[0] || 0)) tksSchoolRest.shift();
+
+			let trailing = tksSchoolRest.join(" ");
+			trailing = this._setCleanLevelSchoolRitual_trailingClassGroup({stats, trailing});
+
+			// TODO further handling of non-school text (see e.g. Deep Magic series)
+			if (trailing) {
+				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Level/school/ritual trailing part "${trailing}" requires manual conversion`);
+			}
+
+			this._tryConvertSchool(stats, {cbMan: options.cbWarning});
+			return;
 		}
+
+		options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Level/school/ritual part "${rawLine}" requires manual conversion`);
+	}
+
+	static _setCleanLevelSchoolRitual_trailingClassGroup ({stats, trailing}) {
+		if (!trailing) return trailing;
+
+		return trailing
+			.replace(new RegExp(`\\(${ConverterConst.STR_RE_CLASS}\\)`, "i"), (...m) => {
+				(stats.groups ||= []).push({
+					name: m.last().name,
+					source: stats.source,
+				});
+				return "";
+			})
+			.replace(/\s+/g, " ")
+			.trim();
 	}
 
 	static _setCleanRange (stats, line, options) {
@@ -468,8 +499,7 @@ class SpellParser extends BaseParser {
 		return PropOrder.getOrdered(spell, "spell");
 	}
 }
-SpellParser._RES_SCHOOL = [];
-Object.entries({
+SpellParser._RES_SCHOOL = Object.entries({
 	"transmutation": "T",
 	"necromancy": "N",
 	"conjuration": "C",
@@ -478,11 +508,9 @@ Object.entries({
 	"evocation": "V",
 	"illusion": "I",
 	"divination": "D",
-}).forEach(([k, v]) => {
-	SpellParser._RES_SCHOOL.push({
-		output: v,
-		regex: RegExp(k, "i"),
-	});
-});
+}).map(([k, v]) => ({
+	output: v,
+	regex: RegExp(`^${k}(?: school)?$`, "i"),
+}));
 
 globalThis.SpellParser = SpellParser;

@@ -3,7 +3,7 @@
 window.addEventListener("load", () => doPageInit());
 
 class ConverterUiUtil {
-	static renderSideMenuDivider ($menu, heavy) { $menu.append(`<hr class="sidemenu__row__divider ${heavy ? "sidemenu__row__divider--heavy" : ""}">`); }
+	static renderSideMenuDivider ($menu, heavy) { $menu.append(`<hr class="sidemenu__row__divider ${heavy ? "sidemenu__row__divider--heavy" : ""} w-100 hr-2">`); }
 
 	static getAceMode (inputMode) {
 		return {
@@ -87,14 +87,14 @@ class BaseConverter extends BaseComponent {
 	// region sidebar
 	_renderSidebarSamplesPart (parent, $wrpSidebar) {
 		const $btnsSamples = this._modes.map(mode => {
-			return $(`<button class="btn btn-sm btn-default">Sample ${BaseConverter._getDisplayMode(mode)}</button>`)
+			return $(`<button class="btn btn-xs btn-default">Sample ${BaseConverter._getDisplayMode(mode)}</button>`)
 				.click(() => {
 					this._ui.inText = this._getSample(mode);
 					this._state.mode = mode;
 				});
 		});
 
-		$$`<div class="sidemenu__row ve-flex-vh-center-around">${$btnsSamples}</div>`.appendTo($wrpSidebar);
+		$$`<div class="w-100 ve-flex-vh-center-around">${$btnsSamples}</div>`.appendTo($wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
 	}
@@ -113,13 +113,13 @@ class BaseConverter extends BaseComponent {
 		hkMode();
 
 		if (hasModes) {
-			const $selMode = ComponentUiUtil.$getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-sm select-inline"/>`, fnDisplay: it => `Parse as ${BaseConverter._getDisplayMode(it)}`});
-			$$`<div class="sidemenu__row ve-flex-vh-center-around">${$selMode}</div>`.appendTo($wrpSidebar);
+			const $selMode = ComponentUiUtil.$getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-xs select-inline"/>`, fnDisplay: it => `Parse as ${BaseConverter._getDisplayMode(it)}`});
+			$$`<div class="w-100 mt-2 ve-flex-vh-center-around">${$selMode}</div>`.appendTo($wrpSidebar);
 		}
 
 		if (this._titleCaseFields) {
 			const $cbTitleCase = ComponentUiUtil.$getCbBool(this, "isTitleCase");
-			$$`<div class="sidemenu__row split-v-center">
+			$$`<div class="w-100 mt-2 split-v-center">
 				<label class="sidemenu__row__label sidemenu__row__label--cb-label" title="Should the creature's name be converted to title-case? Useful when pasting a name which is all-caps."><span>Title-Case Name</span>
 				${$cbTitleCase}
 			</label></div>`.appendTo($wrpSidebar);
@@ -130,8 +130,22 @@ class BaseConverter extends BaseComponent {
 	_renderSidebarPagePart (parent, $wrpSidebar) {
 		if (!this._hasPageNumbers) return;
 
-		const $iptPage = ComponentUiUtil.$getIptInt(this, "page", 0, {html: `<input class="form-control input-sm text-right" style="max-width: 9rem;">`});
-		$$`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label">Page</div>${$iptPage}</div>`.appendTo($wrpSidebar);
+		const getBtnIncrementDecrement = (dir) => {
+			const verb = ~dir ? "Increment" : "Decrement";
+			return $(`<button class="btn btn-xs btn-default h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon glyphicon-${~dir ? "plus" : "minus"}"></span></button>`)
+				.on("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
+		};
+
+		const $iptPage = ComponentUiUtil.$getIptInt(this, "page", 0)
+			.addClass("max-w-80p");
+		$$`<div class="w-100 split-v-center">
+			<div class="sidemenu__row__label mr-2 help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
+			<div class="btn-group input-group ve-flex-v-center h-100">
+				${getBtnIncrementDecrement(-1)}
+				${$iptPage}
+				${getBtnIncrementDecrement(1)}
+			</div>
+		</div>`.appendTo($wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
 	}
@@ -169,7 +183,7 @@ class BaseConverter extends BaseComponent {
 		};
 
 		const $selSource = $$`
-			<select class="form-control input-sm"><option value="">(None)</option></select>`
+			<select class="form-control input-xs"><option value="">(None)</option></select>`
 			.change(() => this._state.source = $selSource.val());
 
 		$(`<option/>`, {val: "5e_divider", text: `\u2014`, disabled: true}).appendTo($selSource);
@@ -212,9 +226,9 @@ class BaseConverter extends BaseComponent {
 		this._addHookBase("source", hkSource);
 		hkSource();
 
-		$$`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label">Source</div>${$selSource}</div>`.appendTo($wrpSidebar);
+		$$`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div>${$selSource}</div>`.appendTo($wrpSidebar);
 
-		const $btnSourceEdit = $(`<button class="btn btn-default btn-sm mr-2">Edit Selected Source</button>`)
+		const $btnSourceEdit = $(`<button class="btn btn-default btn-xs">Edit Selected</button>`)
 			.click(() => {
 				const curSourceJson = this._state.source;
 				if (!curSourceJson) {
@@ -232,9 +246,8 @@ class BaseConverter extends BaseComponent {
 				});
 				$wrpSourceOverlay.appendTo(modalMeta.$modalInner);
 			});
-		$$`<div class="sidemenu__row">${$btnSourceEdit}</div>`.appendTo($wrpSidebar);
 
-		const $btnSourceAdd = $(`<button class="btn btn-default btn-sm">Add New Source</button>`).click(() => {
+		const $btnSourceAdd = $(`<button class="btn btn-default btn-xs">Add New</button>`).click(() => {
 			rebuildStageSource({mode: "add"});
 			modalMeta = UiUtil.getShowModal({
 				isHeight100: true,
@@ -243,7 +256,7 @@ class BaseConverter extends BaseComponent {
 			});
 			$wrpSourceOverlay.appendTo(modalMeta.$modalInner);
 		});
-		$$`<div class="sidemenu__row">${$btnSourceAdd}</div>`.appendTo($wrpSidebar);
+		$$`<div class="w-100 btn-group ve-flex-v-center ve-flex-h-right">${$btnSourceEdit}${$btnSourceAdd}</div>`.appendTo($wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
 	}
@@ -269,8 +282,8 @@ class CreatureConverter extends BaseConverter {
 	_renderSidebar (parent, $wrpSidebar) {
 		$wrpSidebar.empty();
 
-		$(`<div class="sidemenu__row split-v-center">
-			<small>This parser is <span class="help" title="Notably poor at handling text split across multiple lines, as Carriage Return is used to separate blocks of text.">very particular</span> about its input. Use at your own risk.</small>
+		$(`<div class="w-100 split-v-center">
+			<small>This parser is <span class="help" title="It is notably poor at handling text split across multiple lines, as Carriage Return is used to separate blocks of text.">very particular</span> about its input. Use at your own risk.</small>
 		</div>`).appendTo($wrpSidebar);
 
 		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
@@ -1017,18 +1030,31 @@ class ConverterUi extends BaseComponent {
 					"Spell",
 					"Table",
 				],
-				html: `<select class="form-control input-sm"/>`,
 			},
 		);
 
-		$$`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label">Mode</div>${$selConverter}</div>`
+		$$`<div class="w-100 split-v-center"><div class="sidemenu__row__label">Mode</div>${$selConverter}</div>`
 			.appendTo($mnu);
 
 		ConverterUiUtil.renderSideMenuDivider($mnu);
 
 		// region mult-part parsing options
-		const $iptInputSeparator = ComponentUiUtil.$getIptStr(this, "inputSeparator", {html: `<input class="form-control input-sm">`}).addClass("code");
-		$$`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label help mr-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">Separator</div>${$iptInputSeparator}</div>`
+		const $iptInputSeparator = ComponentUiUtil.$getIptStr(this, "inputSeparator").addClass("code");
+		$$`<div class="w-100 split-v-center mb-2"><div class="sidemenu__row__label help mr-2" title="A separator used to mark the end of one to-be-converted entity (creature, spell, etc.) so that multiple entities can be converted in one run. If left blank, the entire input text will be parsed as one entity.">Separator</div>${$iptInputSeparator}</div>`
+			.appendTo($mnu);
+
+		const $selAppendPrependMode = ComponentUiUtil.$getSelEnum(
+			this,
+			"appendPrependMode",
+			{
+				values: [
+					ConverterUi._APPEND_PREPEND_MODE__APPEND,
+					ConverterUi._APPEND_PREPEND_MODE__PREPEND,
+				],
+				fnDisplay: val => val.toTitleCase(),
+			},
+		);
+		$$`<div class="w-100 split-v-center"><div class="sidemenu__row__label mr-2" title="Sets output order when using the &quot;Parse and Add&quot; button, or parsing multiple blocks of text using a separator.">On Add</div>${$selAppendPrependMode}</div>`
 			.appendTo($mnu);
 
 		ConverterUiUtil.renderSideMenuDivider($mnu);
@@ -1057,7 +1083,9 @@ class ConverterUi extends BaseComponent {
 	doCleanAndOutput (obj, append) {
 		const asCleanString = CleanUtil.getCleanJson(obj, {isFast: false});
 		if (append) {
-			this._outText = `${asCleanString},\n${this._outText}`;
+			const strs = [asCleanString, this._outText];
+			if (this._state.appendPrependMode === "prepend") strs.reverse();
+			this._outText = strs.join(",\n");
 			this._state.hasAppended = true;
 		} else {
 			this._outText = asCleanString;
@@ -1077,8 +1105,11 @@ class ConverterUi extends BaseComponent {
 }
 ConverterUi.STORAGE_INPUT = "converterInput";
 ConverterUi.STORAGE_STATE = "converterState";
+ConverterUi._APPEND_PREPEND_MODE__APPEND = "append";
+ConverterUi._APPEND_PREPEND_MODE__PREPEND = "prepend";
 ConverterUi._DEFAULT_STATE = {
 	hasAppended: false,
+	appendPrependMode: ConverterUi._APPEND_PREPEND_MODE__APPEND,
 	converter: "Creature",
 	sourceJson: "",
 	inputSeparator: "===",

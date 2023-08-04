@@ -283,19 +283,19 @@ class _BrewUtil2Base {
 
 	/* -------------------------------------------- */
 
-	_isInit = false;
+	_pActiveInit = null;
 
-	async pInit () {
-		if (this._isInit) return;
-		this._isInit = true;
+	pInit () {
+		this._pActiveInit ||= (async () => {
+			// region Ensure the local homebrew cache is hot, to allow us to fetch from it later in a sync manner.
+			//   This is necessary to replicate the "meta" caching done for non-local brew.
+			await this._pGetBrew_pGetLocalBrew();
+			// endregion
 
-		// region Ensure the local homebrew cache is hot, to allow us to fetch from it later in a sync manner.
-		//   This is necessary to replicate the "meta" caching done for non-local brew.
-		await this._pGetBrew_pGetLocalBrew();
-		// endregion
-
-		this._pInit_doBindDragDrop();
-		this._pInit_pDoLoadFonts().then(null);
+			this._pInit_doBindDragDrop();
+			this._pInit_pDoLoadFonts().then(null);
+		})();
+		return this._pActiveInit;
 	}
 
 	/** @abstract */

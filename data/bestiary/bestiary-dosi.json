@@ -110,6 +110,10 @@
 				"AOE",
 				"MW"
 			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
@@ -211,6 +215,9 @@
 				"MW",
 				"RW",
 				"THW"
+			],
+			"savingThrowForced": [
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true

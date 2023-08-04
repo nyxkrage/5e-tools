@@ -3577,6 +3577,20 @@
 					"name": "Thieves' Gallery"
 				}
 			]
+		},
+		{
+			"name": "Bigby Presents: Glory of the Giants",
+			"id": "BGG",
+			"source": "BGG",
+			"group": "supplement",
+			"coverUrl": "img/covers/BGG.png",
+			"published": "2023-08-15",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Introduction"
+				}
+			]
 		}
 	]
 }

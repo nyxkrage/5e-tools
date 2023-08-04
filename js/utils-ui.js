@@ -3122,6 +3122,63 @@ class InputUiUtil {
 		return comp.getAsString();
 		// endregion
 	}
+
+	/**
+	 * @param [opts] Options.
+	 * @param [opts.title] Prompt title.
+	 * @param [opts.buttonText] Prompt title.
+	 * @param [opts.default] Default value.
+	 * @param [opts.disabled] If the text area is disabled.
+	 * @param [opts.isSkippable] If the prompt is skippable.
+	 * @return {Promise<String>} A promise which resolves to the CR string if the user entered one, or null otherwise.
+	 */
+	static async pGetUserScaleCr (opts = {}) {
+		const crDefault = opts.default || "1";
+
+		let slider;
+
+		const {$modalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
+			title: opts.title || "Select Challenge Rating",
+			isMinHeight0: true,
+			cbClose: () => {
+				slider.destroy();
+			},
+		});
+
+		const cur = Parser.CRS.indexOf(crDefault);
+		if (!~cur) throw new Error(`Initial CR ${crDefault} was not valid!`);
+
+		const comp = BaseComponent.fromObject({
+			min: 0,
+			max: Parser.CRS.length - 1,
+			cur,
+		});
+		slider = new ComponentUiUtil.RangeSlider({
+			comp,
+			propMin: "min",
+			propMax: "max",
+			propCurMin: "cur",
+			fnDisplay: ix => Parser.CRS[ix],
+		});
+		slider.$get().appendTo($modalInner);
+
+		const $btnOk = this._$getBtnOk({opts, doClose});
+		const $btnCancel = this._$getBtnCancel({opts, doClose});
+		const $btnSkip = this._$getBtnSkip({opts, doClose});
+
+		$$`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);
+
+		if (doAutoResizeModal) doAutoResizeModal();
+
+		// region Output
+		const [isDataEntered] = await pGetResolved();
+
+		if (typeof isDataEntered === "symbol") return isDataEntered;
+		if (!isDataEntered) return null;
+
+		return Parser.CRS[comp._state.cur];
+		// endregion
+	}
 }
 
 class DragReorderUiUtil {

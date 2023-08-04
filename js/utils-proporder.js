@@ -230,6 +230,9 @@ PropOrder._MONSTER = [
 	new PropOrder._ArrayKey("conditionInflict", {fnSort: SortUtil.ascSortLower}),
 	new PropOrder._ArrayKey("conditionInflictLegendary", {fnSort: SortUtil.ascSortLower}),
 	new PropOrder._ArrayKey("conditionInflictSpell", {fnSort: SortUtil.ascSortLower}),
+	new PropOrder._ArrayKey("savingThrowForced", {fnSort: SortUtil.ascSortLower}),
+	new PropOrder._ArrayKey("savingThrowForcedLegendary", {fnSort: SortUtil.ascSortLower}),
+	new PropOrder._ArrayKey("savingThrowForcedSpell", {fnSort: SortUtil.ascSortLower}),
 
 	"hasToken",
 	"hasFluff",
@@ -328,6 +331,7 @@ PropOrder._SPELL = [
 	"level",
 	"school",
 	"subschools",
+	"groups",
 	"time",
 	"range",
 	"components",

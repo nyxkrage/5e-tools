@@ -1,0 +1,525 @@
+{
+	"monster": [
+		{
+			"name": "Cinder Hulk",
+			"source": "BGG",
+			"page": 123,
+			"otherSources": [
+				{
+					"source": "GotSF"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "elemental",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 84,
+				"formula": "8d10 + 40"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 20,
+			"dex": 12,
+			"con": 20,
+			"int": 9,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"dex": "+4",
+				"con": "+8",
+				"wis": "+5"
+			},
+			"skill": {
+				"perception": "+5"
+			},
+			"passive": 15,
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Giant",
+				"Ignan"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "Death Burst",
+					"entries": [
+						"When the cinder hulk dies, it leaves behind a cloud of cinders and smoke that fills a 10-foot-radius sphere centered on its space. The sphere is heavily obscured. Any creature that moves into the area for the first time on a turn or starts its turn there must succeed on a {@dc 16} Constitution saving throw or take 10 ({@damage 3d6}) fire damage. The cloud lasts for 1 minute or until it is dispersed by strong wind."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The cinder hulk makes two Slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d10 + 5}) bludgeoning damage plus 10 ({@damage 3d6}) fire damage."
+					]
+				},
+				{
+					"name": "Wave of Cinders {@recharge 5}",
+					"entries": [
+						"The cinder hulk emits a wave of smoldering ash from its face, hands, or chest in a 30-foot cone. Each creature in that area must make a {@dc 16} Dexterity saving throw. On a failed save, a creature takes 31 ({@damage 7d8}) fire damage and has the {@condition blinded} condition until the end of its next turn. On a successful save, a creature takes half as much damage only."
+					]
+				}
+			],
+			"traitTags": [
+				"Death Burst"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"GI",
+				"IG"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"blinded"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Firbolg Wanderer",
+			"source": "BGG",
+			"page": 137,
+			"otherSources": [
+				{
+					"source": "GotSF"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"cleric"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item breastplate|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 90,
+				"formula": "12d8 + 36"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 16,
+			"int": 14,
+			"wis": 17,
+			"cha": 16,
+			"save": {
+				"dex": "+5",
+				"cha": "+6"
+			},
+			"skill": {
+				"perception": "+6",
+				"persuasion": "+6",
+				"stealth": "+5"
+			},
+			"passive": 16,
+			"languages": [
+				"Common",
+				"Giant"
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"headerEntries": [
+						"The firbolg casts one of the following spells, using Wisdom as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"will": [
+						"{@spell mage hand}",
+						"{@spell minor illusion}",
+						"{@spell Tasha's hideous laughter}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell detect magic}",
+							"{@spell disguise self}",
+							"{@spell dispel magic}",
+							"{@spell polymorph}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The firbolg makes two attacks using Longsword, Bewitching Bolt, or a combination of them."
+					]
+				},
+				{
+					"name": "Longsword",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands, plus 9 ({@damage 2d8}) psychic damage."
+					]
+				},
+				{
+					"name": "Bewitching Bolt",
+					"entries": [
+						"{@atk rs} {@hit 6} to hit, range 60 ft., one creature. {@h}10 ({@damage 2d6 + 3}) psychic damage, and the target must succeed on a {@dc 14} Charisma saving throw or have the {@condition charmed} condition until the start of the target's next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Duplicitous Movement (1/Day)",
+					"entries": [
+						"The firbolg projects an illusory duplicate of itself in an unoccupied space it can see within 30 feet of itself. The firbolg can then swap places with the illusion. The illusion vanishes after 1 minute, if the firbolg is {@condition incapacitated}, or if the illusion is more than 120 feet from the firbolg.",
+						"As a bonus action on later turns, the firbolg can move the illusion up to 30 feet and can then swap places with it."
+					]
+				}
+			],
+			"attachedItems": [
+				"longsword|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GI"
+			],
+			"damageTags": [
+				"S",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"conditionInflictSpell": [
+				"incapacitated",
+				"prone"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fire Giant Forgecaller",
+			"source": "BGG",
+			"page": 138,
+			"otherSources": [
+				{
+					"source": "GotSF"
+				}
+			],
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "giant",
+				"tags": [
+					"cleric"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB|plate}"
+					]
+				}
+			],
+			"hp": {
+				"average": 312,
+				"formula": "25d12 + 150"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 25,
+			"dex": 11,
+			"con": 23,
+			"int": 16,
+			"wis": 21,
+			"cha": 18,
+			"save": {
+				"dex": "+6",
+				"int": "+9",
+				"wis": "+11"
+			},
+			"skill": {
+				"athletics": "+13",
+				"perception": "+11"
+			},
+			"passive": 21,
+			"immune": [
+				"fire"
+			],
+			"languages": [
+				"Common",
+				"Giant"
+			],
+			"cr": "18",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the giant fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Fire Rune",
+					"entries": [
+						"The giant has a fire rune inscribed on a medallion or some other object in its possession. While holding or wearing the object bearing the rune, the giant can use its Magma Wave action and Furnace Armor bonus action.",
+						"The object bearing the rune has AC 15; 40 hit points; and immunity to necrotic, poison, and psychic damage. The object regains all its hit points at the end of every turn, but it turns to dust if reduced to 0 hit points or when the giant dies. If the rune is destroyed, the giant can inscribe a fire rune on an object in its possession when it finishes a short or long rest."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The giant makes three Forge Hammer attacks or two Heated Rock attacks."
+					]
+				},
+				{
+					"name": "Forge Hammer",
+					"entries": [
+						"{@atk mw} {@hit 13} to hit, reach 10 ft., one target. {@h}24 ({@damage 5d6 + 7}) bludgeoning damage. Hit or Miss: The giant can cause the hammer to emit a burst of heat in a 30-foot-radius sphere centered on the target. Metal objects in that area glow red-hot until the start of the giant's next turn. Any creature in physical contact with a heated object at the start of its turn must make a {@dc 19} Constitution saving throw. On a failed save, the creature takes 10 ({@damage 3d6}) fire damage and has disadvantage on attack rolls until the start of its next turn unless it has immunity to fire damage. The hammer can emit heat in this way only once per turn."
+					]
+				},
+				{
+					"name": "Heated Rock",
+					"entries": [
+						"{@atk rw} {@hit 13} to hit, range 60/240 ft., one target. {@h}23 ({@damage 3d10 + 7}) bludgeoning damage plus 19 ({@damage 3d12}) fire damage. If the target is a Large or smaller creature, it must succeed on a {@dc 21} Strength saving throw or have the {@condition prone} condition. After the giant throws the rock, roll a {@dice d6}; on a roll of 3 or lower, the giant has no more rocks to throw."
+					]
+				},
+				{
+					"name": "Magma Wave (Requires Fire Rune)",
+					"entries": [
+						"The giant emits a wave of magma from its fire rune in a 30-foot cone. Each creature in that area must make a {@dc 19} Dexterity saving throw. On a failed save, a creature takes 36 ({@damage 8d8}) fire damage and has the {@condition restrained} condition. As an action, a creature can make a {@dc 19} Strength (Athletics) check, freeing itself or a creature within its reach from the rock on a success. The rock restraining each creature has AC 17; 20 hit points; and immunity to fire, poison, and psychic damage. On a successful save, a creature takes half as much damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Furnace Armor (Requires Fire Rune)",
+					"entries": [
+						"The giant causes smoke and cinders to billow from its armor, filling a 30-foot-radius sphere centered on the giant. While the armor is billowing smoke, the giant has half cover. The armor stops billowing smoke after 1 minute, when the giant dies, when the giant uses a bonus action to end the effect, or when the giant's fire rune is destroyed."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GI"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fire Giant of Evil Fire",
+			"source": "BGG",
+			"page": 139,
+			"otherSources": [
+				{
+					"source": "GotSF"
+				}
+			],
+			"size": [
+				"H"
+			],
+			"type": "giant",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB|plate}"
+					]
+				}
+			],
+			"hp": {
+				"average": 150,
+				"formula": "12d12 + 72"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 25,
+			"dex": 9,
+			"con": 23,
+			"int": 10,
+			"wis": 19,
+			"cha": 14,
+			"save": {
+				"con": "+10",
+				"wis": "+8",
+				"cha": "+6"
+			},
+			"skill": {
+				"athletics": "+11",
+				"perception": "+8"
+			},
+			"passive": 18,
+			"immune": [
+				"fire"
+			],
+			"languages": [
+				"Common",
+				"Giant",
+				"Ignan"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "Shrapnel Explosion",
+					"entries": [
+						"When the giant drops to 0 hit points, its armor explodes, destroying the giant's body and scattering the armor as shrapnel. Creatures within 10 feet of the giant when its armor explodes must make a {@dc 18} Dexterity saving throw, taking 21 ({@damage 6d6}) piercing damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The giant makes two Searing Scepter attacks or two Bolt of Imix attacks."
+					]
+				},
+				{
+					"name": "Searing Scepter",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}17 ({@damage 3d6 + 7}) bludgeoning damage plus 9 ({@damage 2d8}) fire damage, and the target is magically branded. While branded in this way, the target becomes visible if it's {@condition invisible}, can't become {@condition invisible}, and sheds dim light in a 5-foot radius. The brand disappears after 24 hours, or it can be removed from a creature or an object by any spell that ends a curse."
+					]
+				},
+				{
+					"name": "Bolt of Imix",
+					"entries": [
+						"{@atk rs} {@hit 8} to hit, range 120 ft., one target. {@h}20 ({@damage 3d10 + 4}) fire damage, and the target must succeed on a {@dc 16} Wisdom saving throw or have the {@condition frightened} condition until the end of the target's next turn."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GI",
+				"IG"
+			],
+			"damageTags": [
+				"B",
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

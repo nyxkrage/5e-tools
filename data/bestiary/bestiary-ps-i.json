@@ -121,6 +121,9 @@
 			"conditionInflict": [
 				"stunned"
 			],
+			"savingThrowForced": [
+				"intelligence"
+			],
 			"hasToken": true
 		},
 		{
@@ -378,6 +381,10 @@
 				"frightened",
 				"incapacitated"
 			],
+			"savingThrowForced": [
+				"charisma",
+				"wisdom"
+			],
 			"hasToken": true
 		},
 		{
@@ -474,6 +481,10 @@
 			],
 			"spellcastingTags": [
 				"CD"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength"
 			],
 			"hasToken": true
 		},

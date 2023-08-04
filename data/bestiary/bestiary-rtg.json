@@ -207,6 +207,13 @@
 			"conditionInflictSpell": [
 				"incapacitated"
 			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
 			"hasToken": true
 		},
 		{

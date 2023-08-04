@@ -192,11 +192,16 @@ class AcConvert {
 			case "glory": // BAM :: Reigar
 			case "mountain tattoo": // KftGV :: Prisoner 13
 			case "disarming charm": // TG :: Forge Fitzwilliam
-				return fromLow;
-				// endregion
-
 			case "graz'zt's gift": // KftGV :: Sythian Skalderang
 				return fromLow.uppercaseFirst();
+				// endregion
+
+			// region homebrew
+			case "light armor": // "Flee, Mortals!" retainers
+			case "medium armor": // "Flee, Mortals!" retainers
+			case "heavy armor": // "Flee, Mortals!" retainers
+				return fromLow;
+				// endregion
 
 			// region au naturel
 			case "natural armor":
@@ -794,41 +799,104 @@ SpellcastingTypeTag.CLASSES = {
 
 globalThis.SpellcastingTypeTag = SpellcastingTypeTag;
 
-class DamageTypeTag {
-	static _init () {
-		if (DamageTypeTag._isInit) return;
+/** @abstract */
+class _PrimaryLegendarySpellsTaggerBase {
+	static _IS_INIT = false;
+	static _WALKER = null;
 
-		DamageTypeTag._isInit = true;
-		DamageTypeTag._WALKER = MiscUtil.getWalker({isNoModification: true, keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
-		Object.entries(Parser.DMGTYPE_JSON_TO_FULL).forEach(([k, v]) => DamageTypeTag._TYPE_LOOKUP[v] = k);
+	static _PROP_PRIMARY;
+	static _PROP_SPELLS;
+	static _PROP_LEGENDARY;
+
+	static _BLOCKLIST_NAMES = null;
+
+	static _init () {
+		if (this._IS_INIT) return true;
+		this._IS_INIT = true;
+		this._WALKER = MiscUtil.getWalker({isNoModification: true, keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
+		return false;
 	}
 
-	static _PROPS_PRIMARY = ["action", "reaction", "bonus", "trait", "legendary", "mythic", "variant"];
-	static tryRun (m) {
+	/**
+	 * @abstract
+	 * @return void
+	 */
+	static _handleString ({m = null, str, outSet}) {
+		throw new Error("Unimplemented!");
+	}
+
+	static _handleEntries ({m = null, entries, outSet}) {
+		this._WALKER.walk(
+			entries,
+			{
+				string: (str) => this._handleString({m, str, outSet}),
+			},
+		);
+	}
+
+	static _handleProp ({m, prop, outSet}) {
+		if (!m[prop]) return;
+
+		m[prop].forEach(it => {
+			if (
+				it.name
+				&& this._BLOCKLIST_NAMES
+				&& this._BLOCKLIST_NAMES.has(it.name.toLowerCase().trim().replace(/\([^)]+\)/g, ""))
+			) return;
+
+			if (!it.entries) return;
+
+			this._handleEntries({m, entries: it.entries, outSet});
+		});
+	}
+
+	static _setPropOut (
+		{
+			outSet,
+			m,
+			propOut,
+			isAppendOnly,
+		},
+	) {
+		if (!isAppendOnly) delete m[propOut];
+		if (!outSet.size) return;
+		m[propOut] = [...outSet].sort(SortUtil.ascSortLower);
+	}
+
+	static tryRun (m, {isAppendOnly = false} = {}) {
 		this._init();
 
-		const typeSet = new Set();
-		this._PROPS_PRIMARY.forEach(prop => DamageTypeTag._handleProp({m, prop, typeSet}));
-		if (typeSet.size) m.damageTags = [...typeSet].sort(SortUtil.ascSortLower);
+		const outSet = new Set();
+		Renderer.monster.CHILD_PROPS
+			.filter(prop => prop !== "spellcasting")
+			.forEach(prop => this._handleProp({m, prop, outSet}));
+
+		this._setPropOut({outSet, m, propOut: this._PROP_PRIMARY, isAppendOnly});
 	}
 
-	static tryRunSpells (m, {cbMan} = {}) {
+	/**
+	 * @abstract
+	 * @return void
+	 */
+	static _handleSpell ({spell, outSet}) {
+		throw new Error("Unimplemented!");
+	}
+
+	static tryRunSpells (m, {cbMan, isAppendOnly = false} = {}) {
 		if (!m.spellcasting) return;
 
 		this._init();
 
-		const typeSet = new Set();
+		const outSet = new Set();
 
 		const spells = TaggerUtils.getSpellsFromString(JSON.stringify(m.spellcasting), {cbMan});
-		spells.forEach(spell => {
-			if (!spell.damageInflict) return;
-			spell.damageInflict.forEach(it => typeSet.add(DamageTypeTag._TYPE_LOOKUP[it]));
-		});
 
-		if (typeSet.size) m.damageTagsSpell = [...typeSet].sort(SortUtil.ascSortLower);
+		spells.forEach(spell => this._handleSpell({spell, outSet}));
+
+		this._setPropOut({outSet, m, propOut: this._PROP_SPELLS, isAppendOnly});
 	}
 
-	static tryRunRegionalsLairs (m, {cbMan} = {}) {
+	static tryRunRegionalsLairs (m, {cbMan, isAppendOnly = false} = {}) {
 		if (!m.legendaryGroup) return;
 
 		this._init();
@@ -836,66 +904,15 @@ class DamageTypeTag {
 		const meta = TaggerUtils.findLegendaryGroup({name: m.legendaryGroup.name, source: m.legendaryGroup.source});
 		if (!meta) return;
 
-		const typeSet = new Set();
-		this._handleEntries({entries: meta, typeSet});
+		const outSet = new Set();
+		this._handleEntries({entries: meta, outSet});
 
-		// region Also add damage types from spells contained in the legendary group
+		// region Also add from spells contained in the legendary group
 		const spells = TaggerUtils.getSpellsFromString(JSON.stringify(meta), {cbMan});
-		spells.forEach(spell => {
-			if (!spell.damageInflict) return;
-			spell.damageInflict.forEach(it => typeSet.add(DamageTypeTag._TYPE_LOOKUP[it]));
-		});
+		spells.forEach(spell => this._handleSpell({spell, outSet}));
 		// endregion
 
-		if (typeSet.size) m.damageTagsLegendary = [...typeSet].sort(SortUtil.ascSortLower);
-	}
-
-	static _handleProp ({m, prop, typeSet}) {
-		if (!m[prop]) return;
-
-		m[prop].forEach(it => {
-			if (
-				it.name
-				&& DamageTypeTag._BLOCKLIST_NAMES.has(it.name.toLowerCase().trim().replace(/\([^)]+\)/g, ""))
-			) return;
-
-			if (!it.entries) return;
-
-			this._handleEntries({m, entries: it.entries, typeSet});
-		});
-	}
-
-	static _handleEntries ({m = null, entries, typeSet}) {
-		DamageTypeTag._WALKER.walk(
-			entries,
-			{
-				string: (str) => {
-					str.replace(RollerUtil.REGEX_DAMAGE_DICE, (m0, average, prefix, diceExp, suffix) => {
-						suffix.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]));
-					});
-
-					str.replace(DamageTypeTag._STATIC_DAMAGE_REGEX, (m0, type) => {
-						typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
-					});
-
-					str.replace(DamageTypeTag._TARGET_TASKES_DAMAGE_REGEX, (m0, type) => {
-						typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
-					});
-
-					if (DamageTypeTag._isSummon(m)) {
-						str.split(/[.?!]/g)
-							.forEach(sentence => {
-								let isSentenceMatch = DamageTypeTag._SUMMON_DAMAGE_REGEX.test(sentence);
-								if (!isSentenceMatch) return;
-
-								sentence.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => {
-									typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
-								});
-							});
-					}
-				},
-			},
-		);
+		this._setPropOut({outSet, m, propOut: this._PROP_LEGENDARY, isAppendOnly});
 	}
 
 	/** Attempt to detect an e.g. TCE summon creature. */
@@ -906,7 +923,7 @@ class DamageTypeTag {
 
 		const reProbableSummon = /level of the spell|spell level|\+\s*PB(?:\W|$)|your (?:[^?!.]+)?level/g;
 
-		DamageTypeTag._WALKER.walk(
+		this._WALKER.walk(
 			m.ac,
 			{
 				string: (str) => {
@@ -917,7 +934,7 @@ class DamageTypeTag {
 		);
 		if (isSummon) return true;
 
-		DamageTypeTag._WALKER.walk(
+		this._WALKER.walk(
 			m.hp,
 			{
 				string: (str) => {
@@ -929,17 +946,58 @@ class DamageTypeTag {
 		if (isSummon) return true;
 	}
 }
-DamageTypeTag._isInit = false;
-DamageTypeTag._WALKER = null;
+
+class DamageTypeTag extends _PrimaryLegendarySpellsTaggerBase {
+	static _PROP_PRIMARY = "damageTags";
+	static _PROP_LEGENDARY = "damageTagsLegendary";
+	static _PROP_SPELLS = "damageTagsSpell";
+
+	// Avoid parsing these, as they commonly have e.g. "self-damage" sections
+	//   Note that these names should exclude parenthetical parts (as these are removed before lookup)
+	static _BLOCKLIST_NAMES = new Set([
+		"vampire weaknesses",
+	]);
+
+	static _init () {
+		if (super._init()) return;
+		Object.entries(Parser.DMGTYPE_JSON_TO_FULL).forEach(([k, v]) => this._TYPE_LOOKUP[v] = k);
+	}
+
+	static _handleString ({m = null, str, outSet}) {
+		str.replace(RollerUtil.REGEX_DAMAGE_DICE, (m0, average, prefix, diceExp, suffix) => {
+			suffix.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => outSet.add(this._TYPE_LOOKUP[type]));
+		});
+
+		str.replace(this._STATIC_DAMAGE_REGEX, (m0, type) => {
+			outSet.add(this._TYPE_LOOKUP[type]);
+		});
+
+		str.replace(this._TARGET_TASKES_DAMAGE_REGEX, (m0, type) => {
+			outSet.add(this._TYPE_LOOKUP[type]);
+		});
+
+		if (this._isSummon(m)) {
+			str.split(/[.?!]/g)
+				.forEach(sentence => {
+					let isSentenceMatch = this._SUMMON_DAMAGE_REGEX.test(sentence);
+					if (!isSentenceMatch) return;
+
+					sentence.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => {
+						outSet.add(this._TYPE_LOOKUP[type]);
+					});
+				});
+		}
+	}
+
+	static _handleSpell ({spell, outSet}) {
+		if (!spell.damageInflict) return;
+		spell.damageInflict.forEach(it => outSet.add(DamageTypeTag._TYPE_LOOKUP[it]));
+	}
+}
 DamageTypeTag._STATIC_DAMAGE_REGEX = new RegExp(`\\d+ ${ConverterConst.STR_RE_DAMAGE_TYPE} damage`, "gi");
 DamageTypeTag._TARGET_TASKES_DAMAGE_REGEX = new RegExp(`(?:a|the) target takes (?:{@dice |{@damage )[^}]+} ?${ConverterConst.STR_RE_DAMAGE_TYPE} damage`, "gi");
 DamageTypeTag._SUMMON_DAMAGE_REGEX = /(?:{@dice |{@damage )[^}]+}(?:\s*\+\s*the spell's level)? ([a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 DamageTypeTag._TYPE_LOOKUP = {};
-// Avoid parsing these, as they commonly have e.g. "self-damage" sections
-//   Note that these names should exclude parenthetical parts (as these are removed before lookup)
-DamageTypeTag._BLOCKLIST_NAMES = new Set([
-	"vampire weaknesses",
-]);
 
 globalThis.DamageTypeTag = DamageTypeTag;
 
@@ -1454,9 +1512,11 @@ class DragonAgeTag {
 globalThis.DragonAgeTag = DragonAgeTag;
 
 class AttachedItemTag {
-	static _WEAPON_DETAIL_CACHE = {};
+	static _WEAPON_DETAIL_CACHE;
 
 	static init ({items}) {
+		this._WEAPON_DETAIL_CACHE ||= {};
+
 		for (const item of items) {
 			if (item.type === "GV") continue;
 			if (!["M", "R"].includes(item.type)) continue;
@@ -1529,3 +1589,23 @@ class AttachedItemTag {
 }
 
 globalThis.AttachedItemTag = AttachedItemTag;
+
+class CreatureSavingThrowTagger extends _PrimaryLegendarySpellsTaggerBase {
+	static _PROP_PRIMARY = "savingThrowForced";
+	static _PROP_SPELLS = "savingThrowForcedSpell";
+	static _PROP_LEGENDARY = "savingThrowForcedLegendary";
+
+	static _handleString ({m = null, str, outSet}) {
+		str.replace(/{@dc (?<save>[^|}]+)(?:\|[^}]+)?}\s+(?<abil>Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw/i, (...m) => {
+			outSet.add(m.last().abil.toLowerCase());
+			return "";
+		});
+	}
+
+	static _handleSpell ({spell, outSet}) {
+		if (!spell.savingThrow) return;
+		spell.savingThrow.forEach(it => outSet.add(it));
+	}
+}
+
+globalThis.CreatureSavingThrowTagger = CreatureSavingThrowTagger;

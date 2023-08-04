@@ -113,6 +113,7 @@ class BestiarySublistManager extends SublistManager {
 				source: Parser.sourceJsonToAbv(mon.source),
 				type,
 				cr,
+				page: mon.page,
 			},
 			{
 				count,

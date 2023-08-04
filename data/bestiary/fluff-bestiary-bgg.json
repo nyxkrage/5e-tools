@@ -1,0 +1,104 @@
+{
+	"monsterFluff": [
+		{
+			"name": "Cinder Hulk",
+			"source": "BGG",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Cinder hulks are distant descendants of fire giants who isolated themselves from the world and steeped themselves in the energy of the Elemental Planes. Over the course of centuries, these giants were transformed into Elementals made of smoke and cinders. Half the size of their giant ancestors, cinder hulks maintain the basic physical shape of fire giants, but ash and embers billow around their barely cohesive physical forms.",
+						"Cinder hulks live in isolated enclaves in fiery locations on the Material Plane, in the Elemental Planes of Air and Fire, and especially in the Great Conflagration, the border region between those two planes. They retain none of the skills and motivation of their giant ancestors; they simply want to burn as much as they can until their own flames are extinguished. When a cinder hulk dies, it collapses into a billowing cloud of searing smoke."
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/BGG/Cinder Hulk.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Firbolg Wanderer",
+			"source": "BGG",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Firbolgs inspired by the saga of Diancastra embark on adventures to create their own legends. These wanderers use their magic for trickery and disguise to emulate Diancastra."
+					]
+				},
+				{
+					"type": "section",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Firbolgs",
+							"entries": [
+								"Distant cousins of giants, the first firbolgs wandered the primeval forests of the multiverse, and the magic of those forests entwined itself with the firbolgs' souls. Ages later, that magic still thrums inside firbolgs.",
+								"Firbolgs are often drawn to the service or emulation of the gods Diancastra and Hiatea. Firbolgs' innate magic of obscurement and trickery resonates with Diancastra's wily resourcefulness. A traditional emphasis on community and harmony leads many firbolgs to pledge themselves to Hiatea's service."
+							]
+						}
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/BGG/Firbolg Wanderer.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Fire Giant Forgecaller",
+			"source": "BGG",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"A fire giant who masters traditional rune magic can control the heat of a volcanic environment and conjure raw elemental energy of fire and magma. In a fire giant community, these forgecallers oversee both forges and the community's defense, often in Surtur's name. Some forgecallers prefer to live and work in isolation, seeking the hottest fires in volcanoes' hearts or the Elemental Plane of Fire to pursue their own crafts and studies.",
+						"A forgecaller is a walking furnace, clad head to toe in plate armor that seems to barely contain intense heat and billowing smoke. They conjure waves of magma and can fly by jetting magical fire from their legs and body."
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/BGG/Fire Giant Forgecaller.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Fire Giant of Evil Fire",
+			"source": "BGG",
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"A fire giant is born around flame, works with flame, and lives among flames, but a fire giant who gazes into flames too deeply may see the Prince of Evil Fire, Imix, gazing back. Giants who fall to Imix's corruption might leave their homes to join with likeminded cultists, but others remain within their communities to pursue Imix's destructive agenda.",
+						"A fire giant of Evil Fire forges a set of armor and weapons in flames blessed by Imix. The giant can then call on these magical flames to strike the foes of the Eternal Flame. The armor forged in these flames welds to the flesh, so while the giant isn't burned, the armor can't be removed once donned. When the giant dies, the armor explodes as a final gift from the All-Consuming Fire."
+					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/BGG/Fire Giant of Evil Fire.webp"
+					}
+				}
+			]
+		}
+	]
+}

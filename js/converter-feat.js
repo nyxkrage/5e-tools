@@ -141,7 +141,7 @@ class FeatParser extends BaseParser {
 					return (pre.campaign = pre.campaign || []).push(mCampaign.groups.name);
 				}
 
-				const mClass = /^(?<name>artificer|bard|cleric|druid|paladin|ranger|sorcerer|warlock|wizard|barbarian|fighter|monk|rogue)(?: class)?$/i.exec(pt);
+				const mClass = new RegExp(`^${ConverterConst.STR_RE_CLASS}(?: class)?$`, "i").exec(pt);
 				if (mClass) {
 					return pre.level = {
 						level: 1,

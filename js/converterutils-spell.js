@@ -151,34 +151,79 @@ class MiscTagsTagger {
 MiscTagsTagger._WALKER = null;
 
 class ScalingLevelDiceTagger {
+	static _WALKER_BOR = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST, isNoModification: true, isBreakOnReturn: true});
+
+	static _isParseFirstSecondLineRolls ({sp}) {
+		// Two "flat" paragraphs; first is spell text, second is cantrip scaling text
+		if (!sp.entriesHigherLevel) return sp.entries.length === 2 && sp.entries.filter(it => typeof it === "string").length === 2;
+
+		// One paragraph of spell text; one e.g. "Cantrip Upgrade" header with one paragraph of cantrip scaling text
+		return sp.entries.length === 1
+			&& typeof sp.entries[0] === "string"
+			&& sp.entriesHigherLevel.length === 1
+			&& sp.entriesHigherLevel[0].type === "entries"
+			&& sp.entriesHigherLevel[0].entries?.length === 1
+			&& typeof sp.entriesHigherLevel[0].entries[0] === "string";
+	}
+
+	static _getRollsFirstSecondLine ({firstLine, secondLine}) {
+		const rollsFirstLine = [];
+		const rollsSecondLine = [];
+
+		firstLine.replace(/{@(?:damage|dice) ([^}]+)}/g, (...m) => {
+			rollsFirstLine.push(m[1].split("|")[0]);
+		});
+
+		secondLine.replace(/\({@(?:damage|dice) ([^}]+)}\)/g, (...m) => {
+			rollsSecondLine.push(m[1].split("|")[0]);
+		});
+
+		return {rollsFirstLine, rollsSecondLine};
+	}
+
+	static _RE_DAMAGE_TYPE = new RegExp(`\\b${ConverterConst.STR_RE_DAMAGE_TYPE}\\b`, "i");
+
+	static _getLabel ({sp, options}) {
+		let label;
+
+		const handlers = {
+			string: str => {
+				const mDamageType = this._RE_DAMAGE_TYPE.exec(str);
+				if (mDamageType) {
+					label = `${mDamageType[1]} damage`;
+					return true;
+				}
+			},
+		};
+
+		if (sp.entriesHigherLevel) {
+			this._WALKER_BOR.walk(sp.entriesHigherLevel, handlers);
+			if (label) return label;
+		}
+
+		this._WALKER_BOR.walk(sp.entries, handlers);
+		if (label) return label;
+
+		options.cbWarning(`${sp.name ? `(${sp.name}) ` : ""}Could not create scalingLevelDice label!`);
+		return "NO_LABEL";
+	}
+
 	static tryRun (sp, options) {
 		if (sp.level !== 0) return;
 
-		const strEntries = JSON.stringify(sp.entries);
+		// Prefer `entriesHigherLevel`, as we may have e.g. a `"Cantrip Upgrade"` header
+		const strEntries = JSON.stringify(sp.entriesHigherLevel || sp.entries);
+
 		const rolls = [];
 		strEntries.replace(/{@(?:damage|dice) ([^}]+)}/g, (...m) => {
 			rolls.push(m[1].split("|")[0]);
 		});
 
-		const getLabel = () => {
-			let label;
-
-			const mDamageType = ConverterConst.RE_DAMAGE_TYPE.exec(strEntries);
-			if (mDamageType) {
-				label = `${mDamageType[1]} damage`;
-			}
-
-			ConverterConst.RE_DAMAGE_TYPE.lastIndex = 0;
-
-			if (!label) options.cbWarning(`${sp.name ? `(${sp.name}) ` : ""}Could not create scalingLevelDice label!`);
-			return label || "NO_LABEL";
-		};
-
 		if ((rolls.length === 4 && strEntries.includes("one die")) || rolls.length === 5) {
 			if (rolls.length === 5 && rolls[0] !== rolls[1]) options.cbWarning(`${sp.name ? `(${sp.name}) ` : ""}scalingLevelDice rolls may require manual checking--mismatched roll number of rolls!`);
 
 			sp.scalingLevelDice = {
-				label: getLabel(),
+				label: this._getLabel({sp, options}),
 				scaling: rolls.length === 4
 					? {
 						1: rolls[0],
@@ -192,16 +237,16 @@ class ScalingLevelDiceTagger {
 						17: rolls[4],
 					},
 			};
-		} else if (sp.entries.length === 2 && sp.entries.filter(it => typeof it === "string").length === 2) {
-			const rollsFirstLine = [];
-			const rollsSecondLine = [];
 
-			sp.entries[0].replace(/{@(?:damage|dice) ([^}]+)}/g, (...m) => {
-				rollsFirstLine.push(m[1].split("|")[0]);
-			});
+			return;
+		}
 
-			sp.entries[1].replace(/\({@(?:damage|dice) ([^}]+)}\)/g, (...m) => {
-				rollsSecondLine.push(m[1].split("|")[0]);
+		if (this._isParseFirstSecondLineRolls({sp})) {
+			const {rollsFirstLine, rollsSecondLine} = this._getRollsFirstSecondLine({
+				firstLine: sp.entries[0],
+				secondLine: sp.entriesHigherLevel
+					? sp.entriesHigherLevel[0].entries[0]
+					: sp.entries[1],
 			});
 
 			if (rollsFirstLine.length >= 1 && rollsSecondLine.length >= 3) {
@@ -209,7 +254,7 @@ class ScalingLevelDiceTagger {
 					options.cbWarning(`${sp.name ? `(${sp.name}) ` : ""}scalingLevelDice rolls may require manual checking--too many dice parts!`);
 				}
 
-				const label = getLabel();
+				const label = this._getLabel({sp, options});
 				sp.scalingLevelDice = {
 					label: label,
 					scaling: {

@@ -105,7 +105,7 @@ export class InitiativeTrackerEncounterConverter {
 			hpMax: null,
 		};
 
-		if (playerDetails.extras?.length) return out;
+		if (!playerDetails.extras?.length) return out;
 
 		const rowStatColData = playerDetails.extras
 			.map((extra, i) => {

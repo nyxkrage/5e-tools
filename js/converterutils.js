@@ -14,6 +14,7 @@
 class ConverterConst {}
 ConverterConst.STR_RE_DAMAGE_TYPE = "(acid|bludgeoning|cold|fire|force|lightning|necrotic|piercing|poison|psychic|radiant|slashing|thunder)";
 ConverterConst.RE_DAMAGE_TYPE = new RegExp(`\\b${ConverterConst.STR_RE_DAMAGE_TYPE}\\b`, "g");
+ConverterConst.STR_RE_CLASS = `(?<name>artificer|barbarian|bard|cleric|druid|fighter|monk|paladin|ranger|rogue|sorcerer|warlock|wizard)`;
 
 class BaseParser {
 	static _getValidOptions (options) {
@@ -67,6 +68,10 @@ class BaseParser {
 			.replace(/(?<start>[a-z0-9]) *\n+ *(?<end>to hit|modifier)\b/g, (...m) => `${m.last().start} ${m.last().end}`)
 			// Connect together `<ability> (<skill>)`
 			.replace(new RegExp(`\\b(?<start>${Object.values(Parser.ATB_ABV_TO_FULL).join("|")}) *\\n+ *(?<end>\\((?:${Object.keys(Parser.SKILL_TO_ATB_ABV).join("|")})\\))`, "gi"), (...m) => `${m.last().start.trim()} ${m.last().end.trim()}`)
+			// Connect together e.g. `increases by\n1d6 when`
+			.replace(/(?<start>[a-z0-9]) *\n+ *(?<end>\d+d\d+ [a-z]+)/g, (...m) => `${m.last().start} ${m.last().end}`)
+			// Connect together likely word pairs
+			.replace(/\b(?<start>hit) *\n* *(?<end>points)\b/gi, (...m) => `${m.last().start} ${m.last().end}`)
 		;
 
 		if (options) {
@@ -985,10 +990,12 @@ class ConvertUtil {
 				|| /^\d+-\d+:?$/.test(spl[0])
 				// Handle e.g. "Action 1: Close In. ...
 				|| /^Action \d+$/.test(spl[0])
+				// Handle e.g. "5th Level: Lay Low (3/Day). ..."
+				|| /^\d+(?:st|nd|rd|th) Level$/.test(spl[0])
 			)
 		) {
 			spl = [
-				`${spl[0]}${spl[1]}${spl[2]}`,
+				spl.slice(0, 3).join(""),
 				...spl.slice(3),
 			];
 		}
@@ -999,6 +1006,21 @@ class ConvertUtil {
 			if (!toCheck.split(" ").some(it => ConvertUtil._CONTRACTIONS.has(it))) continue;
 			spl[i] = `${spl[i]}${spl[i + 1]}${spl[i + 2]}`;
 			spl.splice(i + 1, 2);
+		}
+
+		// Handle e.g. "3rd Level: Death from Above! (3/Day). ..."
+		if (
+			spl.length > 3
+			&& (
+				/^[.!?:]$/.test(spl[1])
+				&& /^\s*\([^)]+\)\s*$/.test(spl[2])
+				&& /^[.!?:]$/.test(spl[3])
+			)
+		) {
+			spl = [
+				spl.slice(0, 3).join(""),
+				...spl.slice(3),
+			];
 		}
 
 		if (spl.length >= 3 && spl[0].includes(`"`) && spl[2].startsWith(`"`)) {

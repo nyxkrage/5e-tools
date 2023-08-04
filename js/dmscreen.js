@@ -741,15 +741,15 @@ class SideMenu {
 	}
 
 	render () {
-		const renderDivider = () => this.$mnu.append(`<hr class="sidemenu__row__divider">`);
+		const renderDivider = () => this.$mnu.append(`<hr class="w-100 hr-2 sidemenu__row__divider">`);
 
-		const $wrpResizeW = $(`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label">Width</div></div>`).appendTo(this.$mnu);
+		const $wrpResizeW = $(`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label">Width</div></div>`).appendTo(this.$mnu);
 		const $iptWidth = $(`<input class="form-control" type="number" value="${this.board.width}">`).appendTo($wrpResizeW);
 		this.$iptWidth = $iptWidth;
-		const $wrpResizeH = $(`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label">Height</div></div>`).appendTo(this.$mnu);
+		const $wrpResizeH = $(`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label">Height</div></div>`).appendTo(this.$mnu);
 		const $iptHeight = $(`<input class="form-control" type="number" value="${this.board.height}">`).appendTo($wrpResizeH);
 		this.$iptHeight = $iptHeight;
-		const $wrpSetDim = $(`<div class="sidemenu__row split-v-center"/>`).appendTo(this.$mnu);
+		const $wrpSetDim = $(`<div class="w-100 split-v-center"/>`).appendTo(this.$mnu);
 		const $btnSetDim = $(`<button class="btn btn-primary" style="width: 100%;">Set Dimensions</div>`).appendTo($wrpSetDim);
 		$btnSetDim.on("click", () => {
 			const w = Number($iptWidth.val());
@@ -759,7 +759,7 @@ class SideMenu {
 		});
 		renderDivider();
 
-		const $wrpFullscreen = $(`<div class="sidemenu__row ve-flex-vh-center-around"></div>`).appendTo(this.$mnu);
+		const $wrpFullscreen = $(`<div class="w-100 ve-flex-vh-center-around"></div>`).appendTo(this.$mnu);
 		const $btnFullscreen = $(`<button class="btn btn-primary">Toggle Fullscreen</button>`).appendTo($wrpFullscreen);
 		this.board.$btnFullscreen = $btnFullscreen;
 		$btnFullscreen.on("click", () => {
@@ -786,8 +786,8 @@ class SideMenu {
 		});
 		renderDivider();
 
-		const $wrpSaveLoad = $(`<div class="sidemenu__row--vert"/>`).appendTo(this.$mnu);
-		const $wrpSaveLoadFile = $(`<div class="sidemenu__row ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
+		const $wrpSaveLoad = $(`<div class="w-100"/>`).appendTo(this.$mnu);
+		const $wrpSaveLoadFile = $(`<div class="w-100 mb-2 ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
 		const $btnSaveFile = $(`<button class="btn btn-primary">Save to File</button>`).appendTo($wrpSaveLoadFile);
 		$btnSaveFile.on("click", () => {
 			DataUtil.userDownload(`dm-screen`, this.board.getSaveableState(), {fileType: "dm-screen"});
@@ -802,7 +802,7 @@ class SideMenu {
 			this.board.doReset();
 			await this.board.pDoLoadStateFrom(jsons[0]);
 		});
-		const $wrpSaveLoadUrl = $(`<div class="sidemenu__row ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
+		const $wrpSaveLoadUrl = $(`<div class="w-100 ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
 		const $btnSaveLink = $(`<button class="btn btn-primary">Save to URL</button>`).appendTo($wrpSaveLoadUrl);
 		$btnSaveLink.on("click", async () => {
 			const encoded = `${window.location.href.split("#")[0]}#${encodeURIComponent(JSON.stringify(this.board.getSaveableState()))}`;
@@ -811,11 +811,11 @@ class SideMenu {
 		});
 		renderDivider();
 
-		const $wrpCbConfirm = $(`<div class="sidemenu__row split-v-center"><label class="sidemenu__row__label sidemenu__row__label--cb-label"><span>Confirm on Panel Tab Close</span></label></div>`).appendTo(this.$mnu);
+		const $wrpCbConfirm = $(`<div class="w-100 split-v-center"><label class="sidemenu__row__label sidemenu__row__label--cb-label"><span>Confirm on Panel Tab Close</span></label></div>`).appendTo(this.$mnu);
 		this.board.$cbConfirmTabClose = $(`<input type="checkbox" class="sidemenu__row__label__cb">`).appendTo($wrpCbConfirm.find(`label`));
 		renderDivider();
 
-		const $wrpReset = $(`<div class="sidemenu__row split-v-center"/>`).appendTo(this.$mnu);
+		const $wrpReset = $(`<div class="w-100 split-v-center"/>`).appendTo(this.$mnu);
 		const $btnReset = $(`<button class="btn btn-danger" style="width: 100%;">Reset Screen</button>`).appendTo($wrpReset);
 		$btnReset.on("click", () => {
 			if (window.confirm("Are you sure?")) {
@@ -836,7 +836,7 @@ class SideMenu {
 		this.board.exiledPanels.forEach(p => p.get$ContentWrapper().detach());
 		this.$wrpHistory.children().remove();
 		if (this.board.exiledPanels.length) {
-			const $wrpHistHeader = $(`<div class="sidemenu__row split-v-center"><span style="font-variant: small-caps;">Recently Removed</span></div>`).appendTo(this.$wrpHistory);
+			const $wrpHistHeader = $(`<div class="w-100 mb-2 split-v-center"><span style="font-variant: small-caps;">Recently Removed</span></div>`).appendTo(this.$wrpHistory);
 			const $btnHistClear = $(`<button class="btn btn-danger">Clear</button>`).appendTo($wrpHistHeader);
 			$btnHistClear.on("click", () => {
 				this.board.exiledPanels.forEach(p => p.destroy());

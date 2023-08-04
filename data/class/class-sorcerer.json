@@ -2021,16 +2021,16 @@
 							"shield"
 						],
 						"3": [
-							"ray of sickness"
-						],
-						"5": [
-							"color spray"
-						],
-						"7": [
 							"lesser restoration"
 						],
+						"5": [
+							"dispel magic"
+						],
+						"7": [
+							"death ward"
+						],
 						"9": [
-							"blindness/deafness"
+							"Rary's telepathic bond"
 						]
 					}
 				},
@@ -2038,19 +2038,19 @@
 					"name": "New Moon",
 					"known": {
 						"1": [
-							"alter self"
+							"ray of sickness"
 						],
 						"3": [
-							"dispel magic"
+							"blindness/deafness"
 						],
 						"5": [
 							"vampiric touch"
 						],
 						"7": [
-							"phantom steed"
+							"confusion"
 						],
 						"9": [
-							"death ward"
+							"hold monster"
 						]
 					}
 				},
@@ -2058,16 +2058,16 @@
 					"name": "Crescent Moon",
 					"known": {
 						"1": [
-							"confusion"
+							"color spray"
 						],
 						"3": [
-							"hallucinatory terrain"
+							"alter self"
 						],
 						"5": [
-							"Rary's telepathic bond"
+							"phantom steed"
 						],
 						"7": [
-							"hold monster"
+							"hallucinatory terrain"
 						],
 						"9": [
 							"mislead"

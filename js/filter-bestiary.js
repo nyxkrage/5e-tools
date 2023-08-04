@@ -69,6 +69,7 @@ class PageFilterBestiary extends PageFilter {
 
 	static _getDamageTagDisplayText (tag) { return Parser.dmgTypeToFull(tag).toTitleCase(); }
 	static _getConditionDisplayText (uid) { return uid.split("|")[0].toTitleCase(); }
+	static _getAbilitySaveDisplayText (abl) { return `${abl.uppercaseFirst()} Save`; }
 	// endregion
 
 	constructor () {
@@ -174,6 +175,28 @@ class PageFilterBestiary extends PageFilter {
 			items: [...Parser.CONDITIONS],
 		});
 		this._conditionsInflictedFilter = new MultiFilter({header: "Conditions Inflicted", filters: [this._conditionsInflictedFilterBase, this._conditionsInflictedFilterLegendary, this._conditionsInflictedFilterSpells]});
+		this._savingThrowForcedFilterBase = new Filter({
+			header: "Saving Throws Required by Traits/Actions",
+			displayFn: this.constructor._getAbilitySaveDisplayText,
+			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Trait/Action)`,
+			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+			itemSortFn: null,
+		});
+		this._savingThrowForcedFilterLegendary = new Filter({
+			header: "Saving Throws Required by Lair Actions/Regional Effects",
+			displayFn: this.constructor._getAbilitySaveDisplayText,
+			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Lair/Regional)`,
+			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+			itemSortFn: null,
+		});
+		this._savingThrowForcedFilterSpells = new Filter({
+			header: "Saving Throws Required by Spells",
+			displayFn: this.constructor._getAbilitySaveDisplayText,
+			displayFnMini: abl => `Requires ${this.constructor._getAbilitySaveDisplayText(abl)} (Spell)`,
+			items: Parser.ABIL_ABVS.map(abl => Parser.attAbvToFull(abl).toLowerCase()),
+			itemSortFn: null,
+		});
+		this._savingThrowForcedFilter = new MultiFilter({header: "Saving Throw Required", filters: [this._savingThrowForcedFilterBase, this._savingThrowForcedFilterLegendary, this._savingThrowForcedFilterSpells]});
 		this._senseFilter = new Filter({
 			header: "Senses",
 			displayFn: (it) => Parser.monSenseTagToFull(it).toTitleCase(),
@@ -472,6 +495,9 @@ class PageFilterBestiary extends PageFilter {
 		this._conditionsInflictedFilterBase.addItem(mon.conditionInflict);
 		this._conditionsInflictedFilterLegendary.addItem(mon.conditionInflictLegendary);
 		this._conditionsInflictedFilterSpells.addItem(mon.conditionInflictSpell);
+		this._savingThrowForcedFilterBase.addItem(mon.savingThrowForced);
+		this._savingThrowForcedFilterLegendary.addItem(mon.savingThrowForcedLegendary);
+		this._savingThrowForcedFilterSpells.addItem(mon.savingThrowForcedSpell);
 		this._dragonAgeFilter.addItem(mon.dragonAge);
 		this._dragonCastingColor.addItem(mon.dragonCastingColor);
 	}
@@ -508,6 +534,7 @@ class PageFilterBestiary extends PageFilter {
 			this._languageFilter,
 			this._damageTypeFilter,
 			this._conditionsInflictedFilter,
+			this._savingThrowForcedFilter,
 			this._dragonAgeFilter,
 			this._dragonCastingColor,
 			this._acFilter,
@@ -557,6 +584,11 @@ class PageFilterBestiary extends PageFilter {
 				m.conditionInflict,
 				m.conditionInflictLegendary,
 				m.conditionInflictSpell,
+			],
+			[
+				m.savingThrowForced,
+				m.savingThrowForcedLegendary,
+				m.savingThrowForcedSpell,
 			],
 			m.dragonAge,
 			m.dragonCastingColor,

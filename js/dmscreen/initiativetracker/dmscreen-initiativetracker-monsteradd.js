@@ -109,9 +109,8 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 		const $btnScaleCr = $(`<button class="btn btn-default btn-xs mr-2"><span class="glyphicon glyphicon-signal"></span></button>`)
 			.on("click", async () => {
 				const crBase = this._mon.cr.cr || this._mon.cr;
-				const ixDefault = Parser.CRS.indexOf(this._state.scaledCr ? Parser.numberToCr(this._state.scaledCr) : crBase);
 
-				const cr = await InputUiUtil.pGetUserEnum({values: Parser.CRS, title: "Select Challenge Rating", default: ixDefault, isResolveItem: true});
+				const cr = await InputUiUtil.pGetUserScaleCr({default: crBase});
 				if (cr == null) return;
 
 				if (crBase === cr) {

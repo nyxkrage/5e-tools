@@ -4364,7 +4364,7 @@ class RangeFilter extends FilterBase {
 			$wrpDropdowns.addClass("ve-grow");
 
 			return this.__$wrpFilter = $$`<div class="ve-flex">
-				<div class="fltr__range-inline-label">${this._getRenderedHeader()}</div>
+				<div class="fltr__range-inline-label mr-2">${this._getRenderedHeader()}</div>
 				${$wrpSlider}
 				${$wrpDropdowns}
 			</div>`;
@@ -4775,7 +4775,7 @@ class OptionsFilter extends FilterBase {
 
 		if (opts.isMulti) {
 			return this.__$wrpFilter = $$`<div class="ve-flex">
-				<div class="fltr__range-inline-label">${this._getRenderedHeader()}</div>
+				<div class="fltr__range-inline-label mr-2">${this._getRenderedHeader()}</div>
 				${$wrpButtons}
 			</div>`;
 		} else {

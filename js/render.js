@@ -1672,6 +1672,12 @@ globalThis.Renderer = function () {
 				break;
 			}
 
+			case "@dcYourSpellSave": {
+				const [displayText] = Renderer.splitTagByPipe(text);
+				textStack[0] += displayText || "your spell save DC";
+				break;
+			}
+
 			// DICE ////////////////////////////////////////////////////////////////////////////////////////////
 			case "@dice":
 			case "@autodice":
@@ -1906,11 +1912,13 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderString_renderTag_hitYourSpellAttack = function (textStack, meta, options, tag, text) {
+		const [displayText] = Renderer.splitTagByPipe(text);
+
 		const fauxEntry = {
 			type: "dice",
 			rollable: true,
 			subType: "d20",
-			displayText: "your spell attack modifier",
+			displayText: displayText || "your spell attack modifier",
 			toRoll: `1d20 + #$prompt_number:title=Enter your Spell Attack Modifier$#`,
 		};
 		return this._recursiveRender(fauxEntry, textStack, meta);
@@ -4189,7 +4197,10 @@ Renderer.tag = class {
 	static TagHitYourSpellAttack = class extends this._TagBaseAt {
 		tagName = "hitYourSpellAttack";
 
-		_getStripped (tag, text) { return "your spell attack modifier"; }
+		_getStripped (tag, text) {
+			const [displayText] = Renderer.splitTagByPipe(text);
+			return displayText || "your spell attack modifier";
+		}
 	};
 
 	static TagDc = class extends this._TagBaseAt {
@@ -4198,6 +4209,15 @@ Renderer.tag = class {
 		_getStripped (tag, text) {
 			const [dcText, displayText] = Renderer.splitTagByPipe(text);
 			return `DC ${displayText || dcText}`;
+		}
+	};
+
+	static TagDcYourSpellSave = class extends this._TagBaseAt {
+		tagName = "dcYourSpellSave";
+
+		_getStripped (tag, text) {
+			const [displayText] = Renderer.splitTagByPipe(text);
+			return displayText || "your spell save DC";
 		}
 	};
 
@@ -4671,6 +4691,8 @@ Renderer.tag = class {
 		new this.TagHitYourSpellAttack(),
 
 		new this.TagDc(),
+
+		new this.TagDcYourSpellSave(),
 
 		new this.TaChance(),
 		new this.TaD20(),
@@ -6167,14 +6189,12 @@ Renderer.race = {
 			delete cpySr.ability;
 		}
 		if (cpySr.entries) {
-			cpySr.entries.forEach(e => {
-				if (e.data && e.data.overwrite) {
-					const toOverwrite = cpy.entries.findIndex(it => it.name.toLowerCase().trim() === e.data.overwrite.toLowerCase().trim());
-					if (~toOverwrite) cpy.entries[toOverwrite] = e;
-					else cpy.entries.push(e);
-				} else {
-					cpy.entries.push(e);
-				}
+			cpySr.entries.forEach(ent => {
+				if (!ent.data?.overwrite) return cpy.entries.push(ent);
+
+				const toOverwrite = cpy.entries.findIndex(it => it.name?.toLowerCase()?.trim() === ent.data.overwrite.toLowerCase().trim());
+				if (~toOverwrite) cpy.entries[toOverwrite] = ent;
+				else cpy.entries.push(ent);
 			});
 			delete cpySr.entries;
 		}

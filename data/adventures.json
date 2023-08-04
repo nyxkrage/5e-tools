@@ -29834,6 +29834,57 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Giants of the Star Forge",
+			"id": "GotSF",
+			"source": "GotSF",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/GotSF.png",
+			"published": "2023-08-01",
+			"storyline": "Giants of the Star Forge",
+			"level": {
+				"start": 16,
+				"end": 16
+			},
+			"contents": [
+				{
+					"name": "Giants of the Star Forge",
+					"headers": [
+						"Adventure Background",
+						"Running This Adventure",
+						"Getting Started",
+						"Fireside Monastery",
+						"Star Forge",
+						{
+							"depth": 1,
+							"header": "1: Broken Bridge"
+						},
+						{
+							"depth": 1,
+							"header": "2: Acidic Lake"
+						},
+						{
+							"depth": 1,
+							"header": "3: Iron Shelter"
+						},
+						{
+							"depth": 1,
+							"header": "4: Island Path"
+						},
+						{
+							"depth": 1,
+							"header": "5: Cracked Runestone"
+						},
+						{
+							"depth": 1,
+							"header": "6: Star Forge"
+						},
+						"Conclusion",
+						"Appendix"
+					]
+				}
+			]
 		}
 	]
 }

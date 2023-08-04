@@ -425,6 +425,8 @@ export class InitiativeTracker extends BaseComponent {
 	/* -------------------------------------------- */
 
 	async _pDoLoadEncounter ({entityInfos, encounterInfo}) {
+		const rowsPrev = [...this._state.rows];
+
 		// Reset rows early, such that our ordinals are correct for creatures from the encounter
 		this._state.rows = [];
 
@@ -452,7 +454,7 @@ export class InitiativeTracker extends BaseComponent {
 
 			rows: this._state.importIsAppend
 				? [
-					...this._state.rows,
+					...rowsPrev,
 					...rowsFromDefaultParty,
 					...nxtState.rows,
 				]
@@ -553,7 +555,7 @@ export class InitiativeTracker extends BaseComponent {
 		if (this._savedState.g != null) stateNxt.importIsRollGroups = this._savedState.g;
 		if (this._savedState.p != null) stateNxt.importIsAddPlayers = this._savedState.p;
 		if (this._savedState.a != null) stateNxt.importIsAppend = this._savedState.a;
-		if (this._savedState.k != null) stateNxt.statsAddColumns = this._savedState.k;
+		if (this._savedState.k != null) stateNxt.isStatsAddColumns = this._savedState.k;
 		if (this._savedState.piHp != null) stateNxt.playerInitShowExactPlayerHp = this._savedState.piHp;
 		if (this._savedState.piHm != null) stateNxt.playerInitShowExactMonsterHp = this._savedState.piHm;
 		if (this._savedState.piV != null) stateNxt.playerInitHideNewMonster = this._savedState.piV;
@@ -581,7 +583,7 @@ export class InitiativeTracker extends BaseComponent {
 			g: this._state.importIsRollGroups,
 			p: this._state.importIsAddPlayers,
 			a: this._state.importIsAppend,
-			k: this._state.statsAddColumns,
+			k: this._state.isStatsAddColumns,
 			piHp: this._state.playerInitShowExactPlayerHp,
 			piHm: this._state.playerInitShowExactMonsterHp,
 			piV: this._state.playerInitHideNewMonster,
@@ -620,7 +622,7 @@ export class InitiativeTracker extends BaseComponent {
 			importIsRollGroups: true,
 			importIsAddPlayers: true,
 			importIsAppend: false,
-			statsAddColumns: false,
+			isStatsAddColumns: false,
 			playerInitShowExactPlayerHp: false,
 			playerInitShowExactMonsterHp: false,
 			playerInitHideNewMonster: true,

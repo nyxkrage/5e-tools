@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import https from "https";
 
 function readJson (path) {
 	try {
@@ -74,16 +75,35 @@ class PatchLoadJson {
 
 	static _PATCH_STACK = 0;
 
+	static _CACHE_HTTP_REQUEST = {};
+
 	static patchLoadJson () {
 		if (this._PATCH_STACK++) return;
 
 		PatchLoadJson._CACHED = PatchLoadJson._CACHED || DataUtil.loadJSON.bind(DataUtil);
 
+		const pLoadUrl = async url => {
+			if (!url.startsWith("http")) return readJson(url);
+
+			return this._CACHE_HTTP_REQUEST[url] ||= new Promise((resolve, reject) => {
+				https
+					.get(
+						url,
+						resp => {
+							let stack = "";
+							resp.on("data", chunk => stack += chunk);
+							resp.on("end", () => resolve(JSON.parse(stack)));
+						},
+					)
+					.on("error", err => reject(err));
+			});
+		};
+
 		const loadJsonCache = {};
 		DataUtil.loadJSON = (url) => {
 			if (!loadJsonCache[url]) {
 				loadJsonCache[url] = (async () => {
-					const data = readJson(url);
+					const data = await pLoadUrl(url);
 					await DataUtil.pDoMetaMerge(url, data, {isSkipMetaMergeCache: true});
 					return data;
 				})();
@@ -92,7 +112,7 @@ class PatchLoadJson {
 		};
 
 		PatchLoadJson._CACHED_RAW = PatchLoadJson._CACHED_RAW || DataUtil.loadRawJSON.bind(DataUtil);
-		DataUtil.loadRawJSON = async (url) => readJson(url);
+		DataUtil.loadRawJSON = async (url) => pLoadUrl(url);
 
 		PatchLoadJson._CACHE_BREW_LOAD_SOURCE_INDEX = PatchLoadJson._CACHE_BREW_LOAD_SOURCE_INDEX || DataUtil.brew.pLoadSourceIndex.bind(DataUtil.brew);
 		DataUtil.brew.pLoadSourceIndex = async () => null;

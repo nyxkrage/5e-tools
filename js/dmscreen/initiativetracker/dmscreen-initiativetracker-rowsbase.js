@@ -194,9 +194,9 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 		const $wrp = $(`<div class="dm-init__row-mid"></div>`)
 			.appendTo($wrpRow);
 
-		const hkParentStatsAddCols = () => $wrp.toggleVe(!!this._comp._state.statsAddColumns);
-		this._comp._addHookBase("statsAddColumns", hkParentStatsAddCols)();
-		fnsCleanup.push(() => this._comp._removeHookBase("statsAddColumns", hkParentStatsAddCols));
+		const hkParentStatsAddCols = () => $wrp.toggleVe(!!this._comp._state.isStatsAddColumns);
+		this._comp._addHookBase("isStatsAddColumns", hkParentStatsAddCols)();
+		fnsCleanup.push(() => this._comp._removeHookBase("isStatsAddColumns", hkParentStatsAddCols));
 
 		const renderableCollection = new _RenderableCollectionRowStatColData({
 			rootComp: this._comp,
@@ -337,18 +337,18 @@ export class InitiativeTrackerRowDataViewBase {
 		const hkHeaderStatsCols = () => {
 			$wrpHeaderStatsCols.empty();
 
-			if (!this._comp._state.statsAddColumns) return;
+			if (!this._comp._state.isStatsAddColumns) return;
 
 			this._comp._state.statsCols.forEach(data => {
 				const meta = InitiativeTrackerStatColumnFactory.fromStateData({data});
 				$wrpHeaderStatsCols.append(meta.$getRenderedHeader());
 			});
 		};
-		this._comp._addHookBase("statsAddColumns", hkHeaderStatsCols);
+		this._comp._addHookBase("isStatsAddColumns", hkHeaderStatsCols);
 		this._comp._addHookBase("statsCols", hkHeaderStatsCols);
 		hkHeaderStatsCols();
 		rdState.fnsCleanup.push(
-			() => this._comp._removeHookBase("statsAddColumns", hkHeaderStatsCols),
+			() => this._comp._removeHookBase("isStatsAddColumns", hkHeaderStatsCols),
 			() => this._comp._removeHookBase("statsCols", hkHeaderStatsCols),
 		);
 

@@ -717,9 +717,9 @@ class ReqAttuneTagTag {
 		});
 
 		// "by a bard, cleric, druid, sorcerer, warlock, or wizard"
-		req = req.replace(/(?:(?:a|an) )?\b(artificer|bard|cleric|druid|paladin|ranger|sorcerer|warlock|wizard|barbarian|fighter|monk|rogue)\b/gi, (...m) => {
-			const source = m[1].toLowerCase() === "artificer" ? Parser.SRC_TCE : null;
-			tags.push({class: `${m[1]}${source ? `|${source}` : ""}`.toLowerCase()});
+		req = req.replace(new RegExp(`(?:(?:a|an) )?\\b${ConverterConst.STR_RE_CLASS}\\b`, "gi"), (...m) => {
+			const source = m.last().name.toLowerCase() === "artificer" ? Parser.SRC_TCE : null;
+			tags.push({class: `${m.last().name}${source ? `|${source}` : ""}`.toLowerCase()});
 			return "";
 		});
 

@@ -130,13 +130,8 @@ class PageFilterSpells extends PageFilter {
 		return SortUtil.ascSortLower(a, b);
 	}
 
-	static getFilterAbilitySave (ability) {
-		return `${ability.uppercaseFirst().substring(0, 3)}. Save`;
-	}
-
-	static getFilterAbilityCheck (ability) {
-		return `${ability.uppercaseFirst().substring(0, 3)}. Check`;
-	}
+	static getFilterAbilitySave (ability) { return `${ability.uppercaseFirst()} Save`; }
+	static getFilterAbilityCheck (ability) { return `${ability.uppercaseFirst()} Check`; }
 
 	static getMetaFilterObj (s) {
 		const out = [];
@@ -724,6 +719,13 @@ class ListSyntaxSpells extends ListUiUtil.ListSyntax {
 		"entries",
 		"entriesHigherLevel",
 	];
+
+	_getSearchCacheStats (entity) {
+		const ptrOut = {_: super._getSearchCacheStats(entity)};
+		if (typeof entity.components?.m === "string") ptrOut._ += `${entity.components.m} -- `;
+		if (typeof entity.components?.m?.text === "string") ptrOut._ += `${entity.components.m.text} -- `;
+		return ptrOut._;
+	}
 }
 
 globalThis.ListSyntaxSpells = ListSyntaxSpells;
