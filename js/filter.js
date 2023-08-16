@@ -1094,8 +1094,12 @@ class FilterBox extends ProxyBase {
 		return out.length ? out : null;
 	}
 
-	getFilterTag () {
+	getFilterTag ({isAddSearchTerm = false} = {}) {
 		const parts = this._filters.map(f => f.getFilterTagPart()).filter(Boolean);
+		if (isAddSearchTerm && this._$iptSearch) {
+			const term = this._$iptSearch.val().trim();
+			if (term) parts.push(`search=${term}`);
+		}
 		return `{@filter |${UrlUtil.getCurrentPage().replace(/\.html$/, "")}|${parts.join("|")}}`;
 	}
 

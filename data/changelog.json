@@ -2493,5 +2493,12 @@
 		"ver": "1.183.2",
 		"date": "2023-08-13",
 		"txt": "- Added \"Select All Non-UA Sources\" option to Source Filter \"Other Options\" dropdown\n- Fixed DM Screen Initiative Tracker failing to delete rows on non-SHIFT click\n- Fixed DM Screen Initiative Tracker crash when re-rolling duplicated creatures\n- (Brew) Further improved Creature Text Converter, with better handling for line splits, unusual AC formats, \"plus PB\" to-hits, repeated-punctuation trait headers, hanging lists, spell name notes, spell-like psionic power actions, custom conditions, dice/damage expressions containing \"PB\", unusual damage immunity/vulnerability/resistance formats, and unusual condition immunity formats\n- (Brew) Fixed dependencies failing to load when loading brews en-masse\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.184.0",
+		"date": "2023-08-16",
+		"title": "First I Bang This Drum",
+		"titleAlt": "Then I fee-fi-fo-fum",
+		"txt": "- Added Bigby Presents: Glory of the Giants content\n- (Brew) Various minor bugfixes and improvements to the Creature, Item, and Feat Text Converters\n- (Fixed typos/added tags)\n"
 	}
 ]

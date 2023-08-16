@@ -67236,7 +67236,8 @@
 			"wis": 11,
 			"cha": 10,
 			"skill": {
-				"perception": "+4"
+				"perception": "+4",
+				"stealth": "+3"
 			},
 			"passive": 14,
 			"immune": [

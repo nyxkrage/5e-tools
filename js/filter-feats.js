@@ -2,6 +2,11 @@
 
 class PageFilterFeats extends PageFilter {
 	// region static
+	static _PREREQ_KEY_TO_FULL = {
+		"other": "Special",
+		"spellcasting2020": "Spellcasting",
+		"spellcastingFeature": "Spellcasting",
+	};
 	// endregion
 
 	constructor () {
@@ -54,9 +59,8 @@ class PageFilterFeats extends PageFilter {
 
 		const prereqText = Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true}) || VeCt.STR_NONE;
 
-		const preSet = new Set();
-		(feat.prerequisite || []).forEach(it => preSet.add(...Object.keys(it)));
-		feat._fPrereqOther = [...preSet].map(it => (it === "other" ? "special" : it === "spellcasting2020" ? "spellcasting" : it).uppercaseFirst());
+		feat._fPrereqOther = [...new Set((feat.prerequisite || []).flatMap(it => Object.keys(it)))]
+			.map(it => (this._PREREQ_KEY_TO_FULL[it] || it).uppercaseFirst());
 		if (feat.prerequisite) feat._fPrereqLevel = feat.prerequisite.filter(it => it.level != null).map(it => `Level ${it.level.level ?? it.level}`);
 		feat._fBenifits = [
 			feat.resist ? "Damage Resistance" : null,

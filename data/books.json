@@ -3588,7 +3588,115 @@
 			"author": "Wizards RPG Team",
 			"contents": [
 				{
-					"name": "Introduction"
+					"name": "Diancastra's Saga",
+					"headers": [
+						"Glory of the Giants",
+						"Annam and the Giants"
+					]
+				},
+				{
+					"name": "Character Creation",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					},
+					"headers": [
+						"Subclass Option",
+						"Backgrounds",
+						"Big Heroes, Big Stories",
+						"Feats"
+					]
+				},
+				{
+					"name": "Giants in Play",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					},
+					"headers": [
+						"Roleplaying Giants",
+						"The Ordning",
+						"Gods and Religion",
+						"Social Structures",
+						"Organizations"
+					]
+				},
+				{
+					"name": "Giant Adventures",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					},
+					"headers": [
+						"Encounters",
+						"Adventures",
+						"Campaigns"
+					]
+				},
+				{
+					"name": "Giant Enclaves",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					},
+					"headers": [
+						"Using Enclaves",
+						"Annam's Cradle",
+						"Ashen Grotto",
+						"Dreamer's Reach",
+						"Endless Rockslide",
+						"Forest Crystal",
+						"Forsaken Deep",
+						"Gale's Eye Tower",
+						"Grolantor's Larder",
+						"Hiatea's Hearth",
+						"Horizon's Edge",
+						"Howling Iceberg",
+						"Karontor's Hold",
+						"Misty Vale",
+						"Runic Circle",
+						"Singing Sands",
+						"Star Forge",
+						"Thundering Observatory",
+						"Worldroot Sapling"
+					]
+				},
+				{
+					"name": "Giant Treasures",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					},
+					"headers": [
+						"Giant Bags",
+						"Relics of Giant Realms",
+						"Magic Items"
+					]
+				},
+				{
+					"name": "Bestiary",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 6
+					},
+					"headers": [
+						"Creature Descriptions",
+						"Creature Lists"
+					]
+				},
+				{
+					"name": "Concept Art",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					}
+				},
+				{
+					"name": "Adventure Hooks",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "B"
+					}
 				}
 			]
 		}

@@ -78,6 +78,7 @@ class ItemParser extends BaseParser {
 		else this._setWeight(item, options);
 
 		if (item.staff) this._setQuarterstaffStats(item, options);
+		this._mutRemoveBaseItemProps(item, options);
 
 		this._doItemPostProcess(item, options);
 		this._setCleanTaglineInfo_handleGenericType(item, options);
@@ -141,6 +142,7 @@ class ItemParser extends BaseParser {
 				case "very rare": stats.rarity = rarity; return true;
 				case "legendary": stats.rarity = rarity; return true;
 				case "artifact": stats.rarity = rarity; return true;
+				case "varies":
 				case "rarity varies": {
 					stats.rarity = "varies";
 					stats.__prop = "itemGroup";
@@ -157,7 +159,6 @@ class ItemParser extends BaseParser {
 		};
 
 		let baseItem = null;
-		let genericType = null;
 
 		for (let i = 0; i < parts.length; ++i) {
 			let part = parts[i];
@@ -221,28 +222,36 @@ class ItemParser extends BaseParser {
 
 			// region weapon/armor
 			if (partLower === "weapon" || partLower === "weapon (any)") {
-				genericType = "weapon";
+				(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: "weapon", options}));
+				stats.__genericType = true;
 				continue;
 			} else if (/^armou?r(?: \(any\))?$/.test(partLower)) {
-				genericType = "armor";
+				(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: "armor", options}));
+				stats.__genericType = true;
 				continue;
 			} else {
 				const mWeaponAnyX = /^weapon \(any ([^)]+)\)$/i.exec(part);
 				if (mWeaponAnyX) {
-					stats.__genericType = mWeaponAnyX[1].trim().toCamelCase();
+					(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: mWeaponAnyX[1].trim().toCamelCase(), options}));
+					stats.__genericType = true;
 					continue;
 				}
 			}
 
 			const mBaseWeapon = /^(weapon|staff) \(([^)]+)\)$/i.exec(part);
-			const mBaseArmor = /^armou?r \((?<type>[^)]+)\)$/i.exec(part);
 			if (mBaseWeapon) {
 				if (mBaseWeapon[1].toLowerCase() === "staff") stats.staff = true;
 				baseItem = ItemParser.getItem(mBaseWeapon[2]);
 				if (!baseItem) throw new Error(`Could not find base item "${mBaseWeapon[2]}"`);
 				continue;
-			} else if (mBaseArmor) {
-				if (this._setCleanTaglineInfo_isMutAnyArmor(stats, mBaseArmor)) continue;
+			}
+
+			const mBaseArmor = /^armou?r \((?<type>[^)]+)\)$/i.exec(part);
+			if (mBaseArmor) {
+				if (this._setCleanTaglineInfo_isMutAnyArmor(stats, mBaseArmor)) {
+					stats.__genericType = true;
+					continue;
+				}
 
 				baseItem = this._setCleanTaglineInfo_getArmorBaseItem(mBaseArmor.groups.type);
 				if (!baseItem) throw new Error(`Could not find base item "${mBaseArmor.groups.type}"`);
@@ -255,8 +264,6 @@ class ItemParser extends BaseParser {
 		}
 
 		this._setCleanTaglineInfo_handleBaseItem(stats, baseItem, options);
-		// Stash the genericType for later processing/removal
-		if (genericType) stats.__genericType = genericType;
 	}
 
 	static _setCleanTaglineInfo_getArmorBaseItem (name) {
@@ -265,38 +272,47 @@ class ItemParser extends BaseParser {
 		return baseItem;
 	}
 
+	static _setCleanTaglineInfo_getProcArmorPart ({pt}) {
+		switch (pt) {
+			case "light": return {"type": "LA"};
+			case "medium": return {"type": "MA"};
+			case "heavy": return {"type": "HA"};
+			default: {
+				const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt);
+				if (!baseItem) throw new Error(`Could not find base item "${pt}"`);
+
+				return {name: baseItem.name};
+			}
+		}
+	}
+
 	static _setCleanTaglineInfo_isMutAnyArmor (stats, mBaseArmor) {
 		if (/^any /i.test(mBaseArmor.groups.type)) {
 			const ptAny = mBaseArmor.groups.type.replace(/^any /i, "");
 			const [ptInclude, ptExclude] = ptAny.split(/\bexcept\b/i).map(it => it.trim()).filter(Boolean);
 
-			const procPart = pt => {
-				switch (pt) {
-					case "light": return {"type": "LA"};
-					case "medium": return {"type": "MA"};
-					case "heavy": return {"type": "HA"};
-					default: {
-						const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt);
-						if (!baseItem) throw new Error(`Could not find base item "${pt}"`);
-
-						return {name: baseItem.name};
-					}
-				}
-			};
-
 			if (ptInclude) {
 				stats.requires = [
 					...(stats.requires || []),
-					...ptInclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).map(it => procPart(it)),
+					...ptInclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).map(it => this._setCleanTaglineInfo_getProcArmorPart({pt: it})),
 				];
 			}
 
 			if (ptExclude) {
 				Object.assign(
 					stats.excludes = stats.excludes || {},
-					ptExclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).mergeMap(it => procPart(it)),
+					ptExclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).mergeMap(it => this._setCleanTaglineInfo_getProcArmorPart({pt: it})),
 				);
 			}
+
+			return true;
+		}
+
+		if (/^(?:light|medium|heavy)$/i.test(mBaseArmor.groups.type)) {
+			stats.requires = [
+				...(stats.requires || []),
+				this._setCleanTaglineInfo_getProcArmorPart({pt: mBaseArmor.groups.type}),
+			];
 
 			return true;
 		}
@@ -326,18 +342,36 @@ class ItemParser extends BaseParser {
 		stats.baseItem = `${baseItem.name.toLowerCase()}${baseItem.source === Parser.SRC_DMG ? "" : `|${baseItem.source}`}`;
 	}
 
+	static _setCleanTaglineInfo_getGenericRequires ({stats, str, options}) {
+		switch (str) {
+			case "weapon": return [{"weapon": true}];
+			case "sword": return [{"sword": true}];
+			case "axe": return [{"axe": true}];
+			case "armor": return [{"armor": true}];
+			case "bow": return [{"bow": true}, {"crossbow": true}];
+			case "bludgeoning": return [{"dmgType": "B"}];
+			case "piercing": return [{"dmgType": "P"}];
+			case "slashing": return [{"dmgType": "S"}];
+			default: {
+				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Tagline part "${str}" requires manual conversion`);
+				return [{[str]: true}];
+			}
+		}
+	}
+
 	static _setCleanTaglineInfo_handleGenericType (stats, options) {
 		if (!stats.__genericType) return;
-		const genericType = stats.__genericType;
 		delete stats.__genericType;
 
 		let prefixSuffixName = stats.name;
-		prefixSuffixName = prefixSuffixName.replace(/^weapon /i, "");
+		prefixSuffixName = prefixSuffixName
+			.replace(/^(weapon|armor) /i, "")
+			.replace(/ (weapon|armor)$/i, "");
 		const isSuffix = /^\s*of /i.test(prefixSuffixName);
 
 		stats.inherits = MiscUtil.copy(stats);
 		// Clean/move inherit props into inherits object
-		delete stats.inherits.name; // maintain name on base object
+		["name", "requires", "excludes"].forEach(prop => delete stats.inherits[prop]); // maintain some props on base object
 		Object.keys(stats.inherits).forEach(k => delete stats[k]);
 
 		if (isSuffix) stats.inherits.nameSuffix = ` ${prefixSuffixName.trim()}`;
@@ -345,21 +379,6 @@ class ItemParser extends BaseParser {
 
 		stats.__prop = "magicvariant";
 		stats.type = "GV";
-		switch (genericType) {
-			case "weapon": stats.requires = [{"weapon": true}]; break;
-			case "sword": stats.requires = [{"sword": true}]; break;
-			case "axe": stats.requires = [{"axe": true}]; break;
-			case "armor": stats.requires = [{"armor": true}]; break;
-			case "bow": stats.requires = [{"bow": true}, {"crossbow": true}]; break;
-			case "bludgeoning": stats.requires = [{"dmgType": "B"}]; break;
-			case "piercing": stats.requires = [{"dmgType": "P"}]; break;
-			case "slashing": stats.requires = [{"dmgType": "S"}]; break;
-			default: {
-				stats.requires = [{[genericType]: true}];
-				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Tagline part "${genericType}" requires manual conversion`);
-				break;
-			}
-		}
 	}
 
 	static _setWeight (stats, options) {
@@ -389,16 +408,26 @@ class ItemParser extends BaseParser {
 		delete cpyStatsQuarterstaff.value;
 		delete cpyStatsQuarterstaff.srd;
 		delete cpyStatsQuarterstaff.basicRules;
-		// region tags found only on basic items
-		delete cpyStatsQuarterstaff.weapon;
-		delete cpyStatsQuarterstaff.dagger;
-		// endregion
 
 		Object.entries(cpyStatsQuarterstaff)
 			.filter(([k]) => !k.startsWith("_"))
 			.forEach(([k, v]) => {
 				if (stats[k] == null) stats[k] = v;
 			});
+	}
+
+	static _mutRemoveBaseItemProps (stats) {
+		if (stats.__prop === "baseitem") return;
+
+		// region tags found only on basic items
+		delete stats.weapon;
+		delete stats.dagger;
+		delete stats.bow;
+		delete stats.spear;
+		delete stats.sword;
+		delete stats.axe;
+		delete stats.mace;
+		// endregion
 	}
 }
 ItemParser._ALL_ITEMS = null;

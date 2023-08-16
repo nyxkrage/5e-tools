@@ -30,6 +30,19 @@
 			}
 		},
 		{
+			"name": "Fury of the Frost Giant",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "feats/BGG/Fury of the Frost Giant.webp"
+					}
+				}
+			]
+		},
+		{
 			"name": "Initiate of High Sorcery",
 			"source": "DSotDQ",
 			"images": [

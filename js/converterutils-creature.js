@@ -240,7 +240,8 @@ class AcConvert {
 			case "mountain tattoo": // KftGV :: Prisoner 13
 			case "disarming charm": // TG :: Forge Fitzwilliam
 			case "graz'zt's gift": // KftGV :: Sythian Skalderang
-				return fromLow.uppercaseFirst();
+			case "damaged plate": // BGG :: Firegaunt
+				return fromLow;
 				// endregion
 
 			// region homebrew
@@ -397,73 +398,68 @@ class _CreatureImmunityResistanceVulnerabilityConverterBase {
 
 		const out = [];
 
-		try {
-			spl
-				.forEach(section => {
-					let note = noteAll;
-					let preNote;
-					const newGroup = [];
+		spl
+			.forEach(section => {
+				let note = noteAll;
+				let preNote;
+				const newGroup = [];
 
-					section
-						.split(/,/g)
-						.forEach(pt => {
-							pt = pt.trim().replace(/^and /i, "").trim();
+				section
+					.split(/,/g)
+					.forEach(pt => {
+						pt = pt.trim().replace(/^and /i, "").trim();
 
-							const special = this._getSpecialFromPart({pt});
-							if (special) return out.push(special);
+						const special = this._getSpecialFromPart({pt});
+						if (special) return out.push(special);
 
-							pt = pt.replace(/\(from [^)]+\)$/i, (...m) => {
-								if (note) throw new Error(`Already has note!`);
-								note = m[0];
-								return "";
-							}).trim();
+						pt = pt.replace(/\(from [^)]+\)$/i, (...m) => {
+							if (note) throw new Error(`Already has note!`);
+							note = m[0];
+							return "";
+						}).trim();
 
-							pt = pt.replace(/(?:damage )?(?:from|during) [^)]+$/i, (...m) => {
-								if (note) throw new Error(`Already has note!`);
-								note = m[0];
-								return "";
-							}).trim();
+						pt = pt.replace(/(?:damage )?(?:from|during) [^)]+$/i, (...m) => {
+							if (note) throw new Error(`Already has note!`);
+							note = m[0];
+							return "";
+						}).trim();
 
-							pt = pt.replace(/\bthat is nonmagical$/i, (...m) => {
-								if (note) throw new Error(`Already has note!`);
-								note = m[0];
-								return "";
-							}).trim();
+						pt = pt.replace(/\bthat is nonmagical$/i, (...m) => {
+							if (note) throw new Error(`Already has note!`);
+							note = m[0];
+							return "";
+						}).trim();
 
-							const ixPreNote = this._getIxPreNote({pt});
-							if (ixPreNote > 0) {
-								preNote = pt.slice(0, ixPreNote).trim();
-								pt = pt.slice(ixPreNote).trim();
-							}
-
-							if (pt) newGroup.push(pt);
-						});
-
-					const newGroupOut = newGroup
-						.map(it => this._getUid(it));
-
-					if (note || preNote) {
-						if (!newGroupOut.length) {
-							out.push({special: [preNote, note].filter(Boolean).join(" ")});
-							return;
+						const ixPreNote = this._getIxPreNote({pt});
+						if (ixPreNote > 0) {
+							preNote = pt.slice(0, ixPreNote).trim();
+							pt = pt.slice(ixPreNote).trim();
 						}
 
-						const toAdd = {[this._modProp]: newGroupOut};
-						if (preNote) toAdd.preNote = preNote;
-						if (note) toAdd.note = note;
-						out.push(toAdd);
+						if (pt) newGroup.push(pt);
+					});
+
+				const newGroupOut = newGroup
+					.map(it => this._getUid(it));
+
+				if (note || preNote) {
+					if (!newGroupOut.length) {
+						out.push({special: [preNote, note].filter(Boolean).join(" ")});
 						return;
 					}
 
-					// If there is no group metadata, flatten into the main array
-					out.push(...newGroupOut);
-				});
+					const toAdd = {[this._modProp]: newGroupOut};
+					if (preNote) toAdd.preNote = preNote;
+					if (note) toAdd.note = note;
+					out.push(toAdd);
+					return;
+				}
 
-			return out;
-		} catch (ignored) {
-			opts.cbWarning(`Res/imm/vuln ("${this._modProp}") "${ipt}" requires manual conversion`);
-			return ipt;
-		}
+				// If there is no group metadata, flatten into the main array
+				out.push(...newGroupOut);
+			});
+
+		return out;
 	}
 }
 

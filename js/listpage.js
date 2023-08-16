@@ -1252,7 +1252,7 @@ class ListPage {
 				let url = window.location.href;
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
-					await MiscUtil.pCopyTextToClipboard(this._filterBox.getFilterTag());
+					await MiscUtil.pCopyTextToClipboard(this._filterBox.getFilterTag({isAddSearchTerm: true}));
 					JqueryUtil.showCopiedEffect($btn);
 					return;
 				}

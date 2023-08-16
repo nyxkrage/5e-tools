@@ -3336,6 +3336,57 @@
 		},
 		{
 			"name": "Ember of the Fire Giant",
+			"source": "BGG",
+			"page": 17,
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"strike of the giants|BGG|strike of the giants (fire strike)"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con",
+							"wis"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"resist": [
+				"fire"
+			],
+			"entries": [
+				"You've manifested the fiery combat emblematic of fire giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Born of Flame",
+							"entries": [
+								"You have resistance to fire damage."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Searing Ignition",
+							"entries": [
+								"When you take the {@action Attack} action on your turn, you can replace a single attack with a magical burst of flame. Each creature of your choice in a 15-foot-radius sphere centered on you must make a Dexterity saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, a creature takes fire damage equal to {@dice 1d8} + your proficiency bonus, and it has the blinded condition until the start of your next turn. On a successful save, the creature takes half as much damage only. You can use your Searing Ignition a number of times equal to your proficiency bonus (but no more than once per turn), and you regain all expended uses when you finish a long rest."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ember of the Fire Giant",
 			"source": "UA2022GiantOptions",
 			"page": 5,
 			"prerequisite": [
@@ -3878,6 +3929,58 @@
 		},
 		{
 			"name": "Fury of the Frost Giant",
+			"source": "BGG",
+			"page": 17,
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"strike of the giants|BGG|strike of the giants (frost strike)"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con",
+							"wis"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"resist": [
+				"cold"
+			],
+			"entries": [
+				"You've manifested the icy might emblematic of frost giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Born of Ice",
+							"entries": [
+								"You have resistance to cold damage."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Frigid Retaliation",
+							"entries": [
+								"Immediately after a creature you can see within 30 feet of you hits you with an attack roll and deals damage, you can use your reaction to retaliate with a conjured blast of ice. The creature must make a Constitution saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature takes cold damage equal to {@dice 1d8} + your proficiency bonus, and its speed is reduced to 0 until the end of its next turn. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+							]
+						}
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fury of the Frost Giant",
 			"source": "UA2022GiantOptions",
 			"page": 4,
 			"prerequisite": [
@@ -4247,6 +4350,47 @@
 						"During the first round of any combat against your chosen foes, your attack rolls against any of them have advantage.",
 						"When any of your chosen foes makes an opportunity attack against you, it makes the attack roll with disadvantage.",
 						"Whenever you make an Intelligence ({@skill Arcana}, {@skill History}, {@skill Nature}, or {@skill Religion}) check to recall information about your chosen foes, you add double your proficiency bonus to the check, even if you're not normally proficient."
+					]
+				}
+			]
+		},
+		{
+			"name": "Guile of the Cloud Giant",
+			"source": "BGG",
+			"page": 18,
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"strike of the giants|BGG|strike of the giants (cloud strike)"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con",
+							"cha"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You've manifested the confounding magic emblematic of cloud giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Cloudy Escape",
+							"entries": [
+								"When a creature you can see hits you with an attack roll, you can use your reaction to give yourself resistance to that attack's damage. You then teleport to an unoccupied space that you can see within 30 feet of yourself. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+							]
+						}
 					]
 				}
 			]
@@ -5128,6 +5272,54 @@
 						"You always know which way is north.",
 						"You always know the number of hours left before the next sunrise or sunset.",
 						"You can accurately recall anything you have seen or heard within the past month."
+					]
+				}
+			]
+		},
+		{
+			"name": "Keenness of the Stone Giant",
+			"source": "BGG",
+			"page": 18,
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"strike of the giants|BGG|strike of the giants (stone strike)"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con",
+							"wis"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You've manifested the physical talents emblematic of stone giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Cavernous Sight",
+							"entries": [
+								"You gain {@sense darkvision} with a range of 60 feet. If you already have {@sense darkvision} from another source, its range increases by 60 feet."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Stone Throw",
+							"entries": [
+								"As a bonus action, you can take a rock and make a magical attack with it. The attack is a ranged spell attack with a range of 60 feet that uses the ability score you increased with this feat as the spellcasting ability. On a hit, the rock deals {@damage 1d10} force damage, and the target must succeed on a Strength saving throw (DC equals 8 + your proficiency bonus + the spellcasting ability modifier) or have the prone condition. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+							]
+						}
 					]
 				}
 			]
@@ -7369,6 +7561,127 @@
 			]
 		},
 		{
+			"name": "Rune Shaper",
+			"source": "BGG",
+			"page": 18,
+			"prerequisite": [
+				{
+					"spellcastingFeature": true
+				},
+				{
+					"background": [
+						{
+							"name": "Rune Carver",
+							"displayEntry": "{@background Rune Carver|BGG}"
+						}
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"comprehend languages"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You've studied the magic of Giant runes, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Comprehend Languages",
+							"entries": [
+								"You learn the {@spell comprehend languages} spell. You can cast this spell without expending a spell slot, and you must finish a long rest before you can cast it in this way again. You can also cast this spell using any spell slots you have."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Rune Magic",
+							"entries": [
+								"You know a number of runes equal to half your proficiency bonus (rounded down), chosen from the Rune Spells table. Whenever you finish a long rest, you can inscribe each rune you know onto one nonmagical weapon, armor, piece of clothing, or other object you touch. You temporarily learn the 1st-level spells that correspond to the runes you inscribed, as specified on the Rune Spells table, and you know those spells until you finish a long rest, when the runes fade. While you are wearing or carrying any rune-marked object, you can cast the spells associated with those runes using any spell slots you have.",
+								"You can also invoke a rune inscribed on an object you are wearing or carrying and cast its associated spell without expending a spell slot or using material components. Once you cast the spell in this way, you can't do so again until you finish a long rest. Your spellcasting ability for this feat is Intelligence, Wisdom, or Charisma (choose when you select this feat).",
+								"Each time you gain a level, you can replace one of the runes you know with another one from the Rune Spells table.",
+								{
+									"type": "table",
+									"colStyles": [
+										"col-2",
+										"col-10"
+									],
+									"colLabels": [
+										"Rune",
+										"Spell"
+									],
+									"rows": [
+										[
+											"Cloud",
+											"{@spell Fog cloud}"
+										],
+										[
+											"Death",
+											"{@spell Inflict wounds}"
+										],
+										[
+											"Dragon",
+											"{@spell Chromatic orb}"
+										],
+										[
+											"Enemy",
+											"{@spell Disguise self}"
+										],
+										[
+											"Fire",
+											"{@spell Burning hands}"
+										],
+										[
+											"Friend",
+											"{@spell Speak with animals}"
+										],
+										[
+											"Frost",
+											"{@spell Armor of Agathys}"
+										],
+										[
+											"Hill",
+											"{@spell Goodberry}"
+										],
+										[
+											"Journey",
+											"{@spell Longstrider}"
+										],
+										[
+											"King",
+											"{@spell Command}"
+										],
+										[
+											"Mountain",
+											"{@spell Entangle}"
+										],
+										[
+											"Stone",
+											"{@spell Sanctuary}"
+										],
+										[
+											"Storm",
+											"{@spell Thunderwave}"
+										]
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Savage Attacker",
 			"source": "PHB",
 			"page": 169,
@@ -8083,6 +8396,47 @@
 		},
 		{
 			"name": "Soul of the Storm Giant",
+			"source": "BGG",
+			"page": 19,
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"strike of the giants|BGG|strike of the giants (storm strike)"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"wis",
+							"cha"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You've manifested the tempest magic emblematic of storm giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Maelstrom Aura",
+							"entries": [
+								"As a bonus action, you surround yourself with an aura of magical wind and lightning that extends 10 feet from you in every direction but not through total cover. The aura lasts until the start of your next turn or until you are incapacitated. While the aura is active, you have resistance to lightning and thunder damage. In addition, attack rolls against you have disadvantage, and whenever another creature starts its turn within the aura, you can force the creature to make a Strength saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature's speed is halved until the start of its next turn. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Soul of the Storm Giant",
 			"source": "UA2022GiantOptions",
 			"page": 5,
 			"prerequisite": [
@@ -8574,6 +8928,75 @@
 					"items": [
 						"You gain proficiency in the {@skill Stealth} skill. If you are already proficient in the skill, you add double your proficiency bonus to checks you make with it.",
 						"If you are hidden, you can move up to 10 feet in the open without revealing yourself if you end the move in a position where you're not clearly visible."
+					]
+				}
+			]
+		},
+		{
+			"name": "Strike of the Giants",
+			"source": "BGG",
+			"page": 19,
+			"prerequisite": [
+				{
+					"proficiency": [
+						{
+							"weaponGroup": "martial"
+						}
+					]
+				},
+				{
+					"background": [
+						{
+							"name": "Giant Foundling",
+							"displayEntry": "{@background Giant Foundling|BGG}"
+						}
+					]
+				}
+			],
+			"entries": [
+				"You have absorbed primeval magic that gives you an echo of the might of giants. When you take this feat, choose one of the benefits listed below. Once per turn, when you hit a target with a melee weapon attack or a ranged weapon attack using a thrown weapon, you can imbue the attack with an additional effect depending on the benefit you chose:",
+				{
+					"type": "entries",
+					"name": "Cloud Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d4} thunder damage. If the target is a creature, it must succeed on a Wisdom saving throw, or you become invisible to it until the start of your next turn or until immediately after you make an attack roll or cast a spell."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fire Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d10} fire damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frost Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d6} cold damage. If the target is a creature, it must succeed on a Constitution saving throw, or its speed is reduced to 0 until the start of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hill Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d6} damage of the weapon's type. If the target is a creature, it must succeed on a Strength saving throw or have the prone condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Stone Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d6} force damage. If the target is a creature, it must succeed on a Strength saving throw or be pushed 10 feet from you in a straight line."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Storm Strike",
+					"entries": [
+						"The target takes an extra {@damage 1d6} lightning damage. If the target is a creature, it must succeed on a Constitution saving throw, or it has disadvantage on attack rolls until the start of your next turn.",
+						"The saving throw DC for these effects equals 8 + your proficiency bonus + your Strength or Constitution modifier.",
+						"You can use this feat a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 					]
 				}
 			]
@@ -9598,6 +10021,54 @@
 			],
 			"entries": [
 				"As an action, you can transform the lower half of your body into an inky black vapor, allowing you to float through the air. While transformed, you have a flying speed of 30 feet. You can maintain this form for up to 10 minutes. Once you use this ability, you can't use it again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Vigor of the Hill Giant",
+			"source": "BGG",
+			"page": 19,
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"strike of the giants|BGG|strike of the giants (hill strike)"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con",
+							"wis"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You've manifested the resilience emblematic of hill giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Bulwark",
+							"entries": [
+								"When you are subjected to an effect that would move you at least 5 feet or give you the prone condition, you can use your reaction to steady yourself. You aren't moved and don't have the prone condition."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Iron Stomach",
+							"entries": [
+								"Whenever you eat food as part of a short rest and spend one or more Hit Dice to regain hit points, you regain additional hit points equal to your Constitution modifier + your proficiency bonus."
+							]
+						}
+					]
+				}
 			]
 		},
 		{

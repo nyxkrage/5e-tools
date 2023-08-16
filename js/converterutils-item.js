@@ -120,11 +120,7 @@ class RechargeAmountTag {
 	static _RE_TEMPLATES_CHARGES = [
 		[
 			"(?<charges>",
-			")[^.]*?\\b(?:charges? at dawn|charges? daily at dawn|charges? each day at dawn)",
-		],
-		[
-			"(?<charges>",
-			")[^.]*?\\b(?:charges? at dawn|charges? daily at dawn|charges? each day at dawn)",
+			")[^.]*?\\b(?:charges? (?:at|each) dawn|charges? daily at dawn|charges? each day at dawn)",
 		],
 		[
 			"charges and regains (?<charges>",

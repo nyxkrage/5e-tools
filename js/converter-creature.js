@@ -313,7 +313,7 @@ class CreatureParser extends BaseParser {
 			) {
 				// noinspection StatementWithEmptyBodyJS
 				while (this._absorbBrokenLine({meta}));
-				this._setCleanConditionImm(stats, meta.curLine);
+				this._setCleanConditionImm(stats, meta.curLine, options);
 				continue;
 			}
 
@@ -1118,25 +1118,25 @@ class CreatureParser extends BaseParser {
 
 				// damage vulnerabilities (optional)
 				if (~meta.curLine.indexOf("Damage Vulnerabilities")) {
-					this._setCleanDamageVuln(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine));
+					this._setCleanDamageVuln(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine), options);
 					continue;
 				}
 
 				// damage resistances (optional)
 				if (~meta.curLine.indexOf("Damage Resistance")) {
-					this._setCleanDamageRes(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine));
+					this._setCleanDamageRes(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine), options);
 					continue;
 				}
 
 				// damage immunities (optional)
 				if (~meta.curLine.indexOf("Damage Immunities")) {
-					this._setCleanDamageImm(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine));
+					this._setCleanDamageImm(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine), options);
 					continue;
 				}
 
 				// condition immunities (optional)
 				if (~meta.curLine.indexOf("Condition Immunities")) {
-					this._setCleanConditionImm(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine));
+					this._setCleanConditionImm(stats, ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine), options);
 					continue;
 				}
 

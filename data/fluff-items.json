@@ -6,6 +6,20 @@
 	},
 	"itemFluff": [
 		{
+			"name": "Adze of Annam",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Adze of Annam.webp"
+					},
+					"credit": "Isabel Gibney"
+				}
+			]
+		},
+		{
 			"name": "Akmon, Hammer of Purphoros",
 			"source": "MOT",
 			"images": [
@@ -366,6 +380,20 @@
 						"type": "internal",
 						"path": "items/DMG/Berserker Axe.jpg"
 					}
+				}
+			]
+		},
+		{
+			"name": "Bigby's Beneficent Bracelet",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Bigbys Beneficent Bracelet.webp"
+					},
+					"credit": "Isabel Gibney"
 				}
 			]
 		},
@@ -1949,6 +1977,20 @@
 			]
 		},
 		{
+			"name": "Helm of Perfect Potential",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Helm of Perfect Potential.webp"
+					},
+					"credit": "Isabel Gibney"
+				}
+			]
+		},
+		{
 			"name": "Helm of Telepathy",
 			"source": "DMG",
 			"images": [
@@ -3246,6 +3288,52 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Prehistoric Figurines of Wondrous Power.webp"
+					},
+					"credit": "Olga Drebas"
+				}
+			]
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Carnelian Triceratops",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Jasper Tyrannosaurus Rex",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Kyanite Pteranodon",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
+		},
+		{
+			"name": "Prehistoric Figurine of Wondrous Power, Pyrite Plesiosaurus",
+			"source": "BGG",
+			"_copy": {
+				"name": "Prehistoric Figurine of Wondrous Power",
+				"source": "BGG"
+			}
 		},
 		{
 			"name": "Prosthetic Limb",
@@ -4642,6 +4730,20 @@
 						"type": "internal",
 						"path": "items/PHB/Thieves' Tools.jpg"
 					}
+				}
+			]
+		},
+		{
+			"name": "Thunderbuss",
+			"source": "BGG",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/BGG/Thunderbuss.webp"
+					},
+					"credit": "Isabel Gibney"
 				}
 			]
 		},
