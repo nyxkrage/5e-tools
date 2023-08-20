@@ -38,6 +38,8 @@ class PageFilterBackgrounds extends PageFilter {
 		bg._fOtherBenifits = [];
 		if (bg.feats) bg._fOtherBenifits.push("Feat");
 		if (bg.additionalSpells) bg._fOtherBenifits.push("Additional Spells");
+		if (bg.armorProficiencies) bg._fOtherBenifits.push("Armor Proficiencies");
+		if (bg.weaponProficiencies) bg._fOtherBenifits.push("Weapon Proficiencies");
 		bg._skillDisplay = skillDisplay;
 	}
 

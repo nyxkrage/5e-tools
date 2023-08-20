@@ -1,6 +1,1204 @@
 {
 	"encounter": [
 		{
+			"name": "Fomorian",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature fomorian noble|BGG} (attitude: {@dice 1d8 + 2}) studying a treatise on arcane phenomena"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 1d4 + 2} {@creature Hook Horror||hook horrors} (attitude: {@dice 1d6}) banging their hooks on rocks or their bodies"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature fomorian} (attitude: {@dice 1d4 + 1}) with 5 {@creature commoner} captives (attitude: {@dice 1d8 + 4})"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature fomorian deep crawler|BGG} (attitude: {@dice 1d4 + 1}) scuttling in search of victims"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature fomorian} (attitude: {@dice 1d10}) supervising 1 {@creature umber hulk} (attitude: {@dice 1d6}) as it digs new tunnels"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 2d4} {@creature Flumph||flumphs} (attitude: {@dice 1d8 + 4}) trying to avoid 1 {@creature ettin ceremorph|BGG} (attitude: {@dice 1d4 + 1}) while feeding on the ettin's psionic energy"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "2 {@creature Mind Flayer||mind flayers} (attitude: {@dice 1d4 + 1}) telepathically discussing the finer points of a brain they just shared"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature fomorian} (attitude: {@dice 1d8}) contemplating a gemstone it thinks is floating but that is actually suspended inside 1 {@creature gelatinous cube} (attitude: {@dice 1d4 + 1})"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature fomorian warlock of the dark|BGG} (attitude: {@dice 1d8 + 2}) seeking omens in the twisting slither of 1 {@creature neothelid|MPMM} (attitude: {@dice 1d8})"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature ulitharid|MPMM} (attitude: {@dice 1d6}) bargaining with 1 {@creature fomorian} (attitude: {@dice 1d8}) to establish a new mind flayer colony in the fomorian's territory"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dinosaur World",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature regisaur|BGG} (attitude: {@dice 1d8}) hunting"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature altisaur|BGG} (attitude: {@dice 1d8 + 2}) grazing"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "{@dice 2d4} {@creature ankylosaurus} (attitude: {@dice 1d8}) digging a nest"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "{@dice 2d4} {@creature allosaurus} (attitude: {@dice 1d6}) engaged in territorial threat displays"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature aerosaur|BGG} (attitude: {@dice 1d8}) slowly circling"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature ceratops|BGG} (attitude: {@dice 1d6}) rampaging"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "{@dice 1d4 + 1} {@creature triceratops} (attitude: {@dice 1d6 + 4}) grazing"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature tyrannosaurus rex} (attitude: {@dice 1d4 + 1}) pursuing prey"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "{@dice 2d4} {@creature brontosaurus|MPMM} (attitude: {@dice 1d6 + 4}) migrating"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "{@dice 1d4} {@creature stegosaurus|MPMM} (attitude: {@dice 1d8 + 2}) trying to help an additional one that is stuck in thick mud"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Elemental Air",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "{@dice 1d3} {@creature Mist Hulk|BGG|mist hulks} (attitude: {@dice 1d8}) wandering about, wallowing in regret"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 2d4} {@creature aarakocra} (attitude: {@dice 1d10 + 2}) flying in formation"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "{@dice 1d4} {@creature Air Elemental||air elementals} (attitude: {@dice 1d8 + 2}) kicking up dust and debris"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "{@dice 1d4} Evil Air cultists ({@creature Veteran||veterans}; attitude: {@dice 1d8}) riding {@creature Hippogriff||hippogriffs} (attitude: {@dice 1d8 + 2}) and accosting travelers"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature invisible stalker} (attitude: {@dice 1d6}) looking for a particular magic item"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature young gold dragon} (attitude: {@dice 1d8 + 4}) dancing in high wind currents"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature cloud giant of Evil Air|BGG} (attitude: {@dice 1d4 + 1}) terrorizing the skies"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature djinni} (attitude: {@dice 1d12 + 2}) examining shattered gargoyle remains"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "{@dice 2d4} {@creature Griffon||griffons} (attitude: {@dice 1d10}) with blue and gray coloring soaring"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature lightning hulk|BGG} (attitude: {@dice 1d8}) crackling in a jagged path"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "{@dice 1d3} {@creature Air Elemental Myrmidon|MPMM|air elemental myrmidons} (attitude: {@dice 1d6}) on high alert"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature elder tempest|MPMM} (attitude: {@dice 1d6 + 2}) reveling in a storm"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Elemental Earth",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "{@dice 2d4} {@creature Gargoyle||gargoyles} (attitude: {@dice 1d8}) keeping watch, crouching utterly still"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "2 {@creature Galeb Duhr||galeb duhrs} (attitude: {@dice 1d10}) singing a rumbling bass duet to an audience of boulders"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature mud hulk|BGG} (attitude: {@dice 1d4 + 1}) futilely trying to bury 1 {@creature dust hulk|BGG} (attitude: {@dice 1d12}) in piles of muck"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "2 {@creature Bulette||bulettes} (attitude: {@dice 1d6 + 2}) burrowing and breaching the surface in an intricate dance"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "2 {@creature xorn} (attitude: {@dice 1d10}) gliding through the ground"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature roper} lurking near its brood of {@dice 1d6} {@creature Piercer||piercers} (attitude for all: {@dice 1d4 + 1})"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature stone giant of Evil Earth|BGG} (attitude: {@dice 1d4 + 1}) seeking surface-world creatures or structures to destroy"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature medusa|MOT} (attitude: {@dice 1d10}) anxiously planning its next move"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "{@dice 1d3} {@creature Earth Elemental||earth elementals} (attitude: {@dice 1d6 + 2}) examining a crystal formation"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature dao} (attitude: {@dice 1d8}) shaking down 2 dwarf miners ({@creature Veteran||veterans}; attitude: {@dice 1d10 + 2}) for \"taxes\""
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "2 {@creature Earth Elemental Myrmidon|MPMM|earth elemental myrmidons} (attitude: {@dice 1d8}) stoically patrolling"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature zaratan|MPMM} (attitude: {@dice 1d6 + 2}) lumbering through the area, heedless of damage it causes"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Elemental Fire",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature salamander} heating its spear over {@dice 2d4} {@creature Fire Snake||fire snakes} (attitude for all: {@dice 1d6 + 3}) in a tangled coil"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "2 {@creature Cinder Hulk|BGG|cinder hulks} (attitude: {@dice 1d4 + 1}) seeking to burn everything in their path"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "{@dice 1d4 + 1} {@creature Smoke Mephit||smoke mephits} (attitude: {@dice 1d6}) following 1 {@creature fire elemental} (attitude: {@dice 1d8}) as it cuts a blazing swath"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature efreeti} and its {@dice 1d4} dwarf minions ({@creature Thug||thugs}; attitude for all: {@dice 1d4 + 1}) demanding tribute"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "{@dice 2d6} {@creature Magmin||magmins} (attitude: {@dice 1d6}) searching for something sizable to burn"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 2d4} {@creature Azer||azers} assembling pieces of a {@creature helmed horror} (attitude for all: {@dice 1d10})"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "2 {@creature Fire Elemental||fire elementals} (attitude: {@dice 1d8}) flitting adoringly around a bonfire"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature young red dragon} (attitude: {@dice 1d4 + 1}) picking through the remains of a burned-out caravan"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature fire giant of Evil Fire|BGG} (attitude: {@dice 1d4 + 1}) conquering in the name of Imix, Prince of Evil Fire"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature flameskull} (attitude: {@dice 1d8 + 2}) searching for a lost spellbook from its living days"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "1 {@creature fire elemental myrmidon|MPMM} guarding 1 {@creature azer} (attitude for both: {@dice 1d6 + 2}) that is gathering metal or other raw material"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature phoenix|MPMM} (attitude: {@dice 1d8 + 3}) traveling to or from a site of great devastation"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Elemental Water",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "A {@creature Sea Hag||coven} of 3 {@creature Sea Hag||sea hags} (attitude: {@dice 1d4 + 1}) trying to peer into the future"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature cult fanatic} and {@dice 2d6} {@creature Cultist||cultists} of Evil Water (all with swimming speeds of 30 feet and the ability to breathe water), with {@dice 1d2} {@creature Chuul||chuuls} (attitude for all: {@dice 1d4 +1})"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature rime hulk|BGG} (attitude: {@dice 1d6}) wailing and stalking"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature storm crab|BGG} (attitude: {@dice 1d8}) traveling in a straight path with purpose"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature frost giant of Evil Water|BGG} (attitude: {@dice 1d6}) considering going on a rampage"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature marid} singing as it lounges with 1 {@creature water elemental} (attitude for both: {@dice 1d10})"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature hydra} (attitude: {@dice 1d4 + 1}) hunting"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "2 {@creature Water Weird||water weirds} (attitude: {@dice 1d8}) keeping watch in small pools"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature dragon turtle} (attitude: {@dice 1d12}) searching for an advantage against a rival {@creature kraken}"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "2 {@creature Water Elemental||water elementals} (attitude: {@dice 1d10}) diligently making furrows in the sand using their bodies, creating a sprawling pattern"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "2 {@creature Water Elemental Myrmidon|MPMM|water elemental myrmidons} (attitude: {@dice 1d6 + 2}) barring a passage or portal"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature leviathan|MPMM} (attitude: {@dice 1d8}) swimming through an exceptionally high tide"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fiendish Incursion",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "{@dice 1d4} {@creature Barlgura||barlguras} (attitude: {@dice 1d4 + 1}) capering around a blasphemous idol"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature arcanaloth} (attitude: {@dice 1d12}) searching for a tempting bit of lost lore"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "2 {@creature Chain Devil||chain devils} (attitude: {@dice 1d6}) suspending corpses on spiked chains"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature fury of Kostchtchie|BGG} performing a rite with 2 {@creature Troll||trolls} (attitude for all: {@dice 1d6})"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature echo of Demogorgon|BGG} (attitude: {@dice 1d4 + 1}) building a two-headed effigy from corpses"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature stalker of Baphomet|BGG} (attitude: {@dice 1d4 + 1}) and 2 {@creature minotaur} cultists (attitude: {@dice 1d4 + 1}) stalking a {@creature scout} (attitude: {@dice 1d10 + 4})"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature maw of Yeenoghu|BGG} with 4 {@creature Gnoll||gnolls} and 4 {@creature Hyena||hyenas} (attitude for all: {@dice 1d4 + 1}), all stalking prey"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature marilith} (attitude: {@dice 1d4 + 2}) searching for a renowned giant smith to forge six new swords"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature cambion} (attitude: {@dice 1d8}) trading verbal jabs with 1 {@creature succubus} (attitude: {@dice 1d12})"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature fire hellion|BGG} (attitude: {@dice 1d6}) conjuring 1 {@creature bone devil} (attitude: {@dice 1d12}) into a red-hot iron circle"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Giant Construct",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature runic colossus|BGG} (attitude: {@dice 1d6}) slowly rousing from a dormant state"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 2d4} {@creature Animated Armor||animated armors} (Large) and 1 {@creature rug of smothering} (attitude for all: {@dice 1d6}) keeping watch"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature iron golem} (attitude: {@dice 1d6}) patrolling"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature shield guardian} (attitude: {@dice 1d12}) searching for its master"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature stone golem} (attitude: {@dice 1d6}) crudely carved to resemble a hill giant"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 1d4 + 1} {@creature Helmed Horror||helmed horrors} (attitude: {@dice 1d8}) in a partially dormant state, as if asleep"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "2 {@creature Flesh Golem||flesh golems} (Large; attitude: {@dice 1d6}) made from ogre corpses stitched with copper wire"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature clay golem} (attitude: {@dice 1d6 + 6}) awaiting the fulfillment of a verse of ancient prophecy, which the characters could fulfill"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature cadaver collector|MPMM} (attitude: {@dice 1d8}) gathering bodies destined to become a {@creature flesh colossus|BGG} (described in {@book chapter 6|BGG|6|Flesh Colossus})"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature retriever|MPMM} (attitude: {@dice 1d6}) searching for a thief who stole a Giant rune"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Giant Kin",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "A band of {@dice 2d6} {@creature Ogre||ogres} (attitude: {@dice 1d6}) fawning over enormous Giant runes inscribed in the ground"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 1d4} {@creature Cyclops||cyclopes} (attitude: {@dice 1d10}) tending a herd of sheep"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature troll} and {@dice 2d4} {@creature Orc||orcs} (attitude for all: {@dice 1d8}) scouting new settlement locations"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature troll mutate|BGG} (attitude: {@dice 1d6}) drawing, scratching, or painting with too many claws"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "{@dice 1d4} {@creature Firbolg Primeval Warden|BGG|firbolg primeval wardens} (attitude: {@dice 1d12}) making camp"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 1d4 + 1} {@creature Fensir Skirmisher|BGG|fensir skirmishers} (attitude: {@dice 1d6 + 2}) frantically gathering and hunting food to stockpile"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature firbolg wanderer|BGG} (attitude: {@dice 1d8}) reluctantly bargaining with 1 {@creature green hag} (attitude: {@dice 1d8 + 3})"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "2 {@creature Ettin||ettins} (attitude: {@dice 1d8}) playing cards, with each head as an individual player in a four-player game"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "2 {@creature Ogre Chain Brute|MPMM|ogre chain brutes} (attitude: {@dice 1d4 + 1}) demolishing a small structure"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature dire troll|MPMM} (attitude: {@dice 1d6}) eating a dead troll before it regenerates"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Giant Necropolis",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature young red shadow dragon} (attitude: {@dice 1d4 + 1}) seeking treasures steeped in sorrow"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "2 {@creature Cairnwight|BGG|cairnwights} (attitude: {@dice 1d6 + 3}) critiquing each other's artistic works in progress"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature barrowghast|BGG} and 2 {@creature Zombie||zombies} (attitude for all: {@dice 1d4 + 1}) prowling for living creatures to slay"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature frostmourn|BGG} (attitude: {@dice 1d8 + 1}) contemplating the many notches on its greataxe"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "{@dice 1d4} {@creature Shadow||shadows} (attitude: {@dice 1d8}) playing out the last moments of their lives as a shadow puppet show on a wall"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 2d6} {@creature Zombie||zombies} (attitude: {@dice 1d4 + 1}) shuffling listlessly, following a path of Giant runes painted in dried blood"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature firegaunt|BGG} (attitude: {@dice 1d4 + 1}) killing and destroying, desperately hoping someone will end its existence"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature flesh colossus|BGG} (attitude: {@dice 1d6}) marked with the Giant rune of death, defending the crumbled ruins of the place it was created to protect"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature tempest spirit|BGG} (attitude: {@dice 1d6}) searching for lost magical knowledge"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature spectral cloud|BGG} (attitude: {@dice 1d12}) wandering with a ghostly green lantern"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Megafauna World",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "{@dice 2d4} {@creature Giant Ox|BGG|giant oxen} (attitude: {@dice 1d6 + 4}) grazing on shrubs, trees, or thatched roofs"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 1d3} {@creature Titanothere|BGG|titanotheres} (attitude: {@dice 1d8 + 3}) roaming; one of them scratches an itch on trees, uprooting them in the process"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature giant goose|BGG} (attitude: {@dice 1d8}) running with an item from a hill giant's bag (see \"{@book Giant Bags|BGG|5|Giant Bags}\" in {@book chapter 5|BGG|5}) in its mouth"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "2 {@creature Mammoth||mammoths} (attitude: {@dice 1d6}) locking tusks in a territory dispute"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature gigant|BGG} (attitude: {@dice 1d4 + 1}) rampaging"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 1d4} {@creature Saber-Toothed Tiger||saber-toothed tigers} (attitude: {@dice 1d10}) stalking near a herd of {@dice 2d4} {@creature giant elk} (attitude: {@dice 1d6 + 3})"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature purple worm} (attitude: {@dice 1d4 + 1}) following vibrations toward food"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "{@dice 2d6} {@creature Giant Tick|BGG|giant ticks} (attitude: {@dice 1d4 + 1}) sucking the last blood from a giant's corpse"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature froghemoth|MPMM} (attitude: {@dice 1d6}) trying to hide somewhere comically inadequate for its bulk"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature gray render|MPMM} (attitude: {@dice 1d6 + 3}) gnawing the scenery"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cloud Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature cloud giant} seeking to learn the secrets of 1 {@creature spectral cloud|BGG} (attitude for both: {@dice 1d8})"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature cloud giant} (attitude: {@dice 1d12}) trading riddles with 1 {@creature djinni} (attitude: {@dice 1d6 + 4})"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "{@dice 1d6} {@creature Nothic||nothics} (attitude: {@dice 2d4 + 2}) coveting cloud giant arcana"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature cloud giant destiny gambler|BGG} (attitude: {@dice 1d8 + 2}) conferring with 1 {@creature mage} (attitude: {@dice 1d12})"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "{@dice 1d4} {@creature doppelganger} spies (attitude: {@dice 1d8 + 1}) posing as servants while they try to glean secrets"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "2 {@creature Cloud Giant||cloud giants} (attitude: {@dice 1d10 + 2}; roll separately for each) engaged in a wager or battle of wits"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature cloud giant} (attitude: {@dice 1d10 + 2}) training 1 {@creature spotted lion|BGG} (attitude: {@dice 1d4 + 1})"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature cloud giant of Evil Air|BGG} bossing around 2 {@creature Air Elemental||air elementals} (attitude for all: {@dice 1d6})"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature cloud giant} (attitude: {@dice 1d8 + 1}) hunting with 1 {@creature wyvern} (attitude: {@dice 1d6})"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "{@dice 2d4} {@creature goliath giant-kin|BGG} (attitude: {@dice 1d6 + 4}) trying to retrieve an {@creature owlbear} (attitude: {@dice 1d6}) on a rampage after running away from its giant owner"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "{@dice 1d4 + 1} {@creature Vampiric Mist|MPMM|vampiric mists} (attitude: {@dice 1d4 + 1}) lurking in a fog bank"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature cloud giant smiling one|MPMM} (attitude: {@dice 1d10}) seeking the {@book Misty Vale|BGG|4|Misty Vale} (see {@book chapter 4|BGG|4})"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Death Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "{@dice 1d6} {@creature Skeleton||skeletons} (attitude: {@dice 1d4 + 1}) rebuilding a destroyed idol at the disinterested direction of 1 {@creature death giant reaper|BGG} (attitude: {@dice 1d10 + 2})"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature death giant shrouded one|BGG} (attitude: {@dice 1d8}) wringing historical facts from a {@creature ghost} (attitude: {@dice 1d6 + 4}) that weeps over the memories"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "{@dice 1d4} {@creature Wraith||wraiths} (attitude: {@dice 1d4 + 1}) puzzling over a trinket that reminds them of their past lives"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature death giant reaper|BGG} (attitude: {@dice 1d6}) stalking a creature to offer its soul to the Raven Queen"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature stone giant} (attitude: {@dice 1d12}) negotiating with 1 {@creature death giant reaper|BGG} (attitude: {@dice 1d8})"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature revenant} (attitude: {@dice 1d10}) bent on revenging itself on its killer\u2014a death giant"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature death giant reaper|BGG} (attitude: {@dice 1d8 + 2}) brooding over ancient carvings"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature death giant reaper|BGG} exile (attitude: {@dice 1d8 + 1}) searching for a creature it killed whose soul escaped the Raven Queen's clutches (the creature is now a {@creature revenant})"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature death giant shrouded one|BGG} (attitude: {@dice 1d6}) debating 1 {@creature devourer|MPMM} (attitude: {@dice 1d4 + 1}) on the finer points of souls"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature nightwalker|MPMM} (attitude: {@dice 1d4 + 1}) striding in search of a death giant's home or trappings"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fire Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature fire giant of Evil Fire|BGG} overseeing the rampage of 2 {@creature Fire Elemental||fire elementals} (attitude for all: {@dice 1d4 + 1})"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature fire giant forgecaller|BGG} using a {@creature xorn} (attitude for both: {@dice 1d10}) to track down mineral deposits"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature fire giant} (attitude: {@dice 1d10}) feeding {@dice 1d4 + 1} {@creature Hell Hound||hell hounds} (attitude: {@dice 1d6})"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "{@dice 2d4} {@creature Rust Monster||rust monsters} (attitude: {@dice 1d10}, automatically hostile toward anyone using metal objects) following the scent of iron"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature firegaunt|BGG} (attitude: {@dice 1d6}) stalking its former fellows who betrayed it"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "2 {@creature Troll||trolls} (attitude: {@dice 1d10 + 3}) terrified to disobey the orders of 1 {@creature fire giant} (attitude: {@dice 1d6})"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 soot-caked {@creature iron golem} (attitude: {@dice 1d6})"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature fire giant} smith (attitude: {@dice 1d10}) working on a breastplate sized for a Large creature"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "{@dice 2d4} {@creature goliath giant-kin|BGG} (attitude: {@dice 1d8 + 2}) hauling a load of ore from a mine"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "3 {@creature Fire Giant||fire giants} (attitude: {@dice 1d6 + 1}) battling an {@creature adult red dragon} (attitude: {@dice 1d6})"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "1 {@creature fire giant} (attitude: {@dice 1d8 + 1}) leading 4 {@creature Firenewt Warrior|MPMM|firenewt warriors} (attitude: {@dice 1d8 + 1}) riding {@creature Giant Strider|MPMM|giant striders} (attitude: {@dice 1d8 + 3})"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature fire giant dreadnought|MPMM} (attitude: {@dice 1d6}) on guard"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Frost Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature frost giant} (attitude: {@dice 1d8 + 1}) leading 1 {@creature titanothere|BGG} (attitude: {@dice 1d10}) loaded with fur and timber"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature young silver dragon} (attitude: {@dice 1d10 + 3}) tracking a frost giant raiding party"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature frost giant} hunting with {@dice 1d4} {@creature Winter Wolf||winter wolves} (attitude for all: {@dice 1d6})"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "2 {@creature Frost Giant||frost giants} (attitude: {@dice 1d6 + 2}) burying a body that rises as 1 {@creature frostmourn|BGG} (attitude: {@dice 1d4 + 1}) in the process"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "{@dice 2d4} {@creature Giant Goat||giant goats} (attitude: {@dice 1d6 + 4}) wandering about with chewed tethers"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature troll} (attitude: {@dice 1d10 + 2}) anxiously searching for the lost goats it tends for a frost giant tribe"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature frost giant} (attitude: {@dice 1d8 + 1}) building a wind shelter from ice blocks"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "1 {@creature frost giant ice shaper|BGG} (attitude: {@dice 1d10}) performing a sacrifice to Thrym"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 bored {@creature troll amalgam|BGG} (attitude: {@dice 1d10}) throwing its arm at a stack of boulders"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "{@dice 2d4} {@creature goliath giant-kin|BGG} (attitude: {@dice 1d8 + 3}) on a pilgrimage"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "1 {@creature ogre bolt launcher|MPMM} and {@dice 1d4 + 2} {@creature Ogre||ogres} (attitude for all: {@dice 1d6}) bringing spoils from a raid to their frost giant leader"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature frost giant everlasting one|MPMM} (attitude: {@dice 1d4 + 1}) plotting revenge against the tribe that exiled it"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Hill Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "2 {@creature Hill Giant||hill giants} charging at each other until their heads collide, while 4 {@creature Ogre||ogres} (attitude for all: {@dice 1d6 + 3}) watch and cheer"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature hill giant avalancher|BGG} (attitude: {@dice 1d8 + 2}) searching exasperatedly for a {@creature giant goose|BGG} that stole from the giant's bag"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "2 {@creature Hill Giant||hill giants} (attitude: {@dice 1d10}) trading broken weapons they've collected"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature hill giant} and 3 {@creature Ogre||ogres} (attitude for all: {@dice 1d12}) taking turns bowling ettin skulls at sticks stuck in the ground"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature hill giant} (attitude: {@dice 1d6 + 3}) dejectedly trying to reassemble a small stone building it accidentally demolished"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "{@dice 1d4} {@creature Otyugh||otyughs} (attitude: {@dice 1d10}) in a waste pit where hill giants dispose of feast remnants"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature hill giant} singing beautifully for {@dice 1d4} {@creature Dire Wolf||dire wolves} (attitude for all: {@dice 1d10 + 2})"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "2 {@creature Hill Giant||hill giants} (attitude: {@dice 1d8}) roasting a bear over a burning wagon and excessively seasoning it with spices plundered from the wagon"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "{@dice 2d4} {@creature goliath giant-kin|BGG} (attitude: {@dice 1d8 + 2}) enjoying a feast"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature hill giant} (attitude: {@dice 1d6}) asking for food from a gang of {@dice 2d4} {@creature Bugbear||bugbears} (attitude: {@dice 1d6 + 2})"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "1 {@creature flind|MPMM} (attitude: {@dice 1d4 + 1}) leading a bloodthirsty party of 5 {@creature Gnoll Hunter|MPMM|gnoll hunters} (attitude: {@dice 1d6})"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature mouth of Grolantor|MPMM} (attitude: {@dice 1d6}) eating everything in reach, including the landscape"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Stone Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature stone giant} and 1 {@creature xorn} (attitude for both: {@dice 1d10}) hunting for gems, much the way surface peoples hunt for truffles"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature stone giant rockspeaker|BGG} conferring with 2 {@creature Galeb Duhr||galeb duhrs} (attitude for all: {@dice 1d8 + 4})"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature stone giant} (attitude: {@dice 1d12}) playing fetch with 1 {@creature carrion crawler} (attitude: {@dice 1d4 + 1})"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "{@dice 2d4} {@creature goliath giant-kin|BGG} (attitude: {@dice 1d10}) practicing throwing rocks"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature stone giant} arguing with 1 {@creature minotaur} (attitude for both: {@dice 1d12}) about the best path for a maze they're designing"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "1 {@creature stone giant} (attitude: {@dice 1d6 + 4}) dreamily carving a slab of rock into an abstract hill giant figure"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "1 {@creature cairnwight|BGG} (attitude: {@dice 1d8 + 2}) searching for treasure stolen from its tomb"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "{@dice 2d4} cave bears ({@creature Polar Bear||polar bears}; attitude: {@dice 1d6 + 1}) on patrol"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature stone giant of Evil Earth|BGG} (attitude: {@dice 1d6}) arguing theology with 2 {@creature Stone Giant||stone giants} (attitude: {@dice 1d12})"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "{@dice 2d6} dwarf prospectors ({@creature Veteran||veterans}; attitude: {@dice 1d12}) delving into areas full of stone giant dream carvings"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "2 {@creature Korred|MPMM|korreds} (attitude: {@dice 1d8}) exchanging their cut hair with 1 {@creature stone giant} (attitude: {@dice 1d10}) for stone and gem artwork"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature stone giant dreamwalker|MPMM} (attitude: {@dice 1d8 + 2}) collecting objects and creatures to fuse into its body"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Storm Giant",
+			"source": "BGG",
+			"tables": [
+				{
+					"diceExpression": "d12",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "1 {@creature storm giant tempest caller|BGG} (attitude: {@dice 1d8 + 2}) communing with a lightning-lit face in a thundercloud"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "1 {@creature storm giant} riding 1 {@creature aerosaur|BGG} (attitude for both: {@dice 1d10})"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "1 {@creature lightning hulk|BGG} (attitude: {@dice 1d6}) reveling in destruction"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "1 {@creature storm giant} hunting or fishing with 1 {@creature griffon} or {@creature giant octopus} companion (attitude for both: {@dice 1d10 + 2})"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "1 {@creature storm giant} (attitude: {@dice 1d12}) patiently explaining a Giant rune to {@dice 1d4} {@creature Ogre||ogres} (attitude: {@dice 1d10})"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "2 {@creature Storm Giant||storm giants} (attitude: {@dice 1d8 + 2}) moving pieces on a massive game board according to events that haven't happened yet"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "{@dice 1d4} {@creature Behir||behirs} (attitude: {@dice 1d8 + 1}) stalking storm giants"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "{@dice 2d4} {@creature goliath giant-kin|BGG} (attitude: {@dice 1d8 + 3}) meditating in hopes of receiving a vision or prophetic word"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "1 {@creature storm herald|BGG} conferring with 1 {@creature kraken} (attitude for both: {@dice 1d8 + 1})"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "1 {@creature adult blue dragon} (attitude: {@dice 1d6}) seeking the secret refuge of a storm giant oracle who is an ancient enemy"
+						},
+						{
+							"min": 11,
+							"max": 11,
+							"result": "1 {@creature kraken priest|MPMM} and 3 {@creature Deep Scion|MPMM|deep scions} (attitude for all: {@dice 1d4 + 1}) studying storm giant runes"
+						},
+						{
+							"min": 12,
+							"max": 12,
+							"result": "1 {@creature storm giant quintessent|MPMM} (attitude: {@dice 1d12}) reading omens in the migration paths of 2 {@creature Roc||rocs} or {@creature Killer Whale||killer whales} (attitude: {@dice 1d6 + 4})"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Sylvan Forest",
 			"source": "DMG",
 			"page": 86,

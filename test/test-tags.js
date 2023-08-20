@@ -223,9 +223,10 @@ function getEncodedDeity (str, tag) {
 class LinkCheck extends DataTesterBase {
 	static registerParsedPrimitiveHandlers (parsedJsonChecker) {
 		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
+		parsedJsonChecker.addPrimitiveHandler("object", this._checkObject.bind(this));
 	}
 
-	static _checkString (str, {filePath}) {
+	static _checkString (str, {filePath, isStatblock = false}) {
 		let match;
 		while ((match = LinkCheck.RE.exec(str))) {
 			const tag = match[1];
@@ -261,9 +262,19 @@ class LinkCheck extends DataTesterBase {
 			const url = `${Renderer.tag.getPage(tag)}#${UrlUtil.encodeForHash(toEncode)}`.toLowerCase().trim()
 				.replace(/%5c/gi, ""); // replace slashes
 			if (!ALL_URLS.has(url)) {
-				this._addMessage(`Missing link: ${match[0]} in file ${filePath} (evaluates to "${url}")\nSimilar URLs were:\n${getSimilar(url)}\n`);
+				this._addMessage(`Missing link: ${isStatblock ? `(as "statblock" entry) ` : ""}${match[0]} in file ${filePath} (evaluates to "${url}")\nSimilar URLs were:\n${getSimilar(url)}\n`);
 			}
 		}
+	}
+
+	static _checkObject (obj, {filePath}) {
+		if (obj.type !== "statblock") return obj;
+
+		// TODO(Future) expand/tweak support as required
+		const asStr = `{@${obj.tag} ${obj.name}|${obj.source || ""}}`;
+		this._checkString(asStr, {filePath, isStatblock: true});
+
+		return obj;
 	}
 }
 LinkCheck._RE_TAG_BLOCKLIST = new Set(["quickref"]);

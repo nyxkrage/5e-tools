@@ -7332,6 +7332,40 @@
 			]
 		}
 	},
+	"TDCSR": {
+		"Freedom of the Waves": {
+			"class": [
+				{
+					"name": "Druid",
+					"source": "PHB"
+				},
+				{
+					"name": "Ranger",
+					"source": "PHB"
+				},
+				{
+					"name": "Sorcerer",
+					"source": "PHB"
+				}
+			]
+		},
+		"Freedom of the Winds": {
+			"class": [
+				{
+					"name": "Druid",
+					"source": "PHB"
+				},
+				{
+					"name": "Sorcerer",
+					"source": "PHB"
+				},
+				{
+					"name": "Ranger",
+					"source": "PHB"
+				}
+			]
+		}
+	},
 	"UA2020PsionicOptionsRevisited": {
 		"Intellect Fortress": {
 			"class": [

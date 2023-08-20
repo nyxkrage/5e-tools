@@ -420,13 +420,16 @@ class ItemParser extends BaseParser {
 		if (stats.__prop === "baseitem") return;
 
 		// region tags found only on basic items
-		delete stats.weapon;
-		delete stats.dagger;
+		delete stats.armor;
+		delete stats.axe;
 		delete stats.bow;
+		delete stats.crossbow;
+		delete stats.dagger;
+		delete stats.mace;
+		delete stats.net;
 		delete stats.spear;
 		delete stats.sword;
-		delete stats.axe;
-		delete stats.mace;
+		delete stats.weapon;
 		// endregion
 	}
 }

@@ -150,7 +150,7 @@
 					"page": 82,
 					"id": "00b",
 					"entries": [
-						"Before diving headlong into the events of \"The Orrery of the Wanderer\" campaign, you might wish to spend some time having the characters experience and explore the city of Waterdeep. The adventure {@adventure Waterdeep: Dragon Heist|WDH} and the \"Volo's Waterdeep Enchiridion\" section of that book (available at the DMs Guild as a separate download\u2014{@link www.dmsguild.com|http://www.dmsguild.com}) provide a ton of information about the City of Splendors.",
+						"Before diving headlong into the events of \"The Orrery of the Wanderer\" campaign, you might wish to spend some time having the characters experience and explore the city of Waterdeep. The adventure {@adventure Waterdeep: Dragon Heist|WDH} and the \"Volo's Waterdeep Enchiridion\" section of that book (available at the DMs Guild as a separate download\u2014{@link www.dmsguild.com|https://www.dmsguild.com}) provide a ton of information about the City of Splendors.",
 						"Additionally, you can make use of the following rumors that characters might hear on the streets or in the taverns of that great metropolis. Some of these rumors tie to the adventure, while the truth of others depends on your wishes for the campaign. Either way, feel free to use these rumors as inspiration for new encounters or side treks.",
 						{
 							"type": "list",

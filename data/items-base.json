@@ -1588,6 +1588,38 @@
 	],
 	"itemProperty": [
 		{
+			"abbreviation": "Vst",
+			"source": "TDCSR",
+			"page": 200,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Vestige of Divergence",
+					"page": 200,
+					"entries": [
+						"{@note This item is a Vestige of Divergence, see {@book Tal'Dorei Treasures|TDCSR|5|Vestiges of Divergence} for more information.}"
+					]
+				}
+			],
+			"template": "Vestige"
+		},
+		{
+			"abbreviation": "ER",
+			"source": "TDCSR",
+			"page": 195,
+			"entriesTemplate": [
+				{
+					"type": "entries",
+					"name": "Extended Reach",
+					"page": 195,
+					"entries": [
+						"This weapon adds {{item.reach}} feet to your reach when you attack with it. This property also determines your reach for {@action opportunity attack|PHB|opportunity attacks} with an Extended Reach weapon."
+					]
+				}
+			],
+			"template": "{{prop_name}} ({{item.reach}}\u00A0ft.)"
+		},
+		{
 			"abbreviation": "A",
 			"source": "PHB",
 			"page": 146,
@@ -1770,6 +1802,15 @@
 		}
 	],
 	"itemType": [
+		{
+			"abbreviation": "IDG",
+			"source": "TDCSR",
+			"name": "Illegal Drug",
+			"page": 85,
+			"entriesTemplate": [
+				"{@note This item is an illegal drug; see {@variantrule Illegal Drugs|TDCSR} for more information.}"
+			]
+		},
 		{
 			"abbreviation": "AT",
 			"source": "PHB",

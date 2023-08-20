@@ -166,6 +166,27 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Blighted Sapling",
+			"source": "TDCSR",
+			"effects": [
+				{
+					"name": "Druid's Leadership",
+					"changes": [
+						{
+							"key": "data.attributes.hp.max",
+							"mode": "ADD",
+							"value": "2 * @srd5e.userchar.classes.druid.levels"
+						},
+						{
+							"key": "data.attributes.ac.formula",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						}
+					]
+				}
+			]
 		}
 	]
 }

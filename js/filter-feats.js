@@ -6,6 +6,7 @@ class PageFilterFeats extends PageFilter {
 		"other": "Special",
 		"spellcasting2020": "Spellcasting",
 		"spellcastingFeature": "Spellcasting",
+		"spellcastingPrepared": "Spellcasting",
 	};
 	// endregion
 

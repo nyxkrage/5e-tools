@@ -582,10 +582,6 @@
 				"desert",
 				"underdark"
 			],
-			"soundClip": {
-				"type": "external",
-				"url": "https://5e.tools/audio/bestiary/purple-worm.mp3"
-			},
 			"traitTags": [
 				"Tunneler"
 			],

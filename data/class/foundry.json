@@ -4652,6 +4652,126 @@
 			"subclassSource": "UAClericDruidWizard",
 			"level": 6,
 			"isIgnored": true
+		},
+		{
+			"name": "Incarnation of Corruption",
+			"source": "TDCSR",
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Blighted",
+			"subclassSource": "TDCSR",
+			"level": 14,
+			"entryData": {
+				"resist": [
+					"necrotic"
+				]
+			}
+		},
+		{
+			"name": "Bonus Proficiencies",
+			"source": "TDCSR",
+			"className": "Cleric",
+			"classSource": "PHB",
+			"subclassShortName": "Blood",
+			"subclassSource": "TDCSR",
+			"level": 1,
+			"entryData": {
+				"weaponProficiencies": [
+					{
+						"martial": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Mystical Erudition",
+			"source": "TDCSR",
+			"className": "Monk",
+			"classSource": "PHB",
+			"subclassShortName": "Cobalt Soul",
+			"subclassSource": "TDCSR",
+			"level": 6,
+			"entryData": {
+				"skillProficiencies": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"nature",
+								"religion"
+							],
+							"count": 1
+						}
+					}
+				],
+				"languageProficiencies": [
+					{
+						"any": 1
+					}
+				]
+			}
+		},
+		{
+			"name": "Mystical Erudition (11th Level)",
+			"source": "TDCSR",
+			"className": "Monk",
+			"classSource": "PHB",
+			"subclassShortName": "Cobalt Soul",
+			"subclassSource": "TDCSR",
+			"level": 11,
+			"entryData": {
+				"skillProficiencies": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"nature",
+								"religion"
+							],
+							"count": 1
+						}
+					}
+				],
+				"languageProficiencies": [
+					{
+						"any": 1
+					}
+				]
+			}
+		},
+		{
+			"name": "Mystical Erudition (17th Level)",
+			"source": "TDCSR",
+			"className": "Monk",
+			"classSource": "PHB",
+			"subclassShortName": "Cobalt Soul",
+			"subclassSource": "TDCSR",
+			"level": 17,
+			"entryData": {
+				"skillProficiencies": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"investigation",
+								"nature",
+								"religion"
+							],
+							"count": 1
+						}
+					}
+				],
+				"languageProficiencies": [
+					{
+						"any": 1
+					}
+				]
+			}
 		}
 	]
 }

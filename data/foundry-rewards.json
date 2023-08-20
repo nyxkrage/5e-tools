@@ -16,6 +16,11 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Curse of Ruin",
+			"source": "TDCSR",
+			"img": "icons/magic/holy/chalice-glowing-yellow-blue.webp"
 		}
 	]
 }

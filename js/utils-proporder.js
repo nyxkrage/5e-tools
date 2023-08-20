@@ -441,6 +441,8 @@ PropOrder._BACKGROUND = [
 	"skillProficiencies",
 	"languageProficiencies",
 	"toolProficiencies",
+	"weaponProficiencies",
+	"armorProficiencies",
 	"startingEquipment",
 
 	"additionalSpells",
@@ -996,6 +998,7 @@ PropOrder._ITEM = [
 	"bonusAbilityCheck",
 	"bonusProficiencyBonus",
 	"modifySpeed",
+	"reach",
 	"critThreshold",
 
 	"recharge",
@@ -1168,6 +1171,9 @@ PropOrder._REWARD = [
 	"rarity",
 
 	"entries",
+
+	"hasFluff",
+	"hasFluffImages",
 ];
 PropOrder._VARIANTRULE = [
 	"name",

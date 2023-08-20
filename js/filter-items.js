@@ -38,7 +38,7 @@ class PageFilterEquipment extends PageFilter {
 			deselFn: (it) => PageFilterItems._DEFAULT_HIDDEN_TYPES.has(it),
 			displayFn: StrUtil.toTitleCase,
 		});
-		this._propertyFilter = new Filter({header: "Property", displayFn: StrUtil.uppercaseFirst});
+		this._propertyFilter = new Filter({header: "Property", displayFn: StrUtil.toTitleCase});
 		this._categoryFilter = new Filter({
 			header: "Category",
 			items: ["Basic", "Generic Variant", "Specific Variant", "Other"],

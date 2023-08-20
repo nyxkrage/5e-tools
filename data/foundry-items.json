@@ -20,6 +20,26 @@
 	],
 	"item": [
 		{
+			"name": "Plainscow",
+			"source": "TDCSR",
+			"img": "icons/creatures/mammals/livestock-cow-green.webp"
+		},
+		{
+			"name": "Dynamite",
+			"source": "TDCSR",
+			"img": "icons/weapons/thrown/bomb-timer.webp"
+		},
+		{
+			"name": "Gluebomb",
+			"source": "TDCSR",
+			"img": "icons/weapons/thrown/bomb-metal-brown.webp"
+		},
+		{
+			"name": "Stink Bomb",
+			"source": "TDCSR",
+			"img": "icons/weapons/thrown/bomb-purple.webp"
+		},
+		{
 			"name": "Tangler Grenade",
 			"source": "WDMM",
 			"type": "consumable"

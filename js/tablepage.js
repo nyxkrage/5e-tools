@@ -162,7 +162,7 @@ class TableListPage extends ListPage {
 			});
 		}
 
-		const ptResult = Renderer.get().render(row.result.replace(/{@dice /, "{@autodice "));
+		const ptResult = Renderer.get().render(row.result.replace(/{@dice /g, "{@autodice "));
 		const $ptAttitude = this._roll_$getPtAttitude(row);
 
 		const $ele = $$`<span><strong>${roll}</strong> ${ptResult}${$ptAttitude}</span>`;

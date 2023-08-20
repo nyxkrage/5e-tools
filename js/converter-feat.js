@@ -107,6 +107,7 @@ class FeatParser extends BaseParser {
 				if (/^pact magic feature$/i.test(pt)) return pre.spellcasting2020 = true;
 
 				if (/^spellcasting feature$/i.test(pt)) return pre.spellcastingFeature = true;
+				if (/^spellcasting feature from a class that prepares spells$/i.test(pt)) return pre.spellcastingPrepared = true;
 
 				if (/proficiency with a martial weapon/i.test(pt)) {
 					pre.proficiency = pre.proficiency || [{}];

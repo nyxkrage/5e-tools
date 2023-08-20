@@ -71,7 +71,6 @@ function rmDirRecursiveSync (dir) {
 class PatchLoadJson {
 	static _CACHED = null;
 	static _CACHED_RAW = null;
-	static _CACHE_BREW_LOAD_SOURCE_INDEX = null;
 
 	static _PATCH_STACK = 0;
 
@@ -113,9 +112,6 @@ class PatchLoadJson {
 
 		PatchLoadJson._CACHED_RAW = PatchLoadJson._CACHED_RAW || DataUtil.loadRawJSON.bind(DataUtil);
 		DataUtil.loadRawJSON = async (url) => pLoadUrl(url);
-
-		PatchLoadJson._CACHE_BREW_LOAD_SOURCE_INDEX = PatchLoadJson._CACHE_BREW_LOAD_SOURCE_INDEX || DataUtil.brew.pLoadSourceIndex.bind(DataUtil.brew);
-		DataUtil.brew.pLoadSourceIndex = async () => null;
 	}
 
 	static unpatchLoadJson () {
@@ -123,7 +119,6 @@ class PatchLoadJson {
 
 		if (PatchLoadJson._CACHED) DataUtil.loadJSON = PatchLoadJson._CACHED;
 		if (PatchLoadJson._CACHED_RAW) DataUtil.loadRawJSON = PatchLoadJson._CACHED_RAW;
-		if (PatchLoadJson._CACHE_BREW_LOAD_SOURCE_INDEX) DataUtil.brew.pLoadSourceIndex = PatchLoadJson._CACHE_BREW_LOAD_SOURCE_INDEX;
 	}
 }
 

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.184.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.185.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -439,6 +439,7 @@ globalThis.SourceUtil = {
 		{group: "core", displayName: "Core"},
 		{group: "supplement", displayName: "Supplements"},
 		{group: "setting", displayName: "Settings"},
+		{group: "setting-alt", displayName: "Additional Settings"},
 		{group: "supplement-alt", displayName: "Extras"},
 		{group: "prerelease", displayName: "Prerelease"},
 		{group: "homebrew", displayName: "Homebrew"},
@@ -4849,7 +4850,7 @@ globalThis.DataUtil = {
 			if (sp._isMutEntity) return sp;
 
 			const spSources = this._SPELL_SOURCE_LOOKUP[sp.source.toLowerCase()]?.[sp.name.toLowerCase()];
-			if (!spSources) return;
+			if (!spSources) return sp;
 
 			this._mutSpell_class({sp, spSources, propSources: "class", propClasses: "fromClassList"});
 			this._mutSpell_class({sp, spSources, propSources: "classVariant", propClasses: "fromClassListVariant"});
@@ -5682,6 +5683,16 @@ globalThis.DataUtil = {
 				displayText,
 			};
 		}
+	},
+
+	reward: class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_REWARDS;
+		static _FILENAME = "rewards.json";
+	},
+
+	rewardFluff: class extends _DataUtilPropConfigSingleSource {
+		static _PAGE = UrlUtil.PG_REWARDS;
+		static _FILENAME = "fluff-rewards.json";
 	},
 
 	quickreference: {

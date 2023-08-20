@@ -2499,6 +2499,12 @@
 		"date": "2023-08-16",
 		"title": "First I Bang This Drum",
 		"titleAlt": "Then I fee-fi-fo-fum",
-		"txt": "- Added Bigby Presents: Glory of the Giants content\n- (Brew) Various minor bugfixes and improvements to the Creature, Item, and Feat Text Converters\n- (Fixed typos/added tags)\n"
+		"txt": "- Added Bigby Presents: Glory of the Giants content\n- (Brew) Various minor bugfixes and improvements to the Creature, Item, and Feat Text Converters\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.185.0",
+		"date": "2023-08-20",
+		"title": "Cold Off the Press",
+		"txt": "- Added Tal'Dorei Campaign Setting Reborn content (credit to @ Lyra for the conversion)\n- Moved Glory of the Giants encounter tables to Encounters page\n- Added list preview functionality to Rewards page\n- Fixed Encounters page only rolling the first dice in rolled results\n- Fixed filters setting positive/negative default state for new values if use has existing state\n- (Brew) Added `\"rewardFluff\"` support\n- (Brew) Added \"Illegal Drug\" (`\"IDG\"`) item type\n- (Brew) Fixed Homebrew Builder \"warn on un-saved modifications\" logic; warnings should now be issued more consistently and in more relevant situations \n- (Fixed typos/added tags)"
 	}
 ]

@@ -1455,16 +1455,20 @@ class ListPage {
 			return;
 		}
 
-		let tgtItemOtherList = null;
-		for (let i = it.x + dir; i >= 0 && i < lists.length; i += dir) {
-			if (!lists[i]?.visibleItems?.length) continue;
+		let ixListOther = it.x + dir;
 
-			tgtItemOtherList = dir === 1 ? lists[i].visibleItems[0] : lists[i].visibleItems.last();
-		}
+		if (ixListOther === -1) ixListOther = lists.length - 1;
+		else if (ixListOther === lists.length) ixListOther = 0;
 
-		if (tgtItemOtherList) {
+		for (; ixListOther >= 0 && ixListOther < lists.length; ixListOther += dir) {
+			if (!lists[ixListOther]?.visibleItems?.length) continue;
+
+			const tgtItemOtherList = dir === 1 ? lists[ixListOther].visibleItems[0] : lists[ixListOther].visibleItems.last();
+			if (!tgtItemOtherList) continue;
+
 			window.location.hash = tgtItemOtherList.values.hash;
 			this._initList_scrollToItem();
+			return;
 		}
 	}
 

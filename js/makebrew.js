@@ -479,7 +479,7 @@ class Builder extends ProxyBase {
 	}
 
 	getOnNavMessage () {
-		if (!this._meta.isPersisted && this._meta.isModified) return "You have unsaved changes! Are you sure you want to leave?";
+		if (this._meta.isModified) return "You have unsaved changes! Are you sure you want to leave?";
 		else return null;
 	}
 
@@ -519,13 +519,16 @@ class Builder extends ProxyBase {
 
 			const $btnEdit = $(`<button class="btn btn-xs btn-default mr-2" title="Edit"><span class="glyphicon glyphicon-pencil"/></button>`)
 				.click(async () => {
-					if (this.getOnNavMessage() && !confirm("You have unsaved changes. Are you sure?")) return;
+					if (
+						this.getOnNavMessage()
+						&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: "You have unsaved changes. Are you sure?", textYes: "Yes", textNo: "Cancel"})
+					) return;
 					const entEditable = await BrewUtil2.pGetEditableBrewEntity(this._prop, ent.uniqueId);
 					this.setStateFromLoaded({
 						s: MiscUtil.copy(entEditable),
 						m: this._getInitialMetaState({
 							isModified: false,
-							isPersisted: true,
+							isPersisted: false,
 						}),
 					});
 					this.renderInput();
@@ -625,14 +628,12 @@ class Builder extends ProxyBase {
 
 			const $btnDelete = $(`<button class="btn btn-xs btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"/></button>`)
 				.click(async () => {
-					if (confirm("Are you sure?")) {
-						if (this._state.uniqueId === ent.uniqueId) {
-							this.reset();
-						}
-						await BrewUtil2.pRemoveEditableBrewEntity(this._prop, ent.uniqueId);
-						await this._pDoUpdateSidemenu();
-						await this.pDoPostDelete();
-					}
+					if (!await InputUiUtil.pGetUserBoolean({title: "Delete Entity", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
+
+					if (this._state.uniqueId === ent.uniqueId) this.reset();
+					await BrewUtil2.pRemoveEditableBrewEntity(this._prop, ent.uniqueId);
+					await this._pDoUpdateSidemenu();
+					await this.pDoPostDelete();
 				});
 
 			const $dispName = $$`<span class="py-1">${ent.name}</span>`;
@@ -738,6 +739,7 @@ class Builder extends ProxyBase {
 
 			await BrewUtil2.pPersistEditableBrewEntity(this._prop, clean);
 			this._meta.isPersisted = true;
+			this._meta.isModified = false;
 			await SearchWidget.P_LOADING_CONTENT;
 			await SearchWidget.pAddToIndexes(this._prop, clean);
 		}
@@ -915,7 +917,7 @@ class Builder extends ProxyBase {
 		};
 	}
 
-	_getInitialMetaState ({isModified = true, isPersisted = false} = {}) {
+	_getInitialMetaState ({isModified = false, isPersisted = false} = {}) {
 		return {
 			isModified,
 			isPersisted,
