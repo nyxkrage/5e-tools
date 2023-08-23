@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.185.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.185.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -479,6 +479,11 @@ globalThis.SourceUtil = {
 			|| SourceUtil.isPrereleaseSource(source);
 	},
 
+	isPartneredSourceWotc (source) {
+		if (source == null) return false;
+		return Parser.SOURCES_PARTNERED_WOTC.has(source);
+	},
+
 	// TODO(Future) remove this in favor of simply checking existence in `PrereleaseUtil`
 	// TODO(Future) cleanup uses of `PrereleaseUtil.hasSourceJson` to match
 	isPrereleaseSource (source) {
@@ -492,11 +497,20 @@ globalThis.SourceUtil = {
 		return source.startsWith(Parser.SRC_UA_PREFIX) || source.startsWith(Parser.SRC_UA_ONE_PREFIX) || source.startsWith(Parser.SRC_PS_PREFIX) || source.startsWith(Parser.SRC_AL_PREFIX) || source.startsWith(Parser.SRC_MCVX_PREFIX) || Parser.SOURCES_NON_STANDARD_WOTC.has(source);
 	},
 
+	FILTER_GROUP_STANDARD: 0,
+	FILTER_GROUP_PARTNERED: 1,
+	FILTER_GROUP_NON_STANDARD: 2,
+	FILTER_GROUP_HOMEBREW: 3,
+
 	getFilterGroup (source) {
 		if (source instanceof FilterItem) source = source.item;
-		if (typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source)) return 1;
-		if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return 2;
-		return Number(SourceUtil.isNonstandardSource(source));
+		if (
+			(typeof PrereleaseUtil !== "undefined" && PrereleaseUtil.hasSourceJson(source))
+			|| SourceUtil.isNonstandardSource(source)
+		) return SourceUtil.FILTER_GROUP_NON_STANDARD;
+		if (typeof BrewUtil2 !== "undefined" && BrewUtil2.hasSourceJson(source)) return SourceUtil.FILTER_GROUP_HOMEBREW;
+		if (SourceUtil.isPartneredSourceWotc(source)) return SourceUtil.FILTER_GROUP_PARTNERED;
+		return SourceUtil.FILTER_GROUP_STANDARD;
 	},
 
 	getAdventureBookSourceHref (source, page) {
@@ -2854,6 +2868,7 @@ UrlUtil.URL_TO_HASH_BUILDER["itemTypeAdditionalEntries"] = (it) => UrlUtil.encod
 UrlUtil.URL_TO_HASH_BUILDER["itemMastery"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["skill"] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER["sense"] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER["raceFeature"] = (it) => UrlUtil.encodeArrayForHash(it.name, it.raceName, it.raceSource, it.source);
 
 // Add lowercase aliases
 Object.keys(UrlUtil.URL_TO_HASH_BUILDER)
@@ -5270,6 +5285,10 @@ globalThis.DataUtil = {
 		}
 	},
 
+	raceFeature: class extends _DataUtilPropConfig {
+		static _PAGE = "raceFeature";
+	},
+
 	recipe: class extends _DataUtilPropConfigSingleSource {
 		static _PAGE = UrlUtil.PG_RECIPES;
 		static _FILENAME = "recipes.json";
@@ -5515,6 +5534,8 @@ globalThis.DataUtil = {
 				Parser.SRC_VGM,
 				Parser.SRC_MTF,
 				Parser.SRC_ERLW,
+				Parser.SRC_EGW,
+				Parser.SRC_TDCSR,
 			];
 
 			const inSource = {};

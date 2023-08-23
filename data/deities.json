@@ -513,6 +513,7 @@
 		},
 		{
 			"name": "Asmodeus",
+			"reprintAlias": "The Lord of the Hells",
 			"source": "EGW",
 			"page": 26,
 			"pantheon": "Exandria",
@@ -1010,6 +1011,7 @@
 		},
 		{
 			"name": "Avandra",
+			"reprintAlias": "The Changebringer",
 			"source": "EGW",
 			"page": 20,
 			"pantheon": "Exandria",
@@ -1201,6 +1203,7 @@
 		},
 		{
 			"name": "Bahamut",
+			"reprintAlias": "The Platinum Dragon",
 			"source": "EGW",
 			"page": 21,
 			"pantheon": "Exandria",
@@ -1404,6 +1407,7 @@
 		},
 		{
 			"name": "Bane",
+			"reprintAlias": "The Strife Emperor",
 			"source": "EGW",
 			"page": 26,
 			"pantheon": "Exandria",
@@ -2259,6 +2263,7 @@
 		},
 		{
 			"name": "Corellon",
+			"reprintAlias": "The Arch Heart",
 			"source": "EGW",
 			"page": 22,
 			"pantheon": "Exandria",
@@ -3427,6 +3432,7 @@
 		},
 		{
 			"name": "Erathis",
+			"reprintAlias": "The Lawbearer",
 			"source": "EGW",
 			"page": 22,
 			"pantheon": "Exandria",
@@ -4374,6 +4380,7 @@
 		},
 		{
 			"name": "Gruumsh",
+			"reprintAlias": "The Ruiner",
 			"source": "EGW",
 			"page": 27,
 			"pantheon": "Exandria",
@@ -5486,6 +5493,7 @@
 		},
 		{
 			"name": "Ioun",
+			"reprintAlias": "The Knowing Mentor",
 			"source": "EGW",
 			"page": 23,
 			"pantheon": "Exandria",
@@ -7044,6 +7052,7 @@
 		},
 		{
 			"name": "Kord",
+			"reprintAlias": "The Stormlord",
 			"source": "EGW",
 			"page": 23,
 			"pantheon": "Exandria",
@@ -7712,6 +7721,7 @@
 		},
 		{
 			"name": "Lolth",
+			"reprintAlias": "The Spider Queen",
 			"source": "EGW",
 			"page": 27,
 			"pantheon": "Exandria",
@@ -8275,6 +8285,7 @@
 		},
 		{
 			"name": "Melora",
+			"reprintAlias": "The Wildmother",
 			"source": "EGW",
 			"page": 23,
 			"pantheon": "Exandria",
@@ -8790,6 +8801,7 @@
 		},
 		{
 			"name": "Moradin",
+			"reprintAlias": "The All-Hammer",
 			"source": "EGW",
 			"page": 24,
 			"pantheon": "Exandria",
@@ -9955,6 +9967,7 @@
 		},
 		{
 			"name": "Pelor",
+			"reprintAlias": "The Dawnfather",
 			"source": "EGW",
 			"page": 24,
 			"pantheon": "Exandria",
@@ -11419,6 +11432,7 @@
 		},
 		{
 			"name": "Sehanine",
+			"reprintAlias": "The Moonweaver",
 			"source": "EGW",
 			"page": 25,
 			"pantheon": "Exandria",
@@ -12539,6 +12553,7 @@
 		},
 		{
 			"name": "Tharizdun",
+			"reprintAlias": "The Chained Oblivion",
 			"source": "EGW",
 			"page": 28,
 			"pantheon": "Exandria",
@@ -12937,7 +12952,6 @@
 			"source": "TDCSR",
 			"page": 31,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Moradin|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"G"
@@ -13010,7 +13024,6 @@
 			"source": "TDCSR",
 			"page": 29,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Corellon|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"G"
@@ -13120,7 +13133,6 @@
 			"source": "TDCSR",
 			"page": 36,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Tharizdun|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"E"
@@ -13195,7 +13207,6 @@
 			"source": "TDCSR",
 			"page": 28,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Avandra|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"G"
@@ -13268,7 +13279,6 @@
 			"source": "TDCSR",
 			"page": 38,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Zehir|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"E"
@@ -13341,7 +13351,6 @@
 			"source": "TDCSR",
 			"page": 37,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Torog|Dawn War|DMG",
 			"alignment": [
 				"N",
 				"E"
@@ -13431,7 +13440,6 @@
 			"source": "TDCSR",
 			"page": 32,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Pelor|Dawn War|DMG",
 			"alignment": [
 				"N",
 				"G"
@@ -13727,7 +13735,6 @@
 			"source": "TDCSR",
 			"page": 30,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Ioun|Dawn War|DMG",
 			"alignment": [
 				"N"
 			],
@@ -13800,7 +13807,6 @@
 			"source": "TDCSR",
 			"page": 29,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Erathis|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"N"
@@ -13873,7 +13879,6 @@
 			"source": "TDCSR",
 			"page": 34,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Asmodeus|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"E"
@@ -14005,7 +14010,6 @@
 			"source": "TDCSR",
 			"page": 32,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Raven Queen|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"N"
@@ -14120,7 +14124,6 @@
 			"source": "TDCSR",
 			"page": 33,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Sehanine|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"G"
@@ -14248,7 +14251,6 @@
 			"source": "TDCSR",
 			"page": 28,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Bahamut|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"G"
@@ -14315,6 +14317,7 @@
 		},
 		{
 			"name": "The Raven Queen",
+			"reprintAlias": "The Matron of Ravens",
 			"source": "EGW",
 			"page": 24,
 			"pantheon": "Exandria",
@@ -14415,7 +14418,6 @@
 			"source": "TDCSR",
 			"page": 35,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Gruumsh|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"E"
@@ -14490,7 +14492,6 @@
 			"source": "TDCSR",
 			"page": 37,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Tiamat|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"E"
@@ -14664,7 +14665,6 @@
 			"source": "TDCSR",
 			"page": 35,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Lolth|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"E"
@@ -14766,7 +14766,6 @@
 			"source": "TDCSR",
 			"page": 30,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Kord|Dawn War|DMG",
 			"alignment": [
 				"C",
 				"N"
@@ -14782,7 +14781,7 @@
 				"type": "image",
 				"href": {
 					"type": "internal",
-					"path": "deities/TDCSR/StormLord.webp"
+					"path": "deities/TDCSR/Stormlord.webp"
 				},
 				"style": "deity-symbol",
 				"credit": "{@link Conceptopolis, LLC|https://conceptopolis.com/}",
@@ -14838,7 +14837,6 @@
 			"source": "TDCSR",
 			"page": 34,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Bane|Dawn War|DMG",
 			"alignment": [
 				"L",
 				"E"
@@ -15066,7 +15064,6 @@
 			"source": "TDCSR",
 			"page": 38,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Vecna|Dawn War|DMG",
 			"alignment": [
 				"N",
 				"E"
@@ -15141,7 +15138,6 @@
 			"source": "TDCSR",
 			"page": 31,
 			"pantheon": "Exandria",
-			"customExtensionOf": "Melora|Dawn War|DMG",
 			"alignment": [
 				"N"
 			],
@@ -15285,6 +15281,7 @@
 		},
 		{
 			"name": "Tiamat",
+			"reprintAlias": "The Scaled Tyrant",
 			"source": "EGW",
 			"page": 28,
 			"pantheon": "Exandria",
@@ -15427,6 +15424,7 @@
 		},
 		{
 			"name": "Torog",
+			"reprintAlias": "The Crawling King",
 			"source": "EGW",
 			"page": 28,
 			"pantheon": "Exandria",
@@ -15915,6 +15913,7 @@
 		},
 		{
 			"name": "Vecna",
+			"reprintAlias": "The Whispered One",
 			"source": "EGW",
 			"page": 29,
 			"additionalSources": [
@@ -16447,6 +16446,7 @@
 		},
 		{
 			"name": "Zehir",
+			"reprintAlias": "The Cloaked Serpent",
 			"source": "EGW",
 			"page": 29,
 			"pantheon": "Exandria",

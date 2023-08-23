@@ -2960,11 +2960,11 @@ class SourceFilter extends Filter {
 	}
 
 	_doSetPinsStandard () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === 0 ? 1 : 0);
+		Object.keys(this._state).forEach(k => this._state[k] = [SourceUtil.FILTER_GROUP_STANDARD, SourceUtil.FILTER_GROUP_PARTNERED].includes(SourceUtil.getFilterGroup(k)) ? 1 : 0);
 	}
 
 	_doSetPinsNonStandard () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === 1 ? 1 : 0);
+		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_STANDARD ? 1 : 0);
 	}
 
 	_doSetPinsSupplements (isIncludeUnofficial) {
@@ -2976,7 +2976,7 @@ class SourceFilter extends Filter {
 	}
 
 	_doSetPinsHomebrew () {
-		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === 2 ? 1 : 0);
+		Object.keys(this._state).forEach(k => this._state[k] = SourceUtil.getFilterGroup(k) === SourceUtil.FILTER_GROUP_HOMEBREW ? 1 : 0);
 	}
 
 	_doSetPinsVanilla () {
@@ -3030,13 +3030,13 @@ class SourceFilter extends Filter {
 
 	_doRenderPills_doRenderWrpGroup_getHrDivider (group) {
 		switch (group) {
-			case 1: return this._doRenderPills_doRenderWrpGroup_getHrDivider_groupOne(group);
-			case 2: return this._doRenderPills_doRenderWrpGroup_getHrDivider_groupTwo(group);
+			case SourceUtil.FILTER_GROUP_NON_STANDARD: return this._doRenderPills_doRenderWrpGroup_getHrDivider_groupNonStandard(group);
+			case SourceUtil.FILTER_GROUP_HOMEBREW: return this._doRenderPills_doRenderWrpGroup_getHrDivider_groupBrew(group);
 			default: return super._doRenderPills_doRenderWrpGroup_getHrDivider(group);
 		}
 	}
 
-	_doRenderPills_doRenderWrpGroup_getHrDivider_groupOne (group) {
+	_doRenderPills_doRenderWrpGroup_getHrDivider_groupNonStandard (group) {
 		let dates = [];
 		const comp = BaseComponent.fromObject({
 			min: 0,
@@ -3176,7 +3176,7 @@ class SourceFilter extends Filter {
 		});
 	}
 
-	_doRenderPills_doRenderWrpGroup_getHrDivider_groupTwo (group) {
+	_doRenderPills_doRenderWrpGroup_getHrDivider_groupBrew (group) {
 		const btnClear = e_({
 			tag: "button",
 			clazz: `btn btn-xxs btn-default px-1`,

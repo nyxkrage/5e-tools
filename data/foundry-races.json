@@ -1,4 +1,22 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"raceFeature"
+		]
+	},
+	"race": [
+		{
+			"name": "Human (Keldon)",
+			"source": "PSD",
+			"entryData": {
+				"savingThrowProficiencies": [
+					{
+						"str": true
+					}
+				]
+			}
+		}
+	],
 	"raceFeature": [
 		{
 			"name": "Radiant Soul",
@@ -61,7 +79,7 @@
 		{
 			"name": "Grit",
 			"source": "PSZ",
-			"raceName": "Goblin (Zendikar)",
+			"raceName": "Goblin (Zendikar; Grotag Tribe)",
 			"raceSource": "PSZ",
 			"effects": [
 				{
@@ -81,6 +99,30 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Grit",
+			"source": "PSZ",
+			"raceName": "Goblin (Zendikar; Lavastep Tribe)",
+			"raceSource": "PSZ",
+			"_copy": {
+				"name": "Grit",
+				"source": "PSZ",
+				"raceName": "Goblin (Zendikar; Grotag Tribe)",
+				"raceSource": "PSZ"
+			}
+		},
+		{
+			"name": "Grit",
+			"source": "PSZ",
+			"raceName": "Goblin (Zendikar; Tuktuk Tribe)",
+			"raceSource": "PSZ",
+			"_copy": {
+				"name": "Grit",
+				"source": "PSZ",
+				"raceName": "Goblin (Zendikar; Grotag Tribe)",
+				"raceSource": "PSZ"
+			}
 		},
 		{
 			"name": "Natural Armor",

@@ -5798,6 +5798,10 @@
 			"otherSources": [
 				{
 					"source": "ToA"
+				},
+				{
+					"source": "PSX",
+					"page": 30
 				}
 			],
 			"reprintedAs": [
@@ -10034,6 +10038,10 @@
 			"otherSources": [
 				{
 					"source": "ToA"
+				},
+				{
+					"source": "PSX",
+					"page": 29
 				}
 			],
 			"reprintedAs": [
@@ -18485,6 +18493,10 @@
 			"otherSources": [
 				{
 					"source": "ToA"
+				},
+				{
+					"source": "PSX",
+					"page": 30
 				}
 			],
 			"reprintedAs": [

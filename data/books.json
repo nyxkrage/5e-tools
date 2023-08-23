@@ -786,6 +786,12 @@
 				},
 				{
 					"name": "An Amonkhet Bestiary"
+				},
+				{
+					"name": "Planeswalkers and the Multiverse",
+					"ordinal": {
+						"type": "appendix"
+					}
 				}
 			]
 		},
@@ -907,15 +913,19 @@
 				{
 					"name": "Land of the Great River",
 					"headers": [
+						"Geography of Ixalan",
 						"Ancient Sites",
 						"Treasure"
 					]
 				},
 				{
-					"name": "An Ixalan Bestiary",
-					"headers": [
-						"Appendix: The Colors of Magic"
-					]
+					"name": "An Ixalan Bestiary"
+				},
+				{
+					"name": "The Colors of Magic",
+					"ordinal": {
+						"type": "appendix"
+					}
 				}
 			]
 		},
@@ -1030,10 +1040,10 @@
 			"author": "Wizards RPG Team",
 			"contents": [
 				{
-					"name": "Introduction",
-					"headers": [
-						"The Domains"
-					]
+					"name": "Introduction"
+				},
+				{
+					"name": "The Domains"
 				},
 				{
 					"name": "Seven Pillars of Benalia"
@@ -1728,7 +1738,7 @@
 			"name": "Explorer's Guide to Wildemount",
 			"id": "EGW",
 			"source": "EGW",
-			"group": "setting-alt",
+			"group": "setting",
 			"coverUrl": "img/covers/EGW.png",
 			"published": "2020-03-17",
 			"contents": [
@@ -3441,7 +3451,7 @@
 			"name": "Tal'Dorei Campaign Setting Reborn",
 			"id": "TDCSR",
 			"source": "TDCSR",
-			"group": "setting-alt",
+			"group": "setting",
 			"coverUrl": "img/covers/TDCSR.webp",
 			"published": "2022-01-18",
 			"author": "Darrington Press",

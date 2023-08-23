@@ -3418,6 +3418,8 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	Parser.SRC_GotSF,
 	Parser.SRC_MCV3MC,
 	Parser.SRC_MisMV1,
+]);
+Parser.SOURCES_PARTNERED_WOTC = new Set([
 	Parser.SRC_RMBRE,
 	Parser.SRC_RMR,
 	Parser.SRC_EGW,
