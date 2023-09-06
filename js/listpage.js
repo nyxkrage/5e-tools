@@ -33,13 +33,16 @@ class SublistManager {
 	static _SUB_HASH_PREFIX = "sublistselected";
 
 	/**
-	 * @param opts.sublistClass Sublist class.
+	 * @param [opts]
+	 * @param [opts.sublistClass] Sublist class.
 	 * @param [opts.sublistListOptions] Other sublist options.
 	 * @param [opts.isSublistItemsCountable] If the sublist items should be countable, i.e. have a quantity.
 	 * @param [opts.shiftCountAddSubtract] If the sublist items should be countable, i.e. have a quantity.
 	 */
 	constructor (opts) {
-		this._sublistClass = opts.sublistClass;
+		opts = opts || {};
+
+		this._sublistClass = opts.sublistClass; // TODO(PageGen) remove once all pages transitioned
 		this._sublistListOptions = opts.sublistListOptions || {};
 		this._isSublistItemsCountable = !!opts.isSublistItemsCountable;
 		this._shiftCountAddSubtract = opts.shiftCountAddSubtract ?? 20;
@@ -84,7 +87,7 @@ class SublistManager {
 
 		this._listSub = new List({
 			...this._sublistListOptions,
-			$wrpList: $(`.${this._sublistClass}`),
+			$wrpList: this._sublistClass ? $(`.${this._sublistClass}`) : $(`#sublist`),
 			isUseJquery: true,
 		});
 
@@ -842,7 +845,7 @@ class ListPage {
 	 * `pageFilter` must be specified.)
 	 * @param [opts.pageFilter] PageFilter implementation for this page. (Either `filters` and `filterSource` or
 	 * `pageFilter` must be specified.)
-	 * @param opts.listClass List class.
+	 * @param [opts.listClass] List class.
 	 * @param opts.listOptions Other list options.
 	 * @param opts.dataProps JSON data propert(y/ies).
 	 *
@@ -872,7 +875,7 @@ class ListPage {
 		this._filters = opts.filters;
 		this._filterSource = opts.filterSource;
 		this._pageFilter = opts.pageFilter;
-		this._listClass = opts.listClass;
+		this._listClass = opts.listClass; // TODO(PageGen) remove once all pages transitioned
 		this._listOptions = opts.listOptions || {};
 		this._dataProps = opts.dataProps;
 		this._bookViewOptions = opts.bookViewOptions;
@@ -886,6 +889,7 @@ class ListPage {
 		this._listSyntax = opts.listSyntax || new ListUiUtil.ListSyntax({fnGetDataList: () => this._dataList, pFnGetFluff: opts.pFnGetFluff});
 		this._compSettings = opts.compSettings ? opts.compSettings : null;
 
+		this._lockHashchange = new VeLock({name: "hashchange"});
 		this._renderer = Renderer.get();
 		this._list = null;
 		this._filterBox = null;
@@ -1006,7 +1010,7 @@ class ListPage {
 		const $btnReset = $("#reset");
 		this._list = this._initList({
 			$iptSearch,
-			$wrpList: $(`.list.${this._listClass}`),
+			$wrpList: this._listClass ? $(`.list.${this._listClass}`) : $(`#list`),
 			$btnReset,
 			$btnClear: $(`#lst__search-glass`),
 			dispPageTagline: document.getElementById(`page__subtitle`),
@@ -1705,19 +1709,26 @@ class ListPage {
 
 	doDeselectAll () { this.primaryLists.forEach(list => list.deselectAll()); }
 
-	async pDoLoadHash (id) {
-		this._lastRender.entity = this._dataList[id];
-		await this._pDoLoadHash(id);
+	async pDoLoadHash (id, {lockToken} = {}) {
+		try {
+			lockToken = await this._lockHashchange.pLock({token: lockToken});
+			this._lastRender.entity = this._dataList[id];
+			return (await this._pDoLoadHash({id, lockToken}));
+		} finally {
+			this._lockHashchange.unlock();
+		}
 	}
 
 	getListItem () { throw new Error(`Unimplemented!`); }
 	pHandleUnknownHash () { throw new Error(`Unimplemented!`); }
 
-	async pDoLoadSubHash (sub) {
-		if (this._filterBox) sub = this._filterBox.setFromSubHashes(sub);
-		if (this._sublistManager) sub = await this._sublistManager.pSetFromSubHashes(sub);
-		if (this._bookView) sub = await this._bookView.pHandleSub(sub);
-		return sub;
+	async pDoLoadSubHash (sub, {lockToken} = {}) {
+		try {
+			lockToken = await this._lockHashchange.pLock({token: lockToken});
+			return (await this._pDoLoadSubHash({sub, lockToken}));
+		} finally {
+			this._lockHashchange.unlock();
+		}
 	}
 
 	/* -------------------------------------------- */
@@ -1732,7 +1743,7 @@ class ListPage {
 
 	_tabTitleStats = "Traits";
 
-	async _pDoLoadHash (id) {
+	async _pDoLoadHash ({id, lockToken}) {
 		this._$pgContent.empty();
 
 		this._renderer.setFirstSection(true);
@@ -1761,6 +1772,15 @@ class ListPage {
 			tabMetaStats,
 			tabMetasAdditional,
 		});
+	}
+
+	async _pPreloadSublistSources (json) { /* Implement as required */ }
+
+	async _pDoLoadSubHash ({sub, lockToken}) {
+		if (this._filterBox) sub = this._filterBox.setFromSubHashes(sub);
+		if (this._sublistManager) sub = await this._sublistManager.pSetFromSubHashes(sub, this._pPreloadSublistSources.bind(this));
+		if (this._bookView) sub = await this._bookView.pHandleSub(sub);
+		return sub;
 	}
 
 	_renderStats_getTabMetasAdditional ({ent}) { return []; }
@@ -1890,8 +1910,8 @@ class ListPageBookView extends BookModeViewBase {
 		</div>`;
 	}
 
-	_$getWrpControls ({$wrpContent}) {
-		const out = super._$getWrpControls({$wrpContent});
+	async _$pGetWrpControls ({$wrpContent}) {
+		const out = await super._$pGetWrpControls({$wrpContent});
 		const {$wrpPrint} = out;
 		if (this._propMarkdown) this._$getControlsMarkdown().appendTo($wrpPrint);
 		return out;

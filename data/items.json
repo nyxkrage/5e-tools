@@ -11308,7 +11308,7 @@
 					"type": "entries",
 					"name": "Random Properties",
 					"entries": [
-						"The artifact has the follow random properties, which you can determine by rolling on the tables in the \"Artifacts\" section of the {@book Dungeon Master's Guide|DMG}:",
+						"The artifact has the following random properties, which you can determine by rolling on the tables in the \"Artifacts\" section of the {@book Dungeon Master's Guide|DMG}:",
 						{
 							"type": "list",
 							"items": [
@@ -13572,7 +13572,6 @@
 			],
 			"tier": "minor",
 			"rarity": "common",
-			"reqAttune": true,
 			"wondrous": true,
 			"entries": [
 				"This artificial eye replaces a real one that was lost or removed. While the ersatz eye is embedded in your eye socket, it can't be removed by anyone other than you, and you can see through the tiny orb as though it were a normal eye."

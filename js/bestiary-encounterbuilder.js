@@ -233,6 +233,10 @@ class EncounterBuilder extends ProxyBase {
 		this._wrpGroupAndDifficulty = document.getElementById("wrp-encounterbuild-group-and-difficulty");
 		// endregion
 
+		document.getElementById("stat-tabs").classList.add("ecgen__hidden");
+		document.getElementById("float-token").classList.add("ecgen__hidden");
+		document.getElementById("wrp-pagecontent").classList.add("ecgen__hidden");
+
 		$(`#btn-encounterbuild`).click(() => Hist.setSubhash(EncounterBuilder.HASH_KEY, true));
 
 		this._renderRandomAndAdjust();

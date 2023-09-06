@@ -42,8 +42,9 @@ class ListPageMultiSource extends ListPage {
 
 	async pDoLoadExportedSublistSources (exportedSublist) {
 		if (!exportedSublist?.sources?.length) return;
+
 		await (exportedSublist.sources || [])
-			.filter(src => SourceUtil.isSiteSource(src))
+			.filter(src => this._isLoadableSiteSource({src}))
 			.pMap(src => this._pLoadSource(src, "yes"));
 
 		// region Note that we can't e.g. load the sources in the background, because the list won't update, and therefore
@@ -63,6 +64,11 @@ class ListPageMultiSource extends ListPage {
 			isAutoHide: false,
 		});
 		// endregion
+	}
+
+	_isLoadableSiteSource ({src}) {
+		if (!SourceUtil.isSiteSource(src)) return false;
+		return !!(this._loadedSources[src] || this._loadedSources[Object.keys(this._loadedSources).find(k => k.toLowerCase() === src)]);
 	}
 
 	async _pLoadSource (src, nextFilterVal) {

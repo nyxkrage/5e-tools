@@ -336,6 +336,7 @@ class UiUtil {
 	 * @param [opts.isHeight100] {boolean}
 	 * @param [opts.isWidth100] {boolean}
 	 * @param [opts.isMinHeight0] {boolean}
+	 * @param [opts.isMinWidth0] {boolean}
 	 * @param [opts.isMaxWidth640p] {boolean}
 	 * @param [opts.isFullscreenModal] {boolean} An alternate mode.
 	 * @param [opts.isHeaderBorder] {boolean}
@@ -409,6 +410,7 @@ class UiUtil {
 			opts.isUncappedHeight ? "ui-modal__inner--uncap-height" : "",
 			opts.isUncappedWidth ? "ui-modal__inner--uncap-width" : "",
 			opts.isMinHeight0 ? `ui-modal__inner--no-min-height` : "",
+			opts.isMinWidth0 ? `ui-modal__inner--no-min-width` : "",
 			opts.isMaxWidth640p ? `ui-modal__inner--max-width-640p` : "",
 			opts.isFullscreenModal ? `ui-modal__inner--mode-fullscreen my-0 pt-0` : "",
 			opts.hasFooter ? `pb-0` : "",

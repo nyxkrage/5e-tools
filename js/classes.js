@@ -2081,21 +2081,51 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 		this._classPage = classPage;
 		this._pageFilter = pageFilter;
 		this._listSubclass = listSubclass;
+		this._parent = classPage.getPod();
+
+		this._fnsCleanup = [];
 	}
 
-	_$getEleNoneVisible () {
+	_$getWindowHeaderLhs () {
+		const $out = super._$getWindowHeaderLhs();
+
+		const $btnSelectSubclasses = $(`<button class="btn btn-xs btn-default bl-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Select Subclasses"><span class="glyphicon glyphicon-th-list"></span></button>`)
+			.click(async () => {
+				const {$modal, doClose} = UiUtil.getShowModal({
+					isEmpty: true,
+					isMinHeight0: true,
+					isMinWidth0: true,
+					cbClose: () => {
+						fnCleanup();
+					},
+				});
+
+				const {$stg, fnCleanup} = this._getSelectSubclassesMeta({
+					cbOnSave: () => {
+						doClose();
+					},
+					isCloseButton: false,
+				});
+				$modal
+					.addClass("bkmv")
+					.append($stg);
+			})
+			.appendTo($out);
+
+		return $out;
+	}
+
+	_getSelectSubclassesMeta ({cbOnSave = null, isCloseButton = true} = {}) {
 		const $wrpRows = $(`<div class="ve-flex-col min-h-0"></div>`);
 
 		const $btnAdjustFilters = $(`<span class="clickable help no-select" title="Click Here!">adjust your filters</span>`)
 			.click(() => this._classPage.filterBox.show());
 		const $dispNoneAvailable = $$`<div class="ve-small ve-muted italic">No subclasses are available. Please ${$btnAdjustFilters} first.</div>`;
 
-		const $stgCompViewNoneVisible = $$`<div class="h-100 w-100 ve-flex-vh-center no-shrink no-print">
-			<div class="ve-flex-col">
-				<div class="mb-2 initial-message">Please select some subclasses:</div>
-				${$wrpRows}
-				${$dispNoneAvailable}
-			</div>
+		const $stg = $$`<div class="ve-flex-col">
+			<div class="mb-2 initial-message">Please select some subclasses:</div>
+			${$wrpRows}
+			${$dispNoneAvailable}
 		</div>`;
 
 		const onListUpdate = () => {
@@ -2113,6 +2143,9 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 			$wrpRows.empty();
 			const rowMetas = subclassStateItems.map(li => {
 				const $cb = $(`<input type="checkbox">`);
+
+				$cb.prop("checked", this._parent.get(li.values.stateKey));
+
 				$$`<label class="split-v-center py-1">
 					<div>${li.name}</div>
 					${$cb}
@@ -2120,18 +2153,19 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 				return {$cb, stateKey: li.values.stateKey};
 			});
 
+			const subclassStateItemsVisiblePrev = subclassStateItems.filter(li => this._parent.get(li.values.stateKey));
 			const $btnSave = $(`<button class="btn btn-default mr-2">Save</button>`)
 				.click(async () => {
 					const nxtState = {isViewActiveScComp: false};
-					const rowMetasFilt = rowMetas.filter(it => it.$cb.prop("checked"));
-					if (!rowMetasFilt.length) return JqueryUtil.doToast({type: "warning", content: `Please select some subclasses first!`});
 
-					// (We don't `false` out the other subclasses, because if we're seeing this UI there are none
-					//   currently selected)
-					rowMetasFilt.forEach(meta => {
-						nxtState[meta.stateKey] = true;
-						meta.$cb.prop("checked", false);
-					});
+					const rowMetasFilt = rowMetas.filter(it => it.$cb.prop("checked"));
+					if (!rowMetasFilt.length && !subclassStateItemsVisiblePrev.length) return JqueryUtil.doToast({type: "warning", content: `Please select some subclasses first!`});
+
+					rowMetas
+						.forEach(meta => {
+							nxtState[meta.stateKey] = meta.$cb.prop("checked");
+							meta.$cb.prop("checked", false);
+						});
 
 					this._classPage._proxyAssignSimple("state", nxtState);
 
@@ -2142,20 +2176,33 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 					} finally {
 						this._classPage._unlock("sc-comparison");
 					}
+
+					if (cbOnSave) cbOnSave();
 				});
 
-			const $btnClose = $(`<button class="btn btn-default">Close</button>`)
-				.click(() => {
-					this.setStateClosed();
-				});
+			const $btnClose = isCloseButton
+				? $(`<button class="btn btn-default">Close</button>`)
+					.click(() => {
+						this.setStateClosed();
+					})
+				: null;
 
-			$$`<div class="ve-flex-h-right mt-2">${$btnSave}${$btnClose}</div>`
+			$$`<div class="ve-flex-h-right mt-3">${$btnSave}${$btnClose}</div>`
 				.appendTo($wrpRows);
 		};
-		this._listSubclass.on("updated", () => onListUpdate());
+		this._listSubclass.on("updated", onListUpdate);
 		onListUpdate();
 
-		return $stgCompViewNoneVisible;
+		return {$stg, fnCleanup: () => this._listSubclass.off("updated", onListUpdate)};
+	}
+
+	_$getEleNoneVisible () {
+		const {$stg, fnCleanup} = this._getSelectSubclassesMeta();
+		this._fnsCleanup.push(fnCleanup);
+
+		return $$`<div class="h-100 w-100 ve-flex-vh-center no-shrink no-print">
+			${$stg}
+		</div>`;
 	}
 
 	async _pGetRenderContentMeta ({$wrpContent}) {
@@ -2276,6 +2323,13 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 			cntSelectedEnts,
 			isAnyEntityRendered,
 		};
+	}
+
+	teardown () {
+		super.teardown();
+		this._fnsCleanup
+			.splice(0, this._fnsCleanup.length)
+			.forEach(fn => fn());
 	}
 };
 

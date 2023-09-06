@@ -87,6 +87,8 @@ class MiscTagsTagger {
 			[sp.entries, sp.entriesHigherLevel],
 			{
 				string: (str) => {
+					const stripped = Renderer.stripTags(str);
+
 					if (/becomes permanent/ig.test(str)) this._addTag({tags, tag: "PRM", options});
 					if (/when you reach/ig.test(str)) this._addTag({tags, tag: "SCL", options});
 					if ((/regain|restore/ig.test(str) && /hit point/ig.test(str)) || /heal/ig.test(str)) this._addTag({tags, tag: "HL", options});
@@ -134,6 +136,16 @@ class MiscTagsTagger {
 						|| /\ba person, place, or object\b/i.test(str)
 						|| /\b(choose|touch|manipulate|soil) (an|one) object\b/i.test(str)
 					) this._addTag({tags, tag: "OBJ", options});
+
+					if (
+						/\b(?:and(?: it)?|each target|the( [a-z]+)+) (?:also )?(?:has|gains) advantage\b/i.test(stripped)
+						|| /\bcreature in the area (?:[^.!?]+ )?has advantage\b/i.test(stripped)
+						|| /\broll(?:made )? against (?:an affected creature|this target) (?:[^.!?]+ )?has advantage\b/i.test(stripped)
+						|| /\bother creatures? have advantage on(?:[^.!?]+ )? rolls\b/i.test(stripped)
+						|| /\byou (?:have|gain|(?:can )?give yourself) advantage\b/i.test(stripped)
+						|| /\b(?:has|have) advantage on (?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|all)\b/i.test(stripped)
+						|| /\bmakes? (?:all )?(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throws with advantage\b/i.test(stripped)
+					) this._addTag({tags, tag: "ADV", options});
 				},
 				object: (obj) => {
 					if (obj.type !== "table") return;

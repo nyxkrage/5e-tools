@@ -10,7 +10,9 @@ class RenderRecipes {
 		opts = opts || {};
 
 		const ptFluff = this._getFluffHtml(it);
-		const {ptMakes, ptServes} = Renderer.recipe._getMakesServesHtml(it);
+
+		const ptTime = Renderer.recipe.getTimeHtml(it);
+		const {ptMakes, ptServes} = Renderer.recipe.getMakesServesHtml(it);
 
 		const $ptMakes = ptMakes ? $(ptMakes) : null;
 		const $ptServes = ptServes ? $(ptServes) : null;
@@ -31,6 +33,8 @@ class RenderRecipes {
 		<tr class="text"><td colspan="6">
 		<div class="ve-flex w-100 rd-recipes__wrp-recipe">
 			<div class="w-33 pl-3 pr-2 ve-flex-col">
+				${ptTime}
+
 				${$ptMakes}
 				${$ptServes}
 				${!(ptMakes || ptServes) && opts.$selScaleFactor ? $$`<div class="mb-2">Scale: ${opts.$selScaleFactor}</div>` : ""}
@@ -54,8 +58,11 @@ class RenderRecipes {
 	}
 
 	static _getFluffHtml (it) {
-		if (!it.fluff?.images || !it.fluff?.images?.length) return null;
+		if (!it.fluff?.images?.length) return null;
 
-		return Renderer.utils.getFluffTabContent({entity: it, isImageTab: true, fluff: it.fluff});
+		Renderer.get().setLazyImages(true);
+		const out = Renderer.utils.getFluffTabContent({entity: it, isImageTab: true, fluff: it.fluff});
+		Renderer.get().setLazyImages(false);
+		return out;
 	}
 }

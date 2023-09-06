@@ -238,6 +238,8 @@ PropOrder._MONSTER = [
 	"hasFluff",
 	"hasFluffImages",
 
+	"fluff",
+
 	new PropOrder._ArrayKey("_versions", {
 		fnGetOrder: () => [
 			"name",
@@ -328,6 +330,18 @@ PropOrder._SPELL = [
 	"additionalSources",
 	"otherSources",
 
+	new PropOrder._ObjectKey("_copy", {
+		order: [
+			"name",
+			"source",
+			"_trait",
+			new PropOrder._ObjectKey("_mod", {
+				fnGetOrder: () => PropOrder._SPELL__COPY_MOD,
+			}),
+			"_preserve",
+		],
+	}),
+
 	"level",
 	"school",
 	"subschools",
@@ -362,6 +376,21 @@ PropOrder._SPELL = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
+];
+PropOrder._SPELL__COPY_MOD = [
+	"*",
+	"_",
+	...PropOrder._SPELL,
+];
+PropOrder._SPELL_LIST = [
+	"name",
+
+	"source",
+
+	"spellListType",
+	"spells",
 ];
 PropOrder._ACTION = [
 	"name",
@@ -412,6 +441,14 @@ PropOrder._BOOK = [
 
 	"contents",
 ];
+PropOrder._BOOK_DATA = [
+	"name",
+
+	"id",
+	"source",
+
+	"data",
+];
 PropOrder._BACKGROUND = [
 	"name",
 
@@ -435,6 +472,7 @@ PropOrder._BACKGROUND = [
 	}),
 
 	"prerequisite",
+	"ability",
 
 	"feats",
 
@@ -453,6 +491,8 @@ PropOrder._BACKGROUND = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._BACKGROUND__COPY_MOD = [
 	"*",
@@ -498,6 +538,7 @@ PropOrder._CLASS = [
 	"otherSources",
 
 	"isSidekick",
+	"classGroup",
 
 	"requirements",
 	"hd",
@@ -506,6 +547,7 @@ PropOrder._CLASS = [
 	"spellcastingAbility",
 	"casterProgression",
 	"preparedSpells",
+	"preparedSpellsProgression",
 	"cantripProgression",
 	"spellsKnownProgression",
 	"spellsKnownProgressionFixed",
@@ -513,6 +555,7 @@ PropOrder._CLASS = [
 	"spellsKnownProgressionFixedByLevel",
 
 	"additionalSpells",
+	"classSpells",
 
 	"optionalfeatureProgression",
 
@@ -560,6 +603,7 @@ PropOrder._SUBCLASS = [
 	"spellcastingAbility",
 	"casterProgression",
 	"preparedSpells",
+	"preparedSpellsProgression",
 	"cantripProgression",
 	"spellsKnownProgression",
 
@@ -644,6 +688,8 @@ PropOrder._LANGUAGE = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._LANGUAGE_SCRIPT = [
 	"name",
@@ -662,6 +708,8 @@ PropOrder._CONDITION = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._DISEASE = [
 	"name",
@@ -782,6 +830,10 @@ PropOrder._FEAT = [
 	"otherSources",
 
 	"prerequisite",
+
+	"repeatable",
+	"repeatableNote",
+
 	"ability",
 
 	"skillProficiencies",
@@ -806,6 +858,8 @@ PropOrder._FEAT = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._VEHICLE = [
 	"name",
@@ -867,6 +921,8 @@ PropOrder._VEHICLE = [
 	"hasToken",
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._VEHICLE_UPGRADE = [
 	"name",
@@ -957,6 +1013,8 @@ PropOrder._ITEM = [
 	"age",
 
 	"property",
+	"mastery",
+
 	"range",
 	"reload",
 
@@ -1048,6 +1106,8 @@ PropOrder._ITEM = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._ITEM__COPY_MOD = [
 	"*",
@@ -1073,6 +1133,16 @@ PropOrder._MAGICVARIANT = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
+];
+PropOrder._ITEM_MASTERY = [
+	"name",
+	"source",
+
+	"prerequisite",
+
+	"entries",
 ];
 PropOrder._OBJECT = [
 	"name",
@@ -1113,6 +1183,8 @@ PropOrder._OBJECT = [
 	"hasToken",
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._OPTIONALFEATURE = [
 	"name",
@@ -1174,6 +1246,8 @@ PropOrder._REWARD = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._VARIANTRULE = [
 	"name",
@@ -1247,6 +1321,8 @@ PropOrder._RACE_SUBRACE = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 
 	new PropOrder._ArrayKey("_versions", {
 		fnGetOrder: () => [
@@ -1357,6 +1433,7 @@ PropOrder._RECIPE = [
 	"diet",
 	"allergenGroups",
 
+	"time",
 	"makes",
 	"serves",
 	"ingredients",
@@ -1370,6 +1447,8 @@ PropOrder._RECIPE = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._CHAROPTION = [
 	"name",
@@ -1387,6 +1466,8 @@ PropOrder._CHAROPTION = [
 
 	"hasFluff",
 	"hasFluffImages",
+
+	"fluff",
 ];
 PropOrder._SKILL = [
 	"name",
@@ -1415,6 +1496,7 @@ PropOrder._DECK = [
 	"page",
 	"srd",
 	"basicRules",
+	"otherSources",
 
 	new PropOrder._ObjectKey("_copy", {
 		order: [
@@ -1449,6 +1531,7 @@ PropOrder._CARD = [
 	"page",
 	"srd",
 	"basicRules",
+	"otherSources",
 
 	"suit",
 	"value",
@@ -1472,12 +1555,14 @@ PropOrder._PROP_TO_LIST = {
 	"vehicleFluff": PropOrder._GENERIC_FLUFF,
 	"objectFluff": PropOrder._GENERIC_FLUFF,
 	"raceFluff": PropOrder._RACE_FLUFF,
+	"rewardFluff": PropOrder._GENERIC_FLUFF,
 	"spell": PropOrder._SPELL,
+	"spellList": PropOrder._SPELL_LIST,
 	"action": PropOrder._ACTION,
 	"adventure": PropOrder._ADVENTURE,
 	"book": PropOrder._BOOK,
+	"bookData": PropOrder._BOOK_DATA,
 	"background": PropOrder._BACKGROUND,
-	"trait": PropOrder._TRAIT,
 	"legendaryGroup": PropOrder._LEGENDARY_GROUP,
 	"class": PropOrder._CLASS,
 	"subclass": PropOrder._SUBCLASS,
@@ -1498,6 +1583,7 @@ PropOrder._PROP_TO_LIST = {
 	"baseitem": PropOrder._ITEM,
 	"magicvariant": PropOrder._MAGICVARIANT,
 	"itemGroup": PropOrder._ITEM,
+	"itemMastery": PropOrder._ITEM_MASTERY,
 	"object": PropOrder._OBJECT,
 	"optionalfeature": PropOrder._OPTIONALFEATURE,
 	"psionic": PropOrder._PSIONIC,

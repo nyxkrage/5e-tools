@@ -25,7 +25,6 @@ class _BestiaryUtil {
 class BestiarySublistManager extends SublistManager {
 	constructor () {
 		super({
-			sublistClass: "submonsters",
 			sublistListOptions: {
 				fnSort: PageFilterBestiary.sortMonsters,
 			},
@@ -187,8 +186,8 @@ class BestiaryPageBookView extends ListPageBookView {
 		});
 	}
 
-	_$getWrpControls ({$wrpContent}) {
-		const out = super._$getWrpControls({$wrpContent});
+	async _$pGetWrpControls ({$wrpContent}) {
+		const out = await super._$pGetWrpControls({$wrpContent});
 		const {$wrpPrint} = out;
 
 		// region Markdown
@@ -271,7 +270,6 @@ class BestiaryPage extends ListPageMultiSource {
 		super({
 			pageFilter: new PageFilterBestiary(),
 
-			listClass: "monsters",
 			listOptions: {
 				fnSort: PageFilterBestiary.sortMonsters,
 			},
@@ -374,7 +372,7 @@ class BestiaryPage extends ListPageMultiSource {
 	get _bindOtherButtonsOptions () {
 		return {
 			upload: {
-				pFnPreLoad: (...args) => this.pPreloadSublistSources(...args),
+				pFnPreLoad: (...args) => this._pPreloadSublistSources(...args),
 			},
 			sendToBrew: {
 				mode: "creatureBuilder",
@@ -462,20 +460,17 @@ class BestiaryPage extends ListPageMultiSource {
 		this._encounterBuilder.resetCache();
 	}
 
-	pDoLoadHash (id) {
+	async _pDoLoadHash ({id, lockToken}) {
 		const mon = this._dataList[id];
 
 		this._renderStatblock(mon);
 
-		this.pDoLoadSubHash([]);
+		await this._pDoLoadSubHash({sub: [], lockToken});
 		this._updateSelected();
 	}
 
-	async pDoLoadSubHash (sub) {
-		sub = this._pageFilter.filterBox.setFromSubHashes(sub);
-		await this._sublistManager.pSetFromSubHashes(sub, this.pPreloadSublistSources.bind(this));
-
-		await this._bookView.pHandleSub(sub);
+	async _pDoLoadSubHash ({sub, lockToken}) {
+		sub = await super._pDoLoadSubHash({sub, lockToken});
 
 		const scaledHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED));
 		const scaledSpellSummonHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED_SPELL_SUMMON));
@@ -913,7 +908,7 @@ class BestiaryPage extends ListPageMultiSource {
 		return exp.replace(/([^0-9d])/gi, " $1 ").replace(/\s+/g, " ").trim().replace(/^([-+])\s*/, "$1");
 	}
 
-	async pPreloadSublistSources (json) {
+	async _pPreloadSublistSources (json) {
 		if (json.l && json.l.items && json.l.sources) { // if it's an encounter file
 			json.items = json.l.items;
 			json.sources = json.l.sources;

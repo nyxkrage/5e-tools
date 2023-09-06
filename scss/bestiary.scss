@@ -1,5 +1,30 @@
 @import "includes/vars";
 
+// region Token
+img.token {
+	font-size: 1.6em;
+	right: 0.4em;
+}
+// endregion
+
+// region Custom statblock styling
+#pagecontent .rnd-name .source {
+	position: relative;
+	margin-right: 0.2em;
+}
+
+#pagecontent {
+	background-size: 100% auto;
+	background: url("../img/bestiary/stat-block-top-texture.png") no-repeat, repeat top center, $rgb-bg-orange;
+}
+
+.night-mode {
+	#pagecontent {
+		background: $rgb-bg--night !important;
+	}
+}
+// endregion
+
 // region Proficiency dice rollers
 [data-proficiency-dice-mode="dice"] {
 	.rd__dc--rollable {

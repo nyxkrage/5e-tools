@@ -212,6 +212,7 @@
 				"beast"
 			],
 			"miscTags": [
+				"ADV",
 				"SGT"
 			],
 			"areaTags": [
@@ -2033,6 +2034,7 @@
 			],
 			"miscTags": [
 				"AAD",
+				"ADV",
 				"DFT",
 				"THP"
 			]
@@ -4293,7 +4295,8 @@
 			],
 			"miscTags": [
 				"HL",
-				"UBA"
+				"UBA",
+				"ADV"
 			]
 		},
 		{
@@ -4743,6 +4746,7 @@
 			],
 			"miscTags": [
 				"AAD",
+				"ADV",
 				"THP"
 			]
 		},
@@ -5720,7 +5724,8 @@
 				"force"
 			],
 			"miscTags": [
-				"AAD"
+				"AAD",
+				"ADV"
 			]
 		}
 	]

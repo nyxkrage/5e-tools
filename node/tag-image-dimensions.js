@@ -44,6 +44,7 @@ async function main () {
 	addDir("./data/adventure");
 	addDir("./data/book");
 	addFile("./data/decks.json");
+	addFile("./data/fluff-recipes.json");
 	allFiles.forEach(meta => {
 		ObjectWalker.walk({
 			filePath: meta.path,

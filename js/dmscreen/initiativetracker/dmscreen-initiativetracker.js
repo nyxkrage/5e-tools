@@ -300,7 +300,7 @@ export class InitiativeTracker extends BaseComponent {
 				if (this._state.isLocked) return;
 				ContextUtil.pOpenMenu(evt, menuImport);
 			});
-		const $btnReset = $(`<button title="Reset" class="btn btn-danger btn-xs dm-init-lockable"><span class="glyphicon glyphicon-trash"></span></button>`)
+		const $btnReset = $(`<button title="Reset Tracker" class="btn btn-danger btn-xs dm-init-lockable"><span class="glyphicon glyphicon-trash"></span></button>`)
 			.click(async () => {
 				if (this._state.isLocked) return;
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
@@ -444,6 +444,9 @@ export class InitiativeTracker extends BaseComponent {
 		}).pGetConverted({entityInfos, encounterInfo});
 
 		const rowsFromDefaultParty = await this._compDefaultParty.pGetConvertedDefaultPartyActiveRows();
+		const idsDefaultParty = new Set(rowsFromDefaultParty.map(({id}) => id));
+		const rowsPrevNonDefaultParty = rowsPrev
+			.filter(({id}) => !idsDefaultParty.has(id));
 
 		const stateNxt = {
 			// region TODO(DMS) not ideal--merge columns instead? Note that this also clobbers default party info
@@ -454,7 +457,7 @@ export class InitiativeTracker extends BaseComponent {
 
 			rows: this._state.importIsAppend
 				? [
-					...rowsPrev,
+					...rowsPrevNonDefaultParty,
 					...rowsFromDefaultParty,
 					...nxtState.rows,
 				]

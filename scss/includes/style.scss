@@ -945,11 +945,6 @@ input[type=checkbox].sidemenu__row__label__cb {
 	}
 }
 
-.monster .rnd-name .source {
-	position: relative;
-	margin-right: 0.2em;
-}
-
 .stats {
 	font-family: "Convergence", Arial, sans-serif;
 	width: 100%;
@@ -962,10 +957,6 @@ input[type=checkbox].sidemenu__row__label__cb {
 	}
 }
 
-.stats.monster {
-	background-size: 100% auto;
-	background: url("../img/bestiary/stat-block-top-texture.png") no-repeat, repeat top center, $rgb-bg-orange;
-}
 
 td,
 th {
@@ -1923,7 +1914,6 @@ header p.lead {
 			font-variant: small-caps;
 			text-transform: uppercase;
 			font-weight: bold;
-			padding: 0 0 0 5px;
 			height: 20px;
 			background: silver;
 			font-size: 12px;
@@ -3444,10 +3434,7 @@ th.border {
 	// endregion
 
 	// region stats
-	.stats,
-	.stats.monster {
-		background: transparent !important;
-	}
+	.stats
 
 	.stats-source,
 	.stats-source-abbreviation,

@@ -1214,6 +1214,9 @@
 			"damageResist": [
 				"poison"
 			],
+			"miscTags": [
+				"ADV"
+			],
 			"areaTags": [
 				"S"
 			]
@@ -1557,6 +1560,9 @@
 			],
 			"entries": [
 				"This spell bestows hope and vitality. Choose any number of creatures within range. For the duration, each target has advantage on Wisdom saving throws and death saving throws, and regains the maximum number of hit points possible from any healing."
+			],
+			"miscTags": [
+				"ADV"
 			],
 			"areaTags": [
 				"MT"
@@ -2712,6 +2718,9 @@
 			],
 			"entries": [
 				"Divine energy radiates from you, distorting and diffusing magical energy within 30 feet of you. Until the spell ends, the sphere moves with you, centered on you. For the duration, each friendly creature in the area (including you) has advantage on saving throws against spells and other magical effects. Additionally, when an affected creature succeeds on a saving throw made against a spell or magical effect that allows it to make a saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw."
+			],
+			"miscTags": [
+				"ADV"
 			],
 			"areaTags": [
 				"S"
@@ -6461,6 +6470,7 @@
 				}
 			],
 			"miscTags": [
+				"ADV",
 				"THP"
 			],
 			"areaTags": [
@@ -6524,6 +6534,7 @@
 				"constitution"
 			],
 			"miscTags": [
+				"ADV",
 				"OBJ",
 				"SGT"
 			],
@@ -6997,6 +7008,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"ADV",
 				"LGT"
 			],
 			"areaTags": [
@@ -8175,6 +8187,9 @@
 				"You touch a willing creature and bestow a limited ability to see into the immediate future. For the duration, the target can't be {@quickref Surprise|PHB|3|0|surprised} and has advantage on attack rolls, ability checks, and saving throws. Additionally, other creatures have disadvantage on attack rolls against the target for the duration.",
 				"This spell immediately ends if you cast it again before its duration ends."
 			],
+			"miscTags": [
+				"ADV"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -8260,6 +8275,9 @@
 			"entries": [
 				"For the duration, you have advantage on all Charisma checks directed at one creature of your choice that isn't hostile toward you. When the spell ends, the creature realizes that you used magic to influence its mood and becomes hostile toward you. A creature prone to violence might attack you. Another creature might seek retribution in other ways (at the DM's discretion), depending on the nature of your interaction with it."
 			],
+			"miscTags": [
+				"ADV"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -8302,6 +8320,9 @@
 				"You transform a willing creature you touch, along with everything it's wearing and carrying, into a misty cloud for the duration. The spell ends if the creature drops to 0 hit points. An incorporeal creature isn't affected.",
 				"While in this form, the target's only method of movement is a flying speed of 10 feet. The target can enter and occupy the space of another creature. The target has resistance to nonmagical damage, and it has advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through small holes, narrow openings, and even mere cracks, though it treats liquids as though they were solid surfaces. The target can't fall and remains hovering in the air even when {@condition stunned} or otherwise {@condition incapacitated}.",
 				"While in the form of a misty cloud, the target can't talk or manipulate objects, and any objects it was carrying or holding can't be dropped, used, or otherwise interacted with. The target can't attack or cast spells."
+			],
+			"miscTags": [
+				"ADV"
 			],
 			"areaTags": [
 				"ST"
@@ -9141,6 +9162,9 @@
 			"spellAttack": [
 				"R"
 			],
+			"miscTags": [
+				"ADV"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -9520,6 +9544,7 @@
 				"When the spell ends, the target can't move or take actions until after its next turn, as a wave of lethargy sweeps over it."
 			],
 			"miscTags": [
+				"ADV",
 				"MAC",
 				"SGT"
 			],
@@ -9816,6 +9841,9 @@
 			],
 			"conditionImmune": [
 				"frightened"
+			],
+			"miscTags": [
+				"ADV"
 			],
 			"areaTags": [
 				"MT"
@@ -10122,6 +10150,7 @@
 				"constitution"
 			],
 			"miscTags": [
+				"ADV",
 				"LGT"
 			],
 			"areaTags": [
@@ -10233,6 +10262,7 @@
 			],
 			"miscTags": [
 				"AAD",
+				"ADV",
 				"SGT",
 				"UBA"
 			],
@@ -14554,6 +14584,9 @@
 				"fiend",
 				"undead"
 			],
+			"miscTags": [
+				"ADV"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -14596,6 +14629,9 @@
 			],
 			"damageResist": [
 				"poison"
+			],
+			"miscTags": [
+				"ADV"
 			],
 			"areaTags": [
 				"ST"
@@ -18490,6 +18526,9 @@
 			"entries": [
 				"You extend your hand and point a finger at a target in range. Your magic grants you a brief insight into the target's defenses. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended."
 			],
+			"miscTags": [
+				"ADV"
+			],
 			"areaTags": [
 				"ST"
 			]
@@ -19399,7 +19438,8 @@
 			],
 			"miscTags": [
 				"HL",
-				"SGT"
+				"SGT",
+				"ADV"
 			]
 		},
 		{

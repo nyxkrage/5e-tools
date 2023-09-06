@@ -1225,6 +1225,32 @@ DamageTypeTag._TYPE_LOOKUP = {};
 globalThis.DamageTypeTag = DamageTypeTag;
 
 class MiscTag {
+	static _MELEE_WEAPON_MATCHERS = null;
+	static _RANGED_WEAPON_MATCHERS = null;
+	static _THROWN_WEAPON_MATCHERS = null;
+
+	static _IS_INIT = false;
+
+	static init ({items}) {
+		if (this._IS_INIT) return;
+		this._IS_INIT = true;
+
+		const weaponsBase = items
+			.filter(it => it._category === "Basic" && (it.type === "M" || it.type === "W"));
+
+		this._MELEE_WEAPON_MATCHERS = weaponsBase
+			.filter(it => it.type === "M")
+			.map(it => new RegExp(`(^|\\W)(${it.name.escapeRegexp()})(\\W|$)`, "gi"));
+
+		this._RANGED_WEAPON_MATCHERS = weaponsBase
+			.filter(it => it.type === "R")
+			.map(it => new RegExp(`(^|\\W)(${it.name.escapeRegexp()})(\\W|$)`, "gi"));
+
+		this._THROWN_WEAPON_MATCHERS = weaponsBase
+			.filter(it => it.property?.includes("T"))
+			.map(it => new RegExp(`(^|\\W)(${it.name.escapeRegexp()})(\\W|$)`, "gi"));
+	}
+
 	/** @return empty string for easy use in `.replace` */
 	static _addTag ({tagSet, allowlistTags, tag}) {
 		if (allowlistTags != null && !allowlistTags.has(tag)) return "";
@@ -1265,19 +1291,31 @@ class MiscTag {
 			}
 
 			if (it.name) {
-				// thrown weapon (PHB only)
-				if (hasRangedAttack) MiscTag._THROWN_WEAPON_MATCHERS.forEach(r => it.name.replace(r, () => this._addTag({tagSet, allowlistTags, tag: "THW"})));
+				// Melee weapons
+				// Ranged weapon
+				[
+					{res: this._MELEE_WEAPON_MATCHERS, tag: "MLW"},
+					{res: this._RANGED_WEAPON_MATCHERS, tag: "RNG"},
+				]
+					.forEach(({res, tag}) => {
+						res
+							.forEach(re => {
+								it.name
+									.replace(re, () => {
+										const mAtk = /{@atk ([^}]+)}/.exec(strEntries || "");
+										if (mAtk) {
+											const spl = mAtk[1].split(",");
+											// Avoid adding the "ranged attack" tag for spell attacks
+											if (spl.includes("rs")) return "";
+										}
+										this._addTag({tagSet, allowlistTags, tag});
+										return "";
+									});
+							});
+					});
 
-				// other ranged weapon (PHB only)
-				MiscTag._RANGED_WEAPON_MATCHERS.forEach(r => it.name.replace(r, () => {
-					const mAtk = /{@atk ([^}]+)}/.exec(strEntries || "");
-					if (mAtk) {
-						const spl = mAtk[1].split(",");
-						// Avoid adding the "ranged attack" tag for spell attacks
-						if (spl.includes("rs")) return;
-					}
-					this._addTag({tagSet, allowlistTags, tag: "RNG"});
-				}));
+				// Thrown weapon
+				if (hasRangedAttack) this._THROWN_WEAPON_MATCHERS.forEach(r => it.name.replace(r, () => this._addTag({tagSet, allowlistTags, tag: "THW"})));
 			}
 		});
 	}
@@ -1291,30 +1329,9 @@ class MiscTag {
 		MiscTag._handleProp({m, prop: "legendary", tagSet, allowlistTags});
 		MiscTag._handleProp({m, prop: "mythic", tagSet, allowlistTags});
 		if (tagSet.size) m.miscTags = [...tagSet];
-		else delete m.miscTags;
+		else if (!isAdditiveOnly) delete m.miscTags;
 	}
 }
-MiscTag._THROWN_WEAPONS = [
-	"dagger",
-	"handaxe",
-	"javelin",
-	"light hammer",
-	"spear",
-	"trident",
-	"dart",
-	"net",
-];
-MiscTag._THROWN_WEAPON_MATCHERS = MiscTag._THROWN_WEAPONS.map(it => new RegExp(`(^|[^\\w])(${it})([^\\w]|$)`, "gi"));
-MiscTag._RANGED_WEAPONS = [
-	"light crossbow",
-	"shortbow",
-	"sling",
-	"blowgun",
-	"hand crossbow",
-	"heavy crossbow",
-	"longbow",
-];
-MiscTag._RANGED_WEAPON_MATCHERS = MiscTag._RANGED_WEAPONS.map(it => new RegExp(`(^|[^\\w])(${it})([^\\w]|$)`, "gi"));
 
 globalThis.MiscTag = MiscTag;
 

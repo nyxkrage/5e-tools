@@ -422,6 +422,7 @@ $rgb-inset-border: #656565;
 			border-right-width: 1px;
 			margin: 5px;
 			width: calc(100% - 12px);
+			table-layout: fixed;
 
 			&--inset {
 				box-shadow: 0 0 4px 0 rgb(152, 142, 124);

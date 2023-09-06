@@ -96,50 +96,20 @@ class ObjectsPage extends ListPage {
 
 	_tabTitleStats = "Stats";
 
-	async _pDoLoadHash (id) {
-		const ent = this._dataList[id];
-
-		const tabMetaStats = new Renderer.utils.TabButton({
-			label: this._tabTitleStats,
-			fnChange: () => {
-				this._$dispToken.showVe();
-			},
-			fnPopulate: () => this._renderStatblock_doBuildStatsTab(ent),
-			isVisible: true,
-		});
-
-		const tabMetasAdditional = this._renderStats_getTabMetasAdditional({ent});
-
-		Renderer.utils.bindTabButtons({
-			tabButtons: [tabMetaStats, ...tabMetasAdditional],
-			tabLabelReference: [tabMetaStats, ...tabMetasAdditional].map(it => it.label),
-			$wrpTabs: this._$wrpTabs,
-			$pgContent: this._$pgContent,
-		});
-
-		this._updateSelected();
-
-		await this._renderStats_pBuildFluffTabs({
-			ent,
-			tabMetaStats,
-			tabMetasAdditional,
-		});
-	}
-
-	_renderStatblock_doBuildStatsTab (obj) {
+	_renderStats_doBuildStatsTab ({ent}) {
 		const renderStack = [];
 
-		if (obj.entries) this._renderer.recursiveRender({entries: obj.entries}, renderStack, {depth: 2});
-		if (obj.actionEntries) this._renderer.recursiveRender({entries: obj.actionEntries}, renderStack, {depth: 2});
+		if (ent.entries) this._renderer.recursiveRender({entries: ent.entries}, renderStack, {depth: 2});
+		if (ent.actionEntries) this._renderer.recursiveRender({entries: ent.actionEntries}, renderStack, {depth: 2});
 
-		this._$pgContent.empty().append(RenderObjects.$getRenderedObject(obj));
+		this._$pgContent.empty().append(RenderObjects.$getRenderedObject(ent));
 
 		(this._$dispToken = this._$dispToken || $(`#float-token`)).empty();
 
-		const hasToken = obj.tokenUrl || obj.hasToken;
+		const hasToken = ent.tokenUrl || ent.hasToken;
 		if (hasToken) {
-			const imgLink = Renderer.object.getTokenUrl(obj);
-			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(obj.name || "").qq()}" loading="lazy"></a>`);
+			const imgLink = Renderer.object.getTokenUrl(ent);
+			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(ent.name || "").qq()}" loading="lazy"></a>`);
 		}
 	}
 

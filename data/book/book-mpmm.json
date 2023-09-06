@@ -438,6 +438,70 @@
 				}
 			],
 			"id": "008"
+		},
+		{
+			"type": "section",
+			"name": "Maps",
+			"entries": [
+				{
+					"type": "gallery",
+					"images": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/MPMM/Mind Flayer Colony.webp"
+							},
+							"title": "Mind Flayer Colony",
+							"imageType": "map",
+							"credit": "Jared Blando",
+							"width": 3200,
+							"height": 4400
+						},
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/MPMM/Mind Flayer Colony.webp"
+							},
+							"title": "Player Version",
+							"imageType": "mapPlayer",
+							"credit": "Jared Blando",
+							"width": 3200,
+							"height": 4400
+						}
+					]
+				},
+				{
+					"type": "gallery",
+					"images": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/MPMM/Yuan-ti Temple.webp"
+							},
+							"title": "Yuan-ti Temple",
+							"imageType": "map",
+							"credit": "Jared Blando",
+							"width": 3200,
+							"height": 4400
+						},
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/MPMM/Yuan-ti Temple (Player Version).webp"
+							},
+							"title": "Player Version",
+							"imageType": "mapPlayer",
+							"credit": "Jared Blando",
+							"width": 3200,
+							"height": 4400
+						}
+					]
+				}
+			]
 		}
 	]
 }

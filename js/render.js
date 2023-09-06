@@ -774,7 +774,7 @@ globalThis.Renderer = function () {
 			? this._getPagePart(entry)
 			: "";
 		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled && !isInlineTitle
-			? `<span class="rd__h-toggle ml-2 clickable" data-rd-h-toggle-button="true">[\u2013]</span>`
+			? `<span class="rd__h-toggle ml-2 clickable no-select" data-rd-h-toggle-button="true" title="Toggle Visibility (CTRL to Toggle All)">[\u2013]</span>`
 			: "";
 		const partPageExpandCollapse = !this._isPartPageExpandCollapseDisabled && (pagePart || partExpandCollapse)
 			? `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`
@@ -895,6 +895,10 @@ globalThis.Renderer = function () {
 		}
 	};
 
+	this._getPtExpandCollapseSpecial = function () {
+		return `<span class="rd__h-toggle ml-2 clickable no-select" data-rd-h-special-toggle-button="true" title="Toggle Visibility (CTRL to Toggle All)">[\u2013]</span>`;
+	};
+
 	this._renderInset = function (entry, textStack, meta, options) {
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset ${this._getMutatedStyleString(entry.style || "")}" ${dataString}>`;
@@ -903,7 +907,7 @@ globalThis.Renderer = function () {
 		this._handleTrackDepth(entry, 1);
 
 		const pagePart = this._getPagePart(entry, true);
-		const partExpandCollapse = `<span class="rd__h-toggle ml-2 clickable" data-rd-h-special-toggle-button="true">[\u2013]</span>`;
+		const partExpandCollapse = this._getPtExpandCollapseSpecial();
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		if (entry.name != null) {
@@ -936,7 +940,7 @@ globalThis.Renderer = function () {
 		this._handleTrackDepth(entry, 1);
 
 		const pagePart = this._getPagePart(entry, true);
-		const partExpandCollapse = `<span class="rd__h-toggle ml-2 clickable" data-rd-h-special-toggle-button="true">[\u2013]</span>`;
+		const partExpandCollapse = this._getPtExpandCollapseSpecial();
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		if (entry.name != null) {
@@ -967,7 +971,7 @@ globalThis.Renderer = function () {
 		this._handleTrackDepth(entry, 1);
 
 		const pagePart = this._getPagePart(entry, true);
-		const partExpandCollapse = `<span class="rd__h-toggle ml-2 clickable" data-rd-h-special-toggle-button="true">[\u2013]</span>`;
+		const partExpandCollapse = this._getPtExpandCollapseSpecial();
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset" ${dataString}>`;
@@ -2065,34 +2069,56 @@ Renderer.applyProperties = function (entry, object) {
 	for (let i = 0; i < len; ++i) {
 		const s = propSplit[i];
 		if (!s) continue;
+
+		if (!s.startsWith("{=")) {
+			textStack += s;
+			continue;
+		}
+
 		if (s.startsWith("{=")) {
 			const [path, modifiers] = s.slice(2, -1).split("/");
 			let fromProp = object[path];
 
-			if (modifiers) {
-				for (const modifier of modifiers) {
-					switch (modifier) {
-						case "a": // render "a"/"an" depending on prop value
-							fromProp = Renderer.applyProperties._leadingAn.has(fromProp[0].toLowerCase()) ? "an" : "a";
-							break;
+			if (!modifiers) {
+				textStack += fromProp;
+				continue;
+			}
 
-						case "l": fromProp = fromProp.toLowerCase(); break; // convert text to lower case
-						case "t": fromProp = fromProp.toTitleCase(); break; // title-case text
-						case "u": fromProp = fromProp.toUpperCase(); break; // uppercase text
-						case "v": fromProp = Parser.numberToVulgar(fromProp); break; // vulgarize number
-						case "r": fromProp = Math.round(fromProp); break; // round number
-						case "f": fromProp = Math.floor(fromProp); break; // floor number
-						case "c": fromProp = Math.ceil(fromProp); break; // ceiling number
-					}
+			modifiers
+				.split("")
+				.sort((a, b) => Renderer.applyProperties._OP_ORDER.indexOf(a) - Renderer.applyProperties._OP_ORDER.indexOf(b));
+
+			for (const modifier of modifiers) {
+				switch (modifier) {
+					case "a": // render "a"/"an" depending on prop value
+						fromProp = Renderer.applyProperties._LEADING_AN.has(fromProp[0].toLowerCase()) ? "an" : "a";
+						break;
+
+					case "l": fromProp = fromProp.toLowerCase(); break; // convert text to lower case
+					case "t": fromProp = fromProp.toTitleCase(); break; // title-case text
+					case "u": fromProp = fromProp.toUpperCase(); break; // uppercase text
+					case "v": fromProp = Parser.numberToVulgar(fromProp); break; // vulgarize number
+					case "x": fromProp = Parser.numberToText(fromProp); break; // convert number to text
+					case "r": fromProp = Math.round(fromProp); break; // round number
+					case "f": fromProp = Math.floor(fromProp); break; // floor number
+					case "c": fromProp = Math.ceil(fromProp); break; // ceiling number
+
+					default: throw new Error(`Unhandled property modifier "${modifier}"`);
 				}
 			}
+
 			textStack += fromProp;
-		} else textStack += s;
+		}
 	}
 
 	return textStack;
 };
-Renderer.applyProperties._leadingAn = new Set(["a", "e", "i", "o", "u"]);
+Renderer.applyProperties._LEADING_AN = new Set(["a", "e", "i", "o", "u"]);
+Renderer.applyProperties._OP_ORDER = [
+	"r", "f", "c", // operate on value first
+	"v", "x", // cast to desired type
+	"l", "t", "u", "a", // operate on value representation
+];
 
 Renderer.applyAllProperties = function (entries, object = null) {
 	let lastObj = null;
@@ -4823,15 +4849,17 @@ Renderer.events = {
 	},
 
 	bindGeneric ({element = document.body} = {}) {
-		$(element)
+		const $ele = $(element)
 			.on("click", `[data-rd-data-embed-header]`, evt => {
 				Renderer.events.handleClick_dataEmbedHeader(evt, evt.currentTarget);
-			})
-			.on("click", `[data-rd-h-toggle-button]`, evt => {
-				Renderer.events.handleClick_headerToggleButton(evt, evt.currentTarget);
-			})
-			.on("click", `[data-rd-h-special-toggle-button]`, evt => {
-				Renderer.events.handleClick_headerToggleButton(evt, evt.currentTarget, {isSpecial: true});
+			});
+
+		Renderer.events._HEADER_TOGGLE_CLICK_SELECTORS
+			.forEach(selector => {
+				$ele
+					.on("click", selector, evt => {
+						Renderer.events.handleClick_headerToggleButton(evt, evt.currentTarget, {selector});
+					});
 			})
 		;
 	},
@@ -4846,11 +4874,32 @@ Renderer.events = {
 		$ele.closest("table").find("tbody").toggleVe();
 	},
 
-	handleClick_headerToggleButton (evt, ele, {isSpecial = false} = {}) {
+	_HEADER_TOGGLE_CLICK_SELECTORS: [
+		`[data-rd-h-toggle-button]`,
+		`[data-rd-h-special-toggle-button]`,
+	],
+
+	handleClick_headerToggleButton (evt, ele, {selector = false} = {}) {
 		evt.stopPropagation();
 		evt.preventDefault();
 
-		const isShow = ele.innerHTML.includes("+");
+		const isShow = this._handleClick_headerToggleButton_doToggleEle(ele, {selector});
+
+		if (!EventUtil.isCtrlMetaKey(evt)) return;
+
+		Renderer.events._HEADER_TOGGLE_CLICK_SELECTORS
+			.forEach(selector => {
+				[...document.querySelectorAll(selector)]
+					.filter(eleOther => eleOther !== ele)
+					.forEach(eleOther => {
+						Renderer.events._handleClick_headerToggleButton_doToggleEle(eleOther, {selector, force: isShow});
+					});
+			})
+		;
+	},
+
+	_handleClick_headerToggleButton_doToggleEle (ele, {selector = false, force = null} = {}) {
+		const isShow = force != null ? force : ele.innerHTML.includes("+");
 
 		let eleNxt = ele.closest(".rd__h").nextElementSibling;
 
@@ -4862,7 +4911,7 @@ Renderer.events = {
 			}
 
 			// For special sections, always collapse the whole thing.
-			if (!isSpecial) {
+			if (selector !== `[data-rd-h-special-toggle-button]`) {
 				const eleToCheck = Renderer.events._handleClick_headerToggleButton_getEleToCheck(eleNxt);
 				if (
 					eleToCheck.classList.contains("rd__b-special")
@@ -4871,11 +4920,13 @@ Renderer.events = {
 				) break;
 			}
 
-			eleNxt.classList.toggle("rd__ele-toggled-hidden");
+			eleNxt.classList.toggle("rd__ele-toggled-hidden", !isShow);
 			eleNxt = eleNxt.nextElementSibling;
 		}
 
 		ele.innerHTML = isShow ? "[\u2013]" : "[+]";
+
+		return isShow;
 	},
 
 	_handleClick_headerToggleButton_getEleToCheck (eleNxt) {
@@ -9729,10 +9780,13 @@ Renderer.recipe = {
 	},
 
 	getBodyHtml (it) {
-		const {ptMakes, ptServes} = Renderer.recipe._getMakesServesHtml(it);
+		const ptTime = Renderer.recipe.getTimeHtml(it);
+		const {ptMakes, ptServes} = Renderer.recipe.getMakesServesHtml(it);
 
 		return `<div class="ve-flex w-100 rd-recipes__wrp-recipe">
 			<div class="ve-flex-1 ve-flex-col br-1p pr-2">
+				${ptTime || ""}
+
 				${ptMakes || ""}
 				${ptServes || ""}
 
@@ -9743,13 +9797,13 @@ Renderer.recipe = {
 				${it.noteCook ? `<div class="w-100 ve-flex-col mt-4"><div class="ve-flex-vh-center bold mb-1 small-caps">Cook's Notes</div><div class="italic">${Renderer.get().render({entries: it.noteCook})}</div></div>` : ""}
 			</div>
 
-			<div class="pl-2 ve-flex-2 rd-recipes__wrp-instructions">
+			<div class="pl-2 ve-flex-2 rd-recipes__wrp-instructions overflow-x-auto">
 				${Renderer.get().setFirstSection(true).render({entries: it.instructions}, 2)}
 			</div>
 		</div>`;
 	},
 
-	_getMakesServesHtml (it) {
+	getMakesServesHtml (it) {
 		const ptMakes = it.makes ? `<div class="mb-2 ve-flex-v-center">
 			<div class="bold small-caps mr-2">Makes</div>
 			<div>${it._scaleFactor ? `${it._scaleFactor}× ` : ""}${Renderer.get().render(it.makes || it.serves)}</div>
@@ -9761,6 +9815,42 @@ Renderer.recipe = {
 		</div>` : null;
 
 		return {ptMakes, ptServes};
+	},
+
+	getTimeHtml (ent) {
+		if (!Object.keys(ent.time || {}).length) return "";
+
+		return [
+			"total",
+			"preparation",
+			"cooking",
+			...Object.keys(ent.time),
+		]
+			.unique()
+			.filter(prop => ent.time[prop])
+			.map((prop, i, arr) => {
+				const val = ent.time[prop];
+
+				const ptsTime = (
+					val.min != null && val.max != null
+						? [
+							Parser.getMinutesToFull(val.min),
+							Parser.getMinutesToFull(val.max),
+						]
+						: [Parser.getMinutesToFull(val)]
+				);
+
+				const suffix = MiscUtil.findCommonSuffix(ptsTime, {isRespectWordBoundaries: true});
+				const ptTime = ptsTime
+					.map(it => !suffix.length ? it : it.slice(0, -suffix.length))
+					.join(" to ");
+
+				return `<div class="split-v-center ${i === arr.length - 1 ? "mb-2" : "mb-1p"}">
+					<b class="small-caps">${prop.toTitleCase()} Time:</b>
+					<span>${ptTime}${suffix}</span>
+				</div>`;
+			})
+			.join("");
 	},
 
 	pGetFluff (it) {
@@ -9925,6 +10015,10 @@ Renderer.recipe = {
 			const c = obj.entry[i];
 			switch (c) {
 				case "{": {
+					if (!depth && stack) {
+						parts.push(stack);
+						stack = "";
+					}
 					depth++;
 					stack += c;
 					break;

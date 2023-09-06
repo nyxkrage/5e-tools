@@ -35,44 +35,78 @@ Parser.numberToText = function (number) {
 	if (number == null) throw new TypeError(`undefined or null object passed to parser`);
 	if (Math.abs(number) >= 100) return `${number}`;
 
-	function getAsText (num) {
-		const abs = Math.abs(num);
-		switch (abs) {
-			case 0: return "zero";
-			case 1: return "one";
-			case 2: return "two";
-			case 3: return "three";
-			case 4: return "four";
-			case 5: return "five";
-			case 6: return "six";
-			case 7: return "seven";
-			case 8: return "eight";
-			case 9: return "nine";
-			case 10: return "ten";
-			case 11: return "eleven";
-			case 12: return "twelve";
-			case 13: return "thirteen";
-			case 14: return "fourteen";
-			case 15: return "fifteen";
-			case 16: return "sixteen";
-			case 17: return "seventeen";
-			case 18: return "eighteen";
-			case 19: return "nineteen";
-			case 20: return "twenty";
-			case 30: return "thirty";
-			case 40: return "forty";
-			case 50: return "fiddy"; // :^)
-			case 60: return "sixty";
-			case 70: return "seventy";
-			case 80: return "eighty";
-			case 90: return "ninety";
-			default: {
-				const str = String(abs);
-				return `${getAsText(Number(`${str[0]}0`))}-${getAsText(Number(str[1]))}`;
-			}
+	return `${number < 0 ? "negative " : ""}${Parser.numberToText._getPositiveNumberAsText(Math.abs(number))}`;
+};
+
+Parser.numberToText._getPositiveNumberAsText = num => {
+	const [preDotRaw, postDotRaw] = `${num}`.split(".");
+
+	if (!postDotRaw) return Parser.numberToText._getPositiveIntegerAsText(num);
+
+	let preDot = preDotRaw === "0" ? "" : `${Parser.numberToText._getPositiveIntegerAsText(Math.trunc(num))} and `;
+
+	// See also: `Parser.numberToVulgar`
+	switch (postDotRaw) {
+		case "125": return `${preDot}one-eighth`;
+		case "2": return `${preDot}one-fifth`;
+		case "25": return `${preDot}one-quarter`;
+		case "375": return `${preDot}three-eighths`;
+		case "4": return `${preDot}two-fifths`;
+		case "5": return `${preDot}one-half`;
+		case "6": return `${preDot}three-fifths`;
+		case "625": return `${preDot}five-eighths`;
+		case "75": return `${preDot}three-quarters`;
+		case "8": return `${preDot}four-fifths`;
+		case "875": return `${preDot}seven-eighths`;
+
+		default: {
+			// Handle recursive
+			const asNum = Number(`0.${postDotRaw}`);
+
+			if (asNum.toFixed(2) === (1 / 3).toFixed(2)) return `${preDot}one-third`;
+			if (asNum.toFixed(2) === (2 / 3).toFixed(2)) return `${preDot}two-thirds`;
+
+			if (asNum.toFixed(2) === (1 / 6).toFixed(2)) return `${preDot}one-sixth`;
+			if (asNum.toFixed(2) === (5 / 6).toFixed(2)) return `${preDot}five-sixths`;
 		}
 	}
-	return `${number < 0 ? "negative " : ""}${getAsText(number)}`;
+};
+
+Parser.numberToText._getPositiveIntegerAsText = num => {
+	switch (num) {
+		case 0: return "zero";
+		case 1: return "one";
+		case 2: return "two";
+		case 3: return "three";
+		case 4: return "four";
+		case 5: return "five";
+		case 6: return "six";
+		case 7: return "seven";
+		case 8: return "eight";
+		case 9: return "nine";
+		case 10: return "ten";
+		case 11: return "eleven";
+		case 12: return "twelve";
+		case 13: return "thirteen";
+		case 14: return "fourteen";
+		case 15: return "fifteen";
+		case 16: return "sixteen";
+		case 17: return "seventeen";
+		case 18: return "eighteen";
+		case 19: return "nineteen";
+		case 20: return "twenty";
+		case 30: return "thirty";
+		case 40: return "forty";
+		case 50: return "fifty";
+		case 60: return "sixty";
+		case 70: return "seventy";
+		case 80: return "eighty";
+		case 90: return "ninety";
+		default: {
+			const str = String(num);
+			return `${Parser.numberToText._getPositiveIntegerAsText(Number(`${str[0]}0`))}-${Parser.numberToText._getPositiveIntegerAsText(Number(str[1]))}`;
+		}
+	}
 };
 
 Parser.textToNumber = function (str) {
@@ -102,7 +136,7 @@ Parser.textToNumber = function (str) {
 		case "twenty": return 20;
 		case "thirty": return 30;
 		case "forty": return 40;
-		case "fifty": case "fiddy": return 50;
+		case "fifty": return 50;
 		case "sixty": return 60;
 		case "seventy": return 70;
 		case "eighty": return 80;
@@ -119,6 +153,7 @@ Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) 
 	let preDot = spl[0] === "0" ? "" : spl[0];
 	if (isNeg) preDot = `-${preDot}`;
 
+	// See also: `Parser.numberToText._getPositiveNumberAsText`
 	switch (spl[1]) {
 		case "125": return `${preDot}⅛`;
 		case "2": return `${preDot}⅕`;
@@ -1010,6 +1045,21 @@ Parser.getTimeToFull = function (time) {
 	return `${time.number ? `${time.number} ` : ""}${time.unit === "bonus" ? "bonus action" : time.unit}${time.number > 1 ? "s" : ""}`;
 };
 
+Parser.getMinutesToFull = function (mins) {
+	const days = Math.floor(mins / (24 * 60));
+	mins = mins % (24 * 60);
+
+	const hours = Math.floor(mins / 60);
+	mins = mins % 60;
+
+	return [
+		days ? `${days} day${days > 1 ? "s" : ""}` : null,
+		hours ? `${hours} hour${hours > 1 ? "s" : ""}` : null,
+		mins ? `${mins} minute${mins > 1 ? "s" : ""}` : null,
+	].filter(Boolean)
+		.join(" ");
+};
+
 Parser.RNG_SPECIAL = "special";
 Parser.RNG_POINT = "point";
 Parser.RNG_LINE = "line";
@@ -1384,6 +1434,7 @@ Parser.SP_MISC_TAG_TO_FULL = {
 	DFT: "Difficult Terrain",
 	AAD: "Additional Attack Damage",
 	OBJ: "Affects Objects",
+	ADV: "Grants Advantage",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -1599,6 +1650,7 @@ Parser.MON_MISC_TAG_TO_FULL = {
 	"HPR": "Has HP Reduction",
 	"MW": "Has Weapon Attacks, Melee",
 	"RW": "Has Weapon Attacks, Ranged",
+	"MLW": "Has Melee Weapons",
 	"RNG": "Has Ranged Weapons",
 	"RCH": "Has Reach Attacks",
 	"THW": "Has Thrown Weapons",
@@ -3429,6 +3481,7 @@ Parser.SOURCES_PARTNERED_WOTC = new Set([
 	Parser.SRC_EGW_US,
 	Parser.SRC_CRCotN,
 	Parser.SRC_TDCSR,
+	Parser.SRC_HftT,
 ]);
 // region Source categories
 

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.185.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.186.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -402,7 +402,8 @@ CleanUtil.SHARED_REPLACEMENTS = {
 	"‘": "'",
 	"": "'",
 	"…": "...",
-	"\u200B": ``, // zero-width space
+	"\u200B": "", // zero-width space
+	"\u2002": " ", // em space
 	"ﬀ": "ff",
 	"ﬃ": "ffi",
 	"ﬄ": "ffl",
@@ -419,6 +420,7 @@ CleanUtil.SHARED_REPLACEMENTS = {
 	"ﬅ": "ft",
 	"“": `"`,
 	"”": `"`,
+	"\u201a": ",",
 };
 CleanUtil.STR_REPLACEMENTS = {
 	"—": "\\u2014",
@@ -1187,15 +1189,15 @@ globalThis.ElementUtil = {
 
 	// region "Static"
 	getIndexPathToParent (parent, child) {
-		if (!parent.contains(child)) return null;
+		if (!parent.contains(child)) return null; // Should never occur
 
 		const path = [];
 
 		while (child !== parent) {
-			if (!child.parentElement) return null;
+			if (!child.parentElement) return null; // Should never occur
 
 			const ix = [...child.parentElement.children].indexOf(child);
-			if (!~ix) return null;
+			if (!~ix) return null; // Should never occur
 
 			path.push(ix);
 
@@ -1541,9 +1543,13 @@ globalThis.MiscUtil = {
 
 	_findCommonPrefixSuffixWords ({strArr, isSuffix}) {
 		let prefixTks = null;
+		let lenMax = -1;
 
 		strArr
-			.map(str => str.split(" "))
+			.map(str => {
+				lenMax = Math.max(lenMax, str.length);
+				return str.split(" ");
+			})
 			.forEach(tks => {
 				if (isSuffix) tks.reverse();
 
@@ -1565,6 +1571,9 @@ globalThis.MiscUtil = {
 		if (isSuffix) prefixTks.reverse();
 
 		if (!prefixTks.length) return "";
+
+		const out = prefixTks.join(" ");
+		if (out.length === lenMax) return out;
 
 		return isSuffix
 			? ` ${prefixTks.join(" ")}`
@@ -3265,6 +3274,10 @@ globalThis.SortUtil = {
 		return SortUtil.ascSortDateString(b.published, a.published)
 			|| SortUtil.ascSortLower(a.parentSource || "", b.parentSource || "")
 			|| SortUtil.ascSortLower(a.name, b.name);
+	},
+
+	ascSortBookData (a, b) {
+		return SortUtil.ascSortLower(a.id || "", b.id || "");
 	},
 
 	ascSortGenericEntity (a, b) {
@@ -5294,14 +5307,22 @@ globalThis.DataUtil = {
 		static _FILENAME = "recipes.json";
 
 		static async loadJSON () {
+			const rawData = await super.loadJSON();
+			return {recipe: await DataUtil.recipe.pGetPostProcessedRecipes(rawData.recipe)};
+		}
+
+		static async pGetPostProcessedRecipes (recipes) {
+			if (!recipes?.length) return;
+
+			recipes = MiscUtil.copyFast(recipes);
+
+			// Apply ingredient properties
+			recipes.forEach(r => Renderer.recipe.populateFullIngredients(r));
+
 			const out = [];
 
-			const rawData = await super.loadJSON();
-
-			DataUtil.recipe.postProcessData(rawData);
-
 			// region Merge together main data and fluff, as we render the fluff in the main tab
-			for (const r of rawData.recipe) {
+			for (const r of recipes) {
 				const fluff = await Renderer.utils.pGetFluff({
 					entity: r,
 					fnGetFluffData: DataUtil.recipeFluff.loadJSON.bind(DataUtil.recipeFluff),
@@ -5319,16 +5340,9 @@ globalThis.DataUtil = {
 				delete cpyR.fluff.source;
 				out.push(cpyR);
 			}
-			// endregion
+			//
 
-			return {recipe: out};
-		}
-
-		static postProcessData (data) {
-			if (!data.recipe || !data.recipe.length) return;
-
-			// Apply ingredient properties
-			data.recipe.forEach(r => Renderer.recipe.populateFullIngredients(r));
+			return out;
 		}
 
 		static async loadPrerelease () {
@@ -5343,8 +5357,12 @@ globalThis.DataUtil = {
 			if (!brewUtil) return {};
 
 			const brew = await brewUtil.pGetBrewProcessed();
-			DataUtil.recipe.postProcessData(brew);
-			return brew;
+			if (!brew?.recipe?.length) return brew;
+
+			return {
+				...brew,
+				recipe: await DataUtil.recipe.pGetPostProcessedRecipes(brew.recipe),
+			};
 		}
 	},
 
@@ -6823,18 +6841,18 @@ class BookModeViewBase {
 
 	/* -------------------------------------------- */
 
-	_$getDispName () {
-		return $(`<div></div>`);
+	_$getWindowHeaderLhs () {
+		return $(`<div class="ve-flex-v-center"></div>`);
 	}
 
 	_$getBtnWindowClose () {
-		return $(`<button class="btn btn-xs btn-danger br-0 bt-0 bb-0 btl-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`)
+		return $(`<button class="btn btn-xs btn-danger br-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`)
 			.click(() => this.setStateClosed());
 	}
 
 	/* -------------------------------------------- */
 
-	_$getWrpControls ({$wrpContent}) {
+	async _$pGetWrpControls ({$wrpContent}) {
 		const $wrp = $(`<div class="w-100 ve-flex-col no-shrink no-print"></div>`);
 
 		if (!this._hasPrintColumns) return $wrp;
@@ -6896,8 +6914,8 @@ class BookModeViewBase {
 		const {$wrpContentOuter, $wrpContent} = await this._pGetContentElementMetas();
 
 		this._$wrpBook = $$`<div class="bkmv print__h-initial ve-flex-col print__ve-block">
-			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._$getDispName()}${this._$getBtnWindowClose()}</div>
-			${this._$getWrpControls({$wrpContent}).$wrp}
+			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._$getWindowHeaderLhs()}${this._$getBtnWindowClose()}</div>
+			${(await this._$pGetWrpControls({$wrpContent})).$wrp}
 			${$wrpContentOuter}
 		</div>`
 			.appendTo(document.body);

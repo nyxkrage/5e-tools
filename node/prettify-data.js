@@ -1,10 +1,18 @@
-"use strict";
+import {Command} from "commander";
 
 import * as fs from "fs";
 import * as ut from "./util.js";
 import "../js/parser.js";
 import "../js/utils.js";
 import "../js/utils-proporder.js";
+
+const program = new Command()
+	.option("--file <file>", `Input file`)
+	.option("--dir <dir>", `Input directory ()`, "./data")
+;
+
+program.parse(process.argv);
+const params = program.opts();
 
 const FILE_BLOCKLIST = new Set([
 	"loot.json",
@@ -36,6 +44,7 @@ const PROPS_TO_UNHANDLED_KEYS = {};
 function getFnListSort (prop) {
 	switch (prop) {
 		case "spell":
+		case "spellList":
 		case "monster":
 		case "monsterFluff":
 		case "monsterTemplate":
@@ -65,10 +74,12 @@ function getFnListSort (prop) {
 		case "baseitem":
 		case "magicvariant":
 		case "itemGroup":
+		case "itemMastery":
 		case "object":
 		case "optionalfeature":
 		case "psionic":
 		case "reward":
+		case "rewardFluff":
 		case "variantrule":
 		case "race":
 		case "table":
@@ -109,8 +120,50 @@ function getFnListSort (prop) {
 			|| SortUtil.ascSortLower(a.source, b.source);
 		case "adventure": return SortUtil.ascSortAdventure.bind(SortUtil);
 		case "book": return SortUtil.ascSortBook.bind(SortUtil);
+		case "bookData": return SortUtil.ascSortBookData.bind(SortUtil);
 		default: throw new Error(`Unhandled prop "${prop}"`);
 	}
+}
+
+function prettifyFile (file) {
+	console.log(`\tPrettifying ${file}...`);
+	let json = ut.readJson(file);
+	let isModified = false;
+
+	// region Sort keys within entities
+	Object.entries(json)
+		.filter(([k, v]) => !KEY_BLOCKLIST.has(k) && v instanceof Array)
+		.forEach(([k, v]) => {
+			if (PropOrder.hasOrder(k)) {
+				PROPS_TO_UNHANDLED_KEYS[k] = PROPS_TO_UNHANDLED_KEYS[k] || new Set();
+
+				json[k] = v.map(it => PropOrder.getOrdered(it, k, {fnUnhandledKey: uk => PROPS_TO_UNHANDLED_KEYS[k].add(uk)}));
+
+				json[k].sort(getFnListSort(k));
+
+				isModified = true;
+			} else console.warn(`\t\tUnhandled property: "${k}"`);
+		});
+	// endregion
+
+	// region Sort file-level properties
+	const keyOrder = Object.keys(json)
+		.sort((a, b) => {
+			const ixA = _FILE_PROP_ORDER.indexOf(a);
+			const ixB = _FILE_PROP_ORDER.indexOf(b);
+			return SortUtil.ascSort(~ixA ? ixA : Number.MAX_SAFE_INTEGER, ~ixB ? ixB : Number.MAX_SAFE_INTEGER);
+		});
+	const numUnhandledKeys = Object.keys(json).filter(it => !~_FILE_PROP_ORDER.indexOf(it));
+	if (numUnhandledKeys > 1) console.warn(`\t\tUnhandled file-level properties: "${numUnhandledKeys}"`);
+	if (!CollectionUtil.deepEquals(Object.keys(json), keyOrder)) {
+		const nxt = {};
+		keyOrder.forEach(k => nxt[k] = json[k]);
+		json = nxt;
+		isModified = true;
+	}
+	// endregion
+
+	if (isModified) fs.writeFileSync(file, CleanUtil.getCleanJson(json), "utf-8");
 }
 
 function prettifyFolder (folder) {
@@ -118,54 +171,16 @@ function prettifyFolder (folder) {
 	const files = ut.listFiles({dir: folder});
 	files
 		.filter(file => file.endsWith(".json") && !FILE_BLOCKLIST.has(file.split("/").last()))
-		.forEach(file => {
-			console.log(`\tPrettifying ${file}...`);
-			let json = ut.readJson(file);
-			let isModified = false;
-
-			// region Sort keys within entities
-			Object.entries(json)
-				.filter(([k, v]) => !KEY_BLOCKLIST.has(k) && v instanceof Array)
-				.forEach(([k, v]) => {
-					if (PropOrder.hasOrder(k)) {
-						PROPS_TO_UNHANDLED_KEYS[k] = PROPS_TO_UNHANDLED_KEYS[k] || new Set();
-
-						json[k] = v.map(it => PropOrder.getOrdered(it, k, {fnUnhandledKey: uk => PROPS_TO_UNHANDLED_KEYS[k].add(uk)}));
-
-						json[k].sort(getFnListSort(k));
-
-						isModified = true;
-					} else console.warn(`\t\tUnhandled property: "${k}"`);
-				});
-			// endregion
-
-			// region Sort file-level properties
-			const keyOrder = Object.keys(json)
-				.sort((a, b) => {
-					const ixA = _FILE_PROP_ORDER.indexOf(a);
-					const ixB = _FILE_PROP_ORDER.indexOf(b);
-					return SortUtil.ascSort(~ixA ? ixA : Number.MAX_SAFE_INTEGER, ~ixB ? ixB : Number.MAX_SAFE_INTEGER);
-				});
-			const numUnhandledKeys = Object.keys(json).filter(it => !~_FILE_PROP_ORDER.indexOf(it));
-			if (numUnhandledKeys > 1) console.warn(`\t\tUnhandled file-level properties: "${numUnhandledKeys}"`);
-			if (!CollectionUtil.deepEquals(Object.keys(json), keyOrder)) {
-				const nxt = {};
-				keyOrder.forEach(k => nxt[k] = json[k]);
-				json = nxt;
-				isModified = true;
-			}
-			// endregion
-
-			if (isModified) fs.writeFileSync(file, CleanUtil.getCleanJson(json), "utf-8");
-		});
+		.forEach(file => prettifyFile(file));
 
 	Object.entries(PROPS_TO_UNHANDLED_KEYS)
-		.filter(([prop, set]) => set.size)
+		.filter(([, set]) => set.size)
 		.forEach(([prop, set]) => {
 			console.warn(`Unhandled keys for data property "${prop}":`);
 			set.forEach(k => console.warn(`\t${k}`));
 		});
 }
 
-prettifyFolder(`./data`);
+if (params.file) prettifyFile(params.file);
+else prettifyFolder(params.dir);
 console.log("Prettifying complete.");

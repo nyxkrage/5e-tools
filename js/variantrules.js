@@ -90,8 +90,8 @@ class VariantRulesPage extends ListPage {
 		this._$pgContent.empty().append(RenderVariantRules.$getRenderedVariantRule(ent));
 	}
 
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
+	async _pDoLoadSubHash ({sub, lockToken}) {
+		sub = await super._pDoLoadSubHash({sub, lockToken});
 
 		if (!sub.length) return;
 		const $title = $(`.rd__h[data-title-index="${sub[0]}"]`);

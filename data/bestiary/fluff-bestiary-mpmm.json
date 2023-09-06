@@ -3573,6 +3573,16 @@
 						"Born in a wide range of colors, grungs most often appear in shades of green, blue, purple, red, orange, and gold. All grungs secrete a substance that is harmless to them but poisonous to other creatures, and sometimes that substance has a special effect based on the grung's color (see \"Variant: Grung Poison\"). They also use this venom to poison their weapons."
 					]
 				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/MPMM/Grungs.webp"
+					},
+					"credit": "Shawn Wood"
+				}
 			]
 		},
 		{
@@ -5953,6 +5963,14 @@
 						"type": "internal",
 						"path": "bestiary/MPMM/Storm Giant Quintessent.webp"
 					}
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/MPMM/Storm Giant Quintessent 2.webp"
+					},
+					"credit": "Tyler Jacobson"
 				}
 			]
 		},

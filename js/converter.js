@@ -1136,6 +1136,7 @@ async function doPageInit () {
 	TaggerUtils.init({legendaryGroups, spells});
 	await TagJsons.pInit({spells});
 	RaceTraitTag.init({itemsRaw});
+	MiscTag.init({items});
 	AttachedItemTag.init({items});
 	TagCondition.init({conditionsBrew: brew.condition});
 

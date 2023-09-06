@@ -1233,6 +1233,9 @@
 			"attachedItems": [
 				"battleaxe|phb"
 			],
+			"miscTags": [
+				"MLW"
+			],
 			"hasToken": true
 		},
 		{
@@ -3690,6 +3693,7 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RCH"
 			],
@@ -5539,6 +5543,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"

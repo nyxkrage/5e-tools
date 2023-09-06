@@ -2008,7 +2008,7 @@
 				{
 					"type": "ingredient",
 					"entry": "{=amount1/v} teaspoon pure vanilla extract",
-					"amount1": 0.13
+					"amount1": 0.125
 				},
 				{
 					"type": "ingredient",
@@ -2776,7 +2776,7 @@
 						{
 							"type": "ingredient",
 							"entry": "{=amount1/v} teaspoon ground cloves",
-							"amount1": 0.13
+							"amount1": 0.125
 						},
 						{
 							"type": "ingredient",

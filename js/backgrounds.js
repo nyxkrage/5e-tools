@@ -1,12 +1,6 @@
 "use strict";
 
 class BackgroundSublistManager extends SublistManager {
-	constructor () {
-		super({
-			sublistClass: "subbackgrounds",
-		});
-	}
-
 	pGetSublistItem (it, hash) {
 		const name = it.name.replace("Variant ", "");
 		const skills = Renderer.background.getSkillSummary(it.skillProficiencies || [], true);
@@ -47,8 +41,6 @@ class BackgroundPage extends ListPage {
 			pFnGetFluff: Renderer.background.pGetFluff.bind(Renderer.background),
 
 			pageFilter,
-
-			listClass: "backgrounds",
 
 			bookViewOptions: {
 				namePlural: "backgrounds",

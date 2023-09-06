@@ -118,11 +118,12 @@ class RecipesPage extends ListPage {
 		$selScaleFactor.val(`${scaleFactor || 1}`);
 
 		this._$pgContent.empty().append(RenderRecipes.$getRenderedRecipe(ent, {$selScaleFactor}));
+		Renderer.initLazyImageLoaders();
 		this._lastRender = {entity: ent};
 	}
 
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
+	async _pDoLoadSubHash ({sub, lockToken}) {
+		sub = await super._pDoLoadSubHash({sub, lockToken});
 
 		const scaledHash = sub.find(it => it.startsWith(RecipesPage._HASH_START_SCALED));
 		if (scaledHash) {
