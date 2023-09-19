@@ -142,6 +142,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -525,6 +528,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -7537,6 +7543,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -7946,6 +7955,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -9563,6 +9575,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -9887,6 +9902,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -10249,6 +10267,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -10446,6 +10467,9 @@
 				},
 				{
 					"source": "PSZ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -10831,6 +10855,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -10990,6 +11017,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -11493,6 +11523,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -12463,6 +12496,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -13813,6 +13849,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -15193,6 +15232,9 @@
 				},
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -15661,6 +15703,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -15810,6 +15855,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -15977,6 +16025,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -16508,6 +16559,9 @@
 				},
 				{
 					"source": "GotSF"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -17486,6 +17540,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -17712,6 +17769,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -19147,6 +19207,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -19822,6 +19885,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -20331,6 +20397,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -20468,6 +20537,9 @@
 				},
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -21097,6 +21169,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -21322,6 +21397,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -22744,6 +22822,9 @@
 				},
 				{
 					"source": "ToA"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -22995,6 +23076,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -25963,6 +26047,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -26331,6 +26418,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -26710,6 +26800,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -27072,6 +27165,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -27822,6 +27918,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -28034,6 +28133,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -28221,6 +28323,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -28628,6 +28733,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -29735,6 +29843,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -29975,6 +30086,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -30590,6 +30704,9 @@
 				},
 				{
 					"source": "PSX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -31272,6 +31389,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -31383,6 +31503,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -31509,6 +31632,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -32679,6 +32805,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -32812,6 +32941,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -32955,6 +33087,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -33621,6 +33756,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -33778,6 +33916,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -34749,6 +34890,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -34887,6 +35031,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -35001,6 +35148,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -35247,6 +35397,9 @@
 			"otherSources": [
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -36607,6 +36760,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -37206,6 +37362,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -37635,6 +37794,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -37743,6 +37905,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -38172,6 +38337,9 @@
 				},
 				{
 					"source": "PSZ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -39127,6 +39295,9 @@
 				},
 				{
 					"source": "ERLW"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -39300,6 +39471,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -40420,6 +40594,9 @@
 				},
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -42805,6 +42982,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -44634,6 +44814,9 @@
 				},
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -45032,6 +45215,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -46115,6 +46301,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -47148,6 +47337,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -47916,6 +48108,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -48053,6 +48248,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -48285,6 +48483,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -48570,6 +48771,9 @@
 				},
 				{
 					"source": "PSZ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -48693,6 +48897,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -49028,6 +49235,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -49651,6 +49861,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -49917,6 +50130,9 @@
 				},
 				{
 					"source": "DoSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -50529,6 +50745,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -52311,6 +52530,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -52582,6 +52804,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -52957,6 +53182,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -53788,6 +54016,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -54055,6 +54286,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -54185,6 +54419,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -54681,6 +54918,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -57286,6 +57526,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -57419,6 +57662,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -57772,6 +58018,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -57885,6 +58134,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -58401,6 +58653,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -58622,6 +58877,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -59044,6 +59302,9 @@
 				},
 				{
 					"source": "JttRC"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -59732,6 +59993,9 @@
 				},
 				{
 					"source": "KftGV"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -63068,6 +63332,9 @@
 				},
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -63533,6 +63800,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -63989,6 +64259,9 @@
 				},
 				{
 					"source": "LoX"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -66341,6 +66614,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -66506,6 +66782,9 @@
 				},
 				{
 					"source": "DSotDQ"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -66628,6 +66907,9 @@
 				},
 				{
 					"source": "WBtW"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -67860,6 +68142,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -68505,6 +68790,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -68774,6 +69062,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -69042,6 +69333,9 @@
 				},
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -69320,6 +69614,9 @@
 				},
 				{
 					"source": "CRCotN"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -70993,6 +71290,9 @@
 				},
 				{
 					"source": "RMBRE"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -73305,6 +73605,9 @@
 				},
 				{
 					"source": "PSI"
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [

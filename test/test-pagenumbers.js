@@ -39,9 +39,11 @@ const BLOCKLIST_SOURCES = new Set([
 	Parser.SRC_SLW,
 	Parser.SRC_SDW,
 	Parser.SRC_VD,
+	Parser.SRC_HAT_TG,
+	Parser.SRC_HAT_LMI,
 	// endregion
 
-	// region Sources which are screens, and therefore pageless"
+	// region Sources which are screens, and therefore "pageless"
 	Parser.SRC_SCREEN,
 	Parser.SRC_SCREEN_WILDERNESS_KIT,
 	Parser.SRC_SCREEN_DUNGEON_KIT,

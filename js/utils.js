@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.186.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.187.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
@@ -1323,7 +1323,8 @@ globalThis.MiscUtil = {
 	getOrSet (object, ...pathAndVal) {
 		if (pathAndVal.length < 2) return null;
 		const existing = MiscUtil.get(object, ...pathAndVal.slice(0, -1));
-		return existing || MiscUtil.set(object, ...pathAndVal);
+		if (existing != null) return existing;
+		return MiscUtil.set(object, ...pathAndVal);
 	},
 
 	getThenSetCopy (object1, object2, ...path) {
@@ -4623,7 +4624,7 @@ globalThis.DataUtil = {
 			}
 		},
 
-		getVersions (parent, {isExternalApplicationIdentityOnly = false} = {}) {
+		getVersions (parent, {impl = null, isExternalApplicationIdentityOnly = false} = {}) {
 			if (!parent?._versions?.length) return [];
 
 			return parent._versions
@@ -4632,7 +4633,7 @@ globalThis.DataUtil = {
 					return DataUtil.generic._getVersions_basic({ver});
 				})
 				.flat()
-				.map(ver => DataUtil.generic._getVersion({parentEntity: parent, version: ver, isExternalApplicationIdentityOnly}));
+				.map(ver => DataUtil.generic._getVersion({parentEntity: parent, version: ver, impl, isExternalApplicationIdentityOnly}));
 		},
 
 		_getVersions_template ({ver}) {
@@ -4670,12 +4671,13 @@ globalThis.DataUtil = {
 			// Tweak the data structure to match what `_applyCopy` expects
 			ent._copy = {
 				_mod: ent._mod,
-				_preserve: {"*": true},
+				_preserve: ent._preserve || {"*": true},
 			};
 			delete ent._mod;
+			delete ent._preserve;
 		},
 
-		_getVersion ({parentEntity, version, isExternalApplicationIdentityOnly}) {
+		_getVersion ({parentEntity, version, impl = null, isExternalApplicationIdentityOnly}) {
 			const additionalData = {
 				_versionBase_isVersion: true,
 				_versionBase_name: parentEntity.name,
@@ -4692,7 +4694,7 @@ globalThis.DataUtil = {
 			delete cpyParentEntity.hasFluffImages;
 
 			DataUtil.generic.copyApplier.getCopy(
-				null,
+				impl,
 				cpyParentEntity,
 				version,
 				null,
@@ -4752,7 +4754,7 @@ globalThis.DataUtil = {
 				mon = MiscUtil.copyFast(mon);
 				(mon._versions = mon._versions || []).push(...additionalVersionData);
 			}
-			return DataUtil.generic.getVersions(mon, {isExternalApplicationIdentityOnly});
+			return DataUtil.generic.getVersions(mon, {impl: DataUtil.monster, isExternalApplicationIdentityOnly});
 		}
 
 		static _getAdditionalVersionsData (mon) {

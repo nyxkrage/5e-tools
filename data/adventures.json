@@ -29887,6 +29887,1093 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Phandelver and Below: The Shattered Obelisk",
+			"id": "PaBTSO",
+			"source": "PaBTSO",
+			"group": "supplement",
+			"coverUrl": "img/covers/PaBTSO.png",
+			"published": "2023-09-19",
+			"storyline": "Starter Set",
+			"level": {
+				"start": 1,
+				"end": 12
+			},
+			"contents": [
+				{
+					"name": "Welcome to Phandalin",
+					"headers": [
+						"Threats from Below",
+						"About This Book",
+						"Adventure Summary",
+						"Running the Adventure",
+						"Character Creation",
+						"Adventure Hooks",
+						"Far Realm Influence"
+					]
+				},
+				{
+					"name": "A Dangerous Journey",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					},
+					"headers": [
+						"Running This Chapter",
+						"The Road to Phandalin",
+						"Cragmaw Hideout",
+						{
+							"depth": 1,
+							"header": "H1: Cave Mouth"
+						},
+						{
+							"depth": 1,
+							"header": "H2: Goblin Guard Post"
+						},
+						{
+							"depth": 1,
+							"header": "H3: Kennel"
+						},
+						{
+							"depth": 1,
+							"header": "H4: Steep Passage"
+						},
+						{
+							"depth": 1,
+							"header": "H5: Overpass"
+						},
+						{
+							"depth": 1,
+							"header": "H6: Goblin Den"
+						},
+						{
+							"depth": 1,
+							"header": "H7: Twin Pools Cave"
+						},
+						{
+							"depth": 1,
+							"header": "H8: Klarg's Cave"
+						}
+					]
+				},
+				{
+					"name": "Trouble in Phandalin",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					},
+					"headers": [
+						"Running This Chapter",
+						"Welcome to Phandalin",
+						"Encounters in Phandalin",
+						"Town Description",
+						"Redbrand Ruffians",
+						"Redbrands' Hideout",
+						{
+							"depth": 1,
+							"header": "R1: Cellar"
+						},
+						{
+							"depth": 1,
+							"header": "R2: Barrack"
+						},
+						{
+							"depth": 1,
+							"header": "R3: Trapped Hall"
+						},
+						{
+							"depth": 1,
+							"header": "R4: Tresendar Crypts"
+						},
+						{
+							"depth": 1,
+							"header": "R5: Holding Cells"
+						},
+						{
+							"depth": 1,
+							"header": "R6: Armory"
+						},
+						{
+							"depth": 1,
+							"header": "R7: Storeroom and Work Area"
+						},
+						{
+							"depth": 1,
+							"header": "R8: Crevasse Cave"
+						},
+						{
+							"depth": 1,
+							"header": "R9: Guard Barrack"
+						},
+						{
+							"depth": 1,
+							"header": "R10: Common Room"
+						},
+						{
+							"depth": 1,
+							"header": "R11: Wizard's Workshop"
+						},
+						{
+							"depth": 1,
+							"header": "R12: Glasstaff's Quarters"
+						},
+						"What's Next?"
+					]
+				},
+				{
+					"name": "The Spider's Web",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					},
+					"headers": [
+						"The Story So Far",
+						"Running This Chapter",
+						"Conyberry and Agatha's Lair",
+						"Old Owl Well",
+						"Ruins of Thundertree",
+						{
+							"depth": 1,
+							"header": "U1: Westernmost Cottage"
+						},
+						{
+							"depth": 1,
+							"header": "U2: Blighted Cottages"
+						},
+						{
+							"depth": 1,
+							"header": "U3: The Brown Horse"
+						},
+						{
+							"depth": 1,
+							"header": "U4: Druid's Watch Post"
+						},
+						{
+							"depth": 1,
+							"header": "U5: Blighted Farmhouse"
+						},
+						{
+							"depth": 1,
+							"header": "U6: Ruined Store"
+						},
+						{
+							"depth": 1,
+							"header": "U7: Old Tower"
+						},
+						{
+							"depth": 1,
+							"header": "U8: Old Smithy"
+						},
+						{
+							"depth": 1,
+							"header": "U9: Herbalist's Shop"
+						},
+						{
+							"depth": 1,
+							"header": "U10: Town Square"
+						},
+						{
+							"depth": 1,
+							"header": "U11: Old Garrison"
+						},
+						{
+							"depth": 1,
+							"header": "U12: Weaver's Cottage"
+						},
+						{
+							"depth": 1,
+							"header": "U13: Dragon Cultists' Cottage"
+						},
+						"Wyvern Tor",
+						"Cragmaw Castle",
+						{
+							"depth": 1,
+							"header": "C1: Castle Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "C2: Trapped Hall"
+						},
+						{
+							"depth": 1,
+							"header": "C3: Archer Post"
+						},
+						{
+							"depth": 1,
+							"header": "C4: Ruined Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "C5: Storeroom"
+						},
+						{
+							"depth": 1,
+							"header": "C6: Hobgoblin Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "C7: Banquet Hall"
+						},
+						{
+							"depth": 1,
+							"header": "C8: Dark Hall"
+						},
+						{
+							"depth": 1,
+							"header": "C9: Goblin Shrine"
+						},
+						{
+							"depth": 1,
+							"header": "C10: Postern Gate"
+						},
+						{
+							"depth": 1,
+							"header": "C11: Ruined Tower"
+						},
+						{
+							"depth": 1,
+							"header": "C12: Guard Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "C13: Haunted Tower"
+						},
+						{
+							"depth": 1,
+							"header": "C14: King's Quarters"
+						},
+						"What's Next?"
+					]
+				},
+				{
+					"name": "Wave Echo Cave",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					},
+					"headers": [
+						"Running This Chapter",
+						"Wave Echo Cave",
+						{
+							"depth": 1,
+							"header": "W1: Cave Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "W2: Mine Tunnels"
+						},
+						{
+							"depth": 1,
+							"header": "W3: Old Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "W4: Old Guardroom"
+						},
+						{
+							"depth": 1,
+							"header": "W5: Assayers' Office"
+						},
+						{
+							"depth": 1,
+							"header": "W6: South Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "W7: Ruined Storeroom"
+						},
+						{
+							"depth": 1,
+							"header": "W8: Fungi Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "W9: Great Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "W10: Dark Pool"
+						},
+						{
+							"depth": 1,
+							"header": "W11: North Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "W12: Smelter Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "W13: Starry Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "W14: Wizards' Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "W15: Forge of Spells"
+						},
+						{
+							"depth": 1,
+							"header": "W16: Booming Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "W17: Old Streambed"
+						},
+						{
+							"depth": 1,
+							"header": "W18: Collapsed Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "W19: Temple Of Dumathoin"
+						},
+						{
+							"depth": 1,
+							"header": "W20: Priests' Quarters"
+						},
+						"What's Next?"
+					]
+				},
+				{
+					"name": "Paths of Peril",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					},
+					"headers": [
+						"Running This Chapter",
+						"Townmaster's Plight",
+						"Stolen Shards",
+						"Zorzula's Rest",
+						{
+							"depth": 1,
+							"header": "Z1: Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "Z2: Vestibule"
+						},
+						{
+							"depth": 1,
+							"header": "Z3: Mess Hall"
+						},
+						{
+							"depth": 1,
+							"header": "Z4: Bunks"
+						},
+						{
+							"depth": 1,
+							"header": "Z5: Latrines"
+						},
+						{
+							"depth": 1,
+							"header": "Z6: Hot Spring"
+						},
+						{
+							"depth": 1,
+							"header": "Z7: Overlook Forge"
+						},
+						{
+							"depth": 1,
+							"header": "Z8: Kitchen"
+						},
+						{
+							"depth": 1,
+							"header": "Z9: Pantry"
+						},
+						{
+							"depth": 1,
+							"header": "Z10: Captain's Suite"
+						},
+						{
+							"depth": 1,
+							"header": "Z11: Vault"
+						},
+						{
+							"depth": 1,
+							"header": "Z12: Mining Tunnels Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "Z13: Mine Cart Maintenance Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "Z14: Crystal Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "Z15: Cliff Strip Mine"
+						},
+						{
+							"depth": 1,
+							"header": "Z16: Cesspit"
+						},
+						{
+							"depth": 1,
+							"header": "Z17: Shrine to Ilsensine"
+						},
+						{
+							"depth": 1,
+							"header": "Z18: Storage Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "Z19: Sanctum Crossing"
+						},
+						"Indigo Sanctum",
+						"What's Next?"
+					]
+				},
+				{
+					"name": "The Shattered Obelisk",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 6
+					},
+					"headers": [
+						"The Sinister Truth",
+						"Running This Chapter",
+						"Return to Phandalin",
+						"Talhundereth",
+						{
+							"depth": 1,
+							"header": "T1: Temple Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "T2: Deepening Hall"
+						},
+						{
+							"depth": 1,
+							"header": "T3: Lesser Chapel"
+						},
+						{
+							"depth": 1,
+							"header": "T4: Priest Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "T5: Sparring Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "T6: Training Master's Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "T7: Armory"
+						},
+						{
+							"depth": 1,
+							"header": "T8: Vault"
+						},
+						{
+							"depth": 1,
+							"header": "T9: Residential Room"
+						},
+						{
+							"depth": 1,
+							"header": "T10: Private Rooms"
+						},
+						{
+							"depth": 1,
+							"header": "T11: Common Room"
+						},
+						{
+							"depth": 1,
+							"header": "T12: Kitchen"
+						},
+						{
+							"depth": 1,
+							"header": "T13: Pantry"
+						},
+						{
+							"depth": 1,
+							"header": "T14: Reading Room"
+						},
+						{
+							"depth": 1,
+							"header": "T15: Librarian's Room"
+						},
+						{
+							"depth": 1,
+							"header": "T16: Library"
+						},
+						{
+							"depth": 1,
+							"header": "T17: Defaced Statue"
+						},
+						{
+							"depth": 1,
+							"header": "T18: Cleansing Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "T19: Procession Hall"
+						},
+						{
+							"depth": 1,
+							"header": "T20: Crypt Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "T21: Worship Hall"
+						},
+						"Crypt of the Talhund",
+						{
+							"depth": 1,
+							"header": "P1: Lower Landing"
+						},
+						{
+							"depth": 1,
+							"header": "P2: Ghostly Hall"
+						},
+						{
+							"depth": 1,
+							"header": "P3: Corpse Preparation Rooms"
+						},
+						{
+							"depth": 1,
+							"header": "P4: Hidden Sanctum Access Rooms"
+						},
+						{
+							"depth": 1,
+							"header": "P5: Watery Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "P6: Honored Approach"
+						},
+						{
+							"depth": 1,
+							"header": "P7: Reliquary"
+						},
+						{
+							"depth": 1,
+							"header": "P8: Honored Dead"
+						},
+						{
+							"depth": 1,
+							"header": "P9: Historian's Tomb"
+						},
+						{
+							"depth": 1,
+							"header": "P10: Founder's Tomb"
+						},
+						{
+							"depth": 1,
+							"header": "P11: Valiant Approach"
+						},
+						{
+							"depth": 1,
+							"header": "P12: Valiant Dead"
+						},
+						{
+							"depth": 1,
+							"header": "P13: General's Tomb"
+						},
+						{
+							"depth": 1,
+							"header": "P14: Rotating Sanctum"
+						},
+						{
+							"depth": 1,
+							"header": "P15: Blessed Dead"
+						},
+						{
+							"depth": 1,
+							"header": "P16: Haunted Hall"
+						},
+						{
+							"depth": 1,
+							"header": "P17: Architect's Tomb"
+						},
+						{
+							"depth": 1,
+							"header": "P18: Obelisk Chamber"
+						},
+						"Gibbet Crossing",
+						{
+							"depth": 1,
+							"header": "G1: Surface Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "G2: Storeroom"
+						},
+						{
+							"depth": 1,
+							"header": "G3: Cage Workshop"
+						},
+						{
+							"depth": 1,
+							"header": "G4: Living Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "G5: Showroom"
+						},
+						{
+							"depth": 1,
+							"header": "G6: Prison"
+						},
+						{
+							"depth": 1,
+							"header": "G7: Stairs to Flooded Passage"
+						},
+						{
+							"depth": 1,
+							"header": "G8: Intersection"
+						},
+						{
+							"depth": 1,
+							"header": "G9: Depleted Mine"
+						},
+						{
+							"depth": 1,
+							"header": "G10: Collapsed Tunnel"
+						},
+						{
+							"depth": 1,
+							"header": "G11: Talhundereth Passage"
+						},
+						{
+							"depth": 1,
+							"header": "G12: Receiving Room"
+						},
+						{
+							"depth": 1,
+							"header": "G13: Private Rooms"
+						},
+						{
+							"depth": 1,
+							"header": "G14: Toppled Tower"
+						},
+						{
+							"depth": 1,
+							"header": "G15: Duergar Delegate Room"
+						},
+						{
+							"depth": 1,
+							"header": "G16: Negotiating Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "G17: Drow Delegation Room"
+						},
+						{
+							"depth": 1,
+							"header": "G18: Drow Passage"
+						},
+						{
+							"depth": 1,
+							"header": "G19: Azfadiel Receiving Room"
+						},
+						{
+							"depth": 1,
+							"header": "G20: Azfadiel Shrine"
+						},
+						{
+							"depth": 1,
+							"header": "G21: Receiving Room"
+						},
+						{
+							"depth": 1,
+							"header": "G22: Moldy Room"
+						},
+						{
+							"depth": 1,
+							"header": "G23: Killing Hall"
+						},
+						{
+							"depth": 1,
+							"header": "G24: Guard Room"
+						},
+						{
+							"depth": 1,
+							"header": "G25: Drow Vault"
+						},
+						"What's Next?"
+					]
+				},
+				{
+					"name": "Rifts in Reality",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 7
+					},
+					"headers": [
+						"Running This Chapter",
+						"Shadow over Phandalin",
+						"Journey through the Deep",
+						{
+							"depth": 1,
+							"header": "J1: Bloody Intersection"
+						},
+						{
+							"depth": 1,
+							"header": "J2: Tunnel Chasm"
+						},
+						{
+							"depth": 1,
+							"header": "J3: Grell Lair"
+						},
+						{
+							"depth": 1,
+							"header": "J4: Larder"
+						},
+						{
+							"depth": 1,
+							"header": "J5: Blasted Intersection"
+						},
+						{
+							"depth": 1,
+							"header": "J6: Behir Den"
+						},
+						{
+							"depth": 1,
+							"header": "J7: Scavengers' Nook"
+						},
+						{
+							"depth": 1,
+							"header": "J8: Burbling Intersection"
+						},
+						{
+							"depth": 1,
+							"header": "J9: Gibbering Grotto"
+						},
+						{
+							"depth": 1,
+							"header": "J10: Hooked Stones"
+						},
+						"Illithinoch",
+						{
+							"depth": 1,
+							"header": "X1: Gates"
+						},
+						{
+							"depth": 1,
+							"header": "X2: Reception Hall"
+						},
+						{
+							"depth": 1,
+							"header": "X3: Hashutu's Room"
+						},
+						{
+							"depth": 1,
+							"header": "X4: Laboratory"
+						},
+						{
+							"depth": 1,
+							"header": "X5: Cosmologium"
+						},
+						{
+							"depth": 1,
+							"header": "X6: Psychic Library"
+						},
+						{
+							"depth": 1,
+							"header": "X7: Voalsh's Lounge"
+						},
+						{
+							"depth": 1,
+							"header": "X8: Voalsh's Quarters"
+						},
+						{
+							"depth": 1,
+							"header": "X9: Prisoner Pens"
+						},
+						{
+							"depth": 1,
+							"header": "X10: Experimentation Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "X11: Feeding Pool"
+						},
+						{
+							"depth": 1,
+							"header": "X12: Sleeping Pods"
+						},
+						{
+							"depth": 1,
+							"header": "X13: Lecture Hall"
+						},
+						{
+							"depth": 1,
+							"header": "X14: Chishinix's Room"
+						},
+						{
+							"depth": 1,
+							"header": "X15: Elder Brain Pool"
+						},
+						{
+							"depth": 1,
+							"header": "X16: Ritual Chamber"
+						},
+						"Far Realm Rifts",
+						{
+							"depth": 1,
+							"header": "F1: Sludge Grooves"
+						},
+						{
+							"depth": 1,
+							"header": "F2: Common Eatery"
+						},
+						{
+							"depth": 1,
+							"header": "F3: Private Eatery"
+						},
+						{
+							"depth": 1,
+							"header": "F4: Food Source"
+						},
+						{
+							"depth": 1,
+							"header": "S1: Entry Cavern"
+						},
+						{
+							"depth": 1,
+							"header": "S2: Crystal Pit"
+						},
+						{
+							"depth": 1,
+							"header": "S3: Flesh Vortex Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "S4: Rune Alcove"
+						},
+						{
+							"depth": 1,
+							"header": "L1: Gazing Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "L2: Views of Madness"
+						},
+						{
+							"depth": 1,
+							"header": "L3: The Rolling Eye"
+						},
+						{
+							"depth": 1,
+							"header": "L4: Dead Thief"
+						},
+						{
+							"depth": 1,
+							"header": "L5: Broken Glass"
+						},
+						{
+							"depth": 1,
+							"header": "L6: Rune Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "L7: Golcuus's Lair"
+						},
+						"What's Next?"
+					]
+				},
+				{
+					"name": "Beyond a Lightless Star",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 8
+					},
+					"headers": [
+						"Running This Chapter",
+						"Doom Comes to Phandalin",
+						"The Briny Maze",
+						{
+							"depth": 1,
+							"header": "B1: Maze Entry"
+						},
+						{
+							"depth": 1,
+							"header": "B2: Passage of Death"
+						},
+						{
+							"depth": 1,
+							"header": "B3: Webbed Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "B4: Wall of Hubris"
+						},
+						{
+							"depth": 1,
+							"header": "B5: Tumor Garden"
+						},
+						{
+							"depth": 1,
+							"header": "B6: Right Temporal Lobe"
+						},
+						{
+							"depth": 1,
+							"header": "B7: Githyanki Camp"
+						},
+						{
+							"depth": 1,
+							"header": "B8: Shalfi's Gear"
+						},
+						{
+							"depth": 1,
+							"header": "B9: Shalfi's Digging Spot"
+						},
+						{
+							"depth": 1,
+							"header": "B10: Left Temporal Lobe"
+						},
+						{
+							"depth": 1,
+							"header": "B11: Hidden Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "B12: Encephalon Lair"
+						},
+						{
+							"depth": 1,
+							"header": "B13: Past Feeding"
+						},
+						{
+							"depth": 1,
+							"header": "B14: Prospective Lair"
+						},
+						{
+							"depth": 1,
+							"header": "B15: Mental Tension"
+						},
+						{
+							"depth": 1,
+							"header": "B16: Junk Room"
+						},
+						{
+							"depth": 1,
+							"header": "B17: Dragon's Den"
+						},
+						{
+							"depth": 1,
+							"header": "B18: The Collectors' Nook"
+						},
+						{
+							"depth": 1,
+							"header": "B19: Lore Halls"
+						},
+						{
+							"depth": 1,
+							"header": "B20: The Scar"
+						},
+						{
+							"depth": 1,
+							"header": "B21: Ashripask's Alcove"
+						},
+						{
+							"depth": 1,
+							"header": "B22: Briny Pool"
+						},
+						"The Endless Void",
+						{
+							"depth": 1,
+							"header": "M1: Stone Pier"
+						},
+						{
+							"depth": 1,
+							"header": "M2: Valsyx's Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "M3: Charnyz's Dell"
+						},
+						{
+							"depth": 1,
+							"header": "N1: The Mouth"
+						},
+						{
+							"depth": 1,
+							"header": "N2: Throat"
+						},
+						{
+							"depth": 1,
+							"header": "N3: Membrane"
+						},
+						{
+							"depth": 1,
+							"header": "N4: The Guts"
+						},
+						{
+							"depth": 1,
+							"header": "W1: Prison Pyramid"
+						},
+						{
+							"depth": 1,
+							"header": "W2: Nellik's Windmill"
+						},
+						{
+							"depth": 1,
+							"header": "A1: Anima Entry"
+						},
+						{
+							"depth": 1,
+							"header": "A2: Refectory"
+						},
+						{
+							"depth": 1,
+							"header": "A3: Disciples' Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "A4: Pit Overlook"
+						},
+						"Ilvaash's Refraction",
+						"Wrapping Up",
+						"Epilogue",
+						"Netherese Obelisks"
+					]
+				},
+				{
+					"name": "Bestiary",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					},
+					"headers": [
+						"Aberrant Zealot",
+						"Ashenwights",
+						"Encephalons",
+						"Fiendish Auger",
+						"Flesh Meld",
+						"Intellect Snare",
+						"Mind Flayers",
+						"Mutates",
+						"Oculorb",
+						"Psionic Goblins",
+						"Redbrand Ruffian"
+					]
+				},
+				{
+					"name": "Magic Items",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "B"
+					},
+					"headers": [
+						"Item Descriptions"
+					]
+				},
+				{
+					"name": "Story Tracker"
+				},
+				{
+					"name": "Cover"
+				}
+			]
 		}
 	]
 }

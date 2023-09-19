@@ -2095,6 +2095,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 					isEmpty: true,
 					isMinHeight0: true,
 					isMinWidth0: true,
+					isUncappedHeight: true,
 					cbClose: () => {
 						fnCleanup();
 					},

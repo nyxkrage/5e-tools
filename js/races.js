@@ -52,6 +52,11 @@ class RacesPage extends ListPage {
 
 			dataProps: ["race"],
 
+			bookViewOptions: {
+				namePlural: "races",
+				pageTitle: "Races Book View",
+			},
+
 			hasAudio: true,
 		});
 	}

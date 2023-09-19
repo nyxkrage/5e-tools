@@ -1,4 +1,9 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"monsterFluff"
+		]
+	},
 	"monsterFluff": [
 		{
 			"name": "Aartuk Elder",
@@ -108,45 +113,10 @@
 		{
 			"name": "Adult Solar Dragon",
 			"source": "BAM",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A solar dragon (also known as a radiant dragon or a sun dragon) is born in the heart of a star. It divides its time outside its lair between patrolling its territory and hunting for food. The dragon has a serpentine body, a pair of ventral limbs ending in long fins, nebulous wings that give off light, and gleaming, multicolored scales. It can see clearly even in blindingly bright light.",
-						"Solar dragons are fond of treasure just as all dragons are, but in the airless void of Wildspace, they value food even more. Solar dragons typically feed on kindori, scavvers, and other forms of space-dwelling wildlife. A solar dragon might mistake a distant spelljamming ship for possible prey and come within range of the vessel's weapons before realizing its error and veering away. A wise or experienced captain won't take the dragon's approach as a sign of hostility. Solar dragons that are fired upon have been known to batter the offending ships to flinders.",
-						"Solar dragons are territorial carnivores, and they behave accordingly. A young solar dragon might lay claim to an asteroid belt, where food is relatively plentiful, while an ancient solar dragon might consider an entire Wildspace system its hunting ground. They tend to give a wide berth to Humanoid folk, whom they find violent and tiresome. Trespassers who are detected in a solar dragon's lair can expect to be met with resistance, followed by hostility, especially if the lair contains eggs.",
-						"A solar dragon egg has an obsidian shell, shiny black and opaque. When an egg is close to hatching, the shell becomes translucent, allowing the light from the unborn wyrmling's wings to shine through."
-					]
-				},
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "A Solar Dragon's Lair",
-							"entries": [
-								"A solar dragon customarily lairs in a star's radiant core or nests in a gigantic, hollowed-out rock engulfed by the star's blinding radiance. A star in which a solar dragon makes its lair has the following effects on creatures:",
-								{
-									"type": "list",
-									"style": "list-hang-notitle",
-									"items": [
-										{
-											"type": "item",
-											"name": "Blinding Radiance.",
-											"entry": "A creature that is within 10 miles of the star or inside it is blinded by its intense light unless the creature has protective gear to shield its eyes, such as goggles of night or a similar form of eyewear."
-										},
-										{
-											"type": "item",
-											"name": "Stellar Incineration.",
-											"entry": "Any creature that enters the star or starts its turn inside it takes 132 ({@dice 24d10}) radiant damage."
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM"
+			}
 		},
 		{
 			"name": "Ancient Lunar Dragon",
@@ -187,54 +157,24 @@
 		{
 			"name": "Ancient Solar Dragon",
 			"source": "BAM",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A solar dragon (also known as a radiant dragon or a sun dragon) is born in the heart of a star. It divides its time outside its lair between patrolling its territory and hunting for food. The dragon has a serpentine body, a pair of ventral limbs ending in long fins, nebulous wings that give off light, and gleaming, multicolored scales. It can see clearly even in blindingly bright light.",
-						"Solar dragons are fond of treasure just as all dragons are, but in the airless void of Wildspace, they value food even more. Solar dragons typically feed on kindori, scavvers, and other forms of space-dwelling wildlife. A solar dragon might mistake a distant spelljamming ship for possible prey and come within range of the vessel's weapons before realizing its error and veering away. A wise or experienced captain won't take the dragon's approach as a sign of hostility. Solar dragons that are fired upon have been known to batter the offending ships to flinders.",
-						"Solar dragons are territorial carnivores, and they behave accordingly. A young solar dragon might lay claim to an asteroid belt, where food is relatively plentiful, while an ancient solar dragon might consider an entire Wildspace system its hunting ground. They tend to give a wide berth to Humanoid folk, whom they find violent and tiresome. Trespassers who are detected in a solar dragon's lair can expect to be met with resistance, followed by hostility, especially if the lair contains eggs.",
-						"A solar dragon egg has an obsidian shell, shiny black and opaque. When an egg is close to hatching, the shell becomes translucent, allowing the light from the unborn wyrmling's wings to shine through."
-					]
-				},
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "A Solar Dragon's Lair",
-							"entries": [
-								"A solar dragon customarily lairs in a star's radiant core or nests in a gigantic, hollowed-out rock engulfed by the star's blinding radiance. A star in which a solar dragon makes its lair has the following effects on creatures:",
-								{
-									"type": "list",
-									"style": "list-hang-notitle",
-									"items": [
-										{
-											"type": "item",
-											"name": "Blinding Radiance.",
-											"entry": "A creature that is within 10 miles of the star or inside it is blinded by its intense light unless the creature has protective gear to shield its eyes, such as goggles of night or a similar form of eyewear."
-										},
-										{
-											"type": "item",
-											"name": "Stellar Incineration.",
-											"entry": "Any creature that enters the star or starts its turn inside it takes 132 ({@dice 24d10}) radiant damage."
-										}
-									]
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM",
+				"_mod": {
+					"images": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "image",
+								"href": {
+									"type": "internal",
+									"path": "bestiary/BAM/Ancient Solar Dragon.webp"
 								}
-							]
-						}
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/BAM/Ancient Solar Dragon.webp"
+							}
+						]
 					}
 				}
-			]
+			}
 		},
 		{
 			"name": "Astral Elf Aristocrat",
@@ -1307,11 +1247,19 @@
 						"type": "internal",
 						"path": "bestiary/BAM/Reigar.webp"
 					}
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/BAM/Reigar-2.webp"
+					},
+					"credit": "Simon Dominic"
 				}
 			]
 		},
 		{
-			"name": "Solar Dragon Wyrmling",
+			"name": "Solar Dragon",
 			"source": "BAM",
 			"entries": [
 				{
@@ -1329,10 +1277,33 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/BAM/Solar Dragon Wyrmling.webp"
-					}
+						"path": "bestiary/BAM/Solar Dragon Eggs.webp"
+					},
+					"credit": "Olga Drebas"
 				}
 			]
+		},
+		{
+			"name": "Solar Dragon Wyrmling",
+			"source": "BAM",
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM",
+				"_mod": {
+					"images": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "image",
+								"href": {
+									"type": "internal",
+									"path": "bestiary/BAM/Solar Dragon Wyrmling.webp"
+								}
+							}
+						]
+					}
+				}
+			}
 		},
 		{
 			"name": "Space Clown",
@@ -1672,17 +1643,10 @@
 		{
 			"name": "Young Solar Dragon",
 			"source": "BAM",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A solar dragon (also known as a radiant dragon or a sun dragon) is born in the heart of a star. It divides its time outside its lair between patrolling its territory and hunting for food. The dragon has a serpentine body, a pair of ventral limbs ending in long fins, nebulous wings that give off light, and gleaming, multicolored scales. It can see clearly even in blindingly bright light.",
-						"Solar dragons are fond of treasure just as all dragons are, but in the airless void of Wildspace, they value food even more. Solar dragons typically feed on kindori, scavvers, and other forms of space-dwelling wildlife. A solar dragon might mistake a distant spelljamming ship for possible prey and come within range of the vessel's weapons before realizing its error and veering away. A wise or experienced captain won't take the dragon's approach as a sign of hostility. Solar dragons that are fired upon have been known to batter the offending ships to flinders.",
-						"Solar dragons are territorial carnivores, and they behave accordingly. A young solar dragon might lay claim to an asteroid belt, where food is relatively plentiful, while an ancient solar dragon might consider an entire Wildspace system its hunting ground. They tend to give a wide berth to Humanoid folk, whom they find violent and tiresome. Trespassers who are detected in a solar dragon's lair can expect to be met with resistance, followed by hostility, especially if the lair contains eggs.",
-						"A solar dragon egg has an obsidian shell, shiny black and opaque. When an egg is close to hatching, the shell becomes translucent, allowing the light from the unborn wyrmling's wings to shine through."
-					]
-				}
-			]
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM"
+			}
 		},
 		{
 			"name": "Zodar",

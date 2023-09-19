@@ -2609,6 +2609,7 @@ Parser.SRC_DSotDQ = "DSotDQ";
 Parser.SRC_KftGV = "KftGV";
 Parser.SRC_BGG = "BGG";
 Parser.SRC_TDCSR = "TDCSR";
+Parser.SRC_PaBTSO = "PaBTSO";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
 Parser.SRC_SCREEN_DUNGEON_KIT = "ScreenDungeonKit";
@@ -2837,6 +2838,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DSotDQ] = "Dragonlance: Shadow of the Drag
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_KftGV] = "Keys from the Golden Vault";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_BGG] = "Bigby Presents: Glory of the Giants";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TDCSR] = "Tal'Dorei Campaign Setting Reborn";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_PaBTSO] = "Phandelver and Below: The Shattered Obelisk";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_DUNGEON_KIT] = "Dungeon Master's Screen: Dungeon Kit";
@@ -3042,6 +3044,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DSotDQ] = "DSotDQ";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_KftGV] = "KftGV";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_BGG] = "BGG";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TDCSR] = "TDCSR";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_PaBTSO] = "PaBTSO";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Screen";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScWild";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_DUNGEON_KIT] = "ScDun";
@@ -3246,6 +3249,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DSotDQ] = "2022-11-22";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_KftGV] = "2023-02-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_BGG] = "2023-08-15";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TDCSR] = "2022-01-18";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_PaBTSO] = "2023-09-19";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_DUNGEON_KIT] = "2020-09-21";
@@ -3429,6 +3433,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DSotDQ,
 	Parser.SRC_KftGV,
 	Parser.SRC_GotSF,
+	Parser.SRC_PaBTSO,
 
 	Parser.SRC_AWM,
 ]);
@@ -3672,6 +3677,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_DSotDQ,
 	Parser.SRC_KftGV,
 	Parser.SRC_GotSF,
+	Parser.SRC_PaBTSO,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

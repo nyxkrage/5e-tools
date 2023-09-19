@@ -2458,6 +2458,7 @@ class InputUiUtil {
 	 * @param [opts.textNo] Text for "no" button.
 	 * @param [opts.textSkip] Text for "skip" button.
 	 * @param [opts.htmlDescription] Description HTML for the modal.
+	 * @param [opts.$eleDescription] Description element for the modal.
 	 * @param [opts.storageKey] Storage key to use when "remember" options are passed.
 	 * @param [opts.isGlobal] If the stored setting is global when "remember" options are passed.
 	 * @param [opts.fnRemember] Custom function to run when saving the "yes and remember" option.
@@ -2508,7 +2509,8 @@ class InputUiUtil {
 			isMinHeight0: true,
 		});
 
-		if (opts.htmlDescription && opts.htmlDescription.trim()) $$`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo($modalInner);
+		if (opts.$eleDescription?.length) $$`<div class="ve-flex w-100 mb-1">${opts.$eleDescription}</div>`.appendTo($modalInner);
+		else if (opts.htmlDescription && opts.htmlDescription.trim()) $$`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo($modalInner);
 		$$`<div class="ve-flex-v-center ve-flex-h-right py-1 px-1">${$btnTrueRemember}${$btnTrue}${$btnFalse}${$btnSkip}</div>`.appendTo($modalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();

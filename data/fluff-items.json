@@ -3006,6 +3006,19 @@
 			]
 		},
 		{
+			"name": "Luminous War Pick",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Luminous War Pick.webp"
+					}
+				}
+			]
+		},
+		{
 			"name": "Luxon Beacon",
 			"source": "EGW",
 			"images": [
@@ -3290,6 +3303,88 @@
 			]
 		},
 		{
+			"name": "Mind Crystal",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Mind Crystal.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Mind Crystal (Careful)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Distant)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Empowered)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Extended)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Heightened)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Quickened)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mind Crystal (Subtle)",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Crystal",
+				"source": "PaBTSO"
+			}
+		},
+		{
+			"name": "Mindguard Crown",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Mindguard Crown.webp"
+					}
+				}
+			]
+		},
+		{
 			"name": "Mirror of Infinite Transpondence",
 			"source": "TDCSR",
 			"images": [
@@ -3352,6 +3447,19 @@
 					"href": {
 						"type": "internal",
 						"path": "items/DMG/Moonblade.jpg"
+					}
+				}
+			]
+		},
+		{
+			"name": "Mudslick Tower",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Mudslick Tower.webp"
 					}
 				}
 			]
@@ -4259,6 +4367,19 @@
 					"href": {
 						"type": "internal",
 						"path": "items/DMG/Ring of Telekinesis.jpg"
+					}
+				}
+			]
+		},
+		{
+			"name": "Ring of the Orator",
+			"source": "PaBTSO",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/PaBTSO/Ring of the Orator.webp"
 					}
 				}
 			]

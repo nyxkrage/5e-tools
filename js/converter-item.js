@@ -201,13 +201,14 @@ class ItemParser extends BaseParser {
 
 				// if specific attunement is required, absorb any further parts which are class names
 				if (/(^| )by a /i.test(stats.reqAttune)) {
-					for (let ii = i; ii < parts.length; ++ii) {
+					for (let ii = i + 1; ii < parts.length; ++ii) {
 						const nxtPart = parts[ii]
 							.trim()
 							.replace(/^(?:or|and) /, "")
 							.trim()
 							.replace(/\)$/, "")
-							.trim();
+							.trim()
+							.toLowerCase();
 						const isClassName = ItemParser._ALL_CLASSES.some(cls => cls.name.toLowerCase() === nxtPart);
 						if (isClassName) {
 							stats.reqAttune += `, ${parts[ii].replace(/\)$/, "")}`;

@@ -690,6 +690,10 @@
 					]
 				}
 			],
+			"legendaryGroup": {
+				"name": "Solar Dragon",
+				"source": "BAM"
+			},
 			"dragonAge": "adult",
 			"traitTags": [
 				"Flyby",
@@ -725,7 +729,8 @@
 				"wisdom"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ancient Lunar Dragon",
@@ -1038,6 +1043,10 @@
 					]
 				}
 			],
+			"legendaryGroup": {
+				"name": "Solar Dragon",
+				"source": "BAM"
+			},
 			"dragonAge": "ancient",
 			"traitTags": [
 				"Flyby",
@@ -8817,7 +8826,8 @@
 				"constitution"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Zodar",

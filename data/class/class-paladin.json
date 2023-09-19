@@ -1310,6 +1310,7 @@
 			"source": "TDCSR",
 			"className": "Paladin",
 			"classSource": "PHB",
+			"page": 174,
 			"additionalSpells": [
 				{
 					"prepared": {

@@ -571,7 +571,7 @@ globalThis.Renderer = function () {
 	this._renderImage_getUrl = function (entry) {
 		let url = Renderer.utils.getMediaUrl(entry, "href", "img");
 		for (const plugin of this._getPlugins(`image_urlPostProcess`)) {
-			url = plugin(entry, url) || plugin(entry, url);
+			url = plugin(entry, url) || url;
 		}
 		return url;
 	};
@@ -579,7 +579,7 @@ globalThis.Renderer = function () {
 	this._renderImage_getUrlThumbnail = function (entry) {
 		let url = Renderer.utils.getMediaUrl(entry, "hrefThumbnail", "img");
 		for (const plugin of this._getPlugins(`image_urlThumbnailPostProcess`)) {
-			url = plugin(entry, url) || plugin(entry, url);
+			url = plugin(entry, url) || url;
 		}
 		return url;
 	};
@@ -1275,7 +1275,7 @@ globalThis.Renderer = function () {
 	this._renderStatblockInline = function (entry, textStack, meta, options) {
 		const fnGetRenderCompact = Renderer.hover.getFnRenderCompact(entry.dataType);
 
-		const headerName = entry.data?.name;
+		const headerName = entry.displayName || entry.data?.name;
 		const headerStyle = entry.style;
 
 		if (!fnGetRenderCompact) {
@@ -1366,7 +1366,7 @@ globalThis.Renderer = function () {
 			return;
 		}
 
-		this._renderDataHeader(textStack, entry.name, entry.style, {isCollapsed: entry.collapsed});
+		this._renderDataHeader(textStack, entry.displayName || entry.name, entry.style, {isCollapsed: entry.collapsed});
 		textStack[0] += `<tr>
 			<td colspan="6" data-rd-tag="${(entry.tag || "").qq()}" data-rd-page="${(page || "").qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${(hash || "").qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-display-name="${(entry.displayName || "").qq()}" data-rd-style="${(entry.style || "").qq()}">
 				<i>Loading ${entry.tag ? `${Renderer.get().render(asTag)}` : entry.displayName || entry.name}...</i>
@@ -1818,18 +1818,14 @@ globalThis.Renderer = function () {
 				break;
 			}
 			case "@area": {
-				const [compactText, areaId, flags, ...others] = Renderer.splitTagByPipe(text);
-
-				const renderText = flags && flags.includes("x")
-					? compactText
-					: `${flags && flags.includes("u") ? "A" : "a"}rea ${compactText}`;
+				const {areaId, displayText} = Renderer.tag.TAG_LOOKUP.area.getMeta(tag, text);
 
 				if (typeof BookUtil === "undefined") { // for the roll20 script
-					textStack[0] += renderText;
+					textStack[0] += displayText;
 				} else {
 					const area = BookUtil.curRender.headerMap[areaId] || {entry: {name: ""}}; // default to prevent rendering crash on bad tag
 					const hoverMeta = Renderer.hover.getMakePredefinedHover(area.entry, {isLargeBookContent: true, depth: area.depth});
-					textStack[0] += `<a href="#${BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0" ${hoverMeta.html}>${renderText}</a>`;
+					textStack[0] += `<a href="#${BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0" ${hoverMeta.html}>${displayText}</a>`;
 				}
 
 				break;
@@ -4110,6 +4106,9 @@ Renderer.tag = class {
 
 		/** @abstract */
 		_getStripped (tag, text) { throw new Error("Unimplemented!"); }
+
+		getMeta (tag, text) { return this._getMeta(tag, text); }
+		_getMeta (tag, text) { throw new Error("Unimplemented!"); }
 	};
 
 	static _TagBaseAt = class extends this._TagBase {
@@ -4672,6 +4671,19 @@ Renderer.tag = class {
 			return flags && flags.includes("x")
 				? compactText
 				: `${flags && flags.includes("u") ? "A" : "a"}rea ${compactText}`;
+		}
+
+		_getMeta (tag, text) {
+			const [compactText, areaId, flags] = Renderer.splitTagByPipe(text);
+
+			const displayText = flags && flags.includes("x")
+				? compactText
+				: `${flags && flags.includes("u") ? "A" : "a"}rea ${compactText}`;
+
+			return {
+				areaId,
+				displayText,
+			};
 		}
 	};
 
@@ -8374,19 +8386,24 @@ Renderer.item = {
 		return Renderer.item._createSpecificVariants_isRequiresExcludesMatch(baseItem, genericVariant.excludes, "some");
 	},
 
-	_createSpecificVariants_isRequiresExcludesMatch (baseItem, toMatch, method) {
-		if (!toMatch) return false;
+	_createSpecificVariants_isRequiresExcludesMatch (candidate, requirements, method) {
+		if (candidate == null || requirements == null) return false;
 
-		return Object.entries(toMatch)[method](([k, v]) => {
-			if (v instanceof Array) {
-				return baseItem[k] instanceof Array
-					? baseItem[k].some(it => v.includes(it))
-					: v.includes(baseItem[k]);
+		return Object.entries(requirements)[method](([reqKey, reqVal]) => {
+			if (reqVal instanceof Array) {
+				return candidate[reqKey] instanceof Array
+					? candidate[reqKey].some(it => reqVal.includes(it))
+					: reqVal.includes(candidate[reqKey]);
 			}
 
-			return baseItem[k] instanceof Array
-				? baseItem[k].some(it => v === it)
-				: v === baseItem[k];
+			// Recurse for e.g. `"customProperties": { ... }`
+			if (reqVal != null && typeof reqVal === "object") {
+				return Renderer.item._createSpecificVariants_isRequiresExcludesMatch(candidate[reqKey], reqVal, method);
+			}
+
+			return candidate[reqKey] instanceof Array
+				? candidate[reqKey].some(it => reqVal === it)
+				: reqVal === candidate[reqKey];
 		});
 	},
 
@@ -8729,30 +8746,30 @@ Renderer.item = {
 			if (item._isItemGroup) {
 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			} else {
 				if (item.scfType === "arcane") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A druid can use this object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "A druid can use this object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
 
-					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
-					item._fullEntries.push({type: "wrapper", wrapped: "A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					item._fullEntries.push({type: "wrapper", wrapped: "A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			}
 		}
@@ -9670,6 +9687,7 @@ Renderer.adventureBook = {
 	getEntryIdLookup (bookData, doThrowError = true) {
 		const out = {};
 		const titlesRel = {};
+		const titlesRelChapter = {};
 
 		let chapIx;
 		const depthStack = [];
@@ -9700,10 +9718,18 @@ Renderer.adventureBook = {
 								};
 
 								if (obj.name) {
+									out[obj.id].name = obj.name;
+
 									const cleanName = obj.name.toLowerCase();
+									out[obj.id].nameClean = cleanName;
+
+									// Relative title index for full-book mode
 									titlesRel[cleanName] = titlesRel[cleanName] || 0;
 									out[obj.id].ixTitleRel = titlesRel[cleanName]++;
-									out[obj.id].nameClean = cleanName;
+
+									// Relative title index per-chapter
+									MiscUtil.getOrSet(titlesRelChapter, chapIx, cleanName, -1);
+									out[obj.id].ixTitleRelChapter = ++titlesRelChapter[chapIx][cleanName];
 								}
 							}
 						}
@@ -9867,6 +9893,7 @@ Renderer.recipe = {
 	},
 
 	_RE_AMOUNT: /(?<tagAmount>{=amount\d+(?:\/[^}]+)?})/g,
+	_SCALED_PRECISION_LIMIT: 10 ** 6,
 	getScaledRecipe (r, scaleFactor) {
 		const cpyR = MiscUtil.copyFast(r);
 
@@ -9893,10 +9920,7 @@ Renderer.recipe = {
 									}
 
 									let scaled = base * scaleFactor;
-									if (Math.abs(scaled - Math.round(scaled)) < 0.1) {
-										scaled = Math.round(scaled);
-									}
-									obj[k] = scaled;
+									obj[k] = Math.round(base * scaleFactor * Renderer.recipe._SCALED_PRECISION_LIMIT) / Renderer.recipe._SCALED_PRECISION_LIMIT;
 								});
 
 							// region Attempt to singleize/pluralize units

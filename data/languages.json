@@ -1,68 +1,4 @@
 {
-	"languageScript": [
-		{
-			"name": "Draconic",
-			"fonts": [
-				"fonts/languages/PHB/Draconic/Iokharic.otf",
-				"fonts/languages/PHB/Draconic/Iokharic Bold.otf",
-				"fonts/languages/PHB/Draconic/Iokharic Italic.otf",
-				"fonts/languages/PHB/Draconic/Iokharic Bold Italic.otf"
-			]
-		},
-		{
-			"name": "Dwarvish",
-			"fonts": [
-				"fonts/languages/PHB/Dwarvish/Dethek.otf",
-				"fonts/languages/PHB/Dwarvish/Dethek Bold.otf",
-				"fonts/languages/PHB/Dwarvish/Dethek Italic.otf",
-				"fonts/languages/PHB/Dwarvish/Dethek Bold Italic.otf",
-				"fonts/languages/PHB/Dwarvish/Dethek Stone.ttf",
-				"fonts/languages/PHB/Dwarvish/Dethek Alt.ttf",
-				"fonts/languages/PHB/Dwarvish/Olde Dethek.otf",
-				"fonts/languages/PHB/Dwarvish/Olde Dethek Italic.otf",
-				"fonts/languages/PHB/Dwarvish/Davek 4e.otf",
-				"fonts/languages/PHB/Dwarvish/Davek 4e Bold.otf",
-				"fonts/languages/PHB/Dwarvish/Davek 4e Italic.otf",
-				"fonts/languages/PHB/Dwarvish/Davek 4e Bold Italic.otf"
-			]
-		},
-		{
-			"name": "Elvish",
-			"fonts": [
-				"fonts/languages/PHB/Elvish/Espruar 5e.ttf",
-				"fonts/languages/PHB/Elvish/Espruar 3e.otf",
-				"fonts/languages/PHB/Elvish/Espruar 3e Bold.otf",
-				"fonts/languages/PHB/Elvish/Espruar 3e Italic.otf",
-				"fonts/languages/PHB/Elvish/Espruar 3e Bold Italic.otf",
-				"fonts/languages/PHB/Elvish/Espruar 2e.ttf",
-				"fonts/languages/PHB/Elvish/Olde Espruar.otf",
-				"fonts/languages/PHB/Elvish/Rellanic 4e.otf",
-				"fonts/languages/PHB/Elvish/Rellanic 4e Bold.otf",
-				"fonts/languages/PHB/Elvish/Rellanic 4e Italic.otf",
-				"fonts/languages/PHB/Elvish/Rellanic 4e Bold Italic.otf"
-			]
-		},
-		{
-			"name": "Infernal",
-			"fonts": [
-				"fonts/languages/PHB/Infernal/Infernal.ttf",
-				"fonts/languages/PHB/Infernal/Barazhad.otf",
-				"fonts/languages/PHB/Infernal/Barazhad Bold.otf",
-				"fonts/languages/PHB/Infernal/Barazhad Italic.otf",
-				"fonts/languages/PHB/Infernal/Barazhad Bold Italic.otf"
-			]
-		},
-		{
-			"name": "Thorass",
-			"fonts": [
-				"fonts/languages/PHB/Human/Thorass.otf",
-				"fonts/languages/PHB/Human/Thorass Bold.otf",
-				"fonts/languages/PHB/Human/Thorass Italic.otf",
-				"fonts/languages/PHB/Human/Thorass Bold Italic.otf",
-				"fonts/languages/PHB/Human/Olde Thorass.otf"
-			]
-		}
-	],
 	"language": [
 		{
 			"name": "Aarakocra",
@@ -1904,6 +1840,70 @@
 			"page": 9,
 			"entries": [
 				"This ancient language was spoken by the people of Zemniaz in the Age of Arcanum. That ancient culture has long since crumbled, but its language and its people live on in the Dwendalian Empire. Many ancient scrolls were written in Zemnian, but it is a language now largely spoken by farmers, as Common is the default language of the empire."
+			]
+		}
+	],
+	"languageScript": [
+		{
+			"name": "Draconic",
+			"fonts": [
+				"fonts/languages/PHB/Draconic/Iokharic.otf",
+				"fonts/languages/PHB/Draconic/Iokharic Bold.otf",
+				"fonts/languages/PHB/Draconic/Iokharic Italic.otf",
+				"fonts/languages/PHB/Draconic/Iokharic Bold Italic.otf"
+			]
+		},
+		{
+			"name": "Dwarvish",
+			"fonts": [
+				"fonts/languages/PHB/Dwarvish/Dethek.otf",
+				"fonts/languages/PHB/Dwarvish/Dethek Bold.otf",
+				"fonts/languages/PHB/Dwarvish/Dethek Italic.otf",
+				"fonts/languages/PHB/Dwarvish/Dethek Bold Italic.otf",
+				"fonts/languages/PHB/Dwarvish/Dethek Stone.ttf",
+				"fonts/languages/PHB/Dwarvish/Dethek Alt.ttf",
+				"fonts/languages/PHB/Dwarvish/Olde Dethek.otf",
+				"fonts/languages/PHB/Dwarvish/Olde Dethek Italic.otf",
+				"fonts/languages/PHB/Dwarvish/Davek 4e.otf",
+				"fonts/languages/PHB/Dwarvish/Davek 4e Bold.otf",
+				"fonts/languages/PHB/Dwarvish/Davek 4e Italic.otf",
+				"fonts/languages/PHB/Dwarvish/Davek 4e Bold Italic.otf"
+			]
+		},
+		{
+			"name": "Elvish",
+			"fonts": [
+				"fonts/languages/PHB/Elvish/Espruar 5e.ttf",
+				"fonts/languages/PHB/Elvish/Espruar 3e.otf",
+				"fonts/languages/PHB/Elvish/Espruar 3e Bold.otf",
+				"fonts/languages/PHB/Elvish/Espruar 3e Italic.otf",
+				"fonts/languages/PHB/Elvish/Espruar 3e Bold Italic.otf",
+				"fonts/languages/PHB/Elvish/Espruar 2e.ttf",
+				"fonts/languages/PHB/Elvish/Olde Espruar.otf",
+				"fonts/languages/PHB/Elvish/Rellanic 4e.otf",
+				"fonts/languages/PHB/Elvish/Rellanic 4e Bold.otf",
+				"fonts/languages/PHB/Elvish/Rellanic 4e Italic.otf",
+				"fonts/languages/PHB/Elvish/Rellanic 4e Bold Italic.otf"
+			]
+		},
+		{
+			"name": "Infernal",
+			"fonts": [
+				"fonts/languages/PHB/Infernal/Infernal.ttf",
+				"fonts/languages/PHB/Infernal/Barazhad.otf",
+				"fonts/languages/PHB/Infernal/Barazhad Bold.otf",
+				"fonts/languages/PHB/Infernal/Barazhad Italic.otf",
+				"fonts/languages/PHB/Infernal/Barazhad Bold Italic.otf"
+			]
+		},
+		{
+			"name": "Thorass",
+			"fonts": [
+				"fonts/languages/PHB/Human/Thorass.otf",
+				"fonts/languages/PHB/Human/Thorass Bold.otf",
+				"fonts/languages/PHB/Human/Thorass Italic.otf",
+				"fonts/languages/PHB/Human/Thorass Bold Italic.otf",
+				"fonts/languages/PHB/Human/Olde Thorass.otf"
 			]
 		}
 	]

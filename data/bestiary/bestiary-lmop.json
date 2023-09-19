@@ -369,6 +369,9 @@
 			"isNamedCreature": true,
 			"source": "LMoP",
 			"page": 59,
+			"reprintedAs": [
+				"Nezznar the Spider|PaBTSO"
+			],
 			"size": [
 				"M"
 			],
@@ -555,6 +558,9 @@
 			"name": "Redbrand Ruffian",
 			"source": "LMoP",
 			"page": 61,
+			"reprintedAs": [
+				"Redbrand Ruffian|PaBTSO"
+			],
 			"size": [
 				"M"
 			],
@@ -636,6 +642,9 @@
 			"isNamedCreature": true,
 			"source": "LMoP",
 			"page": 61,
+			"reprintedAs": [
+				"Sildar Hallwinter|PaBTSO"
+			],
 			"size": [
 				"M"
 			],

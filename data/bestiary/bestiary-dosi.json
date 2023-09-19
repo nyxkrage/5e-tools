@@ -598,6 +598,11 @@
 			"name": "Violet Fungus",
 			"source": "DoSI",
 			"page": 48,
+			"otherSources": [
+				{
+					"source": "PaBTSO"
+				}
+			],
 			"_copy": {
 				"name": "Violet Fungus",
 				"source": "MM",

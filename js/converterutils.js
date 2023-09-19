@@ -493,6 +493,7 @@ class TagCondition {
 					);
 					return ptrStack._
 						.replace(/{@condition (prone)} (to)\b/gi, "$1 $2")
+						.replace(/{@condition (petrified)} (wood)\b/gi, "$1 $2")
 					;
 				},
 			},

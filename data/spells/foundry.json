@@ -10,6 +10,18 @@
 			}
 		},
 		{
+			"name": "Armor of Agathys",
+			"source": "PHB",
+			"system": {
+				"damage.parts": [
+					[
+						"5",
+						"temphp"
+					]
+				]
+			}
+		},
+		{
 			"name": "Antipathy/Sympathy",
 			"source": "PHB",
 			"system": {
@@ -331,6 +343,17 @@
 				"scaling.mode": "none",
 				"scaling.formula": "",
 				"formula": "(floor(((@item.level) - 1) / 2))d8"
+			}
+		},
+		{
+			"name": "Spirit Guardians",
+			"source": "PHB",
+			"system": {
+				"target.value": null,
+				"target.units": null,
+				"target.type": "self",
+				"range.value": 15,
+				"range.units": "ft"
 			}
 		},
 		{
@@ -710,6 +733,24 @@
 			}
 		},
 		{
+			"name": "Hex",
+			"source": "PHB",
+			"system": {
+				"target.value": 1,
+				"target.units": null,
+				"target.type": "creature"
+			}
+		},
+		{
+			"name": "Hunter's Mark",
+			"source": "PHB",
+			"system": {
+				"target.value": 1,
+				"target.units": null,
+				"target.type": "creature"
+			}
+		},
+		{
 			"name": "Illusory Dragon",
 			"source": "XGE",
 			"system": {
@@ -809,12 +850,28 @@
 			}
 		},
 		{
+			"name": "Otto's Irresistible Dance",
+			"source": "PHB",
+			"system": {
+				"target.value": 1,
+				"target.units": null,
+				"target.type": "creature"
+			}
+		},
+		{
 			"name": "Vitriolic Sphere",
 			"source": "XGE",
 			"system": {
 				"target.value": 20,
 				"target.units": "ft",
-				"target.type": "sphere"
+				"target.type": "sphere",
+				"damage.parts": [
+					[
+						"10d4",
+						"acid"
+					]
+				],
+				"formula": "5d4[acid]"
 			}
 		},
 		{
@@ -976,7 +1033,8 @@
 			"system": {
 				"target.value": 5,
 				"target.units": "ft",
-				"target.type": "creature"
+				"target.type": "creature",
+				"range.units": "special"
 			}
 		},
 		{
@@ -1089,7 +1147,8 @@
 			"system": {
 				"target.value": 5,
 				"target.units": "ft",
-				"target.type": "sphere"
+				"target.type": "creature",
+				"range.units": "special"
 			}
 		},
 		{

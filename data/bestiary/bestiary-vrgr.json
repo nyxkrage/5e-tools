@@ -4077,7 +4077,7 @@
 										"type": "entries",
 										"name": "Aberrant Armor",
 										"entries": [
-											"The horror's body is armored in {@condition petrified} wood, alien crystal, rusted mechanisms, sculpted stone, or an exoskeleton."
+											"The horror's body is armored in petrified wood, alien crystal, rusted mechanisms, sculpted stone, or an exoskeleton."
 										]
 									}
 								],

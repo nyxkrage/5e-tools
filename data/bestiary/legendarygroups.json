@@ -2442,7 +2442,7 @@
 					"type": "list",
 					"items": [
 						"A large population of snakes dwells in the region.",
-						"Trees within 1 mile of the lair are {@condition petrified} wood. Plants that stay within 500 feet of the lair for 1 day turn to stone.",
+						"Trees within 1 mile of the lair are petrified wood. Plants that stay within 500 feet of the lair for 1 day turn to stone.",
 						"Small bodies of water within 1 mile of the lair become poisonous. A creature that drinks the water must succeed on a {@dc 19} Constitution saving throw or become {@condition poisoned} for 8 hours. An affected creature can repeat the saving throw at the end of each hour."
 					]
 				}
@@ -3954,6 +3954,30 @@
 					]
 				},
 				"If the dragon dies, changed weather reverts to normal, as described in the spell, and the other effects fade in {@dice 1d10} days."
+			]
+		},
+		{
+			"name": "Solar Dragon",
+			"source": "BAM",
+			"page": 50,
+			"regionalEffects": [
+				"A solar dragon customarily lairs in a star's radiant core or nests in a gigantic, hollowed-out rock engulfed by the star's blinding radiance. A star in which a solar dragon makes its lair has the following effects on creatures:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Blinding Radiance.",
+							"entry": "A creature that is within 10 miles of the star or inside it is blinded by its intense light unless the creature has protective gear to shield its eyes, such as goggles of night or a similar form of eyewear."
+						},
+						{
+							"type": "item",
+							"name": "Stellar Incineration.",
+							"entry": "Any creature that enters the star or starts its turn inside it takes 132 ({@dice 24d10}) radiant damage."
+						}
+					]
+				}
 			]
 		},
 		{

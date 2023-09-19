@@ -73,6 +73,7 @@
 	$rgb-source-HAT: #a24545;
 	$rgb-source-BGG: #469cb7;
 	$rgb-source-TDCSR: #642e4b;
+	$rgb-source-PaBTSO: #b2b34e;
 
 	// region Categories
 
@@ -558,6 +559,12 @@
 		color: $rgb-source-TDCSR !important;
 		border-color: $rgb-source-TDCSR !important;
 		text-decoration-color: $rgb-source-TDCSR !important;
+	}
+
+	&PaBTSO {
+		color: $rgb-source-PaBTSO !important;
+		border-color: $rgb-source-PaBTSO !important;
+		text-decoration-color: $rgb-source-PaBTSO !important;
 	}
 	// endregion
 }

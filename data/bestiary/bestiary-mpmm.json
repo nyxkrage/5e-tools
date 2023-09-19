@@ -13495,6 +13495,9 @@
 				{
 					"source": "VGM",
 					"page": 173
+				},
+				{
+					"source": "PaBTSO"
 				}
 			],
 			"size": [
@@ -37130,7 +37133,7 @@
 				{
 					"name": "Whispering Aura",
 					"entries": [
-						"At the start of each of the warlock's turns, each creature of its choice within 5 feet of it must succeed on a {@dc 15} Wisdom saving throw or take 10 ({@damage 3d6}) psychic damage, provided that the warlock isn't {@condition incapacitated}."
+						"At the start of each of the warlock's turns, each creature of its choice within 10 feet of it must succeed on a {@dc 15} Wisdom saving throw or take 10 ({@damage 3d6}) psychic damage, provided that the warlock isn't {@condition incapacitated}."
 					]
 				}
 			],
