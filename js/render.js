@@ -5085,7 +5085,7 @@ Renderer.feat = {
 			${opts.isSkipNameRow ? "" : Renderer.utils.getNameTr(feat, {page: UrlUtil.PG_FEATS})}
 			<tr class="text"><td colspan="6" class="text">
 			${prerequisite ? `<p>${prerequisite}</p>` : ""}
-			${ptRepeatable ? `<p>${prerequisite}</p>` : ""}
+			${ptRepeatable ? `<p>${ptRepeatable}</p>` : ""}
 		`);
 		renderer.recursiveRender({entries: feat._fullEntries || feat.entries}, renderStack, {depth: 2});
 		renderStack.push(`</td></tr>`);

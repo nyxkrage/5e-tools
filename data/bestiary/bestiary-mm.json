@@ -35117,6 +35117,12 @@
 				"type": "internal",
 				"path": "bestiary/grick.mp3"
 			},
+			"altArt": [
+				{
+					"name": "Crystal Grick",
+					"source": "PaBTSO"
+				}
+			],
 			"senseTags": [
 				"D"
 			],
@@ -44427,7 +44433,7 @@
 					"source": "IMR"
 				},
 				{
-					"source": "MOT"
+					"source": "CM"
 				}
 			],
 			"size": [
@@ -58774,6 +58780,10 @@
 				"path": "bestiary/spectator.mp3"
 			},
 			"altArt": [
+				{
+					"name": "Forge of Spells Spectator",
+					"source": "PaBTSO"
+				},
 				{
 					"name": "Spectator",
 					"source": "RMBRE"
@@ -73674,6 +73684,12 @@
 				"type": "internal",
 				"path": "bestiary/zombie.mp3"
 			},
+			"altArt": [
+				{
+					"name": "Dwarf Zombie",
+					"source": "PaBTSO"
+				}
+			],
 			"traitTags": [
 				"Undead Fortitude"
 			],

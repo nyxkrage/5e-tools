@@ -36133,7 +36133,7 @@
 			"page": 220,
 			"type": "M",
 			"rarity": "rare",
-			"reqAttune": "by a bard",
+			"reqAttune": "by a bard, sorcerer, warlock, or wizard",
 			"reqAttuneTags": [
 				{
 					"class": "bard"
@@ -36552,7 +36552,7 @@
 			"page": 220,
 			"type": "M",
 			"rarity": "rare",
-			"reqAttune": "by a bard",
+			"reqAttune": "by a bard, sorcerer, warlock, or wizard",
 			"reqAttuneTags": [
 				{
 					"class": "bard"

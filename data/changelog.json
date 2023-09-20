@@ -2523,5 +2523,10 @@
 		"date": "2023-09-19",
 		"title": "Phandeeper",
 		"txt": "- Added Phandelver and Below: The Shattered Obelisk content\n- (Brew) Expanded prettifier coverage to handle more/all homebrew properties (thanks @ Lyra)\n- (Brew) Added support for customizing `\"_preserve\"` on `\"_version\"`s\n- (Brew) Added support for nested object `\"requires\"`/`\"excludes\"` on `\"magicvariant\"`s\n- (Brew) Improved Item Text Converter handling of class attunement\n- (Brew) Fixed failure to use `\"displayName\"` in initially-collapsed inline statblock headers\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.187.1",
+		"date": "2023-09-20",
+		"txt": "- Added Phandelver and Below adventure NPCs/other creatures\n- Split out ToA \"Trickster Gods of Omu\" cards into Decks page (thanks @ Lyra)\n- Added \"Reprinted\" filter to Items page\n- (Fixed typos/added tags)"
 	}
 ]

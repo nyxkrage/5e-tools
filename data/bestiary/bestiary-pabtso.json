@@ -211,12 +211,39 @@
 			}
 		},
 		{
+			"name": "Ash Zombie",
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Zombie",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Ash Cloud",
+							"entries": [
+								"When the zombie dies, it leaves a cloud of ash that lasts for 5 minutes but does not obscure vision."
+							]
+						}
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Brain Breaker",
 			"source": "PaBTSO",
 			"page": 199,
 			"_copy": {
 				"name": "Infected Elder Brain",
-				"source": "PaBTSO"
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "elder brain",
+						"with": "brain breaker"
+					}
+				}
 			},
 			"ac": [
 				{
@@ -236,6 +263,59 @@
 			},
 			"cr": "12",
 			"hasFluff": true
+		},
+		{
+			"name": "Chishinix",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Flayer Clairvoyant",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mind flayer",
+						"with": "Chishinix",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "",
+							"entries": [
+								"Chishinix is always accompanied by a {@creature Chishinix' Head|PaBTSO|severed head}."
+							]
+						}
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Chishinix' Head",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Encephalon Gemmule",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "gemmule",
+						"with": "head"
+					},
+					"trait": {
+						"mode": "removeArr",
+						"names": "Encephalon Progeny"
+					}
+				}
+			},
+			"speed": {
+				"walk": 10
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Cloaker Mutate",
@@ -534,7 +614,7 @@
 				{
 					"name": "Spawn Progeny (Recharges after a Short or Long Rest)",
 					"entries": [
-						"The cluster bulges and spews {@dice 1d4} mature eggs. Each egg lands in an unoccupied space of the cluster's choice within 30 feet of itself and immediately transforms into an encephalon gemmule. The gemmules obey the cluster's commands and take their turns immediately after it."
+						"The cluster bulges and spews {@dice 1d4} mature eggs. Each egg lands in an unoccupied space of the cluster's choice within 30 feet of itself and immediately transforms into an {@creature encephalon gemmule|PaBTSO}. The gemmules obey the cluster's commands and take their turns immediately after it."
 					]
 				}
 			],
@@ -1307,6 +1387,25 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Grandlejaw",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Hydra",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the hydra",
+						"with": "Grandlejaw",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Grell Psychic",
 			"source": "PaBTSO",
 			"page": 145,
@@ -1439,6 +1538,113 @@
 				"wisdom"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Gundren Rockseeker",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Commoner",
+				"source": "MM",
+				"_trait": {
+					"name": "Mountain Dwarf",
+					"source": "PHB"
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Gwyn Oresong",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Acolyte",
+				"source": "MM",
+				"_trait": {
+					"name": "Mountain Dwarf",
+					"source": "PHB"
+				},
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the acolyte",
+						"with": "Gwyn",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Hashutu",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Flayer Clairvoyant",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mind flayer",
+						"with": "Hashutu",
+						"flags": "i"
+					}
+				}
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft.",
+				"truesight 15 ft."
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Hjoldak Hollowhelm",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Psionic Ashenwight",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the ashenwight",
+						"with": "Hjoldak",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Honna",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Medusa",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the medusa",
+						"with": "Honna",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Humanoid Mutate",
@@ -1850,6 +2056,11 @@
 				"name": "Berserker",
 				"source": "MM",
 				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "berserker",
+						"with": "townsperson"
+					},
 					"action": {
 						"mode": "replaceArr",
 						"replace": "Greataxe",
@@ -1987,7 +2198,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Kellikilli",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Water Weird",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the water weird",
+						"with": "Kellikilli",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Lowarnizel",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 181,
@@ -2156,6 +2387,25 @@
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Malinia",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Humanoid Mutate",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mutate",
+						"with": "Malinia",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Mind Flayer Clairvoyant",
@@ -2515,7 +2765,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Mormesk the Wraith",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Wraith",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the wraith",
+						"with": "Mormesk",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Nellik",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 193,
@@ -2523,6 +2793,12 @@
 				"name": "Nycaloth",
 				"source": "MM",
 				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the nycaloth",
+						"with": "Nellik",
+						"flags": "i"
+					},
 					"action": {
 						"mode": "replaceArr",
 						"replace": "Greataxe",
@@ -2538,6 +2814,7 @@
 		},
 		{
 			"name": "Nezznar the Spider",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 74,
@@ -2692,6 +2969,43 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Nundro Rockseeker",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Commoner",
+				"source": "MM",
+				"_trait": {
+					"name": "Mountain Dwarf",
+					"source": "PHB"
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Nythalyn Henlifel",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Drow Elite Warrior",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the drow",
+						"with": "Nythalyn",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"hasToken": true
+		},
+		{
 			"name": "Oculorb",
 			"source": "PaBTSO",
 			"page": 214,
@@ -2844,7 +3158,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Ontharyx",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Humanoid Mutate",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mutate",
+						"with": "Ontharyx",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Oshundo the Alhoon",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 153,
@@ -3319,6 +3653,7 @@
 		},
 		{
 			"name": "Qunbraxel",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 135,
@@ -3785,7 +4120,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Rivibiddel",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Deep Gnome (Svirfneblin)",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the gnome",
+						"with": "Rivibiddel",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Ruxithid the Chosen",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 99,
@@ -3924,7 +4279,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Shalfi Lewin",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Aberrant Zealot",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the zealot",
+						"with": "Shalfi",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Sildar Hallwinter",
+			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "PaBTSO",
 			"page": 22,
@@ -4024,6 +4399,99 @@
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Varakkta",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Githyanki Knight",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the githyanki",
+						"with": "Varakkta",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Voalsh",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Mind Flayer Clairvoyant",
+				"source": "PaBTSO",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mind flayer",
+						"with": "Voalsh",
+						"flags": "i"
+					}
+				}
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"frightened",
+				"prone"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Yanthdel Henlifel",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Drow Elite Warrior",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the drow",
+						"with": "Yanthdel",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Zeond",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "PaBTSO",
+			"_copy": {
+				"name": "Quasit",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the quasit",
+						"with": "Zeond",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
 		}
 	]
 }
