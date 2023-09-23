@@ -1046,7 +1046,12 @@ globalThis.Renderer = function () {
 
 		if (entry.spells && !hidden.has("spells")) {
 			const tempList = {type: "list", style: "list-hang-notitle", items: [], data: {isSpellList: true}};
-			for (let lvl = 0; lvl < 10; ++lvl) {
+
+			const lvls = Object.keys(entry.spells)
+				.map(lvl => Number(lvl))
+				.sort(SortUtil.ascSort);
+
+			for (const lvl of lvls) {
 				const spells = entry.spells[lvl];
 				if (spells) {
 					let levelCantrip = `${Parser.spLevelToFull(lvl)}${(lvl === 0 ? "s" : " level")}`;
@@ -1060,6 +1065,7 @@ globalThis.Renderer = function () {
 					tempList.items.push({type: "itemSpell", name: `${levelCantrip}${slotsAtWill}:`, entry: this._renderSpellcasting_getRenderableList(spells.spells).join(", ") || "\u2014"});
 				}
 			}
+
 			toRender[0].entries.push(tempList);
 		}
 
@@ -10883,7 +10889,7 @@ Renderer.hover = {
 		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {$brdrTop, $hov});
 		hoverWindow.doZIndexToFront = Renderer.hover._getShowWindow_doZIndexToFront.bind(this, {$hov, hoverWindow, hoverId});
 
-		if (opts.isPopout) pDoPopout().then(null);
+		if (opts.isPopout) Renderer.hover._getShowWindow_pDoPopout({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content});
 
 		return hoverWindow;
 	},
@@ -10974,7 +10980,7 @@ Renderer.hover = {
 		$hov.toggleClass("hwin--minified", false);
 	},
 
-	async _getShowWindow_pDoPopout ({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content}, {evt}) {
+	async _getShowWindow_pDoPopout ({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content}, {evt} = {}) {
 		const dimensions = opts.fnGetPopoutSize ? opts.fnGetPopoutSize() : {width: 600, height: $content.height()};
 		const win = window.open(
 			"",

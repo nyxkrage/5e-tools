@@ -1696,7 +1696,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/generic/back.webp"
-				}
+				},
+				"width": 411,
+				"height": 561
 			},
 			"entries": [
 				"{@note See the {@adventure Spirits of the Nine Trickster Gods|ToA|5|Spirits of the Nine Trickster Gods} section for more information.}"
@@ -7240,7 +7242,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/115-tg01.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced EYE-jin)}",
@@ -7278,7 +7282,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/116-tg02.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced KOO-bah-zahn)}",
@@ -7316,7 +7322,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/117-tg03.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced MOH-ah)}",
@@ -7354,7 +7362,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/118-tg04.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced NANG-nang)}",
@@ -7392,7 +7402,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/119-tg05.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced oh-boh-LAH-kah)}",
@@ -7430,7 +7442,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/120-tg06.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced pah-pah-ZAH-tul)}",
@@ -7468,7 +7482,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/121-tg07.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced shah-GOM-bee)}",
@@ -7506,7 +7522,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/122-tg08.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced UNK)}",
@@ -7544,7 +7562,9 @@
 				"href": {
 					"type": "internal",
 					"path": "decks/ToA/Trickster Gods of Omu/123-tg09.webp"
-				}
+				},
+				"width": 301,
+				"height": 428
 			},
 			"entries": [
 				"{@i (pronounced WONG-go)}",
