@@ -225,7 +225,8 @@
 				"dexterity",
 				"wisdom"
 			],
-			"hasFluff": true
+			"hasFluff": true,
+			"hasToken": true
 		},
 		{
 			"name": "Thessalhydra",

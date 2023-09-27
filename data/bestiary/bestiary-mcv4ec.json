@@ -163,7 +163,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Beanstalk Wurm",
@@ -265,7 +266,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Deathless Rider",
@@ -387,7 +389,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Dunbarrow Witch",
@@ -532,7 +535,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Faerie Borrower",
@@ -642,7 +646,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Faerie Pathlighter",
@@ -759,7 +764,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Faerie Pest",
@@ -881,7 +887,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Gingerbrute",
@@ -972,7 +979,8 @@
 				"RW"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Goose Mother",
@@ -1099,7 +1107,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "High Fae Impostor",
@@ -1250,7 +1259,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "High Fae Kindguard",
@@ -1394,7 +1404,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "High Fae Mage",
@@ -1555,7 +1566,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "High Fae Noble",
@@ -1686,11 +1698,10 @@
 					]
 				}
 			],
+			"reactionHeader": [
+				"The high fae can take up to three reactions per round but only one per turn"
+			],
 			"reaction": [
-				{
-					"name": "The high fae can take up to three reactions per round but only one per turn",
-					"entries": []
-				},
 				{
 					"name": "Capricious Step",
 					"entries": [
@@ -1737,7 +1748,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Knight of Eldraine",
@@ -1789,31 +1801,41 @@
 				{
 					"name": "Knightly Virtue",
 					"entries": [
-						"The knight has one of the following traits, depending on the court it serves:"
-					]
-				},
-				{
-					"name": "Courage (Embereth)",
-					"entries": [
-						"The knight has advantage on Wisdom checks and Wisdom saving throws."
-					]
-				},
-				{
-					"name": "Knowledge (Vantress)",
-					"entries": [
-						"The knight has advantage on Intelligence checks and Intelligence saving throws."
-					]
-				},
-				{
-					"name": "Loyalty (Ardenvale)",
-					"entries": [
-						"The knight has advantage on Charisma checks and Charisma saving throws."
-					]
-				},
-				{
-					"name": "Persistence (Locthwain)",
-					"entries": [
-						"The knight has advantage on Constitution saving throws. Strength (Garenbrig). The knight has advantage on Strength checks and Strength saving throws."
+						"The knight has one of the following traits, depending on the court it serves:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Courage (Embereth)",
+									"entries": [
+										"The knight has advantage on Wisdom checks and Wisdom saving throws."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Knowledge (Vantress)",
+									"entries": [
+										"The knight has advantage on Intelligence checks and Intelligence saving throws."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Loyalty (Ardenvale)",
+									"entries": [
+										"The knight has advantage on Charisma checks and Charisma saving throws."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Persistence (Locthwain)",
+									"entries": [
+										"The knight has advantage on Constitution saving throws. Strength (Garenbrig). The knight has advantage on Strength checks and Strength saving throws."
+									]
+								}
+							]
+						}
 					]
 				}
 			],
@@ -1857,7 +1879,8 @@
 				"RW"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Nightmare Haunt",
@@ -1977,7 +2000,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Ogre Chitterlord",
@@ -2121,7 +2145,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Redtooth Werefox",
@@ -2244,7 +2269,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Sewer King",
@@ -2346,7 +2372,8 @@
 				"constitution"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Snapping Hydra",
@@ -2460,7 +2487,8 @@
 				"RCH"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Specter of Night",
@@ -2593,7 +2621,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Sweettooth Horror",
@@ -2696,7 +2725,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Tempest Hart",
@@ -2820,7 +2850,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Treefolk",
@@ -2979,7 +3010,8 @@
 				"constitution"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Witchkite",
@@ -3093,17 +3125,17 @@
 							"type": "list",
 							"items": [
 								"The target must use its reaction to make a melee attack against another creature of the witchkite's choice that is within the target's reach.",
-								"The target takes 13 ({@damage 2d12}) psychic damage. On a successful save, the target takes half as much damage only."
+								"The target takes 13 ({@damage 2d12}) psychic damage."
 							]
-						}
+						},
+						"On a successful save, the target takes half as much damage only."
 					]
 				}
 			],
+			"reactionHeader": [
+				"The witchkite can take up to two reactions per round but only one per turn"
+			],
 			"reaction": [
-				{
-					"name": "The witchkite can take up to two reactions per round but only one per turn",
-					"entries": []
-				},
 				{
 					"name": "Enchanting Gaze",
 					"entries": [
@@ -3158,7 +3190,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Witchstalker",
@@ -3269,7 +3302,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		}
 	]
 }

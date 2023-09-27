@@ -188,7 +188,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Aberrant Zealot (Tentacled)",
@@ -208,7 +209,8 @@
 						}
 					}
 				}
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Ash Zombie",
@@ -262,7 +264,8 @@
 				"canHover": true
 			},
 			"cr": "12",
-			"hasFluff": true
+			"hasFluff": true,
+			"hasToken": true
 		},
 		{
 			"name": "Chishinix",
@@ -454,7 +457,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Dwarf Skeleton",
@@ -539,7 +543,8 @@
 			"miscTags": [
 				"MLW",
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Encephalon Cluster",
@@ -650,7 +655,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Encephalon Gemmule",
@@ -737,7 +743,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Feral Ashenwight",
@@ -829,7 +836,8 @@
 				"RW"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Fiendish Auger",
@@ -938,7 +946,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Flesh Meld",
@@ -1068,7 +1077,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Goblin Boss Archer",
@@ -1089,7 +1099,8 @@
 						}
 					}
 				}
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Goblin Psi Brawler",
@@ -1217,7 +1228,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Goblin Psi Commander",
@@ -1384,7 +1396,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Grandlejaw",
@@ -1537,7 +1550,8 @@
 			"savingThrowForcedSpell": [
 				"wisdom"
 			],
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Gundren Rockseeker",
@@ -1758,7 +1772,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Iarno \"Glasstaff\" Albrek",
@@ -1893,7 +1908,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Infected Elder Brain",
@@ -2046,7 +2062,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Infected Townsperson",
@@ -2073,7 +2090,8 @@
 					}
 				}
 			},
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Intellect Snare",
@@ -2195,7 +2213,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Kellikilli",
@@ -2386,7 +2405,8 @@
 				"strength"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Malinia",
@@ -2587,7 +2607,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Mind Flayer Nothic",
@@ -2609,7 +2630,8 @@
 					}
 				}
 			},
-			"hasFluff": true
+			"hasFluff": true,
+			"hasToken": true
 		},
 		{
 			"name": "Mind Flayer Prophet",
@@ -2762,7 +2784,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Mormesk the Wraith",
@@ -2810,7 +2833,8 @@
 						}
 					}
 				}
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Nezznar the Spider",
@@ -2966,7 +2990,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Nundro Rockseeker",
@@ -3155,7 +3180,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Ontharyx",
@@ -3373,7 +3399,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Otyugh Mutate",
@@ -3491,7 +3518,8 @@
 				"constitution"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Psionic Ashenwight",
@@ -3619,7 +3647,8 @@
 				"charisma"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Psionic Shambling Mound",
@@ -3649,7 +3678,8 @@
 			],
 			"spellcastingTags": [
 				"P"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Qunbraxel",
@@ -3825,7 +3855,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Redbrand Ruffian",
@@ -3891,7 +3922,8 @@
 				"MW"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Refraction of Ilvaash",
@@ -4117,7 +4149,8 @@
 				"wisdom"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Rivibiddel",
@@ -4276,7 +4309,8 @@
 				"dexterity"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Shalfi Lewin",
@@ -4398,7 +4432,8 @@
 				"RW"
 			],
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"hasToken": true
 		},
 		{
 			"name": "Varakkta",

@@ -861,7 +861,8 @@
 								"A Martial Archetype option in the {@book Player's Handbook|PHB}, the Battle Master showcases just how versatile a fighter can be. The suite of maneuvers you choose, when combined with a fighting style and feats, allows you to create a broad range of fighters, each with its own flavor and play style.",
 								"Below are recommendations for how you might build a Battle Master to reflect various types of warriors.",
 								"Each of these builds contains suggested fighting styles, maneuvers, and feats. Those suggestions are from the {@book Player's Handbook|PHB}, except for the ones followed by an asterisk, which indicates an option introduced in this book."
-							]
+							],
+							"id": "013"
 						},
 						{
 							"type": "entries",
@@ -9395,7 +9396,8 @@
 									"style": "text-center",
 									"entries": [
 										"{@note PERMISSION IS GRANTED TO PHOTOCOPY THE PAGES IN THIS SECTION FOR PERSONAL USE.}"
-									]
+									],
+									"id": "014"
 								},
 								{
 									"type": "entries",
