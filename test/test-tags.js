@@ -210,9 +210,9 @@ function getSimilar (url) {
 	return JSON.stringify(similarUrls, null, 2);
 }
 
-function getEncoded (str, tag) {
+function getEncoded (str, tag, {prop = null} = {}) {
 	const [name, source] = str.split("|");
-	return `${Renderer.tag.getPage(tag)}#${UrlUtil.encodeForHash([name, Parser.getTagSource(tag, source)])}`.toLowerCase().trim();
+	return `${Renderer.tag.getPage(tag) || prop}#${UrlUtil.encodeForHash([name, Parser.getTagSource(tag, source)])}`.toLowerCase().trim();
 }
 
 function getEncodedDeity (str, tag) {
@@ -550,10 +550,11 @@ class TableDiceTest extends DataTesterBase {
 	static _checkTable (obj, {filePath}) {
 		if (obj.type !== "table") return;
 
-		const autoRollMode = Renderer.table.getAutoConvertedRollMode(obj);
+		const headerRowMetas = Renderer.table.getHeaderRowMetas(obj);
+		const autoRollMode = Renderer.table.getAutoConvertedRollMode(obj, {headerRowMetas});
 		if (!autoRollMode) return;
 
-		const toRenderLabel = autoRollMode ? RollerUtil.getFullRollCol(obj.colLabels[0]) : null;
+		const toRenderLabel = autoRollMode ? RollerUtil.getFullRollCol(headerRowMetas.last()[0]) : null;
 		const isInfiniteResults = autoRollMode === RollerUtil.ROLL_COL_VARIABLE;
 
 		const possibleResults = new Set();
@@ -875,6 +876,11 @@ class BackgroundDataCheck extends GenericDataCheck {
 class BestiaryDataCheck extends GenericDataCheck {
 	static _handleCreature (file, mon) {
 		this._testReprintedAs(file, mon, "creature");
+
+		if (mon.legendaryGroup) {
+			const url = getEncoded(`${mon.legendaryGroup.name}|${mon.legendaryGroup.source}`, "legendaryGroup", {prop: "legendaryGroup"});
+			if (!ALL_URLS.has(url)) this._addMessage(`Missing link: ${mon.legendaryGroup.name}|${mon.legendaryGroup.source} in file ${file} "legendaryGroup" (evaluates to "${url}")\nSimilar URLs were:\n${getSimilar(url)}\n`);
+		}
 
 		if (mon.summonedBySpell) {
 			const url = getEncoded(mon.summonedBySpell, "spell");

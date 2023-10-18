@@ -29,6 +29,79 @@ class _UtilListPage {
 	}
 }
 
+class SublistCellTemplate {
+	constructor (
+		{
+			name,
+			css,
+			colStyle,
+		},
+	) {
+		this._name = name;
+		this._css = css;
+		this._colStyle = colStyle;
+	}
+
+	get name () { return this._name; }
+	get colStyle () { return this._colStyle; }
+
+	getCss (text) {
+		return [
+			this._css,
+			text === VeCt.STR_NONE
+				? "list-entry-none"
+				: "",
+		]
+			.filter(Boolean)
+			.join(" ");
+	}
+}
+
+class SublistCell {
+	constructor (
+		{
+			text,
+			title,
+			css,
+			style,
+		},
+	) {
+		this._text = text;
+		this._title = title;
+		this._css = css;
+		this._style = style;
+	}
+
+	static renderHtml ({templates, cell, ix}) {
+		const text = cell instanceof SublistCell ? cell._text : cell;
+		const title = cell instanceof SublistCell ? cell._title : null;
+		const cssCell = cell instanceof SublistCell ? cell._css : null;
+		const style = cell instanceof SublistCell ? cell._style : null;
+
+		const css = [
+			templates[ix].getCss(text),
+			cssCell,
+		]
+			.filter(Boolean)
+			.join(" ");
+
+		const attrs = [
+			`class="${css}"`,
+			title ? `title="${title.qq()}"` : "",
+			style ? `style="${style}"` : "",
+		]
+			.filter(Boolean)
+			.join(" ");
+
+		return `<span ${attrs}>${text}</span>`;
+	}
+
+	static renderMarkdown ({listItem, cell}) {
+		cell = (typeof cell === "function") ? cell({listItem}) : cell;
+		return (cell instanceof SublistCell) ? cell._text : cell;
+	}
+}
+
 class SublistManager {
 	static _SUB_HASH_PREFIX = "sublistselected";
 
@@ -224,6 +297,11 @@ class SublistManager {
 				"Download JSON Data",
 				() => this._pHandleJsonDownload(),
 			),
+			null,
+			new ContextUtil.Action(
+				"Copy as Markdown Table",
+				() => this._pHandleCopyAsMarkdownTable(),
+			),
 		].filter(it => it !== undefined);
 		this._contextMenuListSub = ContextUtil.getMenu(subActions);
 	}
@@ -385,6 +463,22 @@ class SublistManager {
 		const entities = await this.getPinnedEntities();
 		entities.forEach(ent => DataUtil.cleanJson(MiscUtil.copyFast(ent)));
 		DataUtil.userDownload(`${this._getDownloadName()}-data`, entities);
+	}
+
+	async _pHandleCopyAsMarkdownTable () {
+		await MiscUtil.pCopyTextToClipboard(
+			RendererMarkdown.get()
+				.render({
+					type: "table",
+					colStyles: this.constructor._getRowEntryColStyles(),
+					colLabels: this.constructor._getRowEntryColLabels(),
+					rows: this._listSub.items
+						.map(listItem => {
+							return listItem.data.mdRow
+								.map(cell => SublistCell.renderMarkdown({listItem, cell}));
+						}),
+				}),
+		);
 	}
 
 	async pHandleClick_new (evt) {
@@ -732,6 +826,29 @@ class SublistManager {
 	}
 
 	doSublistDeselectAll () { this._listSub.deselectAll(); }
+
+	/* -------------------------------------------- */
+
+	static get _ROW_TEMPLATE () { throw new Error("Unimplemented"); }
+
+	static _doValidateRowTemplateValues ({values, templates}) {
+		if (values.length !== templates.length) throw new Error(`Length of row template and row values did not match! This is a bug!`);
+	}
+
+	/**
+	 * @param values
+	 * @param {Array<SublistCellTemplate>} templates
+	 */
+	static _getRowCellsHtml ({values, templates = null}) {
+		templates = templates || this._ROW_TEMPLATE;
+		this._doValidateRowTemplateValues({values, templates});
+		return values
+			.map((val, i) => SublistCell.renderHtml({templates, cell: val, ix: i}))
+			.join("");
+	}
+
+	static _getRowEntryColLabels () { return this._ROW_TEMPLATE.map(it => it.name); }
+	static _getRowEntryColStyles () { return this._ROW_TEMPLATE.map(it => it.colStyle); }
 }
 
 class ListPageStateManager extends BaseComponent {

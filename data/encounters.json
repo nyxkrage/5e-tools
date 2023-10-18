@@ -1,6 +1,195 @@
 {
 	"encounter": [
 		{
+			"name": "Mortuary Encounters",
+			"source": "AATM",
+			"tables": [
+				{
+					"minlvl": 1,
+					"maxlvl": 4,
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "A decapitated {@creature zombie} with the {@condition blinded} and {@condition deafened} conditions scrabbles along the ground, looking for its head. The zombie attacks any creature it detects."
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 1d4} {@creature Will-o'-Wisp||will-o'-wisps} offer to guide the characters to their destination but might lead them to a deadly location in the Mortuary, such as a crematorium."
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "A poshly dressed Duster {@creature wight} asks the characters to help them write a eulogy that's due in 10 minutes."
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "A friendly {@creature death dog} trots up to the characters and drops a bony hand at their feet. The dog wants to play fetch."
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "Ten melancholy Dusters ({@creature Commoner||commoners}) conduct an open-casket funeral for a cheery {@creature skeleton} named Merle, who never received one in life. Merle lies in the casket but occasionally sits up to hear his own eulogies. The Dusters ask the characters if they'd like to say anything on behalf of the deceased."
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "A lost {@creature animated coffin|AATM}* lurches along, carrying a reverently laid corpse to its crypt. The Construct approaches the characters and silently petitions them to escort it to its destination."
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "{@dice 1d4} {@creature Zombie||zombies}, bloated and riddled with holes, shuffle up to the characters and each expel a {@creature swarm of rot grubs|MPMM}† at their feet. All the creatures are hostile toward the characters."
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "A {@creature Heralds of Dust exorcist|AATM}* works to expel a {@creature dybbuk|MPMM}† from a corpse. The exorcist asks the characters to help in dispatch the Fiend."
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "Two {@creature Bard|MPMM|bards}† in the Heralds of Dust approach the characters and sing a ballad honoring the dead. If the characters interrupt or otherwise ruin the tune, {@dice 1d4} irascible {@creature Specter||specters} emerge from the walls and attack, causing the bards to flee."
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "Three {@creature skeleton} farmers quietly tend to corpse-white grave flowers in an underground garden. Four {@creature Stench Kow|MPMM|stench kows}† graze nearby and protect the farmers, who attack if the characters pluck any flowers or interfere with their work."
+						}
+					],
+					"footnotes": [
+						"†Monsters marked with a dagger (†) appear in {@book Monsters of the Multiverse|MPMM}. Roll a {@dice d6} if you don't have that book.",
+						"*See {@book the appendix|AATM|Appendix: Mortuary Creatures}."
+					]
+				},
+				{
+					"minlvl": 5,
+					"maxlvl": 10,
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "Three {@creature Ghost||ghosts} of long-dead nobles invite the characters to an incorporeal tea party."
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "{@dice 1d8 + 3} {@creature Ghoul||ghouls} feast on a veritable smorgasbord of corpses in a chilly morgue. The ghouls attack any who disturb their meal."
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "Twenty {@creature Skeleton||skeletons} parade down a dusty hall, dancing all the way. The skeletons are friendly toward characters who join their procession but attack any who impede it."
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "Disguised as a Humanoid member of the Heralds of Dust, a {@creature planetar} sneaks through a crypt in hopes of raising one of its god's agents from the dead. The angel reveals itself to the characters and asks for help in finding its way."
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "The party unknowingly enters a crematorium, and the walls erupt with gouts of flame. Each creature in the room must succeed on a DC 18 Dexterity saving throw, taking 44 ({@dice 8d10}) fire damage on a failed save, or half as much damage on a successful one."
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "A {@creature stone golem} composed of tombstones tromps down an empty hallway. It lets the characters pass if they etch an epitaph into its frame."
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "A passing {@creature animated coffin|AATM}* exhales a hostile cloud of {@creature vampiric mist|MPMM}† with an audible wheeze."
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "{@dice 1d6 + 2} {@creature Vargouille|MPMM|vargouilles}† fly through the halls, looking for their next meal. The vargouilles attack the characters on sight."
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "{@dice 1d4} {@creature Spawn of Kyuss|MPMM|spawns of Kyuss}† shamble through the Mortuary, infecting its corpses. A lawful neutral {@creature wight} shouts for the party's aid in curbing the infestation."
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "Two {@creature lost sorrowsworn|MPMM},† manifestations of those who never reached the afterlife, wander aimlessly. The sorrowsworn ask the characters to guide them to the great beyond. If the characters refuse the sorrowsworn attack in panicked fury."
+						}
+					],
+					"footnotes": [
+						"†Monsters marked with a dagger (†) appear in {@book Monsters of the Multiverse|MPMM}. Roll a {@dice d6} if you don't have that book.",
+						"*See {@book the appendix|AATM|Appendix: Mortuary Creatures}."
+					]
+				},
+				{
+					"minlvl": 11,
+					"maxlvl": 16,
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "{@creature Factol Skall|AATM}* drifts through the Mortuary toward his {@area orrery|025|x} (detailed later in this supplement)."
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "Two {@creature Guardian Naga||guardian nagas} slither up to the party. The nagas are collecting stories about those who have passed."
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "A {@creature death tyrant}, eager to build its undead army, lingers outside a derelict crypt. The monster accosts any non-Undead it encounters."
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "An {@creature arcanaloth} testator informs the characters they much each present a copy of their last will and testament to continue their exploration. If a character doesn't have a will, the testator offers to write one for them on the spot in exchange for 10 gp each."
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "A {@creature githyanki knight} and four pallbearers ({@creature Githyanki Warrior||githyanki warriors}) march toward a portal to the Astral Plane to honor a fallen comrade. The githyanki attack characters who interrupt their solemn procession but accept any who share the load as one of their own."
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "A sarcophagus-like {@creature animated coffin|AATM}* conveys a haughty {@creature mummy lord} to its tomb. Two {@creature Mummy||mummies} walk alongside the coffin. The mummy lord demands that passersby acknowledge its rule with a bow; the mummies attack all who refuse."
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "A {@creature cadaver collector|MPMM}† emerges from a portal to Acheron, dragging a cart of corpses behind it."
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "A {@creature deathlock mastermind|MPMM}† leads four {@creature Deathlock|MPMM|deathlocks}† in an unholy ritual dedicated to the powers of death. To complete the ritual, the deathlocks require a living sacrifice\u2014one of the characters would be perfect."
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "Four {@creature Minotaur Skeleton||minotaur skeletons} carry a palanquin of bones supporting a hostile {@creature skull lord|MPMM}.†"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "A {@creature narzugon|MPMM}† astride a {@creature nightmare} patrols a stretch of catacombs as part of an archdevil's errand. The narzugon attacks any non-Undead, eager to add their souls to archdevil's growing collection."
+						}
+					],
+					"footnotes": [
+						"†Monsters marked with a dagger (†) appear in {@book Monsters of the Multiverse|MPMM}. Roll a {@dice d6} if you don't have that book.",
+						"*See {@book the appendix|AATM|Appendix: Mortuary Creatures}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Fomorian",
 			"source": "BGG",
 			"tables": [

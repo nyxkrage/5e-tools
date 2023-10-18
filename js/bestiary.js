@@ -63,12 +63,39 @@ class BestiarySublistManager extends SublistManager {
 		return `${super._getSublistFullHash({entity})}${_BestiaryUtil.getUrlSubhashes(entity)}`;
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-5 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Type",
+				css: "col-3-8",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "CR",
+				css: "col-1-2 ve-text-center",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
+				name: "Number",
+				css: "col-2 ve-text-center",
+				colStyle: "text-center",
+			}),
+		];
+	}
+
 	async pGetSublistItem (mon, hash, {count = 1, customHashId = null, initialData} = {}) {
 		const name = mon._displayName || mon.name;
 		const type = _BestiaryUtil.getListDisplayType(mon);
 		const cr = mon._pCr;
 		const hashBase = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY](mon);
 		const isLocked = !!initialData?.isLocked; // If e.g. reloading from a save
+
+		const cellsText = [name, type, cr];
 
 		const $hovStatblock = $(`<span class="col-1-4 help help--hover ecgen__visible">Stat Block</span>`)
 			.mouseover(evt => this._encounterBuilder.doStatblockMouseOver({
@@ -127,6 +154,7 @@ class BestiarySublistManager extends SublistManager {
 					UrlUtil.PG_BESTIARY,
 					hashBase,
 				),
+				mdRow: [...cellsText, ({listItem}) => listItem.data.count],
 			},
 		);
 
@@ -135,9 +163,7 @@ class BestiarySublistManager extends SublistManager {
 
 		listItem.ele = $$`<div class="lst__row lst__row--sublist ve-flex-col lst__row--bestiary-sublist">
 			<a href="#${hash}" draggable="false" class="ecgen__hidden lst--border lst__row-inner">
-				<span class="bold col-5 pl-0">${name}</span>
-				<span class="col-3-8">${type}</span>
-				<span class="col-1-2 ve-text-center">${cr}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)})}
 				${$eleCount1}
 			</a>
 

@@ -7,10 +7,22 @@ class DecksSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-12 pl-0",
+				colStyle: "",
+			}),
+		];
+	}
+
 	pGetSublistItem (ent, hash) {
+		const cellsText = [ent.name];
+
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-12 pl-0">${ent.name}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -26,6 +38,7 @@ class DecksSublistManager extends SublistManager {
 			},
 			{
 				entity: ent,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;

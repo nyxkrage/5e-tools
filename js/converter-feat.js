@@ -73,7 +73,6 @@ class FeatParser extends BaseParser {
 	// SHARED UTILITY FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
 	static _doFeatPostProcess (feat, options) {
 		TagCondition.tryTagConditions(feat);
-		ArtifactPropertiesTag.tryRun(feat);
 		if (feat.entries) {
 			feat.entries = feat.entries.map(it => DiceConvert.getTaggedEntry(it));
 			EntryConvert.tryRun(feat, "entries");
@@ -126,7 +125,13 @@ class FeatParser extends BaseParser {
 
 				const mFeat = /^(?<name>.*?) feat$/i.exec(pt);
 				if (mFeat) {
-					return (pre.feat = pre.feat || []).push(mFeat.groups.name.toLowerCase().trim());
+					pre.feat ||= [];
+					const rawFeat = mFeat.groups.name.toLowerCase().trim();
+
+					const [ptName, ptSpecifier] = rawFeat.split(/ \(([^)]+)\)$/);
+					if (!ptSpecifier) return pre.feat.push(`${rawFeat}|${feat.source.toLowerCase()}`);
+
+					return pre.feat.push(`${ptName}|${feat.source.toLowerCase()}|${rawFeat}`);
 				}
 
 				const mBackground = /^(?<name>.*?) background$/i.exec(pt);
@@ -185,7 +190,7 @@ class FeatParser extends BaseParser {
 	}
 
 	static _mutMergeHangingListItems (feat, options) {
-		const ixStart = feat.entries.findIndex(ent => typeof ent === "string" && /following benefits:$/.test(ent));
+		const ixStart = feat.entries.findIndex(ent => typeof ent === "string" && /(?:following|these) benefits:$/.test(ent));
 		if (!~ixStart) return;
 
 		let list;

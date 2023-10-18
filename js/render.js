@@ -611,7 +611,7 @@ globalThis.Renderer = function () {
 
 		const headerRowMetas = Renderer.table.getHeaderRowMetas(entry);
 		const autoRollMode = Renderer.table.getAutoConvertedRollMode(entry, {headerRowMetas});
-		const toRenderLabel = autoRollMode ? RollerUtil.getFullRollCol(entry.colLabels[0]) : null;
+		const toRenderLabel = autoRollMode ? RollerUtil.getFullRollCol(headerRowMetas.last()[0]) : null;
 		const isInfiniteResults = autoRollMode === RollerUtil.ROLL_COL_VARIABLE;
 
 		// caption
@@ -6583,7 +6583,7 @@ Renderer.object = {
 		return `
 			${Renderer.utils.getExcludedTr({entity: obj, dataProp: "object", page: opts.page || UrlUtil.PG_OBJECTS})}
 			${Renderer.utils.getNameTr(obj, {page: opts.page || UrlUtil.PG_OBJECTS, extraThClasses, isEmbeddedEntity: opts.isEmbeddedEntity})}
-			<tr class="text"><td colspan="6"><i>${obj.objectType !== "GEN" ? `${Parser.sizeAbvToFull(obj.size)} ${obj.creatureType ? Parser.monTypeToFullObj(obj.creatureType).asText : "object"}` : `Variable size object`}</i><br></td></tr>
+			<tr class="text"><td colspan="6"><i>${obj.objectType !== "GEN" ? `${Renderer.utils.getRenderedSize(obj.size)} ${obj.creatureType ? Parser.monTypeToFullObj(obj.creatureType).asText : "object"}` : `Variable size object`}</i><br></td></tr>
 			<tr class="text"><td colspan="6">
 				${obj.capCrew != null || obj.capPassenger != null ? `<b>Creature Capacity:</b> ${Renderer.vehicle.getShipCreatureCapacity(obj)}<br>` : ""}
 				${obj.capCargo != null ? `<b>Cargo Capacity:</b> ${Renderer.vehicle.getShipCargoCapacity(obj)}</br>` : ""}
@@ -7522,7 +7522,14 @@ Renderer.monster = {
 				...(PrereleaseUtil.getBrewProcessedFromCache("sense") || []),
 				...(BrewUtil2.getBrewProcessedFromCache("sense") || []),
 			];
-			Renderer.monster._SENSE_TAG_METAS.forEach(it => it._re = new RegExp(`\\b(?<sense>${it.name.escapeRegexp()})\\b`, "gi"));
+			const seenNames = new Set();
+			Renderer.monster._SENSE_TAG_METAS
+				.filter(it => {
+					if (seenNames.has(it.name.toLowerCase())) return false;
+					seenNames.add(it.name.toLowerCase());
+					return true;
+				})
+				.forEach(it => it._re = new RegExp(`\\b(?<sense>${it.name.escapeRegexp()})\\b`, "gi"));
 			Renderer.monster._FN_TAG_SENSES = str => {
 				Renderer.monster._SENSE_TAG_METAS
 					.forEach(({name, source, _re}) => str = str.replace(_re, (...m) => `{@sense ${m.last().sense}|${source}}`));
@@ -8299,11 +8306,7 @@ Renderer.item = {
 
 		// Convert the property and type list JSONs into look-ups, i.e. use the abbreviation as a JSON property name
 		(baseItemData.itemProperty || []).forEach(it => Renderer.item._addProperty(it));
-		(baseItemData.itemType || []).forEach(it => {
-			// air/water vehicles share a type
-			if (it.abbreviation === "SHP") Renderer.item._addType({...MiscUtil.copyFast(it), abbreviation: "AIR"});
-			Renderer.item._addType(it);
-		});
+		(baseItemData.itemType || []).forEach(it => Renderer.item._addType(it));
 		(baseItemData.itemEntry || []).forEach(it => Renderer.item._addEntry(it));
 		(baseItemData.itemTypeAdditionalEntries || []).forEach(it => Renderer.item._addAdditionalEntries(it));
 		(baseItemData.itemMastery || []).forEach(it => Renderer.item._addMastery(it));
@@ -8718,7 +8721,7 @@ Renderer.item = {
 	},
 
 	getItemTypeName (t) {
-		return Renderer.item.getType(t).name || t;
+		return Renderer.item.getType(t).name?.toLowerCase() || t;
 	},
 
 	enhanceItem (item) {
@@ -9260,18 +9263,29 @@ Renderer.table = {
 		const rollColMode = RollerUtil.getColRollType(headerRowMetas.last()[0]);
 		if (!rollColMode) return RollerUtil.ROLL_COL_NONE;
 
-		// scan the first column to ensure all rollable
-		if (!table.rows.every(it => {
-			if (it?.[0] == null) return false;
-			if (it?.[0]?.roll) return true;
-
-			if (typeof it[0] === "number") return Number.isInteger(it[0]);
-
-			// u2012 = figure dash; u2013 = en-dash
-			return typeof it[0] === "string" && Renderer.table._RE_TABLE_ROW_DASHED_NUMBERS.test(it[0]);
-		})) return RollerUtil.ROLL_COL_NONE;
+		if (!Renderer.table.isEveryRowRollable(table.rows)) return RollerUtil.ROLL_COL_NONE;
 
 		return rollColMode;
+	},
+
+	isEveryRowRollable (rows) {
+		// scan the first column to ensure all rollable
+		return rows
+			.every(row => {
+				if (!row) return false;
+				const [cell] = row;
+				return Renderer.table.isRollableCell(cell);
+			});
+	},
+
+	isRollableCell (cell) {
+		if (cell == null) return false;
+		if (cell?.roll) return true;
+
+		if (typeof cell === "number") return Number.isInteger(cell);
+
+		// u2012 = figure dash; u2013 = en-dash
+		return typeof cell === "string" && Renderer.table._RE_TABLE_ROW_DASHED_NUMBERS.test(cell);
 	},
 };
 

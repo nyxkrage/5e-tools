@@ -972,7 +972,7 @@ class BuilderUi {
 		const eleType = options.eleType || "div";
 
 		const $rowInner = $(`<div class="${options.isRow ? "ve-flex" : "ve-flex-col"} w-100"/>`);
-		const $row = $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row ve-flex-v-center"><span class="mr-2 mkbru__row-name ${options.isMarked ? `mkbru__row-name--marked` : ""} ${options.title ? "help" : ""}" ${options.title ? `title="${options.title}"` : ""}>${name}</span>${options.isMarked ? `<div class="mkbru__row-mark mr-2"/>` : ""}${$rowInner}</${eleType}></div>`;
+		const $row = $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row ve-flex-v-center"><span class="mr-2 mkbru__row-name ve-shrink-10 ${options.isMarked ? `mkbru__row-name--marked` : ""} ${options.title ? "help" : ""}" ${options.title ? `title="${options.title}"` : ""}>${name}</span>${options.isMarked ? `<div class="mkbru__row-mark mr-2"/>` : ""}${$rowInner}</${eleType}></div>`;
 		return [$row, $rowInner];
 	}
 

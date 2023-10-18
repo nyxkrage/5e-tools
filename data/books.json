@@ -4070,6 +4070,145 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Morte's Planar Parade",
+			"alias": [
+				"Planescape: Adventures in the Multiverse"
+			],
+			"id": "MPP",
+			"source": "MPP",
+			"group": "supplement",
+			"coverUrl": "img/covers/PAitM.png",
+			"published": "2023-10-07",
+			"contents": [
+				{
+					"name": "Introduction: Multiversal Menagerie",
+					"headers": [
+						"Using a Stat Block",
+						"Petitioners",
+						"Planar Influences",
+						"Denizens of the Outlands",
+						"Planar Encounters"
+					]
+				},
+				{
+					"name": "Bestiary A to Z",
+					"headers": [
+						"Archons",
+						"Baernaloth",
+						"Bariaur Wanderer",
+						"Cranium Rat Squeakers",
+						"Dabus",
+						"Darkweaver",
+						"Demodands",
+						"Eater of Knowledge",
+						"Githzerai",
+						"Guardinals",
+						"Kolyarut",
+						"Maelephant",
+						"Modrons",
+						"Planar Incarnate",
+						"Razorvine Blight",
+						"Rilmani",
+						"Shemeshka",
+						"Sunflies",
+						"Time Dragons",
+						"Vargouille Reflection",
+						"Faction Agents"
+					]
+				},
+				{
+					"name": "Cover"
+				}
+			]
+		},
+		{
+			"name": "Sigil and the Outlands",
+			"alias": [
+				"Planescape: Adventures in the Multiverse"
+			],
+			"id": "SatO",
+			"source": "SatO",
+			"group": "supplement",
+			"coverUrl": "img/covers/PAitM.png",
+			"published": "2023-10-07",
+			"contents": [
+				{
+					"name": "Introduction: Infinite Doors to Adventure",
+					"headers": [
+						"What Is Planescape?",
+						"Using This Book",
+						"Three Truths"
+					]
+				},
+				{
+					"name": "Character Options",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					},
+					"headers": [
+						"Backgrounds",
+						"Feats",
+						"Magic"
+					]
+				},
+				{
+					"name": "Sigil, the City of Doors",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					},
+					"headers": [
+						"Where Is Sigil?",
+						"Sigil at a Glance",
+						"Life in Sigil",
+						"Portals",
+						"The Lady of Pain",
+						"Factions of Sigil",
+						"Sigil Gazetteer",
+						"Adventures in Sigil"
+					]
+				},
+				{
+					"name": "The Outlands",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					},
+					"headers": [
+						"Life in the Outlands",
+						"Gate-Towns",
+						"Other Realms"
+					]
+				},
+				{
+					"name": "Poster Map"
+				},
+				{
+					"name": "Cover"
+				}
+			]
+		},
+		{
+			"name": "Adventure Atlas: The Mortuary",
+			"id": "AATM",
+			"source": "AATM",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/AATM.png",
+			"published": "2023-10-17",
+			"contents": [
+				{
+					"name": "Adventure Atlas: The Mortuary",
+					"headers": [
+						"Using This Supplement",
+						"Heralds of Dust",
+						"The Mortuary",
+						"Appendix: Mortuary Creatures"
+					]
+				}
+			]
 		}
 	]
 }

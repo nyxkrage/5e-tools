@@ -113,7 +113,7 @@ class BaseConverter extends BaseComponent {
 		hkMode();
 
 		if (hasModes) {
-			const $selMode = ComponentUiUtil.$getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-xs select-inline"/>`, fnDisplay: it => `Parse as ${BaseConverter._getDisplayMode(it)}`});
+			const $selMode = ComponentUiUtil.$getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-xs select-inline"></select>`, fnDisplay: it => `Parse as ${BaseConverter._getDisplayMode(it)}`});
 			$$`<div class="w-100 mt-2 ve-flex-vh-center-around">${$selMode}</div>`.appendTo($wrpSidebar);
 		}
 
@@ -586,7 +586,7 @@ class RaceConverter extends BaseConverter {
 			{
 				converterId: "Race",
 				canSaveLocal: true,
-				modes: ["md"],
+				modes: ["txt", "md"],
 				hasPageNumbers: true,
 				titleCaseFields: ["name"],
 				hasSource: true,
@@ -611,6 +611,7 @@ class RaceConverter extends BaseConverter {
 		};
 
 		switch (this._state.mode) {
+			case "txt": return RaceParser.doParseText(input, opts);
 			case "md": return RaceParser.doParseMarkdown(input, opts);
 			default: throw new Error(`Unimplemented!`);
 		}
@@ -618,12 +619,34 @@ class RaceConverter extends BaseConverter {
 
 	_getSample (format) {
 		switch (format) {
+			case "txt": return RaceConverter.SAMPLE_TEXT;
 			case "md": return RaceConverter.SAMPLE_MD;
 			default: throw new Error(`Unknown format "${format}"`);
 		}
 	}
 }
 // region sample
+RaceConverter.SAMPLE_TEXT = `Aasimar
+
+Creature Type. You are a humanoid.
+
+Size. You are Medium or Small. You choose the size when you select this race.
+
+Speed. Your walking speed is 30 feet.
+
+Celestial Resistance. You have resistance to necrotic damage and radiant damage.
+
+Darkvision. You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.
+
+Healing Hands. As an action, you can touch a creature and roll a number of d4s equal to your proficiency bonus. The creature regains a number of hit points equal to the total rolled. Once you use this trait, you can’t use it again until you finish a long rest.
+
+Light Bearer. You know the light cantrip. Charisma is your spellcasting ability for it.
+
+Celestial Revelation. When you reach 3rd level, choose one of the revelation options below. Thereafter, you can use a bonus action to unleash the celestial energy within yourself, gaining the benefits of that revelation. Your transformation lasts for 1 minute or until you end it as a bonus action. While you’re transformed, Once you transform using your revelation below, you can’t use it again until you finish a long rest.
+
+• Necrotic Shroud. Your eyes briefly become pools of darkness, and ghostly, flightless wings sprout from your back temporarily. Creatures other than your allies within 10 feet of you that can see you must succeed on a Charisma saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or become frightened of you until the end of your next turn. Until the transformation ends, once on each of your turns, you can deal extra necrotic damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your proficiency bonus.
+• Radiant Consumption. Searing light temporarily radiates from your eyes and mouth. For the duration, you shed bright light in a 10-foot radius and dim light for an additional 10 feet, and at the end of each of your turns, each creature within 10 feet of you takes radiant damage equal to your proficiency bonus. Until the transformation ends, once on each of your turns, you can deal extra radiant damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your proficiency bonus.
+• Radiant Soul. Two luminous, spectral wings sprout from your back temporarily. Until the transformation ends, you have a flying speed equal to your walking speed, and once on each of your turns, you can deal extra radiant damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your proficiency bonus.`;
 RaceConverter.SAMPLE_MD = `Aasimar
 
 **Creature Type.** You are a humanoid.
@@ -645,6 +668,86 @@ RaceConverter.SAMPLE_MD = `Aasimar
 * **Necrotic Shroud**. Your eyes briefly become pools of darkness, and ghostly, flightless wings sprout from your back temporarily. Creatures other than your allies within 10 feet of you that can see you must succeed on a Charisma saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or become frightened of you until the end of your next turn. Until the transformation ends, once on each of your turns, you can deal extra necrotic damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your proficiency bonus.
 * **Radiant Consumption**. Searing light temporarily radiates from your eyes and mouth. For the duration, you shed bright light in a 10-foot radius and dim light for an additional 10 feet, and at the end of each of your turns, each creature within 10 feet of you takes radiant damage equal to your proficiency bonus. Until the transformation ends, once on each of your turns, you can deal extra radiant damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your proficiency bonus.
 * **Radiant Soul**. Two luminous, spectral wings sprout from your back temporarily. Until the transformation ends, you have a flying speed equal to your walking speed, and once on each of your turns, you can deal extra radiant damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your proficiency bonus.`;
+// endregion
+
+class BackgroundConverter extends BaseConverter {
+	constructor (ui) {
+		super(
+			ui,
+			{
+				converterId: "Background",
+				canSaveLocal: true,
+				modes: ["txt"],
+				hasPageNumbers: true,
+				titleCaseFields: ["name"],
+				hasSource: true,
+				prop: "background",
+			},
+		);
+	}
+
+	_renderSidebar (parent, $wrpSidebar) {
+		$wrpSidebar.empty();
+	}
+
+	handleParse (input, cbOutput, cbWarning, isAppend) {
+		const opts = {
+			cbWarning,
+			cbOutput,
+			isAppend,
+			titleCaseFields: this._titleCaseFields,
+			isTitleCase: this._state.isTitleCase,
+			source: this._state.source,
+			page: this._state.page,
+		};
+
+		switch (this._state.mode) {
+			case "txt": return BackgroundParser.doParseText(input, opts);
+			default: throw new Error(`Unimplemented!`);
+		}
+	}
+
+	_getSample (format) {
+		switch (format) {
+			case "txt": return BackgroundConverter.SAMPLE_TEXT;
+			default: throw new Error(`Unknown format "${format}"`);
+		}
+	}
+}
+// region sample
+BackgroundConverter.SAMPLE_TEXT = `Giant Foundling 
+Skill Proficiencies: Intimidation, Survival
+Languages: Giant and one other language of your choice
+Equipment: A backpack, a set of traveler’s clothes, a small stone or sprig that reminds you of home, and a pouch containing 10 gp
+
+Origin Stories
+How you came to live among colossal creatures is up to you to determine, but the Foundling Origin table suggests a variety of possibilities.
+
+Foundling Origin
+d6 Origin
+1 You were found as a baby by a family of nomadic giants who raised you as one of their own.
+2 A family of stone giants rescued you when you fell into a mountain chasm, and you have lived with them underground ever since.
+3 You were lost or abandoned as a child in a jungle that teemed with ravenous dinosaurs. There, you found an equally lost frost giant; together, you survived.
+4 Your farm was crushed and your family killed in a battle between warring groups of giants. Racked with guilt over the destruction, a sympathetic giant soldier promised to care for you.
+5 After you had a series of strange dreams as a child, your superstitious parents sent you to study with a powerful but aloof storm giant oracle.
+6 While playing hide-and-seek with your friends, you stumbled into the castle of a cloud giant, who immediately adopted you.
+
+Building a Giant Foundling Character
+Your life among giants has given you a unique perspective. Though you are unusually large for your kind, you’re no larger than a giant child, so you might be very mindful of your size.
+
+Feature: Strike of the Giants
+You gain the Strike of the Giants feat.
+
+Suggested Characteristics
+The Giant Foundling Personality Traits table suggests a variety of traits you might adopt for your character.
+
+d6 Personality Trait
+1 What I lack in stature compared to giants, I make up for with sheer spite.
+2 I insist on being taken seriously as a full-grown adult. Nobody talks down to me!
+3 Crowded spaces make me uncomfortable. I’d much rather be in an open field than a bustling tavern.
+4 I embrace my shorter stature. It helps me stay unnoticed—and underestimated.
+5 Every avalanche begins as a single pebble.
+6 The world always feels too big, and I’m afraid I’ll never find my place in it.`;
 // endregion
 
 class TableConverter extends BaseConverter {
@@ -1022,14 +1125,7 @@ class ConverterUi extends BaseComponent {
 			this,
 			"converter",
 			{
-				values: [
-					"Creature",
-					"Feat",
-					"Item",
-					"Race",
-					"Spell",
-					"Table",
-				],
+				values: Object.keys(this._converters),
 			},
 		);
 
@@ -1142,19 +1238,21 @@ async function doPageInit () {
 
 	const ui = new ConverterUi();
 
-	const statblockConverter = new CreatureConverter(ui);
+	const creatureConverter = new CreatureConverter(ui);
 	const itemConverter = new ItemConverter(ui);
 	const featConverter = new FeatConverter(ui);
 	const raceConverter = new RaceConverter(ui);
+	const backgroundConverter = new BackgroundConverter(ui);
 	const spellConverter = new SpellConverter(ui);
 	const tableConverter = new TableConverter(ui);
 
 	ui.converters = {
-		[statblockConverter.converterId]: statblockConverter,
-		[itemConverter.converterId]: itemConverter,
-		[featConverter.converterId]: featConverter,
-		[raceConverter.converterId]: raceConverter,
+		[creatureConverter.converterId]: creatureConverter,
 		[spellConverter.converterId]: spellConverter,
+		[itemConverter.converterId]: itemConverter,
+		[raceConverter.converterId]: raceConverter,
+		[backgroundConverter.converterId]: backgroundConverter,
+		[featConverter.converterId]: featConverter,
 		[tableConverter.converterId]: tableConverter,
 	};
 

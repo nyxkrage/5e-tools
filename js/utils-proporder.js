@@ -34,12 +34,12 @@ class PropOrder {
 
 					if (k instanceof PropOrder._ObjectKey) {
 						const nxtPath = `${path}.${key}`;
-						if (k.fnGetOrder) out[key] = this._getOrdered(obj[key], k.fnGetOrder(), opts, nxtPath);
+						if (k.fnGetOrder) out[key] = this._getOrdered(obj[key], k.fnGetOrder(obj[key]), opts, nxtPath);
 						else if (k.order) out[key] = this._getOrdered(obj[key], k.order, opts, nxtPath);
 						else out[key] = obj[key];
 					} else if (k instanceof PropOrder._ArrayKey) {
 						const nxtPath = `${path}[n].${key}`;
-						if (k.fnGetOrder) out[key] = obj[key].map(it => this._getOrdered(it, k.fnGetOrder(), opts, nxtPath));
+						if (k.fnGetOrder) out[key] = obj[key].map(it => this._getOrdered(it, k.fnGetOrder(obj[key]), opts, nxtPath));
 						else if (k.order) out[key] = obj[key].map(it => this._getOrdered(it, k.order, opts, nxtPath));
 						else out[key] = obj[key];
 
@@ -1063,7 +1063,9 @@ PropOrder._DEITY = [
 
 	"piety",
 
-	"customProperties",
+	new PropOrder._ObjectKey("customProperties", {
+		fnGetOrder: obj => Object.keys(obj).sort(SortUtil.ascSortLower),
+	}),
 
 	"entries",
 
@@ -1372,7 +1374,9 @@ PropOrder._ITEM = [
 	"seeAlsoDeck",
 	"seeAlsoVehicle",
 
-	"customProperties",
+	new PropOrder._ObjectKey("customProperties", {
+		fnGetOrder: obj => Object.keys(obj).sort(SortUtil.ascSortLower),
+	}),
 
 	"miscTags",
 

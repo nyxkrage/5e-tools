@@ -7,13 +7,28 @@ class ObjectsSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-9 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Size",
+				css: "col-3 pr-0 ve-text-center",
+				colStyle: "text-center",
+			}),
+		];
+	}
+
 	pGetSublistItem (it, hash) {
-		const size = Parser.sizeAbvToFull(it.size);
+		const size = Renderer.utils.getRenderedSize(it.size);
+		const cellsText = [it.name, size];
 
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-9 pl-0">${it.name}</span>
-				<span class="col-3 pr-0 ve-text-center">${size}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -29,6 +44,7 @@ class ObjectsSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;
@@ -66,7 +82,7 @@ class ObjectsPage extends ListPage {
 
 		const source = Parser.sourceJsonToAbv(obj.source);
 		const hash = UrlUtil.autoEncodeHash(obj);
-		const size = Parser.sizeAbvToFull(obj.size);
+		const size = Renderer.utils.getRenderedSize(obj.size);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="bold col-8 pl-0">${obj.name}</span>

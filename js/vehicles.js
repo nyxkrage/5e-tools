@@ -7,13 +7,30 @@ class VehiclesSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Type",
+				css: "col-8 pl-0 ve-text-center",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-4 pr-0",
+				colStyle: "",
+			}),
+		];
+	}
+
 	pGetSublistItem (it, hash) {
 		const displayType = it.vehicleType ? Parser.vehicleTypeToFull(it.vehicleType) : it.upgradeType.map(t => Parser.vehicleTypeToFull(t));
+		const cellsText = [displayType, it.name];
 
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col"><a href="#${hash}" class="lst--border lst__row-inner">
-			<span class="col-8 pl-0 ve-text-center">${displayType}</span>
-			<span class="bold col-4 pr-0">${it.name}</span>
-		</a></div>`)
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="lst--border lst__row-inner">
+				${this.constructor._getRowCellsHtml({values: cellsText})}
+			</a>
+		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
 			.click(evt => this._listSub.doSelect(listItem, evt));
 
@@ -29,6 +46,7 @@ class VehiclesSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;

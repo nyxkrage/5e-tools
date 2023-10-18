@@ -204,7 +204,7 @@ class SpellParser extends BaseParser {
 		line = ConvertUtil.cleanDashes(line).trim();
 
 		const mCantrip = /cantrip/i.exec(line);
-		const mSpellLevel = /^(\d+)(?:st|nd|rd|th)?-level/i.exec(line);
+		const mSpellLevel = /^(\d+)(?:st|nd|rd|th)?[- ]level/i.exec(line);
 
 		if (mCantrip) {
 			let trailing = line.slice(mCantrip.index + "cantrip".length, line.length).trim();

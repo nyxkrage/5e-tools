@@ -11,14 +11,29 @@ class RecipesSublistManager extends SublistManager {
 		return Renderer.recipe.getCustomHashId(entity);
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-9 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Type",
+				css: "col-3 ve-text-center pr-0",
+				colStyle: "text-center",
+			}),
+		];
+	}
+
 	async pGetSublistItem (itRaw, hash, {customHashId = null} = {}) {
 		const it = await Renderer.hover.pApplyCustomHashId(UrlUtil.getCurrentPage(), itRaw, customHashId);
 		const name = it._displayName || it.name;
+		const cellsText = [name, it.type || "\u2014"];
 
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-9 pl-0">${name}</span>
-				<span class="col-3 ve-text-center pr-0">${it.type || "\u2014"}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -34,6 +49,7 @@ class RecipesSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 				customHashId,
 			},
 		);

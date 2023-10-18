@@ -16,6 +16,58 @@ ConverterConst.STR_RE_DAMAGE_TYPE = "(acid|bludgeoning|cold|fire|force|lightning
 ConverterConst.RE_DAMAGE_TYPE = new RegExp(`\\b${ConverterConst.STR_RE_DAMAGE_TYPE}\\b`, "g");
 ConverterConst.STR_RE_CLASS = `(?<name>artificer|barbarian|bard|cleric|druid|fighter|monk|paladin|ranger|rogue|sorcerer|warlock|wizard)`;
 
+class _ParseStateBase {
+	constructor (
+		{
+			toConvert,
+			options,
+			entity,
+		},
+	) {
+		this.curLine = null;
+		this.ixToConvert = 0;
+		this.stage = "name";
+		this.toConvert = toConvert;
+		this.options = options;
+		this.entity = entity;
+	}
+
+	doPreLoop () {
+		// No-op
+	}
+
+	doPostLoop () {
+		this.ixToConvert = 0;
+	}
+
+	initCurLine () {
+		this.curLine = this.toConvert[this.ixToConvert].trim();
+	}
+
+	_isSkippableLine () { throw new Error("Unimplemented!"); }
+
+	isSkippableCurLine () { return this._isSkippableLine(this.curLine); }
+}
+
+class BaseParseStateText extends _ParseStateBase {
+	_isSkippableLine (l) { return l.trim() === ""; }
+
+	getNextLineMeta () {
+		for (let i = this.ixToConvert + 1; i < this.toConvert.length; ++i) {
+			const l = this.toConvert[i]?.trim();
+			if (this._isSkippableLine(l)) continue;
+			return {ixToConvertNext: i, nxtLine: l};
+		}
+		return null;
+	}
+}
+globalThis.BaseParseStateText = BaseParseStateText;
+
+class BaseParseStateMarkdown extends _ParseStateBase {
+	_isSkippableLine (l) { return ConverterUtilsMarkdown.isBlankLine(l); }
+}
+globalThis.BaseParseStateMarkdown = BaseParseStateMarkdown;
+
 class BaseParser {
 	static _getValidOptions (options) {
 		options = options || {};
@@ -851,6 +903,65 @@ class EntryConvert {
 		);
 	}
 
+	static _StateCoalesce = class {
+		constructor ({ptrI, toConvert}) {
+			this.ptrI = ptrI;
+			this.toConvert = toConvert;
+
+			this.entries = [];
+			this.stack = [this.entries];
+			this.curLine = toConvert[ptrI._].trim();
+		}
+
+		popList () { while (this.stack.last().type === "list") this.stack.pop(); }
+		popNestedEntries () { while (this.stack.length > 1) this.stack.pop(); }
+
+		getCurrentEntryArray () {
+			if (this.stack.last().type === "list") return this.stack.last().items;
+			if (this.stack.last().type === "entries") return this.stack.last().entries;
+			return this.stack.last();
+		}
+
+		addEntry ({entry, isAllowCombine = false}) {
+			isAllowCombine = isAllowCombine && typeof entry === "string";
+
+			const target = this.stack.last();
+			if (target instanceof Array) {
+				if (isAllowCombine && typeof target.last() === "string") {
+					target.last(`${target.last().trimEnd()} ${entry.trimStart()}`);
+				} else {
+					target.push(entry);
+				}
+			} else if (target.type === "list") {
+				if (isAllowCombine && typeof target.items.last() === "string") {
+					target.items.last(`${target.items.last().trimEnd()} ${entry.trimStart()}`);
+				} else {
+					target.items.push(entry);
+				}
+			} else if (target.type === "entries") {
+				if (isAllowCombine && typeof target.entries.last() === "string") {
+					target.entries.last(`${target.entries.last().trimEnd()} ${entry.trimStart()}`);
+				} else {
+					target.entries.push(entry);
+				}
+			}
+
+			if (typeof entry !== "string") this.stack.push(entry);
+		}
+
+		incrementLine (offset = 1) {
+			this.ptrI._ += offset;
+			this.curLine = this.toConvert[this.ptrI._];
+		}
+
+		getRemainingLines ({isFilterEmpty = false} = {}) {
+			const slice = this.toConvert.slice(this.ptrI._);
+			return !isFilterEmpty
+				? slice
+				: slice.filter(l => l.trim());
+		}
+	};
+
 	/**
 	 *
 	 * @param ptrI
@@ -863,71 +974,44 @@ class EntryConvert {
 
 		if (toConvert[ptrI._] == null) return [];
 
-		let curLine = toConvert[ptrI._].trim();
-
-		const entries = [];
-		const stack = [
-			entries,
-		];
-
-		const popList = () => { while (stack.last().type === "list") stack.pop(); };
-		const popNestedEntries = () => { while (stack.length > 1) stack.pop(); };
-
-		const addEntry = (entry, canCombine) => {
-			canCombine = canCombine && typeof entry === "string";
-
-			const target = stack.last();
-			if (target instanceof Array) {
-				if (canCombine && typeof target.last() === "string") {
-					target.last(`${target.last().trimRight()} ${entry.trimLeft()}`);
-				} else {
-					target.push(entry);
-				}
-			} else if (target.type === "list") {
-				if (canCombine && typeof target.items.last() === "string") {
-					target.items.last(`${target.items.last().trimRight()} ${entry.trimLeft()}`);
-				} else {
-					target.items.push(entry);
-				}
-			} else if (target.type === "entries") {
-				if (canCombine && typeof target.entries.last() === "string") {
-					target.entries.last(`${target.entries.last().trimRight()} ${entry.trimLeft()}`);
-				} else {
-					target.entries.push(entry);
-				}
-			}
-
-			if (typeof entry !== "string") stack.push(entry);
-		};
-
-		const getCurrentEntryArray = () => {
-			if (stack.last().type === "list") return stack.last().items;
-			if (stack.last().type === "entries") return stack.last().entries;
-			return stack.last();
-		};
+		const state = new this._StateCoalesce({ptrI, toConvert});
 
 		while (ptrI._ < toConvert.length) {
-			if (opts.fnStop && opts.fnStop(curLine)) break;
+			if (opts.fnStop && opts.fnStop(state.curLine)) break;
 
-			if (BaseParser._isJsonLine(curLine)) {
-				popNestedEntries(); // this implicitly pops nested lists
+			if (BaseParser._isJsonLine(state.curLine)) {
+				state.popNestedEntries(); // this implicitly pops nested lists
+				state.addEntry({entry: BaseParser._getJsonFromLine(state.curLine)});
+				state.incrementLine();
+				continue;
+			}
 
-				addEntry(BaseParser._getJsonFromLine(curLine));
-			} else if (ConvertUtil.isListItemLine(curLine)) {
-				if (stack.last().type !== "list") {
+			if (ConvertUtil.isListItemLine(state.curLine)) {
+				if (state.stack.last().type !== "list") {
 					const list = {
 						type: "list",
 						items: [],
 					};
-					addEntry(list);
+					state.addEntry({entry: list});
 				}
 
-				curLine = curLine.replace(/^\s*[•●]\s*/, "");
-				addEntry(curLine.trim());
-			} else if (ConvertUtil.isNameLine(curLine)) {
-				popNestedEntries(); // this implicitly pops nested lists
+				state.curLine = state.curLine.replace(/^\s*[•●]\s*/, "");
+				state.addEntry({entry: state.curLine.trim()});
+				state.incrementLine();
+				continue;
+			}
 
-				const {name, entry} = ConvertUtil.splitNameLine(curLine);
+			const tableMeta = this._coalesceLines_getTableMeta({state});
+			if (tableMeta) {
+				state.addEntry({entry: tableMeta.table});
+				state.incrementLine(tableMeta.offsetIx);
+				continue;
+			}
+
+			if (ConvertUtil.isNameLine(state.curLine)) {
+				state.popNestedEntries(); // this implicitly pops nested lists
+
+				const {name, entry} = ConvertUtil.splitNameLine(state.curLine);
 
 				const parentEntry = {
 					type: "entries",
@@ -935,30 +1019,130 @@ class EntryConvert {
 					entries: [entry],
 				};
 
-				addEntry(parentEntry);
-			} else if (ConvertUtil.isTitleLine(curLine)) {
-				popNestedEntries(); // this implicitly pops nested lists
+				state.addEntry({entry: parentEntry});
+				state.incrementLine();
+				continue;
+			}
+
+			if (ConvertUtil.isTitleLine(state.curLine)) {
+				state.popNestedEntries(); // this implicitly pops nested lists
 
 				const entry = {
 					type: "entries",
-					name: curLine.trim(),
+					name: state.curLine.trim(),
 					entries: [],
 				};
 
-				addEntry(entry);
-			} else if (BaseParser._isContinuationLine(getCurrentEntryArray(), curLine)) {
-				addEntry(curLine.trim(), true);
-			} else {
-				popList();
-
-				addEntry(curLine.trim());
+				state.addEntry({entry});
+				state.incrementLine();
+				continue;
 			}
 
-			ptrI._++;
-			curLine = toConvert[ptrI._];
+			if (BaseParser._isContinuationLine(state.getCurrentEntryArray(), state.curLine)) {
+				state.addEntry({entry: state.curLine.trim(), isAllowCombine: true});
+				state.incrementLine();
+				continue;
+			}
+
+			state.popList();
+			state.addEntry({entry: state.curLine.trim()});
+			state.incrementLine();
 		}
 
-		return entries;
+		this._coalesceLines_postProcessLists({entries: state.entries});
+
+		return state.entries;
+	}
+
+	// region Table conversion
+	// Parses a (very) limited set of inputs: two-column rollable tables with well-formatted rows
+	static _RE_TABLE_COLUMNS = null;
+
+	static _coalesceLines_getTableMeta ({state}) {
+		const linesRemaining = state.getRemainingLines({isFilterEmpty: true});
+		let offsetIx = 0;
+
+		let caption = null;
+		if (ConvertUtil.isTitleLine(linesRemaining[0])) {
+			caption = linesRemaining[0].trim();
+			linesRemaining.shift();
+			offsetIx++;
+		}
+
+		const lineHeaders = linesRemaining.shift();
+		offsetIx++;
+
+		this._RE_TABLE_COLUMNS ||= new RegExp(`^\\s*(?<dice>${RollerUtil.DICE_REGEX.source}) +(?<header>.*)$`);
+		const mHeaders = this._RE_TABLE_COLUMNS.exec(lineHeaders);
+		if (!mHeaders) return null;
+
+		const rows = [];
+		for (const l of linesRemaining) {
+			const [cell0, ...rest] = l.trim()
+				.split(/\s+/)
+				.map(it => it.trim())
+				.filter(Boolean);
+			if (!Renderer.table.isRollableCell(cell0)) break;
+			rows.push([
+				cell0,
+				rest.join(" "),
+			]);
+			offsetIx++;
+		}
+		if (!rows.length) return null;
+
+		const table = {type: "table"};
+		if (caption) table.caption = caption;
+		Object.assign(
+			table,
+			{
+				colLabels: [
+					mHeaders.groups.dice.trim(),
+					mHeaders.groups.header.trim(),
+				],
+				colStyles: [
+					"col-2 text-center",
+					"col-10",
+				],
+				rows,
+			},
+		);
+
+		return {table, offsetIx};
+	}
+	// endregion
+
+	static _coalesceLines_postProcessLists ({entries}) {
+		const walker = MiscUtil.getWalker({isNoModification: true});
+
+		walker.walk(
+			entries,
+			{
+				object: obj => {
+					if (obj.type !== "list") return;
+					if (obj.style) return;
+					if (!obj.items.length) return;
+
+					if (!obj.items.every(li => {
+						if (typeof li !== "string") return false;
+
+						return ConvertUtil.isNameLine(li);
+					})) return;
+
+					obj.style = "list-hang-notitle";
+					obj.items = obj.items
+						.map(li => {
+							const {name, entry} = ConvertUtil.splitNameLine(li);
+
+							return {
+								type: "item",
+								name,
+								entry,
+							};
+						});
+				},
+			},
+		);
 	}
 }
 
@@ -1013,6 +1197,10 @@ class ConvertUtil {
 
 	static isTitleLine (line) {
 		line = line.trim();
+
+		const lineNoPrefix = line.replace(/^Feature: /, "");
+		if (lineNoPrefix.length && lineNoPrefix.toTitleCase() === lineNoPrefix) return true;
+
 		if (/[.!?:]/.test(line)) return false;
 		return line.toTitleCase() === line;
 	}
@@ -1037,6 +1225,14 @@ class ConvertUtil {
 
 	static _getMergedSplitName ({line, splitterPunc}) {
 		let spl = line.split(splitterPunc || /([.!?:]+)/g);
+
+		// Handle e.g. "Feature: Name of the Feature"
+		if (
+			spl.length === 3
+			&& spl[0] === "Feature"
+			&& spl[1] === ":"
+			&& spl[2].toTitleCase() === spl[2]
+		) return [spl.join("")];
 
 		if (
 			spl.length > 3

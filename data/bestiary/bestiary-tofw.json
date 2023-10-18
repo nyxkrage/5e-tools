@@ -1,0 +1,202 @@
+{
+	"_meta": {
+		"otherSources": {
+			"monster": {
+				"MPP": "ToFW",
+				"MM": "ToFW",
+				"DMG": "ToFW"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Eyestalk of Gzemnid",
+			"source": "ToFW",
+			"page": 88,
+			"size": [
+				"G"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 247,
+				"formula": "15d20 + 90"
+			},
+			"speed": {
+				"walk": 50,
+				"burrow": 30
+			},
+			"str": 28,
+			"dex": 7,
+			"con": 22,
+			"int": 1,
+			"wis": 8,
+			"cha": 4,
+			"save": {
+				"con": "+11",
+				"wis": "+4"
+			},
+			"senses": [
+				"blindsight 30 ft.",
+				"tremorsense 60 ft."
+			],
+			"passive": 9,
+			"cr": "15",
+			"trait": [
+				{
+					"name": "Tunneler",
+					"entries": [
+						"The eyestalk can burrow through solid rock at half its burrow speed and leaves a 10-foot-diameter tunnel in its wake."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The eyestalk uses Eradication Gaze, if available, and makes one Bite attack."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 14} to hit, reach 10 ft., one target. {@h}22 ({@damage 3d8 + 9}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 19} Dexterity saving throw or be swallowed by the eyestalk. A swallowed creature is {@condition blinded} and {@condition restrained}, it has total cover against attacks and other effects outside the eyestalk, and it takes 21 ({@damage 6d6}) acid damage at the start of each of the eyestalk's turns.",
+						"If the eyestalk takes 30 damage or more on a single turn from a creature inside it, the eyestalk must succeed on a {@dc 21} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of the eyestalk. If the eyestalk dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using 20 feet of movement, exiting {@condition prone}."
+					]
+				},
+				{
+					"name": "Eradication Gaze {@recharge 5}",
+					"entries": [
+						"The eyestalk creates an area of magical devastation in a 150-foot cone. Any creature in that area must succeed on a {@dc 16} Dexterity saving throw or take 55 ({@damage 10d10}) necrotic damage. If this damage reduces a creature to 0 hit points, its body becomes a pile of fine violet dust."
+					]
+				}
+			],
+			"traitTags": [
+				"Tunneler"
+			],
+			"senseTags": [
+				"B",
+				"T"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Morte",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 10,
+			"otherSources": [
+				{
+					"source": "MPP"
+				}
+			],
+			"size": [
+				"T"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d4 + 12"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 16,
+			"int": 13,
+			"wis": 10,
+			"cha": 12,
+			"skill": {
+				"arcana": "+3",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "1/4",
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

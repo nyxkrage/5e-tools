@@ -16651,7 +16651,7 @@
 					"name": "Sidekicks"
 				},
 				{
-					"name": "Quest Cards"
+					"name": "Printable Assets"
 				}
 			]
 		},
@@ -23642,7 +23642,7 @@
 							"depth": 1,
 							"header": "G5. Barn"
 						},
-						"Temple of the Burnt Tongue Cult ",
+						"Temple of the Burnt Tongue Cult",
 						{
 							"depth": 1,
 							"header": "B1. Antechamber"
@@ -24137,7 +24137,7 @@
 							"depth": 1,
 							"header": "L11. Xanthoria's Grove of Horrors"
 						},
-						"Xanthoria's Defeat ",
+						"Xanthoria's Defeat",
 						"Lichen Lich"
 					]
 				}
@@ -30980,8 +30980,13 @@
 			"id": "LK",
 			"source": "LK",
 			"group": "supplement-alt",
-			"published": "2023-09-26",
 			"coverUrl": "img/covers/LK.png",
+			"published": "2023-09-26",
+			"storyline": "Minecraft",
+			"level": {
+				"start": 3,
+				"end": 3
+			},
 			"contents": [
 				{
 					"name": "Lightning Keep",
@@ -31077,12 +31082,248 @@
 						"Concluding the Adventure"
 					]
 				}
-			],
+			]
+		},
+		{
+			"name": "Turn of Fortune's Wheel",
+			"id": "ToFW",
+			"source": "ToFW",
+			"group": "supplement",
+			"coverUrl": "img/covers/ToFW.png",
+			"published": "2023-10-17",
+			"storyline": "Planescape",
 			"level": {
 				"start": 3,
-				"end": 3
+				"end": 18
 			},
-			"storyline": "Minecraft"
+			"contents": [
+				{
+					"name": "Introduction: Beginning of the End",
+					"headers": [
+						"Adventure Summary",
+						"Running the Adventure",
+						"Glitch Characters"
+					]
+				},
+				{
+					"name": "Schemes in Sigil",
+					"ordinal": {
+						"type": "part",
+						"identifier": 1
+					},
+					"headers": [
+						"Chapter 1: Grave Escape",
+						{
+							"depth": 1,
+							"header": "M1: Morgue"
+						},
+						{
+							"depth": 1,
+							"header": "M2: Autopsy Room"
+						},
+						{
+							"depth": 1,
+							"header": "M3: Possessions Room"
+						},
+						{
+							"depth": 1,
+							"header": "M4: Cold Locker"
+						},
+						{
+							"depth": 1,
+							"header": "M5: Crematorium"
+						},
+						{
+							"depth": 1,
+							"header": "M6: Corpse Retrieval"
+						},
+						{
+							"depth": 1,
+							"header": "M7: Dining Hall"
+						},
+						{
+							"depth": 1,
+							"header": "M8: Burial Grove"
+						},
+						{
+							"depth": 1,
+							"header": "M9: Records Room"
+						},
+						{
+							"depth": 1,
+							"header": "M10: Hallway"
+						},
+						"Chapter 2: Philosophers with Clubs",
+						"Chapter 3: Fortune Favors the Bold",
+						{
+							"depth": 1,
+							"header": "F1: Dragon Bar"
+						},
+						{
+							"depth": 1,
+							"header": "F2: Casino Cages"
+						},
+						{
+							"depth": 1,
+							"header": "F3: Illusory Fountain"
+						},
+						{
+							"depth": 1,
+							"header": "F4: Slot Machines"
+						},
+						{
+							"depth": 1,
+							"header": "F5: Table Games"
+						},
+						{
+							"depth": 1,
+							"header": "F6: Big-Ticket Prize"
+						},
+						{
+							"depth": 1,
+							"header": "F7: Fortune's Wheel"
+						},
+						{
+							"depth": 1,
+							"header": "F8: Ice Lounge"
+						},
+						{
+							"depth": 1,
+							"header": "F9: Stage"
+						},
+						{
+							"depth": 1,
+							"header": "F10: Security Room"
+						},
+						{
+							"depth": 1,
+							"header": "F11: Private Rooms"
+						},
+						{
+							"depth": 1,
+							"header": "F12. Portal to the Platinum Rooms"
+						}
+					]
+				},
+				{
+					"name": "The Mosaic Mimir",
+					"ordinal": {
+						"type": "part",
+						"identifier": 2
+					},
+					"headers": [
+						"Chapter 4\u2013Into the Outlands",
+						{
+							"depth": 1,
+							"header": "W1: Terrace"
+						},
+						{
+							"depth": 1,
+							"header": "W2: Library"
+						},
+						{
+							"depth": 1,
+							"header": "W3: Main Room"
+						},
+						{
+							"depth": 1,
+							"header": "W4: Bedrooms"
+						},
+						{
+							"depth": 1,
+							"header": "W5: Study"
+						},
+						{
+							"depth": 1,
+							"header": "W6: Castellan Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "W7: Meditation Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "W8. Signal Tower"
+						},
+						"Chapter 5\u2013Automata: Recalibration",
+						"Chapter 6\u2013Curst: Invisible Bonds",
+						{
+							"depth": 1,
+							"header": "C1. Junk Heaps"
+						},
+						{
+							"depth": 1,
+							"header": "C2. Hidden Tunnel"
+						},
+						{
+							"depth": 1,
+							"header": "C3. Escape Route"
+						},
+						"Chapter 7\u2013Excelsior: Lost Souls",
+						"Chapter 8\u2013Faunel: Vicious Alliances",
+						"Chapter 9\u2013Glorium: Heroes of the Day",
+						"Chapter 10\u2013Rigus: Eternity's Rampart",
+						"Chapter 11\u2013Sylvania: Titan on the Town",
+						"Chapter 12\u2013Outlands Explorations",
+						"Chapter 13\u2013Secrets of the Spire"
+					]
+				},
+				{
+					"name": "Secret Realities",
+					"ordinal": {
+						"type": "part",
+						"identifier": 3
+					},
+					"headers": [
+						"Chapter 14: Behind the Wheel",
+						{
+							"depth": 1,
+							"header": "P1: Fortune's End"
+						},
+						{
+							"depth": 1,
+							"header": "P2: Dungeonland"
+						},
+						{
+							"depth": 1,
+							"header": "P4: Fiend's Ante"
+						},
+						{
+							"depth": 1,
+							"header": "P5: Shemeshka's Guard"
+						},
+						"Chapter 15: Echoes of Delusion",
+						{
+							"depth": 1,
+							"header": "T1: Lair of the Eye"
+						},
+						{
+							"depth": 1,
+							"header": "T2: Beherit's Head"
+						},
+						{
+							"depth": 1,
+							"header": "T3: Ocular Space"
+						},
+						{
+							"depth": 1,
+							"header": "T4: Arlgolcheir's Morass"
+						},
+						{
+							"depth": 1,
+							"header": "T5: Gzemnid's Maw"
+						},
+						{
+							"depth": 1,
+							"header": "T6: X01's Throng"
+						},
+						"Conclusion"
+					]
+				},
+				{
+					"name": "Cover"
+				}
+			]
 		}
 	]
 }

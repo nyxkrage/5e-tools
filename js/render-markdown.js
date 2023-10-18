@@ -303,7 +303,7 @@ class RendererMarkdown {
 	static _md_getPaddedTableText ({text, width, ixCell, styles}) {
 		if (text.length >= width) return text;
 
-		if (styles?.[ixCell]?.includes("text-center")) return text.padStart(Math.floor((width - text.length) / 2) + text.length, " ").padEnd(width, " ");
+		if (styles?.[ixCell]?.includes("text-center")) return text.padStart(Math.ceil((width - text.length) / 2) + text.length, " ").padEnd(width, " ");
 		if (styles?.[ixCell]?.includes("text-right")) return text.padStart(width, " ");
 		return text.padEnd(width, " ");
 	}

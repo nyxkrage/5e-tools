@@ -28,7 +28,7 @@ class PageFilterDeities extends PageFilter {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Grants Piety Features", "Has Info", "Reprinted", "SRD", "Basic Rules"],
+			items: ["Grants Piety Features", "Has Info", "Has Images", "Reprinted", "SRD", "Basic Rules"],
 			displayFn: StrUtil.uppercaseFirst,
 			deselFn: (it) => it === "Reprinted",
 			isMiscFilter: true,
@@ -45,7 +45,8 @@ class PageFilterDeities extends PageFilter {
 		if (g.reprinted) g._fMisc.push("Reprinted");
 		if (g.srd) g._fMisc.push("SRD");
 		if (g.basicRules) g._fMisc.push("Basic Rules");
-		if (g.entries || g.symbolImg) g._fMisc.push("Has Info");
+		if (g.entries) g._fMisc.push("Has Info");
+		if (g.symbolImg) g._fMisc.push("Has Images");
 		if (g.piety) g._fMisc.push("Grants Piety Features");
 	}
 

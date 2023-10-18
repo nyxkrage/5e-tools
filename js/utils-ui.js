@@ -1929,7 +1929,15 @@ class SearchWidget {
 			fnTransform: doc => {
 				const cpy = MiscUtil.copyFast(doc);
 				Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-				cpy.tag = `{@spell ${doc.n.toSpellCase()}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
+				const hashName = UrlUtil.decodeHash(cpy.u)[0].toTitleCase();
+				const isRename = hashName.toLowerCase() !== cpy.n.toLowerCase();
+				const pts = [
+					isRename ? hashName : cpy.n.toSpellCase(),
+					doc.s !== Parser.SRC_PHB ? doc.s : "",
+					isRename ? cpy.n.toSpellCase() : "",
+				];
+				while (pts.at(-1) === "") pts.pop();
+				cpy.tag = `{@spell ${pts.join("|")}}`;
 				return cpy;
 			},
 		};
@@ -2809,6 +2817,7 @@ class InputUiUtil {
 		const {$modalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			title: opts.title || "Enter Text",
 			isMinHeight0: true,
+			isWidth100: true,
 		});
 
 		const $btnOk = this._$getBtnOk({comp, opts, doClose});

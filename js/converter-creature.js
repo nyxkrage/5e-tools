@@ -1,14 +1,14 @@
 "use strict";
 
-class _ParseMeta {
+class _ParseStateTextCreature extends BaseParseStateText {
 	constructor (
 		{
 			toConvert,
+			options,
+			entity,
 		},
 	) {
-		this.curLine = null;
-		this.ixToConvert = 0;
-		this.toConvert = toConvert;
+		super({toConvert, options, entity});
 
 		this.additionalTypeTags = [];
 	}
@@ -17,30 +17,6 @@ class _ParseMeta {
 		const toFind = val.toLowerCase();
 		if (this.additionalTypeTags.some(it => it.toLowerCase() === toFind)) return;
 		this.additionalTypeTags.push(val);
-	}
-
-	doPreLoop () {
-		// No-op
-	}
-
-	doPostLoop () {
-		this.ixToConvert = 0;
-	}
-
-	initCurLine () {
-		this.curLine = this.toConvert[this.ixToConvert].trim();
-	}
-
-	isSkippableCurLine () {
-		return this.curLine === "";
-	}
-
-	getNextLineMeta () {
-		for (let i = this.ixToConvert + 1; i < this.toConvert.length; ++i) {
-			const l = this.toConvert[i]?.trim();
-			if (l) return {ixToConvertNext: i, nxtLine: l};
-		}
-		return null;
 	}
 }
 
@@ -156,7 +132,7 @@ class CreatureParser extends BaseParser {
 		// for the user to fill out
 		stats.page = options.page;
 
-		const meta = new _ParseMeta({toConvert});
+		const meta = new _ParseStateTextCreature({toConvert, options, entity: stats});
 
 		meta.doPreLoop();
 		// Pre step to handle CR/XP/etc. which has, due to awkward text flow, landed at the bottom of the statblock
@@ -449,6 +425,18 @@ class CreatureParser extends BaseParser {
 					&& /^Signature Attack(?: \([^)]+\))?\./.test(meta.curLine)
 				) {
 					lineMode = this._LINE_MODES.ACTIONS;
+				}
+
+				// Handle reaction intro
+				if (lineMode === this._LINE_MODES.REACTIONS) {
+					if (/^[^.!?]+ can take (?:up to )?(two|three|four|five) reactions per round but only one per turn\.$/.test(meta.curLine)) {
+						stats.reactionHeader = [
+							meta.curLine,
+						];
+						meta.ixToConvert++;
+						meta.curLine = meta.toConvert[meta.ixToConvert];
+						continue;
+					}
 				}
 
 				curTrait.name = "";
@@ -781,33 +769,42 @@ class CreatureParser extends BaseParser {
 		if (!stats[prop]) return;
 
 		for (let i = 0; i < stats[prop].length; ++i) {
-			const cur = stats[prop][i];
+			const cpyCur = MiscUtil.copyFast(stats[prop][i]);
 
 			if (
-				typeof cur?.entries?.last() === "string"
-				&& cur?.entries?.last().trim().endsWith(":")
-			) {
-				let lst = null;
+				!(
+					typeof cpyCur?.entries?.last() === "string"
+					&& cpyCur?.entries?.last().trim().endsWith(":")
+				)
+			) continue;
 
-				while (stats[prop].length) {
-					const nxt = stats[prop][i + 1];
+			let lst = null;
 
-					if (/^\d+[.!?:] [A-Za-z]/.test(nxt?.name || "")) {
-						if (!lst) {
-							lst = {type: "list", style: "list-hang-notitle", items: []};
-							cur.entries.push(lst);
-						}
+			const slice = stats[prop].slice(i + 1);
+			while (slice.length) {
+				const cpyNxt = MiscUtil.copyFast(slice[0]);
 
-						this._mutAssignPrettyType({obj: nxt, type: "item"});
-						lst.items.push(nxt);
-						stats[prop].splice(i + 1, 1);
-
-						continue;
+				if (/^\d+(?:-\d+)?[.!?:] [A-Za-z]/.test(cpyNxt?.name || "")) {
+					if (!lst) {
+						lst = {type: "list", style: "list-hang-notitle", items: []};
+						cpyCur.entries.push(lst);
 					}
 
-					break;
+					this._mutAssignPrettyType({obj: cpyNxt, type: "item"});
+					lst.items.push(cpyNxt);
+					slice.shift();
+
+					continue;
 				}
+
+				break;
 			}
+
+			// Ensure a list has a meaningful amount of items, or it's probably not a list
+			if (lst == null || lst.items.length < 2) continue;
+
+			stats[prop].splice(i + 1, lst.items.length);
+			stats[prop][i].entries.push(lst);
 		}
 	}
 
@@ -1027,7 +1024,8 @@ class CreatureParser extends BaseParser {
 		const doAddLegendary = () => _doAddGenericAction("legendary");
 		const doAddMythic = () => _doAddGenericAction("mythic");
 
-		const meta = new _ParseMeta({toConvert});
+		// TODO(Future) create and switch to a `_ParseMetaMarkdownCreature`; factor shared to mixin
+		const meta = new _ParseStateTextCreature({toConvert});
 
 		for (let i = 0; i < meta.toConvert.length; i++) {
 			let curLineRaw = ConverterUtilsMarkdown.getCleanRaw(meta.toConvert[i]);

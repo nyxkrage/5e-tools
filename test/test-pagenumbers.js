@@ -42,6 +42,7 @@ const BLOCKLIST_SOURCES = new Set([
 	Parser.SRC_HAT_TG,
 	Parser.SRC_HAT_LMI,
 	Parser.SRC_LK,
+	Parser.SRC_AATM,
 	// endregion
 
 	// region Sources which are screens, and therefore "pageless"

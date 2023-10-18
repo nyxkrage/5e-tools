@@ -74,6 +74,7 @@
 	$rgb-source-BGG: #469cb7;
 	$rgb-source-TDCSR: #642e4b;
 	$rgb-source-PaBTSO: #b2b34e;
+	$rgb-source-PAitM: #a23087;
 
 	// region Categories
 
@@ -565,6 +566,15 @@
 		color: $rgb-source-PaBTSO !important;
 		border-color: $rgb-source-PaBTSO !important;
 		text-decoration-color: $rgb-source-PaBTSO !important;
+	}
+
+	&PAitM,
+	&SatO,
+	&ToFW,
+	&MPP {
+		color: $rgb-source-PAitM !important;
+		border-color: $rgb-source-PAitM !important;
+		text-decoration-color: $rgb-source-PAitM !important;
 	}
 	// endregion
 }

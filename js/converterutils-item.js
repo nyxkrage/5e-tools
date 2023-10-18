@@ -202,7 +202,7 @@ class AttachedSpellTag {
 			/as if using a(?:n)? {@spell ([^}]*)} spell/gi,
 			/cast a(?:n)? {@spell ([^}]*)} spell/gi,
 			/as a(?:n)? \d..-level {@spell ([^}]*)} spell/gi,
-			/cast(?:(?: a version of)? the)? {@spell ([^}]*)}/gi,
+			/cast(?:(?: a version of)? the)?(?: spell)? {@spell ([^}]*)}/gi,
 			/cast the \d..-level version of {@spell ([^}]*)}/gi,
 			/{@spell ([^}]*)} \([^)]*\d+ charge(?:s)?\)/gi,
 		];

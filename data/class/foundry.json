@@ -1084,6 +1084,11 @@
 						"faces": "8 + (sign(ceil((<$level$> - 2) / 8) - 1) * 2)"
 					}
 				]
+			},
+			"system": {
+				"activation.type": null,
+				"uses.value": null,
+				"uses.max": null
 			}
 		},
 		{

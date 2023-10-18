@@ -7,11 +7,27 @@ class ConditionsDiseasesSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Type",
+				css: "col-2 pl-0 ve-text-center",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-10 pr-0",
+				colStyle: "",
+			}),
+		];
+	}
+
 	pGetSublistItem (it, hash) {
+		const cellsText = [PageFilterConditionsDiseases.getDisplayProp(it.__prop), it.name];
+
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="col-2 pl-0 ve-text-center">${PageFilterConditionsDiseases.getDisplayProp(it.__prop)}</span>
-				<span class="bold col-10 pr-0">${it.name}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -27,6 +43,7 @@ class ConditionsDiseasesSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;

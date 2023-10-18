@@ -178,6 +178,15 @@ class BrewDoc {
 			});
 		}
 		// endregion
+
+		// region Object
+		if (json.object) {
+			json.object.forEach(obj => {
+				// 2023-10-07
+				if (typeof obj.size === "string") obj.size = [obj.size];
+			});
+		}
+		// endregion
 	}
 	// endregion
 }
@@ -1857,9 +1866,7 @@ class ManageBrewUi {
 				this._LBL_LIST_UPDATE,
 				async () => this._pDoPullAll({
 					rdState,
-					brews: getSelBrews({
-						fnFilter: brew => this._isBrewOperationPermitted_update(brew),
-					}),
+					brews: getSelBrews(),
 				}),
 			),
 			new ContextUtil.Action(
@@ -1891,7 +1898,7 @@ class ManageBrewUi {
 		].filter(Boolean));
 	}
 
-	_isBrewOperationPermitted_update (brew) { return !brew.head.isEditable && this._brewUtil.isPullable(brew); }
+	_isBrewOperationPermitted_update (brew) { return this._brewUtil.isPullable(brew); }
 	_isBrewOperationPermitted_moveToEditable (brew) { return BrewDoc.isOperationPermitted_moveToEditable({brew}); }
 	_isBrewOperationPermitted_delete (brew) { return !brew.head.isLocal; }
 
