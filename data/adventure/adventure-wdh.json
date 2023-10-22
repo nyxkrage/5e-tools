@@ -1716,15 +1716,6 @@
 					"entries": [
 						"The Yawning Portal is a famous inn and tavern located in the Castle Ward of Waterdeep. Adventurers can meet all sorts of colorful characters here.",
 						"The place is a stone building with a slate roof and several chimneys. Most of the ground floor is taken up by the tavern's common room, which contains a 40-foot-diameter open well (actually the outer shell of a sunken stone tower) that descends 140 feet to the first level of Undermountain, the sprawling dungeon under Waterdeep. A rope-and-pulley mechanism is used to lower adventurers into the well and hoist them out. More information about this entrance to Undermountain can be found in {@i Waterdeep: Dungeon of the Mad Mage}.",
-						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "adventure/WDH/Yawning-Portal-Key.webp"
-							},
-							"width": 1000,
-							"height": 587
-						},
 						"The upper floors of the Yawning Portal contain comfortable, nicely appointed rooms for guests.",
 						"{@creature Durnan|WDH}, the proprietor, charges standard prices for food, drink, and lodging (see chapter 5 of the {@book Player's Handbook|phb} for costs).",
 						{
@@ -1736,6 +1727,15 @@
 							"title": "The Yawning Portal attracts adventurers from every corner of the Forgotten Realms and the D&D multiverse. Not sure who a numbered character is? See the answer key, below.",
 							"width": 2400,
 							"height": 1724
+						},
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/WDH/Yawning-Portal-Key.webp"
+							},
+							"width": 1000,
+							"height": 587
 						},
 						{
 							"type": "entries",

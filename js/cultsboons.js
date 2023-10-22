@@ -1,12 +1,6 @@
 "use strict";
 
 class CultsBoonsSublistManager extends SublistManager {
-	constructor () {
-		super({
-			sublistClass: "subcultsboons",
-		});
-	}
-
 	static get _ROW_TEMPLATE () {
 		return [
 			new SublistCellTemplate({
@@ -63,8 +57,6 @@ class CultsBoonsPage extends ListPage {
 			dataSource: "data/cultsboons.json",
 
 			pageFilter,
-
-			listClass: "cultsboons",
 
 			dataProps: ["cult", "boon"],
 

@@ -1955,50 +1955,10 @@
 								"The pristine buildings within this affluent ward are well maintained and regularly patrolled by officers of the Harmonium. Residents of the Clerks' Ward claim it's the safest and most honest ward in Sigil. Conflict usually occurs on paper, and structured forums for debate allow folks to resolve disagreements without resorting to violence.",
 								"Despite its rigidity, the Clerks' Ward is a place of beauty and wonder, due in large part to the presence of the Society of Sensation. For each strict fact-checker, policy maker, and enforcer in the ward, there is an open-minded artisan, entertainer, or thrill-seeker to match. Locals routinely direct inquisitive newcomers to the Hall of Information, where visitors can ask questions, hail a sedan chair, or pester a tout for directions.",
 								{
-									"type": "table",
-									"caption": "Clerks' Ward Encounters",
-									"colLabels": [
-										"d8",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"1",
-											"A cocky {@creature bariaur wanderer|MPP} (see {@book Morte's Planar Parade|MPP}) offers their services to the party as a tout."
-										],
-										[
-											"2",
-											"A stiff-necked Fated tax collector ({@creature noble}), flanked by two {@creature Guard||guards}, smugly informs the characters they must each pay a \"promenade toll\" of 1 sp to proceed in their current direction."
-										],
-										[
-											"3",
-											"Out of breath and clearly hiding something on their person, a teenage tiefling {@creature spy} begs the characters to help them avoid two oncoming {@creature Harmonium Peacekeeper|MPP|Harmonium peacekeepers} (see {@book Morte's Planar Parade|MPP})."
-										],
-										[
-											"4",
-											"A drunk elf {@creature commoner} stumbles out of an onion-shaped cab pulled by a sweet and gullible {@creature unicorn} named Corny. The unicorn asks the characters if they need a ride."
-										],
-										[
-											"5",
-											"A wizened, purple-robed Incantifer ({@creature archmage}) passes through the streets, eliciting nervous whispers from a crowd of onlookers."
-										],
-										[
-											"6",
-											"A {@creature Society of Sensation Muse|MPP} (see {@book Morte's Planar Parade|MPP}) dazzles the characters with a street-side performance."
-										],
-										[
-											"7",
-											"Olga, a bookish {@creature frost giant}, trips before the characters as she hurries to the {@book Hall of Records|SatO|2|Hall of Records}, sending a stack of titanic papers into the air."
-										],
-										[
-											"8",
-											"An obnoxious {@creature equinal guardinal|MPP} (see {@book Morte's Planar Parade|MPP}) brays atop a street-side soapbox. They attempt to goad a character into a cynical debate about the future of Sigil."
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil Clerks' Ward Encounters",
+									"source": "SatO",
+									"tag": "table"
 								},
 								{
 									"type": "image",
@@ -2204,50 +2164,10 @@
 								"Rain is more frequent in the Hive than elsewhere in Sigil, reflecting the ward's dismal mood. When it falls, gutters ooze sludge into brackish pools of oil and rainwater, their surfaces disturbed by scurrying cranium rats. Damp rags and swollen planks cover broken windows, blotting what little light ekes through the ward's perpetual fog.",
 								"Of all the wards in Sigil, the Hive Ward has the least oversight. Harmonium patrols are less frequent here, and peacekeepers have been known to avert their gaze from disreputable establishments. Though crime runs rampant, so do creativity and trade, and opportunities abound for those ready to seize them. Residents live unhampered by bureaucracy or judgment, free to pursue their deepest passions or indulge their guiltiest pleasures.",
 								{
-									"type": "table",
-									"caption": "Hive Ward Encounters",
-									"colLabels": [
-										"d8",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"1",
-											"A {@creature Hands of Havoc fire starter|MPP} (see {@book Morte's Planar Parade|MPP}), flame in hand and a wild look in their eyes, stands outside an abandoned building. \"Care to help?\" they ask the characters."
-										],
-										[
-											"2",
-											"A {@creature kelubar demodand|MPP} (see {@book Morte's Planar Parade|MPP}) street food vendor pushes a rusty cart down a nearby alley. Charred, sausage-link manacles dangle from the cart's torn awning. The demodand offers the characters anything on the cart for 5 cp."
-										],
-										[
-											"3",
-											"Two chaotic neutral {@creature Troll||trolls} in sleeveless vests strut up to the characters, eager to show off their matching tattoos, courtesy of the dabus Fell."
-										],
-										[
-											"4",
-											"Pugdug, a kind-eyed orc {@creature Bleak Cabal void soother|MPP} (see {@book Morte's Planar Parade|MPP}), offers to heal the characters, asking only that they pay the deed forward."
-										],
-										[
-											"5",
-											"Two out-of-breath githzerai ratcatchers ({@creature Guard||guards}) in pink skullcaps chase a nimble {@creature cranium rat squeaker|MPP} (see {@book Morte's Planar Parade|MPP}). \"Get 'em!\" they cry as the rat darts toward the characters."
-										],
-										[
-											"6",
-											"A droopy-eyed corpse collector (dwarf {@creature commoner}) in tattered clothing dumps a rotten body into the back of a wooden wagon. \"If ye need a ride to the Mortuary, there's room in the back!\" he laughs."
-										],
-										[
-											"7",
-											"A thieving {@creature musteval guardinal|MPP} (see {@book Morte's Planar Parade|MPP}) snatches a bag from a desperate human {@creature commoner} and flees into a nearby alley. The victim cries for help from the characters."
-										],
-										[
-											"8",
-											"Two {@creature Ettercap||ettercaps} hiss at the characters from an abandoned tenement building cocooned in thick webbing. The building belongs to the Spite Spinners, a gang of arachnid bandits and their boss, a {@creature darkweaver|MPP} (see {@book Morte's Planar Parade|MPP})."
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil Hive Ward Encounters",
+									"source": "SatO",
+									"tag": "table"
 								},
 								{
 									"type": "entries",
@@ -2578,50 +2498,10 @@
 									"by": "Vrex Rexel, pedantic Harmonium officer"
 								},
 								{
-									"type": "table",
-									"caption": "Lady's Ward Encounters",
-									"colLabels": [
-										"d8",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"1",
-											"A tiefling wastrel ({@creature noble}) flicks a gambling chip from {@book Fortune's Wheel|SatO|2|Fortune's Wheel} at the party, lamenting, \"May your luck be better than mine.\""
-										],
-										[
-											"2",
-											"A deluxe sedan chair carried by four {@creature Veteran||veterans} stops in front of the characters. A gloved Humanoid hand parts its privacy curtain, extending them an invitation to a masked ball."
-										],
-										[
-											"3",
-											"A cheery {@creature drider} skitters toward the party. A cultist of Lolth, the drider hands the party a pamphlet advertising an upcoming ritual at the {@book Infinite Well|SatO|2|Infinite Well} (see the \"{@book Lady's Ward Locations|SatO|2|Lady's Ward Locations}\" section)."
-										],
-										[
-											"4",
-											"A desperate {@creature commoner} from a faction of your choice has an impending trial in the {@book High Courts of Sigil|SatO|2|High Courts} (see the \"{@book Lady's Ward Locations|SatO|2|Lady's Ward Locations}\" section). Unable to secure an advocate, they plead with the characters to represent them in court."
-										],
-										[
-											"5",
-											"When the coast is clear, a shady-looking {@creature Doomguard rot blade|MPP} (see {@book Morte's Planar Parade|MPP}) opens their long overcoat in front of the characters to reveal a slew of finely crafted weapons available for purchase."
-										],
-										[
-											"6",
-											"Three {@creature Harmonium Peacekeeper|MPP|Harmonium peacekeepers} escort a manacled {@creature githzerai uniter|MPP} to the {@book Prison|SatO|2|Prison} (both stat blocks are in {@book Morte's Planar Parade|MPP}). As they pass the characters, the githzerai drops a crumpled note asserting their innocence."
-										],
-										[
-											"7",
-											"A character spots a notice from the Mercykillers for an escaped prisoner who bears an uncanny resemblance to someone in the party."
-										],
-										[
-											"8",
-											"Atop a low building, a {@creature githyanki warrior} proselytizes furiously to the characters about Aoskar, the Keeper of Gateways, claiming to have seen the dead god alive and well on the Astral Plane. As Harmonium officers move to arrest the githyanki, he mysteriously vanishes."
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil Lady's Ward Encounters",
+									"source": "SatO",
+									"tag": "table"
 								},
 								{
 									"type": "entries",
@@ -2985,50 +2865,10 @@
 								"The Lower Ward is the beating heart of Sigil\u2014an engine of creation that refines raw materials from every corner of the multiverse, transmuting them through sweat, heat, and magic into the components that allow Sigil to flourish. Over the years, civic fixtures like the Armory and Mortuary, which used to reside in the ward, have been bitten off by the neighboring Lady's and Hive Wards, respectively. Still, the Lower Ward remains a necessary industrial powerhouse in the City of Doors.",
 								"The Lower Ward gets its name from the proliferation of portals to the Lower Planes. Their insidious influence bleeds into the ward, choking residents with brimstone, smoke, and sulfuric ash. Statues and roofs erode in a few decades unless protected by magic or alchemical treatment, and locals often bear scars from exposure to these portals and the deadly realms beyond.",
 								{
-									"type": "table",
-									"caption": "Lower Ward Encounters",
-									"colLabels": [
-										"d8",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"1",
-											"A thunder-voiced {@creature Mind's Eye matter smith|MPP} (see {@book Morte's Planar Parade|MPP}) admonishes passersby to realize the power inside themselves. As a demonstration, the matter smith reshapes material around one of the characters."
-										],
-										[
-											"2",
-											"Two {@creature Wererat||wererats} in human form approach the characters, offering to sell them various junkyard baubles, while a third wererat uses the distraction to pick a character's pocket."
-										],
-										[
-											"3",
-											"A {@creature bariaur wanderer|MPP} (see {@book Morte's Planar Parade|MPP}) wearing a gold monocle and an embroidered vest asks the characters to pick up an order for him at a nearby pawnshop. He offers to pay them 10 gp for their trouble (and their discretion)."
-										],
-										[
-											"4",
-											"Two {@creature minotaur} smiths argue with a {@creature goristro} over the price of an expertly forged greataxe, turning to the characters to settle the debate."
-										],
-										[
-											"5",
-											"An {@creature Athar null|MPP} (see {@book Morte's Planar Parade|MPP}) warmly greets the characters and offers to show them to their destination\u2014while subtly pitching Athar philosophy to them."
-										],
-										[
-											"6",
-											"The {@creature ghost} of a factory worker appears to the characters and asks them to retrieve its skull from the {@book Bones of the Night|SatO|2|Bones of the Night} (see the \"{@book Lower Ward Locations|SatO|2|Lower Ward Locations}\" section) so it can finally be laid to rest."
-										],
-										[
-											"7",
-											"Two {@creature Githzerai Monk||githzerai monks} approach the characters, searching for a dangerous {@creature blue slaad} that stole a mote of primordial chaos from the {@book Face of Gith|SatO|2|Face of Gith} tavern (see the \"{@book Lower Ward Locations|SatO|2|Lower Ward Locations}\" section)."
-										],
-										[
-											"8",
-											"A soot-stained goblin {@creature mage} uses fire magic to repair a damaged {@creature iron golem} in the street. She tells the characters she needs two hundred pounds of iron to replace the construct's missing arm\u2014even scrap will do."
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil Lower Ward Encounters",
+									"source": "SatO",
+									"tag": "table"
 								},
 								{
 									"type": "entries",
@@ -3287,50 +3127,10 @@
 									"by": "Digny Vots, Market Ward shopper"
 								},
 								{
-									"type": "table",
-									"caption": "Market Ward Encounters",
-									"colLabels": [
-										"d8",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"1",
-											"A {@creature Transcendent Order instinct|MPP} (see {@book Morte's Planar Parade|MPP}) asks to spar with the characters, promising a reward if the character wins the fight."
-										],
-										[
-											"2",
-											"A neutral good {@creature manticore} acupuncturist brushes past the characters, accidentally poking one of them with its spiny tail. As a token of apology, the manticore gifts the party a voucher for one free spa treatment at the Flame Pits (see the \"{@book Market Ward Locations|SatO|2|Market Ward Locations}\" section)."
-										],
-										[
-											"3",
-											"Wheeze Whistletooth, a {@creature night hag} with a persistent hacking cough, offers the party free samples of her famous mystery meat pies."
-										],
-										[
-											"4",
-											"Clearly troubled, a human {@creature commoner} in the Free League asks the party which faction, if any, they believe is right about the truths of the multiverse."
-										],
-										[
-											"5",
-											"Two {@creature Harmonium Peacekeeper|MPP|Harmonium peacekeepers} (see {@book Morte's Planar Parade|MPP}) question the characters about the whereabouts of a red-furred bariaur who reportedly stole a {@item potion of invisibility} from an alchemical shop."
-										],
-										[
-											"6",
-											"A tiny copper soldier fashioned by a {@creature pentadrone} toymaker marches up to the party, salutes them, and then stops functioning."
-										],
-										[
-											"7",
-											"A {@creature hill giant} stumbles toward the characters, pointing at his throat in worry but not saying a word. He's choking on an entire spit-roasted hog."
-										],
-										[
-											"8",
-											"Disguised as Rowan Darkwood, a {@creature barlgura} mastermind attempts to recruit the characters with a lucrative opportunity: robbing the Bank of Abbathor (see the \"{@book Market Ward Locations|SatO|2|Market Ward Locations}\" section)."
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil Market Ward Encounters",
+									"source": "SatO",
+									"tag": "table"
 								},
 								{
 									"type": "entries",
@@ -3565,42 +3365,10 @@
 								"Monsters and unusual pests plague Undersigil and its inhabitants. Screams of terror echo in its deserted halls, muffled by the leathery wings of vargouilles\u2014flapping, severed heads spawned from the Abyss\u2014chasing their prey. Cranium rats scurry through the tunnels, telepathically relaying their findings to their hivemind. Alone, these spies are little more than barking nuisances, but in swarms their combined intelligence is an ever-present danger. Meanwhile restless souls rise from musty family crypts serve Undead monarchs and contend with the living. Undersigil's forlorn archways become their next tombs, entangled in gnarled roots of razorvine. The wretched weed assumes their shapes and creeps to the surface as thorny {@creature Razorvine Blight|MPP|razorvine blights} (see {@book Morte's Planar Parade|MPP}).",
 								"The Lady of Pain pays little attention to what goes down in Undersigil, though nothing in or under the City of Doors is beyond her reach. Dead factions, banished from the city above, cling to life in the darkness, searching the underground for secrets that could lead to their ascension.",
 								{
-									"type": "table",
-									"caption": "Undersigil Encounters",
-									"colLabels": [
-										"d6",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"1",
-											"A {@creature vargouille reflection|MPP} (see {@book Morte's Planar Parade|MPP}) sprouts from a nearby corpse."
-										],
-										[
-											"2",
-											"Putrice, a {@creature night hag}, cackles as she fishes a wriggling {@creature larva|DMG} (see the {@book Dungeon Master's Guide|DMG}) from a vent underneath a fiend-owned restaurant."
-										],
-										[
-											"3",
-											"Two {@creature Cranium Rat Squeaker|MPP|cranium rat squeakers} (see {@book Morte's Planar Parade|MPP}) gnaw on the bones of a {@creature skeleton}, which reaches out toward the characters for help."
-										],
-										[
-											"4",
-											"Two {@creature dabus|MPP} (see {@book Morte's Planar Parade|MPP}) prune back a mass of razorvine that has spread through a barred grate to the busy street above. As they trim its barbed branches, something shudders within."
-										],
-										[
-											"5",
-											"Three {@creature sahuagin} emerge from a wide pipe. \"Polluters!\" shouts one of them, addressing the characters."
-										],
-										[
-											"6",
-											"A warm sponge cake cools on a dusty stone ledge. Its sweet, strawberry aroma wafts through the otherwise dingy passage. A note reading \"DO NOT EAT\" rests below its porcelain serving dish."
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil Undersigil Encounters",
+									"source": "SatO",
+									"tag": "table"
 								},
 								{
 									"type": "entries",
@@ -3866,158 +3634,10 @@
 							"entries": [
 								"The following table present random encounters that might occur anywhere in Sigil. Creatures marked with an asterisk (*) appear in {@book Morte's Planar Parade|MPP}, while the rest are described in the {@book Monster Manual|MM}. Most creatures are initially indifferent to characters.",
 								{
-									"type": "table",
-									"caption": "Encounters in Sigil",
-									"colLabels": [
-										"d100",
-										"Encounter"
-									],
-									"colStyles": [
-										"col-2 text-center",
-										"col-10"
-									],
-									"rows": [
-										[
-											"01\u201303",
-											"1 {@creature noble} pedestrian distractedly talking to 1 {@creature cranium rat squeaker|MPP}*"
-										],
-										[
-											"04\u201307",
-											"{@dice 1d4} {@creature dabus|MPP}*"
-										],
-										[
-											"08\u201310",
-											"1 {@creature scout} tumbling through a portal from the Material Plane"
-										],
-										[
-											"11\u201314",
-											"{@dice 1d4} {@creature Nightmare||nightmares} recklessly pulling a sedan chair"
-										],
-										[
-											"15\u201317",
-											"{@dice 1d10} {@creature Bariaur Wanderer|MPP|bariaur wanderers}*"
-										],
-										[
-											"18\u201322",
-											"{@dice 1d6} {@creature Harmonium Peacekeeper|MPP|Harmonium peacekeepers}* on patrol"
-										],
-										[
-											"23\u201325",
-											"{@dice 1d6} {@creature dust mephit} messengers"
-										],
-										[
-											"26\u201328",
-											"{@dice 1d4} {@creature Razorvine Blight|MPP|razorvine blights}*"
-										],
-										[
-											"29\u201332",
-											"{@dice 1d4} {@creature Society of Sensation Muse|MPP|Society of Sensation muses}*"
-										],
-										[
-											"33\u201336",
-											"{@dice 1d6} {@creature Quadrone||quadrones}"
-										],
-										[
-											"37\u201339",
-											"{@dice 1d4} {@creature Cranium Rat Squeaker Swarm|MPP|cranium rat squeaker swarms}*"
-										],
-										[
-											"40\u201343",
-											"1 {@creature Heralds of Dust Remnant|MPP|Herald of Dust remnant}* and {@dice 1d4} {@creature Zombie||zombies} collecting bodies"
-										],
-										[
-											"44\u201346",
-											"1 {@creature young copper dragon} sightseer"
-										],
-										[
-											"47\u201349",
-											"1 {@creature Mind's Eye matter smith|MPP}* carrying a rare gizmo"
-										],
-										[
-											"50\u201354",
-											"1 {@creature night hag} street vendor"
-										],
-										[
-											"55\u201357",
-											"{@dice 1d8} {@creature Bleak Cabal Void Soother|MPP|Bleak Cabal void soothers}* assisting locals"
-										],
-										[
-											"58\u201360",
-											"{@dice 1d4} {@creature Vrock||vrocks} on a shopping trip"
-										],
-										[
-											"61\u201363",
-											"{@dice 1d6} {@creature Equinal Guardinal|MPP|equinal guardinals}*"
-										],
-										[
-											"64\u201366",
-											"{@dice 1d6} {@creature Transcendent Order Instinct|MPP|Transcendent Order instincts}* parkouring through the crowd"
-										],
-										[
-											"67\u201369",
-											"{@dice 1d4} {@creature green slaad}"
-										],
-										[
-											"70\u201372",
-											"{@dice 1d4} {@creature Fated Shaker|MPP|Fated shakers}* collecting taxes"
-										],
-										[
-											"73\u201374",
-											"1 {@creature bone devil} late for a meeting"
-										],
-										[
-											"75\u201376",
-											"1 {@creature mage} who's overwhelmed, having just arrived from the Material Plane"
-										],
-										[
-											"77\u201379",
-											"{@dice 1d4} {@creature Mercykiller Bloodhound|MPP|Mercykiller bloodhounds}* tracking a criminal"
-										],
-										[
-											"80\u201381",
-											"{@dice 1d8} {@creature Githzerai Traveler|MPP|githzerai travelers}*"
-										],
-										[
-											"82\u201383",
-											"{@dice 1d4} {@creature maelephant|MPP}* mercenaries"
-										],
-										[
-											"84\u201385",
-											"{@dice 1d6} {@creature Doomguard rot blade|MPP}* monster hunters"
-										],
-										[
-											"86\u201387",
-											"1 {@creature planetar} looking for a shop"
-										],
-										[
-											"88\u201389",
-											"1 {@creature cuprilach rilmani|MPP}* spying on a target"
-										],
-										[
-											"90\u201391",
-											"1 {@creature Fraternity of Order law bender|MPP}*"
-										],
-										[
-											"92\u201393",
-											"{@dice 1d4} {@creature Cloud Giant||cloud giants} who've become lost"
-										],
-										[
-											"94\u201395",
-											"1 {@creature aboleth} in an aquarium sedan chair"
-										],
-										[
-											"96\u201397",
-											"1 {@creature kolyarut|MPP}*"
-										],
-										[
-											"98\u201399",
-											"A famous {@creature archmage}, like Bigby, Evard, Mordenkainen, or Tasha"
-										],
-										[
-											"00",
-											"The Lady of Pain and {@dice 2d4} {@creature dabus|MPP}*"
-										]
-									]
+									"type": "statblock",
+									"name": "Sigil General Encounters",
+									"source": "SatO",
+									"tag": "table"
 								}
 							]
 						}

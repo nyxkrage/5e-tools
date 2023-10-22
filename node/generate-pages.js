@@ -109,7 +109,9 @@ class _PageGeneratorListBase extends _PageGeneratorBase {
 	_page;
 	_titlePage;
 	_titleNavbar;
+	_isFontAwesome = false;
 	_stylesheets;
+	_isStyleBook = false;
 	_scriptIdentList;
 	_scriptsUtilsAdditional;
 	_scriptsPrePageAdditional;
@@ -117,6 +119,8 @@ class _PageGeneratorListBase extends _PageGeneratorBase {
 	_btnsList;
 	_btnsSublist;
 	_wrpToken;
+	_styleListContainerAdditional;
+	_styleContentWrapperAdditional;
 	_isPrinterView = false;
 
 	_registerPartials () {
@@ -130,6 +134,7 @@ class _PageGeneratorListBase extends _PageGeneratorBase {
 		return {
 			titlePage: this._titlePage,
 			titleNavbar: this._titleNavbar ?? this._titlePage,
+			isFontAwesome: this._isFontAwesome,
 			stylesheets: this._stylesheets,
 			scriptIdentList: this._scriptIdentList,
 			scriptsUtilsAdditional: this._scriptsUtilsAdditional,
@@ -138,6 +143,9 @@ class _PageGeneratorListBase extends _PageGeneratorBase {
 			btnsList: this._btnsList,
 			btnsSublist: this._btnsSublist,
 			wrpToken: this._wrpToken,
+			isStyleBook: this._isStyleBook,
+			styleListContainerAdditional: this._styleListContainerAdditional,
+			styleContentWrapperAdditional: this._styleContentWrapperAdditional,
 			identPartialRhsWrpFooter: `listRhsWrpFooterControls`,
 			identPartialRhsPreSublist: `blank`,
 			identPartialRhsSublistFooter: `blank`,
@@ -250,10 +258,142 @@ class _PageGeneratorListBestiary extends _PageGeneratorListBase {
 	_isPrinterView = true;
 }
 
+class _PageGeneratorListCharCreationOptions extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_CHAR_CREATION_OPTIONS;
+	_titlePage = "Other Character Creation Options";
+	_scriptIdentList = "charcreationoptions";
+
+	_btnsList = [
+		_HtmlGeneratorListButtons.getBtn({width: "5", sortIdent: "type", text: "Type"}),
+		_HtmlGeneratorListButtons.getBtn({width: "5", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "5", sortIdent: "type", text: "Type"}),
+		_HtmlGeneratorListButtons.getBtn({width: "7", sortIdent: "name", text: "Name"}),
+	];
+}
+
+class _PageGeneratorListConditionsDiseases extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_CONDITIONS_DISEASES;
+	_titlePage = "Conditions & Diseases";
+	_scriptIdentList = "conditionsdiseases";
+
+	_btnsList = [
+		_HtmlGeneratorListButtons.getBtnPreviewToggle(),
+		_HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "type", text: "Type"}),
+		_HtmlGeneratorListButtons.getBtn({width: "6-7", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "type", text: "Type"}),
+		_HtmlGeneratorListButtons.getBtn({width: "10", sortIdent: "name", text: "Name"}),
+	];
+}
+
+class _PageGeneratorListCultsBoons extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_CULTS_BOONS;
+	_titlePage = "Cults & Supernatural Boons";
+	_scriptIdentList = "cultsboons";
+
+	_btnsList = [
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "type", text: "Type"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "subType", text: "Subtype"}),
+		_HtmlGeneratorListButtons.getBtn({width: "6", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "type", text: "Type"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "subType", text: "Subtype"}),
+		_HtmlGeneratorListButtons.getBtn({width: "8", sortIdent: "name", text: "Name"}),
+	];
+}
+
+class _PageGeneratorListDecks extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_DECKS;
+	_titlePage = "Decks";
+
+	_isFontAwesome = true;
+
+	_stylesheets = [
+		"decks",
+	];
+	_isStyleBook = true;
+
+	_scriptIdentList = "decks";
+
+	_styleListContainerAdditional = "ve-flex-4";
+	_styleContentWrapperAdditional = "ve-flex-7";
+
+	_btnsList = [
+		_HtmlGeneratorListButtons.getBtn({width: "10", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "12", sortIdent: "name", text: "Name"}),
+	];
+}
+
+class _PageGeneratorListDeities extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_DEITIES;
+	_titlePage = "Deities";
+	_scriptIdentList = "deities";
+
+	_styleListContainerAdditional = "ve-flex-6";
+	_styleContentWrapperAdditional = "ve-flex-4";
+
+	_btnsList = [
+		_HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "pantheon", text: "Pantheon"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "alignment", text: "Alignment"}),
+		_HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "domains", text: "Domains"}),
+		_HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "pantheon", text: "Pantheon"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "alignment", text: "Alignment"}),
+		_HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "domains", text: "Domains"}),
+	];
+}
+
+class _PageGeneratorListFeats extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_FEATS;
+	_titlePage = "Feats";
+	_scriptIdentList = "feats";
+
+	_btnsList = [
+		_HtmlGeneratorListButtons.getBtnPreviewToggle(),
+		_HtmlGeneratorListButtons.getBtn({width: "3-5", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtn({width: "3-5", sortIdent: "ability", text: "Ability"}),
+		_HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "prerequisite", text: "Prerequisite"}),
+		_HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "ability", text: "Ability"}),
+		_HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "prerequisite", text: "Prerequisite"}),
+	];
+
+	_isPrinterView = true;
+}
+
 const generators = [
 	new _PageGeneratorListActions(),
 	new _PageGeneratorListBackgrounds(),
 	new _PageGeneratorListBestiary(),
+	new _PageGeneratorListCharCreationOptions(),
+	new _PageGeneratorListConditionsDiseases(),
+	new _PageGeneratorListCultsBoons(),
+	new _PageGeneratorListDecks(),
+	new _PageGeneratorListDeities(),
+	new _PageGeneratorListFeats(),
 ];
 
 generators

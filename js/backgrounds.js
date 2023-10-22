@@ -18,7 +18,7 @@ class BackgroundSublistManager extends SublistManager {
 
 	pGetSublistItem (it, hash) {
 		const name = it.name.replace("Variant ", "");
-		const skills = Renderer.background.getSkillSummary(it.skillProficiencies || [], true);
+		const {summary: skills} = Renderer.generic.getSkillSummary({skillProfs: it.skillProficiencies || [], isShort: true});
 		const cellsText = [name, skills];
 
 		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">

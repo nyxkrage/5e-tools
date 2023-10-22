@@ -1,12 +1,6 @@
 "use strict";
 
 class CharCreationOptionsSublistManager extends SublistManager {
-	constructor () {
-		super({
-			sublistClass: "subcharcreationoptions",
-		});
-	}
-
 	static get _ROW_TEMPLATE () {
 		return [
 			new SublistCellTemplate({
@@ -61,8 +55,6 @@ class CharCreationOptionsPage extends ListPage {
 			pFnGetFluff: Renderer.charoption.pGetFluff.bind(Renderer.charoption),
 
 			pageFilter,
-
-			listClass: "charcreationoptions",
 
 			dataProps: ["charoption"],
 

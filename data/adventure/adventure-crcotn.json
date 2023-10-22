@@ -6448,23 +6448,23 @@
 											"page": 58,
 											"id": "10d",
 											"entries": [
-												"A neutral good, firbolg {@creature priest} named Foghome moves through the temple at all hours of the day. For more information on firbolgs, see the accompanying \"Firbolgs of Exandria\" sidebar.",
+												"A neutral good, firbolg {@creature priest} named {@creature Foghome|CRCotN} moves through the temple at all hours of the day. For more information on firbolgs, see the accompanying \"Firbolgs of Exandria\" sidebar.",
 												{
 													"type": "image",
 													"href": {
 														"type": "internal",
 														"path": "adventure/CRCotN/032-03-005.foghome-the-firbolg.webp"
 													},
-													"title": "Foghome the Firbolg",
+													"title": "{@creature Foghome|CRCotN} the Firbolg",
 													"width": 757,
 													"height": 850,
 													"credit": "Shawn Wood"
 												},
-												"Foghome is here as a guest of Taskhand {@creature Verin Thelyss|CRCotN} because he has offered to help the Aurora Watch create its own food source. Foghome can tell the characters several things:",
+												"{@creature Foghome|CRCotN} is here as a guest of Taskhand {@creature Verin Thelyss|CRCotN} because he has offered to help the Aurora Watch create its own food source. {@creature Foghome|CRCotN} can tell the characters several things:",
 												{
 													"type": "list",
 													"items": [
-														"No vegetation survives for long in Bazzoxan. Foghome thinks this is the result of the corrupting influence of the Betrayers' Rise.",
+														"No vegetation survives for long in Bazzoxan. {@creature Foghome|CRCotN} thinks this is the result of the corrupting influence of the Betrayers' Rise.",
 														"He is a follower of Melora the Wild Mother, but he recognizes the temple as a former holy place of Avandra the Change Bringer. He hopes to honor both deities by cultivating new life in the midst of the death and destruction that haunts this place.",
 														"While meditating the other night, he felt something surge within the earth nearby\u2014a warm and kindly presence reminiscent of the Prime Deities. He suspects the presence is a sign that a relic of the Calamity has awakened within the Betrayers' Rise."
 													]
@@ -6505,9 +6505,9 @@
 											"page": 58,
 											"id": "111",
 											"entries": [
-												"If asked about the {@item Jewel of Three Prayers|CRCotN}, Foghome has no recollection of an item bearing that name. If he examines the jewel, he correctly senses three fragments of divine power within it, one awake and two slumbering. He also tells the characters that one of the fragments in the jewel is similar to the presence he felt within the earth while he was meditating.",
-												"Foghome invites the characters to visit him at the temple any time. He mentions that he meditates to commune with the Wild Mother in the evenings, and he would be happy to reach out to her for more answers on the characters' behalf if they decide to join him one night.",
-												"If the characters take him up on his offer, they receive a vision during Foghome's meditation:",
+												"If asked about the {@item Jewel of Three Prayers|CRCotN}, {@creature Foghome|CRCotN} has no recollection of an item bearing that name. If he examines the jewel, he correctly senses three fragments of divine power within it, one awake and two slumbering. He also tells the characters that one of the fragments in the jewel is similar to the presence he felt within the earth while he was meditating.",
+												"{@creature Foghome|CRCotN} invites the characters to visit him at the temple any time. He mentions that he meditates to commune with the Wild Mother in the evenings, and he would be happy to reach out to her for more answers on the characters' behalf if they decide to join him one night.",
+												"If the characters take him up on his offer, they receive a vision during {@creature Foghome|CRCotN}'s meditation:",
 												{
 													"type": "insetReadaloud",
 													"id": "112",
@@ -6516,7 +6516,7 @@
 														"The moons race across the sky, soon replaced by the angry red sun that rises before a fateful battle. Five silhouettes approach the temple, and one claps the kneeling figure on the back. Their voices are muffled, as if coming at you through water, but you see them embrace, standing strong, before marching off to war."
 													]
 												},
-												"When the vision concludes, the characters fall {@condition prone} on the ground, having momentarily passed out. Foghome doesn't see the vision, but he sees the characters fall {@condition unconscious} and then awaken moments later. If they admit to seeing the vision, he asks them to describe it before nodding slowly and explaining he has seen the vision before. He believes the central figure in the vision to be a hero of the Calamity and recounts the old stories of Bazzoxan's origin:",
+												"When the vision concludes, the characters fall {@condition prone} on the ground, having momentarily passed out. {@creature Foghome|CRCotN} doesn't see the vision, but he sees the characters fall {@condition unconscious} and then awaken moments later. If they admit to seeing the vision, he asks them to describe it before nodding slowly and explaining he has seen the vision before. He believes the central figure in the vision to be a hero of the Calamity and recounts the old stories of Bazzoxan's origin:",
 												{
 													"type": "insetReadaloud",
 													"id": "113",
@@ -6524,7 +6524,7 @@
 														"\"The Kryn capital of Rosohna was the Betrayer Gods' citadel of Ghor Dranas in the time before the Calamity, and the Betrayers' Rise was once a fortress protecting Ghor Dranas. In the darkest days of the Calamity, the Prime Deities and their most loyal champions laid siege to Ghor Dranas before capturing the Betrayers' Rise and routing the Betrayer Gods' forces there. Though storytellers have long since forgotten the names of many of those heroes, the force of their bonds still resonates across the land.\""
 													]
 												},
-												"If the characters ask him to elaborate, Foghome draws their attention to several alcoves where the plants are markedly healthier than the rest of those within the temple. Engraved on the back walls of the alcoves are the following timeworn words in Common (parts of the messages that are no longer legible are indicated by dashes):",
+												"If the characters ask him to elaborate, {@creature Foghome|CRCotN} draws their attention to several alcoves where the plants are markedly healthier than the rest of those within the temple. Engraved on the back walls of the alcoves are the following timeworn words in Common (parts of the messages that are no longer legible are indicated by dashes):",
 												{
 													"type": "list",
 													"items": [

@@ -1444,7 +1444,7 @@ globalThis.Renderer = function () {
 		textStack[0] += `<div class="homebrew-section"><div class="homebrew-float"><span class="homebrew-notice"></span>`;
 
 		if (entry.oldEntries) {
-			const hoverMeta = Renderer.hover.getMakePredefinedHover({type: "entries", name: "Homebrew", entries: entry.oldEntries});
+			const hoverMeta = Renderer.hover.getInlineHover({type: "entries", name: "Homebrew", entries: entry.oldEntries});
 			let markerText;
 			if (entry.movedTo) {
 				markerText = "(See moved content)";
@@ -1788,7 +1788,7 @@ globalThis.Renderer = function () {
 			// OTHER HOVERABLES ////////////////////////////////////////////////////////////////////////////////
 			case "@footnote": {
 				const [displayText, footnoteText, optTitle] = Renderer.splitTagByPipe(text);
-				const hoverMeta = Renderer.hover.getMakePredefinedHover({
+				const hoverMeta = Renderer.hover.getInlineHover({
 					type: "entries",
 					name: optTitle ? optTitle.toTitleCase() : "Footnote",
 					entries: [footnoteText, optTitle ? `{@note ${optTitle}}` : ""].filter(Boolean),
@@ -1812,7 +1812,7 @@ globalThis.Renderer = function () {
 				if (oldText) {
 					tooltipEntries.push(oldText);
 				}
-				const hoverMeta = Renderer.hover.getMakePredefinedHover({
+				const hoverMeta = Renderer.hover.getInlineHover({
 					type: "entries",
 					name: "Homebrew Modifications",
 					entries: tooltipEntries,
@@ -1830,7 +1830,7 @@ globalThis.Renderer = function () {
 					textStack[0] += displayText;
 				} else {
 					const area = BookUtil.curRender.headerMap[areaId] || {entry: {name: ""}}; // default to prevent rendering crash on bad tag
-					const hoverMeta = Renderer.hover.getMakePredefinedHover(area.entry, {isLargeBookContent: true, depth: area.depth});
+					const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
 					textStack[0] += `<a href="#${BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0" ${hoverMeta.html}>${displayText}</a>`;
 				}
 
@@ -3886,6 +3886,7 @@ Renderer.utils = {
 			case "@skill": { out.isFauxPage = true; out.page = "skill"; break; }
 			case "@sense": { out.isFauxPage = true; out.page = "sense"; break; }
 			case "@itemMastery": { out.isFauxPage = true; out.page = "itemMastery"; break; }
+			case "@cite": { out.isFauxPage = true; out.page = "citation"; break; }
 
 			default: throw new Error(`Unhandled tag "${tag}"`);
 		}
@@ -4618,6 +4619,12 @@ Renderer.tag = class {
 		tagName = "variantrule";
 		defaultSource = Parser.SRC_DMG;
 		page = UrlUtil.PG_VARIANTRULES;
+	};
+
+	static TagCite = class extends this._TagPipedDisplayTextThird {
+		tagName = "cite";
+		defaultSource = Parser.SRC_PHB;
+		page = "citation";
 	};
 
 	static _TagPipedDisplayTextFourth = class extends this._TagBaseAt {
@@ -5871,52 +5878,6 @@ Renderer.background = {
 				page: UrlUtil.PG_BACKGROUNDS,
 			},
 		);
-	},
-
-	getSkillSummary (skillProfsArr, short, collectIn) {
-		return Renderer.background._summariseProfs(skillProfsArr, short, collectIn, `skill`);
-	},
-
-	getToolSummary (toolProfsArray, short, collectIn) {
-		return Renderer.background._summariseProfs(toolProfsArray, short, collectIn);
-	},
-
-	getLanguageSummary (languageProfsArray, short, collectIn) {
-		return Renderer.background._summariseProfs(languageProfsArray, short, collectIn);
-	},
-
-	_summariseProfs (profGroupArr, short, collectIn, hoverTag) {
-		if (!profGroupArr) return "";
-
-		function getEntry (s) {
-			return short ? s.toTitleCase() : hoverTag ? `{@${hoverTag} ${s.toTitleCase()}}` : s.toTitleCase();
-		}
-
-		function sortKeys (a, b) {
-			if (a === b) return 0;
-			if (a === "choose") return 1;
-			if (b === "choose") return -1;
-			return SortUtil.ascSort(a, b);
-		}
-
-		return profGroupArr.map(profGroup => {
-			let sep = ", ";
-			const toJoin = Object.keys(profGroup).sort(sortKeys).filter(k => profGroup[k]).map((k, i) => {
-				if (k === "choose") {
-					sep = "; ";
-					const choose = profGroup[k];
-					const chooseProfs = choose.from.map(s => {
-						collectIn && !collectIn.includes(s) && collectIn.push(s);
-						return getEntry(s);
-					});
-					return `${short ? `${i === 0 ? "C" : "c"}hoose ` : ""}${choose.count || 1} ${short ? `of` : `from`} ${chooseProfs.joinConjunct(", ", " or ")}`;
-				} else {
-					collectIn && !collectIn.includes(k) && collectIn.push(k);
-					return getEntry(k);
-				}
-			});
-			return toJoin.join(sep);
-		}).join(" <i>or</i> ");
 	},
 
 	pGetFluff (bg) {
@@ -7923,8 +7884,6 @@ Renderer.item = {
 
 		if (item.mastery) damagePartsPre.push(`Mastery: ${item.mastery.map(it => renderer.render(`{@itemMastery ${it}}`)).join(", ")}`);
 
-		if (item.dmg1) damageParts.push(Renderer.item._renderDamage(item.dmg1, {renderer}));
-
 		// armor
 		if (item.ac != null) {
 			const prefix = item.type === "S" ? "+" : "";
@@ -7932,6 +7891,9 @@ Renderer.item = {
 			damageParts.push(`AC ${prefix}${item.ac}${suffix}`);
 		}
 		if (item.acSpecial != null) damageParts.push(item.ac != null ? item.acSpecial : `AC ${item.acSpecial}`);
+
+		// damage
+		if (item.dmg1) damageParts.push(Renderer.item._renderDamage(item.dmg1, {renderer}));
 
 		// mounts
 		if (item.speed != null) damageParts.push(`Speed: ${item.speed}`);
@@ -9229,7 +9191,7 @@ Renderer.table = {
 	},
 
 	getConvertedEncounterTableName (group, tableRaw) {
-		return `${group.name}${/\bencounters?\b/i.test(group.name) ? "" : " Encounters"}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
+		return `${group.name}${tableRaw.caption ? ` ${tableRaw.caption}` : ""}${/\bencounters?\b/i.test(group.name) ? "" : " Encounters"}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
 	},
 
 	getConvertedNameTableName (group, tableRaw) {
@@ -10196,28 +10158,285 @@ Renderer.itemMastery = {
 	},
 };
 
-Renderer.generic = {
+Renderer.generic = class {
 	/**
-	 * @param it
+	 * @param ent
 	 * @param [opts]
 	 * @param [opts.isSkipNameRow]
 	 * @param [opts.isSkipPageRow]
 	 * @param [opts.dataProp]
 	 * @param [opts.page]
 	 */
-	getCompactRenderedString (it, opts) {
+	static getCompactRenderedString (ent, opts) {
 		opts = opts || {};
-		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite);
+		const prerequisite = Renderer.utils.prerequisite.getHtml(ent.prerequisite);
 
 		return `
-		${opts.dataProp && opts.page ? Renderer.utils.getExcludedTr({entity: it, dataProp: opts.dataProp, page: opts.page}) : ""}
-		${opts.isSkipNameRow ? "" : Renderer.utils.getNameTr(it, {page: opts.page})}
+		${opts.dataProp && opts.page ? Renderer.utils.getExcludedTr({entity: ent, dataProp: opts.dataProp, page: opts.page}) : ""}
+		${opts.isSkipNameRow ? "" : Renderer.utils.getNameTr(ent, {page: opts.page})}
 		<tr class="text"><td colspan="6">
 		${prerequisite ? `<p>${prerequisite}</p>` : ""}
-		${Renderer.get().setFirstSection(true).render({entries: it.entries})}
+		${Renderer.get().setFirstSection(true).render({entries: ent.entries})}
 		</td></tr>
-		${opts.isSkipPageRow ? "" : Renderer.utils.getPageTr(it)}`;
-	},
+		${opts.isSkipPageRow ? "" : Renderer.utils.getPageTr(ent)}`;
+	}
+
+	/* -------------------------------------------- */
+
+	// region Mirror the schema
+	static FEATURE__SKILLS_ALL = Object.keys(Parser.SKILL_TO_ATB_ABV).sort(SortUtil.ascSortLower);
+
+	static FEATURE__TOOLS_ARTISANS = [
+		"alchemist's supplies",
+		"brewer's supplies",
+		"calligrapher's supplies",
+		"carpenter's tools",
+		"cartographer's tools",
+		"cobbler's tools",
+		"cook's utensils",
+		"glassblower's tools",
+		"jeweler's tools",
+		"leatherworker's tools",
+		"mason's tools",
+		"painter's supplies",
+		"potter's tools",
+		"smith's tools",
+		"tinker's tools",
+		"weaver's tools",
+		"woodcarver's tools",
+	];
+	static FEATURE__TOOLS_MUSICAL_INSTRUMENTS = [
+		"bagpipes",
+		"drum",
+		"dulcimer",
+		"flute",
+		"horn",
+		"lute",
+		"lyre",
+		"pan flute",
+		"shawm",
+		"viol",
+	];
+	static FEATURE__TOOLS_ALL = [
+		"artisan's tools",
+
+		...this.FEATURE__TOOLS_ARTISANS,
+		...this.FEATURE__TOOLS_MUSICAL_INSTRUMENTS,
+
+		"disguise kit",
+		"forgery kit",
+		"gaming set",
+		"herbalism kit",
+		"musical instrument",
+		"navigator's tools",
+		"thieves' tools",
+		"poisoner's kit",
+		"vehicles (land)",
+		"vehicles (water)",
+		"vehicles (air)",
+		"vehicles (space)",
+	];
+
+	static FEATURE__LANGUAGES_ALL = Parser.LANGUAGES_ALL.map(it => it.toLowerCase());
+	static FEATURE__LANGUAGES_STANDARD__CHOICE_OBJ = {
+		from: [
+			...Parser.LANGUAGES_STANDARD
+				.map(it => ({
+					name: it.toLowerCase(),
+					prop: "languageProficiencies",
+					group: "languagesStandard",
+				})),
+			...Parser.LANGUAGES_EXOTIC
+				.map(it => ({
+					name: it.toLowerCase(),
+					prop: "languageProficiencies",
+					group: "languagesExotic",
+				})),
+			...Parser.LANGUAGES_SECRET
+				.map(it => ({
+					name: it.toLowerCase(),
+					prop: "languageProficiencies",
+					group: "languagesSecret",
+				})),
+		],
+		groups: {
+			languagesStandard: {
+				name: "Standard Languages",
+			},
+			languagesExotic: {
+				name: "Exotic Languages",
+				hint: "With your DM's permission, you can choose an exotic language.",
+			},
+			languagesSecret: {
+				name: "Secret Languages",
+				hint: "With your DM's permission, you can choose a secret language.",
+			},
+		},
+	};
+
+	static FEATURE__SAVING_THROWS_ALL = [...Parser.ABIL_ABVS];
+	// endregion
+
+	/* -------------------------------------------- */
+
+	// region Should mirror the schema
+	static _SKILL_TOOL_LANGUAGE_KEYS__SKILL_ANY = new Set(["anySkill"]);
+	static _SKILL_TOOL_LANGUAGE_KEYS__TOOL_ANY = new Set(["anyTool", "anyArtisansTool"]);
+	static _SKILL_TOOL_LANGUAGE_KEYS__LANGAUGE_ANY = new Set(["anyLanguage", "anyStandardLanguage", "anyExoticLanguage"]);
+	// endregion
+
+	static getSkillSummary ({skillProfs, skillToolLanguageProfs, isShort = false}) {
+		return this._summariseProfs({
+			profGroupArr: skillProfs,
+			skillToolLanguageProfs,
+			setValid: new Set(this.FEATURE__SKILLS_ALL),
+			setValidAny: this._SKILL_TOOL_LANGUAGE_KEYS__SKILL_ANY,
+			isShort,
+			hoverTag: "skill",
+		});
+	}
+
+	static getToolSummary ({toolProfs, skillToolLanguageProfs, isShort = false}) {
+		return this._summariseProfs({
+			profGroupArr: toolProfs,
+			skillToolLanguageProfs,
+			setValid: new Set(this.FEATURE__TOOLS_ALL),
+			setValidAny: this._SKILL_TOOL_LANGUAGE_KEYS__TOOL_ANY,
+			isShort,
+		});
+	}
+
+	static getLanguageSummary ({languageProfs, skillToolLanguageProfs, isShort = false}) {
+		return this._summariseProfs({
+			profGroupArr: languageProfs,
+			skillToolLanguageProfs,
+			setValid: new Set(this.FEATURE__LANGUAGES_ALL),
+			setValidAny: this._SKILL_TOOL_LANGUAGE_KEYS__LANGAUGE_ANY,
+			isShort,
+		});
+	}
+
+	static _summariseProfs ({profGroupArr, skillToolLanguageProfs, setValid, setValidAny, isShort, hoverTag}) {
+		if (!profGroupArr?.length && !skillToolLanguageProfs?.length) return {summary: "", collection: []};
+
+		const collectionSet = new Set();
+
+		const handleProfGroup = (profGroup, {isValidate = true} = {}) => {
+			let sep = ", ";
+
+			const toJoin = Object.entries(profGroup)
+				.sort(([kA], [kB]) => this._summariseProfs_sortKeys(kA, kB))
+				.filter(([k, v]) => v && (!isValidate || setValid.has(k) || setValidAny.has(k)))
+				.map(([k, v], i) => {
+					const vMapped = this.getMappedAnyProficiency({keyAny: k, countRaw: v}) ?? v;
+
+					if (k === "choose") {
+						sep = "; ";
+
+						const chooseProfs = vMapped.from
+							.filter(s => !isValidate || setValid.has(s))
+							.map(s => {
+								collectionSet.add(s);
+								return this._summariseProfs_getEntry({str: s, isShort, hoverTag});
+							});
+						return `${isShort ? `${i === 0 ? "C" : "c"}hoose ` : ""}${v.count || 1} ${isShort ? `of` : `from`} ${chooseProfs.joinConjunct(", ", " or ")}`;
+					}
+
+					collectionSet.add(k);
+					return this._summariseProfs_getEntry({str: k, isShort, hoverTag});
+				});
+
+			return toJoin.join(sep);
+		};
+
+		const summary = [
+			...(profGroupArr || [])
+				// Skip validation (i.e. allow homebrew/etc.) for the specific proficiency array
+				.map(profGroup => handleProfGroup(profGroup, {isValidate: false})),
+			...(skillToolLanguageProfs || [])
+				.map(profGroup => handleProfGroup(profGroup)),
+		]
+			.filter(Boolean)
+			.join(` <i>or</i> `);
+
+		return {summary, collection: [...collectionSet].sort(SortUtil.ascSortLower)};
+	}
+
+	static _summariseProfs_sortKeys (a, b, {setValidAny = null} = {}) {
+		if (a === b) return 0;
+		if (a === "choose") return 2;
+		if (b === "choose") return -2;
+		if (setValidAny) {
+			if (setValidAny.has(a)) return 1;
+			if (setValidAny.has(b)) return -1;
+		}
+		return SortUtil.ascSort(a, b);
+	}
+
+	static _summariseProfs_getEntry ({str, isShort, hoverTag}) {
+		return isShort ? str.toTitleCase() : hoverTag ? `{@${hoverTag} ${str.toTitleCase()}}` : str.toTitleCase();
+	}
+
+	/* -------------------------------------------- */
+
+	static getMappedAnyProficiency ({keyAny, countRaw}) {
+		const mappedCount = !isNaN(countRaw) ? Number(countRaw) : 1;
+		if (mappedCount <= 0) return null;
+
+		switch (keyAny) {
+			case "anySkill": return {
+				name: mappedCount === 1 ? `Any Skill` : `Any ${mappedCount} Skills`,
+				from: this.FEATURE__SKILLS_ALL
+					.map(it => ({name: it, prop: "skillProficiencies"})),
+				count: mappedCount,
+			};
+			case "anyTool": return {
+				name: mappedCount === 1 ? `Any Tool` : `Any ${mappedCount} Tools`,
+				from: this.FEATURE__TOOLS_ALL
+					.map(it => ({name: it, prop: "toolProficiencies"})),
+				count: mappedCount,
+			};
+			case "anyArtisansTool": return {
+				name: mappedCount === 1 ? `Any Artisan's Tool` : `Any ${mappedCount} Artisan's Tools`,
+				from: this.FEATURE__TOOLS_ARTISANS
+					.map(it => ({name: it, prop: "toolProficiencies"})),
+				count: mappedCount,
+			};
+			case "anyMusicalInstrument": return {
+				name: mappedCount === 1 ? `Any Musical Instrument` : `Any ${mappedCount} Musical Instruments`,
+				from: this.FEATURE__TOOLS_MUSICAL_INSTRUMENTS
+					.map(it => ({name: it, prop: "toolProficiencies"})),
+				count: mappedCount,
+			};
+			case "anyLanguage": return {
+				name: mappedCount === 1 ? `Any Language` : `Any ${mappedCount} Languages`,
+				from: this.FEATURE__LANGUAGES_ALL
+					.map(it => ({name: it, prop: "languageProficiencies"})),
+				count: mappedCount,
+			};
+			case "anyStandardLanguage": return {
+				name: mappedCount === 1 ? `Any Standard Language` : `Any ${mappedCount} Standard Languages`,
+				...MiscUtil.copyFast(this.FEATURE__LANGUAGES_STANDARD__CHOICE_OBJ), // Use a generic choice object, as rules state DM can allow choosing any
+				count: mappedCount,
+			};
+			case "anyExoticLanguage": return {
+				name: mappedCount === 1 ? `Any Exotic Language` : `Any ${mappedCount} Exotic Languages`,
+				...MiscUtil.copyFast(this.FEATURE__LANGUAGES_STANDARD__CHOICE_OBJ), // Use a generic choice object, as rules state DM can allow choosing any
+				count: mappedCount,
+			};
+			case "anySavingThrow": return {
+				name: mappedCount === 1 ? `Any Saving Throw` : `Any ${mappedCount} Saving Throws`,
+				from: this.FEATURE__SAVING_THROWS_ALL
+					.map(it => ({name: it, prop: "savingThrowProficiencies"})),
+				count: mappedCount,
+			};
+
+			case "anyWeapon": throw new Error(`Property handling for "anyWeapon" is unimplemented!`);
+			case "anyArmor": throw new Error(`Property handling for "anyArmor" is unimplemented!`);
+
+			default: return null;
+		}
+	}
 };
 
 Renderer.hover = {
@@ -10452,6 +10671,49 @@ Renderer.hover = {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
 			if (fnBind) fnBind(toRender, $content);
 		}
+	},
+
+	// (Baked into render strings)
+	handleInlineMouseOver (evt, ele, entry, opts) {
+		Renderer.hover._doInit();
+
+		entry = entry || JSON.parse(ele.dataset.vetEntry);
+
+		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele});
+		if (meta == null) return;
+
+		meta.isLoading = false;
+
+		// Reset cursor
+		ele.style.cursor = "";
+
+		// Check if we're still hovering the entity
+		if (!meta || (!meta.isHovered && !meta.isPermanent)) return;
+
+		const tmpEvt = meta._tmpEvt;
+		delete meta._tmpEvt;
+
+		const win = (evt.view || {}).window;
+
+		const $content = Renderer.hover.$getHoverContent_generic(entry, opts);
+
+		if (meta.windowMeta && !meta.isPermanent) {
+			meta.windowMeta.doClose();
+			meta.windowMeta = null;
+		}
+
+		meta.windowMeta = Renderer.hover.getShowWindow(
+			$content,
+			Renderer.hover.getWindowPositionFromEvent(tmpEvt || evt, {isPreventFlicker: !meta.isPermanent}),
+			{
+				title: entry?.name || "",
+				isPermanent: meta.isPermanent,
+				pageUrl: null,
+				cbClose: () => meta.isHovered = meta.isPermanent = meta.isLoading = false,
+				isBookContent: true,
+				sourceData: entry,
+			},
+		);
 	},
 
 	async pGetHoverableFluff (page, source, hash, opts) {
@@ -11228,6 +11490,13 @@ Renderer.hover = {
 		Renderer.hover._entryCache[id] = entry;
 	},
 
+	getInlineHover (entry, opts) {
+		return {
+			// Re-use link handlers, as the inline version is a simplified version
+			html: `onmouseover="Renderer.hover.handleInlineMouseOver(event, this)" onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)" onmousemove="Renderer.hover.handleLinkMouseMove(event, this)" data-vet-entry="${JSON.stringify(entry).qq()}" ${opts ? `data-vet-opts="${JSON.stringify(opts).qq()}"` : ""} ${Renderer.hover.getPreventTouchString()}`,
+		};
+	},
+
 	getPreventTouchString () {
 		return `ontouchstart="Renderer.hover.handleTouchStart(event, this)"`;
 	},
@@ -11386,6 +11655,7 @@ Renderer.hover = {
 			case "subclassfeature":
 			case "subclassFeature":
 				return Renderer.hover.getGenericCompactRenderedString;
+			case "citation": return Renderer.hover.getGenericCompactRenderedString;
 			// endregion
 			default:
 				if (Renderer[page]?.getCompactRenderedString) return Renderer[page].getCompactRenderedString;

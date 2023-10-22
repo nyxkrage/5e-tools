@@ -711,6 +711,7 @@ class RendererMarkdown {
 			case "@skill":
 			case "@sense":
 			case "@area":
+			case "@cite":
 				textStack[0] += Renderer.stripTags(`{${tag} ${text}}`); break;
 
 			// HOMEBREW LOADING ////////////////////////////////////////////////////////////////////////////////

@@ -57,7 +57,7 @@
 							"entries": [
 								"This adventure has three parts, as follows:",
 								"{@adventure Part 1: Schemes in Sigil|ToFW|1} introduces characters to the city of Sigil and the multiversal glitch that has severed them from their previous lives. In their explorations of the City of Doors, they'll meet Shemeshka, Sigil's foremost information broker, who can surely discover details of their past lives.",
-								"{@adventure Part 2: Into the Outlands|ToFW|2} sees the characters journeying to the Outlands at Shemeshka's request to recover a modron fugitive called R04M. As the characters explore the Outlands, they'll visit surreal locations, lay claim to a walking castle, learn how to find R04M using a damaged magic item called a {@item mimir|SatO}, and witness unnatural events plaguing the plane.",
+								"{@adventure Part 2: Into the Outlands|ToFW|2} sees the characters journeying to the Outlands at Shemeshka's request to recover a modron fugitive called {@creature R04M|ToFW}. As the characters explore the Outlands, they'll visit surreal locations, lay claim to a walking castle, learn how to find {@creature R04M|ToFW} using a damaged magic item called a {@item mimir|SatO}, and witness unnatural events plaguing the plane.",
 								"{@adventure Part 3: Unity of Rings|ToFW|3} reveals Shemeshka's role in a planes-warping plot and sees the characters recover their memories and lost abilities. From there, the characters must save a group of lost modrons carrying information dangerous to the stability of the planes and ultimately decide whether to maintain the status quo of the multiverse or reshape it to their design."
 							]
 						}
@@ -366,7 +366,7 @@
 						"type": "internal",
 						"path": "adventure/ToFW/002-01-001.splash.webp"
 					},
-					"title": "The floating skull Morte welcomes some less-than-dead adventurers to the Mortuary",
+					"title": "The floating skull {@creature Morte|ToFW} welcomes some less-than-dead adventurers to the Mortuary",
 					"credit": "Julian Kok",
 					"width": 1700,
 					"height": 2258
@@ -392,14 +392,14 @@
 										"The skull notices you're awake and greets you with a nasal voice. \"Hey, Chief!\""
 									]
 								},
-								"The talking skull is {@creature Morte|ToFW} (see his stat block in {@adventure area M1|ToFW|1|M1: Morgue}), a curmudgeonly interplanar traveler plucked from his eternal punishment in the Nine Hells. Tormented by the lies he told in life, Morte masks his pain with a morbid sense of humor and an insufferable dose of sarcasm.",
+								"The talking skull is {@creature Morte|ToFW} (see his stat block in {@adventure area M1|ToFW|1|M1: Morgue}), a curmudgeonly interplanar traveler plucked from his eternal punishment in the Nine Hells. Tormented by the lies he told in life, {@creature Morte|ToFW} masks his pain with a morbid sense of humor and an insufferable dose of sarcasm.",
 								{
 									"type": "entries",
 									"name": "Talking with Morte",
 									"id": "01b",
 									"entries": [
-										"Morte is friendly toward the characters and does his best to answer their questions. In conversation, the skull addresses each character as \"Chief\" or some other inoffensive but still unflattering nickname.",
-										"As a result of the {@adventure multiversal glitch|ToFW|0|Glitch Characters} affecting the characters (see this book's {@adventure introduction|ToFW|0}), they don't remember much about themselves and don't know why they're in the Mortuary. Morte can answer the following questions or otherwise provide this information:",
+										"{@creature Morte|ToFW} is friendly toward the characters and does his best to answer their questions. In conversation, the skull addresses each character as \"Chief\" or some other inoffensive but still unflattering nickname.",
+										"As a result of the {@adventure multiversal glitch|ToFW|0|Glitch Characters} affecting the characters (see this book's {@adventure introduction|ToFW|0}), they don't remember much about themselves and don't know why they're in the Mortuary. {@creature Morte|ToFW} can answer the following questions or otherwise provide this information:",
 										{
 											"type": "list",
 											"style": "list-hang-notitle",
@@ -407,7 +407,7 @@
 												{
 													"type": "item",
 													"name": "Who Are You?",
-													"entry": "Morte describes himself as a debonair planes traveler who died too young. If asked about the whereabouts of his body, Morte quips he never really had a good head on his shoulders or claims to be the skull of the archlich Vecna."
+													"entry": "{@creature Morte|ToFW} describes himself as a debonair planes traveler who died too young. If asked about the whereabouts of his body, {@creature Morte|ToFW} quips he never really had a good head on his shoulders or claims to be the skull of the archlich Vecna."
 												},
 												{
 													"type": "item",
@@ -417,16 +417,16 @@
 												{
 													"type": "item",
 													"name": "How Did We Get Here?",
-													"entry": "To have wound up in the Mortuary, Morte reckons the characters must've died and been wheeled in, just like everyone else."
+													"entry": "To have wound up in the Mortuary, {@creature Morte|ToFW} reckons the characters must've died and been wheeled in, just like everyone else."
 												},
 												{
 													"type": "item",
 													"name": "How Do We Leave?",
-													"entry": "Morte doesn't know the way out, but he does know the Heralds of Dust, who run the Mortuary, don't take kindly to \"fleshies\" poking around. He tells the characters to \"shake a leg\" and make their escape while they still can."
+													"entry": "{@creature Morte|ToFW} doesn't know the way out, but he does know the Heralds of Dust, who run the Mortuary, don't take kindly to \"fleshies\" poking around. He tells the characters to \"shake a leg\" and make their escape while they still can."
 												}
 											]
 										},
-										"If the characters ask Morte to accompany them, the skull declines, mentioning that he's waiting for someone else. He doesn't elaborate further.",
+										"If the characters ask {@creature Morte|ToFW} to accompany them, the skull declines, mentioning that he's waiting for someone else. He doesn't elaborate further.",
 										"The characters will have other questions. Seeking answers should drive them on."
 									]
 								}
@@ -444,7 +444,7 @@
 									"name": "Multiversal Glitch",
 									"id": "01d",
 									"entries": [
-										"The Mortuary is a dangerous place for 3rd-level characters. If a character dies, refer to the \"{@adventure Running Glitch Characters|ToFW|0|Running Glitch Characters}\" section in this book's {@adventure introduction|ToFW|0}. If all the characters die at once, they reappear back in the morgue. Morte heckles them on their return."
+										"The Mortuary is a dangerous place for 3rd-level characters. If a character dies, refer to the \"{@adventure Running Glitch Characters|ToFW|0|Running Glitch Characters}\" section in this book's {@adventure introduction|ToFW|0}. If all the characters die at once, they reappear back in the morgue. {@creature Morte|ToFW} heckles them on their return."
 									]
 								}
 							]
@@ -511,7 +511,8 @@
 											"height": 1650,
 											"mapParent": {
 												"id": "225"
-											}
+											},
+											"credit": "Marco Bernardini"
 										}
 									]
 								},
@@ -1051,7 +1052,7 @@
 									"name": "Development",
 									"id": "04b",
 									"entries": [
-										"Whether they evade the Harmonium pursuers or get caught, the characters eventually meet Farrow, detailed below. The circumstance of this introduction depends on whether the characters escape or are captured, as detailed below:",
+										"Whether they evade the Harmonium pursuers or get caught, the characters eventually meet {@creature Farrow|ToFW}, detailed below. The circumstance of this introduction depends on whether the characters escape or are captured, as detailed below:",
 										{
 											"type": "list",
 											"style": "list-hang-notitle",
@@ -1059,12 +1060,12 @@
 												{
 													"type": "item",
 													"name": "Escape",
-													"entry": "If the characters defeat or evade their pursuers, they quickly run into Farrow, who helps them lie low in a nearby establishment as Harmonium backup arrives on the scene."
+													"entry": "If the characters defeat or evade their pursuers, they quickly run into {@creature Farrow|ToFW}, who helps them lie low in a nearby establishment as Harmonium backup arrives on the scene."
 												},
 												{
 													"type": "item",
 													"name": "Capture",
-													"entry": "If the characters are bested, Harmonium officers detain them with manacles that function as {@item dimensional shackles}. The manacles' magic fades if they are opened or destroyed. As the characters are taken to the city courts, Farrow arrives disguised as a Harmonium officer named Josbert Plum. After unlocking their manacles, \"Josbert\" helps the characters flee the guards to a safe place nearby."
+													"entry": "If the characters are bested, Harmonium officers detain them with manacles that function as {@item dimensional shackles}. The manacles' magic fades if they are opened or destroyed. As the characters are taken to the city courts, {@creature Farrow|ToFW} arrives disguised as a Harmonium officer named {@creature Josbert Plum|ToFW}. After unlocking their manacles, \"Josbert\" helps the characters flee the guards to a safe place nearby."
 												}
 											]
 										},
@@ -1074,7 +1075,7 @@
 												"type": "internal",
 												"path": "adventure/ToFW/008-01-004.farrow-and-plum.webp"
 											},
-											"title": "Farrow and Their Alter Ego Josbert Plum",
+											"title": "{@creature Farrow|ToFW} and Their Alter Ego {@creature Josbert Plum|ToFW}",
 											"credit": "Nikki Dawes",
 											"width": 850,
 											"height": 2267
@@ -1086,18 +1087,18 @@
 									"name": "Farrow, Shadar-kai Spy",
 									"id": "04c",
 									"entries": [
-										"Farrow was once a member of a covert network of shadar-kai\u2014elves shaped by the magic of the Shadowfell\u2014on a Material Plane world known as Mystara. Hurled into the Cage after a failed mission on their home world, Farrow has since acclimated to the City of Doors and put their talents to use. They have curly white hair, ashen skin, and a purplish birthmark on the right side of their face.",
-										"The shadar-kai serves the arcanaloth {@creature Shemeshka|MPP} as one of her most reliable agents, using a magic ring that functions as a {@item hat of disguise} to infiltrate the many factions of Sigil. Farrow has a disguise for each ascendant faction, along with a few others. When Farrow dons a disguise, they become a new person entirely, losing themself in the role until the spell wears off. Each alter ego pledges fealty to Shemeshka, but only she knows Farrow's many faces are one and the same. Farrow's signature birthmark persists across their disguises.",
+										"{@creature Farrow|ToFW} was once a member of a covert network of shadar-kai\u2014elves shaped by the magic of the Shadowfell\u2014on a Material Plane world known as Mystara. Hurled into the Cage after a failed mission on their home world, {@creature Farrow|ToFW} has since acclimated to the City of Doors and put their talents to use. They have curly white hair, ashen skin, and a purplish birthmark on the right side of their face.",
+										"The shadar-kai serves the arcanaloth {@creature Shemeshka|MPP} as one of her most reliable agents, using a magic ring that functions as a {@item hat of disguise} to infiltrate the many factions of Sigil. {@creature Farrow|ToFW} has a disguise for each ascendant faction, along with a few others. When {@creature Farrow|ToFW} dons a disguise, they become a new person entirely, losing themself in the role until the spell wears off. Each alter ego pledges fealty to Shemeshka, but only she knows {@creature Farrow|ToFW}'s many faces are one and the same. {@creature Farrow|ToFW}'s signature birthmark persists across their disguises.",
 										{
 											"type": "entries",
 											"name": "Faces of Farrow",
 											"id": "04d",
 											"entries": [
-												"In addition to their true form (a neutral, elf {@creature spy}), Farrow regularly dons the following disguises, replacing their game statistics with those of a {@book Sigil faction agent|MPP|1|Faction Agents} (detailed in {@book Morte's Planar Parade|MPP}):",
+												"In addition to their true form (a neutral, elf {@creature spy}), {@creature Farrow|ToFW} regularly dons the following disguises, replacing their game statistics with those of a {@book Sigil faction agent|MPP|1|Faction Agents} (detailed in {@book Morte's Planar Parade|MPP}):",
 												"{@b Aza Dowling}, a self-indulgent tiefling {@creature Society of Sensation muse|MPP}.",
 												"{@b Josbert Plum}, a belligerent human {@creature Harmonium peacekeeper|MPP} with a blonde buzz cut.",
 												"{@b Kal the Crisp}, a freckled gnome {@creature Hands of Havoc fire starter|MPP} with a penchant for destruction.",
-												"If reduced to 0 hit points while disguised as an alter ego, Farrow reverts to their true form. Any excess damage carries over to that form."
+												"If reduced to 0 hit points while disguised as an alter ego, {@creature Farrow|ToFW} reverts to their true form. Any excess damage carries over to that form."
 											]
 										},
 										{
@@ -1105,9 +1106,9 @@
 											"name": "Mysterious Patron",
 											"id": "04e",
 											"entries": [
-												"Farrow has been observing the characters from afar. The shadar-kai understands the characters' identity crisis and believes Shemeshka can help, but the spy doesn't disclose their employer's name due to Shemeshka's dire reputation; Farrow hopes they've done enough to earn the characters' trust in the meantime.",
-												"Farrow offers to guide the characters through Undersigil, a maze of tunnels beneath the city, to their patron's safe house. It's too risky to travel the streets\u2014before the characters know it, every Harmonium officer in Sigil will be looking for them.",
-												"If the characters accept Farrow's guidance, Farrow leads them to the closest entrance to Undersigil, a boarded-up archway in the basement of a nearby building. If the characters decline, Farrow tells them it's their funeral; the Harmonium will continue to return in greater numbers until the enforcers succeed, and next time, Farrow might not be there to bail out the characters."
+												"{@creature Farrow|ToFW} has been observing the characters from afar. The shadar-kai understands the characters' identity crisis and believes Shemeshka can help, but the spy doesn't disclose their employer's name due to Shemeshka's dire reputation; {@creature Farrow|ToFW} hopes they've done enough to earn the characters' trust in the meantime.",
+												"{@creature Farrow|ToFW} offers to guide the characters through Undersigil, a maze of tunnels beneath the city, to their patron's safe house. It's too risky to travel the streets\u2014before the characters know it, every Harmonium officer in Sigil will be looking for them.",
+												"If the characters accept {@creature Farrow|ToFW}'s guidance, {@creature Farrow|ToFW} leads them to the closest entrance to Undersigil, a boarded-up archway in the basement of a nearby building. If the characters decline, {@creature Farrow|ToFW} tells them it's their funeral; the Harmonium will continue to return in greater numbers until the enforcers succeed, and next time, {@creature Farrow|ToFW} might not be there to bail out the characters."
 											]
 										}
 									]
@@ -1119,8 +1120,8 @@
 							"name": "Undersigil",
 							"id": "04f",
 							"entries": [
-								"Farrow knows a path through Undersigil to Fortune's Wheel, a casino owned by Shemeshka. Though the shortcut avoids the Harmonium officers, the tunneled realms beneath Sigil bring their own dangers, as detailed by the encounters in this section. For more information about {@book Undersigil|SatO|2|Undersigil}, see {@book chapter 2|SatO|2} of {@book Sigil and the Outlands|SatO}.",
-								"On entering Undersigil, Farrow cautions the characters to keep their wits about them.",
+								"{@creature Farrow|ToFW} knows a path through Undersigil to Fortune's Wheel, a casino owned by Shemeshka. Though the shortcut avoids the Harmonium officers, the tunneled realms beneath Sigil bring their own dangers, as detailed by the encounters in this section. For more information about {@book Undersigil|SatO|2|Undersigil}, see {@book chapter 2|SatO|2} of {@book Sigil and the Outlands|SatO}.",
+								"On entering Undersigil, {@creature Farrow|ToFW} cautions the characters to keep their wits about them.",
 								{
 									"type": "entries",
 									"name": "Stuffed Rat",
@@ -1143,7 +1144,7 @@
 									"name": "Twisted Tea Party",
 									"id": "052",
 									"entries": [
-										"Farrow's shortcut takes the characters through the territory of the Coterie of Cakes, a dwindling faction of bullies and bakers who believe the multiverse is a giant, multilayered cake. Forced into Undersigil when their faction didn't quite take, the Cakers aggressively knead nonbelievers into members of their cake-based contingent.",
+										"{@creature Farrow|ToFW}'s shortcut takes the characters through the territory of the Coterie of Cakes, a dwindling faction of bullies and bakers who believe the multiverse is a giant, multilayered cake. Forced into Undersigil when their faction didn't quite take, the Cakers aggressively knead nonbelievers into members of their cake-based contingent.",
 										{
 											"type": "gallery",
 											"images": [
@@ -1172,7 +1173,8 @@
 													"height": 1500,
 													"mapParent": {
 														"id": "226"
-													}
+													},
+													"credit": "Mike Schley"
 												}
 											]
 										},
@@ -1186,14 +1188,14 @@
 											]
 										},
 										"Four Cakers\u2014chaotic evil, human {@creature Thug||thugs} whose maces are rolling pins\u2014prattle on about the \"misguided\" surface factions of Sigil over cake and tea. The Cakers are initially indifferent toward the characters. Normally, the Cakers don't take kindly to interruptions, but the struggling coterie is eager to recruit new members.",
-										"When the characters make themselves known, the troop's ringleader\u2014a pink-haired Caker named Gertrube\u2014invites them to take a seat and join the absurd celebration. If the characters can endure 10 minutes of teatime without offending their hosts, the Cakers allow them to proceed unimpeded. However, if the characters decline their offer or otherwise insult the Cakers during the meal\u2014to refuse a slice of cake is an unforgivable blunder\u2014the Cakers politely ask to be excused, push in their chairs, and attack.",
+										"When the characters make themselves known, the troop's ringleader\u2014a pink-haired Caker named {@creature Gertrube|ToFW}\u2014invites them to take a seat and join the absurd celebration. If the characters can endure 10 minutes of teatime without offending their hosts, the Cakers allow them to proceed unimpeded. However, if the characters decline their offer or otherwise insult the Cakers during the meal\u2014to refuse a slice of cake is an unforgivable blunder\u2014the Cakers politely ask to be excused, push in their chairs, and attack.",
 										{
 											"type": "image",
 											"href": {
 												"type": "internal",
 												"path": "adventure/ToFW/011-01-005.gertrube.webp"
 											},
-											"title": "Gertrube invites visitors to a Caker celebration in Undersigil",
+											"title": "{@creature Gertrube|ToFW} invites visitors to a Caker celebration in Undersigil",
 											"credit": "Adrián Ibarra Lugo",
 											"width": 850,
 											"height": 2266
@@ -1230,7 +1232,7 @@
 									"name": "Treasure",
 									"id": "057",
 									"entries": [
-										"Among the Cakers are two stale baguettes, three mincemeat pies, and a lemon tart. Additionally, Gertrube carries a {@item portal compass|SatO} (see {@book Sigil and the Outlands|SatO})."
+										"Among the Cakers are two stale baguettes, three mincemeat pies, and a lemon tart. Additionally, {@creature Gertrube|ToFW} carries a {@item portal compass|SatO} (see {@book Sigil and the Outlands|SatO})."
 									]
 								}
 							]
@@ -1247,7 +1249,7 @@
 									"id": "059",
 									"entries": [
 										"You stand before the giant marquee of a casino that reads \"Fortune's Wheel\" in a dazzling font. Fashionably dressed locals laugh, arm in arm, as they push through the casino's polished gold revolving door to the gambling hall within.",
-										"Farrow lets out a satisfied sigh. \"This is the place.\""
+										"{@creature Farrow|ToFW} lets out a satisfied sigh. \"This is the place.\""
 									]
 								},
 								"Here ends chapter 2. Each character should gain a level before starting the next chapter."
@@ -1280,7 +1282,7 @@
 								},
 								"Valek shows the characters to their rooms: luxurious suites fit for royalty on the second floor. A clean set of fine clothes awaits each character.",
 								"Valek caters to their basic needs, offering to shine equipment, answer questions about the casino, or provide a short tour. Valek expects a tip of at least 1 sp for each service. If the characters fail to tip Valek, he remains courteous but becomes faintly aloof.",
-								"With the characters in Valek's capable hands, Farrow wishes the characters good luck and departs the casino.",
+								"With the characters in Valek's capable hands, {@creature Farrow|ToFW} wishes the characters good luck and departs the casino.",
 								{
 									"type": "quote",
 									"entries": [
@@ -1293,7 +1295,7 @@
 									"name": "Planar Proprietor",
 									"id": "05d",
 									"entries": [
-										"Shemeshka's reputation precedes her. Characters who question Farrow, Valek, or other locals about her might learn the following details:",
+										"Shemeshka's reputation precedes her. Characters who question {@creature Farrow|ToFW}, Valek, or other locals about her might learn the following details:",
 										{
 											"type": "list",
 											"style": "list-hang-notitle",
@@ -1464,7 +1466,8 @@
 											"height": 1650,
 											"mapParent": {
 												"id": "227"
-											}
+											},
+											"credit": "Jared Blando"
 										}
 									]
 								},
@@ -2127,7 +2130,7 @@
 									"id": "097",
 									"entries": [
 										"Three amicable Vecna impersonators\u2014{@creature Doppelganger||doppelgangers} mirroring the archlich of the same name\u2014walk the casino floor doing inaccurate but amusing impressions. The trio approaches one of the characters and begins to recite cheesy one-liners, asking the party to \"give a lich a hand.\"",
-										"The impersonators are pickpockets who prey on the casino's patrons. While one Vecna impersonator distracts their target, another rummages through the mark's pocket for valuables.",
+										"The impersonators are pickpockets who prey on the casino's patrons. While one {@creature Vecna impersonator|ToFW} distracts their target, another rummages through the mark's pocket for valuables.",
 										"A character who succeeds on a DC 16 Wisdom ({@skill Perception}) check catches the impersonator in the act. The doppelgangers attack if they equal or outnumber the characters present. Otherwise, they attempt to break line of sight with the characters and assume new identities. Characters have advantage on Wisdom ({@skill Perception}) checks made to notice the dopplegangers as long as the impersonators are still wearing their Vecna costumes.",
 										"While the impersonators were hired by Shemeshka's staff, the house doesn't condone their thievery."
 									]
@@ -2175,7 +2178,7 @@
 											"name": "Shemeshka's Offer",
 											"id": "09d",
 											"entries": [
-												"The arcanaloth promises to dig up information on the characters' pasts in exchange for a favor. She asks the characters to locate R04M, a monodrone that vanished into the Outlands some time ago and hasn't returned. She's too busy with the casino to track him down herself.",
+												"The arcanaloth promises to dig up information on the characters' pasts in exchange for a favor. She asks the characters to locate {@creature R04M|ToFW}, a monodrone that vanished into the Outlands some time ago and hasn't returned. She's too busy with the casino to track him down herself.",
 												"Shemeshka claims the modron is a rogue accountant that knows sensitive information about her enterprise and her powerful associates. This is a lie. In truth, the modron is a loose end in one of Shemeshka's untold plots\u2014a massive scheme involving a legion of lost modrons. Shemeshka's plans are further detailed in {@adventure part 3|ToFW|3} of the adventure.",
 												"If a character doubts the arcanaloth's intentions, she commends them on their caution; it's rarely wise to trust a Fiend. Shemeshka assures the characters that her line of work thrives off mutual distrust and that her intentions with the modron don't concern them. What difference does it make if both parties get what they want? To sweeten the deal for hesitant characters, Shemeshka offers an immediate payment of 300 gp per character."
 											]
@@ -2260,8 +2263,8 @@
 							"name": "The Walking Castle",
 							"id": "0a4",
 							"entries": [
-								"The walking castle Iedcaru is a treasure from ages past. It was created by githzerai as a hermitage where ascetics could travel the Outlands and meditate on the nature of realms beyond. While the castle has been forgotten by most githzerai scholars in Limbo, it remains the home of Zaythir, a sage who seeks to glean multiversal truths from mystical planar forces.",
-								"Iedcaru has recently seen more visitors than usual. The first was the modron R04M, which stopped at the castle and learned much about the Outlands. More recently, though, a host of Fiends discovered and occupied the castle. They've captured Zaythir and are now working to discover how to operate the castle. The Fiends' goals are up to you; they could be seeking to claim the castle and sell it as a war machine, or they might be working for Shemeshka through intermediaries seeking to track R04M.",
+								"The walking castle Iedcaru is a treasure from ages past. It was created by githzerai as a hermitage where ascetics could travel the Outlands and meditate on the nature of realms beyond. While the castle has been forgotten by most githzerai scholars in Limbo, it remains the home of {@creature Zaythir|ToFW}, a sage who seeks to glean multiversal truths from mystical planar forces.",
+								"Iedcaru has recently seen more visitors than usual. The first was the modron {@creature R04M|ToFW}, which stopped at the castle and learned much about the Outlands. More recently, though, a host of Fiends discovered and occupied the castle. They've captured {@creature Zaythir|ToFW} and are now working to discover how to operate the castle. The Fiends' goals are up to you; they could be seeking to claim the castle and sell it as a war machine, or they might be working for Shemeshka through intermediaries seeking to track {@creature R04M|ToFW}.",
 								"When the characters come within sight of the walking castle, read the following description:",
 								{
 									"type": "insetReadaloud",
@@ -2341,7 +2344,8 @@
 											"height": 3300,
 											"mapParent": {
 												"id": "228"
-											}
+											},
+											"credit": "Marco Bernardini"
 										}
 									]
 								},
@@ -2424,7 +2428,7 @@
 											"name": "Supplies",
 											"id": "0b1",
 											"entries": [
-												"The kitchen has been plundered, but 14 days of {@item Rations (1 day)|PHB|rations} remain. These mostly consist of pickled radishes\u2014a favorite of Zaythir's."
+												"The kitchen has been plundered, but 14 days of {@item Rations (1 day)|PHB|rations} remain. These mostly consist of pickled radishes\u2014a favorite of {@creature Zaythir|ToFW}'s."
 											]
 										}
 									]
@@ -2471,13 +2475,13 @@
 												"A sizable desk stands opposite the door in this stuffy study. Cabinets, crowded bookshelves, and maps of the Outer Planes cover the room's walls. In the south corner stands a simple cot. A hulking, green-skinned figure with mighty wings and razor-sharp claws violently peruses the books, discarding those that displease it."
 											]
 										},
-										"This is Zaythir's study. The {@creature nycaloth} Thlaarsh the Gore Drinker is here, seeking ways to make the castle move. Thlaarsh attacks rival trespassers and fights to the death, but it tries to capture spellcasters, hoping to make them pilot the castle.",
+										"This is {@creature Zaythir|ToFW}'s study. The {@creature nycaloth} Thlaarsh the Gore Drinker is here, seeking ways to make the castle move. Thlaarsh attacks rival trespassers and fights to the death, but it tries to capture spellcasters, hoping to make them pilot the castle.",
 										{
 											"type": "entries",
 											"name": "Treasure",
 											"id": "0b5",
 											"entries": [
-												"The desk holds Zaythir's notes on the Outlands, which are written in Gith, as well as {@item calligrapher's supplies|PHB}. On the desk is a broken {@item mimir|SatO} (see {@book Sigil and the Outlands|SatO}) with a skull made of colorful glass shards. This {@item mimir|SatO} is further detailed in the \"{@adventure Mosaic Mimir|ToFW|2|Mosaic Mimir}\" section later in this chapter."
+												"The desk holds {@creature Zaythir|ToFW}'s notes on the Outlands, which are written in Gith, as well as {@item calligrapher's supplies|PHB}. On the desk is a broken {@item mimir|SatO} (see {@book Sigil and the Outlands|SatO}) with a skull made of colorful glass shards. This {@item mimir|SatO} is further detailed in the \"{@adventure Mosaic Mimir|ToFW|2|Mosaic Mimir}\" section later in this chapter."
 											]
 										}
 									]
@@ -2543,7 +2547,7 @@
 												"Narrow windows look out from this stark stone chamber in every direction. In the room's center stands a green crystal atop a stone pillar. A ladder descends to the floor below. Seated in a corner is a githyanki woman with long, white hair and closed eyes."
 											]
 										},
-										"The Fiends have kept the castle's caretaker, a neutral {@creature githzerai uniter|MPP} (see {@book Morte's Planar Parade|MPP}) named Zaythir, in this chamber. Zaythir is eager to be free and evict the devils from her home. She is further detailed in the \"{@adventure Zaythir|ToFW|2|Zaythir}\" section.",
+										"The Fiends have kept the castle's caretaker, a neutral {@creature githzerai uniter|MPP} (see {@book Morte's Planar Parade|MPP}) named {@creature Zaythir|ToFW}, in this chamber. {@creature Zaythir|ToFW} is eager to be free and evict the devils from her home. She is further detailed in the \"{@adventure Zaythir|ToFW|2|Zaythir}\" section.",
 										{
 											"type": "entries",
 											"name": "Crystal",
@@ -2561,14 +2565,14 @@
 							"name": "Castle's Residents",
 							"id": "0bf",
 							"entries": [
-								"Once the Fiends are defeated and Zaythir is freed, the characters have access to the walking castle and the gratitude of its residents. These residents help the characters however they can.",
+								"Once the Fiends are defeated and {@creature Zaythir|ToFW} is freed, the characters have access to the walking castle and the gratitude of its residents. These residents help the characters however they can.",
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
 										"path": "adventure/ToFW/021-02-002.zaythir.webp"
 									},
-									"title": "The githzerai Zaythir uses the Castellan to set the walking castle's course across the Outlands",
+									"title": "The githzerai {@creature Zaythir|ToFW} uses the Castellan to set the walking castle's course across the Outlands",
 									"credit": "Robson Michel",
 									"width": 1700,
 									"height": 1136
@@ -2578,7 +2582,7 @@
 									"name": "Zaythir",
 									"id": "0c0",
 									"entries": [
-										"Zaythir is a patient scholar of the planes who rarely shows extremes of emotion. If she is freed and the Fiends are driven out of her home, she's indebted to the characters. She introduces herself and can provide information on the following topics:",
+										"{@creature Zaythir|ToFW} is a patient scholar of the planes who rarely shows extremes of emotion. If she is freed and the Fiends are driven out of her home, she's indebted to the characters. She introduces herself and can provide information on the following topics:",
 										{
 											"type": "list",
 											"style": "list-hang-notitle",
@@ -2586,12 +2590,12 @@
 												{
 													"type": "item",
 													"name": "Personal Background",
-													"entry": "Zaythir is a scholar of the planes who studies the Outlands and the planes beyond. She has guarded the walking castle alone for years."
+													"entry": "{@creature Zaythir|ToFW} is a scholar of the planes who studies the Outlands and the planes beyond. She has guarded the walking castle alone for years."
 												},
 												{
 													"type": "item",
 													"name": "The Castellan",
-													"entry": "This magical being is Zaythir's companion and the heart of Iedcaru. It controls the castle's movement. Zaythir can introduce the characters to it (see the \"{@adventure The Castellan|ToFW|2|The Castellan}\" section)."
+													"entry": "This magical being is {@creature Zaythir|ToFW}'s companion and the heart of Iedcaru. It controls the castle's movement. {@creature Zaythir|ToFW} can introduce the characters to it (see the \"{@adventure The Castellan|ToFW|2|The Castellan}\" section)."
 												},
 												{
 													"type": "item",
@@ -2601,12 +2605,12 @@
 												{
 													"type": "item",
 													"name": "Modron",
-													"entry": "Zaythir was recently visited by a monodrone who called himself R04M. He had been using a {@item mimir|SatO} (see {@book Sigil and the Outlands|SatO}) to follow the path of the last Great Modron March, intending to learn truths of the multiverse. He left his {@item mimir|SatO} here, saying it told him where to go after visiting all the gate-towns (though he didn't say where that was). His mimir was damaged during the Fiends' attack (see the \"{@adventure Mosaic Mimir|ToFW|2|Mosaic Mimir}\" section)."
+													"entry": "{@creature Zaythir|ToFW} was recently visited by a monodrone who called himself {@creature R04M|ToFW}. He had been using a {@item mimir|SatO} (see {@book Sigil and the Outlands|SatO}) to follow the path of the last Great Modron March, intending to learn truths of the multiverse. He left his {@item mimir|SatO} here, saying it told him where to go after visiting all the gate-towns (though he didn't say where that was). His mimir was damaged during the Fiends' attack (see the \"{@adventure Mosaic Mimir|ToFW|2|Mosaic Mimir}\" section)."
 												}
 											]
 										},
-										"Zaythir knows nothing about the multiversal glitch affecting the characters, but she's happy to let them research in the castle's library. Unfortunately, the library contains no information on the characters' circumstances.",
-										"If it's clear the characters plan to explore the Outlands, Zaythir offers to help, both by sharing her knowledge of the plane and by letting the group travel via Iedcaru and use it as a base."
+										"{@creature Zaythir|ToFW} knows nothing about the multiversal glitch affecting the characters, but she's happy to let them research in the castle's library. Unfortunately, the library contains no information on the characters' circumstances.",
+										"If it's clear the characters plan to explore the Outlands, {@creature Zaythir|ToFW} offers to help, both by sharing her knowledge of the plane and by letting the group travel via Iedcaru and use it as a base."
 									]
 								},
 								{
@@ -2614,7 +2618,7 @@
 									"name": "The Castellan",
 									"id": "0c1",
 									"entries": [
-										"This magical wonder is inert when the characters first enter {@adventure area W6|ToFW|2|W6: Castellan Chamber}. Zaythir can reactivate it with a word, at which point its body animates and the table before it projects an illusory image of the Outlands.",
+										"This magical wonder is inert when the characters first enter {@adventure area W6|ToFW|2|W6: Castellan Chamber}. {@creature Zaythir|ToFW} can reactivate it with a word, at which point its body animates and the table before it projects an illusory image of the Outlands.",
 										"The Castellan has the following features:",
 										{
 											"type": "list",
@@ -2622,7 +2626,7 @@
 												"The Castellan is neutral and has an Intelligence of 12, a Wisdom of 10, and a Charisma of 12.",
 												"The Castellan has hearing and {@sense darkvision} out to a range of 60 feet, and it can understand Common and Gith but can't speak. It communicates through gestures alone.",
 												"The Castellan can cause Iedcaru to stand or sit. While the castle stands, its lowest level is 40 feet off the ground. The castle can walk at the rate of 12 miles per hour, but it can go no faster or slower.",
-												"The Castellan controls the walking castle and is friendly toward those who rescued Zaythir. If the Castellan's attitude changes, a character must succeed on a DC 14 Charisma ({@skill Persuasion}) check to convince it to navigate the castle.",
+												"The Castellan controls the walking castle and is friendly toward those who rescued {@creature Zaythir|ToFW}. If the Castellan's attitude changes, a character must succeed on a DC 14 Charisma ({@skill Persuasion}) check to convince it to navigate the castle.",
 												"The Castellan is indestructible so long as the walking castle stands."
 											]
 										},
@@ -2637,7 +2641,7 @@
 							"id": "0c2",
 							"entries": [
 								"The Mosaic Mimir is a {@item mimir|SatO} (see {@book Sigil and the Outlands|SatO}) that looks like a human skull made of gold, silver, jade, and onyx. The {@i mimir} was badly damaged in the attack on Iedcaru, and it lies in pieces.",
-								"The Mosaic Mimir can be physically repaired by a character who spends an hour and succeeds on a DC 12 Intelligence ({@skill Arcana}) check. Zaythir can repair it if the characters can't. While this repairs the {@item mimir|SatO} physically, it doesn't restore the lost information about the Outlands. The {@i mimir} once knew information about all the gate-towns and their portals to the Outer Planes, but it is now missing data on the following gate-towns:",
+								"The Mosaic Mimir can be physically repaired by a character who spends an hour and succeeds on a DC 12 Intelligence ({@skill Arcana}) check. {@creature Zaythir|ToFW} can repair it if the characters can't. While this repairs the {@item mimir|SatO} physically, it doesn't restore the lost information about the Outlands. The {@i mimir} once knew information about all the gate-towns and their portals to the Outer Planes, but it is now missing data on the following gate-towns:",
 								{
 									"type": "list",
 									"columns": 3,
@@ -2663,12 +2667,12 @@
 												"type": "internal",
 												"path": "adventure/ToFW/022-02-003.ro4m.webp"
 											},
-											"title": "R04M the Missing Monodrone",
+											"title": "{@creature R04M|ToFW} the Missing Monodrone",
 											"credit": "Dave Melvin",
 											"width": 850,
 											"height": 1147
 										},
-										"The {@item mimir|SatO} holds the key to finding R04M, but it must have its missing data restored to access its Esoteric Knowledge and Planar Knowledge properties (detailed in {@book Sigil and the Outlands|SatO}). Zaythir or a character who succeeds on a DC 12 Intelligence ({@skill Arcana}) check knows that the following steps are required to restore missing data to the {@i mimir}:",
+										"The {@item mimir|SatO} holds the key to finding {@creature R04M|ToFW}, but it must have its missing data restored to access its Esoteric Knowledge and Planar Knowledge properties (detailed in {@book Sigil and the Outlands|SatO}). {@creature Zaythir|ToFW} or a character who succeeds on a DC 12 Intelligence ({@skill Arcana}) check knows that the following steps are required to restore missing data to the {@i mimir}:",
 										{
 											"type": "list",
 											"style": "list-hang-notitle",
@@ -2723,7 +2727,7 @@
 							"name": "Around the Outlands",
 							"id": "0c5",
 							"entries": [
-								"Zaythir can help the characters piece together that to find R04M, they must restore the Mosaic Mimir by visiting the seven gate-towns for which it's missing data. Then, it should be able to relate the details about the last Great Modron March, which R04M was following. The characters might seek other sources for information about the last Great Modron March, but the event was so fraught with incongruities and lost so many modrons that it's impossible to know what tangent of the march R04M is following. Zaythir also offers to let the characters use Iedcaru as a base and conveyance across the Outlands\u2014though Zaythir won't leave the Outlands herself or let the walking castle travel to other planes.",
+								"{@creature Zaythir|ToFW} can help the characters piece together that to find {@creature R04M|ToFW}, they must restore the Mosaic Mimir by visiting the seven gate-towns for which it's missing data. Then, it should be able to relate the details about the last Great Modron March, which {@creature R04M|ToFW} was following. The characters might seek other sources for information about the last Great Modron March, but the event was so fraught with incongruities and lost so many modrons that it's impossible to know what tangent of the march {@creature R04M|ToFW} is following. {@creature Zaythir|ToFW} also offers to let the characters use Iedcaru as a base and conveyance across the Outlands\u2014though {@creature Zaythir|ToFW} won't leave the Outlands herself or let the walking castle travel to other planes.",
 								{
 									"type": "inset",
 									"id": "0c6",
@@ -2964,7 +2968,8 @@
 											"height": 1500,
 											"mapParent": {
 												"id": "229"
-											}
+											},
+											"credit": "Mike Schley"
 										}
 									]
 								},
@@ -3343,7 +3348,8 @@
 													"height": 1500,
 													"mapParent": {
 														"id": "22a"
-													}
+													},
+													"credit": "Mike Schley"
 												}
 											]
 										}
@@ -3846,8 +3852,8 @@
 									"name": "After the Battle",
 									"id": "114",
 									"entries": [
-										"If Razak is with the characters after the battle, he identifies the ibex as Oka, a storyteller and advisor to Ophelia, leader of a group of local herbivores. If Razak wasn't with the characters, he comes across the scene as the battle ends and shares the same information. The ibex's body bears a distinguishing accessory: a beaded necklace with an eye-shaped topaz. The necklace is worth 40 gp.",
-										"Razak encourages the characters to come with him to Heart Delta to meet Ophelia and convey the news of Oka's death."
+										"If Razak is with the characters after the battle, he identifies the ibex as Oka, a storyteller and advisor to {@creature Ophelia|ToFW}, leader of a group of local herbivores. If Razak wasn't with the characters, he comes across the scene as the battle ends and shares the same information. The ibex's body bears a distinguishing accessory: a beaded necklace with an eye-shaped topaz. The necklace is worth 40 gp.",
+										"Razak encourages the characters to come with him to Heart Delta to meet {@creature Ophelia|ToFW} and convey the news of Oka's death."
 									]
 								},
 								{
@@ -3879,12 +3885,12 @@
 												"Sleepy rivers wind through a sprawling expanse of high grasses and fruiting trees. Giant herbivores, such as long-necked giraffes and brachiosaurs, munch on tall vegetation, while herds of bison, gazelle, and goats wander the surrounding plains. In the distance, rock formations encircle a broad crater."
 											]
 										},
-										"The crater at the center of Heart Delta is called the Hollow. Here the elephant Ophelia addresses hundreds of gathered animals nightly. Characters seeking Ophelia find her here.",
-										"Ophelia uses the {@creature elephant} stat block, with the following changes:",
+										"The crater at the center of Heart Delta is called the Hollow. Here the elephant {@creature Ophelia|ToFW} addresses hundreds of gathered animals nightly. Characters seeking {@creature Ophelia|ToFW} find her here.",
+										"{@creature Ophelia|ToFW} uses the {@creature elephant} stat block, with the following changes:",
 										{
 											"type": "list",
 											"items": [
-												"Ophelia is lawful good.",
+												"{@creature Ophelia|ToFW} is lawful good.",
 												"She has an Intelligence of 10, a Wisdom of 14, and a Charisma of 14.",
 												"She speaks Common."
 											]
@@ -3896,18 +3902,18 @@
 									"name": "Talking with Ophelia",
 									"id": "119",
 									"entries": [
-										"Ophelia is wise and patient, and she seeks to protect her people. She wants to create a new Faunel where sapient animals overcome their instincts and live communally. If the characters converse with her, she shares the following information:",
+										"{@creature Ophelia|ToFW} is wise and patient, and she seeks to protect her people. She wants to create a new Faunel where sapient animals overcome their instincts and live communally. If the characters converse with her, she shares the following information:",
 										{
 											"type": "list",
 											"items": [
 												"She's saddened to hear about Oka's death but thanks the characters for informing her.",
-												"She suspects the Vile Hunt is working for Ebonclaw, the leader of the predators at Razortooth Rock.",
-												"She recently defeated Ebonclaw in battle when he and some of his predators attacked a herd under her protection.",
-												"She suspects Oka's death is Ebonclaw's retaliation.",
-												"She asks the characters to go to Razortooth Rock and find out if Ebonclaw is working with the Vile Hunt."
+												"She suspects the Vile Hunt is working for {@creature Ebonclaw|ToFW}, the leader of the predators at Razortooth Rock.",
+												"She recently defeated {@creature Ebonclaw|ToFW} in battle when he and some of his predators attacked a herd under her protection.",
+												"She suspects Oka's death is {@creature Ebonclaw|ToFW}'s retaliation.",
+												"She asks the characters to go to Razortooth Rock and find out if {@creature Ebonclaw|ToFW} is working with the Vile Hunt."
 											]
 										},
-										"If the characters can find out who is behind Oka's death, Ophelia promises to reward them with a {@item Figurine of Wondrous Power, Serpentine Owl||figurine of wondrous power (serpentine owl)}."
+										"If the characters can find out who is behind Oka's death, {@creature Ophelia|ToFW} promises to reward them with a {@item Figurine of Wondrous Power, Serpentine Owl||figurine of wondrous power (serpentine owl)}."
 									]
 								},
 								{
@@ -3923,12 +3929,12 @@
 												"An arid land of stark rock formations and rugged cliffs stretches ahead. Amid the dust, brush, and murky streams doze groups of wolves, tigers, hyenas, crocodiles, and more. A fang-shaped peak rises at the center of the wilderness, its surface etched with paths and caves."
 											]
 										},
-										"Sapient predatory animals follow the characters through this wilderness but don't bother the characters. At Razortooth Rock, the peak at the center of this rugged land, the characters find Ebonclaw.",
-										"Ebonclaw uses the {@creature saber-toothed tiger} stat block with the following changes:",
+										"Sapient predatory animals follow the characters through this wilderness but don't bother the characters. At Razortooth Rock, the peak at the center of this rugged land, the characters find {@creature Ebonclaw|ToFW}.",
+										"{@creature Ebonclaw|ToFW} uses the {@creature saber-toothed tiger} stat block with the following changes:",
 										{
 											"type": "list",
 											"items": [
-												"Ebonclaw is lawful neutral.",
+												"{@creature Ebonclaw|ToFW} is lawful neutral.",
 												"He has an Intelligence of 12 and a Charisma of 12.",
 												"He speaks Common."
 											]
@@ -3940,16 +3946,16 @@
 									"name": "Talking with Ebonclaw",
 									"id": "11c",
 									"entries": [
-										"Ebonclaw is arrogant and cunning, but he is nursing his wounded pride after a clash with Ophelia. He seeks to create a Faunel where the residents embrace their skills, becoming proud and powerful.",
-										"Ebonclaw is suspicious of visitors, even if Razak is with them. He converses only if a character succeeds on a DC 16 Charisma ({@skill Intimidation} or {@skill Persuasion}) check or brings him a gift of fresh yak meat. Characters might purchase yak meat at Camp Greenbriar for 20 gp or ask Ophelia to provide it from a non-sapient source.",
-										"Once Ebonclaw agrees to speak with the characters, he is forthright and shares the following:",
+										"{@creature Ebonclaw|ToFW} is arrogant and cunning, but he is nursing his wounded pride after a clash with {@creature Ophelia|ToFW}. He seeks to create a Faunel where the residents embrace their skills, becoming proud and powerful.",
+										"{@creature Ebonclaw|ToFW} is suspicious of visitors, even if Razak is with them. He converses only if a character succeeds on a DC 16 Charisma ({@skill Intimidation} or {@skill Persuasion}) check or brings him a gift of fresh yak meat. Characters might purchase yak meat at Camp Greenbriar for 20 gp or ask {@creature Ophelia|ToFW} to provide it from a non-sapient source.",
+										"Once {@creature Ebonclaw|ToFW} agrees to speak with the characters, he is forthright and shares the following:",
 										{
 											"type": "list",
 											"items": [
-												"He was recently defeated in battle by Ophelia. He and his hunters attacked a group of reindeer, not realizing the group was under her protection. His group was in the wrong.",
+												"He was recently defeated in battle by {@creature Ophelia|ToFW}. He and his hunters attacked a group of reindeer, not realizing the group was under her protection. His group was in the wrong.",
 												"He knows nothing of Oka's death but is sad to hear of it. He doubts any creature in his territory was involved.",
-												"Ebonclaw loathes the Vile Hunt.",
-												"Although he doesn't know who killed Oka, he suggests asking Parvaz at Eagles' Aerie\u2014the albatross leader's flying followers see all."
+												"{@creature Ebonclaw|ToFW} loathes the Vile Hunt.",
+												"Although he doesn't know who killed Oka, he suggests asking {@creature Parvaz|ToFW} at Eagles' Aerie\u2014the albatross leader's flying followers see all."
 											]
 										}
 									]
@@ -3967,13 +3973,13 @@
 												"Straight, high-branched trees create a lofty canopy. Broad nests and tree houses hide among the branches. Below, small forest creatures scamper across shadowed trails."
 											]
 										},
-										"Any of the sapient birds who make their home in Eagles' Aerie can direct the characters to their leader, Parvaz. Currently, the albatross is at a meeting place called Watcher's Talon, deep in the forest. The most direct route to the site takes 2 hours. Unless a character succeeds on a DC 14 Wisdom ({@skill Survival}) check, they follow a winding route that takes twice as long.",
-										"On reaching Watcher's Talon, the characters find a petrified, leafless tree. Here the giant albatross Parvaz holds court with a congress of winged creatures\u2014sapient {@creature Eagle||eagles}, {@creature Owl||owls}, {@creature Pteranodon||pteranodons}, winged lizards, and more.",
-										"Parvaz uses the {@creature giant eagle} stat block, with the following changes:",
+										"Any of the sapient birds who make their home in Eagles' Aerie can direct the characters to their leader, {@creature Parvaz|ToFW}. Currently, the albatross is at a meeting place called Watcher's Talon, deep in the forest. The most direct route to the site takes 2 hours. Unless a character succeeds on a DC 14 Wisdom ({@skill Survival}) check, they follow a winding route that takes twice as long.",
+										"On reaching Watcher's Talon, the characters find a petrified, leafless tree. Here the giant albatross {@creature Parvaz|ToFW} holds court with a congress of winged creatures\u2014sapient {@creature Eagle||eagles}, {@creature Owl||owls}, {@creature Pteranodon||pteranodons}, winged lizards, and more.",
+										"{@creature Parvaz|ToFW} uses the {@creature giant eagle} stat block, with the following changes:",
 										{
 											"type": "list",
 											"items": [
-												"Parvaz is neutral.",
+												"{@creature Parvaz|ToFW} is neutral.",
 												"He has an Intelligence of 16 and a Charisma of 14.",
 												"He speaks Common."
 											]
@@ -3985,8 +3991,8 @@
 									"name": "Talking with Parvaz",
 									"id": "11f",
 									"entries": [
-										"Parvaz is guarded and pragmatic. He seeks to create a Faunel on par with other gate-towns, where the residents trade and leverage their unique abilities.",
-										"During a conversation with the characters, Parvaz shares the following information:",
+										"{@creature Parvaz|ToFW} is guarded and pragmatic. He seeks to create a Faunel on par with other gate-towns, where the residents trade and leverage their unique abilities.",
+										"During a conversation with the characters, {@creature Parvaz|ToFW} shares the following information:",
 										{
 											"type": "list",
 											"items": [
@@ -3995,8 +4001,8 @@
 												"He knows where the Vile Hunt lairs, but he doesn't know why he should share that information."
 											]
 										},
-										"A character who succeeds on a DC 18 Charisma ({@skill Persuasion}) check can convince Parvaz to share the location of the Vile Hunt's camp. Otherwise, the characters need to make sharing this information worth Parvaz's while. Parvaz would be interested in the {@item Figurine of Wondrous Power, Serpentine Owl||figurine of wondrous power (serpentine owl)} Ophelia offered the characters. He's also willing to accept a gift at a later date, at which point he sends agents to see if the characters have anything he'd be interested in.",
-										"Once the characters have struck a deal with Parvaz, he shares the location of the Vile Hunt."
+										"A character who succeeds on a DC 18 Charisma ({@skill Persuasion}) check can convince {@creature Parvaz|ToFW} to share the location of the Vile Hunt's camp. Otherwise, the characters need to make sharing this information worth {@creature Parvaz|ToFW}'s while. {@creature Parvaz|ToFW} would be interested in the {@item Figurine of Wondrous Power, Serpentine Owl||figurine of wondrous power (serpentine owl)} {@creature Ophelia|ToFW} offered the characters. He's also willing to accept a gift at a later date, at which point he sends agents to see if the characters have anything he'd be interested in.",
+										"Once the characters have struck a deal with {@creature Parvaz|ToFW}, he shares the location of the Vile Hunt."
 									]
 								},
 								{
@@ -4004,7 +4010,7 @@
 									"name": "Pursuing the Vile Hunt",
 									"id": "120",
 									"entries": [
-										"The Vile Hunt gnolls lurk in a clearing a half-day's travel from Camp Greenbriar. If the characters bring this information to Ebonclaw or Ophelia, the first leader they speak to offers the characters 2,000 gp worth of gemstones to participate in a raid. They also send friendly animals equal to the number of characters. Ebonclaw sends {@creature Dire Wolf||dire wolves}, and Ophelia sends {@creature Rhinoceros||rhinoceroses}.",
+										"The Vile Hunt gnolls lurk in a clearing a half-day's travel from Camp Greenbriar. If the characters bring this information to {@creature Ebonclaw|ToFW} or {@creature Ophelia|ToFW}, the first leader they speak to offers the characters 2,000 gp worth of gemstones to participate in a raid. They also send friendly animals equal to the number of characters. {@creature Ebonclaw|ToFW} sends {@creature Dire Wolf||dire wolves}, and {@creature Ophelia|ToFW} sends {@creature Rhinoceros||rhinoceroses}.",
 										{
 											"type": "gallery",
 											"images": [
@@ -4033,7 +4039,8 @@
 													"height": 1500,
 													"mapParent": {
 														"id": "22b"
-													}
+													},
+													"credit": "Mike Schley"
 												}
 											]
 										}
@@ -4199,7 +4206,7 @@
 							"name": "Whirlwyrm Attack",
 							"id": "12d",
 							"entries": [
-								"Reaching the gate to Ysgard by boat takes an hour. As the characters near the maelstrom, a character who succeeds on a DC 20 Wisdom ({@skill Perception}) check notices two serpentine shapes in the water. These are deadly giant eels known as whirlwyrms (use the {@creature giant crocodile} stat block). If no character notices the whirlwyrms, the characters and all the sailors on the {@i Courier} are surprised when the eels burst from the water\u2014one on each side of the ship\u2014and attack. A whirlwyrm dives underwater and flees if it is reduced to 10 or fewer hit points.",
+								"Reaching the gate to Ysgard by boat takes an hour. As the characters near the maelstrom, a character who succeeds on a DC 20 Wisdom ({@skill Perception}) check notices two serpentine shapes in the water. These are deadly giant eels known as whirlwyrms (use the {@creature giant crocodile} stat block). If no character notices the whirlwyrms, the characters and all the sailors on the {@i Courier} are surprised when the eels burst from the water\u2014one on each side of the ship\u2014and attack. A {@creature whirlwyrm|ToFW} dives underwater and flees if it is reduced to 10 or fewer hit points.",
 								"If the characters didn't journey to the whirlpool using the {@i Courier}, the whirlwyrms still attack, rising 10 feet out of the water to snap at the characters.",
 								{
 									"type": "entries",
@@ -4238,7 +4245,7 @@
 							"name": "Saga of the Whirlwyrm",
 							"id": "12f",
 							"entries": [
-								"Whether aboard the {@i Courier} or back on shore, the unusual nature of a whirlwyrm attack becomes clear. If the characters haven't met Bkol, he witnessed their encounter with the whirlwyrms and approaches. The captain is shocked to see whirlwyrms, as they typically hunt near Grakenok, a bariaur community across the bay. If the whirlwyrms are moving into the bay, Bkol suspects that something has happened to the bariaurs.",
+								"Whether aboard the {@i Courier} or back on shore, the unusual nature of a {@creature whirlwyrm|ToFW} attack becomes clear. If the characters haven't met Bkol, he witnessed their encounter with the whirlwyrms and approaches. The captain is shocked to see whirlwyrms, as they typically hunt near Grakenok, a bariaur community across the bay. If the whirlwyrms are moving into the bay, Bkol suspects that something has happened to the bariaurs.",
 								"Bkol shares his concern with the characters and asks them to come with him to meet Tyrza Bonebreaker, Glorium's leader.",
 								{
 									"type": "entries",
@@ -4254,7 +4261,7 @@
 												"The leader of Glorium strands well over six feet tall, with an artistically etched prosthetic arm and an impressive collection of tattoos covering her copper-colored skin. She notices Bkol as he approaches and gives a friendly shout: \"Bkol! Back from the land of legends! Glad to see we keep you coming back!\""
 											]
 										},
-										"Tyrza Bonebreaker (chaotic good, human {@creature gladiator}; {@book detailed further|SatO|3|Glorium} in {@book Sigil and the Outlands|SatO}) is loud, powerful, and free with her feelings and praise. She's fond of Bkol, and listens as he encourages the characters to recount the whirlwyrm attack. When he's done reporting, Tyrza says the following:",
+										"Tyrza Bonebreaker (chaotic good, human {@creature gladiator}; {@book detailed further|SatO|3|Glorium} in {@book Sigil and the Outlands|SatO}) is loud, powerful, and free with her feelings and praise. She's fond of Bkol, and listens as he encourages the characters to recount the {@creature whirlwyrm|ToFW} attack. When he's done reporting, Tyrza says the following:",
 										{
 											"type": "insetReadaloud",
 											"id": "132",
@@ -4333,8 +4340,8 @@
 									"name": "Whirlwyrm Spotted",
 									"id": "138",
 									"entries": [
-										"A giant splash reveals another whirlwyrm (use the {@creature giant crocodile} stat block) swimming near the characters. If sailing characters want to sneak by the creature, they must succeed on a DC 10 group Dexterity ({@skill Stealth}) check, or the monster notices them and attacks. If the characters engage the creature in combat, they're delayed in arriving at Grakenok (see the \"Arriving in Grakenok\" section).",
-										"A character who calls out to a nearby rival and succeeds on a DC 16 Charisma ({@skill Persuasion}) check can convince the rival to fight the whirlwyrm, which delay's that hero's arrival in Grakenok."
+										"A giant splash reveals another {@creature whirlwyrm|ToFW} (use the {@creature giant crocodile} stat block) swimming near the characters. If sailing characters want to sneak by the creature, they must succeed on a DC 10 group Dexterity ({@skill Stealth}) check, or the monster notices them and attacks. If the characters engage the creature in combat, they're delayed in arriving at Grakenok (see the \"Arriving in Grakenok\" section).",
+										"A character who calls out to a nearby rival and succeeds on a DC 16 Charisma ({@skill Persuasion}) check can convince the rival to fight the {@creature whirlwyrm|ToFW}, which delay's that hero's arrival in Grakenok."
 									]
 								}
 							]
@@ -4358,10 +4365,10 @@
 									"type": "insetReadaloud",
 									"id": "13b",
 									"entries": [
-										"With its colorful homes and varied goat and sea-serpent carvings, the village of Grakenok would look cozy were it not being attacked by a behemoth whirlwyrm. Over thirty feet long, the giant eel towers over the town's few bariaur defenders, smashing fishing boats and cottages in its rampage."
+										"With its colorful homes and varied goat and sea-serpent carvings, the village of Grakenok would look cozy were it not being attacked by a behemoth {@creature whirlwyrm|ToFW}. Over thirty feet long, the giant eel towers over the town's few bariaur defenders, smashing fishing boats and cottages in its rampage."
 									]
 								},
-								"The bariaurs of Grakenok have put up a heroic defense of their home. They've been suffering whirlwyrm attacks for days, culminating in an assault by a massive elder whirlwyrm. This giant whirlwyrm uses the {@creature behir} stat block with these adjustments:",
+								"The bariaurs of Grakenok have put up a heroic defense of their home. They've been suffering {@creature whirlwyrm|ToFW} attacks for days, culminating in an assault by a massive elder {@creature whirlwyrm|ToFW}. This {@creature giant whirlwyrm|ToFW} uses the {@creature behir} stat block with these adjustments:",
 								{
 									"type": "list",
 									"items": [
@@ -4369,7 +4376,7 @@
 										"Change its lightning breath to deal thunder damage. This represents its discombobulating roar."
 									]
 								},
-								"The enraged whirlwyrm fights to the death.",
+								"The enraged {@creature whirlwyrm|ToFW} fights to the death.",
 								{
 									"type": "image",
 									"href": {
@@ -4387,7 +4394,7 @@
 									"name": "Four-Way Battle",
 									"id": "13c",
 									"entries": [
-										"The characters, {@creature Doomguard Rot Blade|MPP|Sytri}, and {@creature Equinal Guardinal|MPP|Tol} all seek the glory of defeating the elder whirlwyrm. Track how much damage each character and the rival heroes deal to the monster every round. Instead of rolling damage, Sytri and Tol both deal 10 damage to the whirlwyrm on each of their turns. For every round by which a rival hero beats the characters to Grakenok (if any), that hero has already dealt 10 damage to the monster. If the characters beat Sytri or Tol to Grakenok, the rival heroes enter battle as soon as they arrive.",
+										"The characters, {@creature Doomguard Rot Blade|MPP|Sytri}, and {@creature Equinal Guardinal|MPP|Tol} all seek the glory of defeating the elder {@creature whirlwyrm|ToFW}. Track how much damage each character and the rival heroes deal to the monster every round. Instead of rolling damage, Sytri and Tol both deal 10 damage to the {@creature whirlwyrm|ToFW} on each of their turns. For every round by which a rival hero beats the characters to Grakenok (if any), that hero has already dealt 10 damage to the monster. If the characters beat Sytri or Tol to Grakenok, the rival heroes enter battle as soon as they arrive.",
 										"Sytri and Tol focus on the monster and ignore the characters unless the party attacks them first."
 									]
 								}
@@ -4398,7 +4405,7 @@
 							"name": "Victory at Grakenok",
 							"id": "13d",
 							"entries": [
-								"When the elder whirlwyrm is defeated, the bariaurs of Grakenok laud the heroes who saved them. They treat whoever dealt the whirlwyrm the most damage as the true hero, though\u2014whether this be one of the characters, Sytri, or Tol. To this true hero, the bariaurs present one of the whirlwyrm's foot-long fangs. If a character wins, Sytri and Tol prove to be graceful competitors and congratulate the victor."
+								"When the elder {@creature whirlwyrm|ToFW} is defeated, the bariaurs of Grakenok laud the heroes who saved them. They treat whoever dealt the {@creature whirlwyrm|ToFW} the most damage as the true hero, though\u2014whether this be one of the characters, Sytri, or Tol. To this true hero, the bariaurs present one of the {@creature whirlwyrm|ToFW}'s foot-long fangs. If a character wins, Sytri and Tol prove to be graceful competitors and congratulate the victor."
 							]
 						},
 						{
@@ -4406,7 +4413,7 @@
 							"name": "Conclusion",
 							"id": "13e",
 							"entries": [
-								"On their return to Glorium, the characters are greeted by Tyrza and locals who want to know everything that happened. If a character brings back the whirlwyrm fang the bariaurs gave them, Tyrza recognizes that character as the Hero of the Day. She also rewards that character with a {@item Horn of Valhalla, Silver||silver horn of Valhalla} and your choice of one of the following treasures:",
+								"On their return to Glorium, the characters are greeted by Tyrza and locals who want to know everything that happened. If a character brings back the {@creature whirlwyrm|ToFW} fang the bariaurs gave them, Tyrza recognizes that character as the Hero of the Day. She also rewards that character with a {@item Horn of Valhalla, Silver||silver horn of Valhalla} and your choice of one of the following treasures:",
 								{
 									"type": "list",
 									"items": [
@@ -4416,7 +4423,7 @@
 									]
 								},
 								"Tyrza then hosts a daylong feast in the character's honor.",
-								"If no character returned with the whirlwyrm fang, Tyrza invites them to the feast she throws for whoever did. Bkol then thanks the characters for the adventure and rewards them with three feathers from the {@i Courier}. These function as three random {@item Quaal's Feather Token||Quaal's feather tokens}.",
+								"If no character returned with the {@creature whirlwyrm|ToFW} fang, Tyrza invites them to the feast she throws for whoever did. Bkol then thanks the characters for the adventure and rewards them with three feathers from the {@i Courier}. These function as three random {@item Quaal's Feather Token||Quaal's feather tokens}.",
 								"Once the chapter concludes, consult the \"{@adventure Advancing in Level|ToFW|2|Advancing in Level}\" section of {@adventure chapter 4|ToFW|2|Chapter 4\u2013Into the Outlands} and let the party determine their next destination."
 							]
 						}
@@ -4643,7 +4650,8 @@
 											"height": 1500,
 											"mapParent": {
 												"id": "22c"
-											}
+											},
+											"credit": "Mike Schley"
 										}
 									]
 								},
@@ -4773,7 +4781,7 @@
 								"type": "internal",
 								"path": "adventure/ToFW/039-02-011.kopoha.webp"
 							},
-							"title": "The revels of Kopoha the empyrean get out of hand in the gate-town of Sylvania",
+							"title": "The revels of {@creature Kopoha|ToFW} the empyrean get out of hand in the gate-town of Sylvania",
 							"credit": "Michele Giorgi",
 							"width": 1700,
 							"height": 1136
@@ -4857,11 +4865,11 @@
 								{
 									"type": "list",
 									"items": [
-										"The ruckus is coming from a despondent {@creature empyrean}: Kopoha, the Celestial child of a god of storms who is trying to crash a private event.",
+										"The ruckus is coming from a despondent {@creature empyrean}: {@creature Kopoha|ToFW}, the Celestial child of a god of storms who is trying to crash a private event.",
 										"Empyreans are creatures of incredible power and overwhelming emotion.",
-										"Should Kopoha's dark mood grows much stronger, she might become a danger to the town.",
-										"If the characters distract Kopoha from the event at the Yearning Timbers event hall, Danai will lead the characters to the gate to Arborea.",
-										"Danai doesn't know the cause of the empyrean's foul mood, but there are celebrations aplenty in town where the characters might lighten Kopoha's mood."
+										"Should {@creature Kopoha|ToFW}'s dark mood grows much stronger, she might become a danger to the town.",
+										"If the characters distract {@creature Kopoha|ToFW} from the event at the Yearning Timbers event hall, Danai will lead the characters to the gate to Arborea.",
+										"Danai doesn't know the cause of the empyrean's foul mood, but there are celebrations aplenty in town where the characters might lighten {@creature Kopoha|ToFW}'s mood."
 									]
 								},
 								{
@@ -4869,7 +4877,7 @@
 									"name": "Meeting Kopoha",
 									"id": "15c",
 									"entries": [
-										"When the characters seek out Kopoha, they find her in the following scene:",
+										"When the characters seek out {@creature Kopoha|ToFW}, they find her in the following scene:",
 										{
 											"type": "insetReadaloud",
 											"id": "15d",
@@ -4877,10 +4885,10 @@
 												"An eighteen-foot-tall, humanlike woman with marble skin and eyes crackling with lightning crouches to agitatedly argue with a calm, silver-haired elf. Beyond the elf is a rollicking celebration taking place inside a towering banyan tree strobing with colored lights."
 											]
 										},
-										"Kopoha (chaotic good {@creature empyrean} without a Maul attack) argues with an elf named Manalath (neutral good {@creature mage}), who's respectfully preventing the empyrean from entering the Yearning Timbers. Inside is a rare, invite-only event being hosted by Rillifane Rallathil, an elf god of nature. Manalath apologizes and calmly repeats that Kopoha isn't on the guest list. As Kopoha grows more insistent, winds carrying the scent of a thunderstorm rise around the pair.",
-										"The argument continues until the characters intervene. Any interruption catches Kopoha off guard. She sizes up the characters and says, \"I suppose you're not completely unworthy of my time. Why do you approach Kopoha?\" Her demeanor is challenging but not hostile.",
-										"A character can talk Kopoha away from the Yearning Timbers through roleplaying or by succeeding on a DC 12 Charisma ({@skill Persuasion}) check. Characters who flatter Kopoha have advantage on this check.",
-										"Once the characters convince Kopoha to leave the Yearning Timbers, they need someplace to take her; otherwise, she returns to arguing with Manalath."
+										"{@creature Kopoha|ToFW} (chaotic good {@creature empyrean} without a Maul attack) argues with an elf named Manalath (neutral good {@creature mage}), who's respectfully preventing the empyrean from entering the Yearning Timbers. Inside is a rare, invite-only event being hosted by Rillifane Rallathil, an elf god of nature. Manalath apologizes and calmly repeats that {@creature Kopoha|ToFW} isn't on the guest list. As {@creature Kopoha|ToFW} grows more insistent, winds carrying the scent of a thunderstorm rise around the pair.",
+										"The argument continues until the characters intervene. Any interruption catches {@creature Kopoha|ToFW} off guard. She sizes up the characters and says, \"I suppose you're not completely unworthy of my time. Why do you approach {@creature Kopoha|ToFW}?\" Her demeanor is challenging but not hostile.",
+										"A character can talk {@creature Kopoha|ToFW} away from the Yearning Timbers through roleplaying or by succeeding on a DC 12 Charisma ({@skill Persuasion}) check. Characters who flatter {@creature Kopoha|ToFW} have advantage on this check.",
+										"Once the characters convince {@creature Kopoha|ToFW} to leave the Yearning Timbers, they need someplace to take her; otherwise, she returns to arguing with Manalath."
 									]
 								},
 								{
@@ -4888,7 +4896,7 @@
 									"name": "Kopoha's Bad Day",
 									"id": "15e",
 									"entries": [
-										"Kopoha recently endured a crushing defeat by her bitterest rival, her sister Alethira. The two are always trying to outdo each other as they vie for their parents' approval. They are usually well matched, but this time Alethira humiliated Kopoha by beating her at cards and taking her maul as a prize. This defeat exacerbated the worries Kopoha harbors (see the following section). She's trying to bury her worries by recklessly celebrating in Sylvania."
+										"{@creature Kopoha|ToFW} recently endured a crushing defeat by her bitterest rival, her sister Alethira. The two are always trying to outdo each other as they vie for their parents' approval. They are usually well matched, but this time Alethira humiliated {@creature Kopoha|ToFW} by beating her at cards and taking her maul as a prize. This defeat exacerbated the worries {@creature Kopoha|ToFW} harbors (see the following section). She's trying to bury her worries by recklessly celebrating in Sylvania."
 									]
 								},
 								{
@@ -4896,7 +4904,7 @@
 									"name": "Titanic Pain",
 									"id": "15f",
 									"entries": [
-										"In situations noted later in this chapter, Kopoha might share the following truths and a quandary about her life:",
+										"In situations noted later in this chapter, {@creature Kopoha|ToFW} might share the following truths and a quandary about her life:",
 										{
 											"type": "list",
 											"style": "list-hang-notitle",
@@ -4904,21 +4912,21 @@
 												{
 													"type": "item",
 													"name": "Familial Expectations",
-													"entry": "Kopoha's parents expect her to become a god one day. They're constantly watching her and judging whether she's good enough for godhood. That's a lot to live up to! How do the characters think she can ever live up to the expectations of literal gods?"
+													"entry": "{@creature Kopoha|ToFW}'s parents expect her to become a god one day. They're constantly watching her and judging whether she's good enough for godhood. That's a lot to live up to! How do the characters think she can ever live up to the expectations of literal gods?"
 												},
 												{
 													"type": "item",
 													"name": "Sibling Jealousy",
-													"entry": "Kopoha thinks her sister, Alethira, is amazing at everything. Kopoha respects her sister but feels she has to prove to her parents that she's just as worthy a daughter and future god. How do the characters think she can be a loving sister while proving she's just as amazing as Alethira?"
+													"entry": "{@creature Kopoha|ToFW} thinks her sister, Alethira, is amazing at everything. {@creature Kopoha|ToFW} respects her sister but feels she has to prove to her parents that she's just as worthy a daughter and future god. How do the characters think she can be a loving sister while proving she's just as amazing as Alethira?"
 												},
 												{
 													"type": "item",
 													"name": "Divine Insecurity",
-													"entry": "Kopoha dreads becoming a god. She doesn't even know herself yet. What if she becomes a god of the sea? She hates seafood! Or what if she becomes god of something embarrassing, like smelly winds? It's a big deal for an immortal! What do the characters think she should be god of?"
+													"entry": "{@creature Kopoha|ToFW} dreads becoming a god. She doesn't even know herself yet. What if she becomes a god of the sea? She hates seafood! Or what if she becomes god of something embarrassing, like smelly winds? It's a big deal for an immortal! What do the characters think she should be god of?"
 												}
 											]
 										},
-										"How characters react to these confessions affects how Kopoha's visit to Sylvania ends (see the \"{@adventure Closing Time|ToFW|2|Closing Time}\" section)."
+										"How characters react to these confessions affects how {@creature Kopoha|ToFW}'s visit to Sylvania ends (see the \"{@adventure Closing Time|ToFW|2|Closing Time}\" section)."
 									]
 								}
 							]
@@ -4934,9 +4942,9 @@
 									"name": "Dryad Dance",
 									"id": "161",
 									"entries": [
-										"In a clearing lit by energetic fireflies, a group of ten {@creature Dryad||dryads} sings and dances. The group welcomes anyone who comes in peace to enjoy the serenity of their trees. Kopoha eagerly participates, but her size makes her a menace to smaller dancers. While Kopoha is dancing, a character must keep those around the empyrean safe, perhaps by maneuvering her around the dance floor with a successful DC 14 ({@skill Acrobatics} or {@skill Sleight of Hand}) check.",
-										"If the characters fail at helping Kopoha dance safely, she accidentally knocks over some dryads or damages a tree. Embarrassed, the empyrean insists on leaving immediately.",
-										"If the characters succeed, Kopoha has a great time and dances for an hour. While taking a break, she shares one of the truths from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section. Afterward, she's ready to move on to another celebration."
+										"In a clearing lit by energetic fireflies, a group of ten {@creature Dryad||dryads} sings and dances. The group welcomes anyone who comes in peace to enjoy the serenity of their trees. {@creature Kopoha|ToFW} eagerly participates, but her size makes her a menace to smaller dancers. While {@creature Kopoha|ToFW} is dancing, a character must keep those around the empyrean safe, perhaps by maneuvering her around the dance floor with a successful DC 14 ({@skill Acrobatics} or {@skill Sleight of Hand}) check.",
+										"If the characters fail at helping {@creature Kopoha|ToFW} dance safely, she accidentally knocks over some dryads or damages a tree. Embarrassed, the empyrean insists on leaving immediately.",
+										"If the characters succeed, {@creature Kopoha|ToFW} has a great time and dances for an hour. While taking a break, she shares one of the truths from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section. Afterward, she's ready to move on to another celebration."
 									]
 								},
 								{
@@ -4951,9 +4959,9 @@
 											],
 											"by": "Tyuffayn Tinilyn, pixie celebrant (known as \"Faerie Fire\" but not for the reasons you think)"
 										},
-										"The {@creature Pixie||pixies} of Goodberry Grove party hard, and their party is in full swing. Wine, juice, and fruit desserts flow along with music and laughter among the toadstools. If the characters enter the party, they're shrunk down to pixie size, while Kopoha becomes the size of a halfling. This delights the empyrean, and she tests her strength by picking up tiny mushroom structures or visiting forest animals. Kopoha's feats and boasting quickly irritate the pixies. A character can make this more entertaining by succeeding on a DC 12 Charisma ({@skill Performance}) check or by otherwise casting Kopoha's efforts as charming.",
-										"If the characters fail to compensate for Kopoha's boasting, the pixies ask the characters and the empyrean to leave.",
-										"If the characters succeed, the pixies encourage Kopoha. She insists on taking a break after an hour. While doing so, she shares one of the truths from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section. Afterward, Kopoha wants to move on to a new party."
+										"The {@creature Pixie||pixies} of Goodberry Grove party hard, and their party is in full swing. Wine, juice, and fruit desserts flow along with music and laughter among the toadstools. If the characters enter the party, they're shrunk down to pixie size, while {@creature Kopoha|ToFW} becomes the size of a halfling. This delights the empyrean, and she tests her strength by picking up tiny mushroom structures or visiting forest animals. {@creature Kopoha|ToFW}'s feats and boasting quickly irritate the pixies. A character can make this more entertaining by succeeding on a DC 12 Charisma ({@skill Performance}) check or by otherwise casting {@creature Kopoha|ToFW}'s efforts as charming.",
+										"If the characters fail to compensate for {@creature Kopoha|ToFW}'s boasting, the pixies ask the characters and the empyrean to leave.",
+										"If the characters succeed, the pixies encourage {@creature Kopoha|ToFW}. She insists on taking a break after an hour. While doing so, she shares one of the truths from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section. Afterward, {@creature Kopoha|ToFW} wants to move on to a new party."
 									]
 								},
 								{
@@ -4961,9 +4969,9 @@
 									"name": "Skull Bocce",
 									"id": "163",
 									"entries": [
-										"Amid a field of memorials, a retired god of the dead and a retinue of skeletons and morbidly dressed competitors play a casual, good-natured game of bocce. The god (perhaps Jergal, an apathetic former god of death) invites Kopoha and the characters to play, but instead of normal balls, they're using the skulls of the group's skeletons. Kopoha is eager to play but is both bad at the game (which she's never played) and far too competitive for this group. She might also attempt to use the Mosaic Mimir as a ball\u2014which doesn't harm it but might make some characters anxious. A character must succeed on a DC 14 Strength ({@skill Athletics}) check or Charisma ({@skill Persuasion}) check to help Kopoha either win or deal with her loss gracefully.",
-										"If the characters fail, Kopoha throws a tantrum that annoys the god. The god insists Kopoha and the group leave, or their skulls will be used for the next game.",
-										"If the characters succeed, the game goes well, but eventually the god decides to move on. Kopoha takes a break and shares one of the truths from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section. Afterward, she wants to move on to a new party.",
+										"Amid a field of memorials, a retired god of the dead and a retinue of skeletons and morbidly dressed competitors play a casual, good-natured game of bocce. The god (perhaps Jergal, an apathetic former god of death) invites {@creature Kopoha|ToFW} and the characters to play, but instead of normal balls, they're using the skulls of the group's skeletons. {@creature Kopoha|ToFW} is eager to play but is both bad at the game (which she's never played) and far too competitive for this group. She might also attempt to use the Mosaic Mimir as a ball\u2014which doesn't harm it but might make some characters anxious. A character must succeed on a DC 14 Strength ({@skill Athletics}) check or Charisma ({@skill Persuasion}) check to help {@creature Kopoha|ToFW} either win or deal with her loss gracefully.",
+										"If the characters fail, {@creature Kopoha|ToFW} throws a tantrum that annoys the god. The god insists {@creature Kopoha|ToFW} and the group leave, or their skulls will be used for the next game.",
+										"If the characters succeed, the game goes well, but eventually the god decides to move on. {@creature Kopoha|ToFW} takes a break and shares one of the truths from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section. Afterward, she wants to move on to a new party.",
 										{
 											"type": "quote",
 											"entries": [
@@ -4979,7 +4987,7 @@
 									"id": "164",
 									"entries": [
 										"In a silent glade, a ring of standing stones surrounds a fallen menhir. The toppled rock is laden with an inviting but unattended feast. Any local or a character who succeeds on a DC 12 Intelligence ({@skill Arcana} or {@skill History}) check knows that this is Widow's Henge and that anyone who eats from the stone vanishes.",
-										"A character can dare Kopoha to eat a portion of the feast by succeeding on a DC 18 Charisma ({@skill Intimidation} or {@skill Persuasion}) check. If a character knows the legends about Widow's Henge, this is abjectly not a good act and could affect the character's alignment. If Kopoha eats from the feast, she vanishes the next time she is out of the characters' sight and doesn't return. The same happens to any character who eats from the feast, but the character's incarnation reappears after an hour with no memory of what happened."
+										"A character can dare {@creature Kopoha|ToFW} to eat a portion of the feast by succeeding on a DC 18 Charisma ({@skill Intimidation} or {@skill Persuasion}) check. If a character knows the legends about Widow's Henge, this is abjectly not a good act and could affect the character's alignment. If {@creature Kopoha|ToFW} eats from the feast, she vanishes the next time she is out of the characters' sight and doesn't return. The same happens to any character who eats from the feast, but the character's incarnation reappears after an hour with no memory of what happened."
 									]
 								},
 								{
@@ -4987,7 +4995,7 @@
 									"name": "Other Celebrations",
 									"id": "165",
 									"entries": [
-										"There are countless other celebrations around Sylvania. Use the events here and challenges like those outlined in the \"{@adventure Contests|ToFW|2|Contests}\" section of {@adventure chapter 9|ToFW|2|Chapter 9\u2013Glorium: Heroes of the Day} to create more festivities and chances for Kopoha to confide in the characters."
+										"There are countless other celebrations around Sylvania. Use the events here and challenges like those outlined in the \"{@adventure Contests|ToFW|2|Contests}\" section of {@adventure chapter 9|ToFW|2|Chapter 9\u2013Glorium: Heroes of the Day} to create more festivities and chances for {@creature Kopoha|ToFW} to confide in the characters."
 									]
 								}
 							]
@@ -4997,7 +5005,7 @@
 							"name": "Closing Time",
 							"id": "166",
 							"entries": [
-								"The characters' celebrations with Kopoha might end in the following ways:",
+								"The characters' celebrations with {@creature Kopoha|ToFW} might end in the following ways:",
 								{
 									"type": "list",
 									"style": "list-hang-notitle",
@@ -5005,17 +5013,17 @@
 										{
 											"type": "item",
 											"name": "Chance to Think",
-											"entry": "After Kopoha shares all the information from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section, she grows introspective. She thanks the characters and tells them she has decided to go talk to her sister, Alethira, about what's on her mind. Before Kopoha departs, she gives the characters a {@item periapt of wound closure} that resembles her face."
+											"entry": "After {@creature Kopoha|ToFW} shares all the information from the \"{@adventure Titanic Pain|ToFW|2|Titanic Pain}\" section, she grows introspective. She thanks the characters and tells them she has decided to go talk to her sister, Alethira, about what's on her mind. Before {@creature Kopoha|ToFW} departs, she gives the characters a {@item periapt of wound closure} that resembles her face."
 										},
 										{
 											"type": "item",
 											"name": "Missing Titan",
-											"entry": "If Kopoha goes missing while celebrating with the characters, Danai is displeased but upholds her end of their deal. Afterward, the spiritor asks the characters never to return to Sylvania."
+											"entry": "If {@creature Kopoha|ToFW} goes missing while celebrating with the characters, Danai is displeased but upholds her end of their deal. Afterward, the spiritor asks the characters never to return to Sylvania."
 										},
 										{
 											"type": "item",
 											"name": "Titan's Rage",
-											"entry": "If the characters mock Kopoha's feelings or encourage self-indulgent behavior, the rampage Spiritor Danai feared comes to pass. Kopoha's trail of destruction eventually leads out of town, and she's not seen in Sylvania again. This disappoints Danai, but she helps the characters find the gate to Arborea nevertheless."
+											"entry": "If the characters mock {@creature Kopoha|ToFW}'s feelings or encourage self-indulgent behavior, the rampage Spiritor Danai feared comes to pass. {@creature Kopoha|ToFW}'s trail of destruction eventually leads out of town, and she's not seen in Sylvania again. This disappoints Danai, but she helps the characters find the gate to Arborea nevertheless."
 										}
 									]
 								}
@@ -5026,7 +5034,7 @@
 							"name": "Conclusion",
 							"id": "167",
 							"entries": [
-								"Danai finds the characters soon after Kopoha departs and leads the characters to the gate to Arborea. The portal currently resides in an overgrown well in the forest outside town. The spiritor then returns to Sylvania to attend to other ongoing parties. If the characters are still in Danai's good graces, she might invite them to join her for one more celebration.",
+								"Danai finds the characters soon after {@creature Kopoha|ToFW} departs and leads the characters to the gate to Arborea. The portal currently resides in an overgrown well in the forest outside town. The spiritor then returns to Sylvania to attend to other ongoing parties. If the characters are still in Danai's good graces, she might invite them to join her for one more celebration.",
 								"When the characters are ready to leave Sylvania, consult the \"{@adventure Advancing in Level|ToFW|2|Advancing in Level}\" section of {@adventure chapter 4|ToFW|2|Chapter 4\u2013Into the Outlands} and let the characters determine their next destination."
 							]
 						}
@@ -5128,7 +5136,7 @@
 									"name": "Righteous Hands",
 									"id": "16e",
 									"entries": [
-										"A team of Celestials, the Righteous Hands consist of eight {@creature Hound Archon|MPP|hound archons} (see {@book Morte's Planar Parade|MPP}) and their star player, a {@creature deva} named Shariel whose flanged mace rings deeply when it connects with its target. The Righteous Hands are paragons of sportsmanship and honesty, rooting for each other and never disrespecting their opponents, no matter how low the Noxious Stampede stoops."
+										"A team of Celestials, the Righteous Hands consist of eight {@creature Hound Archon|MPP|hound archons} (see {@book Morte's Planar Parade|MPP}) and their star player, a {@creature deva} named {@creature Shariel|ToFW} whose flanged mace rings deeply when it connects with its target. The Righteous Hands are paragons of sportsmanship and honesty, rooting for each other and never disrespecting their opponents, no matter how low the Noxious Stampede stoops."
 									]
 								},
 								{
@@ -5142,7 +5150,7 @@
 												"type": "internal",
 												"path": "adventure/ToFW/040-02-012.shariel.webp"
 											},
-											"title": "Shariel, Star Player of the Righteous Hands",
+											"title": "{@creature Shariel|ToFW}, Star Player of the Righteous Hands",
 											"credit": "Nikki Dawes",
 											"width": 850,
 											"height": 1532,
@@ -5215,8 +5223,8 @@
 									"name": "Righteous Hands Win",
 									"id": "177",
 									"entries": [
-										"If good prevails, the Righteous Hands celebrate and offer to shake hands with their opponents, who refuse the Celestials' gesture of goodwill. If the characters joined the Righteous Hands, Shariel gifts the characters with a prismatic chalice from Mount Celestia that functions as a {@item gem of brightness}.",
-										"If the characters reveal they helped the Righteous Hands from the sidelines in some way, Shariel still awards the chalice but shamefully notifies the modron umpire. The angel asks for a rematch in a year, adding \"cheaters never truly win.\""
+										"If good prevails, the Righteous Hands celebrate and offer to shake hands with their opponents, who refuse the Celestials' gesture of goodwill. If the characters joined the Righteous Hands, {@creature Shariel|ToFW} gifts the characters with a prismatic chalice from Mount Celestia that functions as a {@item gem of brightness}.",
+										"If the characters reveal they helped the Righteous Hands from the sidelines in some way, {@creature Shariel|ToFW} still awards the chalice but shamefully notifies the modron umpire. The angel asks for a rematch in a year, adding \"cheaters never truly win.\""
 									]
 								},
 								{
@@ -5498,7 +5506,7 @@
 					"name": "Chapter 13\u2013Secrets of the Spire",
 					"id": "18b",
 					"entries": [
-						"Once the characters restore the Mosaic Mimir's missing data, the magic device relates the information from \"{@adventure The Last Great Modron March|ToFW|2|The Last Great Modron March}\" section in {@adventure chapter 4|ToFW|2|Chapter 4\u2013Into the Outlands}. From this, the characters learn that the missing modron, R04M, likely followed the march's path to Dendradis, a rilmani community carved into the Spire. Upon traveling to Dendradis, the characters meet Ascetelis, a rilmani who offers to escort them into the Spire where the modron was last seen. Within the Spire, surrounded by mysteries of the multiverse, the characters finally catch up to R04M\u2014but they're not the first to do so.",
+						"Once the characters restore the Mosaic Mimir's missing data, the magic device relates the information from \"{@adventure The Last Great Modron March|ToFW|2|The Last Great Modron March}\" section in {@adventure chapter 4|ToFW|2|Chapter 4\u2013Into the Outlands}. From this, the characters learn that the missing modron, {@creature R04M|ToFW}, likely followed the march's path to Dendradis, a rilmani community carved into the Spire. Upon traveling to Dendradis, the characters meet Ascetelis, a rilmani who offers to escort them into the Spire where the modron was last seen. Within the Spire, surrounded by mysteries of the multiverse, the characters finally catch up to {@creature R04M|ToFW}\u2014but they're not the first to do so.",
 						{
 							"type": "entries",
 							"name": "Dendradis",
@@ -5521,7 +5529,7 @@
 												"At the seam's base stands a glimmering, crooked tower with a prominent gate. Two gray figures with armored bodies and bladed limbs flank the gate."
 											]
 										},
-										"Two {@creature ferrumach rilmani|MPP} (see {@book Morte's Planar Parade|MPP}) guard the entrance to Dendradis. They're indifferent to the characters but refuse to let non-rilmani enter without a rilmani escort. They turn hostile should anyone try to infiltrate the town. The ferrumachs share the name of the town, but they know nothing of R04M. The rilmani don't comment on the mysterious body their city is sealing back into the Spire. Feel free to develop or ignore this mystery as you please.",
+										"Two {@creature ferrumach rilmani|MPP} (see {@book Morte's Planar Parade|MPP}) guard the entrance to Dendradis. They're indifferent to the characters but refuse to let non-rilmani enter without a rilmani escort. They turn hostile should anyone try to infiltrate the town. The ferrumachs share the name of the town, but they know nothing of {@creature R04M|ToFW}. The rilmani don't comment on the mysterious body their city is sealing back into the Spire. Feel free to develop or ignore this mystery as you please.",
 										{
 											"type": "quote",
 											"entries": [
@@ -5555,10 +5563,10 @@
 												"A third rilmani strides from the gate. This figure is leaner than the others, with a copper cast to their skin. They're reading a scroll intently, but they look up as they draw near. This new rilmani halts and does a double-take, looking from you to the scroll and back again. The newcomer then approaches, holds up the parchment, and asks: \"Excuse me. Is this you?\""
 											]
 										},
-										"This is Ascetelis, a {@creature cuprilach rilmani|MPP} (see {@book Morte's Planar Parade|MPP}). In her hand is a scroll bearing the name of each character along with a brief and unflattering but accurate description. The final line reads, \"R04M. Modron. Mismatched.\"",
-										"Ascetelis is friendly, and she comes across as easy to impress, with a welcoming, folksy charm. She quickly explains she was just coming to look for the characters. She asks if R04M is with them and gives an \"aw-shucks\" snap of her fingers when it's clear the modron isn't.",
-										"If asked why she's looking for the characters, Ascetelis explains her superiors have deemed the modron R04M a threat to multiversal balance. She hopes to find the modron and return it to Dendradis so her leaders can determine what to do with it. She's also been given the characters' names, as the rilmani know the characters have been inquiring about the modron and might know its whereabouts.",
-										"If the characters share that they've heard R04M is in the area, Ascetelis is clearly surprised, and she says the following:",
+										"This is Ascetelis, a {@creature cuprilach rilmani|MPP} (see {@book Morte's Planar Parade|MPP}). In her hand is a scroll bearing the name of each character along with a brief and unflattering but accurate description. The final line reads, \"{@creature R04M|ToFW}. Modron. Mismatched.\"",
+										"Ascetelis is friendly, and she comes across as easy to impress, with a welcoming, folksy charm. She quickly explains she was just coming to look for the characters. She asks if {@creature R04M|ToFW} is with them and gives an \"aw-shucks\" snap of her fingers when it's clear the modron isn't.",
+										"If asked why she's looking for the characters, Ascetelis explains her superiors have deemed the modron {@creature R04M|ToFW} a threat to multiversal balance. She hopes to find the modron and return it to Dendradis so her leaders can determine what to do with it. She's also been given the characters' names, as the rilmani know the characters have been inquiring about the modron and might know its whereabouts.",
+										"If the characters share that they've heard {@creature R04M|ToFW} is in the area, Ascetelis is clearly surprised, and she says the following:",
 										{
 											"type": "insetReadaloud",
 											"id": "191",
@@ -5566,7 +5574,7 @@
 												"\"I'll be! Well, they say good luck\u2014like all things\u2014happens in threes. Sounds like we've got another surprise in store!\""
 											]
 										},
-										"Ascetelis then asks if the characters will join her in searching for R04M. She doesn't know where to go next but offers to escort the characters into Dendradis so they can ask around and see if anyone has seen the modron."
+										"Ascetelis then asks if the characters will join her in searching for {@creature R04M|ToFW}. She doesn't know where to go next but offers to escort the characters into Dendradis so they can ask around and see if anyone has seen the modron."
 									]
 								},
 								{
@@ -5574,7 +5582,7 @@
 									"name": "Ascetelis's Goals",
 									"id": "192",
 									"entries": [
-										"Ascetelis, like most cuprilachs, is a spy and assassin. She doesn't tell the characters about her role, that the scroll she's holding is a hit list, or that she's been ordered to slay R04M and the characters for being threats to multiversal balance. She legitimately doesn't know where R04M is and wants to tag along with the characters until they find the modron. Then she plans to manufacture their collective doom.",
+										"Ascetelis, like most cuprilachs, is a spy and assassin. She doesn't tell the characters about her role, that the scroll she's holding is a hit list, or that she's been ordered to slay {@creature R04M|ToFW} and the characters for being threats to multiversal balance. She legitimately doesn't know where {@creature R04M|ToFW} is and wants to tag along with the characters until they find the modron. Then she plans to manufacture their collective doom.",
 										"Until then, Ascetelis is cheery and eager to help her new, temporary friends."
 									]
 								},
@@ -5583,7 +5591,7 @@
 									"name": "Tracking R04M",
 									"id": "193",
 									"entries": [
-										"Hunting R04M might lead the characters into Dendradis or to explore the Spire on their own terms. Ascetelis either joins or follows the characters."
+										"Hunting {@creature R04M|ToFW} might lead the characters into Dendradis or to explore the Spire on their own terms. Ascetelis either joins or follows the characters."
 									]
 								},
 								{
@@ -5591,14 +5599,14 @@
 									"name": "Rumors in Dendradis",
 									"id": "194",
 									"entries": [
-										"With Ascetelis as an escort, the characters can enter Dendradis and ask residents what they know about R04M.",
+										"With Ascetelis as an escort, the characters can enter Dendradis and ask residents what they know about {@creature R04M|ToFW}.",
 										"Inside, Dendradis is a labyrinth of beautiful crystals and base metals inhabited entirely by rilmani. So long as Ascetelis is with the characters, the local rilmani ignore them. Rilmani who find an unattended character rush to alert the authorities, who send four {@creature ferrumach rilmani|MPP} (see {@book Morte's Planar Parade|MPP}) to evict the trespasser with as little violence as possible.",
 										{
 											"type": "entries",
 											"name": "Questioning Rilmani",
 											"id": "195",
 											"entries": [
-												"Ascetelis suggests the group find and question rilmani artisans called plumachs. These rilmani harvest crystals from the Spire and might have seen R04M. It takes Ascetelis an hour to find a plumach willing to acknowledge the characters. There's a problem, though. Even among rilmani, plumachs are notorious for avoiding strangers and their troubles. A character can get a plumach to talk by succeeding on a DC 20 Charisma ({@skill Persuasion}) check. A character gains advantage on this check if the plumach is offered 250 gp worth of a rare material useful for crafting or the characters promise that after this conversation, no one in the group will ever speak to the plumach again.",
+												"Ascetelis suggests the group find and question rilmani artisans called plumachs. These rilmani harvest crystals from the Spire and might have seen {@creature R04M|ToFW}. It takes Ascetelis an hour to find a plumach willing to acknowledge the characters. There's a problem, though. Even among rilmani, plumachs are notorious for avoiding strangers and their troubles. A character can get a plumach to talk by succeeding on a DC 20 Charisma ({@skill Persuasion}) check. A character gains advantage on this check if the plumach is offered 250 gp worth of a rare material useful for crafting or the characters promise that after this conversation, no one in the group will ever speak to the plumach again.",
 												"If a character gets a plumach to talk, the rilmani shares that a modron was seen in the caves within the Spire called the Desert of Rust. The plumach or Ascetelis can direct the characters there (see the following section).",
 												"If the group fails to get the plumach to speak with them, Ascetelis can find them another plumach willing to talk, but doing so takes {@dice 1d4} hours. Plumachs avoid conflict; they use the same stat block as {@creature ferrumach rilmani|MPP} (see {@book Morte's Planar Parade|MPP})."
 											]
@@ -5610,7 +5618,7 @@
 									"name": "Steps along the Spire",
 									"id": "196",
 									"entries": [
-										"Characters who spend a day searching the region around Dendradis for signs of R04M can make a DC 20 Wisdom ({@skill Survival}) check. If they succeed, they find the tracks of a lone monodrone leading into a narrow cave. The cave runs for nearly a mile, then opens into the {@adventure Desert of Rust|ToFW|2|Desert of Rust} (see the following section). The characters can't be certain these are R04M's tracks\u2014particularly if they're not sure what type of modron R04M is\u2014but it's the best lead they find."
+										"Characters who spend a day searching the region around Dendradis for signs of {@creature R04M|ToFW} can make a DC 20 Wisdom ({@skill Survival}) check. If they succeed, they find the tracks of a lone monodrone leading into a narrow cave. The cave runs for nearly a mile, then opens into the {@adventure Desert of Rust|ToFW|2|Desert of Rust} (see the following section). The characters can't be certain these are {@creature R04M|ToFW}'s tracks\u2014particularly if they're not sure what type of modron {@creature R04M|ToFW} is\u2014but it's the best lead they find."
 									]
 								}
 							]
@@ -5657,7 +5665,7 @@
 									"entries": [
 										"This miles-wide cavern within the Spire is covered in flakes of rust and, in some rare cases, fragments of eroded blades. Every few moments, a harmless metal scrap falls from above and clinks against the cavern floor. The cavern has no ceiling\u2014it rises endlessly into the infinite hollow of the Spire's interior.",
 										"Ascetelis can tell the characters that rilmani artisans occasionally scavenge useful materials from the cave, but most of the detritus from above is worthless.",
-										"Characters find evidence of R04M's passage after searching for 5 hours or by searching for 1 hour and succeeding on a DC 14 Wisdom ({@skill Survival}) check. This path leads up an incline toward a series of tunnels."
+										"Characters find evidence of {@creature R04M|ToFW}'s passage after searching for 5 hours or by searching for 1 hour and succeeding on a DC 14 Wisdom ({@skill Survival}) check. This path leads up an incline toward a series of tunnels."
 									]
 								}
 							]
@@ -5667,7 +5675,7 @@
 							"name": "Climbing the Spire",
 							"id": "19a",
 							"entries": [
-								"R04M's path climbs the Spire's interior. If the characters follow, they pass through gradually sloping tunnels that take hours or even days to traverse. Use any of the following encounters as the characters climb. When you're ready to conclude this section, run the \"{@adventure Scholar of Impossibilities|ToFW|2|Scholar of Impossibilities}\" encounter.",
+								"{@creature R04M|ToFW}'s path climbs the Spire's interior. If the characters follow, they pass through gradually sloping tunnels that take hours or even days to traverse. Use any of the following encounters as the characters climb. When you're ready to conclude this section, run the \"{@adventure Scholar of Impossibilities|ToFW|2|Scholar of Impossibilities}\" encounter.",
 								{
 									"type": "entries",
 									"name": "Memory from Elsewhere",
@@ -5804,7 +5812,7 @@
 							"name": "Scholar of Impossibilities",
 							"id": "1a6",
 							"entries": [
-								"Run this encounter when you're ready to bring the hunt for R04M to an end.",
+								"Run this encounter when you're ready to bring the hunt for {@creature R04M|ToFW} to an end.",
 								{
 									"type": "insetReadaloud",
 									"id": "1a7",
@@ -5908,27 +5916,27 @@
 									"width": 850,
 									"height": 2305
 								},
-								"The wriggling cocoon is a Medium object with AC 11, 8 hit points, vulnerability to radiant damage, and immunity to poison and psychic damage. Inside is the errant modron, R04M (see the following section).",
+								"The wriggling cocoon is a Medium object with AC 11, 8 hit points, vulnerability to radiant damage, and immunity to poison and psychic damage. Inside is the errant modron, {@creature R04M|ToFW} (see the following section).",
 								"The web holds four other cocoons. Each contains the bones of a long-dead Humanoid. The last cocoon opened also contains a conical hat covered in stars and a {@item wand of wonder}.",
 								{
 									"type": "entries",
 									"name": "R04M, Sigil's Most Wanted",
 									"id": "1ad",
 									"entries": [
-										"R04M is a neutral good {@creature monodrone} with an Intelligence of 8. He speaks Common and Modron. R04M is earnest, naive, and desperate to leave the Spire. He shares the following details once out of peril:",
+										"{@creature R04M|ToFW} is a neutral good {@creature monodrone} with an Intelligence of 8. He speaks Common and Modron. {@creature R04M|ToFW} is earnest, naive, and desperate to leave the Spire. He shares the following details once out of peril:",
 										{
 											"type": "list",
 											"items": [
-												"His name is R04M.",
+												"His name is {@creature R04M|ToFW}.",
 												"He says he fled Sigil because \"a fancy fox fiend was trying to disassemble him.\"",
 												"This fox fiend is holding modrons hostage in a secret prison. The modrons are doing things that are bad for the planes (he can't expound\u2014it's just bad).",
 												"He escaped this secret prison but was captured and taken to a fancy place. He used a platinum casino chip he found and escaped through a portal behind a big wheel. He still has this chip.",
-												"R04M traveled through Sigil and the Outlands to hide but also to follow the path of the last Great Modron March, hoping to complete the march he started long ago and learn how the trapped modrons are disrupting the planes.",
-												"R04M can tell the characters are affected by the disruption the fox fiend's modrons are causing.",
+												"{@creature R04M|ToFW} traveled through Sigil and the Outlands to hide but also to follow the path of the last Great Modron March, hoping to complete the march he started long ago and learn how the trapped modrons are disrupting the planes.",
+												"{@creature R04M|ToFW} can tell the characters are affected by the disruption the fox fiend's modrons are causing.",
 												"The modron doesn't know where to go, but he'd like to leave the Spire. He won't go to Sigil, where he's afraid the fox fiend will get him."
 											]
 										},
-										"R04M's story contradicts what Shemeshka told the party, and he has never been her accountant. The easiest way to reconcile these discrepancies is to confront Shemeshka (see the {@adventure following chapter|ToFW|3|Chapter 14: Behind the Wheel}). The modron gives the characters the platinum casino chip he used to escape Fortune's Wheel (see {@adventure area F12|ToFW|1|F12. Portal to the Platinum Rooms} on {@adventure map 3.1|ToFW|1|Map 3.1: Fortune's Wheel})."
+										"{@creature R04M|ToFW}'s story contradicts what Shemeshka told the party, and he has never been her accountant. The easiest way to reconcile these discrepancies is to confront Shemeshka (see the {@adventure following chapter|ToFW|3|Chapter 14: Behind the Wheel}). The modron gives the characters the platinum casino chip he used to escape Fortune's Wheel (see {@adventure area F12|ToFW|1|F12. Portal to the Platinum Rooms} on {@adventure map 3.1|ToFW|1|Map 3.1: Fortune's Wheel})."
 									]
 								},
 								{
@@ -5936,9 +5944,9 @@
 									"name": "Escaping the Spire",
 									"id": "1ae",
 									"entries": [
-										"Once they've conversed with R04M, the characters can leave the Spire however they like. On their way out, Ascetelis attempts to ambush and kill the characters and then R04M. She attacks whenever is most opportune, perhaps when the group again crosses the {@adventure Whisker|ToFW|2|The Whisker} (detailed in this chapter).",
+										"Once they've conversed with {@creature R04M|ToFW}, the characters can leave the Spire however they like. On their way out, Ascetelis attempts to ambush and kill the characters and then {@creature R04M|ToFW}. She attacks whenever is most opportune, perhaps when the group again crosses the {@adventure Whisker|ToFW|2|The Whisker} (detailed in this chapter).",
 										"While attacking the characters, Ascetelis makes it clear that this is just a job and that her betrayal is nothing personal. The glitches affecting the characters make them threats to the planes, and the rilmani have decided the characters' deaths are the surest way to end their menace.",
-										"After contending with Ascetelis, the characters aren't readmitted to Dendradis. However, R04M can show them a tunnel that connects the Desert of Rust with the exterior of the Spire. The characters can also find this tunnel after 1 hour of searching for an exit from the Desert of Rust. This chapter ends when the characters leave the Spire. Each character gains a level on escaping."
+										"After contending with Ascetelis, the characters aren't readmitted to Dendradis. However, {@creature R04M|ToFW} can show them a tunnel that connects the Desert of Rust with the exterior of the Spire. The characters can also find this tunnel after 1 hour of searching for an exit from the Desert of Rust. This chapter ends when the characters leave the Spire. Each character gains a level on escaping."
 									]
 								}
 							]
@@ -5957,7 +5965,7 @@
 					"name": "Chapter 14: Behind the Wheel",
 					"id": "1b0",
 					"entries": [
-						"Having learned that Shemeshka might not be dealing with them honestly, the characters return to Sigil and Fortune's Wheel. There, R04M's platinum chip grants the characters access to the casino's hidden Platinum Rooms and Shemeshka's private sanctum.",
+						"Having learned that Shemeshka might not be dealing with them honestly, the characters return to Sigil and Fortune's Wheel. There, {@creature R04M|ToFW}'s platinum chip grants the characters access to the casino's hidden Platinum Rooms and Shemeshka's private sanctum.",
 						{
 							"type": "image",
 							"href": {
@@ -5974,9 +5982,9 @@
 							"name": "Return to Sigil",
 							"id": "1b1",
 							"entries": [
-								"How the characters return to Sigil from the Outlands is up to them. The portal they initially used to reach the Outlands remains open, but if the party wants to use a different portal, one can be found within a day's travel of any gate-town or near any other Outlands site. R04M, the Castellan, or another NPC can provide this information.",
-								"If the characters haven't put together from R04M's story that Shemeshka is up to no good, Zaythir or another ally can suggest the group should be wary on returning to Fortune's Wheel.",
-								"When they arrive in Sigil, the characters find it unchanged from when they departed. They can explore the city for as long as they please but should eventually return to Fortune's Wheel. Following R04M's vague directions, they can find the portal behind the fortune's wheel game. A character who questions one of Shemeshka's employees at the casino and succeeds on a DC 16 Charisma ({@skill Intimidation} or {@skill Persuasion}) check can also learn there's a portal behind Fortune's Wheel, but most employees don't know how to open it.",
+								"How the characters return to Sigil from the Outlands is up to them. The portal they initially used to reach the Outlands remains open, but if the party wants to use a different portal, one can be found within a day's travel of any gate-town or near any other Outlands site. {@creature R04M|ToFW}, the Castellan, or another NPC can provide this information.",
+								"If the characters haven't put together from {@creature R04M|ToFW}'s story that Shemeshka is up to no good, {@creature Zaythir|ToFW} or another ally can suggest the group should be wary on returning to Fortune's Wheel.",
+								"When they arrive in Sigil, the characters find it unchanged from when they departed. They can explore the city for as long as they please but should eventually return to Fortune's Wheel. Following {@creature R04M|ToFW}'s vague directions, they can find the portal behind the fortune's wheel game. A character who questions one of Shemeshka's employees at the casino and succeeds on a DC 16 Charisma ({@skill Intimidation} or {@skill Persuasion}) check can also learn there's a portal behind Fortune's Wheel, but most employees don't know how to open it.",
 								{
 									"type": "quote",
 									"entries": [
@@ -6144,7 +6152,8 @@
 											"height": 3300,
 											"mapParent": {
 												"id": "22d"
-											}
+											},
+											"credit": "Jared Blando"
 										}
 									]
 								},
@@ -6636,10 +6645,10 @@
 												"Each character independently ran afoul of Shemeshka some time ago. She was responsible for their deaths but, to her surprise, they returned.",
 												"She has killed each character dozens of times, only to have them reappear. She finally trapped each using the Resplendent Cage (area P6b).",
 												"The characters still returned, but they were diminished and had their memories fractured. She had her servants dump the characters at the Mortuary.",
-												"When the characters appeared again, she sent them to find R04M in the hope they'd never return.",
+												"When the characters appeared again, she sent them to find {@creature R04M|ToFW} in the hope they'd never return.",
 												"Shemeshka still has imprisoned incarnations of the characters. She can retrieve them for the characters (a character who searches {@adventure area P6a|ToFW|3|P6a: House of Liars} for 10 minutes also finds them).",
 												"She believes that the characters' unique situation is a result of a planar imbalance caused by a group of modrons lost in the Outlands. She hopes that by manipulating the data these modrons record, she can profitably influence the workings of their home plane, Mechanus.",
-												"Shemeshka corroborates everything R04M told the characters in {@adventure chapter 13|ToFW|2|Chapter 13\u2013Secrets of the Spire}."
+												"Shemeshka corroborates everything {@creature R04M|ToFW} told the characters in {@adventure chapter 13|ToFW|2|Chapter 13\u2013Secrets of the Spire}."
 											]
 										},
 										"As soon as she has shared this information, or if she is forced into battle after relating this information, Shemeshka uses an {@item amulet of the planes} to escape. If she doesn't convey any of this information, the characters can learn it from meticulously kept documents stashed in Shemeshka's desk."
@@ -6733,8 +6742,8 @@
 					"name": "Chapter 15: Echoes of Delusion",
 					"id": "1e5",
 					"entries": [
-						"With their memories and capabilities restored, the characters are prepared to face any threat in the multiverse. The modron R04M has their first challenge in mind, though: freeing its lost modron brethren and putting an end to the disruption in the Outlands that caused the characters to become unmoored from reality.",
-						"After the characters leave the Platinum Rooms, where they go next is up to them. Shemeshka will avoid them for the rest of the adventure. To continue with this chapter, the group should meet with R04M, either by returning to the walking castle or by having the monodrone seek them out. There's no rush to move on with these events, though. Feel free to run other events inspired by {@book Sigil and the Outlands|SatO}.",
+						"With their memories and capabilities restored, the characters are prepared to face any threat in the multiverse. The modron {@creature R04M|ToFW} has their first challenge in mind, though: freeing its lost modron brethren and putting an end to the disruption in the Outlands that caused the characters to become unmoored from reality.",
+						"After the characters leave the Platinum Rooms, where they go next is up to them. Shemeshka will avoid them for the rest of the adventure. To continue with this chapter, the group should meet with {@creature R04M|ToFW}, either by returning to the walking castle or by having the monodrone seek them out. There's no rush to move on with these events, though. Feel free to run other events inspired by {@book Sigil and the Outlands|SatO}.",
 						{
 							"type": "image",
 							"href": {
@@ -6751,26 +6760,26 @@
 							"name": "Missing Modrons",
 							"id": "1e6",
 							"entries": [
-								"When the characters meet with R04M again, the monodrone assesses that they can now do what it couldn't: correct the multiversal disruption that affected the party and caused other glitches across the Outlands. R04M provides the following information:",
+								"When the characters meet with {@creature R04M|ToFW} again, the monodrone assesses that they can now do what it couldn't: correct the multiversal disruption that affected the party and caused other glitches across the Outlands. {@creature R04M|ToFW} provides the following information:",
 								{
 									"type": "list",
 									"items": [
-										"R04M was part of the last Great Modron March. The contingent he belonged to became lost in the Outlands.",
-										"R04M has deduced that the modrons are caught in the shifting realm of Gzemnid, a beholder god of deception, gases, and obscurement.",
+										"{@creature R04M|ToFW} was part of the last Great Modron March. The contingent he belonged to became lost in the Outlands.",
+										"{@creature R04M|ToFW} has deduced that the modrons are caught in the shifting realm of Gzemnid, a beholder god of deception, gases, and obscurement.",
 										"Shemeshka discovered the modrons in Tyrant's Spiral, an ever-shifting part of Gzemnid's Realm. There she exposed the modrons to fiendish influences, convincing them the Outlands are overrun by evil beings.",
 										"The modrons' belief is skewing the underpinnings of the Outlands and the planes beyond, creating multiversal anomalies.",
 										"Shemeshka planned to eventually release the modrons to Mechanus, where they would skew the workings of that plane. She would then take advantage of the chaos.",
-										"R04M wants the characters to go to Gzemnid's Realm; find the group's leader, the hexton modron called X01; and help the modrons escape."
+										"{@creature R04M|ToFW} wants the characters to go to Gzemnid's Realm; find the group's leader, the hexton modron called {@creature X01|ToFW}; and help the modrons escape."
 									]
 								},
-								"R04M can also reiterate any details he provided in {@adventure chapter 13|ToFW|2|Chapter 13\u2013Secrets of the Spire}. While the multiverse might contort to keep R04M alive, if the modron is dead, Zaythir can provide this information as the result of her studies and investigations into Shemeshka's dealings.",
-								"R04M notes that, as is customary in such dealings, he has compensation for the characters: a bag of gemstones the modron had stashed in the Outlands, valued at 15,013 gp. He will give the characters the bag if they help the modrons escape (see the \"{@adventure Unity of Rings|ToFW|3|Unity of Rings}\" section later in this chapter for details). R04M can't haggle or offer any greater reward, but he can hypothesize on the dire ramifications of the modrons' long-term entrapment.",
+								"{@creature R04M|ToFW} can also reiterate any details he provided in {@adventure chapter 13|ToFW|2|Chapter 13\u2013Secrets of the Spire}. While the multiverse might contort to keep {@creature R04M|ToFW} alive, if the modron is dead, {@creature Zaythir|ToFW} can provide this information as the result of her studies and investigations into Shemeshka's dealings.",
+								"{@creature R04M|ToFW} notes that, as is customary in such dealings, he has compensation for the characters: a bag of gemstones the modron had stashed in the Outlands, valued at 15,013 gp. He will give the characters the bag if they help the modrons escape (see the \"{@adventure Unity of Rings|ToFW|3|Unity of Rings}\" section later in this chapter for details). {@creature R04M|ToFW} can't haggle or offer any greater reward, but he can hypothesize on the dire ramifications of the modrons' long-term entrapment.",
 								{
 									"type": "entries",
 									"name": "Back to the Outlands",
 									"id": "1e7",
 									"entries": [
-										"Once the characters agree to aid R04M, they'll need to find a way to reach Gzemnid's Realm. R04M shares the location of the portal he originally used to escape into Sigil. This portal's location is up to you. Use this opportunity to return to a favorite site in the adventure or to help characters acclimate to their new powers. The R04M's Portal table suggests a few locations for the gate to Gzemnid's Realm.",
+										"Once the characters agree to aid {@creature R04M|ToFW}, they'll need to find a way to reach Gzemnid's Realm. {@creature R04M|ToFW} shares the location of the portal he originally used to escape into Sigil. This portal's location is up to you. Use this opportunity to return to a favorite site in the adventure or to help characters acclimate to their new powers. The {@creature R04M|ToFW}'s Portal table suggests a few locations for the gate to Gzemnid's Realm.",
 										{
 											"type": "quote",
 											"entries": [
@@ -6825,7 +6834,7 @@
 							"name": "Tyrant's Spiral",
 							"id": "1e9",
 							"entries": [
-								"The realm of the beholder deity Gzemnid lies beneath the Outlands. Most entrances into these mysterious, gas-filled caverns are found near chaotically aligned gate-towns\u2014like Bedlam, Sylvania, or Xaos\u2014but Gzemnid's Realm is elusive, even by the mutable standards of the Outlands. The portion of the Great Modron March that R04M belonged to became lost in a magically shifting cave system known as Tyrant's Spiral. These gas-filled caverns change constantly, trapping the modrons in an ever-contorting circle that exposes them to the same grim visions over and over again.",
+								"The realm of the beholder deity Gzemnid lies beneath the Outlands. Most entrances into these mysterious, gas-filled caverns are found near chaotically aligned gate-towns\u2014like Bedlam, Sylvania, or Xaos\u2014but Gzemnid's Realm is elusive, even by the mutable standards of the Outlands. The portion of the Great Modron March that {@creature R04M|ToFW} belonged to became lost in a magically shifting cave system known as Tyrant's Spiral. These gas-filled caverns change constantly, trapping the modrons in an ever-contorting circle that exposes them to the same grim visions over and over again.",
 								{
 									"type": "entries",
 									"name": "Tyrant's Spiral Features",
@@ -6945,7 +6954,8 @@
 													"height": 3300,
 													"mapParent": {
 														"id": "22e"
-													}
+													},
+													"credit": "Jared Blando"
 												}
 											]
 										}
@@ -7157,14 +7167,14 @@
 												"Ahead marches a cluster of modrons. Among them, a quartet of powerful, gear-studded individuals hoist a unique-looking modron on their shoulders. This singular, elaborately constructed modron\u2014a hulking creature with a single prominent eye\u2014looks damaged. Nevertheless, flickering green light shines from its eye, scanning the foggy cavern around it."
 											]
 										},
-										"Four {@creature Septon Modron|MPP|septon modrons} carry their fallen leader, the {@creature hexton modron|MPP} X01 (see {@book Morte's Planar Parade|MPP} for both stat blocks). Three septons attack any non-modron that comes within 10 feet of them and any creature that tries to interfere with X01. The remaining septon continues to carry X01, attacking only if X01 is stolen. The septons fight to the death.",
-										"Septons carrying X01 move with the other modrons at a rate of 20 feet per round. The septons drop their leader only if they have the {@condition incapacitated} condition or take 30 or more damage from a single attack.",
+										"Four {@creature Septon Modron|MPP|septon modrons} carry their fallen leader, the {@creature hexton modron|MPP} {@creature X01|ToFW} (see {@book Morte's Planar Parade|MPP} for both stat blocks). Three septons attack any non-modron that comes within 10 feet of them and any creature that tries to interfere with {@creature X01|ToFW}. The remaining septon continues to carry {@creature X01|ToFW}, attacking only if {@creature X01|ToFW} is stolen. The septons fight to the death.",
+										"Septons carrying {@creature X01|ToFW} move with the other modrons at a rate of 20 feet per round. The septons drop their leader only if they have the {@condition incapacitated} condition or take 30 or more damage from a single attack.",
 										{
 											"type": "entries",
 											"name": "X01",
 											"id": "204",
 											"entries": [
-												"The modrons' leader has full hit points and the {@condition paralyzed} condition. X01 can be interacted with only if it is separated from its septon bearers and moved away from the marching modrons. If the characters move X01 away and attempt to repair or otherwise interact with it, see the following section."
+												"The modrons' leader has full hit points and the {@condition paralyzed} condition. {@creature X01|ToFW} can be interacted with only if it is separated from its septon bearers and moved away from the marching modrons. If the characters move {@creature X01|ToFW} away and attempt to repair or otherwise interact with it, see the following section."
 											]
 										}
 									]
@@ -7176,13 +7186,13 @@
 							"name": "Bad Data",
 							"id": "205",
 							"entries": [
-								"The modron leader X01 isn't just damaged\u2014its mind has been overwhelmed. This is a result of flawed orders X01 received when it left Mechanus during the last Great Modron March, but more so because the misinformation it gathered in Tyrant's Spiral has skewed its understanding of the Outlands. X01 and the modrons it leads now believe the Outlands are overrun with fiendish horrors and that the gears of Mechanus require major readjustments to restore balance to the planes.",
+								"The modron leader {@creature X01|ToFW} isn't just damaged\u2014its mind has been overwhelmed. This is a result of flawed orders {@creature X01|ToFW} received when it left Mechanus during the last Great Modron March, but more so because the misinformation it gathered in Tyrant's Spiral has skewed its understanding of the Outlands. {@creature X01|ToFW} and the modrons it leads now believe the Outlands are overrun with fiendish horrors and that the gears of Mechanus require major readjustments to restore balance to the planes.",
 								{
 									"type": "entries",
 									"name": "Investigating X01",
 									"id": "206",
 									"entries": [
-										"A character who spends 1 minute investigating X01 finds a panel on the modron's head leaking green vapor. If the panel is opened or X01 is deliberately damaged, read the following:",
+										"A character who spends 1 minute investigating {@creature X01|ToFW} finds a panel on the modron's head leaking green vapor. If the panel is opened or {@creature X01|ToFW} is deliberately damaged, read the following:",
 										{
 											"type": "insetReadaloud",
 											"id": "207",
@@ -7190,7 +7200,7 @@
 												"The modron jolts up and, with a voice like a klaxon, shouts, \"Wrong! All wrong! Outlands: overrun! Great Wheel: at risk! Advisement: full planar realignment! Highest alert!\" The modron continues issuing such dire reports. As it does, wisps of green vapor leak from its mouth, eyes, and seams. Gradually this vapor congeals into a nightmarish depiction of the Spire and the surrounding Outlands."
 											]
 										},
-										"The character with the highest Intelligence who witnesses this realizes the congealing vapor is X01's interpretation of the Outlands, one overrun with evil Fiends. This becomes clear a moment later when X01's shouting escalates. Proceed with the following section."
+										"The character with the highest Intelligence who witnesses this realizes the congealing vapor is {@creature X01|ToFW}'s interpretation of the Outlands, one overrun with evil Fiends. This becomes clear a moment later when {@creature X01|ToFW}'s shouting escalates. Proceed with the following section."
 									]
 								},
 								{
@@ -7211,7 +7221,7 @@
 											"name": "Replacement Data",
 											"id": "20a",
 											"entries": [
-												"As the planar incarnate is a manifestation of X01's beliefs, those beliefs can be undermined. A character can present to X01 evidence that the Outlands aren't overrun by Fiends, such as mementos they picked up in the gate-towns or recordings from the Mosaic Mimir. If a character uses an action to present such information and succeeds on a DC 18 Charisma ({@skill Persuasion}) check, the planar incarnate has disadvantage on attack rolls and saving throws until the start of the character's next turn."
+												"As the planar incarnate is a manifestation of {@creature X01|ToFW}'s beliefs, those beliefs can be undermined. A character can present to {@creature X01|ToFW} evidence that the Outlands aren't overrun by Fiends, such as mementos they picked up in the gate-towns or recordings from the Mosaic Mimir. If a character uses an action to present such information and succeeds on a DC 18 Charisma ({@skill Persuasion}) check, the planar incarnate has disadvantage on attack rolls and saving throws until the start of the character's next turn."
 											]
 										}
 									]
@@ -7221,22 +7231,22 @@
 									"name": "Lost Data",
 									"id": "20b",
 									"entries": [
-										"Once the planar incarnate is destroyed, X01 collapses. A character with proficiency in Intelligence ({@skill Arcana} or {@skill Medicine}) can tell the following:",
+										"Once the planar incarnate is destroyed, {@creature X01|ToFW} collapses. A character with proficiency in Intelligence ({@skill Arcana} or {@skill Medicine}) can tell the following:",
 										{
 											"type": "list",
 											"items": [
-												"X01 is alive, but its mind is vacant.",
-												"To reactivate, X01 would need to recover its knowledge about the planes."
+												"{@creature X01|ToFW} is alive, but its mind is vacant.",
+												"To reactivate, {@creature X01|ToFW} would need to recover its knowledge about the planes."
 											]
 										},
-										"The Mosaic Mimir has the information X01 needs to reactivate. The characters might come to this conclusion on their own, or a character who investigates X01's body might realize that within the damaged panel is enough room for the {@item mimir|SatO}. If a character inserts the {@item mimir|SatO} into X01, the hexton reactivates a moment later. This has multiple effects, which are summarized in the following sections.",
+										"The Mosaic Mimir has the information {@creature X01|ToFW} needs to reactivate. The characters might come to this conclusion on their own, or a character who investigates {@creature X01|ToFW}'s body might realize that within the damaged panel is enough room for the {@item mimir|SatO}. If a character inserts the {@item mimir|SatO} into {@creature X01|ToFW}, the hexton reactivates a moment later. This has multiple effects, which are summarized in the following sections.",
 										{
 											"type": "image",
 											"href": {
 												"type": "internal",
 												"path": "adventure/ToFW/055-03-007.modron-corruption.webp"
 											},
-											"title": "The distorted beliefs of the hexton modron X01 and its wayward followers manifest as a godlike incarnation of a nonexistent realm",
+											"title": "The distorted beliefs of the hexton modron {@creature X01|ToFW} and its wayward followers manifest as a godlike incarnation of a nonexistent realm",
 											"credit": "Hinchel Or",
 											"width": 1700,
 											"height": 2200
@@ -7261,13 +7271,13 @@
 									"width": 850,
 									"height": 2338
 								},
-								"Should the characters reactivate X01 by embedding their {@item mimir|SatO} in the modron leader, X01's perspective on the Outlands shifts. This view rapidly disseminates among the other modrons trapped in Tyrant's Spiral. What this perspective is depends on what information the characters recorded in their {@item mimir|SatO} during {@adventure part 2|ToFW|2} and whether their reports on the Outlands were accurate, inconsistent, or skewed. Consult the Mimir Restoration Tracker from {@adventure chapter 4|ToFW|2|Chapter 4\u2013Into the Outlands}, and choose which of the following sections best matches the information the character recorded in their {@item mimir|SatO}. Each entry details the data's effects on X01's personality and has ramifications in the \"{@adventure Conclusion|ToFW|3|Conclusion}\" section.",
+								"Should the characters reactivate {@creature X01|ToFW} by embedding their {@item mimir|SatO} in the modron leader, {@creature X01|ToFW}'s perspective on the Outlands shifts. This view rapidly disseminates among the other modrons trapped in Tyrant's Spiral. What this perspective is depends on what information the characters recorded in their {@item mimir|SatO} during {@adventure part 2|ToFW|2} and whether their reports on the Outlands were accurate, inconsistent, or skewed. Consult the Mimir Restoration Tracker from {@adventure chapter 4|ToFW|2|Chapter 4\u2013Into the Outlands}, and choose which of the following sections best matches the information the character recorded in their {@item mimir|SatO}. Each entry details the data's effects on {@creature X01|ToFW}'s personality and has ramifications in the \"{@adventure Conclusion|ToFW|3|Conclusion}\" section.",
 								{
 									"type": "entries",
 									"name": "Accurate",
 									"id": "20d",
 									"entries": [
-										"If the characters' {@item mimir|SatO} largely details the Outlands in an unbiased way, X01 realizes reality is behaving within expected parameters. It reactivates as a calm, logical modron that is eager to lead its followers directly to Mechanus, where they can make an unremarkable report."
+										"If the characters' {@item mimir|SatO} largely details the Outlands in an unbiased way, {@creature X01|ToFW} realizes reality is behaving within expected parameters. It reactivates as a calm, logical modron that is eager to lead its followers directly to Mechanus, where they can make an unremarkable report."
 									]
 								},
 								{
@@ -7275,7 +7285,7 @@
 									"name": "Inconsistent",
 									"id": "20e",
 									"entries": [
-										"If the characters provided inconsistent details about the Outlands\u2014several accurate and several skewed\u2014X01 reactivates and exhibits dramatic mood swings. It seeks to lead the modrons to its home plane, but it is uncertain where that is."
+										"If the characters provided inconsistent details about the Outlands\u2014several accurate and several skewed\u2014{@creature X01|ToFW} reactivates and exhibits dramatic mood swings. It seeks to lead the modrons to its home plane, but it is uncertain where that is."
 									]
 								},
 								{
@@ -7283,7 +7293,7 @@
 									"name": "Skewed",
 									"id": "20f",
 									"entries": [
-										"If the characters' reports on the Outlands reflect their bias for a particular philosophy or alignment, the modrons act in opposition. The Skewed Data Results table notes X01's personality after being influenced by data skewed along the lines of particular alignments. If the information characters provided to their {@item mimir|SatO} strongly reflects the philosophies of a faction in Sigil, choose the result that best corresponds with that faction's agenda.",
+										"If the characters' reports on the Outlands reflect their bias for a particular philosophy or alignment, the modrons act in opposition. The Skewed Data Results table notes {@creature X01|ToFW}'s personality after being influenced by data skewed along the lines of particular alignments. If the information characters provided to their {@item mimir|SatO} strongly reflects the philosophies of a faction in Sigil, choose the result that best corresponds with that faction's agenda.",
 										{
 											"type": "table",
 											"caption": "Skewed Data Results",
@@ -7323,7 +7333,7 @@
 							"name": "Escaping Tyrant's Spiral",
 							"id": "210",
 							"entries": [
-								"If X01 is reactivated, the modron wants to escape Tyrant's Spiral, but it doesn't know about the portals in the nearby areas. Characters might use the methods here to help the modrons escape.",
+								"If {@creature X01|ToFW} is reactivated, the modron wants to escape Tyrant's Spiral, but it doesn't know about the portals in the nearby areas. Characters might use the methods here to help the modrons escape.",
 								{
 									"type": "entries",
 									"name": "Portal to Hopeless",
@@ -7361,7 +7371,7 @@
 									"name": "Abandonment or Sacrifice",
 									"id": "215",
 									"entries": [
-										"The characters can leave the modrons in Tyrant's Spiral, but eventually Shemeshka or another being will manipulate the modrons to their own ends. If the characters try to destroy the modrons en masse, X01 commands the modrons to defend themselves. Although annihilating the modrons would maintain the equilibrium of the planes, doing so might have ramifications on characters' alignments."
+										"The characters can leave the modrons in Tyrant's Spiral, but eventually Shemeshka or another being will manipulate the modrons to their own ends. If the characters try to destroy the modrons en masse, {@creature X01|ToFW} commands the modrons to defend themselves. Although annihilating the modrons would maintain the equilibrium of the planes, doing so might have ramifications on characters' alignments."
 									]
 								}
 							]
@@ -7373,13 +7383,13 @@
 					"name": "Conclusion",
 					"id": "216",
 					"entries": [
-						"If the characters release X01 and the modrons from Tyrant's Spiral, their work for R04M is complete, but the ramifications for the multiverse might be dire.",
+						"If the characters release {@creature X01|ToFW} and the modrons from Tyrant's Spiral, their work for {@creature R04M|ToFW} is complete, but the ramifications for the multiverse might be dire.",
 						{
 							"type": "entries",
 							"name": "Realigning the Multiverse",
 							"id": "217",
 							"entries": [
-								"How the characters contend with the lost modrons has far-rippling effects on the multiverse. The data from the characters' {@item mimir|SatO} affects not just X01's perspective but also those of thousands of modrons. If the modrons return home, this data influences the cosmic alignment of Mechanus. Countless modrons across the multiverse then seek to rebalance the planes in accordance with the new arrangement of the plane of absolute law.",
+								"How the characters contend with the lost modrons has far-rippling effects on the multiverse. The data from the characters' {@item mimir|SatO} affects not just {@creature X01|ToFW}'s perspective but also those of thousands of modrons. If the modrons return home, this data influences the cosmic alignment of Mechanus. Countless modrons across the multiverse then seek to rebalance the planes in accordance with the new arrangement of the plane of absolute law.",
 								"Depending on how the characters' {@item mimir|SatO} affected the liberated modrons, the axiomatic beings affect the multiverse in one of the following ways. Choose whichever one corresponds with the result from the \"{@adventure Reactivating X01|ToFW|3|Reactivating X01}\" section. This determines how the characters' actions and the released modrons affect the planes.",
 								{
 									"type": "entries",
@@ -7394,7 +7404,7 @@
 									"name": "Inconsistent",
 									"id": "219",
 									"entries": [
-										"Unless the characters intervene, it takes months for X01 and a much-diminished group of modrons to return to Mechanus. When they do, chaos ensues. Modrons behave strangely across the planes, and chaotic creatures like slaadi operate unopposed. Numerous creatures experience the multiversal glitch that affected the characters. Ultimately, the modron leader, Primus, initiates a new Great Modron March to correct the chaos sweeping the planes."
+										"Unless the characters intervene, it takes months for {@creature X01|ToFW} and a much-diminished group of modrons to return to Mechanus. When they do, chaos ensues. Modrons behave strangely across the planes, and chaotic creatures like slaadi operate unopposed. Numerous creatures experience the multiversal glitch that affected the characters. Ultimately, the modron leader, Primus, initiates a new Great Modron March to correct the chaos sweeping the planes."
 									]
 								},
 								{
@@ -7449,7 +7459,7 @@
 									"name": "Farrow or Other Sigil Contacts",
 									"id": "21c",
 									"entries": [
-										"Farrow or another Sigil-based ally is glad to hear the characters resolved the strangeness plaguing them. The ally is well connected and know others who need accomplished adventurers. The ally also knows of useful portals, including those to Material Plane worlds the characters might hail from. Use this ally to lead the characters to future adventures."
+										"{@creature Farrow|ToFW} or another Sigil-based ally is glad to hear the characters resolved the strangeness plaguing them. The ally is well connected and know others who need accomplished adventurers. The ally also knows of useful portals, including those to Material Plane worlds the characters might hail from. Use this ally to lead the characters to future adventures."
 									]
 								},
 								{
@@ -7457,8 +7467,8 @@
 									"name": "R04M",
 									"id": "21d",
 									"entries": [
-										"Depending on how the characters resolved the situation in Tyrant's Spiral, R04M might be pleased or horrified. Nevertheless, if the characters helped any of the modrons escape, R04M rewards them with the promised gems. This includes gems worth 15,013 gp as well as an {@item Elemental Gem, Emerald||elemental gem (emerald)} and a resin-encrusted {@item ring of regeneration}.",
-										"If the modron remains on good terms with the characters, R04M might seek to join them and see more of the multiverse. Or, if the characters have skewed the planes in some way, R04M might seek to set things right, perhaps by pursuing multiversal secrets within the Spire."
+										"Depending on how the characters resolved the situation in Tyrant's Spiral, {@creature R04M|ToFW} might be pleased or horrified. Nevertheless, if the characters helped any of the modrons escape, {@creature R04M|ToFW} rewards them with the promised gems. This includes gems worth 15,013 gp as well as an {@item Elemental Gem, Emerald||elemental gem (emerald)} and a resin-encrusted {@item ring of regeneration}.",
+										"If the modron remains on good terms with the characters, {@creature R04M|ToFW} might seek to join them and see more of the multiverse. Or, if the characters have skewed the planes in some way, {@creature R04M|ToFW} might seek to set things right, perhaps by pursuing multiversal secrets within the Spire."
 									]
 								},
 								{

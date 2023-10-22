@@ -1,12 +1,6 @@
 "use strict";
 
 class DecksSublistManager extends SublistManager {
-	constructor () {
-		super({
-			sublistClass: "subdecks",
-		});
-	}
-
 	static get _ROW_TEMPLATE () {
 		return [
 			new SublistCellTemplate({
@@ -109,8 +103,6 @@ class DecksPage extends ListPage {
 			brewDataSource: DataUtil.deck.loadBrew.bind(DataUtil.deck),
 
 			pageFilter,
-
-			listClass: "decks",
 
 			dataProps: ["deck"],
 

@@ -58789,7 +58789,7 @@
 											},
 											"width": 1000,
 											"height": 1375,
-											"title": "Dezmyr Shadowdusk",
+											"title": "{@creature Dezmyr Shadowdusk|WDMM}",
 											"credit": "Shawn Wood"
 										},
 										"Derrion enjoys killing unwelcome visitors. He is a human {@creature champion|VGM} (see {@adventure appendix A|WDMM|25}), with these changes:",
@@ -61473,7 +61473,7 @@
 											},
 											"width": 1000,
 											"height": 1201,
-											"title": "Arcturia",
+											"title": "{@creature Arcturia|WDMM}",
 											"credit": "Shawn Wood"
 										},
 										"{@creature Arcturia|WDMM} is a {@creature lich}, with these changes:",

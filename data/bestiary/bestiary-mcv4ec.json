@@ -3265,7 +3265,7 @@
 				{
 					"name": "Mind-Wracking Howl {@recharge 5}",
 					"entries": [
-						"The witchstalker unleashes a terrible howl, and each creature within 30 feet of it that isn't a Monstrosity must make a Wisdom saving throw. On a failed save, a creature takes 24 ({@damage 7d6}) psychic damage and has disadvantage on Constitution saving throws to maintain {@status concentration} on spells until the end of its next turn. On a successful save, a creature takes half as much damage only."
+						"The witchstalker unleashes a terrible howl, and each creature within 30 feet of it that isn't a Monstrosity must make a {@dc 13} Wisdom saving throw. On a failed save, a creature takes 24 ({@damage 7d6}) psychic damage and has disadvantage on Constitution saving throws to maintain {@status concentration} on spells until the end of its next turn. On a successful save, a creature takes half as much damage only."
 					]
 				}
 			],

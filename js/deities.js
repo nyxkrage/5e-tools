@@ -1,12 +1,6 @@
 "use strict";
 
 class DeitiesSublistManager extends SublistManager {
-	constructor () {
-		super({
-			sublistClass: "subdeities",
-		});
-	}
-
 	static get _ROW_TEMPLATE () {
 		return [
 			new SublistCellTemplate({
@@ -71,8 +65,6 @@ class DeitiesPage extends ListPage {
 			dataSource: DataUtil.deity.loadJSON.bind(DataUtil.deity),
 
 			pageFilter,
-
-			listClass: "deities",
 
 			dataProps: ["deity"],
 		});

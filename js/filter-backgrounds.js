@@ -1,7 +1,9 @@
 "use strict";
 
 class PageFilterBackgrounds extends PageFilter {
+	// TODO(Future) expand/move to `Renderer.generic`
 	static _getToolDisplayText (tool) {
+		if (tool === "anyTool") return "Any Tool";
 		if (tool === "anyArtisansTool") return "Any Artisan's Tool";
 		if (tool === "anyMusicalInstrument") return "Any Musical Instrument";
 		return tool.toTitleCase();
@@ -27,9 +29,28 @@ class PageFilterBackgrounds extends PageFilter {
 
 	static mutateForFilters (bg) {
 		bg._fSources = SourceFilter.getCompleteFilterSources(bg);
-		const skillDisplay = Renderer.background.getSkillSummary(bg.skillProficiencies, true, bg._fSkills = []);
-		Renderer.background.getToolSummary(bg.toolProficiencies, true, bg._fTools = []);
-		Renderer.background.getLanguageSummary(bg.languageProficiencies, true, bg._fLangs = []);
+
+		const {summary: skillDisplay, collection: skills} = Renderer.generic.getSkillSummary({
+			skillProfs: bg.skillProficiencies,
+			skillToolLanguageProfs: bg.skillToolLanguageProficiencies,
+			isShort: true,
+		});
+		bg._fSkills = skills;
+
+		const {collection: tools} = Renderer.generic.getToolSummary({
+			toolProfs: bg.toolProficiencies,
+			skillToolLanguageProfs: bg.skillToolLanguageProficiencies,
+			isShort: true,
+		});
+		bg._fTools = tools;
+
+		const {collection: languages} = Renderer.generic.getLanguageSummary({
+			languageProfs: bg.languageProficiencies,
+			skillToolLanguageProfs: bg.skillToolLanguageProficiencies,
+			isShort: true,
+		});
+		bg._fLangs = languages;
+
 		bg._fMisc = [];
 		if (bg.srd) bg._fMisc.push("SRD");
 		if (bg.basicRules) bg._fMisc.push("Basic Rules");

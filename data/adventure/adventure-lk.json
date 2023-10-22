@@ -808,7 +808,8 @@
 									"height": 5280,
 									"mapParent": {
 										"id": "040"
-									}
+									},
+									"credit": "Sean Macdonald"
 								}
 							]
 						},

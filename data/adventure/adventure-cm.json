@@ -27798,7 +27798,7 @@
 												"You crest a dune and see a rocky escarpment in the distance with small cave entrances all over its surface. Dozens of tiny humanoid creatures dash back into the caves, sensing your presence."
 											]
 										},
-										"The tiny creatures are desert-dwelling {@creature Chwinga|IDRotF|chwingas} (see their stat block at {@area the end of the adventure|524|x}) that live in tiny caves built up on the shell of a giant dragon tortoise. If the characters approach the escarpment, the earth rumbles as the dragon tortoise raises its massive head out of the sand, addresses them, and asks their intentions.",
+										"The tiny creatures are desert-dwelling {@creature Chwinga|IDRotF|chwingas} (see their stat block at {@area the end of the adventure|524|x}) that live in tiny caves built up on the shell of a giant {@creature dragon tortoise|CM}. If the characters approach the escarpment, the earth rumbles as the {@creature dragon tortoise|CM} raises its massive head out of the sand, addresses them, and asks their intentions.",
 										"For the {@creature dragon tortoise|CM}, use the {@creature dragon turtle} stat block with the following changes:",
 										{
 											"type": "list",

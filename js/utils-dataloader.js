@@ -1515,6 +1515,16 @@ class _DataTypeLoaderCustomBook extends _DataTypeLoaderCustomAdventureBook {
 	_filename = "books.json";
 }
 
+class _DataTypeLoaderCitation extends _DataTypeLoader {
+	static PROPS = ["citation"];
+
+	_getSiteIdent ({pageClean, sourceClean}) { return this.constructor.name; }
+
+	async _pGetSiteData ({pageClean, sourceClean}) {
+		return {citation: []};
+	}
+}
+
 // endregion
 
 /* -------------------------------------------- */
@@ -1645,6 +1655,7 @@ class DataLoader {
 		_DataTypeLoaderLegendaryGroup.register({fnRegister});
 		_DataTypeLoaderItemEntry.register({fnRegister});
 		_DataTypeLoaderItemMastery.register({fnRegister});
+		_DataTypeLoaderCitation.register({fnRegister});
 		// endregion
 
 		// region Fluff

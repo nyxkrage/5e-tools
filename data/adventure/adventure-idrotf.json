@@ -23897,7 +23897,7 @@
 											"page": 112,
 											"id": "2b8",
 											"entries": [
-												"The snowy owlbear is hungry enough to kill and eat humanoids, though it prefers fish and the flesh of hares, foxes, walruses, seals, and pack animals such as mules and axe beaks. If the characters toss food at it, the owlbear eats that food before chasing after more elusive prey.",
+												"The {@creature snowy owlbear|IDRotF} is hungry enough to kill and eat humanoids, though it prefers fish and the flesh of hares, foxes, walruses, seals, and pack animals such as mules and axe beaks. If the characters toss food at it, the owlbear eats that food before chasing after more elusive prey.",
 												"If a character coaxes the owlbear into becoming the party mascot, you can tax the characters in gold to keep their pet fed and happy. The cost of feeding the owlbear is 9 gp per day, which is based on it eating the equivalent of three pigs (the {@book Player's Handbook|PHB} values a pig at 3 gp)."
 											]
 										}
@@ -29218,7 +29218,7 @@
 														"Along one wall, metal hooks pierce the ice. A large man in blood-drenched hide armor hangs carcasses from these hooks to bleed out. His face and limbs are blackened by frostbite, and he seems to be absent a nose."
 													]
 												},
-												"A nameless {@creature chardalyn berserker|IDRotF} (see {@adventure appendix C|IDRotF|21}) has just finished butchering a snowy owlbear that was lured into the cave and killed. The berserker grabs its weapons (which are always within easy reach) and attacks intruders on sight. If the flame in area Q5 is burning, the berserker can't drop below 1 hit point unless he's lured outside the cave."
+												"A nameless {@creature chardalyn berserker|IDRotF} (see {@adventure appendix C|IDRotF|21}) has just finished butchering a {@creature snowy owlbear|IDRotF} that was lured into the cave and killed. The berserker grabs its weapons (which are always within easy reach) and attacks intruders on sight. If the flame in area Q5 is burning, the berserker can't drop below 1 hit point unless he's lured outside the cave."
 											]
 										},
 										{
@@ -33758,7 +33758,7 @@
 								"Buried in the tundra is the spire of a tower that broke away from the Netherese city of Ythryn when it fell from the sky nearly two thousand years ago. The spire shattered into pieces as it embedded itself in the earth, upside down. There it has remained for centuries, buried under snow and ice.",
 								"The Netherese wizard who lived inside the spire did not survive the crash. The wizard's shield guardian not only survived but also dug its way out, creating a tunnel that others can use to reach the spire's interior. Until recently, the mouth of this tunnel was buried under ice and snow. After exiting the spire, the shield guardian wandered into the Spine of the World, where it shut down and was lost for centuries until a band of goblins found it recently and brought it to their mountain fort (see \"{@area Karkolohk|389|x}\").",
 								"The characters can learn about the spire in Ten-Towns (see \"{@area Tall Tales in Ten-Towns|27f|x}\"), or they might stumble upon it accidentally while hunting (see \"{@area Hunt for the Red Yeti|288|x}\"). The NPC who tells the tale is willing to guide the characters to the spire's location for no less than 20 gp. After doing so, the guide wishes the party luck before heading back to Ten-Towns.",
-								"Before the characters face the challenges of the spire, review the information about Dzaan in the \"{@area Arcane Brotherhood|6fe|x}\" section of {@adventure appendix C|IDRotF|21}. The details concerning Dzaan's simulacrum and bodyguard are especially pertinent, given what the characters are about to discover.",
+								"Before the characters face the challenges of the spire, review the information about Dzaan in the \"{@area Arcane Brotherhood|6fe|x}\" section of {@adventure appendix C|IDRotF|21}. The details concerning {@creature Dzaan's simulacrum|IDRotF} and bodyguard are especially pertinent, given what the characters are about to discover.",
 								{
 									"type": "entries",
 									"name": "Not-So-Dead Wizard of Thay",
@@ -35198,7 +35198,7 @@
 														"\"On the lowest level of this inverted tower, my creator found a chamber that can turn illusions into reality. The life-spark of a living creature is needed to activate its power. As a creation of snow and shadow, I have no life-spark of my own, and Krintaas, my undead bodyguard, is of no help in this regard. I assure you, the chamber can in no way harm anyone.\""
 													]
 												},
-												"Dzaan's simulacrum lacks a spellbook. If attacked, its impulse is to turn {@condition invisible} and flee, then use its {@spell levitate} spell to ascend the tower while Krintaas covers its escape. If it escapes the spire, it makes its way to Ten-Towns; as a thing made of ice and snow, the simulacrum can cross the tundra without fear of freezing to death.",
+												"{@creature Dzaan's simulacrum|IDRotF} lacks a spellbook. If attacked, its impulse is to turn {@condition invisible} and flee, then use its {@spell levitate} spell to ascend the tower while Krintaas covers its escape. If it escapes the spire, it makes its way to Ten-Towns; as a thing made of ice and snow, the simulacrum can cross the tundra without fear of freezing to death.",
 												{
 													"type": "image",
 													"href": {
@@ -35269,7 +35269,7 @@
 											"page": 150,
 											"id": "3d2",
 											"entries": [
-												"This room is where the old tenants of the spire gathered for meals. Characters who befriended Dzaan's simulacrum are warned about the creature in this room:",
+												"This room is where the old tenants of the spire gathered for meals. Characters who befriended {@creature Dzaan's simulacrum|IDRotF} are warned about the creature in this room:",
 												{
 													"type": "insetReadaloud",
 													"id": "3d3",
@@ -35346,7 +35346,7 @@
 													"items": [
 														"The rune chamber can't produce magic items, animated objects, constructs, or undead.",
 														"A life-spark is needed to turn an illusory creature into a physical one. Acting much like a spark of electricity, it gives the room the jolt it needs to complete the transformation. (No such component is needed for objects.)",
-														"The cracks in the walls have damaged enough of the runes to compromise the room's magic, which might give rise to unexpected results. (Warning Dzaan's simulacrum about this risk does not discourage it from using the rune chamber.)"
+														"The cracks in the walls have damaged enough of the runes to compromise the room's magic, which might give rise to unexpected results. (Warning {@creature Dzaan's simulacrum|IDRotF} about this risk does not discourage it from using the rune chamber.)"
 													]
 												},
 												{
@@ -35365,7 +35365,7 @@
 													"id": "3dc",
 													"entries": [
 														"When an illusory creature stands beneath the crystal disk, the disk gives off a soft golden light. However, nothing happens until a living creature touches the illusory one. When that happens, roll percentile dice and consult the Rune Chamber Effect table to determine what happens next.",
-														"If Dzaan's simulacrum becomes real, see the \"{@area Dzaan Lives!|3dd|x}\" section below.",
+														"If {@creature Dzaan's simulacrum|IDRotF} becomes real, see the \"{@area Dzaan Lives!|3dd|x}\" section below.",
 														{
 															"type": "table",
 															"caption": "Rune Chamber Effect",
@@ -35380,7 +35380,7 @@
 															"rows": [
 																[
 																	"01\u201310",
-																	"The illusory object or creature is destroyed. If this happens to Dzaan's simulacrum, it instantly drops to 0 hit points and collapses into a pile of ice and snow."
+																	"The illusory object or creature is destroyed. If this happens to {@creature Dzaan's simulacrum|IDRotF}, it instantly drops to 0 hit points and collapses into a pile of ice and snow."
 																],
 																[
 																	"11\u201350",
@@ -47740,7 +47740,7 @@
 					"page": 215,
 					"id": "59b",
 					"entries": [
-						"This chapter focuses on the characters' exploration of the ice caves. There's a good chance that {@creature Vellynne Harpell|IDRotF} is present as well, serving as an NPC guide. If she died earlier in the adventure, the characters can use {@item Professor Skant|IDRotF} as a substitute guide, assuming they retrieved Vellynne's {@i professor orb} from Auril's island in {@area chapter 5|538|x}. If neither Vellynne nor Professor Skant are around, you can furnish another NPC with the information needed to reach the Caves of Hunger. Likely candidates include {@creature Hengar Aesnvaard|IDRotF} (see \"Elk Tribe Escort\" below) and Dzaan's simulacrum (see {@adventure appendix C|IDRotF|21}).",
+						"This chapter focuses on the characters' exploration of the ice caves. There's a good chance that {@creature Vellynne Harpell|IDRotF} is present as well, serving as an NPC guide. If she died earlier in the adventure, the characters can use {@item Professor Skant|IDRotF} as a substitute guide, assuming they retrieved Vellynne's {@i professor orb} from Auril's island in {@area chapter 5|538|x}. If neither Vellynne nor Professor Skant are around, you can furnish another NPC with the information needed to reach the Caves of Hunger. Likely candidates include {@creature Hengar Aesnvaard|IDRotF} (see \"Elk Tribe Escort\" below) and {@creature Dzaan's simulacrum|IDRotF} (see {@adventure appendix C|IDRotF|21}).",
 						{
 							"type": "entries",
 							"name": "Character Advancement",
@@ -55331,7 +55331,7 @@
 												"A deep well plunges through the city floor into darkness. Five crystal benches encircle it, glinting under the purple glow of a nearby street lamp."
 											]
 										},
-										"The stone well is 100 feet deep and lined with slippery ice and frost, making it impossible to negotiate without climbing gear or magic. Months before Ythryn's fall, a circle of mages known as the Telepathic Pentacle tried to fuse their minds together to become a conjoined telepathic force. The procedure went terribly wrong, and their bodies and minds melded into a single monstrosity. Iriolarthas imprisoned the thing in this empty well so that its latent telepathic powers could be tapped by the city's elite. A short obituary is engraved around the lip of the well in Draconic: \"Herein lie the immortal remains of the Telepathic Pentacle. Sit, meditate, and learn.\"",
+										"The stone well is 100 feet deep and lined with slippery ice and frost, making it impossible to negotiate without climbing gear or magic. Months before Ythryn's fall, a circle of mages known as the {@creature Telepathic Pentacle|IDRotF} tried to fuse their minds together to become a conjoined telepathic force. The procedure went terribly wrong, and their bodies and minds melded into a single monstrosity. Iriolarthas imprisoned the thing in this empty well so that its latent telepathic powers could be tapped by the city's elite. A short obituary is engraved around the lip of the well in Draconic: \"Herein lie the immortal remains of the {@creature Telepathic Pentacle|IDRotF}. Sit, meditate, and learn.\"",
 										{
 											"type": "entries",
 											"name": "Thing in the Well",
@@ -55348,7 +55348,7 @@
 											"page": 244,
 											"id": "667",
 											"entries": [
-												"By sitting on these crystal benches and meditating, citizens of Ythryn could join their minds with the Telepathic Pentacle, gaining insights about their past and future. A creature that sits on the bench can, after 1 minute of meditation, gain one clue from the {@area Ythryn Lore table|62f|x} by making a successful DC 15 Wisdom ({@skill Insight}) check. If the check fails by 5 or more, the creature's wayward thoughts awaken the thing in the well. A creature can gain only one insight from the well per day, and only while the monster is alive."
+												"By sitting on these crystal benches and meditating, citizens of Ythryn could join their minds with the {@creature Telepathic Pentacle|IDRotF}, gaining insights about their past and future. A creature that sits on the bench can, after 1 minute of meditation, gain one clue from the {@area Ythryn Lore table|62f|x} by making a successful DC 15 Wisdom ({@skill Insight}) check. If the check fails by 5 or more, the creature's wayward thoughts awaken the thing in the well. A creature can gain only one insight from the well per day, and only while the monster is alive."
 											]
 										}
 									]
@@ -57546,7 +57546,7 @@
 						"In this chapter, two wizards of the Arcane Brotherhood attempt to realize their grand ambitions: {@creature Vellynne Harpell|IDRotF} and {@creature Avarice|IDRotF}. Both are described in {@area appendix C|6fe|x}.",
 						"If the characters are having trouble solving a puzzle in Ythryn, such as how to deactivate the force field around the Spire of Iriolarthas, you can use Vellynne or {@creature Avarice|IDRotF} to help them. Both NPCs are highly intelligent and can help the characters arrive at a solution. You, as the DM, can use them to keep the adventure from grinding to a halt.",
 						"Both Vellynne and {@creature Avarice|IDRotF} will do almost anything to obtain Iriolarthas's spellbook, and they are only slightly less determined when it comes time to choose who gets Iriolarthas's {@item staff of power}, the {@item scroll of the comet|IDRotF}, and the {@item scroll of tarrasque summoning|IDRotF}.",
-						"If the characters helped Dzaan's simulacrum become a real person in chapter 2 (see \"{@area Lost Spire of Netheril|3a8|x}\"), he might be present as well. Without a full complement of spells, Dzaan isn't nearly as helpful as Vellynne nor as dangerous as {@creature Avarice|IDRotF}, but he's just as greedy and self-serving. Roleplay him accordingly.",
+						"If the characters helped {@creature Dzaan's simulacrum|IDRotF} become a real person in chapter 2 (see \"{@area Lost Spire of Netheril|3a8|x}\"), he might be present as well. Without a full complement of spells, Dzaan isn't nearly as helpful as Vellynne nor as dangerous as {@creature Avarice|IDRotF}, but he's just as greedy and self-serving. Roleplay him accordingly.",
 						{
 							"type": "entries",
 							"name": "Vellynne's Help",

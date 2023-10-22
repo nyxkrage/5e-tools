@@ -1132,7 +1132,24 @@ class SpellBuilder extends Builder {
 
 						const cpySp = MiscUtil.copyFast(this._state);
 
-						const sourceLookup = await SpellSourceLookupBuilder.pGetLookup({spells: [cpySp]});
+						const fauxSpellSourceLookup = {};
+						// TODO(Future) expand to things beyond `class`?
+						if (cpySp.classes?.fromClassList?.length) MiscUtil.set(fauxSpellSourceLookup, cpySp.source, cpySp.name, "class", cpySp.classes.fromClassList.map(({name, source}) => ({name, source})));
+
+						const sourceLookup = await SpellSourceLookupBuilder.pGetLookup({
+							spells: [
+								// Load the default spell set to ensure all filters are populated
+								...MiscUtil.copyFast(await DataUtil.spell.pLoadAll()),
+								cpySp,
+							],
+							spellSourceLookupAdditional: fauxSpellSourceLookup,
+						});
+
+						DataUtil.spell.PROPS_SPELL_SOURCE.forEach(prop => {
+							cpySp[prop] = cpySp[prop] || MiscUtil.copyFast(this._state[prop]);
+							// Avoid duplicating existing values
+							delete cpySp[prop];
+						});
 						DataUtil.spell.mutEntityBrewBuilder(cpySp, sourceLookup);
 
 						DataUtil.spell.PROPS_SPELL_SOURCE.forEach(prop => this._state[prop] = cpySp[prop]);

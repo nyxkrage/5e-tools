@@ -1450,25 +1450,20 @@ class SpellcastingTraitConvert {
 		return spellPart.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX).map(it => this._parseSpell(it));
 	}
 
-	// Homebrew (e.g. "Flee, Mortals!", page 3)
-	static _SPELL_BREW_SUPER_CAST_TIME_TO_FULL = {
-		"A": "1 action",
-		"B": "1 bonus action",
-		"R": "1 reaction",
-		"+": "Longer than 1 action (see spell description)",
-	};
-
 	static _parseSpell (str) {
 		str = str.trim();
 
 		const ptsSuffix = [];
 
+		// region Homebrew (e.g. "Flee, Mortals!", page 3)
 		const mBrewSuffixCastingTime = / +(?<time>[ABR+])\s*$/.exec(str);
 		if (mBrewSuffixCastingTime) {
 			str = str.slice(0, -mBrewSuffixCastingTime[0].length);
 			const action = mBrewSuffixCastingTime.groups.time;
-			ptsSuffix.unshift(`{@footnote {@sup ${action}}|Casting time: ${this._SPELL_BREW_SUPER_CAST_TIME_TO_FULL[action]}}`);
+			// TODO(Future) pass in source?
+			ptsSuffix.unshift(`{@sup {@cite Casting Times|FleeMortals|${action}}}`);
 		}
+		// endregion
 
 		const ixAsterisk = str.indexOf("*");
 		if (~ixAsterisk) {

@@ -5314,6 +5314,74 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Custom Background",
+			"source": "PHB",
+			"page": 126,
+			"skillProficiencies": [
+				{
+					"any": 2
+				}
+			],
+			"languageProficiencies": [
+				{
+					"anyStandard": 2
+				}
+			],
+			"skillToolLanguageProficiencies": [
+				{
+					"anyLanguage": 2
+				},
+				{
+					"anyLanguage": 1,
+					"anyTool": 1
+				},
+				{
+					"anyTool": 1
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "Two of your choice"
+						},
+						{
+							"type": "item",
+							"name": "Languages and Tool Proficiencies:",
+							"entry": "Two of your choice"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "The equipment package from any background"
+						}
+					]
+				},
+				{
+					"name": "Feature: Choose a Feature",
+					"type": "entries",
+					"entries": [
+						"Choose a feature from any background."
+					],
+					"data": {
+						"isFeature": true
+					}
+				},
+				{
+					"name": "Suggested Characteristics",
+					"type": "entries",
+					"entries": [
+						"Use the suggested characteristics from any background."
+					]
+				},
+				"{@note See the section on {@book Customizing a Background|PHB|4|Customizing a Background} in the {@book Player's Handbook|PHB} for more information.}"
+			]
+		},
+		{
 			"name": "Dimir Operative",
 			"source": "GGR",
 			"page": 46,

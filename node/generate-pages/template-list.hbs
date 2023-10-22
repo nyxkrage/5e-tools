@@ -14,6 +14,8 @@
 	<title>{{titlePage}} - 5etools</title>
 
 	<link rel="stylesheet" href="css/bootstrap.css">
+{{#if isFontAwesome}}	<link rel="stylesheet" href="css/fontawesome.css">
+{{/if}}
 	<link rel="stylesheet" href="css/main.css">
 	{{#each stylesheets}}
 	<link rel="stylesheet" href="css/{{this}}.css">
@@ -78,7 +80,7 @@
 
 	<div class="view-col-group--cancer h-100 mh-0">
 		<div class="container view-col-wrapper view-col-wrapper--cancer">
-			<div class="view-col" id="listcontainer">
+			<div class="view-col{{#if styleListContainerAdditional}} {{styleListContainerAdditional}}{{/if}}" id="listcontainer">
 				<div class="lst__form-top" id="filter-search-group">
 					<div class="w-100 relative">
 						<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search lst__search--no-border-h">
@@ -99,7 +101,7 @@
 
 			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
 
-			<div id="contentwrapper" class="view-col">
+			<div id="contentwrapper" class="view-col{{#if styleContentWrapperAdditional}} {{styleContentWrapperAdditional}}{{/if}}">
 				{{> (lookup . 'identPartialRhsPreSublist') }}
 				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
 					<div id="sublistsort" class="btn-group sublist__wrp-cols">
@@ -117,8 +119,8 @@
 				</div>
 
 				{{> (lookup . 'identPartialRhsWrpToken') }}
-				<div id="wrp-pagecontent" class="wrp-stats-table">
-					<table id="pagecontent" class="w-100 stats">
+				<div id="wrp-pagecontent" class="wrp-stats-table{{#if isStyleBook}} wrp-stats-table--book{{/if}}">
+					<table id="pagecontent" class="w-100 stats{{#if isStyleBook}} stats--book{{/if}}">
 						<tr><th class="border" colspan="6"></th></tr>
 						<tr><td colspan="6" class="initial-message">Select an entry from the list to view it here</td></tr>
 						<tr><th class="border" colspan="6"></th></tr>
@@ -154,7 +156,8 @@
 <script type="text/javascript" src="js/scalecreature.js"></script>
 <script type="text/javascript" src="js/hist.js"></script>
 <script type="text/javascript" src="js/listpage.js"></script>
-{{#if isMultisource}}<script type="text/javascript" src="js/multisource.js"></script>{{/if}}
+{{#if isMultisource}}<script type="text/javascript" src="js/multisource.js"></script>
+{{/if}}
 <script type="text/javascript" src="js/filter-common.js"></script>
 <script type="text/javascript" src="js/filter-{{scriptIdentList}}.js"></script>
 {{#each scriptsPrePageAdditional}}<script type="text/javascript" src="js/{{this}}"></script>
