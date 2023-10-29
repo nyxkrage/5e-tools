@@ -1271,7 +1271,7 @@
 						"items": {
 							"name": "Special Equipment",
 							"entries": [
-								"Kavoda carries a {@item spell scroll} of {@spell magic weapon} and a {@item Potion of Hill Giant Strength||potion of giant strength (hill)}."
+								"Kavoda carries a {@item Spell Scroll (2nd Level)||spell scroll} of {@spell magic weapon} and a {@item Potion of Hill Giant Strength||potion of giant strength (hill)}."
 							]
 						}
 					}

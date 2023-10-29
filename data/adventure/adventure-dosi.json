@@ -6,6 +6,16 @@
 			"page": 2,
 			"id": "000",
 			"entries": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "adventure/DoSI/00-001.opening-splash.webp"
+					},
+					"credit": "Karl Kopinski",
+					"width": 1700,
+					"height": 1377
+				},
 				"This is for the Dungeon Master. It contains a complete Dungeons & Dragons adventure, as well as descriptions for the magic items and creatures in the adventure. It also teaches you how to run a D&D game.",
 				{
 					"type": "section",
@@ -273,6 +283,136 @@
 							]
 						}
 					]
+				},
+				{
+					"type": "section",
+					"name": "Voyage to Stormwreck Isle",
+					"entries": [
+						"{@note This \"Voyage to Stormwreck Isle\" section was originally distributed as part of an in-store introductory pack for {@i Dragons of Stormwreck Isle}, and later digitally published. It is included here for convenience.}",
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/DoSI/00-005.voyage-intro-art.webp"
+							},
+							"credit": "Linda Lithén",
+							"width": 1700,
+							"height": 1100
+						},
+						"Before play starts, introduce yourself and welcome the players:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Hi everyone. I'm going to be running you through a quick demo on how to play D&D. I'm the Dungeon Master, so it's my job to tell you what's happening in the world around you and rolling any dice for the monster. You're playing the heroes!"
+							],
+							"id": "0ce"
+						},
+						"Read this text to set the scene:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Your journey has been smooth sailing so far. You left the bustling port of Neverwinter a few days ago, heading for an island with the foreboding name of Stormwreck Isle. But you woke this morning to a blood-red sunrise, and dark clouds overhead threaten a violent storm."
+							],
+							"id": "0cf"
+						},
+						"Show the players the illustration of their ship at sea.",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"As lightning flashes across the sky, a monster hauls itself up onto the deck!"
+							],
+							"id": "0d0"
+						},
+						"Show the players the illustration of the {@creature Merrow Extortionist|DoSI|merrow} and adopt a different voice for it. You can use any voice you like, but try to sound intimidating! Read this text in the merrow's voice:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"\"These waters belong to the Scaled Queen. I'm here to collect her tribute.\""
+							],
+							"id": "0d1"
+						},
+						{
+							"type": "entries",
+							"name": "Explaining the Game",
+							"entries": [
+								"Read or paraphrase this boxed text:",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"I've just told you the situation you're in. What happens next is up to you. You're all trained for combat, so if you want to fight this monster, which is called a merrow, I can help you do that. But you can also try to negotiate with the merrow, or trick it, or anything else you can imagine.",
+										"Just about anything you can think of to try will require some combination of skill, natural ability, and luck to pull off. And the D&D game represents that by having you roll one of these 20-sided dice and add a number from your sheet. So... what do you want to do?"
+									],
+									"id": "0e8"
+								}
+							],
+							"id": "0d2"
+						},
+						{
+							"type": "entries",
+							"name": "Run the Encounter",
+							"entries": [
+								"Let the players take the lead! They can try anything they can imagine.",
+								"Encourage the players to tell you their ideas. Ask them to let you know what they are thinking, and then run with it!",
+								"Whatever the characters try and whatever their die rolls indicate, use vivid descriptions to keep things exciting.",
+								"Here are some of the most likely approaches.",
+								{
+									"type": "entries",
+									"name": "Negotiate with the Merrow",
+									"entries": [
+										"The players might agree to pay tribute to the Scaled Queen. The {@creature Merrow Extortionist|DoSI|merrow} initially demands a payment of 400 gold pieces (gp) or its equivalent in goods. This is the value of all the goods in the hold. The characters can use Charisma checks (applying {@skill Persuasion}, {@skill Intimidation}, or perhaps {@skill Deception} skills, as appropriate) to get it to accept a lower amount; each successful {@dc 15} check reduces the amount he asks for by 100 gp.",
+										"If the players ask about the Scaled Queen, the merrow says that she is a huge, two-headed merrow who carries the special blessing of the Prince of Demons, Demogorgon."
+									],
+									"id": "0ea"
+								},
+								{
+									"type": "entries",
+									"name": "Attack the Merrow",
+									"entries": [
+										"Lots of players will attack first. Other players will decide their characters attack if other approaches fail. When a player decides that their character attacks, their character acts first in combat. Then play passes to the right. Take the merrow's turn when it passes around to you.",
+										"On each player's turn, talk through the different actions their character can take, such as attacking with weapons and casting spells. Explain the character's different weapons and spell attacks.",
+										"This {@creature Merrow Extortionist|DoSI|merrow} looks fearsome but doesn't present too much of a threat to the characters. They should be able to defeat it in 1\u20132 rounds."
+									],
+									"id": "0eb"
+								}
+							],
+							"id": "0e9"
+						},
+						{
+							"type": "entries",
+							"name": "Shenanigans",
+							"entries": [
+								"The players might think of creative ideas for dealing with the merrow:",
+								{
+									"type": "list",
+									"items": [
+										"Can I roll a barrel to push the merrow overboard?",
+										"Can I drop a sail on it so it can't see?",
+										"Can I persuade the crew to rush it?",
+										"Can I..."
+									]
+								},
+								"Whatever the players ask, the answer should (almost) always be something like, \"You can try!\" If a character has a specific spell or ability that will let them accomplish what they want to do, help the player use that spell or ability. Otherwise, ask the player to make a ability check that's appropriate to their character's tactics, such as a Strength ({@skill Athletics}) check for trying to roll the barrel at the merrow, a Dexterity check to fling a sail over it, or a Charisma ({@skill Intimidation}) check to convince it that the crew is about to attack."
+							],
+							"id": "0ec"
+						},
+						{
+							"type": "entries",
+							"name": "Wrap Up",
+							"entries": [
+								"When the characters have dealt with the {@creature Merrow Extortionist|DoSI|merrow}, one way or another, read this text to wrap up:",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"With a splash, the merrow disappears into the ocean deeps and the ship continues on its way. The sailors raise a cheer, and the storm brewing overhead seems not quite so threatening now.",
+										"And that brings us to the end of your first taste of adventure."
+									],
+									"id": "0ee"
+								}
+							],
+							"id": "0ed"
+						}
+					],
+					"id": "0cd"
 				}
 			]
 		},

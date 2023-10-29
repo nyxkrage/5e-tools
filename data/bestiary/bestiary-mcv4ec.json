@@ -1831,7 +1831,14 @@
 									"type": "item",
 									"name": "Persistence (Locthwain)",
 									"entries": [
-										"The knight has advantage on Constitution saving throws. Strength (Garenbrig). The knight has advantage on Strength checks and Strength saving throws."
+										"The knight has advantage on Constitution saving throws."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Strength (Garenbrig)",
+									"entries": [
+										"The knight has advantage on Strength checks and Strength saving throws."
 									]
 								}
 							]

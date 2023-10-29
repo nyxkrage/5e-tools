@@ -2550,5 +2550,11 @@
 		"ver": "1.189.1",
 		"date": "2023-10-22",
 		"txt": "- Added Sigil and the Outlands encounter tables to the Encounter Generator\n- Added SHIFT+click to collapse/expand all headers in the Encounter Generator and Names pages\n- Added Turn of Fortune's Wheel NPCs/other creatures\n- (Brew) Added \"citation\" entity type/`@cite` tags\n- (Brew) Improved Background Text Converter handling of prerequisites\n- (Brew) Tweaked Homebrew Spell Builder \"Generate Additional [Sources]\" output to (hopefully) produce more accurate results\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.190.0",
+		"date": "2023-10-29",
+		"title": "Unremarkable",
+		"txt": "- Added Markdown popout support to most list pages (thanks @ darthbeep for the initial prototype)\n- Added \"Voyage to Stormwreck Isle\" introductory section to Dragons of Stormwreck Isle\n- (Brew) Fixed specific variants for homebrew `magicvariant`s applied to non-homebrew `baseitem`s failing to be added to the Items page list\n- (Fixed typos/added tags)"
 	}
 ]

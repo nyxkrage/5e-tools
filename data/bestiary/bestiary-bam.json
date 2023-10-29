@@ -1176,7 +1176,7 @@
 				{
 					"name": "Special Equipment",
 					"entries": [
-						"The elf wears a suit of elven chain."
+						"The elf wears a suit of {@item elven chain}."
 					]
 				},
 				{
@@ -7272,7 +7272,7 @@
 					"ac": 16,
 					"from": [
 						"natural armor",
-						"{@spell intellect fortress|tce}"
+						"intellect fortress"
 					]
 				}
 			],

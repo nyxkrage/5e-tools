@@ -63,6 +63,8 @@ class TrapsHazardsPage extends ListPage {
 
 			dataProps: ["trap", "hazard"],
 
+			isMarkdownPopout: true,
+
 			listSyntax: new ListSyntaxTrapsHazards({fnGetDataList: () => this._dataList}),
 		});
 	}

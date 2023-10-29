@@ -26105,9 +26105,6 @@
 				"type": "internal",
 				"path": "bestiary/narzugon.mp3"
 			},
-			"attachedItems": [
-				"hellfire lance|bgdia"
-			],
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -34942,9 +34939,6 @@
 				"type": "internal",
 				"path": "bestiary/titivilus.mp3"
 			},
-			"attachedItems": [
-				"silver sword|mtf"
-			],
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",

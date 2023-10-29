@@ -77,6 +77,8 @@ class RacesPage extends ListPage {
 
 			dataProps: ["race"],
 
+			isMarkdownPopout: true,
+
 			bookViewOptions: {
 				namePlural: "races",
 				pageTitle: "Races Book View",

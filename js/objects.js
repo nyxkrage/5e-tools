@@ -69,6 +69,8 @@ class ObjectsPage extends ListPage {
 			dataProps: ["object"],
 
 			listSyntax: new ListSyntaxObjects({fnGetDataList: () => this._dataList, pFnGetFluff}),
+
+			isMarkdownPopout: true,
 		});
 
 		this._$dispToken = null;

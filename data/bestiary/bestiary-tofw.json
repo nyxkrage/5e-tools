@@ -70,16 +70,28 @@
 						"replace": "\\bworm\\b",
 						"with": "eyestalk"
 					},
-					"action": {
-						"mode": "replaceArr",
-						"replace": "Tail Stinger",
-						"items": {
-							"name": "Eradication Gaze {@recharge 5}",
-							"entries": [
-								"The eyestalk creates an area of magical devastation in a 150-foot cone. Any creature in that area must succeed on a {@dc 16} Dexterity saving throw or take 55 ({@damage 10d10}) necrotic damage. If this damage reduces a creature to 0 hit points, its body becomes a pile of fine violet dust."
-							]
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"The eyestalk attacks with its bite and uses Eradication Gaze."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Tail Stinger",
+							"items": {
+								"name": "Eradication Gaze {@recharge 5}",
+								"entries": [
+									"The eyestalk creates an area of magical devastation in a 150-foot cone. Any creature in that area must succeed on a {@dc 16} Dexterity saving throw or take 55 ({@damage 10d10}) necrotic damage. If this damage reduces a creature to 0 hit points, its body becomes a pile of fine violet dust."
+								]
+							}
 						}
-					}
+					]
 				}
 			},
 			"hasFluff": true
@@ -483,7 +495,7 @@
 			"name": "Whirlwyrm",
 			"source": "ToFW",
 			"_copy": {
-				"name": "Crocodile",
+				"name": "Giant Crocodile",
 				"source": "MM",
 				"_mod": {
 					"*": {

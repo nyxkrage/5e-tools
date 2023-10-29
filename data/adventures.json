@@ -27601,7 +27601,24 @@
 						"Getting Started",
 						"The Forgotten Realms",
 						"Adventure Background",
-						"The Dungeon Master"
+						"The Dungeon Master",
+						"Voyage to Stormwreck Isle",
+						{
+							"depth": 1,
+							"header": "Explaining the Game"
+						},
+						{
+							"depth": 1,
+							"header": "Run the Encounter"
+						},
+						{
+							"depth": 1,
+							"header": "Shenanigans"
+						},
+						{
+							"depth": 1,
+							"header": "Wrap Up"
+						}
 					]
 				},
 				{

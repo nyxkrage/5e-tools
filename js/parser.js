@@ -1602,16 +1602,25 @@ Parser.getFullImmRes = function (toParse) {
 	return out;
 };
 
-Parser.getFullCondImm = function (condImm, isPlainText) {
+Parser.getFullCondImm = function (condImm, {isPlainText = false, isEntry = false} = {}) {
+	if (isPlainText && isEntry) throw new Error(`Options "isPlainText" and "isEntry" are mutually exclusive!`);
+
 	if (!condImm?.length) return "";
-	function render (condition) {
-		return isPlainText ? condition : Renderer.get().render(`{@condition ${condition}}`);
-	}
-	return condImm.map(it => {
-		if (it.special) return it.special;
-		if (it.conditionImmune) return `${it.preNote ? `${it.preNote} ` : ""}${it.conditionImmune.map(render).join(", ")}${it.note ? ` ${it.note}` : ""}`;
-		return render(it);
-	}).sort(SortUtil.ascSortLower).join(", ");
+
+	const render = condition => {
+		if (isPlainText) return condition;
+		const ent = `{@condition ${condition}}`;
+		if (isEntry) return ent;
+		return Renderer.get().render(ent);
+	};
+
+	return condImm
+		.map(it => {
+			if (it.special) return it.special;
+			if (it.conditionImmune) return `${it.preNote ? `${it.preNote} ` : ""}${it.conditionImmune.map(render).join(", ")}${it.note ? ` ${it.note}` : ""}`;
+			return render(it);
+		})
+		.sort(SortUtil.ascSortLower).join(", ");
 };
 
 Parser.MON_SENSE_TAG_TO_FULL = {
@@ -2479,6 +2488,7 @@ Parser.CONDITION_TO_COLOR = {
 
 Parser.RULE_TYPE_TO_FULL = {
 	"O": "Optional",
+	"P": "Prerelease",
 	"V": "Variant",
 	"VO": "Variant Optional",
 	"VV": "Variant Variant",

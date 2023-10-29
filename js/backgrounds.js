@@ -64,6 +64,8 @@ class BackgroundPage extends ListPage {
 			},
 
 			dataProps: ["background"],
+
+			isMarkdownPopout: true,
 		});
 	}
 

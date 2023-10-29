@@ -241,6 +241,7 @@ class AcConvert {
 			case "disarming charm": // TG :: Forge Fitzwilliam
 			case "graz'zt's gift": // KftGV :: Sythian Skalderang
 			case "damaged plate": // BGG :: Firegaunt
+			case "intellect fortress": // N.b. *not* the spell of the same name, as this usually appears as a creature feature
 				return fromLow;
 				// endregion
 
@@ -269,7 +270,6 @@ class AcConvert {
 			case "foresight bonus": return `{@spell foresight} bonus`;
 			case "natural barkskin": return `natural {@spell barkskin}`;
 			case "mage armor": return "{@spell mage armor}";
-			case "intellect fortress": return "{@spell intellect fortress|tce}";
 			// endregion
 
 			// region armor (mostly handled by the item lookup; these are mis-named exceptions (usually for homebrew))
@@ -1825,6 +1825,10 @@ class AttachedItemTag {
 		return mAtk[1].split(",").some(it => it.includes("w"));
 	}
 
+	// FIXME tags too aggressively; should limit by e.g.:
+	//   - for creatures with a known "book" source, never use items from a known "adventure" source
+	//   - for creatures with a known "adventure" source, never use items from a *different* "adventure" source
+	//   - for a creature from a known source, never tag items from a more recent known source
 	static tryRun (mon, {cbNotFound = null, isAddOnly = false} = {}) {
 		if (!this._WEAPON_DETAIL_CACHE) throw new Error(`Attached item cache was not initialized!`);
 

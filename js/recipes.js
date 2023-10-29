@@ -75,6 +75,8 @@ class RecipesPage extends ListPage {
 
 			dataProps: ["recipe"],
 
+			isMarkdownPopout: true,
+
 			listSyntax: new ListSyntaxRecipes({fnGetDataList: () => this._dataList, pFnGetFluff}),
 		});
 	}

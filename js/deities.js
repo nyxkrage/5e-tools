@@ -67,6 +67,8 @@ class DeitiesPage extends ListPage {
 			pageFilter,
 
 			dataProps: ["deity"],
+
+			isMarkdownPopout: true,
 		});
 	}
 

@@ -2759,6 +2759,8 @@ class InputUiUtil {
 	/**
 	 * @param [opts] Options.
 	 * @param [opts.title] Prompt title.
+	 * @param [opts.htmlDescription] Description HTML for the modal.
+	 * @param [opts.$eleDescription] Description element for the modal.
 	 * @param [opts.default] Default value.
 	 * @param [opts.autocomplete] Array of autocomplete strings. REQUIRES INCLUSION OF THE TYPEAHEAD LIBRARY.
 	 * @param [opts.isCode] If the text is code.
@@ -2825,6 +2827,8 @@ class InputUiUtil {
 		const $btnSkip = this._$getBtnSkip({comp, opts, doClose});
 
 		if (opts.$elePre) opts.$elePre.appendTo($modalInner);
+		if (opts.$eleDescription?.length) $$`<div class="ve-flex w-100 mb-1">${opts.$eleDescription}</div>`.appendTo($modalInner);
+		else if (opts.htmlDescription && opts.htmlDescription.trim()) $$`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo($modalInner);
 		$iptStr.appendTo($modalInner);
 		if (opts.$elePost) opts.$elePost.appendTo($modalInner);
 		$$`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);

@@ -66,6 +66,8 @@ class RewardsPage extends ListPage {
 			dataProps: ["reward"],
 
 			isPreviewable: true,
+
+			isMarkdownPopout: true,
 		});
 	}
 

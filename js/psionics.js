@@ -71,6 +71,8 @@ class PsionicsPage extends ListPage {
 
 			dataProps: ["psionic"],
 
+			isMarkdownPopout: true,
+
 			bookViewOptions: {
 				namePlural: "psionics",
 				pageTitle: "Psionics Book View",
@@ -82,7 +84,7 @@ class PsionicsPage extends ListPage {
 				colTransforms: {
 					name: UtilsTableview.COL_TRANSFORM_NAME,
 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
-					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyText(it, Renderer.get()), flex: 3},
+					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyText(it), flex: 3},
 				},
 			},
 

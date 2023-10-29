@@ -1267,6 +1267,7 @@ class AdventureBookTagCheck extends DataTesterBase {
 		const len = tagSplit.length;
 		for (let i = 0; i < len; ++i) {
 			const s = tagSplit[i];
+
 			if (!s) continue;
 			if (s.startsWith("{@")) {
 				const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
@@ -1275,7 +1276,7 @@ class AdventureBookTagCheck extends DataTesterBase {
 				const [, id] = text.toLowerCase().split("|");
 				if (!id) throw new Error(`${tag} tag had ${s} no source!`); // Should never occur
 
-				if (this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) return;
+				if (this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) continue;
 
 				this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
 			}

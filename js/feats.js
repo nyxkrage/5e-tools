@@ -69,6 +69,8 @@ class FeatsPage extends ListPage {
 			},
 
 			isPreviewable: true,
+
+			isMarkdownPopout: true,
 		});
 	}
 

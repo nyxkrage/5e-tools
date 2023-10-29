@@ -33316,7 +33316,14 @@
 					},
 					"title": "Trollskull Manor",
 					"width": 737,
-					"height": 1000
+					"height": 1000,
+					"grid": {
+						"type": "square",
+						"size": 71,
+						"offsetX": 2,
+						"offsetY": 28,
+						"scale": 2
+					}
 				},
 				{
 					"type": "image",
