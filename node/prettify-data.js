@@ -140,6 +140,8 @@ const _FILE_PROP_ORDER = [
 
 	"sense",
 
+	"citation",
+
 	"adventure",
 	"adventureData",
 	"book",

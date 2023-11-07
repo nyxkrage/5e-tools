@@ -21150,6 +21150,78 @@
 										"One round after a smoke grenade lands, it emits a cloud of smoke that creates a heavily obscured area in a 20-foot radius. A moderate wind (at least 10 miles per hour) disperses the smoke in 4 rounds; a strong wind (20 or more miles per hour) disperses it in 1 round."
 									],
 									"id": "32f"
+								},
+								{
+									"type": "tableGroup",
+									"name": "Explosives",
+									"tables": [
+										{
+											"type": "table",
+											"caption": "Explosives",
+											"colLabels": [
+												"Renaissance Item",
+												"Cost",
+												"Weight"
+											],
+											"colStyles": [
+												"col-8",
+												"col-2 text-right",
+												"col-2 text-right"
+											],
+											"rows": [
+												[
+													"{@item Bomb}",
+													"150 gp",
+													"1 lb."
+												],
+												[
+													"{@item Gunpowder Keg||Gunpowder, keg}",
+													"250 gp",
+													"20 lb."
+												],
+												[
+													"{@item Gunpowder Horn||Gunpowder, powder horn}",
+													"35 gp",
+													"2 lb."
+												]
+											]
+										},
+										{
+											"type": "table",
+											"colLabels": [
+												"Modern Item",
+												"Cost",
+												"Weight"
+											],
+											"colStyles": [
+												"col-8 text",
+												"col-2 text-right",
+												"col-2 text-right"
+											],
+											"rows": [
+												[
+													"{@item Dynamite (stick)}",
+													"\u2014",
+													"1 lb."
+												],
+												[
+													"{@item Fragmentation Grenade||Grenade, fragmentation}",
+													"\u2014",
+													"1 lb."
+												],
+												[
+													"{@item Smoke Grenade||Grenade, smoke}",
+													"\u2014",
+													"2 lb."
+												],
+												[
+													"{@item Grenade Launcher||Grenade launcher}",
+													"\u2014",
+													"7 lb."
+												]
+											]
+										}
+									]
 								}
 							],
 							"id": "32b"

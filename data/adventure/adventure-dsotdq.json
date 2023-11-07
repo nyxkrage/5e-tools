@@ -27201,6 +27201,18 @@
 							"credit": "Francesca Baerald"
 						}
 					]
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "adventure/DSotDQ/ansalon-poster-map.webp"
+					},
+					"imageType": "map",
+					"title": "Poster Map",
+					"credit": "Francesca Baerald",
+					"width": 4096,
+					"height": 2926
 				}
 			]
 		}

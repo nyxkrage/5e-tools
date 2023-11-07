@@ -1428,14 +1428,18 @@ class CreatureParser extends BaseParser {
 
 	static _tryParseType ({stats, strType}) {
 		strType = strType.trim().toLowerCase();
-		const mSwarm = /^(.*)swarm of (\w+) (\w+)$/i.exec(strType);
+		const mSwarm = /^(?<prefix>.*)swarm of (?<size>\w+) (?<type>\w+)(?: \((?<tags>[^)]+)\))?$/i.exec(strType);
 		if (mSwarm) {
 			const swarmTypeSingular = Parser.monTypeFromPlural(mSwarm[3]);
 
-			return { // retain any leading junk, as we'll parse it out in a later step
-				type: `${mSwarm[1]}${swarmTypeSingular}`,
-				swarmSize: mSwarm[2][0].toUpperCase(),
+			const out = { // retain any leading junk, as we'll parse it out in a later step
+				type: `${mSwarm.groups.prefix}${swarmTypeSingular}`,
+				swarmSize: mSwarm.groups.size[0].toUpperCase(),
 			};
+
+			if (mSwarm.groups.tags) out.tags = this._tryParseType_getTags({str: mSwarm.groups.tags});
+
+			return out;
 		}
 
 		const mParens = /^(.*?) (\(.*?\))\s*$/.exec(strType);
@@ -1446,7 +1450,7 @@ class CreatureParser extends BaseParser {
 			if (stats.size.length > 1) {
 				note = mParens[2];
 			} else {
-				tags = mParens[2].split(",").map(s => s.replace(/\(/g, "").replace(/\)/g, "").trim());
+				tags = this._tryParseType_getTags({str: mParens[2]});
 			}
 			strType = mParens[1];
 		}
@@ -1467,6 +1471,10 @@ class CreatureParser extends BaseParser {
 		if (note) out.note = note;
 
 		return out;
+	}
+
+	static _tryParseType_getTags ({str}) {
+		return str.split(",").map(s => s.replace(/\(/g, "").replace(/\)/g, "").trim());
 	}
 
 	static _getSequentialAbilityScoreSectionLineCount (stats, meta) {
@@ -1522,7 +1530,7 @@ class CreatureParser extends BaseParser {
 	}
 
 	static _setCleanSizeTypeAlignment_standard (stats, meta, options) {
-		const ixSwarm = / swarm /.exec(meta.curLine)?.index;
+		const ixSwarm = / swarm /i.exec(meta.curLine)?.index;
 
 		// regular creatures
 

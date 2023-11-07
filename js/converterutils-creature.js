@@ -303,6 +303,7 @@ class AcConvert {
 			case "robe of the archmagi": return "{@item robe of the archmagi}";
 			case "robe of the archmage": return "{@item robe of the archmagi}";
 			case "staff of power": return "{@item staff of power}";
+			case "wrought-iron tower": return "{@item wrought-iron tower|CoA}";
 			// endregion
 
 			default: {

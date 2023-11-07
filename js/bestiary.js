@@ -837,7 +837,7 @@ class BestiaryPage extends ListPageMultiSource {
 		if (!hasToken) return;
 
 		const imgLink = Renderer.monster.getTokenUrl(mon);
-		const $img = $(`<img src="${imgLink}" class="mon__token" alt="Token Image: ${(mon.name || "").qq()}" loading="lazy">`);
+		const $img = $(`<img src="${imgLink}" class="mon__token" alt="Token Image: ${(mon.name || "").qq()}" ${mon.tokenCredit ? `title="Credit: ${mon.tokenCredit.qq()}"` : ""} loading="lazy">`);
 		$tokenImages.push($img);
 		const $lnkToken = $$`<a href="${imgLink}" class="mon__wrp-token" target="_blank" rel="noopener noreferrer">${$img}</a>`
 			.appendTo($floatToken);
@@ -857,7 +857,7 @@ class BestiaryPage extends ListPageMultiSource {
 			const buildEle = (meta) => {
 				if (!meta.$ele) {
 					const imgLink = Renderer.monster.getTokenUrl({name: meta.name, source: meta.source, tokenUrl: meta.tokenUrl});
-					const $img = $(`<img src="${imgLink}" class="mon__token" alt="Token Image: ${(meta.displayName || meta.name || "").qq()}" loading="lazy">`)
+					const $img = $(`<img src="${imgLink}" class="mon__token" alt="Token Image: ${(meta.displayName || meta.name || "").qq()}" ${meta.tokenCredit ? `title="Credit: ${meta.tokenCredit.qq()}"` : ""} loading="lazy">`)
 						.on("error", () => {
 							$img.attr(
 								"src",

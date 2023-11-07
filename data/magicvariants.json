@@ -1121,6 +1121,43 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Demonbone Polearm",
+			"type": "GV",
+			"requires": [
+				{
+					"polearm": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Demonbone ",
+				"source": "CoA",
+				"page": 268,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. In addition, when you're damaged by a creature in reach, you may use your reaction to make one melee attack against it with this weapon.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"You're unwilling to part with this weapon while attuned to it. While attuned, you have disadvantage on attack rolls with weapons other than this one.",
+							"Whenever a hostile creature damages you, you must succeed on a DC 15 Wisdom saving throw or go berserk. While berserk, you must use your action on each of your turns to attack the creature nearest to you with the weapon. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random.",
+							"You're berserk until you start your turn with no creatures within 60 feet of you that you can see or hear. Alternatively, an ally can use an action to make a DC 15 Charisma ({@skill Persuasion}) check and if successful, you're no longer berserk. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Corrupting",
+						"entries": [
+							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
+						]
+					}
+				]
+			}
+		},
+		{
 			"name": "Dragon Slayer",
 			"type": "GV",
 			"requires": [
@@ -2773,6 +2810,43 @@
 			}
 		},
 		{
+			"name": "Stygian Spear",
+			"type": "GV",
+			"requires": [
+				{
+					"spear": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Stygian ",
+				"source": "CoA",
+				"page": 270,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When you throw it, it deals one extra die of damage on a hit. After you throw it and it hits or misses, it flies back to your hand immediately.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"You're unwilling to part with this weapon while attuned to it. In addition, you have disadvantage on attack rolls made with weapons other than this one.",
+							"Whenever you roll a 1 on an attack roll using this weapon, your target changes to your closest ally.",
+							"If there are multiple allies, randomly determine which is the target. Make a new attack roll with advantage against your ally. If the attack hits, in addition to the standard damage you deal an extra {@damage 2d6} poison damage. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Corrupting",
+						"entries": [
+							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
+						]
+					}
+				]
+			}
+		},
+		{
 			"name": "Sword of Life Stealing",
 			"type": "GV",
 			"requires": [
@@ -2797,6 +2871,42 @@
 				]
 			},
 			"hasFluffImages": true
+		},
+		{
+			"name": "Sword of Retribution",
+			"type": "GV",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Retribution",
+				"source": "CoA",
+				"page": 270,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this sword. Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"You're unwilling to part with this weapon while attuned to it. While attuned to this weapon, you also have disadvantage on attack rolls made with weapons other than this one.",
+							"The vengeful spirit possessing the sword shares its history and lust for vengeance with the wielder. After each successful long rest, you experience nightmares of the spirit's past, culminating in its death. When you wake, you must make a DC 11 Constitution saving throw. On a failed save, you only gain the benefits of a short rest. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Corrupting",
+						"entries": [
+							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
+						]
+					}
+				]
+			}
 		},
 		{
 			"name": "Sword of Sharpness",
@@ -3017,6 +3127,26 @@
 				"rarity": "common",
 				"entries": [
 					" This ammunition packs a wallop. A creature hit by the ammunition must succeed on a DC 10 Strength saving throw or be knocked {@condition prone}."
+				]
+			}
+		},
+		{
+			"name": "Weapon of Agonizing Paralysis",
+			"type": "GV",
+			"requires": [
+				{
+					"type": "M"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Agonizing Paralysis",
+				"source": "CoA",
+				"page": 271,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When this weapon reduces a creature to 0 hit points, the creature doesn't die. Instead, infernal runes appear as if carved into their flesh and they're healed to 1 hit point. They now have the {@condition paralyzed} condition until the condition is removed by a {@spell Lesser Restoration} spell or similar magic. When the condition is removed, the runes disappear. At the start of each of their turns while they're {@condition paralyzed}, the creature suffers immense pain and gains a level of {@condition exhaustion}."
 				]
 			}
 		},

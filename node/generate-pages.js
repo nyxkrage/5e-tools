@@ -81,11 +81,21 @@ class _PageGeneratorBase {
 	}
 
 	_registerPartial ({ident, filename}) {
-		if (ident in Handlebars.partials) return;
 		Handlebars.registerPartial(ident, this.constructor._getLoadedSource({filename}));
 	}
 
-	_registerPartials () { /* Implement as required */ }
+	_registerPartials () {
+		this._registerPartial({ident: "head", filename: "head/template-head.hbs"});
+
+		this._registerPartial({ident: "adRhs", filename: "ad/template-ad-rhs.hbs"});
+		this._registerPartial({ident: "adLeaderboard", filename: "ad/template-ad-leaderboard.hbs"});
+		this._registerPartial({ident: "adMobile1", filename: "ad/template-ad-mobile-1.hbs"});
+		this._registerPartial({ident: "adFooter", filename: "ad/template-ad-footer.hbs"});
+
+		this._registerPartial({ident: "navbar", filename: "navbar/template-navbar.hbs"});
+
+		this._registerPartial({ident: "blank", filename: "misc/template-blank.hbs"});
+	}
 
 	/**
 	 * @abstract
@@ -95,7 +105,11 @@ class _PageGeneratorBase {
 
 	generatePage () {
 		const template = Handlebars.compile(this.constructor._getLoadedSource({filename: this._filename}));
-		fs.writeFileSync(this._page, template(this._getData()), "utf-8");
+		const rendered = template(this._getData())
+			.split("\n")
+			.map(l => l.trimEnd())
+			.join("\n");
+		fs.writeFileSync(this._page, rendered, "utf-8");
 	}
 
 	static _getLoadedSource ({filename}) {
@@ -104,11 +118,11 @@ class _PageGeneratorBase {
 }
 
 class _PageGeneratorListBase extends _PageGeneratorBase {
-	_filename = `template-list.hbs`;
+	_filename = "list/template-list.hbs";
 
 	_page;
 	_titlePage;
-	_titleNavbar;
+	_navbarTitle;
 	_isFontAwesome = false;
 	_stylesheets;
 	_isStyleBook = false;
@@ -124,16 +138,30 @@ class _PageGeneratorListBase extends _PageGeneratorBase {
 	_isPrinterView = false;
 
 	_registerPartials () {
-		this._registerPartial({ident: `blank`, filename: `template-blank.hbs`});
+		super._registerPartials();
 
-		this._registerPartial({ident: `listRhsWrpFooterControls`, filename: `template-list-rhs-wrp-footer-controls.hbs`});
-		this._registerPartial({ident: `listRhsWrpToken`, filename: `template-list-rhs-wrp-token.hbs`});
+		this._registerPartial({ident: "listListcontainer", filename: "list/template-list-listcontainer.hbs"});
+		this._registerPartial({ident: "listFilterSearchGroup", filename: "list/template-list-filter-search-group.hbs"});
+		this._registerPartial({ident: "listFiltertools", filename: "list/template-list-filtertools.hbs"});
+		this._registerPartial({ident: "listList", filename: "list/template-list-list.hbs"});
+
+		this._registerPartial({ident: "listContentwrapper", filename: "list/template-list-contentwrapper.hbs"});
+		this._registerPartial({ident: "listSublistContainer", filename: "list/template-list-sublist-container.hbs"});
+		this._registerPartial({ident: "listSublist", filename: "list/template-list-sublist.hbs"});
+		this._registerPartial({ident: "listSublistsort", filename: "list/template-list-sublistsort.hbs"});
+		this._registerPartial({ident: "listStatsTabs", filename: "list/template-list-stats-tabs.hbs"});
+		this._registerPartial({ident: "listWrpPagecontent", filename: "list/template-list-wrp-pagecontent.hbs"});
+		this._registerPartial({ident: "listRhsWrpFooterControls", filename: "list/template-list-rhs-wrp-footer-controls.hbs"});
+		this._registerPartial({ident: "listRhsWrpToken", filename: "list/template-list-rhs-wrp-token.hbs"});
+
+		this._registerPartial({ident: "listScripts", filename: "list/template-list-scripts.hbs"});
 	}
 
 	_getData () {
 		return {
 			titlePage: this._titlePage,
-			titleNavbar: this._titleNavbar ?? this._titlePage,
+			navbarTitle: this._navbarTitle ?? this._titlePage,
+			navbarDescription: "Search by name on the left, click a name to display on the right.",
 			isFontAwesome: this._isFontAwesome,
 			stylesheets: this._stylesheets,
 			scriptIdentList: this._scriptIdentList,
@@ -146,10 +174,8 @@ class _PageGeneratorListBase extends _PageGeneratorBase {
 			isStyleBook: this._isStyleBook,
 			styleListContainerAdditional: this._styleListContainerAdditional,
 			styleContentWrapperAdditional: this._styleContentWrapperAdditional,
-			identPartialRhsWrpFooter: `listRhsWrpFooterControls`,
-			identPartialRhsPreSublist: `blank`,
-			identPartialRhsSublistFooter: `blank`,
-			identPartialRhsWrpToken: `blank`,
+			identPartialListListcontainer: "listListcontainer",
+			identPartialListContentwrapper: "listContentwrapper",
 			isPrinterView: this._isPrinterView,
 		};
 	}
@@ -231,27 +257,23 @@ class _PageGeneratorListBestiary extends _PageGeneratorListBase {
 	];
 
 	_registerPartials () {
+		super._registerPartials();
+
 		this._registerPartial({
-			ident: `listRhsWrpFooterControlsBestiary`,
-			filename: `template-list-rhs-wrp-footer-controls--bestiary.hbs`,
+			ident: "listContentwrapperBestiary",
+			filename: "list/template-list-contentwrapper--bestiary.hbs",
 		});
+
 		this._registerPartial({
-			ident: `listRhsPreSublistBestiary`,
-			filename: `template-list-rhs-pre-sublist-bestiary.hbs`,
-		});
-		this._registerPartial({
-			ident: `listRhsSublistFooterBestiary`,
-			filename: `template-list-rhs-sublist-footer-bestiary.hbs`,
+			ident: "listSublistContainerBestiary",
+			filename: "list/template-list-sublist-container--bestiary.hbs",
 		});
 	}
 
 	_getData () {
 		return {
 			...super._getData(),
-			identPartialRhsWrpFooter: `listRhsWrpFooterControlsBestiary`,
-			identPartialRhsPreSublist: `listRhsPreSublistBestiary`,
-			identPartialRhsSublistFooter: `listRhsSublistFooterBestiary`,
-			identPartialRhsWrpToken: `listRhsWrpToken`,
+			identPartialListContentwrapper: "listContentwrapperBestiary",
 		};
 	}
 
@@ -384,6 +406,59 @@ class _PageGeneratorListFeats extends _PageGeneratorListBase {
 	_isPrinterView = true;
 }
 
+class _PageGeneratorListItems extends _PageGeneratorListBase {
+	_page = UrlUtil.PG_ITEMS;
+	_titlePage = "Items";
+
+	_stylesheets = [
+		"items",
+	];
+
+	_scriptIdentList = "items";
+
+	_scriptsUtilsAdditional = [
+		"utils-tableview.js",
+	];
+
+	_styleContentWrapperAdditional = "itm__wrp-stats";
+
+	_btnsSublist = [
+		_HtmlGeneratorListButtons.getBtn({width: "6", sortIdent: "name", text: "Name"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "weight", text: "Weight"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "cost", text: "Cost"}),
+		_HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "count", text: "Number"}),
+	];
+
+	_registerPartials () {
+		super._registerPartials();
+
+		this._registerPartial({
+			ident: "listListcontainerItems",
+			filename: "list/template-list-listcontainer--items.hbs",
+		});
+
+		this._registerPartial({
+			ident: "listContentwrapperItems",
+			filename: "list/template-list-contentwrapper--items.hbs",
+		});
+
+		this._registerPartial({
+			ident: "listSublistContainerItems",
+			filename: "list/template-list-sublist-container--items.hbs",
+		});
+	}
+
+	_getData () {
+		return {
+			...super._getData(),
+			identPartialListListcontainer: "listListcontainerItems",
+			identPartialListContentwrapper: "listContentwrapperItems",
+		};
+	}
+
+	_isPrinterView = true;
+}
+
 const generators = [
 	new _PageGeneratorListActions(),
 	new _PageGeneratorListBackgrounds(),
@@ -394,6 +469,7 @@ const generators = [
 	new _PageGeneratorListDecks(),
 	new _PageGeneratorListDeities(),
 	new _PageGeneratorListFeats(),
+	new _PageGeneratorListItems(),
 ];
 
 generators

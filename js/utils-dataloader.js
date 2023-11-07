@@ -550,6 +550,9 @@ class _DataLoaderCache {
 	}
 
 	_set_getPartition (ent) {
+		if (ent.adventure) return this._set_getPartition_fromSource(SourceUtil.getEntitySource(ent.adventure));
+		if (ent.book) return this._set_getPartition_fromSource(SourceUtil.getEntitySource(ent.book));
+
 		if (ent.__prop !== "item" || ent._category !== "Specific Variant") return this._set_getPartition_fromSource(SourceUtil.getEntitySource(ent));
 
 		// "Specific Variant" items have a dual source. For the purposes of partitioning:

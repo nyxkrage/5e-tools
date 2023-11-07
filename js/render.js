@@ -1104,6 +1104,7 @@ globalThis.Renderer = function () {
 
 	this._renderSpellcasting = function (entry, textStack, meta, options) {
 		const toRender = this._renderSpellcasting_getEntries(entry);
+		if (!toRender.entries?.length) return;
 		this._recursiveRender({type: "entries", entries: toRender}, textStack, meta);
 	};
 
@@ -5950,7 +5951,12 @@ Renderer.optionalfeature = class {
 		if (!ent.consumes?.name) return null;
 
 		const ptPrefix = "Cost: ";
-		const ptUnit = ` ${ent.consumes.name[ent.consumes.amount !== 1 ? "toPlural" : "toString"]()}`;
+		const tksUnit = ent.consumes.name
+			.split(" ")
+			.map(it => it.trim())
+			.filter(Boolean);
+		tksUnit.last(tksUnit.last()[ent.consumes.amount != null && ent.consumes.amount !== 1 ? "toPlural" : "toString"]());
+		const ptUnit = ` ${tksUnit.join(" ")}`;
 
 		if (ent.consumes?.amountMin != null && ent.consumes?.amountMax != null) return `{@i ${ptPrefix}${ent.consumes.amountMin}\u2013${ent.consumes.amountMax}${ptUnit}}`;
 		return `{@i ${ptPrefix}${ent.consumes.amount ?? 1}${ptUnit}}`;
@@ -6069,7 +6075,7 @@ Renderer.race = class {
 			</td></tr>
 			<tr class="text"><td colspan="6">
 		`);
-		renderer.recursiveRender(Renderer.race.getRaceRenderableEntriesMeta(race), renderStack, {depth: 1});
+		renderer.recursiveRender(Renderer.race.getRaceRenderableEntriesMeta(race).entryMain, renderStack, {depth: 1});
 		renderStack.push("</td></tr>");
 
 		const ptHeightWeight = Renderer.race.getHeightAndWeightPart(race, {isStatic});
@@ -7552,7 +7558,9 @@ Renderer.monster = class {
 			entry.type = entry.type || "spellcasting";
 			const renderStack = [];
 			renderer.recursiveRender(entry, renderStack, {depth: 2});
-			out.push({name: entry.name, rendered: renderStack.join("")});
+			const rendered = renderStack.join("");
+			if (!rendered.length) return;
+			out.push({name: entry.name, rendered});
 		});
 		return out;
 	}

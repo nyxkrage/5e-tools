@@ -94,7 +94,9 @@
 					]
 				}
 			},
-			"hasFluff": true
+			"hasToken": true,
+			"hasFluff": true,
+			"tokenCredit": "@hamosart"
 		},
 		{
 			"name": "Farrow",

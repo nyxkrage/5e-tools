@@ -127,7 +127,7 @@ class ObjectsPage extends ListPage {
 		const hasToken = ent.tokenUrl || ent.hasToken;
 		if (hasToken) {
 			const imgLink = Renderer.object.getTokenUrl(ent);
-			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(ent.name || "").qq()}" loading="lazy"></a>`);
+			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy"></a>`);
 		}
 	}
 

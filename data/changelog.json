@@ -2556,5 +2556,11 @@
 		"date": "2023-10-29",
 		"title": "Unremarkable",
 		"txt": "- Added Markdown popout support to most list pages (thanks @ darthbeep for the initial prototype)\n- Added \"Voyage to Stormwreck Isle\" introductory section to Dragons of Stormwreck Isle\n- (Brew) Fixed specific variants for homebrew `magicvariant`s applied to non-homebrew `baseitem`s failing to be added to the Items page list\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.191.0",
+		"date": "2023-11-07",
+		"title": "Handmade Hell",
+		"txt": "- Added Chains of Asmodeus content\n- Added Dynamic Map Viewer support to Planescape content; Adventure Atlas content\n- Added missing Planescape tokens; Adventure Atlas tokens\n- Added \"Has Info\"/\"Has Images\" filters to Recipes page\n- Fixed races failing to display their text in popout windows/etc.\n- Fixed Classes page \"View Most Recent\" subclass filter filtering to partnered content instead of all content\n- (Brew) Improved Item Text Converter handling of base item types/requirements; `magicvariant` name prefix/suffixes; charges/recharge types; split lines\n- (Brew) Added `\"tokenCredit\"` field to entities with tokens (rendered as a tooltip on the token)\n- (Brew) Spellcasting entries with all their spell types `\"hidden\"` will no longer be rendered\n- (Fixed typos/added tags)"
 	}
 ]

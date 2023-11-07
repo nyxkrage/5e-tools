@@ -90,10 +90,13 @@ class RechargeTypeTag {
 
 		const strEntries = JSON.stringify(obj.entries, null, 2);
 
+		const mLongRest = /All charges are restored when you finish a long rest/i.test(strEntries);
+		if (mLongRest) return obj.recharge = "restLong";
+
 		const mDawn = /charges? at dawn|charges? daily at dawn|charges? each day at dawn|charges and regains all of them at dawn|charges and regains[^.]+each dawn|recharging them all each dawn|charges that are replenished each dawn/gi.exec(strEntries);
 		if (mDawn) return obj.recharge = "dawn";
 
-		const mDusk = /charges? daily at dusk|charges? each day at dusk/gi.exec(strEntries);
+		const mDusk = /charges? daily at dusk|charges? each (?:day at dusk|nightfall)|regains all charges at dusk/gi.exec(strEntries);
 		if (mDusk) return obj.recharge = "dusk";
 
 		const mMidnight = /charges? daily at midnight|Each night at midnight[^.]+charges/gi.exec(strEntries);
@@ -128,7 +131,7 @@ class RechargeAmountTag {
 		],
 		[
 			"(?<charges>",
-			")[^.]*?\\b(?:charges? daily at dusk|charges? each day at dusk)",
+			")[^.]*?\\b(?:charges? daily at dusk|charges? each (?:day at dusk|nightfall))",
 		],
 		[
 			"(?<charges>",
@@ -147,6 +150,8 @@ class RechargeAmountTag {
 		/recharging them all each dawn/i,
 		/charges that are replenished each dawn/i,
 		/regains? all expended charges (?:daily )?at dawn/i,
+		/regains all charges (?:each day )?at (?:dusk|dawn)/i,
+		/All charges are restored when you finish a (?:long|short) rest/i,
 	];
 
 	static _getRechargeAmount (str) {
@@ -216,18 +221,28 @@ class AttachedSpellTag {
 			/Spells are cast at their lowest level[^.]*: [^.]*/gi,
 		];
 
-		const addTaggedSpells = str => str.replace(/{@spell ([^}]*)}/gi, (...m) => outSet.add(m[1].toSpellCase()));
-
 		regexps.forEach(re => {
 			strEntries.replace(re, (...m) => outSet.add(m[1].toSpellCase()));
 		});
 
 		regexpsSeries.forEach(re => {
-			strEntries.replace(re, (...m) => addTaggedSpells(m[0]));
+			strEntries.replace(re, (...m) => this._checkAndTag_addTaggedSpells({str: m[0], outSet}));
 		});
 
 		// region Tag spells in tables
-		const walker = MiscUtil.getWalker();
+		const walker = MiscUtil.getWalker({isNoModification: true});
+		this._checkAndTag_tables({obj, walker, outSet});
+		// endregion
+
+		obj.attachedSpells = [...outSet];
+		if (!obj.attachedSpells.length) delete obj.attachedSpells;
+	}
+
+	static _checkAndTag_addTaggedSpells ({str, outSet}) {
+		return str.replace(/{@spell ([^}]*)}/gi, (...m) => outSet.add(m[1].toSpellCase()));
+	}
+
+	static _checkAndTag_tables ({obj, walker, outSet}) {
 		const walkerHandlers = {
 			obj: [
 				(obj) => {
@@ -239,7 +254,7 @@ class AttachedSpellTag {
 					if (!hasSpellInCaption && !hasSpellInColLabels) return obj;
 
 					(obj.rows || []).forEach(r => {
-						r.forEach(c => addTaggedSpells(c));
+						r.forEach(c => this._checkAndTag_addTaggedSpells({str: c, outSet}));
 					});
 
 					return obj;
@@ -248,10 +263,6 @@ class AttachedSpellTag {
 		};
 		const cpy = MiscUtil.copy(obj);
 		walker.walk(cpy, walkerHandlers);
-		// endregion
-
-		obj.attachedSpells = [...outSet];
-		if (!obj.attachedSpells.length) delete obj.attachedSpells;
 	}
 
 	static tryRun (it, opts) {

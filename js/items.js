@@ -3,7 +3,6 @@
 class ItemsSublistManager extends SublistManager {
 	constructor () {
 		super({
-			sublistClass: "subitems",
 			sublistListOptions: {
 				fnSort: PageFilterItems.sortItems,
 			},

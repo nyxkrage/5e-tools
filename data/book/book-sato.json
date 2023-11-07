@@ -2026,7 +2026,35 @@
 											"height": 3812,
 											"grid": {
 												"type": "none"
-											}
+											},
+											"mapRegions": [
+												{
+													"area": "075",
+													"points": [
+														[
+															2086,
+															135
+														],
+														[
+															2086,
+															305
+														],
+														[
+															3046,
+															305
+														],
+														[
+															3046,
+															135
+														]
+													]
+												}
+											],
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "book/SatO/thumbnail/026-map-2.01-elloweth-theater.webp"
+											},
+											"id": "00b"
 										},
 										"Creativity blossoms in the Civic Festhall, the headquarters of the Society of Sensation. Sensates spared no expense constructing this majestic building, which reaches nearly one thousand feet in height. Visitors find all manner of sensory delights within: gastronomic masterpieces served by innovative chefs; halls lined with fragrant, scratch-and-sniff statuaries; and pitch-black deprivation chambers bathed in supernatural silence.",
 										{
@@ -2387,7 +2415,35 @@
 											"height": 3835,
 											"grid": {
 												"type": "none"
-											}
+											},
+											"mapRegions": [
+												{
+													"area": "08d",
+													"points": [
+														[
+															2720,
+															102
+														],
+														[
+															2720,
+															351
+														],
+														[
+															3902,
+															351
+														],
+														[
+															3902,
+															102
+														]
+													]
+												}
+											],
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "book/SatO/thumbnail/031-map-2.02-hall-of-vigils.webp"
+											},
+											"id": "00c"
 										},
 										"The Heralds of Dust look after Sigil's dead in the Mortuary, the city's morgue. Situated between Blackshade Lane and Ragpicker's Square, the menacing stone structure rises above the Hive like a corpse from the grave. The Mortuary's towers bear low, gloomy domes with buttresses bristling with blades and windowless vaults clustered around the structure's base. Its dark, mournful halls reek of embalming fluids, their sterile tang sparing nostrils from viler odors trapped within the musty tombs.",
 										{
@@ -2748,7 +2804,35 @@
 											"height": 3631,
 											"grid": {
 												"type": "none"
-											}
+											},
+											"mapRegions": [
+												{
+													"area": "0aa",
+													"points": [
+														[
+															3443,
+															3378
+														],
+														[
+															3443,
+															3554
+														],
+														[
+															3868,
+															3554
+														],
+														[
+															3868,
+															3378
+														]
+													]
+												}
+											],
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "book/SatO/thumbnail/036-map-2.03-spire-of-grixitt.webp"
+											},
+											"id": "00d"
 										},
 										"A single grim blemish of gray stone and metal rises above Sigil's resplendent courthouses. Headquarters of the Mercykillers, the Prison is a warning to wrongdoers of the full penalty of law. The Prison's architecture is anathema to hope and light. During the dark and twilight hours, glaring searchlights affixed to the penitentiary's barbed watchtowers scan the ward below for runaways, but all that escapes its walls are the wails of the prisoners within.",
 										{
@@ -2990,7 +3074,35 @@
 											"height": 3597,
 											"grid": {
 												"type": "none"
-											}
+											},
+											"mapRegions": [
+												{
+													"area": "0b6",
+													"points": [
+														[
+															2003,
+															3077
+														],
+														[
+															2003,
+															3295
+														],
+														[
+															3212,
+															3295
+														],
+														[
+															3212,
+															3077
+														]
+													]
+												}
+											],
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "book/SatO/thumbnail/039-map-2.04-mithral-tower.webp"
+											},
+											"id": "00e"
 										},
 										"The thrumming heart of industry in Sigil, the Great Foundry is the headquarters of the Mind's Eye. The foundry's a sprawling complex of workshops, warehouses, storage yards, and furnaces. Seekers work it tirelessly. By day, the foundry obscures the sky with smoke and steam, and by night, it illuminates entire city blocks with roaring fires.",
 										"The Mind's Eye makes many of the tools and metalcrafts used throughout Sigil. The foundry's most talented smiths are magical sculptors who require neither coal nor flame. They fashion strong yet delicate objects from minimal materials, shaping an ounce of ore into a lightweight yet trustworthy tool with a wave of their palms.",
@@ -3320,7 +3432,35 @@
 											"height": 4003,
 											"grid": {
 												"type": "none"
-											}
+											},
+											"mapRegions": [
+												{
+													"area": "0ca",
+													"points": [
+														[
+															326,
+															3308
+														],
+														[
+															326,
+															3649
+														],
+														[
+															1458,
+															3649
+														],
+														[
+															1458,
+															3308
+														]
+													]
+												}
+											],
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "book/SatO/thumbnail/043-map-2.05-great-gymnasium.webp"
+											},
+											"id": "00f"
 										},
 										{
 											"type": "entries",

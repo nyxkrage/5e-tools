@@ -1434,7 +1434,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				const sourcePartSpecified = Object.entries(filterSet.sources).map(([src, val]) => `${src.toUrlified()}=${val}`);
 
 				const classifiedSources = this._pageFilter.sourceFilter.getSources();
-				const sourcePartRest = [...classifiedSources.official, ...classifiedSources.homebrew]
+				const sourcePartRest = [...classifiedSources.official, ...classifiedSources.unofficial, ...classifiedSources.homebrew]
 					.filter(src => filterSet.sources[src] == null)
 					.map(src => `${src.toUrlified()}=0`);
 

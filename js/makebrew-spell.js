@@ -3,7 +3,7 @@ import {SpellSourceLookupBuilder} from "./converterutils-spell-sources.js";
 class SpellBuilder extends Builder {
 	constructor () {
 		super({
-			titleSidebarLoadExisting: "Load Existing Spell",
+			titleSidebarLoadExisting: "Copy Existing Spell",
 			titleSidebarDownloadJson: "Download Spells as JSON",
 			prop: "spell",
 			titleSelectDefaultSource: "(Same as Spell)",

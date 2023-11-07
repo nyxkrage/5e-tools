@@ -6,7 +6,7 @@
 class CreatureBuilder extends Builder {
 	constructor () {
 		super({
-			titleSidebarLoadExisting: "Load Existing Creature",
+			titleSidebarLoadExisting: "Copy Existing Creature",
 			titleSidebarDownloadJson: "Download Creatures as JSON",
 			metaSidebarDownloadMarkdown: {
 				title: "Download Creatures as Markdown",

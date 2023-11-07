@@ -1349,6 +1349,7 @@ PropOrder._ITEM = [
 	"mace",
 	"net",
 	"poison",
+	"polearm",
 	"spear",
 	"staff",
 	"stealth",

@@ -134,6 +134,20 @@
 			]
 		},
 		{
+			"name": "Amulet of the Inferno",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Amulet of the Inferno.webp"
+					},
+					"credit": "Aaron Sims"
+				}
+			]
+		},
+		{
 			"name": "Amulet of the Planes",
 			"source": "DMG",
 			"images": [
@@ -4302,6 +4316,20 @@
 			]
 		},
 		{
+			"name": "Ranseur of Torture",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Ranseur of Torture.webp"
+					},
+					"credit": "Aaron Sims"
+				}
+			]
+		},
+		{
 			"name": "Red Wizard Blade",
 			"source": "HAT-LMI",
 			"images": [
@@ -4747,6 +4775,21 @@
 			]
 		},
 		{
+			"name": "Ruby Rod of Asmodeus",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Ruby Rod of Asmodeus and Scourge of Shadow.webp"
+					},
+					"title": "Scourge of Shadow (left) and Ruby Rod of Asmodeus (right)",
+					"credit": "Aaron Sims"
+				}
+			]
+		},
+		{
 			"name": "Ruidium Shield",
 			"source": "CRCotN",
 			"images": [
@@ -4835,6 +4878,21 @@
 						"type": "internal",
 						"path": "items/DMG/Scarab of Protection.webp"
 					}
+				}
+			]
+		},
+		{
+			"name": "Scourge of Shadow",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Ruby Rod of Asmodeus and Scourge of Shadow.webp"
+					},
+					"title": "Scourge of Shadow (left) and Ruby Rod of Asmodeus (right)",
+					"credit": "Aaron Sims"
 				}
 			]
 		},
@@ -6439,6 +6497,20 @@
 				"name": "Wreath of the Prism",
 				"source": "EGW"
 			}
+		},
+		{
+			"name": "Wrought-Iron Tower",
+			"source": "CoA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "items/CoA/Wrought-Iron Tower.webp"
+					},
+					"credit": "Aaron Sims"
+				}
+			]
 		},
 		{
 			"name": "Wyrmskull Throne",

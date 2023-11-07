@@ -449,6 +449,7 @@
 			],
 			"dmg1": "1d10",
 			"dmgType": "S",
+			"polearm": true,
 			"weapon": true
 		},
 		{
@@ -538,6 +539,7 @@
 			],
 			"dmg1": "1d10",
 			"dmgType": "S",
+			"polearm": true,
 			"weapon": true
 		},
 		{
