@@ -1104,7 +1104,7 @@ globalThis.Renderer = function () {
 
 	this._renderSpellcasting = function (entry, textStack, meta, options) {
 		const toRender = this._renderSpellcasting_getEntries(entry);
-		if (!toRender.entries?.length) return;
+		if (!toRender?.[0].entries?.length) return;
 		this._recursiveRender({type: "entries", entries: toRender}, textStack, meta);
 	};
 
