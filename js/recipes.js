@@ -81,29 +81,30 @@ class RecipesPage extends ListPage {
 		});
 	}
 
-	getListItem (it, rpI, isExcluded) {
-		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
+	getListItem (ent, rpI, isExcluded) {
+		this._pageFilter.mutateAndAddToFilters(ent, isExcluded);
 
 		const eleLi = document.createElement("div");
 		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
-		const source = Parser.sourceJsonToAbv(it.source);
-		const hash = UrlUtil.autoEncodeHash(it);
+		const source = Parser.sourceJsonToAbv(ent.source);
+		const hash = UrlUtil.autoEncodeHash(ent);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
-			<span class="col-6 bold pl-0">${it.name}</span>
-			<span class="col-4 ve-text-center">${it.type || "\u2014"}</span>
-			<span class="col-2 ve-text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="col-6 bold pl-0">${ent.name}</span>
+			<span class="col-4 ve-text-center">${ent.type || "\u2014"}</span>
+			<span class="col-2 ve-text-center ${Parser.sourceJsonToColor(ent.source)} pr-0" title="${Parser.sourceJsonToFull(ent.source)}" ${Parser.sourceJsonToStyle(ent.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
 			rpI,
 			eleLi,
-			it.name,
+			ent.name,
 			{
 				hash,
 				source,
-				type: it.type,
+				type: ent.type,
+				alias: PageFilterRecipes.getListAliases(ent),
 			},
 			{
 				isExcluded,

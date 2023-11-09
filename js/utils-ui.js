@@ -3389,7 +3389,7 @@ class SourceUiUtil {
 		const $iptColor = $(`<input type="color" class="w-100 b-0">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptColor.blur(); })
 			.change(() => hasColor = true);
-		if (options.source?.color != null) (hasColor = true) && $iptColor.val(options.source.color);
+		if (options.source?.color != null) { hasColor = true; $iptColor.val(options.source.color); }
 		const $iptUrl = $(`<input class="form-control ui-source__ipt-named">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptUrl.blur(); });
 		if (options.source) $iptUrl.val(options.source.url);
@@ -3405,7 +3405,7 @@ class SourceUiUtil {
 				let incomplete = false;
 				[$iptName, $iptAbv, $iptJson].forEach($ipt => {
 					const val = $ipt.val();
-					if (!val || !val.trim()) (incomplete = true) && $ipt.addClass("form-control--error");
+					if (!val || !val.trim()) { incomplete = true; $ipt.addClass("form-control--error"); }
 				});
 				if (incomplete) return;
 

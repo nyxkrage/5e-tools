@@ -214,8 +214,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	_addData (data) {
 		let isAddedAnyClass = false;
 		let isAddedAnySubclass = false;
-		if (data.class && data.class.length) (isAddedAnyClass = true) && this._addData_addClassData(data);
-		if (data.subclass && data.subclass.length) (isAddedAnySubclass = true) && this._addData_addSubclassData(data);
+		if (data.class && data.class.length) { isAddedAnyClass = true; this._addData_addClassData(data); }
+		if (data.subclass && data.subclass.length) { isAddedAnySubclass = true; this._addData_addSubclassData(data); }
 
 		const walker = MiscUtil.getWalker({
 			keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,

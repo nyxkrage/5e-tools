@@ -1930,14 +1930,7 @@
 					"type": "entries",
 					"name": "Raging Inferno",
 					"entries": [
-						"While attuned to the Amulet of the Inferno, you may use a bonus action to cast Fire"
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Bolt or Produce Flame",
-					"entries": [
-						"The cantrips scale based on your total character level and use Intelligence as a spellcasting modifier if you're normally incapable of casting spells."
+						"While attuned to the Amulet of the Inferno, you may use a bonus action to cast {@spell Fire Bolt} or {@spell Produce Flame}. The cantrips scale based on your total character level and use Intelligence as a spellcasting modifier if you're normally incapable of casting spells."
 					]
 				},
 				{
@@ -1954,6 +1947,10 @@
 						"The only creature capable of destroying the amulet is the warlock that created it. Nobody living knows the warlock's identity, making destroying the amulet almost impossible."
 					]
 				}
+			],
+			"attachedSpells": [
+				"fire bolt",
+				"produce flame"
 			],
 			"hasFluffImages": true
 		},

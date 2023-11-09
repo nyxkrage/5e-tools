@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "1.191.1",
+	"version": "1.191.2",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -45,12 +45,12 @@
 		"url": "git+https://github.com/5etools-mirror-1/5etools-mirror-1.github.io.git"
 	},
 	"devDependencies": {
-		"5etools-utils": "^0.9.39",
+		"5etools-utils": "^0.9.40",
 		"ajv": "^8.11.2",
 		"ajv-formats": "^2.1.1",
 		"commander": "^11.0.0",
 		"esbuild": "^0.14.38",
-		"eslint": "^8.28.0",
+		"eslint": "^8.53.0",
 		"handlebars": "^4.7.8",
 		"http-server": "^14.1.1",
 		"json-source-map": "^0.6.1",

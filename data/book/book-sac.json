@@ -72,7 +72,7 @@
 													"name": "RAI",
 													"id": "008",
 													"entries": [
-														"Some of you are especially interested in knowing the intent behind a rule. That's where RAI comes in: \"rules as intended.\" This approach is all about what the designers meant when they wrote something. In a perfect world, RAW and RAI align perfectly, but sometimes the words on the page don't succeed at communicating the designers' intent. Or perhaps the words succeed with one group of players but not with another.",
+														"{@note (\"Rules as Intended.\")} Some of you are especially interested in knowing the intent behind a rule. That's where RAI comes in: \"rules as intended.\" This approach is all about what the designers meant when they wrote something. In a perfect world, RAW and RAI align perfectly, but sometimes the words on the page don't succeed at communicating the designers' intent. Or perhaps the words succeed with one group of players but not with another.",
 														"When I write about the RAI interpretation of a rule, I'll be pulling back the curtain and letting you know what the D&D team meant when we wrote a certain rule."
 													]
 												},
@@ -81,7 +81,7 @@
 													"name": "RAF",
 													"id": "009",
 													"entries": [
-														"Regardless of what's on the page or what the designers intended, D&D is meant to be fun, and the DM is the ringmaster at each game table. The best DMs shape the game on the fly to bring the most delight to their players. Such DMs aim for RAF, \"rules as fun.\" We expect DMs to depart from the rules when running a particular campaign or when seeking the greatest happiness for a certain group of players. Sometimes my rules answers will include advice on achieving the RAF interpretation of a rule for your group.",
+														"{@note (\"Rules as Fun.\")} Regardless of what's on the page or what the designers intended, D&D is meant to be fun, and the DM is the ringmaster at each game table. The best DMs shape the game on the fly to bring the most delight to their players. Such DMs aim for RAF, \"rules as fun.\" We expect DMs to depart from the rules when running a particular campaign or when seeking the greatest happiness for a certain group of players. Sometimes my rules answers will include advice on achieving the RAF interpretation of a rule for your group.",
 														"I recommend a healthy mix of RAW, RAI, and RAF!"
 													]
 												}
@@ -201,7 +201,7 @@
 											"type": "entries",
 											"name": "How long do a shifter's temporary hit points last?",
 											"entries": [
-												"Unless a feature says otherwise, temporary hit points last until you finish a long rest (PH, 198)."
+												"Unless a feature says otherwise, temporary hit points last until you finish a long rest ({@book PH, 198|PHB|9|Temporary Hit Points})."
 											],
 											"id": "139"
 										},

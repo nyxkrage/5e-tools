@@ -4282,7 +4282,7 @@
 										"type": "internal",
 										"path": "adventure/CoA/060-0.webp"
 									},
-									"title": "Te bodies of titans and giants are preserved by the ice of Cania.",
+									"title": "The bodies of titans and giants are preserved by the ice of Cania.",
 									"credit": "Julian Calle",
 									"width": 916,
 									"height": 823
@@ -13944,7 +13944,7 @@
 			"name": "Appendix A: Lords of the Nine",
 			"page": 214,
 			"entries": [
-				"This {@adventure appendix i|CoA|APPi}ntroduces the lords of the Nine Hells in more detail. These ancient and powerful archdevils represent some of the greatest evils in existence. Their depravity knows no bounds.",
+				"This appendix introduces the lords of the Nine Hells in more detail. These ancient and powerful archdevils represent some of the greatest evils in existence. Their depravity knows no bounds.",
 				{
 					"type": "image",
 					"href": {
@@ -14412,7 +14412,7 @@
 			"name": "Appendix E: Corruption",
 			"page": 278,
 			"entries": [
-				"The information in this {@adventure appendix h|CoA|APPh}elps you keep track of each character's overall corruption. It shows you the possible endings available to the characters once they reach the final stages of the adventure.",
+				"The information in this appendix helps you keep track of each character's overall corruption. It shows you the possible endings available to the characters once they reach the final stages of the adventure.",
 				{
 					"type": "section",
 					"name": "Corruption Tracker",

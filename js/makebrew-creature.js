@@ -1691,7 +1691,7 @@ class CreatureBuilder extends Builder {
 		const raw = $iptVal.val();
 		if (raw && raw.trim()) {
 			const num = UiUtil.strToInt(raw);
-			const nextState = {...this._state[mode]} || {};
+			const nextState = {...(this._state[mode] || {})};
 			nextState[prop] = num < 0 ? `${num}` : `+${num}`;
 			this._state[mode] = nextState;
 		} else {

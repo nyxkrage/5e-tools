@@ -2567,5 +2567,10 @@
 		"ver": "1.191.1",
 		"date": "2023-11-07",
 		"txt": "- Fixed creature spellcasting entries failing to _ever_ render"
+	},
+	{
+		"ver": "1.191.2",
+		"date": "2023-11-09",
+		"txt": "- (Brew) Added `\"alias\"` support for Recipes\n- (Fixed typos/added tags)"
 	}
 ]

@@ -89,6 +89,10 @@ class PageFilter {
 			return !ExcludeUtil.isExcluded(hash, prop, source, {isNoCount: true});
 		});
 	}
+
+	static getListAliases (ent) {
+		return (ent.alias || []).map(it => `"${it}"`).join(",");
+	}
 	// endregion
 }
 
